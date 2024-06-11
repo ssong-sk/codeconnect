@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
- jieun 성공
+ jieun 다시 시도
 </body>
 </html>
