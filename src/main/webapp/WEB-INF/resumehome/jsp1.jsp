@@ -13,6 +13,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	다시 시도 ?
+
 </body>
 </html>
