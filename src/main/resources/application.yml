@@ -1,0 +1,26 @@
+#tomcat port
+server:
+  port: 9001
+ 
+#jsp (파일경로)
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/
+      suffix: .jsp
+  devtools:
+    livereload:
+      enabled: true
+      
+#mysql
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url : jdbc:mysql://codeconnect.cb4c0ey4oou3.ap-northeast-2.rds.amazonaws.com:3306/codeconnect
+    username: codeconnect
+    password: 12345678
+    
+#mybatis (dto를 주로 의미함 / 등록)
+mybatis:
+  type-aliases-package: com.code.*
+  mapper-locations:
+  - /mapper/**/*.xml
