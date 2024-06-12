@@ -7,7 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @ComponentScan({"com.code.*"})
-@MapperScan({"co.code.*"})
+@MapperScan({"com.code.*"})
 public class CodeConnectApplication {
 
 	public static void main(String[] args) {
