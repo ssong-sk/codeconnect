@@ -10,6 +10,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <title>Insert title here</title>
 <style type="text/css">
   /* 전체 틀 레이아웃 */
@@ -51,7 +52,7 @@
     margin: 10px 10px;
     width: 130px;
     height: 160px;
-    border: 0.5px solid gray;
+    border: 0px solid gray;
     
   }  
   
@@ -120,13 +121,27 @@
  }
  
  .areaSelect li:hover {
-    outline-color: #4876EF; /* 마우스를 올렸을 때 아웃라인 색상을 블루로 변경 */
+    outline-color: #0D6EFD; /* 마우스를 올렸을 때 아웃라인 색상을 블루로 변경 */
     color: #000000; /* 마우스를 올렸을 때 글자색을 블랙으로 변경 */
     cursor: pointer; /* 마우스 커서를 포인터로 변경 */
     border-radius: 12px;
     padding: 8px;
   }
   
+  .areaStyle {
+    display: inline-block;
+    padding: 8px 15px;
+    margin: 5px;
+    border-radius: 12px;
+    background-color: #0D6EFD;
+    color: white;
+    font-size: 0.9em;
+   }
+   
+   .areaStyle i {
+    cursor: pointer;
+   }
+
   .jobSelect {
      width: 100%; /* 원하는 너비로 설정 */
      height: 150px; /* 원하는 높이로 설정 */
@@ -156,18 +171,49 @@
  }
  
  .jobSelect li:hover {
-    outline-color: #4876EF; /* 마우스를 올렸을 때 아웃라인 색상을 블루로 변경 */
+    outline-color: #0D6EFD; /* 마우스를 올렸을 때 아웃라인 색상을 블루로 변경 */
     color: #000000; /* 마우스를 올렸을 때 글자색을 블랙으로 변경 */
     cursor: pointer; /* 마우스 커서를 포인터로 변경 */
     border-radius: 12px;
     padding: 8px;
   }
   
+  .jobStyle {
+    display: inline-block;
+    padding: 8px 15px;
+    margin: 5px;
+    border-radius: 12px;
+    background-color: #0D6EFD;
+    color: white;
+    font-size: 0.9em;
+   }
+   
+   .jobStyle i {
+    cursor: pointer;
+   }
+  
   /*동의서*/
   .consent {
     margin-top: 12%;
   }
-
+  
+  /*동의서 모달창*/
+  .modal-content, .modal-header, .modal-body {
+    border: none;
+  }
+  
+  .modal-content {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .modal-fullsize {
+  width: 700px !important;
+  height: 350px !important;
+  max-width: none !important; /* 최대 크기를 무제한으로 설정 */
+  max-height: none !important; /* 최대 크기를 무제한으로 설정 */
+  margin: 0 auto; /* 화면 중앙에 위치하도록 설정 */
+  }
+    
   /*최종저장 버튼*/
   .fixed_final {
     position: fixed;
@@ -242,7 +288,12 @@
       
                                        });
                                        
-                                    })
+                                       //이미지들어가면 보더 주기
+                                       $("#plusphoto").on("click", function () {
+                                           $("#showimg").css('border', '0.5px solid gray');
+                                       });
+                                       
+                                  })
                               
                               </script>
                               
@@ -281,165 +332,165 @@
                 
 <!-- 학력 폼 ---------------------------------------------------------------------------------------------------------------------->
                 <div class="school">
-				    <form action="schoolinsert" method="post">
-				        <div class="form-caption">
-				            <h4><b>학력</b></h4>&nbsp;&nbsp;&nbsp;
-				            <span style="font-size: 0.8em;">*필수정보입력</span>
-				            <span style="font-size: 0.8em; color: #4876EF; margin-left: 80%;">
-				            <a style="cursor: pointer;" id="schoolPlus">+ 추가하기</a></span>
-				        </div>
-				        <hr style="width: 100%;">
-				        <div id="schoolform"></div>
-				    </form>
-				</div>
-				
-				<script type="text/javascript">
-				    //추가하기 누르면 폼 나타나게 하기
-				    $(function () {
-				        //추가하기 클릭시 입력창 추가
-				        $("#schoolPlus").click(function () {
-				            var schoolclick = $("#schoolclick").length;
-				
-				            // 창이 하나도 안열려 있는 경우 추가폼 생성됨
-				            if (schoolclick == 0) {
-				                var total = "";
-				
-				                total += '<table id="schoolclick" style="width: 100%;">';
-				                total += '<tr>';
-				                total += '<td class="form-group">';
-				                total += '<select class="form-select" style="width: 200px;" id="education-select">';
-				                total += '<option value="none">학력구분 선택*</option>';
-				                total += '<option value="highschool">고등학교 졸업</option>';
-				                total += '<option value="university">대학·대학원 이상 졸업</option>';
-				                total += '</select>';
-				                total += '</td>';
-				                total += '<!-- 고등학교 졸업을 선택했을 때 메뉴 -->';
-				                total += '<tr id="highschool-options" style="display: none;">';
-				                total += '<td class="form-group">';
-				                total += '<input type="checkbox">편입';
-				                total += '</td>';
-				                total += '</tr>';
-				                total += '<tr id="highschool-options-details" style="display: none;">';
-				                total += '<td class="form-group">';
-				                total += '<input type="text" class="form-control" style="width: 200px;" placeholder="학교명*">';
-				                total += '<select class="form-select" style="width: 120px;">';
-				                total += '<option>졸업여부*</option>';
-				                total += '<option>졸업</option>';
-				                total += '<option>재학중</option>';
-				                total += '<option>휴학중</option>';
-				                total += '<option>중퇴</option>';
-				                total += '<option>자퇴</option>';
-				                total += '<option>졸업예정</option>';
-				                total += '</select>';
-				                total += '<input type="date" class="form-control" style="width: 120px;">';
-				                total += '<input type="date" class="form-control" style="width: 120px;">';
-				                total += '<select class="form-select" style="width: 120px;">';
-				                total += '<option>전공계열*</option>';
-				                total += '<option>문과계열</option>';
-				                total += '<option>이과계열</option>';
-				                total += '<option>전문(실업)계</option>';
-				                total += '<option>예체능계</option>';
-				                total += '<option>특성화</option>';
-				                total += '<option>특수목적고</option>';
-				                total += '</select>';
-				                total += '</td>';
-				                total += '</tr>';
-				                total += '<!-- 대학 대학원 폼 -->';
-				                total += '<tr id="university-options" style="display: none;">';
-				                total += '<td class="form-group">';
-				                total += '<select class="form-select"  style="width: 120px;" >';
-				                total += '<option>대학구분*</option>';
-				                total += '<option>대학(2,3년)</option>';
-				                total += '<option>대학(4년)</option>';
-				                total += '<option>대학원(석사)</option>';
-				                total += '<option>대학원(박사)</option>';
-				                total += '</select>';
-				                total += '<input type="text" class="form-control" style="width: 200px;" placeholder="학교명*">';
-				                total += '<input type="checkbox">편입';
-				                total += '</td>';
-				                total += '</tr>';
-				                total += '<tr id="university-options-details" style="display: none;">';
-				                total += '<td class="form-group">';
-				                total += '<input type="text" class="form-control" style="width: 180px;" placeholder="전공*">';
-				                total += '<select class="form-select" style="width: 120px;">';
-				                total += '<option>졸업여부*</option>';
-				                total += '<option>졸업</option>';
-				                total += '<option>재학중</option>';
-				                total += '<option>휴학중</option>';
-				                total += '<option>중퇴</option>';
-				                total += '<option>자퇴</option>';
-				                total += '<option>졸업예정</option>';
-				                total += '</select>';
-				                total += '<input type="date" class="form-control" style="width: 120px;">';
-				                total += '<input type="date" class="form-control" style="width: 120px;">';
-				                total += '<input type="text" class="form-control" style="width: 80px;" placeholder="학점*">';
-				                total += '<select class="form-select" style="width: 120px;">';
-				                total += '<option>기준학점*</option>';
-				                total += '<option>4.0</option>';
-				                total += '<option>4.3</option>';
-				                total += '<option>4.5</option>';
-				                total += '<option>5.0</option>';
-				                total += '</select>';
-				                total += '</td>';
-				                total += '</tr>';
-				                total += '<!-- 저장 취소 버튼 -->';
-				                total += '<tr>';
-				                total += '<td colspan="2" align="right">';
-				                total += '<br>';
-				                total += '<button type="submit" class="btn btn-outline-primary">저장</button>';
-				                total += '&nbsp';
-				                total += '<button type="button" id="schoolCancle" class="btn btn-outline-primary">취소</button>';
-				                total += '</td>';
-				                total += '</tr>';
-				                total += '</table>';
-				
-				                $("#schoolform").append(total);
-				
-				                // Attach event listener to the education select element
-				                var educationSelect = document.getElementById('education-select');
-				
-				                var highschoolOptions = document.getElementById('highschool-options');
-				
-				                var universityOptions = document.getElementById('university-options');
-				
-				                var highschoolOptionsDetails = document.getElementById('highschool-options-details');
-				
-				                var universityOptionsDetails = document.getElementById('university-options-details');
-				
-				                educationSelect.addEventListener('change', function () {
-				                    if (educationSelect.value === 'highschool') {
-				
-				                        highschoolOptions.style.display = 'block';
-				                        universityOptions.style.display = 'none';
-				                        highschoolOptionsDetails.style.display = 'table-row'; // 추가
-				                        universityOptionsDetails.style.display = 'none';
-				                    }
-				
-				                    else if (educationSelect.value === 'university') {
-				
-				                        highschoolOptions.style.display = 'none';
-				                        universityOptions.style.display = 'block';
-				                        highschoolOptionsDetails.style.display = 'none';
-				                        universityOptionsDetails.style.display = 'table-row'; // 추가
-				                    }
-				
-				                    else {
-				
-				                        highschoolOptions.style.display = 'none';
-				                        universityOptions.style.display = 'none';
-				                        highschoolOptionsDetails.style.display = 'none';
-				                        universityOptionsDetails.style.display = 'none';
-				                    }
-				                });
-				            }
-				        });
-				
-				        // 취소 클릭시 입력창 삭제
-				        $(document).on("click", "#schoolCancle", function () {
-				            $("#schoolform").html("");
-				        });
-				    });
-				</script>
+                <form action="schoolinsert" method="post">
+                    <div class="form-caption">
+                        <h4><b>학력</b></h4>&nbsp;&nbsp;&nbsp;
+                        <span style="font-size: 0.8em;">*필수정보입력</span>
+                        <span style="font-size: 0.8em; color: #4876EF; margin-left: 80%;">
+                        <a style="cursor: pointer;" id="schoolPlus">+ 추가하기</a></span>
+                    </div>
+                    <hr style="width: 100%;">
+                    <div id="schoolform"></div>
+                </form>
+            </div>
+            
+            <script type="text/javascript">
+                //추가하기 누르면 폼 나타나게 하기
+                $(function () {
+                    //추가하기 클릭시 입력창 추가
+                    $("#schoolPlus").click(function () {
+                        var schoolclick = $("#schoolclick").length;
+            
+                        // 창이 하나도 안열려 있는 경우 추가폼 생성됨
+                        if (schoolclick == 0) {
+                            var total = "";
+            
+                            total += '<table id="schoolclick" style="width: 100%;">';
+                            total += '<tr>';
+                            total += '<td class="form-group">';
+                            total += '<select class="form-select" style="width: 200px;" id="education-select">';
+                            total += '<option value="none">학력구분 선택*</option>';
+                            total += '<option value="highschool">고등학교 졸업</option>';
+                            total += '<option value="university">대학·대학원 이상 졸업</option>';
+                            total += '</select>';
+                            total += '</td>';
+                            total += '<!-- 고등학교 졸업을 선택했을 때 메뉴 -->';
+                            total += '<tr id="highschool-options" style="display: none;">';
+                            total += '<td class="form-group">';
+                            total += '<input type="checkbox">편입';
+                            total += '</td>';
+                            total += '</tr>';
+                            total += '<tr id="highschool-options-details" style="display: none;">';
+                            total += '<td class="form-group">';
+                            total += '<input type="text" class="form-control" style="width: 200px;" placeholder="학교명*">';
+                            total += '<select class="form-select" style="width: 120px;">';
+                            total += '<option>졸업여부*</option>';
+                            total += '<option>졸업</option>';
+                            total += '<option>재학중</option>';
+                            total += '<option>휴학중</option>';
+                            total += '<option>중퇴</option>';
+                            total += '<option>자퇴</option>';
+                            total += '<option>졸업예정</option>';
+                            total += '</select>';
+                            total += '<input type="date" class="form-control" style="width: 120px;">';
+                            total += '<input type="date" class="form-control" style="width: 120px;">';
+                            total += '<select class="form-select" style="width: 120px;">';
+                            total += '<option>전공계열*</option>';
+                            total += '<option>문과계열</option>';
+                            total += '<option>이과계열</option>';
+                            total += '<option>전문(실업)계</option>';
+                            total += '<option>예체능계</option>';
+                            total += '<option>특성화</option>';
+                            total += '<option>특수목적고</option>';
+                            total += '</select>';
+                            total += '</td>';
+                            total += '</tr>';
+                            total += '<!-- 대학 대학원 폼 -->';
+                            total += '<tr id="university-options" style="display: none;">';
+                            total += '<td class="form-group">';
+                            total += '<select class="form-select"  style="width: 120px;" >';
+                            total += '<option>대학구분*</option>';
+                            total += '<option>대학(2,3년)</option>';
+                            total += '<option>대학(4년)</option>';
+                            total += '<option>대학원(석사)</option>';
+                            total += '<option>대학원(박사)</option>';
+                            total += '</select>';
+                            total += '<input type="text" class="form-control" style="width: 200px;" placeholder="학교명*">';
+                            total += '<input type="checkbox">편입';
+                            total += '</td>';
+                            total += '</tr>';
+                            total += '<tr id="university-options-details" style="display: none;">';
+                            total += '<td class="form-group">';
+                            total += '<input type="text" class="form-control" style="width: 180px;" placeholder="전공*">';
+                            total += '<select class="form-select" style="width: 120px;">';
+                            total += '<option>졸업여부*</option>';
+                            total += '<option>졸업</option>';
+                            total += '<option>재학중</option>';
+                            total += '<option>휴학중</option>';
+                            total += '<option>중퇴</option>';
+                            total += '<option>자퇴</option>';
+                            total += '<option>졸업예정</option>';
+                            total += '</select>';
+                            total += '<input type="date" class="form-control" style="width: 120px;">';
+                            total += '<input type="date" class="form-control" style="width: 120px;">';
+                            total += '<input type="text" class="form-control" style="width: 80px;" placeholder="학점*">';
+                            total += '<select class="form-select" style="width: 120px;">';
+                            total += '<option>기준학점*</option>';
+                            total += '<option>4.0</option>';
+                            total += '<option>4.3</option>';
+                            total += '<option>4.5</option>';
+                            total += '<option>5.0</option>';
+                            total += '</select>';
+                            total += '</td>';
+                            total += '</tr>';
+                            total += '<!-- 저장 취소 버튼 -->';
+                            total += '<tr>';
+                            total += '<td colspan="2" align="right">';
+                            total += '<br>';
+                            total += '<button type="submit" class="btn btn-outline-primary">저장</button>';
+                            total += '&nbsp';
+                            total += '<button type="button" id="schoolCancle" class="btn btn-outline-primary">취소</button>';
+                            total += '</td>';
+                            total += '</tr>';
+                            total += '</table>';
+            
+                            $("#schoolform").append(total);
+            
+                            // Attach event listener to the education select element
+                            var educationSelect = document.getElementById('education-select');
+            
+                            var highschoolOptions = document.getElementById('highschool-options');
+            
+                            var universityOptions = document.getElementById('university-options');
+            
+                            var highschoolOptionsDetails = document.getElementById('highschool-options-details');
+            
+                            var universityOptionsDetails = document.getElementById('university-options-details');
+            
+                            educationSelect.addEventListener('change', function () {
+                                if (educationSelect.value === 'highschool') {
+            
+                                    highschoolOptions.style.display = 'block';
+                                    universityOptions.style.display = 'none';
+                                    highschoolOptionsDetails.style.display = 'table-row'; // 추가
+                                    universityOptionsDetails.style.display = 'none';
+                                }
+            
+                                else if (educationSelect.value === 'university') {
+            
+                                    highschoolOptions.style.display = 'none';
+                                    universityOptions.style.display = 'block';
+                                    highschoolOptionsDetails.style.display = 'none';
+                                    universityOptionsDetails.style.display = 'table-row'; // 추가
+                                }
+            
+                                else {
+            
+                                    highschoolOptions.style.display = 'none';
+                                    universityOptions.style.display = 'none';
+                                    highschoolOptionsDetails.style.display = 'none';
+                                    universityOptionsDetails.style.display = 'none';
+                                }
+                            });
+                        }
+                    });
+            
+                    // 취소 클릭시 입력창 삭제
+                    $(document).on("click", "#schoolCancle", function () {
+                        $("#schoolform").html("");
+                    });
+                });
+            </script>
 
                 
                 
@@ -532,7 +583,7 @@
                             <h4><b>경험 / 활동 / 교육</b></h4>&nbsp;&nbsp;&nbsp;
                             <span style="font-size: 0.8em;">*필수정보입력</span>
                             <span style="font-size: 0.8em; color: #4876EF; margin-left: 67%;">
-				            <a style="cursor: pointer;" id="activityPlus">+ 추가하기</a></span>
+                        <a style="cursor: pointer;" id="activityPlus">+ 추가하기</a></span>
                         </div>
                         <hr style="width: 100%;">
                         <div id="activityform"></div>
@@ -608,122 +659,122 @@
                 
 <!-- 자격/어학/수상----------------------------------------------------------------------------------------------------------- -->
                 <div class="qualification">
-				    <form action="qualificationinsert" method="post">
-				        <div class="form-caption">
-				            <h4><b>자격 / 어학 / 수상</b></h4>&nbsp;&nbsp;&nbsp;
-				            <span style="font-size: 0.8em;">*필수정보입력</span>
-				            <span style="font-size: 0.8em; color: #4876EF; margin-left: 67%;">
-				                <a style="cursor: pointer;" id="qualificationPlus">+ 추가하기</a></span>
-				        </div>
-				        <hr style="width: 100%;">
-				        <div id="qualificationform"></div>
-				    </form>
-				</div>
-				
-				<script type="text/javascript">
-				    //추가하기 누르면 폼 나타나게 하기
-				    $(function () {
-				        //추가하기 클릭시 입력창 추가
-				        $("#qualificationPlus").click(function () {
-				            var qualificationclick = $("#qualificationclick").length;
-				
-				            // 창이 하나도 안열려 있는 경우 추가폼 생성됨
-				            if (qualificationclick == 0) {
-				                var total = "";
-				
-				                total += '<table id="qualificationclick" style="width: 100%;">';
-				                total += '<tr>';
-				                total += '<td class="form-group">';
-				                total += '<select class="form-select" style="width: 200px;" id="qualification-select">';
-				                total += '<option value="none">구분*</option>';
-				                total += '<option value="qualify">자격증·면허증</option>';
-				                total += '<option value="language">어학시험</option>';
-				                total += '<option value="award">수상내역·공모전</option>';
-				                total += '</select>';
-				                total += '</td>';
-				                total += '</tr>';
-				                total += '<!-- 자격증 폼 -->';
-				                total += '<tr id="qualify-options" style="display: none;">';
-				                total += '<td class="form-group">';
-				                total += '<input type="text" class="form-control" style="width: 200px;" placeholder="자격증명*">';
-				                total += '<input type="text" class="form-control" style="width: 200px;" placeholder="발행처/기관*">';
-				                total += '<select class="form-select" style="width: 120px;">';
-				                total += '<option>합격구분*</option>';
-				                total += '<option>1차합격</option>';
-				                total += '<option>2차합격</option>';
-				                total += '<option>필기합격</option>';
-				                total += '<option>실기합격</option>';
-				                total += '<option>최종합격</option>';
-				                total += '</select>';
-				                total += '<input type="date" class="form-control" style="width: 120px;">';
-				                total += '</td>';
-				                total += '</tr>';
-				                total += '<!-- 어학 폼 -->';
-				                total += '<tr id="language-options" style="display: none;">';
-				                total += '<td class="form-group">';
-				                total += '<input type="text" class="form-control" style="width: 200px;" placeholder="어학시험명*">';
-				                total += '<input type="date" class="form-control" style="width: 120px;">';
-				                total += '<input type="text" class="form-control" style="width: 200px;" placeholder="점수*">';
-				                total += '</td>';
-				                total += '</tr>';
-				                total += '<!-- 어워드 폼 -->';
-				                total += '<tr id="award-options" style="display: none;">';
-				                total += '<td class="form-group">';
-				                total += '<input type="text" class="form-control" style="width: 200px;" placeholder="수상·공모전명*">';
-				                total += '<input type="date" class="form-control" style="width: 120px;">';
-				                total += '<input type="text" class="form-control" style="width: 200px;" placeholder="수여·주최기관*">';
-				                total += '</td>';
-				                total += '</tr>';
-				                total += '<!-- 저장 취소 버튼 -->';
-				                total += '<tr>';
-				                total += '<td colspan="2" align="right">';
-				                total += '<br>';
-				                total += '<button type="submit" class="btn btn-outline-primary">저장</button>';
-				                total += '&nbsp';
-				                total += '<button type="button" id="qualificationCancle" class="btn btn-outline-primary">취소</button>';
-				                total += '</td>';
-				                total += '</tr>';
-				                total += '</table>';
-				
-				                $("#qualificationform").append(total);
-				
-				                // 자격 / 어학 / 수상 구분 선택하면 카테고리에 맞게 폼 나타내기
-				                var qualificationSelect = document.getElementById('qualification-select');
-				                var qualifyOptions = document.getElementById('qualify-options');
-				                var languageOptions = document.getElementById('language-options');
-				                var awardOptions = document.getElementById('award-options');
-				
-				                qualificationSelect.addEventListener('change', function() {
-				                    if (qualificationSelect.value === 'qualify') {
-				                        qualifyOptions.style.display = 'block';
-				                        languageOptions.style.display = 'none';
-				                        awardOptions.style.display = 'none';
-				                    } 
-				                    else if (qualificationSelect.value === 'language') {
-				                        qualifyOptions.style.display = 'none';
-				                        languageOptions.style.display = 'block';
-				                        awardOptions.style.display = 'none';
-				                    } 
-				                    else if (qualificationSelect.value === 'award') {
-				                        qualifyOptions.style.display = 'none';
-				                        languageOptions.style.display = 'none';
-				                        awardOptions.style.display = 'block';
-				                    } 
-				                    else {
-				                        qualifyOptions.style.display = 'none';
-				                        languageOptions.style.display = 'none';
-				                        awardOptions.style.display = 'none';
-				                    }
-				                });
-				            }
-				        });
-				
-				        // 취소 클릭시 입력창 삭제
-				        $(document).on("click", "#qualificationCancle", function () {
-				            $("#qualificationform").html("");
-				        });
-				    });
-				</script>
+                <form action="qualificationinsert" method="post">
+                    <div class="form-caption">
+                        <h4><b>자격 / 어학 / 수상</b></h4>&nbsp;&nbsp;&nbsp;
+                        <span style="font-size: 0.8em;">*필수정보입력</span>
+                        <span style="font-size: 0.8em; color: #4876EF; margin-left: 67%;">
+                            <a style="cursor: pointer;" id="qualificationPlus">+ 추가하기</a></span>
+                    </div>
+                    <hr style="width: 100%;">
+                    <div id="qualificationform"></div>
+                </form>
+            </div>
+            
+            <script type="text/javascript">
+                //추가하기 누르면 폼 나타나게 하기
+                $(function () {
+                    //추가하기 클릭시 입력창 추가
+                    $("#qualificationPlus").click(function () {
+                        var qualificationclick = $("#qualificationclick").length;
+            
+                        // 창이 하나도 안열려 있는 경우 추가폼 생성됨
+                        if (qualificationclick == 0) {
+                            var total = "";
+            
+                            total += '<table id="qualificationclick" style="width: 100%;">';
+                            total += '<tr>';
+                            total += '<td class="form-group">';
+                            total += '<select class="form-select" style="width: 200px;" id="qualification-select">';
+                            total += '<option value="none">구분*</option>';
+                            total += '<option value="qualify">자격증·면허증</option>';
+                            total += '<option value="language">어학시험</option>';
+                            total += '<option value="award">수상내역·공모전</option>';
+                            total += '</select>';
+                            total += '</td>';
+                            total += '</tr>';
+                            total += '<!-- 자격증 폼 -->';
+                            total += '<tr id="qualify-options" style="display: none;">';
+                            total += '<td class="form-group">';
+                            total += '<input type="text" class="form-control" style="width: 200px;" placeholder="자격증명*">';
+                            total += '<input type="text" class="form-control" style="width: 200px;" placeholder="발행처/기관*">';
+                            total += '<select class="form-select" style="width: 120px;">';
+                            total += '<option>합격구분*</option>';
+                            total += '<option>1차합격</option>';
+                            total += '<option>2차합격</option>';
+                            total += '<option>필기합격</option>';
+                            total += '<option>실기합격</option>';
+                            total += '<option>최종합격</option>';
+                            total += '</select>';
+                            total += '<input type="date" class="form-control" style="width: 120px;">';
+                            total += '</td>';
+                            total += '</tr>';
+                            total += '<!-- 어학 폼 -->';
+                            total += '<tr id="language-options" style="display: none;">';
+                            total += '<td class="form-group">';
+                            total += '<input type="text" class="form-control" style="width: 200px;" placeholder="어학시험명*">';
+                            total += '<input type="date" class="form-control" style="width: 120px;">';
+                            total += '<input type="text" class="form-control" style="width: 200px;" placeholder="점수*">';
+                            total += '</td>';
+                            total += '</tr>';
+                            total += '<!-- 어워드 폼 -->';
+                            total += '<tr id="award-options" style="display: none;">';
+                            total += '<td class="form-group">';
+                            total += '<input type="text" class="form-control" style="width: 200px;" placeholder="수상·공모전명*">';
+                            total += '<input type="date" class="form-control" style="width: 120px;">';
+                            total += '<input type="text" class="form-control" style="width: 200px;" placeholder="수여·주최기관*">';
+                            total += '</td>';
+                            total += '</tr>';
+                            total += '<!-- 저장 취소 버튼 -->';
+                            total += '<tr>';
+                            total += '<td colspan="2" align="right">';
+                            total += '<br>';
+                            total += '<button type="submit" class="btn btn-outline-primary">저장</button>';
+                            total += '&nbsp';
+                            total += '<button type="button" id="qualificationCancle" class="btn btn-outline-primary">취소</button>';
+                            total += '</td>';
+                            total += '</tr>';
+                            total += '</table>';
+            
+                            $("#qualificationform").append(total);
+            
+                            // 자격 / 어학 / 수상 구분 선택하면 카테고리에 맞게 폼 나타내기
+                            var qualificationSelect = document.getElementById('qualification-select');
+                            var qualifyOptions = document.getElementById('qualify-options');
+                            var languageOptions = document.getElementById('language-options');
+                            var awardOptions = document.getElementById('award-options');
+            
+                            qualificationSelect.addEventListener('change', function() {
+                                if (qualificationSelect.value === 'qualify') {
+                                    qualifyOptions.style.display = 'block';
+                                    languageOptions.style.display = 'none';
+                                    awardOptions.style.display = 'none';
+                                } 
+                                else if (qualificationSelect.value === 'language') {
+                                    qualifyOptions.style.display = 'none';
+                                    languageOptions.style.display = 'block';
+                                    awardOptions.style.display = 'none';
+                                } 
+                                else if (qualificationSelect.value === 'award') {
+                                    qualifyOptions.style.display = 'none';
+                                    languageOptions.style.display = 'none';
+                                    awardOptions.style.display = 'block';
+                                } 
+                                else {
+                                    qualifyOptions.style.display = 'none';
+                                    languageOptions.style.display = 'none';
+                                    awardOptions.style.display = 'none';
+                                }
+                            });
+                        }
+                    });
+            
+                    // 취소 클릭시 입력창 삭제
+                    $(document).on("click", "#qualificationCancle", function () {
+                        $("#qualificationform").html("");
+                    });
+                });
+            </script>
                 
 
             
@@ -736,7 +787,7 @@
                     <div class="form-caption">
                         <h4><b>포트폴리오 / 기타문서</b></h4>&nbsp;&nbsp;&nbsp;
                         <span style="font-size: 0.8em; color: #4876EF; margin-left: 70.2%;">
-				        <a style="cursor: pointer;" id="portfolioPlus">+ 추가하기</a></span>
+                    <a style="cursor: pointer;" id="portfolioPlus">+ 추가하기</a></span>
                     </div>
                     <hr style="width: 100%;">
                     <div id="portfolioform"></div>
@@ -748,11 +799,11 @@
                   $(function () {
                   
                        //버튼 클릭 시 포트폴리오 또는 기타 자료 첨부
-                       $("#portfoliofile").click(function () {
+                       $("#portfolioform").on("click", "#portfoliofile", function () {
                           
-                          $("#portfolioname").trigger("click");
-                       });
-                       
+                        $("#portfolioname").trigger("click");
+                    });
+                                   
                        
                        
                        //추가하기 클릭시 입력창 추가
@@ -816,7 +867,7 @@
                         <div class="form-caption">
                             <h4><b>자기소개서</b></h4>&nbsp;&nbsp;&nbsp;
                             <span style="font-size: 0.8em; color: #4876EF; margin-left: 81%;">
-				             <a style="cursor: pointer;" id="selfPlus">+ 추가하기</a></span>
+                         <a style="cursor: pointer;" id="selfPlus">+ 추가하기</a></span>
                         </div>
                         <hr style="width: 100%;">
                         <div id="selfform"></div>
@@ -839,29 +890,29 @@
                               
                                var total = "";
                                                                                                                                  
-				               total += '<table id="selfclick" style="width: 100%;">';
-				               total += '<tr>';
-				               total += '<td class="form-group">';
-				               total += '<input type="text" class="form-control" style="width: 700px;" placeholder="자기소개서 제목">';
-				               total += '</td>';
-				               total += '</tr>';
-				               total += '<tr>';
-				               total += '<td class="form-group">';
-				               total += '<textarea class="form-control" style="height: 200px;"';
-				               total += 'placeholder="코드커넥트인만의 특벽한 자소서 툴과 함께 차별화된 자기소개서를 완성해보세요"></textarea>';
-				               total += '</td>';
-				               total += '</tr>';                                      
-				               total += '<!-- 저장 취소 버튼 -->';
-				               total += '<tr>';
-				               total += '<td colspan="2" align="right">';
-				               total += '<br>';
-				               total += '<button type="submit" class="btn btn-outline-primary">저장</button>';
-				               total +=  '&nbsp';
-				               total += '<button type="button" id="selfCancle" class="btn btn-outline-primary">취소</button>';
-				               total += '</td>';
-				               total += '</tr>';
-				               total += '</table>';
-				                                       
+                           total += '<table id="selfclick" style="width: 100%;">';
+                           total += '<tr>';
+                           total += '<td class="form-group">';
+                           total += '<input type="text" class="form-control" style="width: 700px;" placeholder="자기소개서 제목">';
+                           total += '</td>';
+                           total += '</tr>';
+                           total += '<tr>';
+                           total += '<td class="form-group">';
+                           total += '<textarea class="form-control" style="height: 200px;"';
+                           total += 'placeholder="코드커넥트인만의 특벽한 자소서 툴과 함께 차별화된 자기소개서를 완성해보세요"></textarea>';
+                           total += '</td>';
+                           total += '</tr>';                                      
+                           total += '<!-- 저장 취소 버튼 -->';
+                           total += '<tr>';
+                           total += '<td colspan="2" align="right">';
+                           total += '<br>';
+                           total += '<button type="submit" class="btn btn-outline-primary">저장</button>';
+                           total +=  '&nbsp';
+                           total += '<button type="button" id="selfCancle" class="btn btn-outline-primary">취소</button>';
+                           total += '</td>';
+                           total += '</tr>';
+                           total += '</table>';
+                                                   
                       
 
                                $("#selfform").append(total);
@@ -887,118 +938,316 @@
                 
                 
  <!-- 희망근무조건 ---------------------------------------------------------------------------------------------------------------->
-                <div class="hope">
-                    <form action="hopeinsert" method="post">
-                        <div class="form-caption">
-                            <h4><b>희망근무조건</b></h4>
-                        </div>
-                        <hr style="width: 100%;">
-                        <div id="hopeform"></div>
-                        
-                        <table id="hopeclick" style="width: 100%;">
-	                      <tr>
-	                        <td class="form-group">
-	                          <select class="form-select" style="width: 300px;">
-				                  <option>고용형태</option>
-				                  <option>정규직</option>
-				                  <option>계약직</option>
-				                  <option>프리랜서</option>
-				                  <option>인턴직</option>
-				              </select>
-	                  
-				                 <input type="text" class="form-control" style="width: 200px;" placeholder="희망연봉">만원이상 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-				                 <input type="checkbox">면접 후 결정
-	                        </td>
-	                      </tr>
-	                  
-	                  
-	                      <tr>
-	                        <td class="form-group" style="margin-top: 2%;">
-	                         &nbsp;<span style="font-size: 0.8em; display: inline-block;">희망 근무지</span>&nbsp;&nbsp;&nbsp;
-	                         <span style="font-size: 0.8em; display: inline-block;">*최대 3개 시도 안에서 자유롭게 선택 가능합니다</span>&nbsp;&nbsp;&nbsp;
-	                         <span style="font-size: 0.8em; color: #4876EF; display: inline-block;">
-				            <a style="cursor: pointer;" id="areaPlus">+ 추가하기</a></span>
-				          </tr>
-				            <div id="areaform"></div>
-				       
-				            <tr>
-				                <td class="form-group">
-				                    <div class="areaSelect">
-				                        <ul style="text-align: center;">
-				                            <li>서울특별시 전지역</li>
-				                            <li>부산광역시 전지역</li>
-				                            <li>대구광역시 전지역</li>
-				                            <li>인천광역시 전지역</li>
-				                            <li>광주광역시 전지역</li>
-				                            <li>대전광역시 전지역</li>
-				                            <li>울산광역시 전지역</li>
-				                            <li>세종특별자치시 전지역</li>
-				                            <li>경기도 전지역</li>
-				                            <li>강원특별자치시 전지역</li>
-				                            <li>충청북도 전지역</li>
-				                            <li>충청남도 전지역</li>
-				                            <li>전라북도 전지역</li>
-				                            <li>전라남도 전지역</li>
-				                            <li>경상북도 전지역</li>
-				                            <li>제주특별자치도 전지역</li>
-				                        </ul>
-				                    </div>
-				                </td>
-				            </tr>
-				            
-				            
-				            <!-- 직무 -->
-				            <!-- 직무 -->
-				            <tr>
-	                        <td class="form-group" style="margin-top: 2%;">
-	                         &nbsp;<span style="font-size: 0.8em; display: inline-block;">직무 키워드</span>&nbsp;&nbsp;&nbsp;
-	                         <span style="font-size: 0.8em; color: #4876EF; display: inline-block;">
-				            <a style="cursor: pointer;" id="jobPlus">+ 추가하기</a></span>
-				          </tr>
-				            <div id="jobform"></div>
-				       
-				            <tr>
-				                <td class="form-group">
-				                    <div class="jobSelect">
-				                        <ul style="text-align: center;">
-				                            <li>서버/백엔드 개발자</li>
-				                            <li>프론트엔드 개발자</li>
-				                            <li>웹 풀스택 개발자</li>
-				                            <li>안드로이드 개발자</li>
-				                            <li>IOS 개발자</li>
-				                            <li>크로스플랫폼 앱개발자</li>
-				                            <li>게임 클라이언트 개발자</li>
-				                            <li>게임 서버 개발자</li>
-				                            <li>DBA</li>
-				                            <li>빅데이터 엔지니어</li>
-				                            <li>인공지능/머신러닝</li>
-				                            <li>devops/시스템 엔지니어</li>
-				                            <li>정보보안 담당자</li>
-				                            <li>QA 엔지니어</li>
-				                            <li>개발 PM</li>
-				                            <li>HW/임베디드</li>
-				                            <li>SW/솔루션</li>
-				                            <li>웹퍼블리셔</li>
-				                            <li>VR/AR/3D</li>
-				                            <li>블록체인</li>
-				                            <li>기술지원</li>
-				                        </ul>
-				                    </div>
-				                </td>
-				            </tr>
-	                  
-	                      
-		                  <!-- 저장 취소 버튼 -->
-		                  <tr>
-			                  <td colspan="2" align="right">
-				                  <br>
-				                  <button type="submit" class="btn btn-outline-primary">저장</button>
-				                  <button type="button" id="hopeCancel" class="btn btn-outline-primary">취소</button>
-			                  </td>
-		                  </tr>
-		              </table>        
+            <div class="hope">
+                <form action="hopeinsert" method="post">
+                    <div class="form-caption">
+                        <h4><b>희망근무조건</b></h4>
+                    </div>
+                    <hr style="width: 100%;">
+                    <div id="hopeform"></div>
+                    
+                    <table id="hopeclick" style="width: 100%;">
+                     <tr>
+                       <td class="form-group">
+                         <select class="form-select" style="width: 300px;">
+                          <option>고용형태</option>
+                          <option>정규직</option>
+                          <option>계약직</option>
+                          <option>프리랜서</option>
+                          <option>인턴직</option>
+                      </select>
+                         <input type="text" class="form-control" style="width: 200px;" placeholder="희망연봉">만원이상 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                         <input type="checkbox">면접 후 결정
+                       </td>
+                     </tr>
+                     
+                     <!-- 희망근무지------------------------------------------------------------------------------------------------------------------ -->
+                      <tr>
+                        <td class="form-group" style="margin-top: 2%;">
+                            &nbsp;<span style="font-size: 0.8em; display: inline-block;">희망 근무지</span>&nbsp;&nbsp;&nbsp;
+                            <span style="font-size: 0.8em; display: inline-block;">*최대 3개 시도 안에서 자유롭게 선택 가능합니다</span>&nbsp;&nbsp;&nbsp;
+                            <span style="font-size: 0.8em; color: #4876EF; display: inline-block;">
+                            <a style="cursor: pointer;" id="areaPlus">+ 추가하기</a></span>
+                        </td>
+                      </tr>
+                      
+                      <tr>
+                           <td class="form-group" style="margin-top: 1%;">
+                             <div id="areaform"></div>
+                           </td>
+                      </tr>   
+                      
+                      <tr>
+                           <td class="form-group" style="margin-top: 1%;">
+                               <div id="areaClick" style="display: none;">
+                                 <div class="areaSelect">
+                                    <ul style="text-align: center;">
+                                       <li>서울특별시 전지역</li>
+                                       <li>부산광역시 전지역</li>
+                                       <li>대구광역시 전지역</li>
+                                       <li>인천광역시 전지역</li>
+                                       <li>광주광역시 전지역</li>
+                                       <li>대전광역시 전지역</li>
+                                       <li>울산광역시 전지역</li>
+                                       <li>세종특별자치시 전지역</li>
+                                       <li>경기도 전지역</li>
+                                       <li>강원특별자치시 전지역</li>
+                                       <li>충청북도 전지역</li>
+                                       <li>충청남도 전지역</li>
+                                       <li>전라북도 전지역</li>
+                                       <li>전라남도 전지역</li>
+                                       <li>경상북도 전지역</li>
+                                       <li>제주특별자치도 전지역</li>
+                                    </ul>
+                                 </div>
+                                 <button type="button" id="areaCancle" style="float: right; margin-top:1%;" class="btn btn-outline-primary">닫기</button>
+                              </div>
+                           </td>
+                      </tr>      
+                             
+
+
+                        <!-- 직무 --------------------------------------------------------------------------------------------------------->
+                        <tr>
+                           <td class="form-group" style="margin-top: 2%;">
+                            &nbsp;<span style="font-size: 0.8em; display: inline-block;">직무 키워드</span>&nbsp;&nbsp;&nbsp;
+                            <span style="font-size: 0.8em; color: #4876EF; display: inline-block;">
+                            <a style="cursor: pointer;" id="jobPlus">+ 추가하기</a></span>
+                           </td>
+                         </tr>
+                         
+                       <tr>
+                           <td class="form-group" style="margin-top: 1%;">
+                             <div id="jobform"></div>
+                           </td>
+                        </tr>   
+                      
+                      <tr>
+                          <td class="form-group" style="margin-top: 1%;">
+                             <div id="jobClick" style="display: none;">
+                              <div class="jobSelect">
+                                 <ul style="text-align: center;">
+                                       <li>서버/백엔드 개발자</li>
+                                       <li>프론트엔드 개발자</li>
+                                       <li>웹 풀스택 개발자</li>
+                                       <li>안드로이드 개발자</li>
+                                       <li>IOS 개발자</li>
+                                       <li>크로스플랫폼 앱개발자</li>
+                                       <li>세종특별자치시 전지역</li>
+                                       <li>게임 클라이언트 개발자</li>
+                                       <li>게임 서버 개발자</li>
+                                       <li>DBA</li>
+                                       <li>빅데이터 엔지니어</li>
+                                       <li>인공지능/머신러닝</li>
+                                       <li>devops/시스템 엔지니어</li>
+                                       <li>정보보안 담당자</li>
+                                       <li>QA 엔지니어</li>
+                                      <li>개발 PM</li>
+                                       <li>HW/임베디드</li>
+                                       <li>SW/솔루션</li>
+                                       <li>웹퍼블리셔</li>
+                                       <li>VR/AR/3D</li>
+                                       <li>블록체인</li>
+                                       <li>기술지원</li>
+                                 </ul>
+                              </div>
+                              
+                              <button type="button" id="jobCancle" style="float: right; margin-top:1%;" class="btn btn-outline-primary">닫기</button>
+                            </div>
+                          </td>
+                      </tr> 
+
+                        <!-- 저장 취소 버튼 -->
+                        <tr>
+                           <td colspan="2" align="right">
+                              <br>
+                              <button type="submit" class="btn btn-outline-primary">저장</button>
+                              <button type="button" id="hopeCancel" class="btn btn-outline-primary">취소</button>
+                           </td>
+                        </tr>
+                    </table>        
                     </form>
                 </div>
+                
+                
+
+                <script type="text/javascript">
+
+                $(function () {
+                   
+                   
+                   ////지역/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                   //추가하기 클릭시 입력창 추가
+                    $("#areaPlus").click(function () {
+                       
+                       $('#areaClick').css('display', 'block');
+
+                    });
+                   
+                    // 취소 클릭시 입력창 삭제
+                    $(document).on("click", "#areaCancle", function () {
+                       
+                       $('#areaClick').css('display', 'none');
+                        
+                    });
+                   
+                   
+                    //희망근무지역 지역 추가 및 삭제하기
+                    $(document).on("click", ".areaSelect ul li", function () {
+                       
+                        var area = $(this).text();
+
+                        // 선택된 항목이 이미 추가되었는지 확인
+                        var areaChoice = $("#areaform div.areaStyle").filter(function () {
+                           
+                            return $(this).text().trim().startsWith(area);
+                        });
+
+                        // 이미 선택된 지역 수
+                        var selectedAreas = $("#areaform div").length;
+
+                        // 이미 선택된 항목이 3개 이상인 경우 알림창 표시 후 선택 중단
+                        if (selectedAreas >= 3 && !areaChoice.length) {
+                           
+                            alert("지역은 최대 3개까지만 선택할 수 있습니다");
+                            
+                            return;
+                            
+                        }
+
+                        // 이미 존재하는 항목이 있을 경우 제거
+                        if (areaChoice.length) {
+                           
+                            areaChoice.remove();
+                            
+                            // 지역이 다시 클릭되었을 때 아웃라인 초기화
+                            $(this).css({
+                               
+                                "outline": "",
+                                "border-radius": "",
+                                "padding": ""
+                            });
+                        } 
+                        // 존재하지 않는 경우 추가
+                        else {
+                           
+                           //li index 번호
+                           var a = $(this).index();  
+                            var total = '<div class="areaStyle" style="border: 1px solid #4876EF; border-radius: 12px; padding: 8px;">' + area + '&nbsp;&nbsp;&nbsp;&nbsp;<i class="bi bi-x-lg areaDelete" value='+a+'></i></div>';
+                            
+                            $("#areaform").append(total);
+                            
+                            // 지역이 클릭되었을 때 아웃라인컬러 변경
+                            $(this).css({
+                               
+                                "outline": "1px solid #4876EF",
+                                "border-radius": "12px",
+                                "padding": "8px"
+                            });
+                        }
+                    });
+
+                    // 동적으로 추가된 삭제 버튼 클릭 이벤트 처리
+                    $(document).on("click", ".areaDelete", function () {
+                       //console.log($(this).attr('value'));
+                       var index = $(this).attr('value');
+                       $(".areaSelect ul li:eq("+index+")").css({
+                           
+                            "outline": "",
+                            "border-radius": "",
+                            "padding": ""
+                        });
+                       
+                        $(this).parent().remove();
+                       
+                    });
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    ////직무///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                   //추가하기 클릭시 입력창 추가
+                    $("#jobPlus").click(function () {
+                       
+                       $('#jobClick').css('display', 'block');
+
+                    });
+                   
+                    // 취소 클릭시 입력창 삭제
+                    $(document).on("click", "#jobCancle", function () {
+                       
+                       $('#jobClick').css('display', 'none');
+                       
+                    });
+                   
+                   
+                    //희망근무지역 지역 추가 및 삭제하기
+                    $(document).on("click", ".jobSelect ul li", function () {
+                       
+                        var job = $(this).text();
+
+                        // 선택된 항목이 이미 추가되었는지 확인
+                        var jobChoice = $("#jobform div.jobStyle").filter(function () {
+                           
+                            return $(this).text().trim().startsWith(job);
+                        });
+
+
+                        // 이미 존재하는 항목이 있을 경우 제거
+                        if (jobChoice.length) {
+                           
+                           jobChoice.remove();
+                            
+                            // 지역이 다시 클릭되었을 때 아웃라인 초기화
+                            $(this).css({
+                               
+                                "outline": "",
+                                "border-radius": "",
+                                "padding": ""
+                            });
+                        } 
+                        // 존재하지 않는 경우 추가
+                        else {
+                           
+                           //li index 번호
+                           var j = $(this).index(); 
+                            var total = '<div class="jobStyle" style="border: 1px solid #4876EF; border-radius: 12px; padding: 8px;">' + job + '&nbsp;&nbsp;&nbsp;&nbsp;<i class="bi bi-x-lg jobDelete"  value='+j+'></i></div>';
+                            
+                            $("#jobform").append(total);
+                            
+                            // 지역이 클릭되었을 때 아웃라인컬러 변경
+                            $(this).css({
+                               
+                                "outline": "1px solid #4876EF",
+                                "border-radius": "12px",
+                                "padding": "8px"
+                            });
+                        }
+                    });
+
+                    // 동적으로 추가된 삭제 버튼 클릭 이벤트 처리
+                    $(document).on("click", ".jobDelete", function () {
+                       
+                       var index = $(this).attr('value');
+                       $(".jobSelect ul li:eq("+index+")").css({
+                           
+                            "outline": "",
+                            "border-radius": "",
+                            "padding": ""
+                        });
+                       
+                        $(this).parent().remove();
+                    });
+                    
+                    
+                });
+
+                
+                
+                </script>
                 
                 
                 
@@ -1029,24 +1278,85 @@
                     <tr>
                       <td class="form-group">
                           <span style="font-size: 0.8em;"><input type="checkbox">  필수 항목에 대한 개인정보 수집 및 이용 동의</span>&nbsp;&nbsp;&nbsp;&nbsp;
-                          <span style="font-size: 0.8em;"><a href=""  style="text-decoration: none; color: gray;">상세보기 ></a></span>
+                          <span style="font-size: 0.8em;"><a id="requireClick" style="text-decoration: none; color: gray; cursor: pointer;"
+                          data-bs-toggle="modal" data-bs-target="#requireModal">상세보기 ></a></span>
                       </td>
                     </tr>
                     
                     <tr>
                       <td class="form-group">
                           <span style="font-size: 0.8em;"><input type="checkbox" >  선택 항목에 대한 개인정보 수집 및 이용 동의</span>&nbsp;&nbsp;&nbsp;&nbsp;
-                          <span style="font-size: 0.8em; "><a href=""  style="text-decoration: none; color: gray;">상세보기 ></a></span>
+                          <span style="font-size: 0.8em; "><a style="text-decoration: none; color: gray; cursor: pointer;" id="choiceClick"
+                          data-bs-toggle="modal" data-bs-target="#choiceModal">상세보기 ></a></span>
                       </td>
                     </tr>
 
                         </table>
                     </form>
+                  <br>
+                  <br>
+                  <br>
+                  <br>  
                 </div>
-                <br>
-                <br>
-                <br>
-                <br>
+                
+
+                <!-- 필수항목 자세히 보기 누르면 나오는 The Modal -->
+               <div class="modal" id="requireModal">
+                 <div class="modal-dialog modal-dialog-centered modal-fullsize">
+                   <div class="modal-content">
+               
+                     <!-- Modal Header -->
+                     <div class="modal-header">
+                       <h5 class="modal-title">이력서 작성을 위한 개인정보 수집 및 이용 동의</h5>
+                       <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                     </div>
+               
+                     <!-- Modal body -->
+                     <div class="modal-body">
+                      <hr style="margin-top: -3%;">
+                       <span><b>수집항목(필수)</b></span><br>
+                       <span style="font-size: 0.8em;">기본정보(이름, 생년월일, 이메일, 휴대폰, 주소), 학력(학교명, 졸업 여부, 전공), 
+                       경력(경력 구분, 회사명, 재직 여부, 재직기간, 총 경력)</span><br>
+                     
+                       <span><b>수집 및 이용 목적</b></span><br>
+                       <span>이력서 등록을 통한 입사 지원 등 취업 활동 서비스 제공, 각종 맞춤형 취업 서비스 제공
+                       <span><b>이용 및 보유기간</b></span>   
+                      이력서 삭제 또는 회원 탈퇴 시 파기
+                      위 동의를 거부할 권리가 있으며 동의 거부 시 이력서 등록이 불가합니다.
+                     </div>
+               
+                   </div>
+                 </div>
+               </div>
+               
+               
+               
+            <!-- 선택항목 자세히 보기 누르면 나오는 The Modal -->
+               <div class="modal" id="choiceModal">
+                 <div class="modal-dialog modal-dialog-centered modal-fullsize">
+                   <div class="modal-content">
+               
+                     <!-- Modal Header -->
+                     <div class="modal-header">
+                       <h5 class="modal-title">이력서 작성을 위한 개인정보 수집 및 이용 동의</h5>
+                       <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                     </div>
+               
+                     <!-- Modal body -->
+                     <div class="modal-body">
+                       수집항목(필수)   기본정보(이름, 생년월일, 이메일, 휴대폰, 주소), 학력(학교명, 졸업 여부, 전공), 경력(경력 구분, 회사명, 재직 여부, 재직기간, 총 경력)
+                     수집 및 이용 목적   이력서 등록을 통한 입사 지원 등 취업 활동 서비스 제공, 각종 맞춤형 취업 서비스 제공
+                      이용 및 보유기간   이력서 삭제 또는 회원 탈퇴 시 파기
+                      위 동의를 거부할 권리가 있으며 동의 거부 시 이력서 등록이 불가합니다.
+                     </div>
+               
+                   </div>
+                 </div>
+               </div>   
+               
+               
+               
+               
                 
                 
                 
