@@ -44,11 +44,18 @@ public class CommunityService implements CommunityServiceInter {
         mapper.deleteCommunity(com_num);
     }
 
-	@Override
-	public List<CommunityDto> getInterviews() {
-		// TODO Auto-generated method stub
-		return mapper.getInterviews();
-	}
+    @Override
+    public List<CommunityDto> getInterviews() {
+        return mapper.getInterviews();
+    }
 
+    @Override
+    public int getTotalCountByType(String type) {
+        return mapper.getTotalCountByType(type);
+    }
 
+    @Override
+    public List<CommunityDto> getAllDatasByType(String type) {
+        return mapper.getAllDatasByType(type);
+    }
 }

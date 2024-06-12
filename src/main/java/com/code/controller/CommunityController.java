@@ -32,8 +32,8 @@ public class CommunityController {
     public ModelAndView list() {
         ModelAndView mview = new ModelAndView();
 
-        int totalCount = service.getTotalCount();
-        List<CommunityDto> list = service.getAllDatas();
+        int totalCount = service.getTotalCountByType("home");
+        List<CommunityDto> list = service.getAllDatasByType("home");
 
         mview.addObject("totalCount", totalCount);
         mview.addObject("list", list);
@@ -128,21 +128,18 @@ public class CommunityController {
         return mview;
     }
 
-	/*
-	 * @GetMapping("/community/interviewlist") public String interviewlist() {
-	 * return "community/interviewlist"; // "community/interviewlist.jsp"로 매핑 }
-	 */
-    
-
     @GetMapping("/community/interviewlist")
-    public String getInterviewlist(Model model) {
-        List<CommunityDto> interview = service.getInterviews();
-        int totalCount = interview.size();
-        
-        model.addAttribute("interview", interview);
-        model.addAttribute("totalCount", totalCount);
-        
-        return "community/interviewlist";
+    public ModelAndView interviewList() {
+        ModelAndView mview = new ModelAndView();
+
+        int totalCount = service.getTotalCountByType("interview");
+        List<CommunityDto> list = service.getAllDatasByType("interview");
+
+        mview.addObject("totalCount", totalCount);
+        mview.addObject("list", list);
+
+        mview.setViewName("community/interviewlist"); // "community/interviewlist.jsp"로 매핑
+        return mview;
     }
     
     

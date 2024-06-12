@@ -178,66 +178,66 @@
     </div>
     <div class="interview-list">
     	<div class="section_inner" style="flex: 1;">
-	        <c:forEach var="interview" items="${interview}">
+	        <c:forEach var="dto" items="${list}">
 	            <div class="interview-item">
-	                <b style="color: blue; margin-left: 15px;">${interview.com_category}</b>
+	                <b style="color: blue; margin-left: 15px;">${dto.com_category}</b>
 	                <br><br>
-	                <h5 style="margin-left: 15px;">${interview.com_title}</h5><br><br><br>
+	                <h5 style="margin-left: 15px;">${dto.com_title}</h5><br><br><br>
 	                <div class="details">
 	                	<div class="details_list">
-	                		<p>${interview.com_companyname}</p>
-		                    <p>${interview.com_name}</p>
+	                		<p>${dto.com_companyname}</p>
+		                    <p>${dto.com_name}</p>
 		                    <div>
-			                    <p><fmt:formatDate value="${interview.com_writetime}" pattern="yyyy-MM-dd"/></p>&nbsp;&nbsp;&nbsp;&nbsp;
-			                    <p><i class="bi bi-eye"></i>&nbsp;&nbsp;${interview.com_readcount}</p>
+			                    <p><fmt:formatDate value="${dto.com_writetime}" pattern="yyyy-MM-dd"/></p>&nbsp;&nbsp;&nbsp;&nbsp;
+			                    <p><i class="bi bi-eye"></i>&nbsp;&nbsp;${dto.com_readcount}</p>
 		                    </div>
 	                    </div>
 	                    <div class="iphoto">
-	                    	<img alt="" src="<c:url value='/communityimage/${interview.com_photo}'/>">
+	                    	<img alt="" src="<c:url value='/communityimage/${dto.com_photo}'/>">
 	                    </div>
 	                </div>
 	            </div>
 	        </c:forEach>
     	</div>
     	<div class="section_inner" style="flex: 1;">
-	        <c:forEach var="interview" items="${interview}">
+	        <c:forEach var="dto" items="${list}">
 	            <div class="interview-item">
-	                <b style="color: blue; margin-left: 15px;">${interview.com_category}</b>
+	                <b style="color: blue; margin-left: 15px;">${dto.com_category}</b>
 	                <br><br>
-	                <h5 style="margin-left: 15px;">${interview.com_title}</h5><br><br><br>
+	                <h5 style="margin-left: 15px;">${dto.com_title}</h5><br><br><br>
 	                <div class="details">
 	                	<div class="details_list">
-	                		<p>${interview.com_companyname}</p>
-		                    <p>${interview.com_name}</p>
+	                		<p>${dto.com_companyname}</p>
+		                    <p>${dto.com_name}</p>
 		                    <div>
-			                    <p><fmt:formatDate value="${interview.com_writetime}" pattern="yyyy-MM-dd"/></p>&nbsp;&nbsp;&nbsp;&nbsp;
-			                    <p><i class="bi bi-eye"></i>&nbsp;&nbsp;${interview.com_readcount}</p>
+			                    <p><fmt:formatDate value="${dto.com_writetime}" pattern="yyyy-MM-dd"/></p>&nbsp;&nbsp;&nbsp;&nbsp;
+			                    <p><i class="bi bi-eye"></i>&nbsp;&nbsp;${dto.com_readcount}</p>
 		                    </div>
 	                    </div>
 	                    <div class="iphoto">
-	                    	<img alt="" src="<c:url value='/communityimage/${interview.com_photo}'/>">
+	                    	<img alt="" src="<c:url value='/communityimage/${dto.com_photo}'/>">
 	                    </div>
 	                </div>
 	            </div>
 	        </c:forEach>
 	     </div>
 	     <div class="section_inner" style="flex: 1;">
-	        <c:forEach var="interview" items="${interview}">
+	        <c:forEach var="dto" items="${list}">
 	            <div class="interview-item">
-	                <b style="color: blue; margin-left: 15px;">${interview.com_category}</b>
+	                <b style="color: blue; margin-left: 15px;">${dto.com_category}</b>
 	                <br><br>
-	                <h5 style="margin-left: 15px;">${interview.com_title}</h5><br><br><br>
+	                <h5 style="margin-left: 15px;">${dto.com_title}</h5><br><br><br>
 	                <div class="details">
 	                	<div class="details_list">
-	                		<p>${interview.com_companyname}</p>
-		                    <p>${interview.com_name}</p>
+	                		<p>${dto.com_companyname}</p>
+		                    <p>${dto.com_name}</p>
 		                    <div>
-			                    <p><fmt:formatDate value="${interview.com_writetime}" pattern="yyyy-MM-dd"/></p>&nbsp;&nbsp;&nbsp;&nbsp;
-			                    <p><i class="bi bi-eye"></i>&nbsp;&nbsp;${interview.com_readcount}</p>
+			                    <p><fmt:formatDate value="${dto.com_writetime}" pattern="yyyy-MM-dd"/></p>&nbsp;&nbsp;&nbsp;&nbsp;
+			                    <p><i class="bi bi-eye"></i>&nbsp;&nbsp;${dto.com_readcount}</p>
 		                    </div>
 	                    </div>
 	                    <div class="iphoto">
-	                    	<img alt="" src="<c:url value='/communityimage/${interview.com_photo}'/>">
+	                    	<img alt="" src="<c:url value='/communityimage/${dto.com_photo}'/>">
 	                    </div>
 	                </div>
 	            </div>
@@ -246,134 +246,66 @@
 	     </div>
 	  <div class="interview-list">
 	     <div class="section_inner" style="flex: 1;">
-	        <c:forEach var="interview" items="${interview}">
+	        <c:forEach var="dto" items="${list}">
 	            <div class="interview-item">
-	                <b style="color: blue; margin-left: 15px;">${interview.com_category}</b>
+	                <b style="color: blue; margin-left: 15px;">${dto.com_category}</b>
 	                <br><br>
-	                <h5 style="margin-left: 15px;">${interview.com_title}</h5><br><br><br>
+	                <h5 style="margin-left: 15px;">${dto.com_title}</h5><br><br><br>
 	                <div class="details">
 	                	<div class="details_list">
-	                		<p>${interview.com_companyname}</p>
-		                    <p>${interview.com_name}</p>
+	                		<p>${dto.com_companyname}</p>
+		                    <p>${dto.com_name}</p>
 		                    <div>
-			                    <p><fmt:formatDate value="${interview.com_writetime}" pattern="yyyy-MM-dd"/></p>&nbsp;&nbsp;&nbsp;&nbsp;
-			                    <p><i class="bi bi-eye"></i>&nbsp;&nbsp;${interview.com_readcount}</p>
+			                    <p><fmt:formatDate value="${dto.com_writetime}" pattern="yyyy-MM-dd"/></p>&nbsp;&nbsp;&nbsp;&nbsp;
+			                    <p><i class="bi bi-eye"></i>&nbsp;&nbsp;${dto.com_readcount}</p>
 		                    </div>
 	                    </div>
 	                    <div class="iphoto">
-	                    	<img alt="" src="<c:url value='/communityimage/${interview.com_photo}'/>">
+	                    	<img alt="" src="<c:url value='/communityimage/${dto.com_photo}'/>">
 	                    </div>
 	                </div>
 	            </div>
 	        </c:forEach>
 	    </div>
 	     <div class="section_inner" style="flex: 1;">
-	        <c:forEach var="interview" items="${interview}">
+	        <c:forEach var="dto" items="${list}">
 	            <div class="interview-item">
-	                <b style="color: blue; margin-left: 15px;">${interview.com_category}</b>
+	                <b style="color: blue; margin-left: 15px;">${dto.com_category}</b>
 	                <br><br>
-	                <h5 style="margin-left: 15px;">${interview.com_title}</h5><br><br><br>
+	                <h5 style="margin-left: 15px;">${dto.com_title}</h5><br><br><br>
 	                <div class="details">
 	                	<div class="details_list">
-	                		<p>${interview.com_companyname}</p>
-		                    <p>${interview.com_name}</p>
+	                		<p>${dto.com_companyname}</p>
+		                    <p>${dto.com_name}</p>
 		                    <div>
-			                    <p><fmt:formatDate value="${interview.com_writetime}" pattern="yyyy-MM-dd"/></p>&nbsp;&nbsp;&nbsp;&nbsp;
-			                    <p><i class="bi bi-eye"></i>&nbsp;&nbsp;${interview.com_readcount}</p>
+			                    <p><fmt:formatDate value="${dto.com_writetime}" pattern="yyyy-MM-dd"/></p>&nbsp;&nbsp;&nbsp;&nbsp;
+			                    <p><i class="bi bi-eye"></i>&nbsp;&nbsp;${dto.com_readcount}</p>
 		                    </div>
 	                    </div>
 	                    <div class="iphoto">
-	                    	<img alt="" src="<c:url value='/communityimage/${interview.com_photo}'/>">
+	                    	<img alt="" src="<c:url value='/communityimage/${dto.com_photo}'/>">
 	                    </div>
 	                </div>
 	            </div>
 	        </c:forEach>
 	     </div>
 	     <div class="section_inner" style="flex: 1;">
-	        <c:forEach var="interview" items="${interview}">
+	        <c:forEach var="dto" items="${list}">
 	            <div class="interview-item">
-	                <b style="color: blue; margin-left: 15px;">${interview.com_category}</b>
+	                <b style="color: blue; margin-left: 15px;">${dto.com_category}</b>
 	                <br><br>
-	                <h5 style="margin-left: 15px;">${interview.com_title}</h5><br><br><br>
+	                <h5 style="margin-left: 15px;">${dto.com_title}</h5><br><br><br>
 	                <div class="details">
 	                	<div class="details_list">
-	                		<p>${interview.com_companyname}</p>
-		                    <p>${interview.com_name}</p>
+	                		<p>${dto.com_companyname}</p>
+		                    <p>${dto.com_name}</p>
 		                    <div>
-			                    <p><fmt:formatDate value="${interview.com_writetime}" pattern="yyyy-MM-dd"/></p>&nbsp;&nbsp;&nbsp;&nbsp;
-			                    <p><i class="bi bi-eye"></i>&nbsp;&nbsp;${interview.com_readcount}</p>
+			                    <p><fmt:formatDate value="${dto.com_writetime}" pattern="yyyy-MM-dd"/></p>&nbsp;&nbsp;&nbsp;&nbsp;
+			                    <p><i class="bi bi-eye"></i>&nbsp;&nbsp;${dto.com_readcount}</p>
 		                    </div>
 	                    </div>
 	                    <div class="iphoto">
-	                    	<img alt="" src="<c:url value='/communityimage/${interview.com_photo}'/>">
-	                    </div>
-	                </div>
-	            </div>
-	        </c:forEach>
-	     </div>
-	  </div>
-	  <div class="interview-list">
-	     <div class="section_inner" style="flex: 1;">
-	        <c:forEach var="interview" items="${interview}">
-	            <div class="interview-item">
-	                <b style="color: blue; margin-left: 15px;">${interview.com_category}</b>
-	                <br><br>
-	                <h5 style="margin-left: 15px;">${interview.com_title}</h5><br><br><br>
-	                <div class="details">
-	                	<div class="details_list">
-	                		<p>${interview.com_companyname}</p>
-		                    <p>${interview.com_name}</p>
-		                    <div>
-			                    <p><fmt:formatDate value="${interview.com_writetime}" pattern="yyyy-MM-dd"/></p>&nbsp;&nbsp;&nbsp;&nbsp;
-			                    <p><i class="bi bi-eye"></i>&nbsp;&nbsp;${interview.com_readcount}</p>
-		                    </div>
-	                    </div>
-	                    <div class="iphoto">
-	                    	<img alt="" src="<c:url value='/communityimage/${interview.com_photo}'/>">
-	                    </div>
-	                </div>
-	            </div>
-	        </c:forEach>
-	     </div>
-	     <div class="section_inner" style="flex: 1;">
-	        <c:forEach var="interview" items="${interview}">
-	            <div class="interview-item">
-	                <b style="color: blue; margin-left: 15px;">${interview.com_category}</b>
-	                <br><br>
-	                <h5 style="margin-left: 15px;">${interview.com_title}</h5><br><br><br>
-	                <div class="details">
-	                	<div class="details_list">
-	                		<p>${interview.com_companyname}</p>
-		                    <p>${interview.com_name}</p>
-		                    <div>
-			                    <p><fmt:formatDate value="${interview.com_writetime}" pattern="yyyy-MM-dd"/></p>&nbsp;&nbsp;&nbsp;&nbsp;
-			                    <p><i class="bi bi-eye"></i>&nbsp;&nbsp;${interview.com_readcount}</p>
-		                    </div>
-	                    </div>
-	                    <div class="iphoto">
-	                    	<img alt="" src="<c:url value='/communityimage/${interview.com_photo}'/>">
-	                    </div>
-	                </div>
-	            </div>
-	        </c:forEach>
-	     </div>
-	     <div class="section_inner" style="flex: 1;">
-	        <c:forEach var="interview" items="${interview}">
-	            <div class="interview-item">
-	                <b style="color: blue; margin-left: 15px;">${interview.com_category}</b>
-	                <br><br>
-	                <h5 style="margin-left: 15px;">${interview.com_title}</h5><br><br><br>
-	                <div class="details">
-	                	<div class="details_list">
-	                		<p>${interview.com_companyname}</p>
-		                    <p>${interview.com_name}</p>
-		                    <div>
-			                    <p><fmt:formatDate value="${interview.com_writetime}" pattern="yyyy-MM-dd"/></p>&nbsp;&nbsp;&nbsp;&nbsp;
-			                    <p><i class="bi bi-eye"></i>&nbsp;&nbsp;${interview.com_readcount}</p>
-		                    </div>
-	                    </div>
-	                    <div class="iphoto">
-	                    	<img alt="" src="<c:url value='/communityimage/${interview.com_photo}'/>">
+	                    	<img alt="" src="<c:url value='/communityimage/${dto.com_photo}'/>">
 	                    </div>
 	                </div>
 	            </div>
