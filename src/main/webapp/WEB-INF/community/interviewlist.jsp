@@ -75,9 +75,10 @@
         flex-wrap: wrap;
         gap: 20px;
         margin-top: 30px;
+        width: 100%;
     }
     .interview-item {
-        flex: 0 1 calc(33.333% - 20px);
+        flex: 1 1 calc(33.333% - 20px);
         border: 1px solid #eaeaea;
         padding: 20px;
         border-radius: 5px;
@@ -94,6 +95,29 @@
         color: gray;
         font-size: 14px;
     }
+    .input-group {
+	    margin-top: 30px;
+	    display: flex;
+	    justify-content: space-between;
+	    align-items: center;
+	    width: 100%;
+	}
+	
+	/* 인터뷰 리스트 내용 */
+	.details {
+        color: gray;
+        font-size: 14px;
+        display: flex;
+        justify-content: space-between; /* 양 끝으로 배치 */
+    }
+    .details div:last-child {
+        display: flex;
+        align-items: center;
+    }
+    .iphoto {
+    	width: 120px;
+    }
+    
 </style>
 </head>
 <body>
@@ -127,25 +151,193 @@
             <li><a href="#">기술지원</a></li>
         </ul>
     </div>
-    <div class="input-group" style="margin-top: 30px; margin-left: 825px;">
-        <input type="text" class="form-control" placeholder="직무 또는 기업명을 입력하세요">
-        <button class="btn btn-primary" type="button">검색</button>
+    <div class="input-group" style="margin-top: 50px; display: flex; justify-content: space-between;">
+    	<div style="font-size: 20px;">
+    		<b>총 <span>${totalCount }</span>건</b>
+    	</div>
+    	<div style="display: flex; gap: 10px; height: 40px;">
+	        <input type="text" class="form-control" placeholder="직무 또는 기업명을 입력하세요">
+	        <button class="btn btn-primary" type="button" style="width: 75px;">검색</button>
+        </div>
     </div>
     <div class="interview-list">
-        <c:forEach var="interview" items="${interviewList}">
-		    <div class="interview-item">
-		        <img src="${interview.com_photo}" alt="${interview.com_nickname}">
-		        <h5>${interview.com_user_id}</h5>
-		        <div class="details">
-		            <p>${interview.com_title}</p>
-		            <p>${interview.com_category}</p>
-		        </div>
-		        <p>${interview.com_content}</p>
-		        <p>${interview.com_writetime}</p>
-		        <p>조회수: ${interview.com_readcount}</p>
-		    </div>
-		</c:forEach>
-    </div>
+    	<div class="section_inner" style="flex: 1;">
+	        <c:forEach var="interviewlist" items="${interviewlist}">
+	            <div class="interview-item">
+	                <b style="color: blue;">${interviewlist.com_category}</b>
+	                <br><br>
+	                <h5>${interviewlist.com_title}</h5><br><br><br>
+	                <div class="details">
+	                	<div>
+		                    <p>${interviewlist.com_nickname}</p>
+		                    <p><fmt:formatDate value="${interviewlist.com_writetime}" pattern="yyyy-MM-dd"/></p>
+		                    <p><i class="bi bi-eye"></i>&nbsp;${interviewlist.com_readcount}</p>
+	                    </div>
+	                    <div class="iphoto" style="margin-bottom: 17px; margin-right: 80px;">
+	                    	<img alt="" src="<c:url value='/communityimage/${interviewlist.com_photo}'/>">
+	                    </div>
+	                </div>
+	            </div>
+	        </c:forEach>
+    	</div>
+    	<div class="section_inner" style="flex: 1;">
+	        <c:forEach var="interviewlist" items="${interviewlist}">
+	            <div class="interview-item">
+	                <b style="color: blue;">${interviewlist.com_category}</b>
+	                <br><br>
+	                <h5>${interviewlist.com_title}</h5><br><br><br>
+	                <div class="details">
+	                	<div>
+		                    <p>${interviewlist.com_nickname}</p>
+		                    <p><fmt:formatDate value="${interviewlist.com_writetime}" pattern="yyyy-MM-dd"/></p>
+		                    <p><i class="bi bi-eye"></i>&nbsp;${interviewlist.com_readcount}</p>
+	                    </div>
+	                    <div style="margin-bottom: 17px; margin-right: 80px;">
+	                    	<b>이미지사진</b>
+	                    </div>
+	                </div>
+	            </div>
+	        </c:forEach>
+	     </div>
+	     <div class="section_inner" style="flex: 1;">
+	        <c:forEach var="interviewlist" items="${interviewlist}">
+	            <div class="interview-item">
+	                <b style="color: blue;">${interviewlist.com_category}</b>
+	                <br><br>
+	                <h5>${interviewlist.com_title}</h5><br><br><br>
+	                <div class="details">
+	                	<div>
+		                    <p>${interviewlist.com_nickname}</p>
+		                    <p><fmt:formatDate value="${interviewlist.com_writetime}" pattern="yyyy-MM-dd"/></p>
+		                    <p><i class="bi bi-eye"></i>&nbsp;${interviewlist.com_readcount}</p>
+	                    </div>
+	                    <div style="margin-bottom: 17px; margin-right: 80px;">
+	                    	<b>이미지사진</b>
+	                    </div>
+	                </div>
+	            </div>
+	        </c:forEach>
+	     </div>
+	     </div>
+	  <div class="interview-list">
+	     <div class="section_inner" style="flex: 1;">
+	        <c:forEach var="interviewlist" items="${interviewlist}">
+	            <div class="interview-item">
+	                <b style="color: blue;">${interviewlist.com_category}</b>
+	                <br><br>
+	                <h5>${interviewlist.com_title}</h5><br><br><br>
+	                <div class="details">
+	                	<div>
+		                    <p>${interviewlist.com_nickname}</p>
+		                    <p><fmt:formatDate value="${interviewlist.com_writetime}" pattern="yyyy-MM-dd"/></p>
+		                    <p><i class="bi bi-eye"></i>&nbsp;${interviewlist.com_readcount}</p>
+	                    </div>
+	                    <div style="margin-bottom: 17px; margin-right: 80px;">
+	                    	<b>이미지사진</b>
+	                    </div>
+	                </div>
+	            </div>
+	        </c:forEach>
+	    </div>
+	     <div class="section_inner" style="flex: 1;">
+	        <c:forEach var="interviewlist" items="${interviewlist}">
+	            <div class="interview-item">
+	                <b style="color: blue;">${interviewlist.com_category}</b>
+	                <br><br>
+	                <h5>${interviewlist.com_title}</h5><br><br><br>
+	                <div class="details">
+	                	<div>
+		                    <p>${interviewlist.com_nickname}</p>
+		                    <p><fmt:formatDate value="${interviewlist.com_writetime}" pattern="yyyy-MM-dd"/></p>
+		                    <p><i class="bi bi-eye"></i>&nbsp;${interviewlist.com_readcount}</p>
+	                    </div>
+	                    <div style="margin-bottom: 17px; margin-right: 80px;">
+	                    	<b>이미지사진</b>
+	                    </div>
+	                </div>
+	            </div>
+	        </c:forEach>
+	     </div>
+	     <div class="section_inner" style="flex: 1;">
+	        <c:forEach var="interviewlist" items="${interviewlist}">
+	            <div class="interview-item">
+	                <b style="color: blue;">${interviewlist.com_category}</b>
+	                <br><br>
+	                <h5>${interviewlist.com_title}</h5><br><br><br>
+	                <div class="details">
+	                	<div>
+		                    <p>${interviewlist.com_nickname}</p>
+		                    <p><fmt:formatDate value="${interviewlist.com_writetime}" pattern="yyyy-MM-dd"/></p>
+		                    <p><i class="bi bi-eye"></i>&nbsp;${interviewlist.com_readcount}</p>
+	                    </div>
+	                    <div style="margin-bottom: 17px; margin-right: 80px;">
+	                    	<b>이미지사진</b>
+	                    </div>
+	                </div>
+	            </div>
+	        </c:forEach>
+	     </div>
+	  </div>
+	  <div class="interview-list">
+	     <div class="section_inner" style="flex: 1;">
+	        <c:forEach var="interviewlist" items="${interviewlist}">
+	            <div class="interview-item">
+	                <b style="color: blue;">${interviewlist.com_category}</b>
+	                <br><br>
+	                <h5>${interviewlist.com_title}</h5><br><br><br>
+	                <div class="details">
+	                	<div>
+		                    <p>${interviewlist.com_nickname}</p>
+		                    <p><fmt:formatDate value="${interviewlist.com_writetime}" pattern="yyyy-MM-dd"/></p>
+		                    <p><i class="bi bi-eye"></i>&nbsp;${interviewlist.com_readcount}</p>
+	                    </div>
+	                    <div style="margin-bottom: 17px; margin-right: 80px;">
+	                    	<b>이미지사진</b>
+	                    </div>
+	                </div>
+	            </div>
+	        </c:forEach>
+	     </div>
+	     <div class="section_inner" style="flex: 1;">
+	        <c:forEach var="interviewlist" items="${interviewlist}">
+	            <div class="interview-item">
+	                <b style="color: blue;">${interviewlist.com_category}</b>
+	                <br><br>
+	                <h5>${interviewlist.com_title}</h5><br><br><br>
+	                <div class="details">
+	                	<div>
+		                    <p>${interviewlist.com_nickname}</p>
+		                    <p><fmt:formatDate value="${interviewlist.com_writetime}" pattern="yyyy-MM-dd"/></p>
+		                    <p><i class="bi bi-eye"></i>&nbsp;${interviewlist.com_readcount}</p>
+	                    </div>
+	                    <div style="margin-bottom: 17px; margin-right: 80px;">
+	                    	<b>이미지사진</b>
+	                    </div>
+	                </div>
+	            </div>
+	        </c:forEach>
+	     </div>
+	     <div class="section_inner" style="flex: 1;">
+	        <c:forEach var="interviewlist" items="${interviewlist}">
+	            <div class="interview-item">
+	                <b style="color: blue;">${interviewlist.com_category}</b>
+	                <br><br>
+	                <h5>${interviewlist.com_title}</h5><br><br><br>
+	                <div class="details">
+	                	<div>
+		                    <p>${interviewlist.com_nickname}</p>
+		                    <p><fmt:formatDate value="${interviewlist.com_writetime}" pattern="yyyy-MM-dd"/></p>
+		                    <p><i class="bi bi-eye"></i>&nbsp;${interviewlist.com_readcount}</p>
+	                    </div>
+	                    <div style="margin-bottom: 17px; margin-right: 80px;">
+	                    	<b>이미지사진</b>
+	                    </div>
+	                </div>
+	            </div>
+	        </c:forEach>
+	     </div>
+	</div>
+    
     <nav aria-label="Page navigation example" style="margin-top: 20px;">
         <ul class="pagination justify-content-center">
             <c:if test="${startPage>1}">

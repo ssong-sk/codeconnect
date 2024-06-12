@@ -28,4 +28,9 @@
     <delete id="deleteCommunity" parameterType="String">
         delete from community where com_num = #{com_num}
     </delete>
+    
+    <!-- interview 목록을 가져오는 쿼리 추가 -->
+    <select id="getInterviews" resultType="CommunityDto">
+    	select * from community where com_post_type = 'interview'
+    </select>
 </mapper>

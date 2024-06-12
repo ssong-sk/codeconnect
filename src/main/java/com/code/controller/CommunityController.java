@@ -128,8 +128,20 @@ public class CommunityController {
         return mview;
     }
 
+	/*
+	 * @GetMapping("/community/interviewlist") public String interviewlist() {
+	 * return "community/interviewlist"; // "community/interviewlist.jsp"로 매핑 }
+	 */
+    
+
     @GetMapping("/community/interviewlist")
-    public String interviewlist() {
-        return "community/interviewlist"; // "community/interviewlist.jsp"로 매핑
+    public String getInterviewlist(Model model) {
+        List<CommunityDto> interviewlist = service.getInterviews();
+        int totalCount = interviewlist.size();
+        
+        model.addAttribute("interviewlist", interviewlist);
+        model.addAttribute("totalCount", totalCount);
+        
+        return "community/interviewlist";
     }
 }

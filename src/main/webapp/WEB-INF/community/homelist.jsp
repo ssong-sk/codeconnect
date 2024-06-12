@@ -149,7 +149,7 @@
         border-radius: 10px;
         height: 65px;
         /* width: calc((100% / 6) - 20px); */
-        
+        width: 180px;
         display: flex;
         justify-content: center;
         align-items: center;
