@@ -207,7 +207,7 @@
   }
   
   .modal-fullsize {
-  width: 700px !important;
+  width: 600px !important;
   height: 350px !important;
   max-width: none !important; /* 최대 크기를 무제한으로 설정 */
   max-height: none !important; /* 최대 크기를 무제한으로 설정 */
@@ -336,7 +336,7 @@
                     <div class="form-caption">
                         <h4><b>학력</b></h4>&nbsp;&nbsp;&nbsp;
                         <span style="font-size: 0.8em;">*필수정보입력</span>
-                        <span style="font-size: 0.8em; color: #4876EF; margin-left: 80%;">
+                        <span style="font-size: 0.8em; color: #4876EF; margin-left: 82%;">
                         <a style="cursor: pointer;" id="schoolPlus">+ 추가하기</a></span>
                     </div>
                     <hr style="width: 100%;">
@@ -505,7 +505,7 @@
                     <div class="form-caption">
                         <h4><b>경력</b></h4>&nbsp;&nbsp;&nbsp;
                         <span style="font-size: 0.8em;">*필수정보입력</span>
-                        <span style="font-size: 0.8em; color: #4876EF; margin-left: 80%;">
+                        <span style="font-size: 0.8em; color: #4876EF; margin-left: 82%;">
                             <a style="cursor: pointer;" id="careerPlus">+ 추가하기</a></span>
                     </div>
                     <hr style="width: 100%;">
@@ -582,7 +582,7 @@
                         <div class="form-caption">
                             <h4><b>경험 / 활동 / 교육</b></h4>&nbsp;&nbsp;&nbsp;
                             <span style="font-size: 0.8em;">*필수정보입력</span>
-                            <span style="font-size: 0.8em; color: #4876EF; margin-left: 67%;">
+                            <span style="font-size: 0.8em; color: #4876EF; margin-left: 73.4%;">
                         <a style="cursor: pointer;" id="activityPlus">+ 추가하기</a></span>
                         </div>
                         <hr style="width: 100%;">
@@ -663,7 +663,7 @@
                     <div class="form-caption">
                         <h4><b>자격 / 어학 / 수상</b></h4>&nbsp;&nbsp;&nbsp;
                         <span style="font-size: 0.8em;">*필수정보입력</span>
-                        <span style="font-size: 0.8em; color: #4876EF; margin-left: 67%;">
+                        <span style="font-size: 0.8em; color: #4876EF; margin-left: 73.4%;">
                             <a style="cursor: pointer;" id="qualificationPlus">+ 추가하기</a></span>
                     </div>
                     <hr style="width: 100%;">
@@ -786,7 +786,7 @@
                 <form action="portfolioinsert" method="post" enctype="multipart/form-data">
                     <div class="form-caption">
                         <h4><b>포트폴리오 / 기타문서</b></h4>&nbsp;&nbsp;&nbsp;
-                        <span style="font-size: 0.8em; color: #4876EF; margin-left: 70.2%;">
+                        <span style="font-size: 0.8em; color: #4876EF; margin-left: 78%;">
                     <a style="cursor: pointer;" id="portfolioPlus">+ 추가하기</a></span>
                     </div>
                     <hr style="width: 100%;">
@@ -866,7 +866,7 @@
                     <form action="selfinsert" method="post">
                         <div class="form-caption">
                             <h4><b>자기소개서</b></h4>&nbsp;&nbsp;&nbsp;
-                            <span style="font-size: 0.8em; color: #4876EF; margin-left: 81%;">
+                            <span style="font-size: 0.8em; color: #4876EF; margin-left: 85.2%;">
                          <a style="cursor: pointer;" id="selfPlus">+ 추가하기</a></span>
                         </div>
                         <hr style="width: 100%;">
@@ -1316,13 +1316,15 @@
                       <hr style="margin-top: -3%;">
                        <span><b>수집항목(필수)</b></span><br>
                        <span style="font-size: 0.8em;">기본정보(이름, 생년월일, 이메일, 휴대폰, 주소), 학력(학교명, 졸업 여부, 전공), 
-                       경력(경력 구분, 회사명, 재직 여부, 재직기간, 총 경력)</span><br>
+                       경력(경력 구분, 회사명, 재직 여부, 재직기간, 총 경력)</span><br><br>
                      
                        <span><b>수집 및 이용 목적</b></span><br>
-                       <span>이력서 등록을 통한 입사 지원 등 취업 활동 서비스 제공, 각종 맞춤형 취업 서비스 제공
-                       <span><b>이용 및 보유기간</b></span>   
-                      이력서 삭제 또는 회원 탈퇴 시 파기
-                      위 동의를 거부할 권리가 있으며 동의 거부 시 이력서 등록이 불가합니다.
+                       <span style="font-size: 0.8em;">이력서 등록을 통한 입사 지원 등 취업 활동 서비스 제공, 
+                       각종 맞춤형 취업 서비스 제공</span><br><br>
+                       
+                       <span><b>이용 및 보유기간</b></span><br> 
+                       <span style="font-size: 0.8em;">이력서 삭제 또는 회원 탈퇴 시 파기
+                      위 동의를 거부할 권리가 있으며 동의 거부 시 이력서 등록이 불가합니다.</span>
                      </div>
                
                    </div>
@@ -1344,11 +1346,20 @@
                
                      <!-- Modal body -->
                      <div class="modal-body">
-                       수집항목(필수)   기본정보(이름, 생년월일, 이메일, 휴대폰, 주소), 학력(학교명, 졸업 여부, 전공), 경력(경력 구분, 회사명, 재직 여부, 재직기간, 총 경력)
-                     수집 및 이용 목적   이력서 등록을 통한 입사 지원 등 취업 활동 서비스 제공, 각종 맞춤형 취업 서비스 제공
-                      이용 및 보유기간   이력서 삭제 또는 회원 탈퇴 시 파기
-                      위 동의를 거부할 권리가 있으며 동의 거부 시 이력서 등록이 불가합니다.
-                     </div>
+                      <hr style="margin-top: -3%;">
+                       <span><b>수집항목(필수)</b></span><br>
+                       <span style="font-size: 0.8em;">기본정보(이름, 생년월일, 이메일, 휴대폰, 주소), 학력(학교명, 졸업 여부, 전공), 
+                       경력(경력 구분, 회사명, 재직 여부, 재직기간, 총 경력)</span><br><br>
+                     
+                       <span><b>수집 및 이용 목적</b></span><br>
+                       <span style="font-size: 0.8em;">이력서 등록을 통한 입사 지원 등 취업 활동 서비스 제공, 
+                       각종 맞춤형 취업 서비스 제공</span><br><br>
+                       
+                       <span><b>이용 및 보유기간</b></span><br> 
+                       <span style="font-size: 0.8em;">이력서 삭제 또는 회원 탈퇴 시 파기
+                      위 동의를 거부할 권리가 있으며 동의 거부 시 이력서 등록이 불가합니다.</span>
+                       </div>
+                     
                
                    </div>
                  </div>
