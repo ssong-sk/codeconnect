@@ -185,7 +185,7 @@
 <body>
 <nav class="nav">
 	<ul>
-		<a class="nav-link" href="${root }/community/list">홈</a>
+		<a class="nav-link" href="${root }/community/homelist">홈</a>
 	    <a class="nav-link" href="${root }/community/interviewlist">현직자 인터뷰</a>
 	</ul>
 </nav>

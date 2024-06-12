@@ -16,4 +16,5 @@ public interface CommunityMapperInter {
     
     //interview 목록을 가져오는 메소드 추가
     List<CommunityDto> getInterviews();
+
 }

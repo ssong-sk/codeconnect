@@ -136,12 +136,14 @@ public class CommunityController {
 
     @GetMapping("/community/interviewlist")
     public String getInterviewlist(Model model) {
-        List<CommunityDto> interviewlist = service.getInterviews();
-        int totalCount = interviewlist.size();
+        List<CommunityDto> interview = service.getInterviews();
+        int totalCount = interview.size();
         
-        model.addAttribute("interviewlist", interviewlist);
+        model.addAttribute("interview", interview);
         model.addAttribute("totalCount", totalCount);
         
         return "community/interviewlist";
     }
+    
+    
 }

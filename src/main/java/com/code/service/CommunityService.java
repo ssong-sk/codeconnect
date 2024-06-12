@@ -49,4 +49,6 @@ public class CommunityService implements CommunityServiceInter {
 		// TODO Auto-generated method stub
 		return mapper.getInterviews();
 	}
+
+
 }

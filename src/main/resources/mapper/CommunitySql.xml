@@ -35,4 +35,10 @@
     <select id="getInterviews" resultType="CommunityDto">
     	select * from community where com_post_type = 'interview'
     </select>
+    
+    <!-- 기본 홈 리스트를 가져오는 쿼리 -->
+	<!-- <select id="getHomes" resultType="CommunityDto">
+	    select * from community where com_post_type = 'home'
+	</select> -->
+	
 </mapper>
