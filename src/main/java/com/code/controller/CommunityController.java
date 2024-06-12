@@ -28,7 +28,7 @@ public class CommunityController {
     @Autowired
     CommunityServiceInter service;
 
-    @GetMapping("/community/list")
+    @GetMapping("/community/homelist")
     public ModelAndView list() {
         ModelAndView mview = new ModelAndView();
 
