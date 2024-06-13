@@ -450,7 +450,7 @@
             
                             // Attach event listener to the education select element
                             var educationSelect = document.getElementById('education-select');
-            
+            				
                             var highschoolOptions = document.getElementById('highschool-options');
             
                             var universityOptions = document.getElementById('university-options');
@@ -497,42 +497,38 @@
                     
                     //저장시 shcool insert
                     $(document).on("click", "#schoolOk", function () {
-						
                     	//var shcooldata = $("#sctotal").serialize();
                     	var formData = {
-						        pe_num: $('#pe_num').val(),
-						        sc_category: $('select[name="sc_category"]').val(),
-						        sc_hi_name: $('input[name="sc_hi_name"]').val(),
-						        sc_hi_transfer: $('input[name="sc_hi_transfer"]').is(':checked') ? 'Y' : 'N',
-						        sc_hi_check: $('select[name="sc_hi_check"]').val(),
-						        sc_hi_iphack: $('input[name="sc_hi_iphack"]').val(),
-						        sc_hi_jolup: $('input[name="sc_hi_jolup"]').val(),
-						        sc_hi_major: $('select[name="sc_hi_major"]').val(),
-						        sc_uni_category: $('select[name="sc_uni_category"]').val(),
-						        sc_uni_name: $('input[name="sc_uni_name"]').val(),
-						        sc_uni_transfer: $('input[name="sc_uni_transfer"]').is(':checked') ? 'Y' : 'N',
-						        sc_uni_major: $('input[name="sc_uni_major"]').val(),
-						        sc_uni_check: $('select[name="sc_uni_check"]').val(),
-						        sc_uni_iphack: $('input[name="sc_uni_iphack"]').val(),
-						        sc_uni_jolup: $('input[name="sc_uni_jolup"]').val(),
-						        sc_uni_grade: $('input[name="sc_uni_grade"]').val(),
-						        sc_uni_sum: $('select[name="sc_uni_sum"]').val()
-						    };
+					        pe_num: $('#pe_num').val(),
+					        sc_category: $('select[name="sc_category"]').val(),
+					        sc_hi_name: $('input[name="sc_hi_name"]').val(),
+					        sc_hi_transfer: $('input[name="sc_hi_transfer"]').is(':checked') ? 'Y' : 'N',
+					        sc_hi_check: $('select[name="sc_hi_check"]').val(),
+					        sc_hi_iphack: $('input[name="sc_hi_iphack"]').val(),
+					        sc_hi_jolup: $('input[name="sc_hi_jolup"]').val(),
+					        sc_hi_major: $('select[name="sc_hi_major"]').val(),
+					        sc_uni_category: $('select[name="sc_uni_category"]').val(),
+					        sc_uni_name: $('input[name="sc_uni_name"]').val(),
+					        sc_uni_transfer: $('input[name="sc_uni_transfer"]').is(':checked') ? 'Y' : 'N',
+					        sc_uni_major: $('input[name="sc_uni_major"]').val(),
+					        sc_uni_check: $('select[name="sc_uni_check"]').val(),
+					        sc_uni_iphack: $('input[name="sc_uni_iphack"]').val(),
+					        sc_uni_jolup: $('input[name="sc_uni_jolup"]').val(),
+					        sc_uni_grade: $('input[name="sc_uni_grade"]').val(),
+					        sc_uni_sum: $('select[name="sc_uni_sum"]').val()
+					    };
                     	//alert(JSON.stringify(formData));
                     	
-                    	$.ajax ({
-                    		
-                    		type : "post",
-                    		url : "/resumehome/schoolinsert",
-                    		data : formData,
-                    		success : function (response) {
-								
-                    			alert("g");
-                    			$("#schoolform").hide();
-                    			
-							}
-                    		
-                    	})
+                    	$.ajax({
+                    	    type: "post",
+                    	    url: "schoolinsert",
+                    	    contentType: "application/json",
+                    	    data: JSON.stringify(formData),
+                    	    dataType: "json", 
+                    	    success: function (res) {
+                    	        $("#schoolform").hide();
+                    	    }
+                    	});
                     	
 					})
                 });
