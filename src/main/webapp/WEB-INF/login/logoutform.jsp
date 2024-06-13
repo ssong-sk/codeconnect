@@ -17,7 +17,7 @@
 <div style="margin-left: 100px 200px;">
   <img alt="" src="${root }/image/mainImg.png" width="200" align="left" hspace="20">
   <br><br>
-  <b>${name }님 로그인중</b><br><br><br>
+  <b>${name }님 환영합니다</b><br><br><br>
 </div>
 </body>
 </html>

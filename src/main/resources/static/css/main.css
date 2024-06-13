@@ -260,7 +260,7 @@ a, a:active, a:hover, a:visited {
     top: 15px;
     left: 15px;
     color: #fff;
-    z-index: 1;
+/*     z-index: 1; */
     margin-right: 44px;
 }
 

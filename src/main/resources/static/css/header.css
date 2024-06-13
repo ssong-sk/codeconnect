@@ -9,7 +9,7 @@ body {
 	font-family: Pretendard Variable, Pretendard JP Variable, -apple-system,
 		system-ui, BlinkMacSystemFont, Roboto, Segoe UI, Helvetica, Arial,
 		Apple SD Gothic Neo, Nanum Gothic, Malgun Gothic, Apple Color Emoji,
-		Segoe UI Emoji, Segoe UI Symbol, sans-serif
+		Segoe UI Emoji, Segoe UI Symbol, sans-serif;
 }
 
 .NavBar_background__SQmnx {
@@ -41,6 +41,24 @@ button, div, h1, h2, h3, h4, h5, h6, input, p, select, span, textarea {
 
 .Padding_padding___Nyki {
 	height: 60px;
+}
+
+.Button_Button__outlinedAssistive__JKDyz {
+	--button-color: #171719;
+	color: var(--button-color);
+	font-weight: 500;
+	-webkit-box-shadow: inset 0 0 0 1px hsla(225, 5%, 46%, .16);
+	box-shadow: inset 0 0 0 1px hsla(225, 5%, 46%, .16);
+}
+
+.Button_Button__containedSizeSmall__Dlwlt,
+	.Button_Button__outlinedSizeSmall__PllaZ {
+	padding: 0 14px;
+	min-width: 48px;
+	height: 32px;
+	font-size: 13px;
+	font-weight: 600;
+	border-radius: 8px;
 }
 
 a, abbr, acronym, address, applet, article, aside, audio, b, big,
@@ -243,8 +261,6 @@ ol, ul {
 .Button_Button__outlinedAssistive__mBcQK {
 	--button-color: #171719;
 	color: var(--button-color);
-	font-weight: 500;
-	-webkit-box-shadow: inset 0 0 0 1px hsla(225, 5%, 46%, .16);
 	box-shadow: inset 0 0 0 1px hsla(225, 5%, 46%, .16);
 }
 
@@ -467,4 +483,9 @@ input, input:focus {
 
 .SearchInput_SearchClear__Tt2Ze svg path {
 	fill: rgba(55, 56, 60, .28);
+}
+
+.logo {
+	width: 112px;
+	height: 32px;
 }
