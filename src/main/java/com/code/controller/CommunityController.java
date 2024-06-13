@@ -160,22 +160,14 @@ public class CommunityController {
     }
     
     @GetMapping("/community/homeform")
-    public String form(HttpSession session, Model model)
-    {
-    	//로그인 여부 확인
-    	if(session.getAttribute("loginok")==null) {
-    		return "redirect:/login"; //로그인 안되면 로그인 페이지로 리다이렉트
-    	}
-    	
-    	//String nickname = (String) session.getAttribute("userNickname");
-    	//String nickname = mapperinter.findNicknameByUserId("test");
+    public String form(HttpSession session, Model model) {
+        if (session.getAttribute("loginok") == null) {
+            return "redirect:/login"; // 로그인 안되면 로그인 페이지로 리다이렉트
+        }
 
-    	//model.addAttribute("userNickname", nickname);
-        //System.out.println("----------------------------------");
-    	//System.out.println(nickname);
-        
-        
-    	return "community/homeform"; //"community/homeform.jsp"로 매핑
+        String nickname = (String) session.getAttribute("userNickname");
+        model.addAttribute("userNickname", nickname);
+        return "community/homeform"; // "community/homeform.jsp"로 매핑
     }
     
     @GetMapping("/community/homeposttotal")

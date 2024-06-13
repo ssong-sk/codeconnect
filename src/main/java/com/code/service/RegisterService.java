@@ -62,11 +62,4 @@ public class RegisterService implements RegisterServiceInter {
 		return mapperInter.getDataByNum(r_num);
 	}
 
-	/*
-	 * @Override public String getNicknameByUserId(String r_id) { // TODO
-	 * Auto-generated method stub return mapperInter.findNicknameByUserId(r_id);
-	 * //닉네임 로직 추가 }
-	 */
-
-
 }

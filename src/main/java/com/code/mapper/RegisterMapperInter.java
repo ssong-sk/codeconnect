@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 
 import com.code.dto.RegisterDto;
 
@@ -18,6 +19,5 @@ public interface RegisterMapperInter {
 	public int loginIdPassCheck(Map<String, String> map);
 	public RegisterDto getDataById(String r_id);
 	public RegisterDto getDataByNum(String r_num);
-	/*
-	 * public String findNicknameByUserId(String r_id); //사용자 id로 닉네임을 찾는 메서드 선언
-	 */}
+
+}

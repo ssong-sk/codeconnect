@@ -35,6 +35,12 @@ public class CompanyController {
     public String imsicom() {
     	return "company/companyimsiall";
     }
+    
+    //채용공고 작성 페이지로 이동하기
+    @GetMapping("/hire/hirewrite")
+    public String gohirewrite() {
+    	return "/hire/hirewrite";
+    }
 
 
     @GetMapping("/company/list")

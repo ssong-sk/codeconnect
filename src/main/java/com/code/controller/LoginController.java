@@ -60,15 +60,12 @@ public class LoginController {
 			session.setAttribute("loginok", "yes");
 			session.setAttribute("saveok", cbsave);
 			
-			/*
-			 * //닉네임을 가져와서 세션에 저장 String nickname = service.getNicknameByUserId(r_id); //
-			 * 사용자 id로 닉네임 가져오기 session.setAttribute("userNickname", nickname);
-			 * 
-			 * System.out.println("----------------------------------");
-			 * System.out.println(nickname);
-			 */
+
+			 
 	        
 			return "redirect:main";
+
+
 			
 		}else {
 			return "/member/passfail";
@@ -81,6 +78,7 @@ public class LoginController {
 	public String logout(HttpSession session)
 	{
 		session.removeAttribute("loginok");
+		session.removeAttribute("userNickname"); //
 		return "redirect:main";
 	}
 	

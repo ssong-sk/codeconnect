@@ -13,8 +13,5 @@ public interface RegisterServiceInter {
 	public int loginIdPassCheck(String r_id,String r_pass);
 	public RegisterDto getDataById(String r_id);
 	public RegisterDto getDataByNum(String r_num);
-	
-	/*
-	 * public String getNicknameByUserId(String r_id); //닉네임 가져오는 메서드 추가
-	 */
+
 }

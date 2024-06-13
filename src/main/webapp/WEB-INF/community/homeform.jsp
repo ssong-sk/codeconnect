@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -76,19 +75,62 @@
     #upload {
         display: none;
     }
-    
 </style>
 <script type="text/javascript">
-	$(document).ready(function(){
-	    $('#upload').change(function(){
-	    	var fileName = $(this).val().split('\\').pop();
+    $(document).ready(function(){
+        $('#upload').change(function(){
+            var fileName = $(this).val().split('\\').pop();
             if (fileName) {
                 $('#file-status').text(fileName);
             } else {
                 $('#file-status').text('이미지 첨부 없음');
             }
-	    });
-	});
+        });
+    });
+    
+    //이미지가 하단에 미리보기로 뜨도록 하는 js
+    /* $(document).ready(function(){
+        $('#upload').change(function(){
+            var files = this.files;
+            var content = $('#content');
+            
+            for (var i = 0; i < files.length; i++) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    var image = new Image();
+                    image.src = e.target.result;
+                    image.style.maxWidth = '100%';
+                    image.style.height = 'auto';
+                    image.style.marginTop = '10px';
+                    
+                    $('#image-preview').append(image);
+                }
+                reader.readAsDataURL(files[i]);
+            }
+        });
+    }); */
+    
+    $(document).ready(function(){
+        $('#upload').change(function(){
+            var files = this.files;
+            var content = $('#content');
+            
+            for (var i = 0; i < files.length; i++) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    var image = new Image();
+                    image.src = e.target.result;
+                    image.style.maxWidth = '100%';
+                    image.style.height = 'auto';
+                    image.style.marginTop = '10px';
+                    
+                    content.append(image);
+                }
+                reader.readAsDataURL(files[i]);
+            }
+        });
+    });
+    
 </script>
 </head>
 <body>
@@ -97,7 +139,7 @@
     <form action="${pageContext.request.contextPath}/community/homeinsert" method="post" enctype="multipart/form-data">
         <div>
             <label for="nickname">닉네임</label>
-            <input type="text" id="nickname" name="com_nickname" value="${sessionScope.userNickname}" readonly>
+            <input type="text" id="nickname" name="com_nickname" value="r_nickname 제발 불러와라" readonly>
         </div>
         <div>
             <label for="category">카테고리</label>
@@ -115,9 +157,9 @@
         </div>
         <div>
             <label for="content">내용</label>
-            <textarea id="content" name="com_content" style="height: 360px;" required placeholder="내용을 입력해주세요"></textarea>
+            <div id="content" name="com_content" style="height: 360px; border: 1px solid #ced4da; padding: 10px; margin-top: 10px; overflow-y: auto;" contenteditable="true" placeholder="내용을 입력해주세요"></div>
         </div>
-        <div style="margin-top: -10px;">
+        <div style="margin-top: 10px;">
             <label for="upload" class="custom-file-upload"><i class="bi bi-images"></i> 이미지 첨부</label>
             <input type="file" id="upload" name="upload" multiple>&nbsp;
             <span id="file-status" style="font-size: 14px;">이미지 첨부 없음</span>

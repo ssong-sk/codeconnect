@@ -24,7 +24,4 @@
    <select id="getDataByNum" parameterType="String" resultType="RDto">
       select * from register where r_num=#{r_num}
    </select>
-   <!-- <select id="findNicknameByUserId" resultType="String" parameterType="String">
-      select r_nickname from register where r_id = #{r_id}
-    </select> -->
 </mapper>
