@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="boot.data.mapper.CompanyIntroMapperInter">
+<mapper namespace="com.code.mapper.CompanyIntroMapperInter">
     <insert id="insertCompanyIntro" parameterType="CompanyIntroDto">
         insert into company_intro
         (c_num,ci_logo, ci_image,ci_link,ci_soge, ci_writeday)
@@ -13,7 +13,7 @@
 
    
     <select id="getDataByNum" parameterType="String" resultType="CompanyIntroDto">
-        select * from company_intro where ci_num=#{ci_num}
+        select * from company_intro where c_num=#{c_num}
     </select>
 
     <update id="updateCompanyIntro" parameterType="CompanyIntroDto">
@@ -23,7 +23,7 @@
         ci_image=#{ci_image},
         ci_link=#{ci_link},
         ci_soge=#{ci_soge}
-        where ci_num=#{ci_num}
+        where c_num=#{c_num}
     </update>
     
     

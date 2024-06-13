@@ -33,10 +33,10 @@ public class CompanyController {
     //기업 로그인로그아웃관련 임시 통합페이지
     @GetMapping("/company")
     public String imsicom() {
-    	return "company/companyimsiall";
+    	return "/company/companyimsiall"; //앞에 '/'넣은게 최신입니다.
     }
 
-
+    //아직없어!
     @GetMapping("/company/list")
     public ModelAndView list() {
         ModelAndView mview = new ModelAndView();

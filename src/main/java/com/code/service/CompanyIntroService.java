@@ -2,12 +2,14 @@ package com.code.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.code.dto.CompanyIntroDto;
 import com.code.mapper.CompanyIntroMapperInter;
 
 
 
+@Service
 public class CompanyIntroService implements CompanyIntroServiceInter {
 	
 	@Autowired
@@ -20,9 +22,9 @@ public class CompanyIntroService implements CompanyIntroServiceInter {
 	}
 	
 	@Override
-	public CompanyIntroDto getDataByNum(String ci_num) {
+	public CompanyIntroDto getDataByNum(String c_num) {
 		// TODO Auto-generated method stub
-		return cmapperInter.getDataByNum(ci_num);
+		return cmapperInter.getDataByNum(c_num);
 	}
 	
 	@Override

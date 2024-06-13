@@ -26,7 +26,7 @@ public class CompanyLoginController {
 	//임시 제작 : 기업 로그인 페이지 불러오기
 	@GetMapping("/imsiloginpage")
 	public String imsiloginpage() {
-		return "companylogin/companyloginform";
+		return "/companylogin/companyloginform"; //앞에 '/'있는게 최신입니다.
 	}
 
 	//아직 없어!
