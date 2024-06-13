@@ -700,7 +700,7 @@ input, input:focus {
 					<li class="Menu_MenuItem__wI1yA" data-attribute-id="gnb"
 						data-gnb-kind="event"><a href="/events"><span>커리어</span></a></li>
 					<li class="Menu_MenuItem__wI1yA" data-attribute-id="gnb"
-						data-gnb-kind="community"><a href="/community"><span>소셜</span></a></li>
+						data-gnb-kind="community"><a href="/community/homelist"><span>커뮤니티</span></a></li>
 					<li class="Menu_MenuItem__wI1yA" data-attribute-id="gnb"
 						data-gnb-kind="resume"><a href="/cv/list"><span>이력서</span></a></li>
 					<li class="Menu_MenuItem__wI1yA" data-attribute-id="gnb"

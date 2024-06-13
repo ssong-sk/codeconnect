@@ -35,6 +35,11 @@ public class LoginRestController {
 			session.setAttribute("loginok", "yes");
 			session.setAttribute("myid", r_id);
 			session.setAttribute("loginname", mdto.getR_name());
+			
+			/*
+			 * // 닉네임을 가져와서 세션에 저장 String nickname = service.getNicknameByUserId(r_id); //
+			 * 사용자 id로 닉네임 가져오기 session.setAttribute("userNickname", nickname);
+			 */
 		}
 		
 		map.put("result", result==1?"success":"fail");

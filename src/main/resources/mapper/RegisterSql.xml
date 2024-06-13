@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="boot.data.mapper.RegisterMapperInter">
+<mapper namespace="com.code.mapper.RegisterMapperInter">
    <insert id="insertRegister" parameterType="RDto">
      insert into register (r_id,r_pass,r_name,r_birthday,r_hp,r_zipcode,r_addr,r_addr_detail,r_email,r_gender,r_gaipday) 
      values (#{r_id },#{r_pass },#{r_name },#{r_birthday },#{r_hp },#{r_zipcode },#{r_addr },#{r_addr_detail },
@@ -24,4 +24,7 @@
    <select id="getDataByNum" parameterType="String" resultType="RDto">
       select * from register where r_num=#{r_num}
    </select>
+   <!-- <select id="findNicknameByUserId" resultType="String" parameterType="String">
+      select r_nickname from register where r_id = #{r_id}
+    </select> -->
 </mapper>
