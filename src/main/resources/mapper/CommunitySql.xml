@@ -6,8 +6,10 @@
     </select>
     
     <insert id="insertCommunity" parameterType="CommunityDto">
-        insert into community (com_user_id, com_nickname, com_title, com_content, com_photo, com_category, com_writetime, com_updatetime, com_post_type) 
-        values (#{com_user_id}, #{com_nickname}, #{com_title}, #{com_content}, #{com_photo}, #{com_category}, now(), now(), #{com_post_type})
+        insert into community (com_user_id, com_nickname, com_title, com_content, com_photo, com_category, com_writetime, com_updatetime, com_post_type,
+        com_name, com_companyname) 
+        values (#{com_user_id}, #{com_nickname}, #{com_title}, #{com_content}, #{com_photo}, #{com_category}, now(), now(), #{com_post_type},
+        #{com_name}, #{com_companyname})
     </insert>
     
     <select id="getAllDatas" resultType="CommunityDto">
@@ -28,4 +30,18 @@
     <delete id="deleteCommunity" parameterType="String">
         delete from community where com_num = #{com_num}
     </delete>
+    
+    <!-- interview 목록을 가져오는 쿼리 추가 -->
+    <select id="getInterviews" resultType="CommunityDto">
+    	select * from community where com_post_type = 'interview'
+    </select>
+    
+    <!-- 추가된 메소드 -->
+    <select id="getTotalCountByType" parameterType="String" resultType="int">
+        select count(*) from community where com_post_type = #{type}
+    </select>
+    
+    <select id="getAllDatasByType" parameterType="String" resultType="CommunityDto">
+        select * from community where com_post_type = #{type} order by com_num desc
+    </select>
 </mapper>

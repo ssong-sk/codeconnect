@@ -10,4 +10,9 @@ public interface CommunityServiceInter {
     CommunityDto getData(String com_num);
     void updateCommunity(CommunityDto dto);
     void deleteCommunity(String com_num);
+    
+    // 추가 메소드
+    int getTotalCountByType(String type);
+    List<CommunityDto> getAllDatasByType(String type);
+	List<CommunityDto> getInterviews();
 }

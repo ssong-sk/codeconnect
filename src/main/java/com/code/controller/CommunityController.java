@@ -28,12 +28,12 @@ public class CommunityController {
     @Autowired
     CommunityServiceInter service;
 
-    @GetMapping("/community/list")
+    @GetMapping("/community/homelist")
     public ModelAndView list() {
         ModelAndView mview = new ModelAndView();
 
-        int totalCount = service.getTotalCount();
-        List<CommunityDto> list = service.getAllDatas();
+        int totalCount = service.getTotalCountByType("home");
+        List<CommunityDto> list = service.getAllDatasByType("home");
 
         mview.addObject("totalCount", totalCount);
         mview.addObject("list", list);
@@ -129,7 +129,18 @@ public class CommunityController {
     }
 
     @GetMapping("/community/interviewlist")
-    public String interviewlist() {
-        return "community/interviewlist"; // "community/interviewlist.jsp"로 매핑
+    public ModelAndView interviewList() {
+        ModelAndView mview = new ModelAndView();
+
+        int totalCount = service.getTotalCountByType("interview");
+        List<CommunityDto> list = service.getAllDatasByType("interview");
+
+        mview.addObject("totalCount", totalCount);
+        mview.addObject("list", list);
+
+        mview.setViewName("community/interviewlist"); // "community/interviewlist.jsp"로 매핑
+        return mview;
     }
+    
+    
 }
