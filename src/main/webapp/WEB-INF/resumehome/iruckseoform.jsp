@@ -332,7 +332,8 @@
                 
 <!-- 학력 폼 ---------------------------------------------------------------------------------------------------------------------->
                 <div class="school">
-                <form action="schoolinsert" method="post">
+                  <input type="hidden" id="sc_num" value="${scdto.sc_num }">
+                  <input type="hidden" id="pe_num" value="${scdto.pe_num }">
                     <div class="form-caption">
                         <h4><b>학력</b></h4>&nbsp;&nbsp;&nbsp;
                         <span style="font-size: 0.8em;">*필수정보입력</span>
@@ -341,7 +342,6 @@
                     </div>
                     <hr style="width: 100%;">
                     <div id="schoolform"></div>
-                </form>
             </div>
             
             <script type="text/javascript">
@@ -354,11 +354,12 @@
                         // 창이 하나도 안열려 있는 경우 추가폼 생성됨
                         if (schoolclick == 0) {
                             var total = "";
-            
+                            
+                            total += '<form id="sctotal">'
                             total += '<table id="schoolclick" style="width: 100%;">';
                             total += '<tr>';
                             total += '<td class="form-group">';
-                            total += '<select class="form-select" style="width: 200px;" id="education-select">';
+                            total += '<select class="form-select" style="width: 200px;" id="education-select" name="sc_category">';
                             total += '<option value="none">학력구분 선택*</option>';
                             total += '<option value="highschool">고등학교 졸업</option>';
                             total += '<option value="university">대학·대학원 이상 졸업</option>';
@@ -367,13 +368,13 @@
                             total += '<!-- 고등학교 졸업을 선택했을 때 메뉴 -->';
                             total += '<tr id="highschool-options" style="display: none;">';
                             total += '<td class="form-group">';
-                            total += '<input type="checkbox">편입';
+                            total += '<input type="checkbox" name="sc_hi_transfer">편입';
                             total += '</td>';
                             total += '</tr>';
                             total += '<tr id="highschool-options-details" style="display: none;">';
                             total += '<td class="form-group">';
-                            total += '<input type="text" class="form-control" style="width: 200px;" placeholder="학교명*">';
-                            total += '<select class="form-select" style="width: 120px;">';
+                            total += '<input type="text" class="form-control" name="sc_hi_name" style="width: 200px;" placeholder="학교명*">';
+                            total += '<select class="form-select" name="sc_hi_check" style="width: 120px;">';
                             total += '<option>졸업여부*</option>';
                             total += '<option>졸업</option>';
                             total += '<option>재학중</option>';
@@ -382,9 +383,9 @@
                             total += '<option>자퇴</option>';
                             total += '<option>졸업예정</option>';
                             total += '</select>';
-                            total += '<input type="date" class="form-control" style="width: 120px;">';
-                            total += '<input type="date" class="form-control" style="width: 120px;">';
-                            total += '<select class="form-select" style="width: 120px;">';
+                            total += '<input type="date" name="sc_hi_iphack" class="form-control" style="width: 120px;">';
+                            total += '<input type="date" name="sc_hi_jolup" class="form-control" style="width: 120px;">';
+                            total += '<select class="form-select" name="sc_hi_major" style="width: 120px;">';
                             total += '<option>전공계열*</option>';
                             total += '<option>문과계열</option>';
                             total += '<option>이과계열</option>';
@@ -398,21 +399,21 @@
                             total += '<!-- 대학 대학원 폼 -->';
                             total += '<tr id="university-options" style="display: none;">';
                             total += '<td class="form-group">';
-                            total += '<select class="form-select"  style="width: 120px;" >';
+                            total += '<select class="form-select" name="sc_uni_category"  style="width: 120px;" >';
                             total += '<option>대학구분*</option>';
                             total += '<option>대학(2,3년)</option>';
                             total += '<option>대학(4년)</option>';
                             total += '<option>대학원(석사)</option>';
                             total += '<option>대학원(박사)</option>';
                             total += '</select>';
-                            total += '<input type="text" class="form-control" style="width: 200px;" placeholder="학교명*">';
-                            total += '<input type="checkbox">편입';
+                            total += '<input type="text" class="form-control" name="sc_uni_name" style="width: 200px;" placeholder="학교명*">';
+                            total += '<input type="checkbox" name="sc_uni_transfer">편입';
                             total += '</td>';
                             total += '</tr>';
                             total += '<tr id="university-options-details" style="display: none;">';
                             total += '<td class="form-group">';
-                            total += '<input type="text" class="form-control" style="width: 180px;" placeholder="전공*">';
-                            total += '<select class="form-select" style="width: 120px;">';
+                            total += '<input type="text" class="form-control" name="sc_uni_major" style="width: 180px;" placeholder="전공*">';
+                            total += '<select class="form-select" name="sc_uni_check" style="width: 120px;">';
                             total += '<option>졸업여부*</option>';
                             total += '<option>졸업</option>';
                             total += '<option>재학중</option>';
@@ -421,10 +422,10 @@
                             total += '<option>자퇴</option>';
                             total += '<option>졸업예정</option>';
                             total += '</select>';
-                            total += '<input type="date" class="form-control" style="width: 120px;">';
-                            total += '<input type="date" class="form-control" style="width: 120px;">';
-                            total += '<input type="text" class="form-control" style="width: 80px;" placeholder="학점*">';
-                            total += '<select class="form-select" style="width: 120px;">';
+                            total += '<input type="date" class="form-control" name="sc_uni_iphack" style="width: 120px;">';
+                            total += '<input type="date" class="form-control" name="sc_uni_jolup" style="width: 120px;">';
+                            total += '<input type="text" class="form-control" name="sc_uni_grade" style="width: 80px;" placeholder="학점*">';
+                            total += '<select class="form-select" name="sc_uni_sum" style="width: 120px;">';
                             total += '<option>기준학점*</option>';
                             total += '<option>4.0</option>';
                             total += '<option>4.3</option>';
@@ -437,12 +438,13 @@
                             total += '<tr>';
                             total += '<td colspan="2" align="right">';
                             total += '<br>';
-                            total += '<button type="submit" class="btn btn-outline-primary">저장</button>';
+                            total += '<button type="button" id="schoolOk" class="btn btn-outline-primary">저장</button>';
                             total += '&nbsp';
                             total += '<button type="button" id="schoolCancle" class="btn btn-outline-primary">취소</button>';
                             total += '</td>';
                             total += '</tr>';
                             total += '</table>';
+                            total += '</form>'
             
                             $("#schoolform").append(total);
             
@@ -489,7 +491,52 @@
                     $(document).on("click", "#schoolCancle", function () {
                         $("#schoolform").html("");
                     });
+                    
+                    
+                    
+                    
+                    //저장시 shcool insert
+                    $(document).on("click", "#schoolOk", function () {
+						
+                    	//var shcooldata = $("#sctotal").serialize();
+                    	var formData = {
+						        pe_num: $('#pe_num').val(),
+						        sc_category: $('select[name="sc_category"]').val(),
+						        sc_hi_name: $('input[name="sc_hi_name"]').val(),
+						        sc_hi_transfer: $('input[name="sc_hi_transfer"]').is(':checked') ? 'Y' : 'N',
+						        sc_hi_check: $('select[name="sc_hi_check"]').val(),
+						        sc_hi_iphack: $('input[name="sc_hi_iphack"]').val(),
+						        sc_hi_jolup: $('input[name="sc_hi_jolup"]').val(),
+						        sc_hi_major: $('select[name="sc_hi_major"]').val(),
+						        sc_uni_category: $('select[name="sc_uni_category"]').val(),
+						        sc_uni_name: $('input[name="sc_uni_name"]').val(),
+						        sc_uni_transfer: $('input[name="sc_uni_transfer"]').is(':checked') ? 'Y' : 'N',
+						        sc_uni_major: $('input[name="sc_uni_major"]').val(),
+						        sc_uni_check: $('select[name="sc_uni_check"]').val(),
+						        sc_uni_iphack: $('input[name="sc_uni_iphack"]').val(),
+						        sc_uni_jolup: $('input[name="sc_uni_jolup"]').val(),
+						        sc_uni_grade: $('input[name="sc_uni_grade"]').val(),
+						        sc_uni_sum: $('select[name="sc_uni_sum"]').val()
+						    };
+                    	//alert(JSON.stringify(formData));
+                    	
+                    	$.ajax ({
+                    		
+                    		type : "post",
+                    		url : "/resumehome/schoolinsert",
+                    		data : formData,
+                    		success : function (response) {
+								
+                    			alert("g");
+                    			$("#schoolform").hide();
+                    			
+							}
+                    		
+                    	})
+                    	
+					})
                 });
+                
             </script>
 
                 
