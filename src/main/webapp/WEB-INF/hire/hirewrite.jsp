@@ -83,6 +83,7 @@ p.info {
    font-size: 10pt;
 }
 
+
 /* 컨텐츠 시작 */
 /* 직무 */
 .select-wrapper, .select-wrapper2, .select-wrapper3 {
@@ -358,11 +359,6 @@ span.connect {
     border-radius: 8px;
     padding: 10px 10px;
     font-weight: bold;
-}
-
-pre{
-   font-family: IBM Plex Sans KR;
-   overflow-x: hidden;
 }
 
 /* 기술스택 툴 */
@@ -852,7 +848,7 @@ input:disabled {
                         <span class="title">공고ㆍ서론</span>
                         <span><i class="bi bi-asterisk imstar"></i></span>
                         <br>
-                        <div><pre><textarea class="textarea" placeholder="텍스트만 입력 가능합니다.(홈페이지 url, 이모티콘, 이미지 등록불가)"></textarea></pre></div>
+                        <div><pre style="font-family: IBM Plex Sans KR; overflow-x: hidden; font-size: 12pt;"><textarea class="textarea" placeholder="텍스트만 입력 가능합니다.(홈페이지 url, 이모티콘, 이미지 등록불가)"></textarea></pre></div>
                      </div>
                      
                      <br><br>
@@ -861,7 +857,7 @@ input:disabled {
                         <span class="title">주요업무</span>
                         <span><i class="bi bi-asterisk imstar"></i></span>
                         <br>
-                        <div><pre><textarea class="textarea" placeholder="내용 작성"></textarea></pre></div>
+                        <div><pre style="font-family: IBM Plex Sans KR; overflow-x: hidden; font-size: 12pt;"><textarea class="textarea" placeholder="내용 작성"></textarea></pre></div>
                      </div>
                      
                      <br><br>
@@ -870,7 +866,7 @@ input:disabled {
                         <span class="title">자격요건</span>
                         <span><i class="bi bi-asterisk imstar"></i></span>
                         <br>
-                        <div><pre><textarea class="textarea" placeholder="주요업무 및 전형절차를 함께 작성해주세요."></textarea></pre></div>
+                        <div><pre style="font-family: IBM Plex Sans KR; overflow-x: hidden; font-size: 12pt;"><textarea class="textarea" placeholder="주요업무 및 전형절차를 함께 작성해주세요."></textarea></pre></div>
                      </div>
                      
                      <br><br>
@@ -878,7 +874,7 @@ input:disabled {
                      <div class="title_div">
                         <span class="title">우대 사항</span>
                         <br>
-                        <div><pre><textarea class="textarea" placeholder="내용 작성"></textarea></pre></div>
+                        <div><pre style="font-family: IBM Plex Sans KR; overflow-x: hidden; font-size: 12pt;"><textarea class="textarea" placeholder="내용 작성"></textarea></pre></div>
                      </div>
                      
                      <br><br>
@@ -887,7 +883,7 @@ input:disabled {
                         <span class="title">혜택 및 복지</span>
                         <span><i class="bi bi-asterisk imstar"></i></span>
                         <br>
-                        <div><pre><textarea class="textarea" placeholder="내용 작성"></textarea></pre></div>
+                        <div><pre style="font-family: IBM Plex Sans KR; overflow-x: hidden; font-size: 12pt;"><textarea class="textarea" placeholder="내용 작성"></textarea></pre></div>
                      </div>
                      
                      <br><br>
@@ -966,6 +962,9 @@ input:disabled {
                   <div class="title_div">
                      <span class="title">카테고리 선택</span>
                   </div>
+                  <p class="info">
+                        현재 기업에서 시행중인 복지를 등록해주세요. (다중 선택 가능)<br>
+                  </p>
                   <div class="title_div">
                         <section class="cateselect-wrapper" data-role="cateselectbox">
 	                     <section class="cateselectbox">
@@ -1036,7 +1035,7 @@ input:disabled {
             </div>
          </div>
       </div>
-
+	<br><br>
       <jsp:include page="footer.jsp"></jsp:include>
    </div>
    <script type="text/javascript">
