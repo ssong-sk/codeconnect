@@ -468,3 +468,8 @@ input, input:focus {
 .SearchInput_SearchClear__Tt2Ze svg path {
 	fill: rgba(55, 56, 60, .28);
 }
+
+.logo {
+	width:112px;
+	height:32px;
+}
