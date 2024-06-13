@@ -19,9 +19,12 @@ article, aside, details, figcaption, figure, footer, header, hgroup,
 }
 
 button, div, h1, h2, h3, h4, h5, h6, input, p, select, span, textarea {
-	font-family: inherit;
-	font-size: inherit;
-	line-height: inherit;
+	font-family: Pretendard Variable, Pretendard JP Variable, -apple-system,
+		system-ui, BlinkMacSystemFont, Roboto, Segoe UI, Helvetica, Arial,
+		Apple SD Gothic Neo, Nanum Gothic, Malgun Gothic, Apple Color Emoji,
+		Segoe UI Emoji, Segoe UI Symbol, sans-serif;
+	font-size: 15px;
+	line-height: 22px;
 }
 
 a, abbr, acronym, address, applet, article, aside, audio, b, big,

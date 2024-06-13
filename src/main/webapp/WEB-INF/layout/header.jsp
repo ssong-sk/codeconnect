@@ -65,9 +65,14 @@
 											회원가입/로그인 </span>
 									</span> <span class="Button_Button__interaction__kkYaa"></span>
 								</button>
-							</c:if> 
-							<c:if test="${sessionScope.loginok!=null }">
-								<a href="/member/mypage">${sessionScope.myid}님</a>
+							</c:if> <c:if test="${sessionScope.loginok!=null }">
+								<button
+									class="Button_Button__root__V1ie3 Button_Button__outlined__H2mkd Button_Button__outlinedAssistive__mBcQK Button_Button__outlinedSizeSmall__JJmOo Aside_signUpButton__pY721"
+									type="button" onclick="location.href='/member/mypage'">
+									<span class="Button_Button__label__1Kk0v"> <span
+										class="Typography_Typography__root__xYuMs Typography_Typography__label2__BRssq Typography_Typography__weightBold__e15ql">
+											${sessionScope.myid}님</span>
+									</span> <span class="Button_Button__interaction__kkYaa"></span></button>
 							</c:if></li>
 						<li><a
 							class="Button_Button__root__V1ie3 Button_Button__outlined__H2mkd Button_Button__outlinedAssistive__mBcQK Button_Button__outlinedSizeSmall__JJmOo Aside_dashboardButton__WUch3"

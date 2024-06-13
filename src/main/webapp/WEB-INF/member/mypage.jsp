@@ -22,37 +22,38 @@
 		<div class="MainLayout_MainLayout__root__p6itg">
 			<div class="Grid_Grid__container__J9CcC Grid_Grid__spacing__5__ZwgDV">
 				<div
-					class="Grid_Grid__item__FUkSS Grid_Grid__align-items_flex-start__PA0JE Grid_Grid__grid__xs__12__rVqKh Grid_Grid__grid__md__4__YPyIl MainLayout_MainLayout__sidebar__G8teL">
+					class="Grid_Grid__item__FUkSS Grid_Grid__align-items_flex-start__PA0JE Grid_Grid__grid__xs__12__rVqKh Grid_Grid__grid__md__4__YPyIl MainLayout_MainLayout__sidebar__G8teL"
+					style="padding-top: 59px; padding-left: 50px;">
 					<div
 						class="Grid_Grid__container__J9CcC Grid_Grid__direction_column__jR3AZ Grid_Grid__align-items_flex-start__PA0JE LnbDesktop_LnbDesktop__root__yg5QP MainLayout_MainLayout__pcLnb___mU9a">
 						<ul class="LnbDesktop_LnbDesktop__menus____3yL">
 							<li class="LnbDesktop_LnbDesktop__item__sZEI4"><a
 								class="Button_Button__root__V1ie3 Button_Button__text__GCOTx Button_Button__textAssistive__Dx57x Button_Button__textSizeMedium__KekFB Button_Button__fullWidth__RU4tf LnbDesktop_LnbDesktop__text__2eGDD LnbDesktop_LnbDesktop__activeLink__A05_V"
 								data-attribute-id="myActivity__snb" data-snb-kind="profile"
-								href="/my/profile"><span class="Button_Button__label__1Kk0v"><h6
-											class="Typography_Typography__root__xYuMs Typography_Typography__headline1__R9fZk Typography_Typography__weightBold__e15ql">프로필</h6></span><span
+								href="${root }/member/mypage"><span class="Button_Button__label__1Kk0v">
+								<h6 class="Typography_Typography__root__xYuMs Typography_Typography__headline1__R9fZk Typography_Typography__weightBold__e15ql">프로필</h6></span><span
 									class="Button_Button__interaction__kkYaa"></span></a></li>
 							<li class="LnbDesktop_LnbDesktop__item__sZEI4"><a
 								class="Button_Button__root__V1ie3 Button_Button__text__GCOTx Button_Button__textAssistive__Dx57x Button_Button__textSizeMedium__KekFB Button_Button__fullWidth__RU4tf LnbDesktop_LnbDesktop__text__2eGDD"
 								data-attribute-id="myActivity__snb" data-snb-kind="myActivity"
-								href="/my/activity"><span
-									class="Button_Button__label__1Kk0v"><h6
-											class="Typography_Typography__root__xYuMs Typography_Typography__headline1__R9fZk Typography_Typography__weightMedium__O0Rdi">내
+								href="#"><span
+									class="Button_Button__label__1Kk0v">
+									<h6 class="Typography_Typography__root__xYuMs Typography_Typography__headline1__R9fZk Typography_Typography__weightMedium__O0Rdi">내
 											활동</h6></span><span class="Button_Button__interaction__kkYaa"></span></a></li>
 							<li class="LnbDesktop_LnbDesktop__item__sZEI4"><a
 								class="Button_Button__root__V1ie3 Button_Button__text__GCOTx Button_Button__textAssistive__Dx57x Button_Button__textSizeMedium__KekFB Button_Button__fullWidth__RU4tf LnbDesktop_LnbDesktop__text__2eGDD"
 								data-attribute-id="myActivity__snb" data-snb-kind="settings"
-								href="/profile/settings?type=referral"><span
-									class="Button_Button__label__1Kk0v"><h6
-											class="Typography_Typography__root__xYuMs Typography_Typography__headline1__R9fZk Typography_Typography__weightMedium__O0Rdi">설정</h6></span><span
+								href="#"><span
+									class="Button_Button__label__1Kk0v">
+									<h6 class="Typography_Typography__root__xYuMs Typography_Typography__headline1__R9fZk Typography_Typography__weightMedium__O0Rdi">설정</h6></span><span
 									class="Button_Button__interaction__kkYaa"></span></a></li>
 							<li class="LnbDesktop_LnbDesktop__item__sZEI4"><hr
 									class="Divider_Divider__root__f2LD0 LnbDesktop_LnbDesktop__divider__UoHLu"></li>
 							<li class="LnbDesktop_LnbDesktop__item__sZEI4"><button
 									class="Button_Button__root__V1ie3 Button_Button__text__GCOTx Button_Button__textAssistive__Dx57x Button_Button__textSizeMedium__KekFB Button_Button__fullWidth__RU4tf LnbDesktop_LnbDesktop__text__2eGDD"
-									data-attribute-id="myActivity__snb" data-snb-kind="logout">
-									<span class="Button_Button__label__1Kk0v"><h6
-											class="Typography_Typography__root__xYuMs Typography_Typography__headline1__R9fZk Typography_Typography__weightMedium__O0Rdi LnbDesktop_LnbDesktop__logout__PwOFY">로그아웃</h6></span><span
+									type="button" onclick="location.href='/login/logoutprocess'">
+									<span class="Button_Button__label__1Kk0v">
+									<h6 class="Typography_Typography__root__xYuMs Typography_Typography__headline1__R9fZk Typography_Typography__weightMedium__O0Rdi LnbDesktop_LnbDesktop__logout__PwOFY">로그아웃</h6></span><span
 										class="Button_Button__interaction__kkYaa"></span>
 								</button></li>
 						</ul>
@@ -62,6 +63,7 @@
 					class="Grid_Grid__item__FUkSS Grid_Grid__align-items_flex-start__PA0JE Grid_Grid__grid__md__1__aOHPk MainLayout_MainLayout__space__8eQvZ"></div>
 				<div
 					class="Grid_Grid__item__FUkSS Grid_Grid__justify_center__QJu2X Grid_Grid__align-items_flex-start__PA0JE Grid_Grid__grid__xs__12__rVqKh Grid_Grid__grid__md__6__9g_JE">
+
 					<div
 						class="Grid_Grid__container__J9CcC Grid_Grid__direction_column__jR3AZ Grid_Grid__wrap_nowrap__4r_cp ProfileView_ProfileView__root__eOS_q">
 						<section
@@ -73,11 +75,9 @@
 									<div
 										class="Grid_Grid__container__J9CcC Grid_Grid__align-items_center__VEikH ProfileViewHeaderAvatar_ProfileViewHeaderAvatar__root__OR4Te">
 										<div
-											class="Grid_Grid__item__FUkSS Grid_Grid__align-items_flex-start__PA0JE"></div>
-										<div
 											class="Grid_Grid__item__FUkSS Grid_Grid__align-items_flex-start__PA0JE ProfileViewHeaderAvatar_ProfileViewHeaderAvatar__info__dUe_s">
 											<h4
-												class="Typography_Typography__root__xYuMs Typography_Typography__heading1__bVyRs Typography_Typography__weightBold__e15ql Typography_Typography__noWrap__ovbzF Typography_Typography__alignLeft__fYbY6 ProfileViewHeaderAvatar_ProfileViewHeaderAvatar__info__title__KuxZF">김태윤</h4>
+												class="Typography_Typography__root__xYuMs Typography_Typography__heading1__bVyRs Typography_Typography__weightBold__e15ql Typography_Typography__noWrap__ovbzF Typography_Typography__alignLeft__fYbY6 ProfileViewHeaderAvatar_ProfileViewHeaderAvatar__info__title__KuxZF">${sessionScope.myid}</h4>
 											<p
 												class="Typography_Typography__root__xYuMs Typography_Typography__body2-reading__1wjEy Typography_Typography__weightMedium__O0Rdi ProfileViewHeaderAvatar_ProfileViewHeaderAvatar__info__subText__QIJLo">개발</p>
 										</div>
@@ -92,6 +92,7 @@
 											<span class="Button_Button__label__1Kk0v">설정</span><span
 												class="Button_Button__interaction__kkYaa"></span>
 										</button>
+
 									</div>
 								</div>
 							</div>
@@ -121,90 +122,76 @@
 						<section
 							class="Grid_Grid__item__FUkSS Grid_Grid__align-items_flex-start__PA0JE"></section>
 						<section
-							class="Grid_Grid__item__FUkSS Grid_Grid__align-items_flex-start__PA0JE ProfileView_ProfileView__responsive__mobile__WO3T6">
-							<div
-								class="Grid_Grid__container__J9CcC Grid_Grid__item__FUkSS Grid_Grid__align-items_center__VEikH ProfileViewHeaderActions_ProfileViewHeaderActions__root__MMI7E">
-								<button
-									class="Button_Button__root__V1ie3 Button_Button__outlined__H2mkd Button_Button__outlinedAssistive__mBcQK Button_Button__outlinedSizeMedium__k3ora ProfileViewHeaderActions_ProfileViewHeaderActions__btnSetting__5erq0">
-									<span class="Button_Button__label__1Kk0v">설정</span><span
-										class="Button_Button__interaction__kkYaa"></span>
-								</button>
-								<button
-									class="IconButton_IconButton__root__dO2x7 IconButton_IconButton__outlined__vTWfA ProfileViewHeaderActions_ProfileViewHeaderActions__iconButton__7TOPE"
-									aria-label="공유하기" style="font-size: 20px;">
-									<span class="IconButton_IconButton__label__ZcWfp"><span
-										class="SvgIcon_SvgIcon__root__8vwon"><svg
-												class="SvgIcon_SvgIcon__root__svg__DKYBi"
-												viewBox="0 0 24 24">
-												<path fill-rule="evenodd" clip-rule="evenodd"
-													d="M16.2725 7.1267C15.9272 7.48428 15.3574 7.49428 14.9999 7.14902L12.9 5.12157V14.5008C12.9 14.9978 12.4971 15.4008 12 15.4008C11.5029 15.4008 11.1 14.9978 11.1 14.5008V5.12157L9.00014 7.14902C8.64255 7.49428 8.07279 7.48428 7.72754 7.1267C7.38229 6.76911 7.39228 6.19935 7.74987 5.8541L11.3749 2.3541C11.7236 2.01738 12.2764 2.01738 12.6251 2.3541L16.2501 5.8541C16.6077 6.19935 16.6177 6.76911 16.2725 7.1267ZM20.9 9.99941L20.9 19.4298C20.9001 19.6841 20.9001 19.9261 20.8834 20.1301C20.8652 20.3525 20.8229 20.6076 20.6929 20.8626C20.5108 21.2201 20.2201 21.5108 19.8626 21.6929C19.6076 21.8228 19.3525 21.8652 19.1301 21.8834C18.9262 21.9001 18.6841 21.9 18.4298 21.9H5.57028C5.31598 21.9 5.0739 21.9001 4.86995 21.8834C4.64754 21.8652 4.39243 21.8228 4.13746 21.6929C3.77995 21.5108 3.48929 21.2201 3.30713 20.8626C3.17721 20.6076 3.13482 20.3525 3.11665 20.1301C3.09999 19.9261 3.10001 19.6841 3.10004 19.4298V9.99941H4.90004V19.9997C4.90004 20.0549 4.94481 20.0997 5.00004 20.0997H19C19.0553 20.0997 19.1 20.0549 19.1 19.9997V9.99941H20.9Z"></path></svg></span></span><span
-										class="IconButton_IconButton__interaction__I48Mv"></span>
-								</button>
-							</div>
-						</section>
-						<section
 							class="Grid_Grid__item__FUkSS Grid_Grid__align-items_flex-start__PA0JE ProfileView_ProfileView__borderSection__VkDe7">
 							<hr
 								class="Divider_Divider__root__f2LD0 Divider_Divider__colorAlternative__nElS3">
 						</section>
 						<section
-							class="Grid_Grid__item__FUkSS Grid_Grid__align-items_flex-start__PA0JE">
+							class="Grid_Grid__item__4GoIZ Grid_Grid__align-items_flex-start__nEOiH">
 							<div
-								class="Grid_Grid__container__J9CcC Grid_Grid__direction_column__jR3AZ ProfileViewCareerEducationAdd_ProfileViewCareerEducationAdd__root__YhmF0">
-								<button class="Box_Box__root__haR8X"
+								class="Grid_Grid__container__43uvK Grid_Grid__direction_column__z_Dv0 ProfileViewCareerEducationAdd_ProfileViewCareerEducationAdd__root__YtecC">
+								<div
+									class="Box_Box__root__WZu52 ProfileViewCareerEducationAdd_ProfileViewCareerEducationAdd__guideText__dfNDx">
+									<span
+										class="Typography_Typography__root__RdAI1 Typography_Typography__label2__svmAA Typography_Typography__weightMedium__GXnOM ProfileViewCareerEducationAdd_ProfileViewCareerEducationAdd__text__DK3Qa">나에게
+										맞는 커리어 기회를 찾을 수 있게 <br>
+									<strong>경력 / 학력을 추가</strong>하고 <strong>이력서를 완성</strong>해 주세요.
+									</span>
+								</div>
+								<button class="Box_Box__root__WZu52"
 									data-attribute-id="profile__addCareer__click"
 									data-career-count="0">
 									<div
-										class="Grid_Grid__container__J9CcC Grid_Grid__justify_space-between__SsVJS Grid_Grid__align-items_center__VEikH">
+										class="Grid_Grid__container__43uvK Grid_Grid__justify_space-between__xzhoO Grid_Grid__align-items_center__2CxBh">
 										<p
-											class="Typography_Typography__root__xYuMs Typography_Typography__body2__EpxWz Typography_Typography__weightBold__e15ql ProfileViewCareerEducationAdd_ProfileViewCareerEducationAdd__text__Cad9U">경력
+											class="Typography_Typography__root__RdAI1 Typography_Typography__body2__5Mmhi Typography_Typography__weightBold__KkJEY ProfileViewCareerEducationAdd_ProfileViewCareerEducationAdd__text__DK3Qa">경력
 											추가</p>
 										<button
-											class="IconButton_IconButton__root__dO2x7 IconButton_IconButton__normal__O3ySx ProfileViewCareerEducationAdd_ProfileViewCareerEducationAdd__text__Cad9U"
+											class="IconButton_IconButton__root__IJlt6 IconButton_IconButton__normal__Twwsf ProfileViewCareerEducationAdd_ProfileViewCareerEducationAdd__text__DK3Qa"
 											aria-label="경력 추가" style="font-size: 20px;">
-											<span class="IconButton_IconButton__label__ZcWfp"><span
-												class="SvgIcon_SvgIcon__root__8vwon"><svg
-														class="SvgIcon_SvgIcon__root__svg__DKYBi"
+											<span class="IconButton_IconButton__label__o4AtY"><span
+												class="SvgIcon_SvgIcon__root__OHiSO"><svg
+														class="SvgIcon_SvgIcon__root__svg__ohdSc"
 														viewBox="0 0 24 24">
 														<path
-															d="M11.9996 2.3501C12.4967 2.3501 12.8996 2.75304 12.8996 3.2501V11.1001H20.7496C21.2467 11.1001 21.6496 11.503 21.6496 12.0001C21.6496 12.4972 21.2467 12.9001 20.7496 12.9001H12.8996V20.7501C12.8996 21.2472 12.4967 21.6501 11.9996 21.6501C11.5026 21.6501 11.0996 21.2472 11.0996 20.7501V12.9001H3.24961C2.75255 12.9001 2.34961 12.4972 2.34961 12.0001C2.34961 11.503 2.75255 11.1001 3.24961 11.1001H11.0996V3.2501C11.0996 2.75304 11.5026 2.3501 11.9996 2.3501Z"></path></svg></span></span><span
-												class="IconButton_IconButton__interaction__I48Mv"></span>
+															d="M11.9997 3.10254C12.4968 3.10254 12.8997 3.50548 12.8997 4.00254V11.1025H19.9997C20.4968 11.1025 20.8997 11.5055 20.8997 12.0025C20.8997 12.4996 20.4968 12.9025 19.9997 12.9025H12.8997V20.0025C12.8997 20.4996 12.4968 20.9025 11.9997 20.9025C11.5027 20.9025 11.0997 20.4996 11.0997 20.0025V12.9025H3.99973C3.50268 12.9025 3.09973 12.4996 3.09973 12.0025C3.09973 11.5055 3.50268 11.1025 3.99973 11.1025H11.0997V4.00254C11.0997 3.50548 11.5027 3.10254 11.9997 3.10254Z"></path></svg></span></span><span
+												class="IconButton_IconButton__interaction__7RjPt"></span>
 										</button>
 									</div>
 								</button>
-								<button class="Box_Box__root__haR8X"
+								<button class="Box_Box__root__WZu52"
 									data-attribute-id="profile__addEducation__click"
 									data-education-count="0">
 									<div
-										class="Grid_Grid__container__J9CcC Grid_Grid__justify_space-between__SsVJS Grid_Grid__align-items_center__VEikH">
+										class="Grid_Grid__container__43uvK Grid_Grid__justify_space-between__xzhoO Grid_Grid__align-items_center__2CxBh">
 										<p
-											class="Typography_Typography__root__xYuMs Typography_Typography__body2__EpxWz Typography_Typography__weightBold__e15ql ProfileViewCareerEducationAdd_ProfileViewCareerEducationAdd__text__Cad9U">학력
+											class="Typography_Typography__root__RdAI1 Typography_Typography__body2__5Mmhi Typography_Typography__weightBold__KkJEY ProfileViewCareerEducationAdd_ProfileViewCareerEducationAdd__text__DK3Qa">학력
 											추가</p>
 										<button
-											class="IconButton_IconButton__root__dO2x7 IconButton_IconButton__normal__O3ySx ProfileViewCareerEducationAdd_ProfileViewCareerEducationAdd__text__Cad9U"
+											class="IconButton_IconButton__root__IJlt6 IconButton_IconButton__normal__Twwsf ProfileViewCareerEducationAdd_ProfileViewCareerEducationAdd__text__DK3Qa"
 											aria-label="학력 추가" style="font-size: 20px;">
-											<span class="IconButton_IconButton__label__ZcWfp"><span
-												class="SvgIcon_SvgIcon__root__8vwon"><svg
-														class="SvgIcon_SvgIcon__root__svg__DKYBi"
+											<span class="IconButton_IconButton__label__o4AtY"><span
+												class="SvgIcon_SvgIcon__root__OHiSO"><svg
+														class="SvgIcon_SvgIcon__root__svg__ohdSc"
 														viewBox="0 0 24 24">
 														<path
-															d="M11.9996 2.3501C12.4967 2.3501 12.8996 2.75304 12.8996 3.2501V11.1001H20.7496C21.2467 11.1001 21.6496 11.503 21.6496 12.0001C21.6496 12.4972 21.2467 12.9001 20.7496 12.9001H12.8996V20.7501C12.8996 21.2472 12.4967 21.6501 11.9996 21.6501C11.5026 21.6501 11.0996 21.2472 11.0996 20.7501V12.9001H3.24961C2.75255 12.9001 2.34961 12.4972 2.34961 12.0001C2.34961 11.503 2.75255 11.1001 3.24961 11.1001H11.0996V3.2501C11.0996 2.75304 11.5026 2.3501 11.9996 2.3501Z"></path></svg></span></span><span
-												class="IconButton_IconButton__interaction__I48Mv"></span>
+															d="M11.9997 3.10254C12.4968 3.10254 12.8997 3.50548 12.8997 4.00254V11.1025H19.9997C20.4968 11.1025 20.8997 11.5055 20.8997 12.0025C20.8997 12.4996 20.4968 12.9025 19.9997 12.9025H12.8997V20.0025C12.8997 20.4996 12.4968 20.9025 11.9997 20.9025C11.5027 20.9025 11.0997 20.4996 11.0997 20.0025V12.9025H3.99973C3.50268 12.9025 3.09973 12.4996 3.09973 12.0025C3.09973 11.5055 3.50268 11.1025 3.99973 11.1025H11.0997V4.00254C11.0997 3.50548 11.5027 3.10254 11.9997 3.10254Z"></path></svg></span></span><span
+												class="IconButton_IconButton__interaction__7RjPt"></span>
 										</button>
 									</div>
 								</button>
 							</div>
 						</section>
-						<section
-							class="Grid_Grid__item__FUkSS Grid_Grid__align-items_flex-start__PA0JE"></section>
 					</div>
+
 				</div>
-				<div
-					class="Grid_Grid__item__FUkSS Grid_Grid__align-items_flex-start__PA0JE Grid_Grid__grid__md__1__aOHPk MainLayout_MainLayout__space__8eQvZ"></div>
+
+				<section
+					class="Grid_Grid__item__FUkSS Grid_Grid__align-items_flex-start__PA0JE"></section>
 			</div>
 		</div>
+		<div
+			class="Grid_Grid__item__FUkSS Grid_Grid__align-items_flex-start__PA0JE Grid_Grid__grid__md__1__aOHPk MainLayout_MainLayout__space__8eQvZ"></div>
 	</div>
-	 <button type="button" class="btn btn-danger" style="width: 100px;"
-     onclick="location.href='${root}/login/logoutprocess'">Logout</button>
 </body>
 </html>

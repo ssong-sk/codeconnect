@@ -35,6 +35,7 @@ public class LoginRestController {
 			session.setAttribute("loginok", "yes");
 			session.setAttribute("myid", r_id);
 			session.setAttribute("loginname", mdto.getR_name());
+			
 		}
 		
 		map.put("result", result==1?"success":"fail");
