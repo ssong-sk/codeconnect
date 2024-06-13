@@ -1,0 +1,622 @@
+@charset "UTF-8";
+
+button, div, h1, h2, h3, h4, h5, h6, input, p, select, span, textarea {
+	font-family: inherit;
+	font-size: inherit;
+	line-height: inherit;
+}
+
+.IconButton_IconButton__interaction__7RjPt:hover {
+	opacity: .05;
+}
+
+button {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	background: none;
+	cursor: pointer;
+	font-family: inherit;
+}
+
+ol, ul {
+	list-style: none;
+}
+
+a, abbr, acronym, address, applet, article, aside, audio, b, big,
+	blockquote, body, canvas, caption, center, cite, code, dd, del, details,
+	dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form,
+	h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd,
+	label, legend, li, mark, menu, nav, object, ol, output, p, pre, q, ruby,
+	s, samp, section, small, span, strike, strong, sub, summary, sup, table,
+	tbody, td, tfoot, th, thead, time, tr, tt, u, ul, var, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+* {
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	color: inherit;
+}
+
+/*  --------------------------------------MainLayout------------------------------------------ */
+.MainLayout_MainLayout__2EBgM {
+	background-color: #fff;
+	min-height: calc(100vh - 60px);
+}
+
+.MainLayout_MainLayout__root__p6itg {
+	width: 1060px;
+	padding: 0;
+	border-left: 1px solid #f7f7f7;
+	display: flex;
+	margin: 0 auto;
+	position: relative;
+}
+
+.MainLayout_MainLayout__sidebar__G8teL {
+	display: flex;
+	padding: 59px 0 0 55px;
+	border-right: 1px solid #f7f7f7;
+}
+
+.MainLayout_MainLayout__pcLnb___mU9a {
+	display: flex;
+}
+
+.MainLayout_MainLayout__space__8eQvZ {
+	display: block;
+}
+
+.MainLayout_MainLayout__root__p6itg {
+	width: 1060px;
+	padding: 0;
+	border-left: 1px solid #f7f7f7;
+}
+
+/*  ---------------------------------------Grid Layout-------------------------------------------- */
+.Grid_Grid__spacing__5__ZwgDV {
+	margin-top: calc(4px * -5);
+	margin-left: calc(4px * -5);
+}
+
+.Grid_Grid__container__J9CcC {
+	box-sizing: border-box;
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+}
+
+.Grid_Grid__grid__md__4__YPyIl {
+	flex-basis: 33.3333333333%;
+	max-width: 33.3333333333%;
+}
+
+.Grid_Grid__grid__xs__12__rVqKh {
+	/* 	flex-basis: 100%; */
+	max-width: 100%;
+}
+
+.Grid_Grid__align-items_flex-start__PA0JE {
+	align-items: flex-start;
+}
+
+.Grid_Grid__item__FUkSS {
+	box-sizing: border-box;
+	margin: 0;
+}
+
+.Grid_Grid__direction_column__jR3AZ {
+	flex-direction: column;
+}
+
+.Grid_Grid__grid__md__1__aOHPk {
+	flex-basis: 8.3333333333%;
+	max-width: 8.3333333333%;
+}
+
+.Grid_Grid__spacing__5__ZwgDV>* {
+	padding-top: calc(4px * 5);
+	padding-left: calc(4px * 5);
+}
+
+.Grid_Grid__grid__md__6__9g_JE {
+	flex-basis: 50%;
+	max-width: 50%;
+}
+
+.Grid_Grid__wrap_nowrap__4r_cp {
+	flex-wrap: nowrap;
+}
+
+.Grid_Grid__align-self_stretch__awciG {
+	align-self: stretch;
+}
+
+.Grid_Grid__align-items_center__VEikH {
+	align-items: center;
+}
+
+.Grid_Grid__justify_space-between__SsVJS {
+	justify-content: space-between;
+}
+
+.Grid_Grid__align-items_center__2CxBh {
+	align-items: center;
+}
+
+.Grid_Grid__justify_space-between__xzhoO {
+	justify-content: space-between;
+}
+
+.Grid_Grid__container__43uvK {
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+}
+
+.Grid_Grid__direction_column__z_Dv0 {
+	flex-direction: column;
+}
+
+/*  ---------------------------------------LnbDesktop Layout-------------------------------------------- */
+.LnbDesktop_LnbDesktop__root__yg5QP {
+	position: sticky;
+	top: 100px;
+}
+
+.LnbDesktop_LnbDesktop__menus____3yL {
+	display: initial;
+	width: inherit;
+}
+
+.LnbDesktop_LnbDesktop__menus____3yL>li {
+	margin-bottom: 36px;
+}
+
+.LnbDesktop_LnbDesktop__item__sZEI4 {
+	padding: 0;
+	margin-right: 44px;
+}
+
+.LnbDesktop_LnbDesktop__activeLink__A05_V {
+	color: #000 !important;
+	border-bottom: none;
+}
+
+.LnbDesktop_LnbDesktop__text__2eGDD {
+	justify-content: flex-start;
+}
+
+/*  ---------------------------------------Button Layout-------------------------------------------- */
+.Button_Button__fullWidth__RU4tf {
+	width: 100%;
+}
+
+.Button_Button__textSizeMedium__KekFB {
+	font-size: 16px;
+	font-weight: 600;
+}
+
+.Button_Button__textAssistive__Dx57x {
+	--button-color: rgba(55, 56, 60, .61);
+}
+
+.Button_Button__text__GCOTx {
+	padding: 4px 8px;
+	border-radius: 6px;
+}
+
+.Button_Button__root__V1ie3 {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	vertical-align: middle;
+	box-sizing: border-box;
+	line-height: normal;
+	border: none;
+	cursor: pointer;
+	white-space: nowrap;
+}
+
+.Button_Button__label__1Kk0v {
+	width: 100%;
+	font-size: inherit;
+	font-weight: inherit;
+	display: inherit;
+	align-items: inherit;
+	justify-content: inherit;
+	color: inherit;
+}
+
+.Button_Button__interaction__kkYaa {
+	overflow: hidden;
+	position: absolute;
+	z-index: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	border-radius: inherit;
+	opacity: 0;
+	background-color: var(--button-color);
+	transition: opacity .2s ease;
+	will-change: opacity;
+}
+
+.Button_Button__containedSizeMedium__c2z9c,
+	.Button_Button__outlinedSizeMedium__k3ora {
+	padding: 0 20px;
+	min-width: 64px;
+	height: 40px;
+	font-size: 15px;
+	font-weight: 600;
+	border-radius: 10px;
+}
+
+.Button_Button__outlinedAssistive__mBcQK {
+	--button-color: #171719;
+	color: var(--button-color);
+	box-shadow: inset 0 0 0 1px hsla(225, 5%, 46%, .16);
+}
+
+.Button_Button__outlined__H2mkd {
+	background-color: #fff;
+}
+
+.Button_Button__textSizeLarge__H3V3d {
+	font-size: 18px;
+	font-weight: 600;
+}
+
+.IconButton_IconButton__interaction__I48Mv {
+	overflow: hidden;
+	position: absolute;
+	z-index: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	opacity: 0;
+	background-color: #171719;
+	transition: opacity .2s ease;
+	will-change: opacity;
+}
+
+/*  ---------------------------------------Typography Layout-------------------------------------------- */
+.Typography_Typography__weightBold__e15ql {
+	font-weight: 600;
+}
+
+.Typography_Typography__label1__TCYoE {
+	font-size: 14px;
+	letter-spacing: .0145em;
+	line-height: 20px;
+}
+
+.Typography_Typography__headline1__R9fZk {
+	font-size: 18px;
+	letter-spacing: -.002em;
+	line-height: 26px;
+}
+
+.Typography_Typography__heading1__bVyRs {
+	font-size: 22px;
+	letter-spacing: -.0194em;
+	line-height: 30px;
+}
+
+.Typography_Typography__body2-reading__1wjEy {
+	font-size: 15px;
+	letter-spacing: .0096em;
+	line-height: 24px;
+}
+
+.Typography_Typography__body2__EpxWz {
+	font-size: 15px;
+	letter-spacing: .0096em;
+	line-height: 22px;
+}
+
+.Typography_Typography__label2__BRssq {
+	font-size: 13px;
+	letter-spacing: .0194em;
+	line-height: 18px;
+}
+
+.Typography_Typography__root__xYuMs {
+	margin: 0;
+}
+
+.Typography_Typography__alignLeft__fYbY6 {
+	text-align: left;
+}
+
+.Typography_Typography__noWrap__ovbzF {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.Typography_Typography__weightMedium__O0Rdi {
+	font-weight: 500;
+}
+
+.Typography_Typography__weightMedium__GXnOM {
+	font-weight: 500;
+}
+
+.Typography_Typography__label2__svmAA {
+	font-size: 13px;
+	letter-spacing: .0194em;
+	line-height: 18px;
+}
+
+.Typography_Typography__root__RdAI1 {
+	margin: 0;
+}
+
+.Typography_Typography__weightBold__KkJEY {
+	font-weight: 600;
+}
+
+.Typography_Typography__body2__5Mmhi {
+	font-size: 15px;
+	letter-spacing: .0096em;
+	line-height: 22px;
+}
+
+/*  ---------------------------------------ProfileView Layout-------------------------------------------- */
+.ProfileView_ProfileView__root__eOS_q {
+	margin-bottom: 32px;
+}
+
+.ProfileViewHeader_ProfileViewHeader__root__PjH6q {
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.ProfileViewHeader_ProfileViewHeader__root__PjH6q {
+	margin-top: 36px;
+}
+
+.ProfileViewHeaderAvatar_ProfileViewHeaderAvatar__root__OR4Te {
+	flex-direction: row;
+	gap: 16px;
+}
+
+.ProfileViewHeaderAvatar_ProfileViewHeaderAvatar__info__dUe_s {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 4px;
+}
+
+.ProfileViewHeaderAvatar_ProfileViewHeaderAvatar__info__title__KuxZF {
+	width: 170px;
+}
+
+.ProfileViewHeaderAvatar_ProfileViewHeaderAvatar__info__subText__QIJLo {
+	color: rgba(55, 56, 60, .61);
+}
+
+.ProfileViewHeaderActions_ProfileViewHeaderActions__root__MMI7E {
+	margin-top: 20px;
+	gap: 12px;
+}
+
+.ProfileViewHeaderActions_ProfileViewHeaderActions__btnSetting__5erq0 {
+	flex-grow: 1;
+}
+
+.ProfileViewFollowerFollwingInfo_ProfileViewFollowerFollwingInfo__root__TSJnS
+	{
+	margin-top: 20px;
+}
+
+.ProfileViewFollowerFollwingInfo_ProfileViewFollowerFollwingInfo__buttonStyle__kcgeU
+	{
+	padding: 0;
+}
+
+.ProfileViewFollowerFollwingInfo_ProfileViewFollowerFollwingInfo__label__6UCt6
+	{
+	color: rgba(55, 56, 60, .61);
+}
+
+.ProfileViewFollowerFollwingInfo_ProfileViewFollowerFollwingInfo__label__6UCt6>strong
+	{
+	display: inline-flex;
+	align-items: center;
+	color: #000;
+	font-weight: 600;
+}
+
+.ProfileViewFollowerFollwingInfo_ProfileViewFollowerFollwingInfo__buttonStyle__kcgeU
+	{
+	padding: 0;
+}
+
+.ProfileViewFollowerFollwingInfo_ProfileViewFollowerFollwingInfo__dotDivider__JxHAJ
+	{
+	font-size: 4px;
+	margin: 0 8px;
+	color: rgba(55, 56, 60, .61);
+}
+
+.ProfileView_ProfileView__responsive__mobile__WO3T6 {
+	display: none;
+}
+
+.ProfileView_ProfileView__borderSection__VkDe7 {
+	margin-top: 20px;
+}
+
+.ProfileViewCareerEducationAdd_ProfileViewCareerEducationAdd__root__YhmF0
+	{
+	margin-top: 20px;
+}
+
+.ProfileViewCareerEducationAdd_ProfileViewCareerEducationAdd__root__YtecC
+	{
+	margin-top: 20px;
+	gap: 16px;
+}
+
+.ProfileViewCareerEducationAdd_ProfileViewCareerEducationAdd__root__YhmF0
+	{
+	gap: 16px;
+}
+
+.ProfileViewCareerEducationAdd_ProfileViewCareerEducationAdd__text__Cad9U
+	{
+	color: rgba(46, 47, 51, .88);
+}
+
+.ProfileViewCareerEducationAdd_ProfileViewCareerEducationAdd__text__DK3Qa
+	{
+	color: rgba(46, 47, 51, .88);
+}
+
+.ProfileViewCareerEducationAdd_ProfileViewCareerEducationAdd__img__DIKcq
+	{
+	margin-right: 16px;
+}
+
+.ProfileViewCareerEducationAdd_ProfileViewCareerEducationAdd__text__DK3Qa>strong
+	{
+	color: #005eeb;
+	font-weight: 600;
+}
+
+/*  ---------------------------------------SvgIcon Layout-------------------------------------------- */
+.SvgIcon_SvgIcon__root__8vwon {
+	display: flex;
+	align-items: inherit;
+	justify-content: inherit;
+}
+
+.SvgIcon_SvgIcon__root__svg__DKYBi {
+	user-select: none;
+	width: 1em;
+	height: 1em;
+	display: inline-block;
+	fill: currentColor;
+	flex-shrink: 0;
+	font-size: inherit;
+}
+
+.SvgIcon_SvgIcon__root__OHiSO {
+	display: flex;
+	align-items: inherit;
+	justify-content: inherit;
+}
+
+.SvgIcon_SvgIcon__root__8vwon {
+	display: flex;
+	align-items: inherit;
+	justify-content: inherit;
+}
+
+.SvgIcon_SvgIcon__root__svg__ohdSc {
+	user-select: none;
+	width: 1em;
+	height: 1em;
+	display: inline-block;
+	fill: currentColor;
+	flex-shrink: 0;
+	font-size: inherit;
+}
+
+.IconButton_IconButton__normal__O3ySx {
+	border: none;
+}
+
+.IconButton_IconButton__interaction__7RjPt {
+	overflow: hidden;
+	position: absolute;
+	z-index: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	opacity: 0;
+	left: 0;
+	background-color: #171719;
+	transition: opacity .2s ease;
+	will-change: opacity;
+}
+
+.IconButton_IconButton__root__dO2x7 {
+	position: relative;
+	display: inline-flex;
+	padding: 8px;
+	border-radius: 50%;
+	cursor: pointer;
+	overflow: hidden;
+}
+
+.IconButton_IconButton__label__ZcWfp {
+	width: 100%;
+	font-size: inherit;
+	font-weight: inherit;
+	display: inherit;
+	align-items: inherit;
+	justify-content: inherit;
+	color: inherit;
+}
+
+.IconButton_IconButton__normal__Twwsf {
+	border: none;
+}
+
+.IconButton_IconButton__root__IJlt6 {
+	position: relative;
+	display: inline-flex;
+	padding: 8px;
+	border-radius: 50%;
+	font-size: 24px;
+	cursor: pointer;
+	overflow: hidden;
+}
+
+.IconButton_IconButton__label__o4AtY {
+	width: 100%;
+	font-size: inherit;
+	font-weight: inherit;
+	display: inherit;
+	align-items: inherit;
+	justify-content: inherit;
+	color: inherit;
+}
+/*  ---------------------------------------Divider Layout-------------------------------------------- */
+.Divider_Divider__colorAlternative__nElS3 {
+	background-color: hsla(225, 5%, 46%, .08);
+}
+
+.Divider_Divider__root__f2LD0 {
+	height: 1px;
+	margin: 0;
+	border: none;
+}
+
+/*  ---------------------------------------Box Layout-------------------------------------------- */
+.Box_Box__root__haR8X {
+	display: flex;
+	align-items: center;
+	padding: 12px 20px;
+	border-radius: 12px;
+	background-color: hsla(225, 5%, 46%, .05);
+}
+
+.Box_Box__root__WZu52 {
+	display: flex;
+	align-items: center;
+	padding: 12px 20px;
+	border-radius: 12px;
+	background-color: hsla(225, 5%, 46%, .04);
+}
