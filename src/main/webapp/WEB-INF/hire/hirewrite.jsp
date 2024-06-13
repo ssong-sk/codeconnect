@@ -587,8 +587,8 @@ input:disabled {
          <div class="center">
             <div class="d-inline-flex top">
                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img alt="뒤로가기" class="backimg"
-                  src="../image_icon/chevron.png">&nbsp;&nbsp;&nbsp;&nbsp;
-               <h2 style="font-weight: bold;">채용 공고 등록</h2>
+                  src="../hire_img/chevron.png">&nbsp;&nbsp;&nbsp;&nbsp;
+               <h2 style="font-weight: bold; font-size: 30px;">채용 공고 등록</h2>
             </div>
             <div class="bottom">
                <!-- 컨텐츠 시작 -->
