@@ -1,12 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.code.mapper.IruckseoInsertMapperInter">
-   <insert id="insertSchool" parameterType="IruckseoSchoolDto">
-     insert into school (sc_category, sc_hi_name, sc_hi_transfer, sc_hi_check, sc_hi_iphack, sc_hi_jolup, sc_hi_major, sc_uni_category,
-     sc_uni_name, sc_uni_transfer, sc_uni_major, sc_uni_check, sc_uni_iphack, sc_uni_jolup, sc_uni_grade, sc_uni_sum) 
-     values (#{sc_category }, #{sc_hi_name },#{sc_hi_transfer },#{sc_hi_check },#{sc_hi_iphack },#{sc_hi_jolup },#{sc_hi_major },
-     #{sc_uni_category },#{sc_uni_name }, #{sc_uni_transfer },#{sc_uni_major },#{sc_uni_check },#{sc_uni_iphack },
-     #{sc_uni_jolup },#{sc_uni_grade },#{sc_uni_sum })
+
+   <!--이력서  pe_num 미리 넣기 및 insert -->
+   <insert id="insertPersonal" parameterType="IruckseoInsertDto" useGeneratedKeys="true" keyProperty="pe_num">
+	    <selectKey keyProperty="pe_num" resultType="int" order="BEFORE">
+	        select MAX(IFNULL(PE_NUM,0)) + 1 from personal
+	    </selectKey>
+	    insert into personal
+	    (pe_num, pe_writeday)
+	    values (#{pe_num}, now())
+    </insert>
+
+   <!-- school 학력 insert -->
+	<insert id="insertSchool" parameterType="IruckseoSchoolDto"  useGeneratedKeys="true" keyProperty="sc_num">
+		<selectKey keyProperty="sc_num" resultType="int" order="BEFORE">
+	        select MAX(IFNULL(sc_num,0)) + 1 from school
+	    </selectKey>	
+     insert into school 
+     (
+     	pe_num,sc_num, sc_category, sc_hi_name, sc_hi_transfer, sc_hi_check, sc_hi_iphack, sc_hi_jolup, sc_hi_major, sc_uni_category,
+     	sc_uni_name, sc_uni_transfer, sc_uni_major, sc_uni_check, sc_uni_iphack, sc_uni_jolup, sc_uni_grade, sc_uni_sum
+     ) 
+     values 
+     (
+     	#{pe_num},#{sc_num}, #{sc_category }, #{sc_hi_name },#{sc_hi_transfer },#{sc_hi_check },#{sc_hi_iphack },#{sc_hi_jolup },#{sc_hi_major },
+     	#{sc_uni_category },#{sc_uni_name }, #{sc_uni_transfer },#{sc_uni_major },#{sc_uni_check },#{sc_uni_iphack },
+     	#{sc_uni_jolup },#{sc_uni_grade },#{sc_uni_sum }
+	 )
    </insert>
+   
+   <!-- school 학력 전체 list 출력 -->
+   <select id="allSchoolDatas" parameterType="IruckseoSchoolDto"    resultType="IruckseoSchoolDto">
+     select * from school where pe_num = #{pe_num} and sc_num = #{sc_num} order by sc_num asc
+   </select>
+   
+   <!-- school 학력 업데이트 -->
+   
+   <!-- 학력 삭제 -->
+   <delete id="deleteSchool" parameterType="int">
+     delete from school where sc_num = #{sc_num}
+   </delete>
    
 </mapper>
