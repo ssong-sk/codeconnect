@@ -18,7 +18,7 @@
 기업 마이페이지 입니다.
 <button onclick="location.href='/company/'" >기업 임시 통합페이지로 가기</button>
 
-<button class="btn btn-info" >공고 등록하기</button>
+<button class="btn btn-info" onclick="location.href='/hire/hirewrite'">공고 등록하기</button>
 <button class="btn btn-info" >인재풀 탐색하기</button>
 <button class="btn btn-info" >전체 지원자 관리</button>
 <button class="btn btn-info" >채용공고 관리</button>
