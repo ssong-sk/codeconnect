@@ -702,7 +702,7 @@ input, input:focus {
 					<li class="Menu_MenuItem__wI1yA" data-attribute-id="gnb"
 						data-gnb-kind="community"><a href="/community"><span>소셜</span></a></li>
 					<li class="Menu_MenuItem__wI1yA" data-attribute-id="gnb"
-						data-gnb-kind="resume"><a href="/cv/list"><span>이력서</span></a></li>
+						data-gnb-kind="resume"><a href="/resumehome/home"><span>이력서</span></a></li>
 					<li class="Menu_MenuItem__wI1yA" data-attribute-id="gnb"
 						data-gnb-kind="freelancer"><a
 						href="https://www.wanted.co.kr/gigs/experts" target="_blank"
