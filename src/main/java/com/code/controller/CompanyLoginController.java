@@ -43,9 +43,9 @@ public class CompanyLoginController {
 			return "/companylogin/companyloginform";
 		else {
 			
-			String c_name=cservice.getCompanyName(c_myid);
-			model.addAttribute("c_name", c_name);
-			return "/companylogin/companylogout";
+			//String c_name=cservice.getCompanyName(c_myid);
+			//model.addAttribute("c_name", c_name);
+			return "/company/companymypage";
 		}
 		
 	}

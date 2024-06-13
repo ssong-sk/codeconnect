@@ -65,7 +65,7 @@
 </head>
 <body>
     <div class="container">
-        <div style="font-size: 20px;">기업 소개</div>
+        <div style="font-size: 20px;">기업 소개글 작성</div>
         <form action="insertintro" method="post" enctype="multipart/form-data">
          <input type="hidden" name="c_num" id="c_num" value="${cdto.c_num}">
         

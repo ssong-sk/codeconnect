@@ -14,5 +14,7 @@ public interface CompanyIntroServiceInter {
 	public CompanyIntroDto getDataByNum(String c_num);
 
 	public void updateCompanyIntro(CompanyIntroDto dto);
+	
+	public int countCompanyIntro(String c_num);
 
 }

@@ -41,4 +41,11 @@ public class CompanyIntroService implements CompanyIntroServiceInter {
 		cmapperInter.updateCompanyIntro(dto);
 	}
 	
+	@Override
+	public int countCompanyIntro(String c_num) {
+		// TODO Auto-generated method stub
+		return cmapperInter.countCompanyIntro(c_num);
+	
+	}
+	
 }

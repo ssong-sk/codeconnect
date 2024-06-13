@@ -36,31 +36,7 @@ public class CompanyIntroController {
 
     // 기업 소개 메인페이지로 가기
     @GetMapping("/company/intromain")
-    public String intromain() {
-        return "/companyintro/companyintromain";
-    }
-
-    // 기업소개페이지로가기1
-    @GetMapping("/company/introform")
     public String introform(Model model, HttpSession session) {
-        // 로그인한 기업 아이디 받기
-        String c_myid = (String) session.getAttribute("c_myid");
-
-        // 받은 아이디를 통해서 기업 회원 정보 얻기
-        CompanyDto cdto = cservice.getDataById(c_myid);
-
-        // 얻은 기업 회원정보에서 다시 c_num 얻기
-        String c_num = cdto.getC_num();
-
-        // CompanyIntroDto 객체를 모델에 추가
-        model.addAttribute("cdto", cdto);
-
-        return "/companyintro/companyintroform";
-    }
-
-    // 기업소개페로 가기2
-    @GetMapping("/company/introshow")
-    public String introshow(Model model, HttpSession session) {
         // 로그인한 기업 아이디 받기
         String c_myid = (String) session.getAttribute("c_myid");
 
@@ -74,8 +50,19 @@ public class CompanyIntroController {
         CompanyIntroDto dto = ciservice.getDataByNum(c_num);
 
         model.addAttribute("dto", dto);
-        return "/companyintro/";
+        model.addAttribute("cdto", cdto);
+        
+        //기업소개글이 이미 있는지? 현존하는 기업 소개글의 갯수 세기
+        int count =   ciservice.countCompanyIntro(c_num);
+        
+        if(count==0) {//아직 기업 소개글이 없는 경우 => 기업 소개글 insert폼으로 이동
+        	return "/companyintro/companyintroform";
+        }else {//이미 저장된 기업 소개글이 있는 경우 => 기업 소개글 update폼으로 이동
+        	return "/companyintro/companyintroupdate";
+        }
+        
     }
+
 
     // insertintro(기업 소개글 인서트하기)
     @PostMapping("/company/insertintro")
@@ -111,25 +98,7 @@ public class CompanyIntroController {
         return "redirect:/company/intromain";
     }
     
-    // 기업 소개 수정페이지로 가기
-    @GetMapping("/company/editintroform")
-    public String editintroform(Model model, HttpSession session) {
-        // 로그인한 기업 아이디 받기
-        String c_myid = (String) session.getAttribute("c_myid");
-
-        // 받은 아이디를 통해서 기업 회원 정보 얻기
-        CompanyDto cdto = cservice.getDataById(c_myid);
-
-        // 얻은 기업 회원정보에서 다시 c_num 얻기
-        String c_num = cdto.getC_num();
-
-        // 얻은 c_num에서 다시 컴퍼니 소개 글 정보 얻기
-        CompanyIntroDto dto = ciservice.getDataByNum(c_num);
-
-        model.addAttribute("dto", dto);
-        model.addAttribute("cdto", cdto);
-        return "/companyintro/companyintroupdate";
-    }
+ 
 
     // updateintro(기업 소개글 업데이트하기)
     @PostMapping("/company/updateintro")
@@ -192,5 +161,23 @@ public class CompanyIntroController {
 
         ciservice.updateCompanyIntro(dto);
         return "redirect:/company/intromain";
+    }
+    
+    //companyintro 소개글 완성본 보기(임시)
+    @GetMapping("company/showimsi")
+    public String show() {
+    	return "companyintro/companyintroshow";
+    }
+    
+    //companyintro 소개글 완성본 보기
+    @GetMapping("company/introshow")
+    public String introshow(@RequestParam String c_num,Model model, HttpSession session) {
+    	
+        // 로그인한 기업 아이디 받기
+        String c_myid = (String) session.getAttribute("c_myid");
+
+
+    	
+    	return "companyintro/companyintroshow";
     }
 }

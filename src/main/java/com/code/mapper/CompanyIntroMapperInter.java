@@ -16,8 +16,10 @@ public interface CompanyIntroMapperInter {
 	public void insertCompanyIntro(CompanyIntroDto dto);
 	public List<CompanyIntroDto> getAllCompanyIntros();
 
-	public CompanyIntroDto getDataByNum(String ci_num);
+	public CompanyIntroDto getDataByNum(String c_num);
 
 	public void updateCompanyIntro(CompanyIntroDto dto);
+	
+	public int countCompanyIntro(String c_num);
 
 }
