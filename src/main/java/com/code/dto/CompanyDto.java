@@ -27,5 +27,5 @@ public class CompanyDto {
 	private String c_regi_file;
 	private int c_salary;
 	private Timestamp c_gaipday;
-	
+	private Timestamp c_updateday;
 }

@@ -76,7 +76,7 @@
 							</c:if></li>
 						<li><a
 							class="Button_Button__root__V1ie3 Button_Button__outlined__H2mkd Button_Button__outlinedAssistive__mBcQK Button_Button__outlinedSizeSmall__JJmOo Aside_dashboardButton__WUch3"
-							type="button" href="/dashboard" data-attribute-id="gnb"
+							type="button" href="${root}/company/main" data-attribute-id="gnb"
 							data-gnb-kind="forEmployers"><span
 								class="Button_Button__label__1Kk0v"><span
 									class="Typography_Typography__root__xYuMs Typography_Typography__label2__BRssq Typography_Typography__weightMedium__O0Rdi">기업
