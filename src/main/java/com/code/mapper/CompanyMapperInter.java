@@ -22,4 +22,7 @@ public interface CompanyMapperInter {
 	public CompanyDto getDataByNum(String c_num);
 
 	public void updateCompany(CompanyDto dto);
+	
+	//채용공고에서 사용
+	public int selectC_num(String c_id);
 }

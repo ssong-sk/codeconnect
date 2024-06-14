@@ -53,5 +53,12 @@ public class CompanyIntroService implements CompanyIntroServiceInter {
 		// TODO Auto-generated method stub
 		return cmapperInter.showOneCompanyIntro(c_num);
 	}
+
+	
+	//채용공고에서 사용
+	@Override
+	public int selectCi_num(int c_num) {
+		return cmapperInter.selectCi_num(c_num);
+	}
 	
 }

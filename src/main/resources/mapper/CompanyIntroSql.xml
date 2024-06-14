@@ -34,34 +34,40 @@
     
     
     <select id="showOneCompanyIntro">
-    select 
-        ci.*, 
-        c.c_id, 
-        c.c_pass, 
-        c.c_name, 
-        c.c_reginum, 
-        c.c_local, 
-        c.c_category, 
-        c.c_peoplesu, 
-        c.c_insa_email, 
-        c.c_insa_phone, 
-        c.c_addr, 
-        c.c_money, 
-        c.c_birthyear, 
-        c.c_regi_file, 
-        c.c_salary, 
-        c.c_gaipday, 
-        c.c_phone, 
-        c.c_updateday
-    from 
-        company_intro ci
-    join 
-        company c
-    on 
-        ci.c_num = c.c_num
-    where 
-        ci.c_num = #{c_num}
-</select>
+	    select 
+	        ci.*, 
+	        c.c_id, 
+	        c.c_pass, 
+	        c.c_name, 
+	        c.c_reginum, 
+	        c.c_local, 
+	        c.c_category, 
+	        c.c_peoplesu, 
+	        c.c_insa_email, 
+	        c.c_insa_phone, 
+	        c.c_addr, 
+	        c.c_money, 
+	        c.c_birthyear, 
+	        c.c_regi_file, 
+	        c.c_salary, 
+	        c.c_gaipday, 
+	        c.c_phone, 
+	        c.c_updateday
+	    from 
+	        company_intro ci
+	    join 
+	        company c
+	    on 
+	        ci.c_num = c.c_num
+	    where 
+	        ci.c_num = #{c_num}
+	</select>
 
-    
+
+
+    <!-- 채용공고에서 사용 -->
+    <select id="selectCi_num" parameterType="int" resultType="int">
+    	select ci_num from company_intro where c_num = #{c_num}
+    </select>
 </mapper>
+

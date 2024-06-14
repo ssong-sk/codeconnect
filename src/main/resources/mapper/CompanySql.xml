@@ -46,4 +46,10 @@
         c_updateday=now()
         where c_num=#{c_num}
     </update>
+    
+    
+    <!-- 채용공고에서 사용 -->
+    <select id="selectC_num" parameterType="String" resultType="int">
+    	select c_num from company where c_id = #{c_id}
+    </select>
 </mapper>

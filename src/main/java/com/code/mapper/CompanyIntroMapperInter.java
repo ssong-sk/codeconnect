@@ -24,4 +24,10 @@ public interface CompanyIntroMapperInter {
 	
 	public CompanyIntroDto showOneCompanyIntro(String c_num);
 
+	
+	
+	
+	//채용공고에서 사용
+	public int selectCi_num(int c_num);
+
 }
