@@ -30,6 +30,7 @@
 		padding: 0;
 		justify-content: flex-start;
 		margin-top: 40px;
+		margin-left: 100px;
 	}
 	
 	.nav ul a {
@@ -219,7 +220,7 @@
 		<ul class="list_story">
 			<c:forEach var="dto" items="${list}">
 				<li class="item">
-					<a class="title_link" href="#">${dto.com_title}</a>
+					<a class="title_link" href="${root}/community/homedetail?com_num=${dto.com_num}">${dto.com_title}</a>
 					<div class="details" style="color: gray; font-size: 23px;">
 						<span class="comment"><i class="bi bi-chat-left"></i>&nbsp;${dto.com_commentcount}</span>
 						<span class="views"><i class="bi bi-eye"></i>&nbsp;${dto.com_readcount}</span>&nbsp;
@@ -336,8 +337,16 @@
 		        </ul>
 		    </div>
 		</div>
+			<div>
+				<c:if test="${sessionScope.loginok!=null }">
+					<button type="button" class="btn btn-outline-success" style="margin-left: 1100px;"
+					onclick="location.href='${pageContext.request.contextPath}/community/homeform'">글쓰기</button>
+				</c:if>
+			</div>
+			
         </div>
 	</div>
+		
 </div>
 
 </body>

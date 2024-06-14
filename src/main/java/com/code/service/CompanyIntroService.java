@@ -55,7 +55,6 @@ public class CompanyIntroService implements CompanyIntroServiceInter {
 	}
 
 	
-	
 	//채용공고에서 사용
 	@Override
 	public int selectCi_num(int c_num) {

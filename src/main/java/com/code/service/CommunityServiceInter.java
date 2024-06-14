@@ -7,7 +7,7 @@ public interface CommunityServiceInter {
     int getTotalCount();
     void insertCommunity(CommunityDto dto);
     List<CommunityDto> getAllDatas();
-    CommunityDto getData(String com_num);
+    CommunityDto getData(int com_num); //int로 변경
     void updateCommunity(CommunityDto dto);
     void deleteCommunity(String com_num);
     

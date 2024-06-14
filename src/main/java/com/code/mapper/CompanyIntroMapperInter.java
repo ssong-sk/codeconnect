@@ -23,6 +23,7 @@ public interface CompanyIntroMapperInter {
 	public int countCompanyIntro(String c_num);
 	
 	public CompanyIntroDto showOneCompanyIntro(String c_num);
+
 	
 	
 	

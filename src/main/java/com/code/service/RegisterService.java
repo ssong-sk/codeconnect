@@ -62,8 +62,4 @@ public class RegisterService implements RegisterServiceInter {
 		return mapperInter.getDataByNum(r_num);
 	}
 
-	
-	
-	
-
 }
