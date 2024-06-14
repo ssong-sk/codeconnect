@@ -58,9 +58,7 @@
                 if(extraRoadAddr !== ''){
                     extraRoadAddr = ' (' + extraRoadAddr + ')';
                 }
-                document.getElementById('c_postnum').value = data.zonecode;
                 document.getElementById('c_addr').value = roadAddr + extraRoadAddr;
-                document.getElementById('c_addrdetail').focus();
             }
         }).open();
     }
@@ -70,7 +68,7 @@
     <div class="container">
         <h1 class="mb-4">기업 정보 수정</h1>
         
-        <form action="update" method="post">
+          <form action="update" method="post">
             <input type="hidden" name="c_num" id="c_num" value="${dto.c_num}">
             <div class="mb-3">
                 <label for="c_name" class="form-label">기업명</label>
@@ -81,19 +79,11 @@
                 <input type="text" class="form-control" id="c_phone" name="c_phone" value="${dto.c_phone}">
             </div>
             <div class="mb-3">
-                <label for="c_postnum" class="form-label">우편번호</label>
+                <label for="companyAddress" class="c_addr">대표 주소</label>
                 <div class="input-group">
-                    <input type="text" class="form-control" id="c_postnum" name="c_postnum" value="${dto.c_postnum}" readonly>
-                    <button type="button" class="btn btn-link" onclick="openPostcodePopup()">변경</button>
+                    <input type="text" class="form-control" id="c_addr" name="c_addr" value="${dto.c_addr}">
+                    <button type="button" class="btn btn-link" onclick="openPostcodePopup()">주소찾기</button>
                 </div>
-            </div>
-            <div class="mb-3">
-                <label for="c_addr" class="form-label">대표 주소</label>
-                <input type="text" class="form-control" id="c_addr" name="c_addr" value="${dto.c_addr}" readonly>
-            </div>
-            <div class="mb-3">
-                <label for="c_addrdetail" class="form-label">상세 주소</label>
-                <input type="text" class="form-control" id="c_addrdetail" name="c_addrdetail" value="${dto.c_addrdetail}">
             </div>
             <div class="mb-3">
                 <label for="c_local" class="form-label">대표 지역</label>
@@ -129,7 +119,7 @@
                     <span class="input-group-text">억</span>
                 </div>
             </div>
-            <div class="mb-3">
+           <div class="mb-3">
                 <label for="c_salary" class="form-label">평균임금</label>
                 <div class="input-group">
                     <input type="text" class="form-control" id="c_salary" name="c_salary" value="${dto.c_salary}">
@@ -166,6 +156,7 @@
                 <label for="c_birthyear" class="form-label">설립년도</label>
                 <input type="text" class="form-control" id="c_birthyear" name="c_birthyear" value="${dto.c_birthyear}">
             </div>
+
             <div class="mb-3">
                 <label for="c_insa_phone" class="form-label">인사담당자 전화번호</label>
                 <input type="text" class="form-control" id="c_insa_phone" name="c_insa_phone" value="${dto.c_insa_phone}">

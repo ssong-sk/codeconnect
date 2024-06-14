@@ -36,10 +36,5 @@
     <input type="hidden" name="c_num" value="${dto.c_num}">
     <button type="submit" class="btn btn-info">내 기업 소개 페이지로 이동</button>
 </form>
-
-<!-- 추가: c_num 값 확인 -->
-<c:out value="${dto.c_num}" />
-
-
 </body>
 </html>

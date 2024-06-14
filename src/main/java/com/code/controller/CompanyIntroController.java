@@ -184,7 +184,7 @@ public class CompanyIntroController {
 		
 		model.addAttribute("cdto", cdto);
 
-		return "companyintro/companyintroshow"; // 파라미터를 모델로 전달하고 JSP로 이동
+		return "/companyintro/companyintroshow"; // 파라미터를 모델로 전달하고 JSP로 이동
 
 	}
 
@@ -196,6 +196,6 @@ public class CompanyIntroController {
 
 
 
-		return "companyintro/companyintroshow";
+		return "/companyintro/companyintroshow";
 	}
 }

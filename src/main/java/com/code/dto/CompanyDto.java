@@ -28,4 +28,7 @@ public class CompanyDto {
 	private int c_salary;
 	private Timestamp c_gaipday;
 	private Timestamp c_updateday;
+	
+	private String c_addrdetail;
+	private String c_postnum;
 }

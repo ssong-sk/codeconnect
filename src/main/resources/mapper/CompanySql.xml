@@ -37,6 +37,8 @@
         c_insa_email=#{c_insa_email},
         c_insa_phone=#{c_insa_phone},
         c_addr=#{c_addr},
+        c_postnum=#{c_postnum},
+        c_addrdetail=#{c_addrdetail},
         c_money=#{c_money},
         c_birthyear=#{c_birthyear},
         c_salary=#{c_salary},
