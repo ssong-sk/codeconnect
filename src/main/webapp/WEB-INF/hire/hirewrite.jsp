@@ -27,7 +27,7 @@
 }
 
 #wrap {
-   margin-top: 100px;
+/*    margin-top: 100px; */
    font-family: IBM Plex Sans KR;
 }
 
