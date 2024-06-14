@@ -119,7 +119,7 @@ h1 {
 					type="text" class="form-control" id="ci_link" name="ci_link">
 			</div>
 			<button type="submit" class="btn btn-delete">저장</button>
-			<button type="button" class="btn btn-back" onclick="history.back()">뒤로가기</button>
+			<button type="button" class="btn btn-back" onclick="location.href='main'">뒤로가기</button>
 
 		</form>
 	</div>

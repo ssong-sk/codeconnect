@@ -37,11 +37,15 @@ public class CompanyLoginController {
 		String c_myid=(String)session.getAttribute("c_myid");
 		//로그인중인지 아닌지
 		String c_loginok=(String)session.getAttribute("c_loginok");
+
 		
 		//한번도 실행안하면 null
 		if(c_loginok==null)
 			return "/companylogin/companyloginform";
 		else {
+			
+			CompanyDto dto = cservice.getDataById(c_myid);
+			String c_num=dto.getC_num();
 			
 			//String c_name=cservice.getCompanyName(c_myid);
 			//model.addAttribute("c_name", c_name);

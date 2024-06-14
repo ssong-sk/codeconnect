@@ -48,4 +48,10 @@ public class CompanyIntroService implements CompanyIntroServiceInter {
 	
 	}
 	
+	@Override
+	public CompanyIntroDto showOneCompanyIntro(String c_num) {
+		// TODO Auto-generated method stub
+		return cmapperInter.showOneCompanyIntro(c_num);
+	}
+	
 }

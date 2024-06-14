@@ -14,18 +14,27 @@
     body {
         font-family: 'IBM Plex Sans KR', sans-serif;
         padding: 20px;
+        background-color: #f0f0f0;
     }
     .company-info {
-        background-color: white;
+        background-color: #ffffff;
         padding: 20px;
         border-radius: 8px;
         margin-bottom: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .header-img {
+        width: 100%;
+        border-radius: 8px;
     }
     .company-header {
         display: flex;
         align-items: center;
+        margin-top: 20px;
     }
-    .company-header img {
+    .company-logo {
+        width: 60px;
+        height: 60px;
         border-radius: 50%;
         margin-right: 10px;
     }
@@ -41,11 +50,17 @@
     .company-description {
         margin-top: 20px;
         font-size: 16px;
+        color: #333333;
     }
     .company-details {
-        background-color: white;
+        background-color: #ffffff;
         padding: 20px;
         border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .company-details h2 {
+        font-size: 20px;
+        margin-bottom: 20px;
     }
     .company-details table {
         width: 100%;
@@ -56,6 +71,7 @@
         padding: 10px;
     }
     .company-details th {
+        width: 30%;
         font-weight: bold;
     }
     .company-details tr:not(:last-child) {
@@ -66,9 +82,9 @@
 </head>
 <body>
 <div class="company-info">
-    <img src="../companyintro_uploads/${dto.ci_image}" alt="Header Image" class="header-img">
+    <img src="your-header-image-url.png" alt="Header Image" class="header-img">
     <div class="company-header">
-        <img src="../companyintro_uploads/${dto.ci_logo}" alt="Company Logo" class="company-logo" width="50" height="50">
+        <img src="your-logo-url.png" alt="Company Logo" class="company-logo">
         <div>
             <h1 class="company-name">웨이커</h1>
             <p class="company-info-extra">IT, 컨텐츠 - 서울 강남구 - 5년차 (2020)</p>
