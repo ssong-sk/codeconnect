@@ -13,8 +13,7 @@
 <title>Insert title here</title>
 <style type="text/css">
 
-	/* 전체 폰트 변경 */
-	* {
+	body {
 		font-family: 'IBM Plex Sans KR', sans-serif;
 	}
 	

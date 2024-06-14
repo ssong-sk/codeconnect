@@ -5,17 +5,17 @@
         select count(*) from community
     </select>
     
-    <!-- <insert id="insertCommunity" parameterType="CommunityDto">
+    <insert id="insertCommunity" parameterType="CommunityDto">
         insert into community (com_user_id, com_nickname, com_title, com_content, com_photo, com_category, com_writetime, com_updatetime, com_post_type,
         com_name, com_companyname) 
         values (#{com_user_id}, #{com_nickname}, #{com_title}, #{com_content}, #{com_photo}, #{com_category}, now(), now(), #{com_post_type},
         #{com_name}, #{com_companyname})
-    </insert> -->
+    </insert>
     
-    <insert id="insertCommunity" parameterType="com.code.dto.CommunityDto">
+    <!-- <insert id="insertCommunity" parameterType="com.code.dto.CommunityDto">
 	    insert into community (com_num, com_category, com_title, com_content, com_photo, com_post_type)
 	    values (#{com_num}, #{com_category}, #{com_title}, #{com_content}, #{com_photo}, #{com_post_type})
-	</insert>
+	</insert> -->
     
     <select id="getAllDatas" resultType="CommunityDto">
         select * from community order by com_num desc
@@ -24,7 +24,6 @@
     <select id="getData" parameterType="int" resultType="CommunityDto">
         select * from community where com_num = #{com_num}
     </select>
-    
     <update id="updateCommunity" parameterType="CommunityDto">
         update community set 
         	com_photo = #{com_photo}, com_title = #{com_title}, com_content = #{com_content},

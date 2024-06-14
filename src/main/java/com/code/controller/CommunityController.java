@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.code.dto.CommunityDto;
+import com.code.dto.RegisterDto;
 import com.code.mapper.RegisterMapperInter;
 import com.code.service.CommunityServiceInter;
 
@@ -72,13 +73,10 @@ public class CommunityController {
         dto.setCom_photo(uploadName);
         dto.setCom_post_type("home"); //com_post_type을 'home'으로 설정
         
-        //디버깅 출력
-		/*
-		 * System.out.println("com_category: " + dto.getCom_category());
-		 * System.out.println("com_title: " + dto.getCom_title());
-		 * System.out.println("com_content: " + dto.getCom_content());
-		 * System.out.println("com_photo: " + dto.getCom_photo());
-		 */
+        //System.out.println("---------컨트롤러---------");
+        //System.out.println(dto.toString());
+        //System.out.println("---------컨트롤러---------");
+        
         
         service.insertCommunity(dto);
         return "redirect:/community/homelist";
@@ -141,6 +139,11 @@ public class CommunityController {
     @GetMapping("/community/homedetail")
     public String detail(@RequestParam("com_num") int comNum, Model model) {
         CommunityDto dto = service.getData(comNum);
+        
+        // 디버깅 출력
+        //System.out.println("닉네임: " + dto.getCom_nickname());
+        //System.out.println("작성시간: " + dto.getCom_writetime());
+        
         model.addAttribute("dto", dto);
         return "community/homedetail"; // "community/homedetail.jsp"로 매핑
     }
@@ -165,8 +168,19 @@ public class CommunityController {
             return "redirect:/login"; // 로그인 안되면 로그인 페이지로 리다이렉트
         }
 
-        String nickname = (String) session.getAttribute("userNickname");
+        String id = (String) session.getAttribute("myid");
+        
+        
+        RegisterDto dto = mapperinter.getDataById(id);
+        String nickname = dto.getR_nickname();
+        String name = dto.getR_name();
+        String userid = dto.getR_id();
+        
+        //System.out.println(nickname);
+        
         model.addAttribute("userNickname", nickname);
+        model.addAttribute("name", name);
+        model.addAttribute("userid", userid);
         return "community/homeform"; // "community/homeform.jsp"로 매핑
     }
     

@@ -7,6 +7,7 @@ import com.code.dto.CommunityDto;
 
 @Mapper
 	public interface CommunityMapperInter {
+	
 	public int getTotalCount();
 	public void insertCommunity(CommunityDto dto);
     List<CommunityDto> getAllDatas();
