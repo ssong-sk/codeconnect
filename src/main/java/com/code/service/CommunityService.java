@@ -30,8 +30,8 @@ public class CommunityService implements CommunityServiceInter {
     }
 
     @Override
-    public CommunityDto getData(String com_num) {
-        return mapper.getData(com_num);
+    public CommunityDto getData(int com_num) {
+        return mapper.getData(com_num); //int 타입으로 변경
     }
 
     @Override

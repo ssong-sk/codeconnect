@@ -70,12 +70,21 @@ public class CompanyService implements CompanyServiceInter{
 		return cmapperInter.getDataByNum(c_num);
 	}
 
-
-
 	@Override
 	public void updateCompany(CompanyDto dto) {
 		// TODO Auto-generated method stub
 		cmapperInter.updateCompany(dto);
+	}
+
+	
+	
+	
+	
+	
+	//채용공고에서 사용
+	@Override
+	public int selectC_num(String c_id) {
+		return cmapperInter.selectC_num(c_id);
 	}
 	
 }

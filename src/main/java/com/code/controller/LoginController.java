@@ -59,8 +59,13 @@ public class LoginController {
 			session.setAttribute("myid", r_id);
 			session.setAttribute("loginok", "yes");
 			session.setAttribute("saveok", cbsave);
+			
 
-			return "/layout/main";
+			 
+	        
+			return "redirect:main";
+
+
 			
 		}else {
 			return "/member/passfail";
@@ -73,6 +78,7 @@ public class LoginController {
 	public String logout(HttpSession session)
 	{
 		session.removeAttribute("loginok");
+		session.removeAttribute("userNickname"); //
 		return "redirect:main";
 	}
 	
