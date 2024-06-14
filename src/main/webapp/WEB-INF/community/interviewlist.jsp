@@ -26,6 +26,7 @@
         padding: 0;
         justify-content: center;
         margin-top: 40px;
+        margin-left: 100px;
     }
     .nav ul a {
         display: block;
@@ -153,7 +154,9 @@
             <li><a href="#">웹 풀스택 개발자</a></li>
             <li><a href="#">안드로이드 개발자</a></li>
             <li><a href="#">IOS 개발자</a></li>
+            <li><a href="#">크로스플랫폼 앱 개발자</a></li>
             <li><a href="#">게임 클라이언트 개발자</a></li>
+            <li><a href="#">게임 서버 개발자</a></li>
             <li><a href="#">DBA</a></li>
             <li><a href="#">빅데이터 엔지니어</a></li>
             <li><a href="#">인공지능/머신러닝</a></li>
@@ -163,7 +166,9 @@
             <li><a href="#">개발 PM</a></li>
             <li><a href="#">HW/임베디드</a></li>
             <li><a href="#">SW/솔루션</a></li>
+            <li><a href="#">웹퍼플리셔</a></li>
             <li><a href="#">VR/AR/3D</a></li>
+            <li><a href="#">블록체인</a></li>
             <li><a href="#">기술지원</a></li>
         </ul>
     </div>
@@ -243,8 +248,78 @@
 	            </div>
 	        </c:forEach>
 	     </div>
-	     </div>
+	  </div>
+	  
 	  <div class="interview-list">
+	     <div class="section_inner" style="flex: 1;">
+	        <c:forEach var="dto" items="${list}">
+	            <div class="interview-item">
+	                <b style="color: blue; margin-left: 15px;">${dto.com_category}</b>
+	                <br><br>
+	                <h5 style="margin-left: 15px;">${dto.com_title}</h5><br><br><br>
+	                <div class="details">
+	                	<div class="details_list">
+	                		<p>${dto.com_companyname}</p>
+		                    <p>${dto.com_name}</p>
+		                    <div>
+			                    <p><fmt:formatDate value="${dto.com_writetime}" pattern="yyyy-MM-dd"/></p>&nbsp;&nbsp;&nbsp;&nbsp;
+			                    <p><i class="bi bi-eye"></i>&nbsp;&nbsp;${dto.com_readcount}</p>
+		                    </div>
+	                    </div>
+	                    <div class="iphoto">
+	                    	<img alt="" src="<c:url value='/communityimage/${dto.com_photo}'/>">
+	                    </div>
+	                </div>
+	            </div>
+	        </c:forEach>
+	    </div>
+	     <div class="section_inner" style="flex: 1;">
+	        <c:forEach var="dto" items="${list}">
+	            <div class="interview-item">
+	                <b style="color: blue; margin-left: 15px;">${dto.com_category}</b>
+	                <br><br>
+	                <h5 style="margin-left: 15px;">${dto.com_title}</h5><br><br><br>
+	                <div class="details">
+	                	<div class="details_list">
+	                		<p>${dto.com_companyname}</p>
+		                    <p>${dto.com_name}</p>
+		                    <div>
+			                    <p><fmt:formatDate value="${dto.com_writetime}" pattern="yyyy-MM-dd"/></p>&nbsp;&nbsp;&nbsp;&nbsp;
+			                    <p><i class="bi bi-eye"></i>&nbsp;&nbsp;${dto.com_readcount}</p>
+		                    </div>
+	                    </div>
+	                    <div class="iphoto">
+	                    	<img alt="" src="<c:url value='/communityimage/${dto.com_photo}'/>">
+	                    </div>
+	                </div>
+	            </div>
+	        </c:forEach>
+	     </div>
+	     <div class="section_inner" style="flex: 1;">
+	        <c:forEach var="dto" items="${list}">
+	            <div class="interview-item">
+	                <b style="color: blue; margin-left: 15px;">${dto.com_category}</b>
+	                <br><br>
+	                <h5 style="margin-left: 15px;">${dto.com_title}</h5><br><br><br>
+	                <div class="details">
+	                	<div class="details_list">
+	                		<p>${dto.com_companyname}</p>
+		                    <p>${dto.com_name}</p>
+		                    <div>
+			                    <p><fmt:formatDate value="${dto.com_writetime}" pattern="yyyy-MM-dd"/></p>&nbsp;&nbsp;&nbsp;&nbsp;
+			                    <p><i class="bi bi-eye"></i>&nbsp;&nbsp;${dto.com_readcount}</p>
+		                    </div>
+	                    </div>
+	                    <div class="iphoto">
+	                    	<img alt="" src="<c:url value='/communityimage/${dto.com_photo}'/>">
+	                    </div>
+	                </div>
+	            </div>
+	        </c:forEach>
+	     </div>
+	</div>
+	
+	<div class="interview-list">
 	     <div class="section_inner" style="flex: 1;">
 	        <c:forEach var="dto" items="${list}">
 	            <div class="interview-item">

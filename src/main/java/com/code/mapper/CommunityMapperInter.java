@@ -10,13 +10,12 @@ import com.code.dto.CommunityDto;
 	public int getTotalCount();
 	public void insertCommunity(CommunityDto dto);
     List<CommunityDto> getAllDatas();
-    public CommunityDto getData(String com_num);
+    public CommunityDto getData(int com_num); //int 타입으로 변경
     public void updateCommunity(CommunityDto dto);
     public void deleteCommunity(String com_num);
     
     // interview 목록을 가져오는 메소드 추가
     List<CommunityDto> getInterviews();
-
     // 추가 메소드
     int getTotalCountByType(String type);
     List<CommunityDto> getAllDatasByType(String type);
