@@ -438,6 +438,21 @@ span.connect {
    font-family: IBM Plex Sans KR;
 }
 
+.techoption-btn.disabled {
+    color: #888;
+    cursor: not-allowed;
+}
+
+.techoption-btn.disabled:hover {
+   background-color: #FFF;
+	width: 780px;
+	border-radius: 0px;
+	margin-top: 5px;
+	margin-left: 5px;
+	font-weight: normal;
+	font-family: IBM Plex Sans KR;
+}
+
 
 /* 예상 연봉 */
 #salary {
@@ -456,7 +471,7 @@ span.salary {
    font-weight: bold;
 }
 
-/* 기술스택 툴 */
+/* 카테고리 */
 .cateselect-wrapper{
    position: relative;
    width: 266px;
@@ -533,6 +548,22 @@ span.salary {
    font-family: IBM Plex Sans KR;
 }
 
+.cateoption-btn.disabled {
+    color: #888;
+    cursor: not-allowed;
+}
+
+.cateoption-btn.disabled:hover {
+   background-color: #FFF;
+	width: 780px;
+	border-radius: 0px;
+	margin-top: 5px;
+	margin-left: 5px;
+	font-weight: normal;
+	font-family: IBM Plex Sans KR;
+}
+
+
 /* 지원 알림 이메일 */
 #email {
    width: 380px;
@@ -594,7 +625,8 @@ input:disabled {
                <!-- 컨텐츠 시작 -->
                <div class="content">
 
-
+					<input type="hidden" name="c_num" value="${c_num }" id="c_num">
+					<input type="hidden" name="ci_num" value="${ci_num }" id="ci_num">
                   <!-- 직무 -->
                   <div class="title_div">
                      <span class="title">직무</span> <span><i
@@ -902,39 +934,78 @@ input:disabled {
 	                              style="color: gray;"></i>
 	                        </button>
 	                        <ul class="techselectbox-option techhide">
-	                           <li><button type="button" class="techoption-btn">JAVA</button></li>
-	                           <li><button type="button" class="techoption-btn">프론트엔드
-	                                 개발자</button></li>
-	                           <li><button type="button" class="techoption-btn">웹
-	                                 풀스택 개발자</button></li>
-	                           <li><button type="button" class="techoption-btn">안드로이드
-	                                 개발자</button></li>
-	                           <li><button type="button" class="techoption-btn">IOS
-	                                 개발자</button></li>
-	                           <li><button type="button" class="techoption-btn">크로스플랫폼
-	                                 앱개발자</button></li>
-	                           <li><button type="button" class="techoption-btn">게임
-	                                 클라이언트 개발자</button></li>
-	                           <li><button type="button" class="techoption-btn">게임
-	                                 서버 개발자</button></li>
-	                           <li><button type="button" class="techoption-btn">DBA</button></li>
-	                           <li><button type="button" class="techoption-btn">빅데이터
-	                                 엔지니어</button></li>
-	                           <li><button type="button" class="techoption-btn">인공지능/머신러닝</button></li>
-	                           <li><button type="button" class="techoption-btn">devops/시스템
-	                                 엔지니어</button></li>
-	                           <li><button type="button" class="techoption-btn">정보보안
-	                                 담당자</button></li>
-	                           <li><button type="button" class="techoption-btn">QA
-	                                 엔지니어</button></li>
-	                           <li><button type="button" class="techoption-btn">개발
-	                                 PM</button></li>
-	                           <li><button type="button" class="techoption-btn">HW/임베디드</button></li>
-	                           <li><button type="button" class="techoption-btn">SW/솔루션</button></li>
-	                           <li><button type="button" class="techoption-btn">웹퍼블리셔</button></li>
-	                           <li><button type="button" class="techoption-btn">VR/AR/3D</button></li>
-	                           <li><button type="button" class="techoption-btn">블록체인</button></li>
-	                           <li><button type="button" class="techoption-btn">기술지원</button></li>
+		                        <li><button type="button" class="techoption-btn">Java</button></li>
+								<li><button type="button" class="techoption-btn">Spring
+										Boot</button></li>
+								<li><button type="button" class="techoption-btn">Node.js</button></li>
+								<li><button type="button" class="techoption-btn">Python</button></li>
+								<li><button type="button" class="techoption-btn">Django</button></li>
+								<li><button type="button" class="techoption-btn">PHP</button></li>
+								<li><button type="button" class="techoption-btn">C</button></li>
+								<li><button type="button" class="techoption-btn">C++</button></li>
+								<li><button type="button" class="techoption-btn">C#</button></li>
+								<li><button type="button" class="techoption-btn">AWS</button></li>
+								<li><button type="button" class="techoption-btn">MySQL</button></li>
+								<li><button type="button" class="techoption-btn">Oracle</button></li>
+								<li><button type="button" class="techoption-btn">React</button></li>
+								<li><button type="button" class="techoption-btn">Vue.js</button></li>
+								<li><button type="button" class="techoption-btn">JQuery</button></li>
+								<li><button type="button" class="techoption-btn">HTML5</button></li>
+								<li><button type="button" class="techoption-btn">CSS3</button></li>
+								<li><button type="button" class="techoption-btn">JavaScript</button></li>
+								<li><button type="button" class="techoption-btn">Svelte</button></li>
+								<li><button type="button" class="techoption-btn">TypeScript</button></li>
+								<li><button type="button" class="techoption-btn">AngularJS</button></li>
+								<li><button type="button" class="techoption-btn">Kotlin</button></li>
+								<li><button type="button" class="techoption-btn">RxJava</button></li>
+								<li><button type="button" class="techoption-btn">Swift</button></li>
+								<li><button type="button" class="techoption-btn">Objective-C</button></li>
+								<li><button type="button" class="techoption-btn">Rxswift</button></li>
+								<li><button type="button" class="techoption-btn">SwiftUI</button></li>
+								<li><button type="button" class="techoption-btn">Xcode</button></li>
+								<li><button type="button" class="techoption-btn">Flutter</button></li>
+								<li><button type="button" class="techoption-btn">React
+										Native</button></li>
+								<li><button type="button" class="techoption-btn">MSSQL</button></li>
+								<li><button type="button" class="techoption-btn">PostgreSQL</button></li>
+								<li><button type="button" class="techoption-btn">NoSQL</button></li>
+								<li><button type="button" class="techoption-btn">MariaDB</button></li>
+								<li><button type="button" class="techoption-btn">MongoDB</button></li>
+								<li><button type="button" class="techoption-btn">SQL</button></li>
+								<li><button type="button" class="techoption-btn">R</button></li>
+								<li><button type="button" class="techoption-btn">Hadoop</button></li>
+								<li><button type="button" class="techoption-btn">Spark</button></li>
+								<li><button type="button" class="techoption-btn">Kafka</button></li>
+								<li><button type="button" class="techoption-btn">TensorFlow</button></li>
+								<li><button type="button" class="techoption-btn">PyTorch</button></li>
+								<li><button type="button" class="techoption-btn">Elasticsearch</button></li>
+								<li><button type="button" class="techoption-btn">OpenCV</button></li>
+								<li><button type="button" class="techoption-btn">Linux</button></li>
+								<li><button type="button" class="techoption-btn">Kubernetes</button></li>
+								<li><button type="button" class="techoption-btn">Docker</button></li>
+								<li><button type="button" class="techoption-btn">Network</button></li>
+								<li><button type="button" class="techoption-btn">GCP</button></li>
+								<li><button type="button" class="techoption-btn">Windows</button></li>
+								<li><button type="button" class="techoption-btn">AZURE</button></li>
+								<li><button type="button" class="techoption-btn">Terraform</button></li>
+								<li><button type="button" class="techoption-btn">ISMS</button></li>
+								<li><button type="button" class="techoption-btn">CISA</button></li>
+								<li><button type="button" class="techoption-btn">CISSP</button></li>
+								<li><button type="button" class="techoption-btn">Firewall</button></li>
+								<li><button type="button" class="techoption-btn">VPN</button></li>
+								<li><button type="button" class="techoption-btn">IPS</button></li>
+								<li><button type="button" class="techoption-btn">CPPG</button></li>
+								<li><button type="button" class="techoption-btn">FW</button></li>
+								<li><button type="button" class="techoption-btn">Embedded</button></li>
+								<li><button type="button" class="techoption-btn">Pads</button></li>
+								<li><button type="button" class="techoption-btn">FPGA</button></li>
+								<li><button type="button" class="techoption-btn">PCB</button></li>
+								<li><button type="button" class="techoption-btn">RF</button></li>
+								<li><button type="button" class="techoption-btn">.NET</button></li>
+								<li><button type="button" class="techoption-btn">Golang</button></li>
+								<li><button type="button" class="techoption-btn">Nft</button></li>
+								<li><button type="button" class="techoption-btn">Solidity</button></li>
+								<li><button type="button" class="techoption-btn">Blockchain</button></li>
 	                        </ul>
 	                     </section>
 	                  </section>
@@ -1038,123 +1109,99 @@ input:disabled {
 	<br><br>
       <jsp:include page="footer.jsp"></jsp:include>
    </div>
-   <script type="text/javascript">
-      /* 직무 select1 */
-      document.addEventListener('DOMContentLoaded', function() {
-         const toggleBtn = document.querySelector('.toggle-btn');
-         const selectBox = document.querySelector('.selectbox-option');
-         const options = document.querySelectorAll('.option-btn');
-         const toggleText = document.querySelector('.toggle-btn span');
+<script type="text/javascript">
+	//alert($("#c_num").val()+","+$("#ci_num").val());
+  
+$(document).ready(function() {
+   // 직무 select1
+   const toggleBtn1 = $('.toggle-btn');
+   const selectBox1 = $('.selectbox-option');
+   const options1 = $('.option-btn');
+   const toggleText1 = $('.toggle-btn span');
 
-         toggleBtn.addEventListener('click', function() {
-            selectBox.classList.toggle('hide');
-         });
+   toggleBtn1.click(function() {
+      selectBox1.toggleClass('hide');
+   });
 
-         options.forEach(function(option) {
-            option.addEventListener('click', function() {
-               toggleText.textContent = this.textContent;
-               toggleText.classList.add('selected');
-               selectBox.classList.add('hide');
-            });
-         });
+   options1.click(function() {
+      toggleText1.text($(this).text());
+      toggleText1.addClass('selected');
+      selectBox1.addClass('hide');
+   });
 
-         document.addEventListener('click', function(event) {
-            if (!selectBox.parentElement.contains(event.target)) {
-               selectBox.classList.add('hide');
-            }
-         });
-      });
-      
-      /* 직무 select2 */
-      document.addEventListener('DOMContentLoaded', function() {
-         const toggleBtn = document.querySelector('.toggle-btn2');
-         const selectBox = document.querySelector('.selectbox-option2');
-         const options = document.querySelectorAll('.option-btn2');
-         const toggleText = document.querySelector('.toggle-btn2 span');
+   $(document).click(function(event) {
+      if (!selectBox1.parent().is(event.target) && !selectBox1.parent().has(event.target).length) {
+         selectBox1.addClass('hide');
+      }
+   });
 
-         toggleBtn.addEventListener('click', function() {
-            selectBox.classList.toggle('hide2');
-         });
+   // 직무 select2
+   const toggleBtn2 = $('.toggle-btn2');
+   const selectBox2 = $('.selectbox-option2');
+   const options2 = $('.option-btn2');
+   const toggleText2 = $('.toggle-btn2 span');
 
-         options.forEach(function(option) {
-            option.addEventListener('click', function() {
-               toggleText.textContent = this.textContent;
-               toggleText.classList.add('selected');
-               selectBox.classList.add('hide2');
-            });
-         });
+   toggleBtn2.click(function() {
+      selectBox2.toggleClass('hide2');
+   });
 
-         document.addEventListener('click', function(event) {
-            if (!selectBox.parentElement.contains(event.target)) {
-               selectBox.classList.add('hide2');
-            }
-         });
-      });
-      
-      /* 직무 select3 */
-      document.addEventListener('DOMContentLoaded', function() {
-         const toggleBtn = document.querySelector('.toggle-btn3');
-         const selectBox = document.querySelector('.selectbox-option3');
-         const options = document.querySelectorAll('.option-btn3');
-         const toggleText = document.querySelector('.toggle-btn3 span');
+   options2.click(function() {
+      toggleText2.text($(this).text());
+      toggleText2.addClass('selected');
+      selectBox2.addClass('hide2');
+   });
 
-         toggleBtn.addEventListener('click', function() {
-            selectBox.classList.toggle('hide3');
-         });
+   $(document).click(function(event) {
+      if (!selectBox2.parent().is(event.target) && !selectBox2.parent().has(event.target).length) {
+         selectBox2.addClass('hide2');
+      }
+   });
 
-         options.forEach(function(option) {
-            option.addEventListener('click', function() {
-               toggleText.textContent = this.textContent;
-               toggleText.classList.add('selected');
-               selectBox.classList.add('hide3');
-            });
-         });
+   // 직무 select3
+   const toggleBtn3 = $('.toggle-btn3');
+   const selectBox3 = $('.selectbox-option3');
+   const options3 = $('.option-btn3');
+   const toggleText3 = $('.toggle-btn3 span');
 
-         document.addEventListener('click', function(event) {
-            if (!selectBox.parentElement.contains(event.target)) {
-               selectBox.classList.add('hide3');
-            }
-         });
-      });
+   toggleBtn3.click(function() {
+      selectBox3.toggleClass('hide3');
+   });
 
-      /* 근무지 api띄우고 #address1에 값 설정 */
-      document
-            .querySelector('.location')
-            .addEventListener(
-                  'click',
-                  function() {
-                     // 주소 검색 레이어와 오버레이 표시
-                     document.getElementById('postcode-overlay').style.display = 'block';
-                     document.getElementById('postcode-layer').style.display = 'block';
+   options3.click(function() {
+      toggleText3.text($(this).text());
+      toggleText3.addClass('selected');
+      selectBox3.addClass('hide3');
+   });
 
-                     new daum.Postcode(
-                           {
-                              oncomplete : function(data) {
-                                 // 주소 선택 시 입력 필드에 값 설정
-                                 document.getElementById('address1').value = data.address;
+   $(document).click(function(event) {
+      if (!selectBox3.parent().is(event.target) && !selectBox3.parent().has(event.target).length) {
+         selectBox3.addClass('hide3');
+      }
+   });
 
-                                 // 주소 검색 레이어와 오버레이 숨기기
-                                 document
-                                       .getElementById('postcode-overlay').style.display = 'none';
-                                 document
-                                       .getElementById('postcode-layer').style.display = 'none';
-                              },
-                              width : '100%',
-                              height : '100%'
-                           }).embed(document
-                           .getElementById('postcode-layer'));
-                  });
+   // 근무지 api띄우고 #address1에 값 설정
+   $('.location').click(function() {
+      $('#postcode-overlay').show();
+      $('#postcode-layer').show();
 
-      // 주소 검색 오버레이를 클릭하면 닫기
-      document
-            .getElementById('postcode-overlay')
-            .addEventListener(
-                  'click',
-                  function() {
-                     document.getElementById('postcode-overlay').style.display = 'none';
-                     document.getElementById('postcode-layer').style.display = 'none';
-                  });
-   </script>
+      new daum.Postcode({
+         oncomplete: function(data) {
+            $('#address1').val(data.address);
+            $('#postcode-overlay').hide();
+            $('#postcode-layer').hide();
+         },
+         width: '100%',
+         height: '100%'
+      }).embed($('#postcode-layer').get(0));
+   });
+
+   // 주소 검색 오버레이를 클릭하면 닫기
+   $('#postcode-overlay').click(function() {
+      $('#postcode-overlay').hide();
+      $('#postcode-layer').hide();
+   });
+});
+ </script>
 
    <!-- 경력 select -->
 <script type="text/javascript">
@@ -1230,73 +1277,78 @@ input:disabled {
 
 <!-- 기술 스택 . 툴 -->
 <script type="text/javascript">
+$(document).ready(function() {
+    const toggleBtnTech = $('.techtoggle-btn');
+    const selectBoxTech = $('.techselectbox-option');
+    const optionsTech = $('.techoption-btn');
+    const toggleTextTech = $('.techtoggle-btn span');
 
-/* 기술 스택 . 툴 select */
-document.addEventListener('DOMContentLoaded', function() {
-    const toggleBtn = document.querySelector('.techtoggle-btn');
-    const selectBox = document.querySelector('.techselectbox-option');
-    const options = document.querySelectorAll('.techoption-btn');
-    const toggleText = document.querySelector('.techtoggle-btn span');
-
-    toggleBtn.addEventListener('click', function() {
-       selectBox.classList.toggle('techhide');
+    toggleBtnTech.click(function() {
+        selectBoxTech.toggleClass('techhide');
     });
 
-    options.forEach(function(option) {
-       option.addEventListener('click', function() {
-          toggleText.textContent = this.textContent;
-          toggleText.classList.add('selected');
-          selectBox.classList.add('techhide');
-       });
+    optionsTech.click(function() {
+        const techText = $(this).text();
+        addSelectedTech(techText);
+        toggleTextTech.text(techText).css({color: "black"});
+        selectBoxTech.addClass('techhide');
+        $(this).prop('disabled', true).addClass('disabled');
     });
 
-    document.addEventListener('click', function(event) {
-       if (!selectBox.parentElement.contains(event.target)) {
-          selectBox.classList.add('techhide');
-       }
-    });
- });
-
-/* 기술 스택 . 툴 표시하기 */
-document.addEventListener('DOMContentLoaded', function() {
-    const selectOptions = document.querySelectorAll('.techoption-btn');
-    const selectedJobsContainer = document.getElementById('selected-tech');
-    
-    selectOptions.forEach(function(option) {
-        option.addEventListener('click', function() {
-            const jobText = this.textContent;
-            addSelectedJob(jobText);
-        });
+    $('.resettech').click(function() {
+        resetSelectedTechs();
     });
 
-    function addSelectedJob(jobText) {
-        const jobElement = document.createElement('div');
-        jobElement.className = 'selected-tech';
-        jobElement.style.display = 'inline-block';
-        jobElement.style.marginRight = '10px';
-        jobElement.style.marginBottom = '5px';
-        jobElement.style.border = '1px solid #ccc';
-        jobElement.style.padding = '6px';
-        jobElement.style.borderRadius = '10px';
-        
-        const jobTextElement = document.createElement('span');
-        jobTextElement.textContent = jobText;
-
-        const removeButton = document.createElement('button');
-        removeButton.textContent = 'X';
-        removeButton.style.marginLeft = '10px';
-        removeButton.style.border = 'none';
-        removeButton.style.background = 'none';
-        removeButton.style.color = 'red';
-        removeButton.style.cursor = 'pointer';
-
-        removeButton.addEventListener('click', function() {
-            selectedJobsContainer.removeChild(jobElement);
+    function addSelectedTech(techText) {
+        const techElement = $('<div>').addClass('selected-tech').css({
+            display: 'inline-block',
+            marginLeft: '6px',
+            marginRight: '10px',
+            marginBottom: '5px',
+            border: '1px solid #ccc',
+            backgroundColor: '#fafafa',
+            padding: '6px',
+            borderRadius: '15px',
+            fontWeight: 'bold',
+            paddingLeft: '8px'
         });
 
-        jobElement.appendChild(jobTextElement);
-        jobElement.appendChild(removeButton);
-        selectedJobsContainer.appendChild(jobElement);
+        const techTextElement = $('<span>').text(techText);
+        const removeButton = $('<button>').html('<i class="bi bi-x-lg"></i>').css({
+            marginLeft: '10px',
+            border: 'none',
+            background: 'none',
+            color: 'blue',
+            cursor: 'pointer'
+        });
+
+        removeButton.on('click', function() {
+            techElement.remove();
+            $('.techoption-btn').each(function() {
+                if ($(this).text() === techText) {
+                    $(this).prop('disabled', false).removeClass('disabled');
+                }
+            });
+            updateToggleText();
+        });
+
+        techElement.append(techTextElement).append(removeButton);
+        $('#selected-tech').append(techElement);
+        updateToggleText();
+    }
+
+    function updateToggleText() {
+        const selectedTechs = $('#selected-tech .selected-tech');
+        const toggleText = $('.techtoggle-btn span');
+        if (selectedTechs.length === 0) {
+            toggleText.text("기술 스택ㆍ툴").css({color: "gray"});
+        }
+    }
+
+    function resetSelectedTechs() {
+        $('#selected-tech').empty();
+        $('.techoption-btn').prop('disabled', false);
+        updateToggleText(); // 여기에 추가
     }
 });
 </script>
@@ -1305,71 +1357,78 @@ document.addEventListener('DOMContentLoaded', function() {
 <script type="text/javascript">
 
 /* 카테고리 select */
-document.addEventListener('DOMContentLoaded', function() {
-    const toggleBtn = document.querySelector('.catetoggle-btn');
-    const selectBox = document.querySelector('.cateselectbox-option');
-    const options = document.querySelectorAll('.cateoption-btn');
-    const toggleText = document.querySelector('.catetoggle-btn span');
+$(document).ready(function() {
+    const toggleBtnCate = $('.catetoggle-btn');
+    const selectBoxCate = $('.cateselectbox-option');
+    const optionsCate = $('.cateoption-btn');
+    const toggleTextCate = $('.catetoggle-btn span');
 
-    toggleBtn.addEventListener('click', function() {
-       selectBox.classList.toggle('catehide');
+    toggleBtnCate.click(function() {
+        selectBoxCate.toggleClass('catehide');
     });
-
-    options.forEach(function(option) {
-       option.addEventListener('click', function() {
-          toggleText.textContent = this.textContent;
-          toggleText.classList.add('selected');
-          selectBox.classList.add('catehide');
-       });
-    });
-
-    document.addEventListener('click', function(event) {
-       if (!selectBox.parentElement.contains(event.target)) {
-          selectBox.classList.add('catehide');
-       }
-    });
- });
-
-/* 카테고리 표시하기 */
-document.addEventListener('DOMContentLoaded', function() {
-    const selectOptions = document.querySelectorAll('.cateoption-btn');
-    const selectedJobsContainer = document.getElementById('selected-cate');
     
-    selectOptions.forEach(function(option) {
-        option.addEventListener('click', function() {
-            const jobText = this.textContent;
-            addSelectedJob(jobText);
-        });
+    optionsCate.click(function() {
+        const cateText = $(this).text();
+        addSelectedCate(cateText);
+        toggleTextCate.text(cateText).css({color: "black"});
+        selectBoxCate.addClass('catehide');
+        $(this).prop('disabled', true).addClass('disabled');
     });
 
-    function addSelectedJob(jobText) {
-        const jobElement = document.createElement('div');
-        jobElement.className = 'selected-cate';
-        jobElement.style.display = 'inline-block';
-        jobElement.style.marginRight = '10px';
-        jobElement.style.marginBottom = '5px';
-        jobElement.style.border = '1px solid #ccc';
-        jobElement.style.padding = '8px';
-        jobElement.style.borderRadius = '15px';
-        
-        const jobTextElement = document.createElement('span');
-        jobTextElement.textContent = jobText;
+    $('.resettech').click(function() {
+        resetSelectedTechs();
+    });
 
-        const removeButton = document.createElement('button');
-        removeButton.textContent = 'X';
-        removeButton.style.marginLeft = '10px';
-        removeButton.style.border = 'none';
-        removeButton.style.background = 'none';
-        removeButton.style.color = 'blue';
-        removeButton.style.cursor = 'pointer';
-
-        removeButton.addEventListener('click', function() {
-            selectedJobsContainer.removeChild(jobElement);
+    function addSelectedCate(cateText) {
+        const cateElement = $('<div>').addClass('selected-cate').css({
+            display: 'inline-block',
+            marginLeft: '6px',
+            marginRight: '10px',
+            marginBottom: '5px',
+            border: '1px solid #ccc',
+            backgroundColor: '#fafafa',
+            padding: '6px',
+            borderRadius: '15px',
+            fontWeight: 'bold',
+            paddingLeft: '8px'
         });
 
-        jobElement.appendChild(jobTextElement);
-        jobElement.appendChild(removeButton);
-        selectedJobsContainer.appendChild(jobElement);
+        const cateTextElement = $('<span>').text(cateText);
+        const removeButton = $('<button>').html('<i class="bi bi-x-lg"></i>').css({
+            marginLeft: '10px',
+            border: 'none',
+            background: 'none',
+            color: 'blue',
+            cursor: 'pointer'
+        });
+
+        removeButton.on('click', function() {
+            cateElement.remove();
+            $('.cateoption-btn').each(function() {
+                if ($(this).text() === cateText) {
+                    $(this).prop('disabled', false).removeClass('disabled');
+                }
+            });
+            updateToggleText();
+        });
+
+        cateElement.append(cateTextElement).append(removeButton);
+        $('#selected-cate').append(cateElement);
+        updateToggleText();
+    }
+
+    function updateToggleText() {
+        const selectedCates = $('#selected-cate .selected-cate');
+        const toggleText = $('.catetoggle-btn span');
+        if (selectedCates.length === 0) {
+            toggleText.text("카테고리").css({color: "gray"});
+        }
+    }
+
+    function resetSelectedCates() {
+        $('#selected-cate').empty();
+        $('.cateoption-btn').prop('disabled', false);
+        updateToggleText(); // 여기에 추가
     }
 });
 </script>
