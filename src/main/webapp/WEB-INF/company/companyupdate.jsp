@@ -143,6 +143,7 @@
                 <input type="email" class="form-control" id="c_insa_email" name="c_insa_email" value="${dto.c_insa_email}">
             </div>
             <button type="submit" class="btn btn-danger">저장</button>
+            <button type="button" class="btn btn-back" onclick="history.back()">뒤로가기</button>
         </form>
     </div>
 </body>

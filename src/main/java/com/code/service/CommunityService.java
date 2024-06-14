@@ -43,4 +43,19 @@ public class CommunityService implements CommunityServiceInter {
     public void deleteCommunity(String com_num) {
         mapper.deleteCommunity(com_num);
     }
+
+    @Override
+    public List<CommunityDto> getInterviews() {
+        return mapper.getInterviews();
+    }
+
+    @Override
+    public int getTotalCountByType(String type) {
+        return mapper.getTotalCountByType(type);
+    }
+
+    @Override
+    public List<CommunityDto> getAllDatasByType(String type) {
+        return mapper.getAllDatasByType(type);
+    }
 }

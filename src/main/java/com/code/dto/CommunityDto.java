@@ -23,5 +23,7 @@ public class CommunityDto {
 	private int com_likes;
 	private String com_post_type;
 	private int com_commentcount;
+	private String com_name;
+	private String com_companyname;
 	
 }

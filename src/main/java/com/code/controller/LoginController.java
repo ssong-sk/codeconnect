@@ -60,7 +60,7 @@ public class LoginController {
 			session.setAttribute("loginok", "yes");
 			session.setAttribute("saveok", cbsave);
 
-			return "redirect:main";
+			return "/layout/main";
 			
 		}else {
 			return "/member/passfail";
