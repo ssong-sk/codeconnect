@@ -173,13 +173,15 @@ public class CompanyIntroController {
 		String c_loginok=(String)session.getAttribute("c_loginok");		
 
 
-		CompanyDto dto = cservice.getDataById(c_myid);
-		String c_num=dto.getC_num();
+		CompanyDto cdto = cservice.getDataById(c_myid);
+		String c_num=cdto.getC_num();
 
 		//  System.out.println("Received c_num: " + c_num); // 로그 추가
 
 		// 회사 PK인 c_num을 넣었을 때 원하는 companyintro와 join된 company의 정보를 모두 볼 수 있게 하기
-		CompanyIntroDto cdto = cmapper.showOneCompanyIntro(c_num);
+		CompanyIntroDto dto = cmapper.showOneCompanyIntro(c_num);
+		model.addAttribute("dto", dto);
+		
 		model.addAttribute("cdto", cdto);
 
 		return "companyintro/companyintroshow"; // 파라미터를 모델로 전달하고 JSP로 이동

@@ -37,9 +37,6 @@
     <button type="submit" class="btn btn-info">내 기업 소개 페이지로 이동</button>
 </form>
 
-<input type="hidden" name="c_num" id="c_num" value="${dto.c_num}">
-<button class="btn btn-info" onclick="location.href='showimsi?c_num=${dto.c_num}'">내 기업 소개 페이지로 이동2</button>
-
 <!-- 추가: c_num 값 확인 -->
 <c:out value="${dto.c_num}" />
 

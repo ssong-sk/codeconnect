@@ -71,11 +71,11 @@
         <img src="../companyintro_uploads/${dto.ci_logo}" alt="Company Logo" class="company-logo" width="50" height="50">
         <div>
             <h1 class="company-name">웨이커</h1>
-            <p class="company-info-extra">IT, 컨텐츠 - 서울 강남구 - 5년차 (2020)</p>
+            <p class="company-info-extra">${cdto.c_category} - ${cdto.c_local} - 5년차 (${cdto.c_birthyear})</p>
         </div>
     </div>
     <p class="company-description">
-        동시 데이터 환경을 기술을 개선하고 있는 웨이커입니다. 웨이커는 NLP 모델을 기반으로 동시 데이터를 분석하고 가공하여 온전한 데이터를 정확하고 빠르게, 고객에게 적합한 동시 데이터 환경을 제공하고 있습니다. 이에 다음과 같이 그 성과를 인정받아 왔습니다. - 2024 CES 혁신상 수상 - ...
+        ${dto.ci_soge}
     </p>
     <p>[중간에 채용공고 이어가는 화면, 지도, 별점 들어감]</p>
 </div>
@@ -83,28 +83,24 @@
     <h2>기업 정보</h2>
     <table>
         <tr>
-            <th>표준산업분류</th>
-            <td>그 외 기타 정보 서비스업</td>
+            <th>산업군</th>
+            <td>${cdto.c_category}</td>
         </tr>
         <tr>
             <th>연혁</th>
-            <td>4년 (2020년 설립)</td>
-        </tr>
-        <tr>
-            <th>NTS분류</th>
-            <td>그 외 기타 정보 서비스업</td>
+            <td>4년 (${cdto.c_birthyear}년 설립)</td>
         </tr>
         <tr>
             <th>매출</th>
-            <td>3년 6,454만원</td>
+            <td>${cdto.c_money}억</td>
         </tr>
         <tr>
-            <th>기업형태</th>
+            <th>기업 유형</th>
             <td>기타 법인</td>
         </tr>
         <tr>
             <th>평균연봉</th>
-            <td>5,772만원</td>
+            <td>${cdto.c_salary}억만원</td>
         </tr>
         <tr>
             <th>고용보험 사업장 수</th>
@@ -112,11 +108,11 @@
         </tr>
         <tr>
             <th>홈페이지</th>
-            <td><a href="#">AAAcompany.co.kr</a></td>
+            <td><a href="${dto.ci_link}">${dto.ci_link}</a></td>
         </tr>
         <tr>
             <th>사원수</th>
-            <td>24명</td>
+            <td>${cdto.c_peoplesu}억만원명</td>
         </tr>
     </table>
 </div>
