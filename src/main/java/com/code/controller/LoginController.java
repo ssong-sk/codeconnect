@@ -82,6 +82,7 @@ public class LoginController {
 	public String logout(HttpSession session)
 	{
 		session.removeAttribute("loginok");
+		session.removeAttribute("userNickname"); //
 		return "redirect:main";
 	}
 	

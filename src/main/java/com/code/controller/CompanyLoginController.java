@@ -26,7 +26,7 @@ public class CompanyLoginController {
 	//임시 제작 : 기업 로그인 페이지 불러오기
 	@GetMapping("/imsiloginpage")
 	public String imsiloginpage() {
-		return "companylogin/companyloginform";
+		return "/companylogin/companyloginform"; //앞에 '/'있는게 최신입니다.
 	}
 
 	//아직 없어!
@@ -37,15 +37,19 @@ public class CompanyLoginController {
 		String c_myid=(String)session.getAttribute("c_myid");
 		//로그인중인지 아닌지
 		String c_loginok=(String)session.getAttribute("c_loginok");
+
 		
 		//한번도 실행안하면 null
 		if(c_loginok==null)
 			return "/companylogin/companyloginform";
 		else {
 			
-			String c_name=cservice.getCompanyName(c_myid);
-			model.addAttribute("c_name", c_name);
-			return "/companylogin/companylogout";
+			CompanyDto dto = cservice.getDataById(c_myid);
+			String c_num=dto.getC_num();
+			
+			//String c_name=cservice.getCompanyName(c_myid);
+			//model.addAttribute("c_name", c_name);
+			return "/company/companymypage";
 		}
 		
 	}

@@ -3,9 +3,9 @@
 <mapper namespace="com.code.mapper.CompanyMapperInter">
     <insert id="insertCompany" parameterType="CompanyDto">
         insert into company
-        (c_id, c_pass, c_name, c_reginum, c_local, c_category, c_peoplesu, c_insa_email, c_insa_phone, c_addr, c_money, c_birthyear, c_regi_file, c_salary, c_phone, c_gaipday)
+        (c_id, c_pass, c_name, c_reginum, c_local, c_category, c_peoplesu, c_insa_email, c_insa_phone, c_addr, c_money, c_birthyear, c_regi_file, c_salary, c_phone, c_gaipday, c_updateday)
         values
-        (#{c_id}, #{c_pass}, #{c_name}, #{c_reginum}, #{c_local}, #{c_category}, #{c_peoplesu}, #{c_insa_email}, #{c_insa_phone}, #{c_addr}, #{c_money}, #{c_birthyear}, #{c_regi_file}, #{c_salary}, #{c_phone}, now())
+        (#{c_id}, #{c_pass}, #{c_name}, #{c_reginum}, #{c_local}, #{c_category}, #{c_peoplesu}, #{c_insa_email}, #{c_insa_phone}, #{c_addr}, #{c_money}, #{c_birthyear}, #{c_regi_file}, #{c_salary}, #{c_phone}, now(),#{c_updateday})
     </insert>
     <select id="getAllCompanys" resultType="CompanyDto">
         select * from company order by c_id
@@ -40,7 +40,14 @@
         c_money=#{c_money},
         c_birthyear=#{c_birthyear},
         c_salary=#{c_salary},
-        c_phone=#{c_phone}
+        c_phone=#{c_phone},
+        c_updateday=now()
         where c_num=#{c_num}
     </update>
+    
+    
+    <!-- 채용공고에서 사용 -->
+    <select id="selectC_num" parameterType="String" resultType="int">
+    	select c_num from company where c_id = #{c_id}
+    </select>
 </mapper>
