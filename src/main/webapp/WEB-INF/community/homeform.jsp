@@ -100,22 +100,18 @@
         });
     });
     
-    /* content안에 이미지 넣기 */
+    /* content 하단에 첨부이미지 미리보기 */
     $(document).ready(function(){
         $('#upload').change(function(){
             var files = this.files;
-            var content = $('#content');
+            var imageContainer = $('#image-container');
+            imageContainer.empty();
             
             for (var i = 0; i < files.length; i++) {
                 var reader = new FileReader();
                 reader.onload = function (e) {
-                    var image = new Image();
-                    image.src = e.target.result;
-                    image.style.maxWidth = '100%';
-                    image.style.height = 'auto';
-                    image.style.marginTop = '10px';
-                    
-                    content.append(image);
+                    var image = $('<img>').attr('src', e.target.result);
+                    imageContainer.append(image);
                 }
                 reader.readAsDataURL(files[i]);
             }
@@ -164,6 +160,7 @@
             <input type="file" id="upload" name="upload" multiple>&nbsp;
             <span id="file-status" style="font-size: 14px;">이미지 첨부 없음</span>
         </div>
+        <div id="image-container" class="image-container" style="margin-top: 10px;"></div>
         <div style="margin-top: 25px;">
             <button type="submit">게시글 등록</button>
         </div>

@@ -144,6 +144,7 @@ public class CommunityController {
         //System.out.println("닉네임: " + dto.getCom_nickname());
         //System.out.println("작성시간: " + dto.getCom_writetime());
         
+        dto.setCom_content(dto.getCom_content().replace("\n", "<br/>")); //content 줄바꿈 로직 추가
         model.addAttribute("dto", dto);
         return "community/homedetail"; // "community/homedetail.jsp"로 매핑
     }

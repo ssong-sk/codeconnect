@@ -56,7 +56,7 @@
     }
     .posttotalgo a {
         margin-top: 20px;
-        margin-left: 563px;
+        margin-left: 545px;
         background-color: #ffffff;
         color: #5c667b;
         border: 1px solid #ddd;
@@ -70,6 +70,9 @@
     }
 
 </style>
+<script type="text/javascript">
+
+</script>
 </head>
 <body>
 
@@ -97,7 +100,8 @@
     </div>
     <!-- 게시글 내용 -->
     <div class="content" style="margin-top: 40px; height: 500px;">
-        <p>${dto.com_content}</p>
+        <%-- <p>${dto.com_content}</p> --%>
+        <c:out value="${dto.com_content}" escapeXml="false"/>
     </div>
     <!-- 게시글 이미지 -->
     <c:if test="${not empty dto.com_photo && dto.com_photo != 'no'}">
