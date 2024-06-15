@@ -24,5 +24,7 @@ public class RegisterDto {
 	private String r_email;
 	private String r_gender;
 	private Timestamp r_gaipday;
+	
+	private String r_nickname;
 
 }
