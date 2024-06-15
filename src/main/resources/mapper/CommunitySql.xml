@@ -40,12 +40,16 @@
     	select * from community where com_post_type = 'interview'
     </select>
     
-    <!-- 추가된 메소드 -->
+    <!-- post_type 가져오는 쿼리 -->
     <select id="getTotalCountByType" parameterType="String" resultType="int">
         select count(*) from community where com_post_type = #{type}
     </select>
     
     <select id="getAllDatasByType" parameterType="String" resultType="CommunityDto">
         select * from community where com_post_type = #{type} order by com_num desc
+    </select>
+    <!-- com_categoty별 데이터 가져오는 쿼리 -->
+    <select id="getAllDatasByCategory" parameterType="String" resultType="CommunityDto">
+    	select * from community where com_category = #{com_category} order by com_num desc
     </select>
 </mapper>

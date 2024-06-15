@@ -39,9 +39,20 @@ public class CommunityController {
 
         int totalCount = service.getTotalCountByType("home");
         List<CommunityDto> list = service.getAllDatasByType("home");
+        
+        List<CommunityDto> newcomerList=service.getAllDatasByCategory("신입");
+        List<CommunityDto> prepareList=service.getAllDatasByCategory("취준");
+        List<CommunityDto> letterList=service.getAllDatasByCategory("자소서");
+        List<CommunityDto> interviewList=service.getAllDatasByCategory("면접");
+        List<CommunityDto> qaList=service.getAllDatasByCategory("Q&A");
 
         mview.addObject("totalCount", totalCount);
         mview.addObject("list", list);
+        mview.addObject("newcomerList", newcomerList);
+        mview.addObject("prepareList", prepareList);
+        mview.addObject("letterList", letterList);
+        mview.addObject("interviewList", interviewList);
+        mview.addObject("qaList", qaList);
 
         mview.setViewName("community/homelist"); // "community/homelist.jsp"로 매핑
         return mview;
@@ -185,13 +196,23 @@ public class CommunityController {
         return "community/homeform"; // "community/homeform.jsp"로 매핑
     }
     
-    @GetMapping("/community/homeposttotal")
-    public String homePostTotal(Model model)
+    @GetMapping("/community/hometotalpost")
+    public String homeTotalPost(Model model)
     {
     	List<CommunityDto> list=service.getAllDatasByType("home");
     	
     	model.addAttribute("list", list);
     	
-    	return "community/homeposttotal";
+    	return "community/hometotalpost";
+    }
+    
+    @GetMapping("community/homefavoritelist")
+    public String homeFavoriteList(Model model)
+    {
+    	List<CommunityDto> list=service.getAllDatasByType("home");
+    	
+    	model.addAttribute("list", list);
+    	
+		return "community/homefavoritelist";
     }
 }

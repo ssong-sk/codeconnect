@@ -66,4 +66,10 @@ public class CommunityService implements CommunityServiceInter {
     public List<CommunityDto> getAllDatasByType(String type) {
         return mapper.getAllDatasByType(type);
     }
+
+	@Override
+	public List<CommunityDto> getAllDatasByCategory(String category) {
+		// TODO Auto-generated method stub
+		return mapper.getAllDatasByCategory(category);
+	}
 }
