@@ -241,7 +241,7 @@
 <!-- 인정사항 폼 -------------------------------------------------------------------------------------------------------------------------->
                 <div class="personal">
                         <div class="form-caption">
-                            <h4><b>인적사항</b></h4>&nbsp;&nbsp;&nbsp;
+                            <span style="font-size: 1.3em;"><b>인적사항</b></span>&nbsp;&nbsp;&nbsp;
                             <span style="font-size: 0.8em;">자동입력(사진 및 경력 제외)</span>
                         </div>
                         <hr style="width: 100%;">
@@ -325,16 +325,12 @@
                         </table>
                    
                 </div>
-  </form>              
-                
-                
-                
-                
+           </form>              
                 
 <!-- 학력 폼 ---------------------------------------------------------------------------------------------------------------------->
                 <div class="school">
                     <div class="form-caption">
-                        <h4><b>학력</b></h4>&nbsp;&nbsp;&nbsp;
+                        <span style="font-size: 1.3em;"><b>학력</b></span>&nbsp;&nbsp;&nbsp;
                         <span style="font-size: 0.8em;">*필수정보입력</span>
                         <span style="font-size: 0.8em; color: #4876EF; margin-left: 82%;">
                         <a style="cursor: pointer;" id="schoolPlus">+ 추가하기</a></span>
@@ -348,6 +344,7 @@
             <script type="text/javascript">
                 //추가하기 누르면 폼 나타나게 하기
                 $(function () {
+                	
                     //추가하기 클릭시 입력창 추가
                     $("#schoolPlus").click(function () {
                         var schoolclick = $("#schoolclick").length;
@@ -357,7 +354,7 @@
                             var total = "";
                             
                             total += '<form id="sctotal">'
-                            total += '<table id="schoolclick" style="width: 100%;">';
+                            total += '<table id="schoolclick" style="width: 100%;  margin-top: 2%;">';
                             total += '<tr>';
                             total += '<td class="form-group">';
                             total += '<select class="form-select" style="width: 250px;" id="education-select" name="sc_category">';
@@ -446,62 +443,44 @@
                             total += '</tr>';
                             total += '</table>';
                             total += '</form>'
-            
                             $("#schoolform").append(total);
-            
-                            
-                            // 해당폼 구분 선택시 다르게
-                            var educationSelect = document.getElementById('education-select');
-            				
-                            var highschoolOptions = document.getElementById('highschool-options');
-            
-                            var universityOptions = document.getElementById('university-options');
-            
-                            var highschoolOptionsDetails = document.getElementById('highschool-options-details');
-            
-                            var universityOptionsDetails = document.getElementById('university-options-details');
-            
-                            educationSelect.addEventListener('change', function () {
-                                if (educationSelect.value === '고등학교 졸업') {
-            
-                                    highschoolOptions.style.display = 'block';
-                                    universityOptions.style.display = 'none';
-                                    highschoolOptionsDetails.style.display = 'table-row'; // 추가
-                                    universityOptionsDetails.style.display = 'none';
-                                }
-            
-                                else if (educationSelect.value === '대학·대학원 이상 졸업') {
-            
-                                    highschoolOptions.style.display = 'none';
-                                    universityOptions.style.display = 'block';
-                                    highschoolOptionsDetails.style.display = 'none';
-                                    universityOptionsDetails.style.display = 'table-row'; // 추가
-                                }
-            
-                                else {
-            
-                                    highschoolOptions.style.display = 'none';
-                                    universityOptions.style.display = 'none';
-                                    highschoolOptionsDetails.style.display = 'none';
-                                    universityOptionsDetails.style.display = 'none';
-                                }
-                            });
                         }
                     });
-            
-                    // 취소 클릭시 입력창 삭제
-                    $(document).on("click", "#schoolCancle", function () {
-                        $("#schoolform").html("");
+                    
+                    // 학력구부 카페고리 변경 이벤트
+                    $(document).on("change", "#education-select", function () {
+                        // 해당폼 구분 선택시 다르게
+                        if ($(this).val() === '고등학교 졸업') {
+                        	$("#highschool-options").css("display","block");
+                        	$("#university-options").css("display","none");
+                        	$("#highschool-options-details").css("display","table-row");
+                        	$("#university-options-details").css("display","none");
+                        	 
+						}
+     					else if($(this).val() === '대학·대학원 이상 졸업') {
+     						$("#highschool-options").css("display","none");
+                        	$("#university-options").css("display","block");
+                        	$("#highschool-options-details").css("display","none");
+                        	$("#university-options-details").css("display","table-row");
+                         }	       
+     					else {
+     						$("#highschool-options").css("display","none");
+                        	$("#university-options").css("display","none");
+                        	$("#highschool-options-details").css("display","none");
+                        	$("#university-options-details").css("display","none");	
+     					}
                     });
                     
-                    
-                    
+                    // 취소 클릭시 입력창 삭제
+                    $(document).on("click", "#schoolCancle", function () {
+                    	$("#schoolList").show();
+                        $("#schoolform").html("");
+                    });
                     
                     //저장시 shcool insert 하기
                     $(document).on("click", "#schoolOk", function () {
                     	
-                    	//var shcooldata = $("#sctotal").serialize();
-                    	
+
                     	var formData = {
                     			
 					        pe_num: $('#pe_num').val(),
@@ -521,7 +500,7 @@
 					        sc_uni_jolup: $('input[name="sc_uni_jolup"]').val(),
 					        sc_uni_grade: $('input[name="sc_uni_grade"]').val(),
 					        sc_uni_sum: $('select[name="sc_uni_sum"]').val()
-					    };
+					    }
                     	
                     	
                     	//sc insert 작성 및 list 출력
@@ -534,16 +513,13 @@
                     	    dataType: "json", 
                     	    success: function (res) {
                     	    	
-                    	    	//console.log(res.sclist[0]);
-                    	    	//console.log(res.sclist[0].sc_category);
-                    	    	
-                    	    	
-                    	    	
                     	    	//삼항연산자 사용으로 고등학교 졸업 체크 여부에 따라 분류
                     	    	var sc_category = res.sclist[0].sc_category; // 카테고리
                     	    	var sc_name = sc_category == "고등학교 졸업" ? res.sclist[0].sc_hi_name : res.sclist[0].sc_uni_name; // 학교명
+                    	    	
                     	    	var sc_transfer = sc_category == "고등학교 졸업" ? res.sclist[0].sc_hi_transfer : res.sclist[0].sc_uni_transfer; //편입여부
-                    	    	sc_transfer = sc_transfer == "" ? "" : sc_transfer + '|';
+                    	    	sc_transfer = sc_transfer == "" ? "" : sc_transfer + ' | ';
+                    	    	
                     	    	var sc_check = sc_category == "고등학교 졸업" ? res.sclist[0].sc_hi_check : res.sclist[0].sc_uni_check; //졸업여부
                     	    	var sc_iphack = sc_category == "고등학교 졸업" ? res.sclist[0].sc_hi_iphack : res.sclist[0].sc_uni_iphack; // 입학년도
                     	    	var sc_jolup = sc_category == "고등학교 졸업" ? res.sclist[0].sc_hi_jolup : res.sclist[0].sc_uni_jolup; // 졸업년도
@@ -551,44 +527,44 @@
                     	    	var sc_uni_grade = res.sclist[0].sc_uni_grade; // 학점(대학교)
                     	    	var sc_uni_sum = res.sclist[0].sc_uni_sum; // 총학점(대학교)
                     	    	var sc_uni_category = res.sclist[0].sc_uni_category; // 대학구분(대학교)
+                    	    	var sc_num = res.sclist[0].sc_num; //num값
                     	    	
                     	    	 
                     	    	//전체 데이터 담기
                     	    	var sc = "";
                     	    	
-                    	    	sc += '<table>                                                              ';
-                                sc += '<tr>                                                                 ';
-                                sc += '<td class="form-group">                                            ';
-                                sc += '<h5><b>'+sc_name+'</b></h5>&nbsp;                                     ';
+                    	    	sc += '<table style="border-bottom: 0.5px solid #D9D9D9; width: 100%; margin-top: 1%;">';
+                                sc += '<tr>';
+                                sc += '<td class="form-group">';
+                                sc += '<span style="font-size: 1.3em;"><b>'+sc_name+'</b></span>&nbsp;';
                                 
                                 //고등학교 졸업 선택 안할 경우
                                 if( sc_category != "고등학교 졸업"){
                                 	
-	                                sc += '<h5><b>'+'('+sc_uni_category+')'+'</b></h5>&nbsp;&nbsp;&nbsp;&nbsp;                    ';
+	                                sc += '<b>'+'('+sc_uni_category+')'+'</b>&nbsp;&nbsp;&nbsp;&nbsp;';
                                
                                 }
                                 
-                                sc += '<span>'+sc_iphack+' ~ '+sc_jolup+' (' + sc_transfer + sc_check+')</span><br>                    ';
-                                sc += '<span style="float: right; cursor: pointer;"><i class="bi bi-pencil scupdate" sc_num="${scdto.sc_num}"></i></span>  ';
-                                sc += '<span style="float: right; cursor: pointer;"><i class="bi bi-trash3 scdelete" sc_num="${scdto.sc_num}"></i></span>  ';
-                                sc += '</td>                                                              ';
-                                sc += '<td class="form-group">                                            ';
-                                sc += '<span>'+sc_major+'</span>                                            ';
-                                sc += '</td>                                                              ';
+                                sc += '<span>'+sc_iphack+' ~ '+sc_jolup+' (' + sc_transfer + sc_check+')</span><br>';
+                                sc += '<span style="cursor: pointer;"><i class="bi bi-pencil scupdate" sc_num='+sc_num+'></i></span>';
+                                sc += '<span style="cursor: pointer;"><i class="bi bi-trash3 scdelete" sc_num='+sc_num+'></i></span>';
+                                sc += '</td>';
+                                sc += '<td class="form-group">';
+                                sc += '<span>'+sc_major+'</span>';
+                                sc += '</td>';
                                 
-                              //고등학교 졸업 선택 안할 경우
-                                if( sc_category != "고등학교 졸업"){
+                                //고등학교 졸업 선택 안할 경우
+                                if( sc_category != "고등학교 졸업") {
                                 	
-	                                sc += '<td class="form-group">                                         ';
-	                                sc += '<span>학점</span>&nbsp;&nbsp;&nbsp;&nbsp;                       ';
-	                                sc += '<span>'+sc_uni_grade+' / '+sc_uni_sum+'</span>                                          ';
-	                                sc += '</td>                                                             ';
+	                                sc += '<td class="form-group">';
+	                                sc += '<span>학점</span>&nbsp;&nbsp;&nbsp;&nbsp;';
+	                                sc += '<span>'+sc_uni_grade+' / '+sc_uni_sum+'</span>';
+	                                sc += '</td>';
 	                           
                                 }
                               
-                                sc += '</tr>                                                                ';
-                              	sc += '</table>                                                             ';
-                              	sc += '<hr>                                                                 ';
+                                sc += '</tr>';
+                              	sc += '</table>';
                     	    	
                     	    	
                     	    	
@@ -598,8 +574,7 @@
                     	    	//form 리셋
                     	    	$("#schoolform").html("");
                     	    }
-                    	});
-                    	
+                    	})
 					});
                     
                     
@@ -607,8 +582,9 @@
                     $(document).on("click", ".scdelete", function() {
                     	
                     	var sc_num = $(this).attr("sc_num");
-                    	alert(sc_num);
                     	
+                    	var scThis = $(this);
+
                     	var sc_confirm = confirm("해당 내역을 삭제하시겠습니까?");
                     	
                     	if(sc_confirm) {
@@ -621,35 +597,292 @@
                     			data : {"sc_num":sc_num},
                     			success : function() {
                     				
-                    				location.reload();
+                    				scThis.parents('table').remove();
                     			}
                     		})
                     	}
-                    })
-                });
+                    });
+                    
+                    
+                    //학력 수정폼 띄우기
+                     $(document).on("click", ".scupdate", function() {
+                    	
+                    	var sc_num = $(this).attr("sc_num");
+                    	//alert(sc_num);
+                    	
+                        $.ajax ({
+                        	
+                        	type : "get",
+                        	dataType : "json",
+                        	url : "shcoolupdateform",
+                        	data : {"sc_num":sc_num},
+                        	success : function (data) {
+                        		
+                        		$("#schoolList").hide();
+                        		
+                        		var sc_category = data.sc_category; // 카테고리
+                    	    	var sc_name = sc_category == "고등학교 졸업" ? data.sc_hi_name : data.sc_uni_name; // 학교명
+                    	    	var sc_transfer = sc_category == "고등학교 졸업" ? data.sc_hi_transfer : data.sc_uni_transfer; //편입여부
+                    	    	sc_transfer = sc_transfer == "" ? "" : sc_transfer + '|';
+                    	    	var sc_check = sc_category == "고등학교 졸업" ? data.sc_hi_check : data.sc_uni_check; //졸업여부
+                    	    	var sc_iphack = sc_category == "고등학교 졸업" ? data.sc_hi_iphack : data.sc_uni_iphack; // 입학년도
+                    	    	var sc_jolup = sc_category == "고등학교 졸업" ? data.sc_hi_jolup : data.sc_uni_jolup; // 졸업년도
+                    	    	var sc_major = sc_category == "고등학교 졸업" ? data.sc_hi_major : data.sc_uni_major; // 전공
+                    	    	var sc_uni_grade = data.sc_uni_grade; // 학점(대학교)
+                    	    	var sc_uni_sum = data.sc_uni_sum; // 총학점(대학교)
+                    	    	var sc_uni_category = data.sc_uni_category; // 대학구분(대학교)
+                    	    	var sc_num = data.sc_num; //sc_num값
+                        		
+                        		
+                        		
+                        		var total = "";
+                                
+                                total += '<form id="sctotal">'
+                                total += '<input type="hidden" name="sc_num" id="sc_num" value='+sc_num+'>'
+                                total += '<table id="schoolclick" style="width: 100%;">';
+                                total += '<tr>';
+                                total += '<td class="form-group">';
+                                total += '<select class="form-select" style="width: 250px;" id="education-select" name="sc_category" value="'+sc_category+'">';
+                                total += '<option value="none">학력구분 선택*</option>';
+                                total += '<option value="고등학교 졸업" >고등학교 졸업</option>';
+                                total += '<option value="대학·대학원 이상 졸업">대학·대학원 이상 졸업</option>';
+                                total += '</select>';
+                                total += '</td>';
+                                total += '<!-- 고등학교 졸업을 선택했을 때 메뉴 -->';
+                                total += '<tr id="highschool-options" style="display: none;">';
+                                total += '<td class="form-group">';
+                                
+                                if( sc_transfer == ""){
+	                                total += '<input type="checkbox" name="sc_hi_transfer">편입';
+                                }else{
+	                                total += '<input type="checkbox" name="sc_hi_transfer" checked="checked">편입';
+                                }
+                                
+                                total += '</td>';
+                                total += '</tr>';
+                                total += '<tr id="highschool-options-details" style="display: none;">';
+                                total += '<td class="form-group">';
+                                total += '<input type="text" class="form-control" name="sc_hi_name" style="width: 200px;" value="'+sc_name+'">';
+                                total += '<select class="form-select" name="sc_hi_check" style="width: 150px;" value="'+sc_check+'">';
+                                total += '<option value="">졸업여부*</option>';
+                                total += '<option value="졸업">졸업</option>';
+                                total += '<option value="재학중">재학중</option>';
+                                total += '<option value="휴학중">휴학중</option>';
+                                total += '<option value="중퇴">중퇴</option>';
+                                total += '<option value="자퇴">자퇴</option>';
+                                total += '<option value="졸업예정">졸업예정</option>';
+                                total += '</select>';
+                                total += '<input type="date" name="sc_hi_iphack" class="form-control" style="width: 180px;" value="'+sc_iphack+'">';
+                                total += '<input type="date" name="sc_hi_jolup" class="form-control" style="width: 180px;" value="'+sc_jolup+'">';
+                                total += '<select class="form-select" name="sc_hi_major" style="width: 150px;" value="'+sc_major+'">';
+                                total += '<option value="">전공계열*</option>';
+                                total += '<option value="문과계열">문과계열</option>';
+                                total += '<option value="이과계열">이과계열</option>';
+                                total += '<option value="전문(실업)계">전문(실업)계</option>';
+                                total += '<option value="예체능계">예체능계</option>';
+                                total += '<option value="특성화">특성화</option>';
+                                total += '<option value="특수목적고">특수목적고</option>';
+                                total += '</select>';
+                                total += '</td>';
+                                total += '</tr>';
+                                total += '<!-- 대학 대학원 폼 -->';
+                                total += '<tr id="university-options" style="display: none;">';
+                                total += '<td class="form-group">';
+                                total += '<select class="form-select" name="sc_uni_category"  style="width: 150px;" value="'+sc_uni_category+'">';
+                                total += '<option value="">대학구분*</option>';
+                                total += '<option value="2,3년">2,3년</option>';
+                                total += '<option value="4년">4년</option>';
+                                total += '<option value="석사">석사</option>';
+                                total += '<option value="박사">박사</option>';
+                                total += '</select>';
+                                total += '<input type="text" class="form-control" name="sc_uni_name" style="width: 200px;" value="'+sc_name+'" >';
+                                
+                                if( sc_transfer == ""){
+                                	total += '<input type="checkbox" name="sc_uni_transfer">편입';
+                                }else{
+                                	total += '<input type="checkbox" name="sc_uni_transfer" checked="checked">편입';
+                                }
+                                
+                                total += '</td>';
+                                total += '</tr>';
+                                total += '<tr id="university-options-details" style="display: none;">';
+                                total += '<td class="form-group">';
+                                total += '<input type="text" class="form-control" name="sc_uni_major" style="width: 180px;" value="'+sc_major+'">';
+                                total += '<select class="form-select" name="sc_uni_check" style="width: 150px;" value="'+sc_check+'">';
+                                total += '<option value="">졸업여부*</option>';
+                                total += '<option value="졸업">졸업</option>';
+                                total += '<option value="재학중">재학중</option>';
+                                total += '<option value="휴학중">휴학중</option>';
+                                total += '<option value="중퇴">중퇴</option>';
+                                total += '<option value="자퇴">자퇴</option>';
+                                total += '<option value="졸업예정">졸업예정</option>';
+                                total += '</select>';
+                                total += '<input type="date" class="form-control" name="sc_uni_iphack" style="width: 180px;" value="'+sc_iphack+'">';
+                                total += '<input type="date" class="form-control" name="sc_uni_jolup" style="width: 180px;" value="'+sc_jolup+'">';
+                                total += '<input type="text" class="form-control" name="sc_uni_grade" style="width: 100px;" value="'+sc_uni_grade+'">';
+                                total += '<select class="form-select" name="sc_uni_sum" style="width: 150px;" valuse="'+sc_uni_sum+'">';
+                                total += '<option value="">기준학점*</option>';
+                                total += '<option value="4.0">4.0</option>';
+                                total += '<option value="4.3">4.3</option>';
+                                total += '<option value="4.5">4.5</option>';
+                                total += '<option value="5.0">5.0</option>';
+                                total += '</select>';
+                                total += '</td>';
+                                total += '</tr>';
+                                total += '<!-- 저장 취소 버튼 -->';
+                                total += '<tr>';
+                                total += '<td colspan="2" align="right">';
+                                total += '<br>';
+                                total += '<button type="button" id="schoolUpdateOk" class="btn btn-outline-primary">수정</button>';
+                                total += '&nbsp';
+                                total += '<button type="button" id="schoolCancle" class="btn btn-outline-primary">취소</button>';
+                                total += '</td>';
+                                total += '</tr>';
+                                total += '</table>';
+                                total += '</form>'
                 
-          
+                                $("#schoolform").append(total);
+                                
+                                
+                             	// 해당폼 구분 선택시 다르게
+                             	$("select[name=sc_category]").val(sc_category).prop("selected",true);
+                                // 해당폼 고등학교
+	                            if (sc_category === '고등학교 졸업') {
+	                            	$("select[name=sc_hi_check]").val(sc_check).prop("selected",true);
+	                            	$("select[name=sc_hi_major]").val(sc_major).prop("selected",true);
+	                            	$("#highschool-options").css("display","block");
+	                            	$("#university-options").css("display","none");
+	                            	$("#highschool-options-details").css("display","table-row");
+	                            	$("#university-options-details").css("display","none");
+	                            	 
+								}
+	                            // 해당폼 대학 대학원
+	         					else if (sc_category === '대학·대학원 이상 졸업') {
+	                            	$("select[name=sc_uni_check]").val(sc_check).prop("selected",true);
+	                            	$("select[name=sc_uni_category]").val(sc_uni_category).prop("selected",true);
+	                            	$("select[name=sc_uni_sum]").val(sc_uni_sum).prop("selected",true);
+	         						$("#highschool-options").css("display","none");
+	                            	$("#university-options").css("display","block");
+	                            	$("#highschool-options-details").css("display","none");
+	                            	$("#university-options-details").css("display","table-row");
+	                             }
+                        	}
+                       })
+                    });
+                    
+                    
+
+                     //학력 수정 버튼을 누르면 실행되어 수정 리스트 띄어주기
+                    $(document).on("click", "#schoolUpdateOk", function () {
+                    	
+                    	//var shcooldata = $("#sctotal").serialize();
+                    	
+                    	var formData = {
+					        pe_num: $('#pe_num').val(),
+					        sc_num: $('#sc_num').val(),
+					        sc_category: $('select[name="sc_category"]').val(),
+					        sc_hi_name: $('input[name="sc_hi_name"]').val(),
+					        sc_hi_transfer: $('input[name="sc_hi_transfer"]').is(':checked') ? '편입' : '',
+					        sc_hi_check: $('select[name="sc_hi_check"]').val(),
+					        sc_hi_iphack: $('input[name="sc_hi_iphack"]').val(),
+					        sc_hi_jolup: $('input[name="sc_hi_jolup"]').val(),
+					        sc_hi_major: $('select[name="sc_hi_major"]').val(),
+					        sc_uni_category: $('select[name="sc_uni_category"]').val(),
+					        sc_uni_name: $('input[name="sc_uni_name"]').val(),
+					        sc_uni_transfer: $('input[name="sc_uni_transfer"]').is(':checked') ? '편입' : '',
+					        sc_uni_major: $('input[name="sc_uni_major"]').val(),
+					        sc_uni_check: $('select[name="sc_uni_check"]').val(),
+					        sc_uni_iphack: $('input[name="sc_uni_iphack"]').val(),
+					        sc_uni_jolup: $('input[name="sc_uni_jolup"]').val(),
+					        sc_uni_grade: $('input[name="sc_uni_grade"]').val(),
+					        sc_uni_sum: $('select[name="sc_uni_sum"]').val()
+					    };
+                    	//sc insert 작성 및 list 출력
+                    	$.ajax({
+                    	    type: "post",
+                    	    url: "shcoolupdate",
+                    	    contentType: "application/json",
+                    	    data: JSON.stringify(formData),
+                    	    dataType: "json", 
+                    	    success: function (res) {
+                    	    	
+                    	    	//전체 데이터 담기
+                    	    	var sc = "";
+                    	    	
+                    	    	 $.each(res, function(i,dto){
+                    	    		//삼항연산자 사용으로 고등학교 졸업 체크 여부에 따라 분류
+                         	    	var sc_category = dto.sc_category; // 카테고리
+                         	    	var sc_name = sc_category == "고등학교 졸업" ? dto.sc_hi_name : dto.sc_uni_name; // 학교명
+                         	    	
+                         	    	var sc_transfer = sc_category == "고등학교 졸업" ? dto.sc_hi_transfer : dto.sc_uni_transfer; //편입여부
+                         	    	sc_transfer = sc_transfer == "" ? "" : sc_transfer + '|';
+                         	    	
+                         	    	var sc_check = sc_category == "고등학교 졸업" ? dto.sc_hi_check : dto.sc_uni_check; //졸업여부
+                         	    	var sc_iphack = sc_category == "고등학교 졸업" ? dto.sc_hi_iphack : dto.sc_uni_iphack; // 입학년도
+                         	    	var sc_jolup = sc_category == "고등학교 졸업" ? dto.sc_hi_jolup : dto.sc_uni_jolup; // 졸업년도
+                         	    	var sc_major = sc_category == "고등학교 졸업" ? dto.sc_hi_major : dto.sc_uni_major; // 전공
+                         	    	var sc_uni_grade = dto.sc_uni_grade; // 학점(대학교)
+                         	    	var sc_uni_sum = dto.sc_uni_sum; // 총학점(대학교)
+                         	    	var sc_uni_category = dto.sc_uni_category; // 대학구분(대학교)
+                         	    	var sc_num = dto.sc_num; //num값
+                         	    	
+                         	    	
+                         	    	sc += '<table style="border-bottom: 1px solid gray; width: 100%;">';
+                         	    	sc += '<tr>';
+                         	    	sc += '<td class="form-group">';
+                         	    	sc += '<h5><b>'+sc_name+'</b></h5>&nbsp;';
+                                     
+                         	    	//고등학교 졸업 선택 안할 경우
+                         	    	if( sc_category != "고등학교 졸업"){
+     	                                sc += '<h5><b>'+'('+sc_uni_category+')'+'</b></h5>&nbsp;&nbsp;&nbsp;&nbsp;';
+                                     }
+                                     sc += '<span>'+sc_iphack+' ~ '+sc_jolup+' (' + sc_transfer + sc_check+')</span><br>';
+                                     sc += '<span style="cursor: pointer;"><i class="bi bi-pencil scupdate" sc_num='+sc_num+'></i></span>';
+                                     sc += '<span style="cursor: pointer;"><i class="bi bi-trash3 scdelete" sc_num='+sc_num+'></i></span>';
+                                     sc += '</td>';
+                                     sc += '<td class="form-group">';
+                                     sc += '<span>'+sc_major+'</span>';
+                                     sc += '</td>';
+                                     
+                                   //고등학교 졸업 선택 안할 경우
+                                     if( sc_category != "고등학교 졸업") {
+                                     	
+     	                                sc += '<td class="form-group">';
+     	                                sc += '<span>학점</span>&nbsp;&nbsp;&nbsp;&nbsp;';
+     	                                sc += '<span>'+sc_uni_grade+' / '+sc_uni_sum+'</span>';
+     	                                sc += '</td>';
+     	                           
+                                     }
+                                   
+                                     sc += '</tr>';
+                                   	sc += '</table>';
+                    	    	 })
+                    	    	 
+                    	    	//list 나타내기
+                      	    	$("#schoolList").html(sc);
+                      	    	
+                      	    	//form 리셋
+                      	    	$("#schoolform").html("");	 	
+                      	    	
+                      	    	$("#schoolList").show();
+                    	    }
+                    	})
+					})
+                    
+                });
             </script>
 
-                
-                
-                
-                
-                
-                
-                
 <!-- 경력 ------------------------------------------------------------------------------------------------------------------------>
             <div class="career">
-                <form action="careerinsert" method="post">
                     <div class="form-caption">
-                        <h4><b>경력</b></h4>&nbsp;&nbsp;&nbsp;
+                        <span style="font-size: 1.3em;"><b>경력</b></span>&nbsp;&nbsp;&nbsp;
                         <span style="font-size: 0.8em;">*필수정보입력</span>
                         <span style="font-size: 0.8em; color: #4876EF; margin-left: 82%;">
                             <a style="cursor: pointer;" id="careerPlus">+ 추가하기</a></span>
                     </div>
                     <hr style="width: 100%;">
+                    <div id="careerList"></div>
                     <div id="careerform"></div>
-                </form>
             </div>
             
             <script type="text/javascript">
@@ -666,31 +899,27 @@
                            
                             var total = "";
                             
+                            total +=  '<form id="catotal">'
                             total +=  '<table class="careerform" id="careeclick" style="width: 100%;">';
                             total +=  '<tr>';
                             total +=  '<td class="form-group">';
-                            total +=  '<input type="text" class="form-control" style="width: 160px;" placeholder="회사명*">';
-                            total +=  '<input type="date" class="form-control" style="width: 145px;">';
-                            total +=  '<input type="date" class="form-control" style="width: 145px;">';
-                            total +=  '<select class="form-select" style="width: 200px;">';
-                            total +=  '<option>직무*</option>';
-                            total +=  '<option>신입</option>';
-                            total +=  '<option>경력</option>';
-                            total +=  '</select>';
-                            total +=  '<input type="text" class="form-control" style="width: 150px;" placeholder="근무부서">';
-                            total +=  '<input type="text" class="form-control" style="width: 150px;" placeholder="직급/직책">';
+                            total +=  '<input type="text" class="form-control" name="ca_name" style="width: 180px;" placeholder="회사명*">';
+                            total +=  '<input type="date" class="form-control" name="ca_ipsa" style="width: 180px;">';
+                            total +=  '<input type="date" class="form-control" name="ca_resign" style="width: 180px;">';
+                            total +=  '<input type="text" class="form-control" name="ca_work" style="width: 150px;" placeholder="근무부서">';
+                            total +=  '<input type="text" class="form-control" name="ca_position" style="width: 150px;" placeholder="직급/직책">';
                             total +=  '</td>';
                             total +=  '</tr>';
                             total +=  '<tr>';
                             total +=  '<td class="form-group">';
-                            total +=  '<textarea class="form-control" style="height: 200px;" placeholder="담당업무를 입력해주세요"></textarea>';
+                            total +=  '<textarea class="form-control" style="height: 200px;" name="ca_content" placeholder="담당업무를 입력해주세요"></textarea>';
                             total +=  '</td>';
                             total +=  '</tr>';
                             total +=  '<!-- 저장 취소 버튼 -->';
                             total +=  '<tr>';
                             total +=  '<td colspan="2" align="right">';
                             total +=  '<br>';
-                            total +=  '<button type="submit" class="btn btn-outline-primary">저장</button>';
+                            total +=  '<button type="button" id="careerOk" class="btn btn-outline-primary">저장</button>';
                             total +=  '&nbsp';
                             total +=  '<button type="button" id="careerCancle" class="btn btn-outline-primary">취소</button>';
                             total +=  '</td>';
@@ -698,6 +927,7 @@
                             total +=  '</table>';
                             total +=  '<br>';
                             total +=  '<br>';
+                            total +=  '</form>';
             
                             $("#careerform").append(total);
                         }
@@ -705,28 +935,261 @@
             
                     // 취소 클릭시 입력창 삭제
                     $(document).on("click", "#careerCancle", function () {
-                       
+                        
+                    	$("#careerList").show();
                         $("#careerform").html("");
                     });
+                    
+                    
+                    //경력 insert 하기
+                    $(document).on("click", "#careerOk", function() {
+                    	
+                    	//alert("성공");
+                    	
+                    	var careerData = {
+                    			
+                    			pe_num : $('#pe_num').val(),
+                    			ca_name : $('input[name="ca_name"]').val(),
+                    			ca_ipsa : $('input[name="ca_ipsa"]').val(),
+                    			ca_resign : $('input[name="ca_resign"]').val(),
+                    			ca_work : $('input[name="ca_work"]').val(),
+                    			ca_position : $('input[name="ca_position"]').val(),
+                    			ca_content : $('textarea[name="ca_content"]').val()
+                    	}
+                    	
+                    	//console.log(careerData);
+                    	
+                    	//경력 insert 실행 및 list 동시 출력
+                    	$.ajax ({
+                    		
+                    		type : "post",
+                    		url : "/resumehome/careerinsert",
+                    		contentType : "application/json",
+                    		data : JSON.stringify(careerData),
+                    		dataType : "json",
+                    		success : function(res) {
+                    			
+                    			//alert ("성공");
+                    			//console.log(response);
+                    			
+                    			//변수 설정
+                    			var ca_num = res.calist[0].ca_num;
+                    			var ca_name = res.calist[0].ca_name;
+                    			var ca_ipsa = res.calist[0].ca_ipsa;
+                    			var ca_resign = res.calist[0].ca_resign;
+                    			var ca_work = res.calist[0].ca_work;
+                    			var ca_position = res.calist[0].ca_position;
+                    			var ca_content = res.calist[0].ca_content;
+                    			
+                    			//list 데이터 담기
+                    			var ca = "";
+                    			
+	                    			ca += '<table style="border-bottom: 0.5px solid #D9D9D9; width: 100%; margin-top: 1%;">';
+	                    			ca += '<tr>';
+	                    			ca += '<td class="form-group">';
+	                    			ca += '<span style="font-size: 1.3em;"><b>'+ca_name+'</b></span>&nbsp;';
+	                    			ca += '<span>'+ca_ipsa+' ~ '+ca_resign+'</span>';
+	                    			ca += '<span style="cursor: pointer;"><i class="bi bi-pencil caupdate" ca_num='+ca_num+'></i></span>';
+	                    			ca += '<span style="cursor: pointer;"><i class="bi bi-trash3 cadelete" ca_num='+ca_num+'></i></span>';
+	                    			ca += '</td>';
+	                    			ca += '<td class="form-group">';
+	                    			ca += '<span>'+ca_work+'팀  '+ca_position+'</span>';
+	                    			ca += '</td>';
+	                    			ca += '<td class="form-group" style="margin-top:1%;">';
+	                    			ca += '<span>'+ca_content+'</span>';
+	                    			ca += '</td>';
+	                    			ca += '</tr>';
+	                    			ca += '</table>';
+	                    			
+                    			//list 나타내기
+                    			$("#careerList").append(ca);
+                    			
+                    			//form 리셋
+                    	    	$("#careerform").html("");
+                    			
+                    		}
+                    	})
+                    });
+                    
+                    
+                    //경력 삭제하기
+                    $(document).on("click", ".cadelete", function() {
+                    	
+                    	var ca_num = $(this).attr("ca_num");
+                    	var caThis = $(this);
+                    	var ca_confirm = confirm("해당 내역을 삭제하시겠습니까?");
+                    	
+                    	//console.log(caThis.parents('table'));
+                    	
+                    	if(ca_confirm) {
+                    		
+                    		$.ajax ({
+                    			
+                    			type : "get",
+                    			dataType : "html",
+                    			url : "/resumehome/careerdelete",
+                    			data : {"ca_num":ca_num},
+                    			success : function() {
+                    				
+                    				//console.log(caThis.parents('table'));
+                    				caThis.parents('table').remove();
+                    			}
+                    		})
+                    	}
+                    });
+                    
+                    //학력 수정폼 띄우기
+                    $(document).on("click", ".caupdate", function(){
+                    	
+                    	var ca_num = $(this).attr("ca_num");
+                    	//alert(ca_num);
+                    	
+                    	$.ajax ({
+                    		
+                    		type : "get",
+                    		dataType : "json",
+                    		url : "careerupdateform",
+                    		data : {"ca_num":ca_num},
+                    		success : function(data) {
+                    			
+                    			$("#careerList").hide();
+                    			
+                    			//변수 설정
+                    			var ca_num = data.ca_num;
+                    			var ca_name = data.ca_name;
+                    			var ca_ipsa = data.ca_ipsa;
+                    			var ca_resign = data.ca_resign;
+                    			var ca_work = data.ca_work;
+                    			var ca_position = data.ca_position;
+                    			var ca_content = data.ca_content;
+                    			
+                    			var total = "";
+                                
+                                total += '<form id="catotal">';
+                                total += '<input type="hidden" name="ca_num" id="ca_num" value="' + ca_num + '">';
+                                total += '<table class="careerform" id="careeclick" style="width: 100%;">';
+                                total += '<tr>';
+                                total += '<td class="form-group">';
+                                total += '<input type="text" class="form-control" name="ca_name" style="width: 180px;" value="' + ca_name + '">';
+                                total += '<input type="date" class="form-control" name="ca_ipsa" style="width: 180px;" value="' + ca_ipsa + '">';
+                                total += '<input type="date" class="form-control" name="ca_resign" style="width: 180px;" value="' + ca_resign + '">';
+                                total += '<input type="text" class="form-control" name="ca_work" style="width: 150px;" value="' + ca_work + '">';
+                                total += '<input type="text" class="form-control" name="ca_position" style="width: 150px;" value="' + ca_position + '">';
+                                total += '</td>';
+                                total += '</tr>';
+                                total += '<tr>';
+                                total += '<td class="form-group">';
+                                total += '<textarea class="form-control" style="height: 200px;" name="ca_content">' + ca_content + '</textarea>'; // 'value' 속성을 제거했습니다.
+                                total += '</td>';
+                                total += '</tr>';
+                                total += '<!-- 저장 취소 버튼 -->';
+                                total += '<tr>';
+                                total += '<td colspan="2" align="right">';
+                                total += '<br>';
+                                total += '<button type="button" id="careerUpdateOk" class="btn btn-outline-primary">수정</button>'; // 'careerUdateOk' 오타 수정.
+                                total += '&nbsp;';
+                                total += '<button type="button" id="careerCancel" class="btn btn-outline-primary">취소</button>'; // 'careerCancle' 오타 수정.
+                                total += '</td>';
+                                total += '</tr>';
+                                total += '</table>';
+                                total += '<br>';
+                                total += '<br>';
+                                total += '</form>';
+                                
+                                $("#careerform").append(total);
+                    			
+                    		}
+                    	})
+                    });
+                    
+                    //경력 수정버튼 누르면 실행되고 수정리스트 띄어주기
+                    $(document).on("click", "#careerUpdateOk", function () {
+						
+                    	var caData = {
+                    	
+                    			pe_num : $('#pe_num').val(),
+                    			ca_num : $('#ca_num').val(),
+                    			ca_name : $('input[name="ca_name"]').val(),
+                    			ca_ipsa : $('input[name="ca_ipsa"]').val(),
+                    			ca_resign : $('input[name="ca_resign"]').val(),
+                    			ca_work : $('input[name="ca_work"]').val(),
+                    			ca_position : $('input[name="ca_position"]').val(),
+                    			ca_content : $('textarea[name="ca_content"]').val()
+                    	}
+                    	
+                    	console.log(caData);
+                    	
+                    	//ca 수정 작성 및 수정list 띄우기
+                    	$.ajax ({
+                    		
+                    		type : "post",
+                    		url : "careerupdate",
+                    		contentType : "application/json",
+                    		data : JSON.stringify(caData),
+                    		dataType : "json",
+                    		success : function(res) {
+                    			
+                    			//전체데이터 담기
+                    			var ca = "";
+                    			
+                    			//each문 돌리기
+                    			$.each(res, function(i, dto) {
+						            var ca_num = dto.ca_num;
+						            var ca_name = dto.ca_name;
+						            var ca_ipsa = dto.ca_ipsa;
+						            var ca_resign = dto.ca_resign;
+						            var ca_work = dto.ca_work;
+						            var ca_position = dto.ca_position;
+						            var ca_content = dto.ca_content;
+						            
+						            // list 폼 띄우기
+						            ca += '<table style="border-bottom: 0.5px solid #D9D9D9; width: 100%; margin-top: 1%;">';
+						            ca += '<tr>';
+						            ca += '<td class="form-group">';
+						            ca += '<span style="font-size: 1.3em;"><b>' + ca_name + '</b></span>&nbsp;';
+						            ca += '<span>' + ca_ipsa + ' ~ ' + ca_resign + '</span>';
+						            ca += '<span style="cursor: pointer;"><i class="bi bi-pencil caupdate" ca_num="' + ca_num + '"></i></span>';
+						            ca += '<span style="cursor: pointer;"><i class="bi bi-trash3 cadelete" ca_num="' + ca_num + '"></i></span>';
+						            ca += '</td>';
+						            ca += '<td class="form-group">';
+						            ca += '<span>' + ca_work + '팀  ' + ca_position + '</span>';
+						            ca += '</td>';
+						            ca += '<td class="form-group" style="margin-top:1%;">';
+						            ca += '<span>' + ca_content + '</span>';
+						            ca += '</td>';
+						            ca += '</tr>';
+						            ca += '</table>';
+						        });
+                    			
+                    			
+                    			//list 나타내기
+                    			$("#careerList").html(ca);
+                    			
+                    			//form 리셋
+                    			$("#careerform").html("")
+                    			
+                    			//list 띄우기
+                    			$("#careerList").show();
+                    			
+                    		}
+                    	})
+					});
+                    
                 });
                 
             </script>
                 
-                
-                
-                
 <!-- 경험, 활동, 교육 ----------------------------------------------------------------------------------------------------------->
                 <div class="activity">
-                    <form action="activityinsert" method="post">
                         <div class="form-caption">
-                            <h4><b>경험 / 활동 / 교육</b></h4>&nbsp;&nbsp;&nbsp;
+                            <span style="font-size: 1.3em;"><b>경험 / 활동 / 교육</b></span>&nbsp;&nbsp;&nbsp;
                             <span style="font-size: 0.8em;">*필수정보입력</span>
                             <span style="font-size: 0.8em; color: #4876EF; margin-left: 73.4%;">
                         <a style="cursor: pointer;" id="activityPlus">+ 추가하기</a></span>
                         </div>
                         <hr style="width: 100%;">
+                        <div id="activityList"></div>
                         <div id="activityform"></div>
-                    </form>
                 </div>
                 
                 <!-- 경험, 활동, 교육 폼 나타내기 -->
@@ -743,62 +1206,280 @@
                         if (activityclick == 0) {
                            
                             var total = "";
-                            
-                   total += '<table id="activityclick" style="width: 100%;">';
-                   total += '<tr>';
-                   total += '<td class="form-group">';
-                   total += '<select class="form-select" style="width: 200px;">';
-                   total += '<option>활동구분 선택*</option>';
-                   total += '<option>교내활동</option>';
-                   total += '<option>인턴</option>';
-                   total += '<option>자원봉사</option>';
-                   total += '<option>동아리</option>';
-                   total += '<option>아르바이트</option>';
-                   total += '<option>사회활동</option>';
-                   total += '<option>수행과제</option>';
-                   total += '<option>해외연수</option>';
-                   total += '</select>';
-                   total += '<input type="text" class="form-control" style="width: 220px;" placeholder="기관/장소명*">';
-                   total += '<input type="date" class="form-control" style="width: 120px;">';
-                   total += '<input type="date" class="form-control" style="width: 120px;">';
-                   total += '</td>';
-                   total += '</tr>';
-                   total += '<b>활동 설명</b><br>';
-                   total += '<tr>';
-                   total += '<td class="form-group">';
-                   total += '<textarea class="form-control" style="height: 200px;" placeholder="경험/활동 상세내용 입력"></textarea>';
-                   total += '</td>';
-                   total += '</tr>';
-                   total += '<!-- 저장 취소 버튼 -->';
-                   total += '<tr>';
-                   total += '<td colspan="2" align="right">';
-                   total += '<br>';
-                   total += '<button type="submit" class="btn btn-outline-primary">저장</button>';
-                   total +=  '&nbsp';
-                   total += '<button type="button" id="activityCancle" class="btn btn-outline-primary">취소</button>';
-                   total += '</td>';
-                   total += '</tr>';
-                   total += '</table>';
-            
-                            $("#activityform").append(total);
-                        }
-                    });
-            
-                    // 취소 클릭시 입력창 삭제
-                    $(document).on("click", "#activityCancle", function () {
-                       
-                        $("#activityform").html("");
-                    });
+	                                                       
+			                   total += '<form id="actotal">';
+			                   total += '<table id="activityclick" style="width: 100%; margin-top: 2%;">';
+			                   total += '<tr>';
+			                   total += '<td class="form-group">';
+			                   total += '<select class="form-select" style="width: 200px;" name="ac_category">';
+			                   total += '<option>활동구분 선택*</option>';
+			                   total += '<option>교내활동</option>';
+			                   total += '<option>인턴</option>';
+			                   total += '<option>자원봉사</option>';
+			                   total += '<option>동아리</option>';
+			                   total += '<option>아르바이트</option>';
+			                   total += '<option>사회활동</option>';
+			                   total += '<option>수행과제</option>';
+			                   total += '<option>해외연수</option>';
+			                   total += '</select>';
+			                   total += '<input type="text" class="form-control" style="width: 220px;" name="ac_name"  placeholder="기관/장소명*">';
+			                   total += '<input type="date" class="form-control" style="width: 180px;" name="ac_start">';
+			                   total += '<input type="date" class="form-control" style="width: 180px;" name="ac_end">';
+			                   total += '</td>';
+			                   total += '</tr>';
+			                   total += '<tr>';
+			                   total += '<td class="form-group">';
+			                   total += '<textarea class="form-control" style="height: 200px;" placeholder="경험/활동 상세내용 입력" name="ac_content"></textarea>';
+			                   total += '</td>';
+			                   total += '</tr>';
+			                   total += '<!-- 저장 취소 버튼 -->';
+			                   total += '<tr>';
+			                   total += '<td colspan="2" align="right">';
+			                   total += '<br>';
+			                   total += '<button type="button" id="activityOk" class="btn btn-outline-primary">저장</button>';
+			                   total +=  '&nbsp';
+			                   total += '<button type="button" id="activityCancle" class="btn btn-outline-primary">취소</button>';
+			                   total += '</td>';
+			                   total += '</tr>';
+			                   total += '</table>';
+			                   total += '</form>';
+			            
+			                   $("#activityform").append(total);
+		               }
+		              });
+		            
+		                    // 취소 클릭시 입력창 삭제
+		                    $(document).on("click", "#activityCancle", function () {
+		                       		                    	
+		                        $("#activityList").show();
+		                        $("#activityform").html("");
+		                    });
+		                    
+		                    
+		                    //경험활동 저장 시 insert하기
+		                    $(document).on("click", "#activityOk", function(){
+		                    	
+		                    	var acData = {
+		                    			
+		                    			pe_num: $('#pe_num').val(),
+		                    			ac_category: $('select[name="ac_category"]').val(),
+		                    			ac_name: $('input[name="ac_name"]').val(),
+		                    			ac_start: $('input[name="ac_start"]').val(),
+		                    			ac_end: $('input[name="ac_end"]').val(),
+		                    			ac_content: $('textarea[name="ac_content"]').val()
+		                    	};
+		                    	
+		                    	//ac insert 장성 및 list 출력
+		                    	$.ajax ({
+		                    		
+		                    		type: "post",
+		                     	    url: "actibityinsert",
+		                     	    contentType: "application/json",
+		                     	    data: JSON.stringify(acData),
+		                     	    dataType: "json", 
+		                     	    success: function (res) {
+		                     	    	
+		                     	    	var ac_num = res.aclist[0].ac_num; // num
+		                     	    	var ac_category = res.aclist[0].ac_category; // 카테고리
+		                     	    	var ac_name = res.aclist[0].ac_name; // 이름
+		                     	    	var ac_start = res.aclist[0].ac_start; // 시작일
+		                     	    	var ac_end = res.aclist[0].ac_end; // 종료일
+		                     	    	var ac_content = res.aclist[0].ac_content; // 내용
+		                     	    	
+		                     	    	//전체 데이터 담기
+		                     	    	var ac = "";
+		                     	    	
+			                     	    	ac += '<table style="border-bottom: 0.5px solid #D9D9D9; width: 100%; margin-top: 1%;">';
+			                    			ac += '<tr>';
+			                    			ac += '<td class="form-group">';
+			                    			ac += '<span style="font-size: 1.3em;"><b>'+ac_category+' -> '+ac_name+'</b></span>&nbsp;';
+			                    			ac += '<span>'+ac_start+' ~ '+ac_end+'</span>';
+			                    			ac += '<span style="cursor: pointer;"><i class="bi bi-pencil acupdate" ac_num='+ac_num+'></i></span>';
+			                    			ac += '<span style="cursor: pointer;"><i class="bi bi-trash3 acdelete" ac_num='+ac_num+'></i></span>';
+			                    			ac += '</td>';
+			                    			ac += '<td class="form-group" style="margin-top:1%;">';
+			                    			ac += '<span>'+ac_content+'</span>';
+			                    			ac += '</td>';
+			                    			ac += '</tr>';
+			                    			ac += '</table>';
+			                    			
+		                    			//list 나타내기
+		                    			$("#activityList").append(ac);
+		                    			
+		                    			//form 리셋
+		                    	    	$("#activityform").html("");
+		                     	    }
+		                    	})
+		                    });
+		                    
+		                    //경험활동 삭제하기
+		                    $(document).on("click", ".acdelete", function() {
+		                    	
+		                    	var ac_num = $(this).attr("ac_num");
+		                    	//alert(ac_num);
+		                    	var acThis = $(this);
+		                    	
+		                    	var ac_confirm = confirm("해당 내역을 삭제하시겠습니까?");
+		                    	
+		                    	if(ac_confirm) {
+		                    		
+		                    		$.ajax ({
+		                    			
+		                    			type : "get",
+		                    			dataType :"html",
+		                    			url : "actibitydelete",
+		                    			data : {"ac_num":ac_num},
+		                    			success : function () {
+											
+		                    				acThis.parents('table').remove();
+										}
+		                    		})
+		                    	}
+		                    });
+		                    
+		                    
+		                    //학력 수정폼 띄우기
+		                    $(document).on("click", ".acupdate", function() {
+		                    	
+		                    	var ac_num = $(this).attr("ac_num");
+		                    	//alert(ac_num);
+		                    	
+		                    	$.ajax ({
+		                    		
+		                    		type : "get",
+		                    		dataType : "json",
+		                    		url : "actibityupdateform",
+		                    		data : {"ac_num":ac_num},
+		                    		success : function (data) {
+										
+		                    			//수정폼 누를 시 list 사라지게 하기
+		                    			$("#activityList").hide();
+		                    			
+		                    			var ac_num = data.ac_num; // num
+		                     	    	var ac_category = data.ac_category; // 카테고리
+		                     	    	var ac_name = data.ac_name; // 이름
+		                     	    	var ac_start = data.ac_start; // 시작일
+		                     	    	var ac_end = data.ac_end; // 종료일
+		                     	    	var ac_content = data.ac_content; // 내용
+		                     	    	
+		                     	    	//수정폼에 폼 담기
+		                     	    	var total = "";
+		                     	    	
+			                     	       total += '<form id="actotal">';
+			                     	       total += '<input type="hidden" name="ac_num" id="ac_num" value="'+ac_num+'">';
+			 			                   total += '<table id="activityclick" style="width: 100%; margin-top: 2%;">';
+			 			                   total += '<tr>';
+			 			                   total += '<td class="form-group">';
+			 			                   total += '<select class="form-select" style="width: 200px;" name="ac_category" value="'+ac_category+'">';
+			 			                   total += '<option value="">활동구분 선택*</option>';
+			 			                   total += '<option value="교내활동">교내활동</option>';
+			 			                   total += '<option value="인턴">인턴</option>';
+			 			                   total += '<option value="자원봉사">자원봉사</option>';
+			 			                   total += '<option value="동아리">동아리</option>';
+			 			                   total += '<option value="아르바이트">아르바이트</option>';
+			 			                   total += '<option value="사회활동">사회활동</option>';
+			 			                   total += '<option value="수행과제">수행과제</option>';
+			 			                   total += '<option value="해외연수">해외연수</option>';
+			 			                   total += '</select>';
+			 			                   total += '<input type="text" class="form-control" style="width: 220px;" name="ac_name" value="'+ac_name+'">';
+			 			                   total += '<input type="date" class="form-control" style="width: 180px;" name="ac_start" value="'+ac_start+'">';
+			 			                   total += '<input type="date" class="form-control" style="width: 180px;" name="ac_end" value="'+ac_end+'">';
+			 			                   total += '</td>';
+			 			                   total += '</tr>';
+			 			                   total += '<tr>';
+			 			                   total += '<td class="form-group">';
+			 			                   total += '<textarea class="form-control" style="height: 200px;"name="ac_content" value="'+ac_content+'">'+ac_content+'</textarea>';
+			 			                   total += '</td>';
+			 			                   total += '</tr>';
+			 			                   total += '<!-- 저장 취소 버튼 -->';
+			 			                   total += '<tr>';
+			 			                   total += '<td colspan="2" align="right">';
+			 			                   total += '<br>';
+			 			                   total += '<button type="button" id="activityUpdateOk" class="btn btn-outline-primary">수정</button>';
+			 			                   total +=  '&nbsp';
+			 			                   total += '<button type="button" id="activityCancle" class="btn btn-outline-primary">취소</button>';
+			 			                   total += '</td>';
+			 			                   total += '</tr>';
+			 			                   total += '</table>';
+			 			                   total += '</form>';
+		 			            
+		 			                   $("#activityform").append(total);
+		 			                   
+		 			                   
+		 			                   // 선택한 옵션을 설정
+		 			                  $('select[name="ac_category"]').val(ac_category);
+									}
+		                    	})
+		                    });
+		                    
+		                    //경험 활동 수정버튼 누르면 실행되어 수정 리스트 띄어주기
+		                    $(document).on("click", "#activityUpdateOk", function(){
+		                    	
+										var acData = {
+		                    			
+			                    			pe_num: $('#pe_num').val(),
+			                    			ac_num: $('#ac_num').val(),
+			                    			ac_category: $('select[name="ac_category"]').val(),
+			                    			ac_name: $('input[name="ac_name"]').val(),
+			                    			ac_start: $('input[name="ac_start"]').val(),
+			                    			ac_end: $('input[name="ac_end"]').val(),
+			                    			ac_content: $('textarea[name="ac_content"]').val()
+		                    	};
+										
+										$.ajax({
+											
+											type : "post",
+											url: "actibityupdate",
+				                    	    contentType: "application/json",
+				                    	    data: JSON.stringify(acData),
+				                    	    dataType: "json",
+				                    	    success : function (res) {
+												
+				                    	    	var ac = "";
+				                    	    	
+				                    	    	$.each(res, function(i, dto) {
+				                    	    		
+				                    	    		var ac_num = dto.ac_num; // num
+					                     	    	var ac_category = dto.ac_category; // 카테고리
+					                     	    	var ac_name = dto.ac_name; // 이름
+					                     	    	var ac_start = dto.ac_start; // 시작일
+					                     	    	var ac_end = dto.ac_end; // 종료일
+					                     	    	var ac_content = dto.ac_content; // 내용
+					                     	    	
+					                     	    	
+					                     	    	//수정리스트 나타내기
+					                     	    	ac += '<table style="border-bottom: 0.5px solid #D9D9D9; width: 100%; margin-top: 1%;">';
+					                    			ac += '<tr>';
+					                    			ac += '<td class="form-group">';
+					                    			ac += '<span style="font-size: 1.3em;"><b>'+ac_category+' -> '+ac_name+'</b></span>&nbsp;';
+					                    			ac += '<span>'+ac_start+' ~ '+ac_end+'</span>';
+					                    			ac += '<span style="cursor: pointer;"><i class="bi bi-pencil acupdate" ac_num='+ac_num+'></i></span>';
+					                    			ac += '<span style="cursor: pointer;"><i class="bi bi-trash3 acdelete" ac_num='+ac_num+'></i></span>';
+					                    			ac += '</td>';
+					                    			ac += '<td class="form-group" style="margin-top:1%;">';
+					                    			ac += '<span>'+ac_content+'</span>';
+					                    			ac += '</td>';
+					                    			ac += '</tr>';
+					                    			ac += '</table>';
+				                    	    	})
+				                    	    	
+				                    	    	//list 나타내기
+				                      	    	$("#activityList").html(ac);
+				                      	    	
+				                      	    	//form 리셋
+				                      	    	$("#activityform").html("");	 	
+				                      	    	
+				                      	    	$("#activityList").show();
+											}
+										})
+		                    	
+		                    });
                 });
                 
             </script>
-            
-            
-            
                 
 <!-- 자격/어학/수상----------------------------------------------------------------------------------------------------------- -->
                 <div class="qualification">
-                <form action="qualificationinsert" method="post">
                     <div class="form-caption">
                         <h4><b>자격 / 어학 / 수상</b></h4>&nbsp;&nbsp;&nbsp;
                         <span style="font-size: 0.8em;">*필수정보입력</span>
@@ -807,7 +1488,6 @@
                     </div>
                     <hr style="width: 100%;">
                     <div id="qualificationform"></div>
-                </form>
             </div>
             
             <script type="text/javascript">
@@ -868,7 +1548,7 @@
                             total += '<tr>';
                             total += '<td colspan="2" align="right">';
                             total += '<br>';
-                            total += '<button type="submit" class="btn btn-outline-primary">저장</button>';
+                            total += '<button type="button" class="btn btn-outline-primary">저장</button>';
                             total += '&nbsp';
                             total += '<button type="button" id="qualificationCancle" class="btn btn-outline-primary">취소</button>';
                             total += '</td>';
@@ -914,11 +1594,6 @@
                     });
                 });
             </script>
-                
-
-            
-                
-                
                 
 <!-------------- 포트폴리오/기타문서---------------------------------------------------------------------------------------------- -->
                 <div class="portfolio">
@@ -992,13 +1667,7 @@
                        });
                        
                     })   
-                    
-
                 </script>
-            
-            
-            
-            
             
 <!-- 자기소개서 ---------------------------------------------------------------------------------------------------------------->
                 <div class="self">
@@ -1066,15 +1735,7 @@
                        });
                        
                     })   
-                    
-
                 </script>
-                
-                
-                
-                
-                
-                
                 
  <!-- 희망근무조건 ---------------------------------------------------------------------------------------------------------------->
             <div class="hope">
@@ -1302,11 +1963,6 @@
                     });
                     
                     
-                    
-                    
-                    
-                    
-                    
                     ////직무///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                    //추가하기 클릭시 입력창 추가
                     $("#jobPlus").click(function () {
@@ -1383,18 +2039,7 @@
                     
                     
                 });
-
-                
-                
                 </script>
-                
-                
-                
-               
-                
-                
-                
-                
                 
 <!-- 동의내역 --------------------------------------------------------------------------------------------------------------------->
                 <div class="consent">
@@ -1437,7 +2082,6 @@
                   <br>
                   <br>  
                 </div>
-                
 
                 <!-- 필수항목 자세히 보기 누르면 나오는 The Modal -->
                <div class="modal" id="requireModal">
@@ -1470,8 +2114,6 @@
                  </div>
                </div>
                
-               
-               
             <!-- 선택항목 자세히 보기 누르면 나오는 The Modal -->
                <div class="modal" id="choiceModal">
                  <div class="modal-dialog modal-dialog-centered modal-fullsize">
@@ -1498,22 +2140,14 @@
                        <span style="font-size: 0.8em;">이력서 삭제 또는 회원 탈퇴 시 파기
                       위 동의를 거부할 권리가 있으며 동의 거부 시 이력서 등록이 불가합니다.</span>
                        </div>
-                     
-               
                    </div>
                  </div>
                </div>   
-               
-               
-               
-               
-                
-                
                 
 <!-- 최종 저장 및 미리보기 --------------------------------------------------------------------------------------------------------->
                   
                   <div class="fixed_final">
-                      <input type="text" class="form-control" style="height: 40px; width: 42.5%;" placeholder="이력서 제목을 입력해주세요">&nbsp;&nbsp;&nbsp;&nbsp;
+                      <input type="text" class="form-control" style="height: 40px; width: 47.5%;" placeholder="이력서 제목을 입력해주세요">&nbsp;&nbsp;&nbsp;&nbsp;
                       <button type="button" class="btn btn-outline-primary">미리보기</button>&nbsp;
                       <button type="button"  class="btn btn-primary">작성완료</button>
                   </div>
