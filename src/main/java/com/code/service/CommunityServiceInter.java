@@ -16,5 +16,13 @@ public interface CommunityServiceInter {
     List<CommunityDto> getAllDatasByType(String type);
 	List<CommunityDto> getInterviews();
 	
+	//카테고리별 데이터 조회 메소드 추가
 	List<CommunityDto> getAllDatasByCategory(String category);
+	
+	//조회수 증가 메소드 추가(homedetail-homelist)
+	void increaseReadCount(int com_num);
+	
+	//homedetail 좋아요 수 증가
+    void updateLikeCount(int com_num);
+	
 }

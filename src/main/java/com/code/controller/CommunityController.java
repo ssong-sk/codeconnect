@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -148,16 +149,30 @@ public class CommunityController {
 	 */
     
     @GetMapping("/community/homedetail")
-    public String detail(@RequestParam("com_num") int comNum, Model model) {
+    public String detail(@RequestParam("com_num") int comNum, HttpSession session, Model model) {
         CommunityDto dto = service.getData(comNum);
+        //조회수 증가 로직 추가
+        service.increaseReadCount(comNum);
         
-        // 디버깅 출력
-        //System.out.println("닉네임: " + dto.getCom_nickname());
-        //System.out.println("작성시간: " + dto.getCom_writetime());
+        //content 줄바꿈 로직 추가
+        dto.setCom_content(dto.getCom_content().replace("\n", "<br/>"));
         
-        dto.setCom_content(dto.getCom_content().replace("\n", "<br/>")); //content 줄바꿈 로직 추가
+        //세션에서 사용자 닉네임을 가져와 모델에 추가
+        String userNickname = (String) session.getAttribute("userNickname");
+        if (userNickname == null) {
+            userNickname = dto.getCom_nickname(); // 기본 닉네임 설정
+        }
+        
         model.addAttribute("dto", dto);
+        model.addAttribute("userNickname", userNickname);
+        
         return "community/homedetail"; // "community/homedetail.jsp"로 매핑
+    }
+    
+    @PostMapping("/community/updateLike")
+    @ResponseBody
+    public void updateLike(@RequestParam("com_num") int com_num) {
+        service.updateLikeCount(com_num);
     }
 
     @GetMapping("/community/interviewlist")
@@ -215,4 +230,5 @@ public class CommunityController {
     	
 		return "community/homefavoritelist";
     }
+
 }

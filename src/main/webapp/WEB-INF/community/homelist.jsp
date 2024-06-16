@@ -217,7 +217,7 @@
 			더보기<i class="bi bi-chevron-right"></i>&nbsp;&nbsp;</a>
 		</div>
 		<ul class="list_story">
-			<c:forEach var="dto" items="${list}">
+			<c:forEach var="dto" items="${list}"  begin="0" end="4"> <!-- 게시글 5개까지만 출력 -->
 				<li class="item">
 					<a class="title_link" href="${root}/community/homedetail?com_num=${dto.com_num}">${dto.com_title}</a>
 					<div class="details" style="color: gray; font-size: 23px;">
