@@ -35,7 +35,7 @@ public class HireController {
 		
 		hservice.hireInsert(hdto);
 
-		return "/hire/hirewrite";
+		return "redirect:/company/main";
 	}
 
 }

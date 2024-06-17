@@ -75,7 +75,7 @@
             <span style="font-size: 10pt; color: gray;">
             	(필수) 코드커넥트 채용사이트를 통한 채용 성공 시 합격자 연봉의 7% 수수료가 발생함을 인지하고 이에 동의 합니다.
             </span>&nbsp;&nbsp;&nbsp;&nbsp;
-            <button type="button" class="btn btn-primary savebtn" >
+            <button type="submit" class="btn btn-primary savebtn" >
                 공고 등록하기
             </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </div>
@@ -84,62 +84,91 @@
         <i class="bi bi-exclamation-circle" style="color: red;"></i>&nbsp;&nbsp;&nbsp;필수 동의 사항에 체크해 주세요
     </div>
     
-    <script type="text/javascript">
-    
- // 배열 초기화
-    
-    	
-    
-         $(".savebtn").click(function() {
-             var isChecked = $("#agreeCheckbox").is(":checked");
-             if (!isChecked) {
-            	 $("#errorMessage").fadeIn().delay(3000).fadeOut();
-             } else {
-                 $("#errorMessage").hide();
-             }
-             console.log(jobs);
-         });
-         
-         
-    </script>
+
     <script type="text/javascript">
     $(".savebtn").click(function() {
     	
-    	/* h_job(직무) 값 구하기 */
-        var job1 = $(".toggle-btn span.selected").text().replace(/\s+/g, ' ').trim();
-        var job2 = $(".toggle-btn2 span.selected").text().replace(/\s+/g, ' ').trim();
-        var job3 = $(".toggle-btn3 span.selected").text().replace(/\s+/g, ' ').trim();
-
-        var job = [job1, job2, job3].filter(Boolean).join(',');
-
-        $('input.job').val(job);
-        
-        //alert($('input.job').val());
-        
-        /* h_career(경력) 값 구하기 */
-        if($("#newcomer-checkbox").is(":checked")){
-        	 $('input.career').val("신입");
-        }else{
-        	var career1 = $(".careertoggle-btn span.selected").text();
-            var career2 = $(".careertoggle-btn2 span.selected").text();
-            
-            var career = career1 +"~"+ career2;
-            
-            $('input.career').val(career);       	
+		var isChecked = $("#agreeCheckbox").is(":checked");
+		if (!isChecked) {
+			event.preventDefault();
+			$("#errorMessage").fadeIn().delay(3000).fadeOut();
+		} else {
+	    	/* h_job(직무) 값 구하기 */
+	        var job1 = $(".toggle-btn span.selected").text().replace(/\s+/g, ' ').trim();
+	        var job2 = $(".toggle-btn2 span.selected").text().replace(/\s+/g, ' ').trim();
+	        var job3 = $(".toggle-btn3 span.selected").text().replace(/\s+/g, ' ').trim();
+	
+	        var job = [job1, job2, job3].filter(Boolean).join(',');
+	
+	        $('input.job').val(job);
+	        
+	        /* h_career(경력) 값 구하기 */
+	        if($("#newcomer-checkbox").is(":checked")){
+	        	 $('input.career').val("신입");
+	        }else{
+	        	var career1 = $(".careertoggle-btn span.selected").text();
+	            var career2 = $(".careertoggle-btn2 span.selected").text();
+	            
+	            var career = career1 +"~"+ career2;
+	            
+	            $('input.career').val(career);       	
+	        }
+	        
+	        /* h_location(근무지) 값 구하기 */
+	        var location1 = $("#address1").val();
+	        var location2 = $("#address2").val();
+	        
+	        var location = location1 +" "+ location2;
+	        
+	        $('input.location').val(location);
+	        
+	        /* h_tech(기술스택) 값 구하기 */
+	        var selectedTechs = [];
+	        $("#selected-tech .selected-tech span").each(function() {
+	            selectedTechs.push($(this).text().trim());
+	        });
+	
+	        if (selectedTechs.length === 0) {
+	            $('input.tech').val(null);
+	        } else {
+	            var selectedTechString = selectedTechs.join(",");
+	            $('input.tech').val(selectedTechString);
+	        }
+	        
+	        /* h_salary(채용시 예상 연봉) 값 구하기 */
+	       	var salary1 = $(".salary #salary1").val();
+	       	var salary2 = $(".salary #salary2").val();
+	           
+	        var salary = salary1 +"~"+ salary2;
+	           
+	        $('input.salary').val(salary);       	
+	        
+	        /* h_category(카테고리) 값 구하기 */
+	        var selectedCates = [];
+	        $("#selected-cate .selected-cate span").each(function() {
+	        	selectedCates.push($(this).text().trim());
+	        });
+	
+	        if (selectedCates.length === 0) {
+	            $('input.cate').val(null);
+	        } else {
+	            var selectedCateString = selectedCates.join(",");
+	            $('input.cate').val(selectedCateString);
+	        }
+	        
+	        /* h_deadline(게시 마감일) 값 구하기 */
+	        if($("#flexRadioDefault1").is(":checked")){
+	        	 $('input.deadline').val("상시 모집");
+	        }else{
+	       		var deadline = $("input.deadline-date").val();
+	           	$('input.deadline').val(deadline);    	
+	        }
+	        
+	        $("#errorMessage").hide();
+	        alert("작성 완료");
         }
-        alert($('input.career').val());
-        
-        /* h_location(근무지) 값 구하기 */
-        var location1 = $("#address1").val();
-        var location2 = $("#address2").val();
-        
-        var location = location1 +" "+ location2;
-        
-        $('input.location').val(location);
-        
-        alert($('input.location').val());
         
     });
-    </script>
+    </script>    
 </body>
 </html>
