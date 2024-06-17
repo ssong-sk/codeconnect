@@ -81,11 +81,6 @@
     .company-details tr:not(:last-child) {
         border-bottom: 1px solid #ddd;
     }
-    #map {
-        width: 100%;
-        height: 400px;
-        margin-top: 20px;
-    }
 </style>
 <title>Company Profile</title>
 </head>
@@ -124,7 +119,7 @@
             <c:otherwise>${cdto.c_category}전문, ${cdto.c_name}입니다.</c:otherwise>
         </c:choose>
         </p>
-        <div id="map"></div>
+        <p>[지도가 들어갈 위치]</p>
     </div>
     <div class="company-details">
         <h2>기업 정보</h2>
@@ -193,7 +188,8 @@
                 <td>
                     <c:choose>
                         <c:when test="${not empty cdto.c_postnum and not empty cdto.c_addr}">
-                            ${cdto.c_postnum} ${cdto.c_addr} ${cdto.c_addrdetail}
+                            ${cdto.c_postnum} ${cdto.c_addr} ${cdto.c_addrdetail} 
+                            (<a href="https://www.google.com/maps/search/?api=1&query=${cdto.c_addr}" target="_blank">지도 보기</a>)
                         </c:when>
                         <c:otherwise>―</c:otherwise>
                     </c:choose>
@@ -202,48 +198,6 @@
         </table>
     </div>
 </div>
-
-<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3c2a4c379a7f83fd166976b93258be7f&libraries=services"></script>
-<script>
-    var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-        mapOption = { 
-            center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-            level: 3 // 지도의 확대 레벨
-        };  
-
-    var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-
-    // 주소-좌표 변환 객체를 생성합니다
-    var geocoder = new kakao.maps.services.Geocoder();
-
-    // 주소로 좌표를 검색합니다
-    geocoder.addressSearch('${cdto.c_addr}', function(result, status) {
-        // 정상적으로 검색이 완료됐으면 
-        if (status === kakao.maps.services.Status.OK) {
-
-            var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-
-            // 결과값으로 받은 위치를 지도의 중심으로 설정합니다
-            map.setCenter(coords);
-
-            // 마커를 생성하고 지도에 표시합니다
-            var marker = new kakao.maps.Marker({
-                map: map,
-                position: coords
-            });
-
-            // 마커 클릭 이벤트 추가
-            kakao.maps.event.addListener(marker, 'click', function() {
-                window.open('https://map.kakao.com/link/map/' + encodeURIComponent('${cdto.c_name}') + ',' + result[0].y + ',' + result[0].x);
-            });
-
-            // 지도 클릭 이벤트 추가
-            kakao.maps.event.addListener(map, 'click', function() {
-                window.open('https://map.kakao.com/link/map/' + encodeURIComponent('${cdto.c_name}') + ',' + result[0].y + ',' + result[0].x);
-            });
-        } 
-    });
-</script>
 
 <br>
 </body>
