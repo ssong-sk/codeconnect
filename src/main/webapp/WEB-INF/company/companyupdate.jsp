@@ -5,8 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gowun+Dodum&family=IBM+Plex+Sans+KR&display=swap" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Dongle&family=Gaegu&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@100..900&family=Noto+Serif+KR&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -14,7 +14,7 @@
 <title>기업 정보 수정</title>
 <style>
     body {
-        font-family: 'Noto Sans KR', sans-serif;
+        font-family: 'IBM Plex Sans KR', sans-serif;
         background-color: #ffffff;
     }
     .container {
@@ -70,11 +70,11 @@
     <div class="container">
         <h1 class="mb-4">기업 정보 수정</h1>
         
-        <form action="update" method="post">
+        <form action="update" method="post" enctype="multipart/form-data">
             <input type="hidden" name="c_num" id="c_num" value="${dto.c_num}">
             <div class="mb-3">
                 <label for="c_name" class="form-label">기업명</label>
-                <input type="text" class="form-control" id="c_name" name="c_name" value="${dto.c_name }" disabled>
+                <input type="text" class="form-control" id="c_name" name="c_name" value="${dto.c_name}" disabled>
             </div>
             <div class="mb-3">
                 <label for="c_phone" class="form-label">기업 대표 전화번호</label>
@@ -84,7 +84,7 @@
                 <label for="c_postnum" class="form-label">우편번호</label>
                 <div class="input-group">
                     <input type="text" class="form-control" id="c_postnum" name="c_postnum" value="${dto.c_postnum}" readonly>
-                    <button type="button" class="btn btn-link" onclick="openPostcodePopup()">변경</button>
+                    <button type="button" class="btn btn-link" onclick="openPostcodePopup()">주소찾기</button>
                 </div>
             </div>
             <div class="mb-3">
@@ -121,6 +121,12 @@
             <div class="mb-3">
                 <label for="c_reginum" class="form-label">사업자 등록번호</label>
                 <input type="text" class="form-control" id="c_reginum" name="c_reginum" value="${dto.c_reginum}" disabled>
+            </div>
+            <div class="mb-3">
+                <label for="c_registration_file" class="form-label">사업자 등록증 파일</label>
+                <input type="file" class="form-control" id="c_registration_file" name="c_registration_file" accept=".pdf, .png, .jpg">
+                <small class="form-text">파일 형식: PDF, PNG, JPG (10MB 이하로 가능합니다.)</small>
+                <div>현재 파일 : ${dto.c_regi_file }</div>
             </div>
             <div class="mb-3">
                 <label for="c_money" class="form-label">매출액</label>

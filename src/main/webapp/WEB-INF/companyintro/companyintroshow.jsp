@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page import="java.util.Calendar" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -15,9 +16,21 @@
         font-family: 'IBM Plex Sans KR', sans-serif;
         padding: 20px;
     }
+    .container {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
     .company-info {
         background-color: white;
         padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+    }
+    .header-img {
+        width: 100%;
+        height: auto;
+        max-height: 300px;
+        object-fit: cover;
         border-radius: 8px;
         margin-bottom: 20px;
     }
@@ -25,9 +38,11 @@
         display: flex;
         align-items: center;
     }
-    .company-header img {
+    .company-logo {
         border-radius: 50%;
         margin-right: 10px;
+        width: 80px;
+        height: 80px;
     }
     .company-header .company-name {
         font-family: 'Black Han Sans', sans-serif;
@@ -46,6 +61,11 @@
         background-color: white;
         padding: 20px;
         border-radius: 8px;
+        border: 1px solid #ddd; /* Added this line for the border */
+    }
+    .company-details h2 {
+        font-size: 22px; /* Increased font size */
+        font-weight: bold; /* Made font bold */
     }
     .company-details table {
         width: 100%;
@@ -64,109 +84,117 @@
 </style>
 <title>Company Profile</title>
 </head>
+<%
+    int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+    request.setAttribute("currentYear", currentYear);
+%>
 <body>
-<div class="company-info">
-    <c:choose>
-        <c:when test="${not empty dto.ci_image}">
-            <img src="../companyintro_uploads/${dto.ci_image}" alt="Header Image" class="header-img">
-        </c:when>
-        <c:otherwise>
-            <img src="../companyintro_uploads/companyintrodefault_image.png" alt="Default Header Image" class="header-img">
-        </c:otherwise>
-    </c:choose>
-    <div class="company-header">
+<div class="container">
+    <div class="company-info">
         <c:choose>
-            <c:when test="${not empty dto.ci_logo}">
-                <img src="../companyintro_uploads/${dto.ci_logo}" alt="Company Logo" class="company-logo" width="50" height="50">
+            <c:when test="${not empty dto.ci_image}">
+                <img src="../companyintro_uploads/${dto.ci_image}" alt="Header Image" class="header-img">
             </c:when>
             <c:otherwise>
-                <img src="../companyintro_uploads/companyintrodefault_logo.png" alt="Default Company Logo" class="company-logo" width="50" height="50">
+                <img src="../companyintro_uploads/companyintrodefault_image.png" alt="Default Header Image" class="header-img">
             </c:otherwise>
         </c:choose>
-        <div>
-            <h1 class="company-name">${cdto.c_name}</h1>
-            <p class="company-info-extra">${cdto.c_category} - ${cdto.c_local} - 5년차 (${cdto.c_birthyear})</p>
+        <div class="company-header">
+            <c:choose>
+                <c:when test="${not empty dto.ci_logo}">
+                    <img src="../companyintro_uploads/${dto.ci_logo}" alt="Company Logo" class="company-logo">
+                </c:when>
+                <c:otherwise>
+                    <img src="../companyintro_uploads/companyintrodefault_logo.png" alt="Default Company Logo" class="company-logo">
+                </c:otherwise>
+            </c:choose>
+            <div>
+                <h1 class="company-name">${cdto.c_name}</h1>
+                <p class="company-info-extra">${cdto.c_category} - ${cdto.c_local} - ${currentYear - cdto.c_birthyear}년차 (${cdto.c_birthyear})</p>
+            </div>
         </div>
+        <p class="company-description">
+        <c:choose>
+        <c:when test="${not empty dto.ci_soge}">${dto.ci_soge}</c:when>
+            <c:otherwise>${cdto.c_category}전문, ${cdto.c_name}입니다.</c:otherwise>
+        </c:choose>
+        </p>
+        <p>[중간에 채용공고 이어가는 화면, 지도, 별점 들어감]</p>
     </div>
-    <p class="company-description">
-    <c:choose>
-    <c:when test="${not empty dto.ci_soge}">${dto.ci_soge}</c:when>
-    	<c:otherwise>${cdto.c_category}전문, ${cdto.c_name}입니다.</c:otherwise>
-    </c:choose>
-        
-    </p>
-    <p>[중간에 채용공고 이어가는 화면, 지도, 별점 들어감]</p>
+    <div class="company-details">
+        <h2>기업 정보</h2>
+        <br>
+        <table>
+            <tr>
+                <th>산업군</th>
+                <td>
+                <c:choose>
+                        <c:when test="${not empty cdto.c_category}">${cdto.c_category}</c:when>
+                        <c:otherwise>―</c:otherwise>
+                    </c:choose>
+                </td>
+            </tr>
+            <tr>
+                <th>연혁</th>
+                <td>
+                <c:choose>
+                        <c:when test="${not empty cdto.c_birthyear}">${currentYear - cdto.c_birthyear}년 (${cdto.c_birthyear}년 설립)</c:when>
+                        <c:otherwise>―</c:otherwise>
+                    </c:choose>
+                </td>
+            </tr>
+            <tr>
+                <th>매출(연)</th>
+                <td><c:choose>
+                        <c:when test="${not empty cdto.c_money}">${cdto.c_money}억</c:when>
+                        <c:otherwise>―</c:otherwise>
+                    </c:choose>
+                </td>
+            </tr>
+            <tr>
+                <th>기업 유형</th>
+                <td>기타 법인</td>
+            </tr>
+            <tr>
+                <th>평균연봉</th>
+                <td><c:choose>
+                        <c:when test="${not empty cdto.c_salary}">${cdto.c_salary}만원</c:when>
+                        <c:otherwise>―</c:otherwise>
+                    </c:choose>
+                </td>
+            </tr>
+            <tr>
+                <th>고용보험 사업장 수</th>
+                <td>1개</td>
+            </tr>
+            <tr>
+                <th>홈페이지</th>
+                <td><c:choose>
+                        <c:when test="${not empty dto.ci_link}"><a href="${dto.ci_link}">${dto.ci_link}</a></c:when>
+                        <c:otherwise>―</c:otherwise>
+                    </c:choose>
+                </td>
+            </tr>
+            <tr>
+                <th>사원수</th>
+                <td><c:choose>
+                        <c:when test="${not empty cdto.c_peoplesu}">${cdto.c_peoplesu}명</c:when>
+                        <c:otherwise>―</c:otherwise>
+                    </c:choose>
+                </td>
+            </tr>
+            <tr>
+                <th>본사 주소</th>
+                <td><c:choose>
+                        <c:when test="${not empty cdto.c_postnum and not empty cdto.c_addr}">${cdto.c_postnum} ${cdto.c_addr} ${cdto.c_addrdetail}</c:when>
+                        <c:otherwise>―</c:otherwise>
+                    </c:choose>
+                </td>
+            </tr>
+        </table>
+    </div>
 </div>
-<div class="company-details">
-    <h2>기업 정보</h2>
-    <table>
-        <tr>
-            <th>산업군</th>
-            <td>
-            <c:choose>
-                    <c:when test="${not empty cdto.c_category}">${cdto.c_category}</c:when>
-                    <c:otherwise>―</c:otherwise>
-                </c:choose>
-            </td>
-        </tr>
-        <tr>
-            <th>연혁</th>
-            <td>
-            <c:choose>
-                    <c:when test="${not empty cdto.c_birthyear}">4년 (${cdto.c_birthyear}년 설립)</c:when>
-                    <c:otherwise>―</c:otherwise>
-                </c:choose>
-            </td>
-        </tr>
-        <tr>
-            <th>매출</th>
-            <td><c:choose>
-                    <c:when test="${not empty cdto.c_money}">${cdto.c_money}억</c:when>
-                    <c:otherwise>―</c:otherwise>
-                </c:choose>
-            </td>
-        </tr>
-        <tr>
-            <th>기업 유형</th>
-            <td>기타 법인</td>
-        </tr>
-        <tr>
-            <th>평균연봉</th>
-            <td><c:choose>
-                    <c:when test="${not empty cdto.c_salary}">${cdto.c_salary}만원</c:when>
-                    <c:otherwise>―</c:otherwise>
-                </c:choose>
-            </td>
-        </tr>
-        <tr>
-            <th>고용보험 사업장 수</th>
-            <td>1개</td>
-        </tr>
-        <tr>
-            <th>홈페이지</th>
-            <td><c:choose>
-                    <c:when test="${not empty dto.ci_link}"><a href="${dto.ci_link}">${dto.ci_link}</a></c:when>
-                    <c:otherwise>―</c:otherwise>
-                </c:choose>
-            </td>
-        </tr>
-        <tr>
-            <th>사원수</th>
-            <td><c:choose>
-                    <c:when test="${not empty cdto.c_peoplesu}">${cdto.c_peoplesu}명</c:when>
-                    <c:otherwise>―</c:otherwise>
-                </c:choose>
-            </td>
-        </tr>
-        <tr>
-            <th>본사 주소</th>
-            <td><c:choose>
-                    <c:when test="${not empty cdto.c_postnum and not empty cdto.c_addr}">${cdto.c_postnum} ${cdto.c_addr} ${cdto.c_addrdetail}</c:when>
-                    <c:otherwise>―</c:otherwise>
-                </c:choose>
-            </td>
-        </tr>
-    </table>
-</div>
+
+<br>
 </body>
 </html>

@@ -43,6 +43,7 @@
         c_birthyear=#{c_birthyear},
         c_salary=#{c_salary},
         c_phone=#{c_phone},
+        c_regi_file=#{c_regi_file},
         c_updateday=now()
         where c_num=#{c_num}
     </update>
