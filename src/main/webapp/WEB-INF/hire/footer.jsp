@@ -127,7 +127,7 @@
             
             $('input.career').val(career);       	
         }
-        alert($('input.career').val());
+        //alert($('input.career').val());
         
         /* h_location(근무지) 값 구하기 */
         var location1 = $("#address1").val();
@@ -137,9 +137,11 @@
         
         $('input.location').val(location);
         
-        alert($('input.location').val());
+        //alert($('input.location').val());
         
     });
+    
+    
     </script>
 </body>
 </html>

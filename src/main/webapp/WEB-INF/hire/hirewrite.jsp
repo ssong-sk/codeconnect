@@ -85,19 +85,19 @@ p.info {
 
 
 /* 컨텐츠 시작 */
-/* 직무 */
-.select-wrapper, .select-wrapper2, .select-wrapper3 {
+/* 직무 및 학력*/
+.select-wrapper, .select-wrapper2, .select-wrapper3, .select-wrapper4 {
    position: relative;
    width: 266px;
    font-family: IBM Plex Sans KR;
    margin-right: 10px;
 }
 
-.selectbox, .selectbox2, .selectbox3 {
+.selectbox, .selectbox2, .selectbox3, .selectbox4 {
    position: relative;
 }
 
-.toggle-btn, .toggle-btn2, .toggle-btn3 {
+.toggle-btn, .toggle-btn2, .toggle-btn3, .toggle-btn4 {
    width: 100%;
    padding: 10px;
    border: 1px solid #ccc;
@@ -109,18 +109,18 @@ p.info {
    border-radius: 10px;
 }
 
-.toggle-btn span, .toggle-btn2 span, .toggle-btn3 span {
+.toggle-btn span, .toggle-btn2 span, .toggle-btn3 span, .toggle-btn4 span {
    pointer-events: none;
    font-weight: bold;
    color: #696969;
    font-family: IBM Plex Sans KR;
 }
 
-.toggle-btn span.selected, .toggle-btn2 span.selected, .toggle-btn3 span.selected {
+.toggle-btn span.selected, .toggle-btn2 span.selected, .toggle-btn3 span.selected, .toggle-btn4 span.selected {
    color: black; /* 선택된 경우 검정색 */
 }
 
-.selectbox-option, .selectbox-option2, .selectbox-option3 {
+.selectbox-option, .selectbox-option2, .selectbox-option3, .selectbox-option4 {
    position: absolute;
    top: 100%;
    left: 0;
@@ -138,11 +138,11 @@ p.info {
    overflow-y: auto; /* 세로 스크롤바 활성화 */
 }
 
-.selectbox-option.hide, .selectbox-option2.hide2, .selectbox-option3.hide3 {
-   display: none;
+.selectbox-option.hide, .selectbox-option2.hide2, .selectbox-option3.hide3, .selectbox-option4.hide4 {
+   display: none;	
 }
 
-.option-btn, .option-btn2, .option-btn3 {
+.option-btn, .option-btn2, .option-btn3, .option-btn4 {
    width: 100%;
    padding: 10px;
    border: none;
@@ -152,7 +152,7 @@ p.info {
    font-family: IBM Plex Sans KR;
 }
 
-.option-btn:hover, .option-btn2:hover, .option-btn3:hover {
+.option-btn:hover, .option-btn2:hover, .option-btn3:hover, .option-btn4:hover {
    background-color: #EDF2FD;
    width: 780px;
    border-radius: 10px;
@@ -676,34 +676,21 @@ input:disabled {
                               style="color: gray;"></i>
                         </button>
                         <ul class="selectbox-option2 hide2">
-                           <li><button type="button" class="option-btn2">서버/백엔드
-                                 개발자</button></li>
-                           <li><button type="button" class="option-btn2">프론트엔드
-                                 개발자</button></li>
-                           <li><button type="button" class="option-btn2">웹
-                                 풀스택 개발자</button></li>
-                           <li><button type="button" class="option-btn2">안드로이드
-                                 개발자</button></li>
-                           <li><button type="button" class="option-btn2">IOS
-                                 개발자</button></li>
-                           <li><button type="button" class="option-btn2">크로스플랫폼
-                                 앱개발자</button></li>
-                           <li><button type="button" class="option-btn2">게임
-                                 클라이언트 개발자</button></li>
-                           <li><button type="button" class="option-btn2">게임
-                                 서버 개발자</button></li>
+                           <li><button type="button" class="option-btn2">서버/백엔드 개발자</button></li>
+                           <li><button type="button" class="option-btn2">프론트엔드 개발자</button></li>
+                           <li><button type="button" class="option-btn2">웹 풀스택 개발자</button></li>
+                           <li><button type="button" class="option-btn2">안드로이드 개발자</button></li>
+                           <li><button type="button" class="option-btn2">IOS 개발자</button></li>
+                           <li><button type="button" class="option-btn2">크로스플랫폼 앱개발자</button></li>
+                           <li><button type="button" class="option-btn2">게임 클라이언트 개발자</button></li>
+                           <li><button type="button" class="option-btn2">게임 서버 개발자</button></li>
                            <li><button type="button" class="option-btn2">DBA</button></li>
-                           <li><button type="button" class="option-btn2">빅데이터
-                                 엔지니어</button></li>
+                           <li><button type="button" class="option-btn2">빅데이터 엔지니어</button></li>
                            <li><button type="button" class="option-btn2">인공지능/머신러닝</button></li>
-                           <li><button type="button" class="option-btn2">devops/시스템
-                                 엔지니어</button></li>
-                           <li><button type="button" class="option-btn2">정보보안
-                                 담당자</button></li>
-                           <li><button type="button" class="option-btn2">QA
-                                 엔지니어</button></li>
-                           <li><button type="button" class="option-btn2">개발
-                                 PM</button></li>
+                           <li><button type="button" class="option-btn2">devops/시스템 엔지니어</button></li>
+                           <li><button type="button" class="option-btn2">정보보안 담당자</button></li>
+                           <li><button type="button" class="option-btn2">QA 엔지니어</button></li>
+                           <li><button type="button" class="option-btn2">개발 PM</button></li>
                            <li><button type="button" class="option-btn2">HW/임베디드</button></li>
                            <li><button type="button" class="option-btn2">SW/솔루션</button></li>
                            <li><button type="button" class="option-btn2">웹퍼블리셔</button></li>
@@ -838,7 +825,27 @@ input:disabled {
                   </div>
 				</div><br><br><br><br>
 
-
+				<!-- 학력 -->
+                <div class="title_div">
+                   <span class="title">학력</span> <span><i
+                      class="bi bi-asterisk imstar"></i></span>
+                </div>
+                <section class="select-wrapper4" data-role="selectbox">
+                   <section class="selectbox4">
+                      <button type="button" class="toggle-btn4">
+                         <span name='h_grade'>학력 선택</span> <i class="bi bi-caret-down-fill"
+                            style="color: gray;"></i>
+                      </button>
+                      <ul class="selectbox-option4 hide4">
+                         <li><button type="button" class="option-btn4">대학교졸업(4년) 이상</button></li>
+                         <li><button type="button" class="option-btn4">대학졸업(2,3년) 이상</button></li>
+                         <li><button type="button" class="option-btn4">고등학교졸업 이상</button></li>
+                         <li><button type="button" class="option-btn4">무관</button></li>
+                      </ul>
+                   </section>
+                </section>
+				<br><br><br><br>
+				
                   <!-- 근무지 -->
                   <div class="title_div">
                      <span class="title">근무지</span> <span><i
@@ -1102,15 +1109,6 @@ input:disabled {
    </div>
 </form>
 <script type="text/javascript">
-	//alert($("#c_num").val()+","+$("#ci_num").val());
-	var sele = $(this).text();
-	var job1 = $(".toggle-btn .selected").text();
-    var job2 = $(".toggle-btn2 .selected").text();
-    var job3 = $(".toggle-btn3 .selected").text();
-
-    // 텍스트 값을 쉼표로 구분하여 결합
-     jobs = job1 + "," + job2 + "," + job3;
-  
 $(document).ready(function() {
    // 직무 select1
    const toggleBtn1 = $('.toggle-btn');
@@ -1273,6 +1271,30 @@ $(document).ready(function() {
             }
         });
     });
+</script>
+<script type="text/javascript">
+//학력
+const toggleBtn4 = $('.toggle-btn4');
+const selectBox4 = $('.selectbox-option4');
+const options4 = $('.option-btn4');
+const toggleText4 = $('.toggle-btn4 span');
+
+toggleBtn4.click(function() {
+   selectBox4.toggleClass('hide4');
+
+});
+
+options4.click(function() {
+   toggleText4.text($(this).text());
+   toggleText4.addClass('selected');
+   selectBox4.addClass('hide4');
+});
+
+$(document).click(function(event) {
+   if (!selectBox4.parent().is(event.target) && !selectBox4.parent().has(event.target).length) {
+      selectBox4.addClass('hide4');
+   }
+});
 </script>
 
 <!-- 기술 스택 . 툴 -->
