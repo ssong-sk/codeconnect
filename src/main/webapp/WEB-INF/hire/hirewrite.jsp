@@ -927,8 +927,7 @@ input:disabled {
 	                        </button>
 	                        <ul class="techselectbox-option techhide">
 		                        <li><button type="button" class="techoption-btn">Java</button></li>
-								<li><button type="button" class="techoption-btn">Spring
-										Boot</button></li>
+								<li><button type="button" class="techoption-btn">Spring Boot</button></li>
 								<li><button type="button" class="techoption-btn">Node.js</button></li>
 								<li><button type="button" class="techoption-btn">Python</button></li>
 								<li><button type="button" class="techoption-btn">Django</button></li>
@@ -956,8 +955,7 @@ input:disabled {
 								<li><button type="button" class="techoption-btn">SwiftUI</button></li>
 								<li><button type="button" class="techoption-btn">Xcode</button></li>
 								<li><button type="button" class="techoption-btn">Flutter</button></li>
-								<li><button type="button" class="techoption-btn">React
-										Native</button></li>
+								<li><button type="button" class="techoption-btn">React Native</button></li>
 								<li><button type="button" class="techoption-btn">MSSQL</button></li>
 								<li><button type="button" class="techoption-btn">PostgreSQL</button></li>
 								<li><button type="button" class="techoption-btn">NoSQL</button></li>
