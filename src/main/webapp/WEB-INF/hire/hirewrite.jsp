@@ -1284,6 +1284,30 @@ $(document).click(function(event) {
    }
 });
 </script>
+<script type="text/javascript">
+//학력
+const toggleBtn4 = $('.toggle-btn4');
+const selectBox4 = $('.selectbox-option4');
+const options4 = $('.option-btn4');
+const toggleText4 = $('.toggle-btn4 span');
+
+toggleBtn4.click(function() {
+   selectBox4.toggleClass('hide4');
+
+});
+
+options4.click(function() {
+   toggleText4.text($(this).text());
+   toggleText4.addClass('selected');
+   selectBox4.addClass('hide4');
+});
+
+$(document).click(function(event) {
+   if (!selectBox4.parent().is(event.target) && !selectBox4.parent().has(event.target).length) {
+      selectBox4.addClass('hide4');
+   }
+});
+</script>
 
 <!-- 기술 스택 . 툴 -->
 <script type="text/javascript">

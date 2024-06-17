@@ -136,22 +136,7 @@ ul {
 	font-family: IBM Plex Sans KR;
 }
 
-/* .option-btn-selected{
-	background-color: #EDEDED;
-	width: 210px;
-	border-radius: 10px;
-	padding: 10px;
-	border: none;
-	cursor: pointer;
-	text-align: left;
-	font-weight: 600;
-	margin-top: 5px;
-	font-family: IBM Plex Sans KR;
-	 pointer-events : none;   
-} */
-
 /* 직무 선택 */
-
 /* 모달 관련 */
 .modal-content, .modal-header, .modal-footer, .modal-body {
 	border: none;
@@ -194,7 +179,6 @@ ul {
 	padding-top: 4px;
 	justify-content: space-between;
 }
-
 
 .job-select, .tech-select, .region-select {
 	max-height: 350px; /* 스크롤바가 나타날 최대 높이 */
@@ -648,7 +632,6 @@ svg{
          <div class="center">
             <div class="category">
 
-
                <!-- 개발 직무 선택 -->
                <span class="title">개발 직무</span>
                <button class="job" type="button" data-bs-toggle="modal"
@@ -835,7 +818,7 @@ svg{
             </div>
          </div>
       </div>
-   </div>
+	</div>
    <br>
    <br>
    <div class="bottomlist">

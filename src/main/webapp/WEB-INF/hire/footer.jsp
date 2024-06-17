@@ -163,7 +163,6 @@
 	        $("#errorMessage").hide();
 	        alert("작성 완료");
         }
-        
     });
     </script>    
 </body>
