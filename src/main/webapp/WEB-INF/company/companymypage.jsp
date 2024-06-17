@@ -21,8 +21,7 @@
 	<button type="button" class="btn btn-danger"
 	style="width: 100px;" onclick="location.href='logoutprocess'">로그아웃</button>
 
-<!-- 기업임시 통합페이지는 이제 필요없어서 제거함. -->
-<!-- <button onclick="location.href='/company/'" >기업 임시 통합페이지로 가기</button><br><br> -->
+
 <br><br>
 <button class="btn btn-info" onclick="location.href='/hire/hirewrite'">공고 등록하기</button><br><br>
 <button class="btn btn-info" >인재풀 탐색하기</button><br><br>
@@ -30,11 +29,8 @@
 <button class="btn btn-info" >채용공고 관리</button><br><br>
 <button class="btn btn-info" >제안보낸 인재풀 관리</button><br><br>
 <button class="btn btn-info" onclick="location.href='companyupdate'">기업 정보수정</button><br><br>
-<button class="btn btn-info" onclick="location.href='intromain'">기업 소개하기</button>
+<button class="btn btn-info" onclick="location.href='intromain'">기업 소개하기</button><br><br>
+<button type="button" class="btn btn-info" onclick="location.href='showimsi'">내 기업 소개 페이지로 이동</button>
 
-<form action="showimsi" method="get">
-    <input type="hidden" name="c_num" value="${dto.c_num}">
-    <button type="submit" class="btn btn-info">내 기업 소개 페이지로 이동</button>
-</form>
 </body>
 </html>

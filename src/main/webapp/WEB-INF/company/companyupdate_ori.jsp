@@ -10,7 +10,6 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3c2a4c379a7f83fd166976b93258be7f&libraries=services"></script>
 
 <title>기업 정보 수정</title>
 <style>
@@ -43,12 +42,6 @@
     .btn-danger {
         width: 100px;
     }
-    #map {
-        width: 100%;
-        height: 400px;
-        margin-top: 20px;
-        display: none;
-    }
 </style>
 <script>
     function openPostcodePopup() {
@@ -65,48 +58,13 @@
                 if(extraRoadAddr !== ''){
                     extraRoadAddr = ' (' + extraRoadAddr + ')';
                 }
-                var fullAddr = roadAddr + extraRoadAddr;
                 document.getElementById('c_postnum').value = data.zonecode;
-                document.getElementById('c_addr').value = fullAddr;
+                document.getElementById('c_addr').value = roadAddr + extraRoadAddr;
                 document.getElementById('c_addrdetail').focus();
-                
-                // 지도 표시
-                displayMap(fullAddr);
+                document.getElementById('map_link').href = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(roadAddr + extraRoadAddr);
+                document.getElementById('map_link').style.display = 'inline';
             }
         }).open();
-    }
-
-    function displayMap(address) {
-        var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-            mapOption = { 
-                center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-                level: 3 // 지도의 확대 레벨
-            };  
-
-        var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-
-        // 주소-좌표 변환 객체를 생성합니다
-        var geocoder = new kakao.maps.services.Geocoder();
-
-        // 주소로 좌표를 검색합니다
-        geocoder.addressSearch(address, function(result, status) {
-            // 정상적으로 검색이 완료됐으면 
-            if (status === kakao.maps.services.Status.OK) {
-
-                var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-
-                // 결과값으로 받은 위치를 지도의 중심으로 설정합니다
-                map.setCenter(coords);
-
-                // 마커를 생성하고 지도에 표시합니다
-                var marker = new kakao.maps.Marker({
-                    map: map,
-                    position: coords
-                });
-                
-                document.getElementById('map').style.display = 'block';
-            } 
-        });
     }
 </script>
 </head>
@@ -139,7 +97,10 @@
                 <label for="c_addrdetail" class="form-label">상세 주소</label>
                 <input type="text" class="form-control" id="c_addrdetail" name="c_addrdetail" value="${dto.c_addrdetail}">
             </div>
-            <div id="map"></div>
+            <div class="mb-3">
+                <label for="map_link" class="form-label">지도 보기</label>
+                <a id="map_link" href="#" target="_blank" style="display: none;" class="btn btn-link">Google Maps에서 보기</a>
+            </div>
             <div class="mb-3">
                 <label for="c_local" class="form-label">대표 지역</label>
                 <select class="form-select" id="c_local" name="c_local" required="required">
