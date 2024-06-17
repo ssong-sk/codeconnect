@@ -30,8 +30,8 @@ public class CommunityService implements CommunityServiceInter {
     }
 
     @Override
-    public CommunityDto getData(String com_num) {
-        return mapper.getData(com_num);
+    public CommunityDto getData(int com_num) {
+        return mapper.getData(com_num); //int 타입으로 변경
     }
 
     @Override
@@ -42,5 +42,20 @@ public class CommunityService implements CommunityServiceInter {
     @Override
     public void deleteCommunity(String com_num) {
         mapper.deleteCommunity(com_num);
+    }
+
+    @Override
+    public List<CommunityDto> getInterviews() {
+        return mapper.getInterviews();
+    }
+
+    @Override
+    public int getTotalCountByType(String type) {
+        return mapper.getTotalCountByType(type);
+    }
+
+    @Override
+    public List<CommunityDto> getAllDatasByType(String type) {
+        return mapper.getAllDatasByType(type);
     }
 }

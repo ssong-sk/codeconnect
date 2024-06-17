@@ -179,7 +179,8 @@ body {
 					<option value="1001+">1001+</option>
 				</select>
 			</div>
-			<button type="submit" class="btn btn-info">회원가입</button>
+			<button type="submit" class="btn btn-info">회원가입</button><br>
+			<button type="button" class="btn btn-info" onclick="history.back()">뒤로</button>
 		</form>
 	</div>
 

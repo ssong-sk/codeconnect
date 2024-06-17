@@ -29,6 +29,7 @@
 					<li class="Menu_MenuItem__wI1yA"
 						><a href="#"
 						class="Menu_jobListLink__GYHAI"><span>채용</span></a></li>
+<<<<<<< HEAD
 					<li class="Menu_MenuItem__wI1yA" 
 						><a href="#"><span>커리어</span></a></li>
 					<li class="Menu_MenuItem__wI1yA" 
@@ -37,6 +38,18 @@
 						><a href="#"><span>이력서</span></a></li>
 					<li class="Menu_MenuItem__wI1yA"><a
 						href="#"><span>프리랜서</span></a></li>
+=======
+					<li class="Menu_MenuItem__wI1yA" data-attribute-id="gnb"
+						data-gnb-kind="event"><a href="/events"><span>커리어</span></a></li>
+					<li class="Menu_MenuItem__wI1yA" data-attribute-id="gnb"
+						data-gnb-kind="community"><a href="/community/homelist"><span>커뮤니티</span></a></li>
+					<li class="Menu_MenuItem__wI1yA" data-attribute-id="gnb"
+						data-gnb-kind="resume"><a href="/resumehome/home"><span>이력서</span></a></li>
+					<li class="Menu_MenuItem__wI1yA" data-attribute-id="gnb"
+						data-gnb-kind="freelancer"><a
+						href="https://www.wanted.co.kr/gigs/experts" target="_blank"
+						rel="noopener noreferrer"><span>프리랜서</span></a></li>
+>>>>>>> 60b57bc7da79379db741118bd2b49454972b4fcf
 				</ul>
 
 				<aside class="Aside_aside__f0SVC">
@@ -73,7 +86,7 @@
 							</c:if></li>
 						<li><a
 							class="Button_Button__root__V1ie3 Button_Button__outlined__H2mkd Button_Button__outlinedAssistive__mBcQK Button_Button__outlinedSizeSmall__JJmOo Aside_dashboardButton__WUch3"
-							type="button" href="/dashboard" data-attribute-id="gnb"
+							type="button" href="${root}/company/main" data-attribute-id="gnb"
 							data-gnb-kind="forEmployers"><span
 								class="Button_Button__label__1Kk0v"><span
 									class="Typography_Typography__root__xYuMs Typography_Typography__label2__BRssq Typography_Typography__weightMedium__O0Rdi">기업

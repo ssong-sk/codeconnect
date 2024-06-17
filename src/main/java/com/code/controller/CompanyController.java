@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.code.dto.CompanyDto;
+import com.code.dto.HireDto;
+import com.code.service.CompanyIntroService;
 import com.code.service.CompanyService;
 
 
@@ -29,14 +31,31 @@ public class CompanyController {
 
     @Autowired
     CompanyService cservice;
+    
+    //채용공고에서 사용
+    @Autowired
+    CompanyIntroService ciservice;
 
     //기업 로그인로그아웃관련 임시 통합페이지
     @GetMapping("/company")
     public String imsicom() {
-    	return "company/companyimsiall";
+    	return "/company/companyimsiall"; //앞에 '/'넣은게 최신입니다.
+    }
+    
+    //채용공고 작성 페이지로 이동하기
+    @GetMapping("/hire/hirewrite")
+    public String gohirewrite(HttpSession session, Model model) {
+    	
+    	String c_id = (String)session.getAttribute("c_myid");
+		
+		int c_num = cservice.selectC_num(c_id);
+		int ci_num = ciservice.selectCi_num(c_num);
+		model.addAttribute("c_num",c_num);
+		model.addAttribute("ci_num",ci_num);
+    	return "/hire/hirewrite";
     }
 
-
+    //아직없어!
     @GetMapping("/company/list")
     public ModelAndView list() {
         ModelAndView mview = new ModelAndView();
