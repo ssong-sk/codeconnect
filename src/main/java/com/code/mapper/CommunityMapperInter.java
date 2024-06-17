@@ -17,9 +17,17 @@ import com.code.dto.CommunityDto;
     
     //interview 목록을 가져오는 메소드 추가
     List<CommunityDto> getInterviews();
+    
     //com_post_type
     int getTotalCountByType(String type);
     List<CommunityDto> getAllDatasByType(String type);
     
+    //카테고리별 데이터 조회 메소드 추가
     List<CommunityDto> getAllDatasByCategory(String category);
+    
+    //조회수 증가 메소드 추가
+    void increaseReadCount(int com_num);
+    
+    //homedetail 좋아요 수 증가
+    void updateLikeCount(int com_num);
 }
