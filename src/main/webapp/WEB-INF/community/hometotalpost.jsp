@@ -52,5 +52,18 @@
         </c:forEach>
     </ul>
 </div>
+
+<div class="post_list_wrap">
+    <h2>신입 게시글</h2>
+    <ul>
+        <c:forEach var="dto" items="${list}">
+            <c:if test="${dto.com_category == '신입'}">
+                <li class="post_item">
+                    <a href="${pageContext.request.contextPath}/community/homedetail?com_num=${dto.com_num}">${dto.com_title}</a>
+                </li>
+            </c:if>
+        </c:forEach>
+    </ul>
+</div>
 </body>
 </html>

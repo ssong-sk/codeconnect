@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+    pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<link
-   href="https://fonts.googleapis.com/css2?family=Dongle&family=Gaegu&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@100..900&family=Noto+Serif+KR&display=swap"
-   rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gowun+Dodum&family=IBM+Plex+Sans+KR&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <title>헤더</title>
 <link rel="stylesheet" type="text/css" href="/css/header.css">
@@ -16,31 +16,31 @@
 </style>
 </head>
 <body>
-   <div role="presentation" class="NavBar_className__y2qGg"
-      style="position: fixed;">
-      <div class="NavBar_background__SQmnx"></div>
-      <div class="MainBar_MainBar__40DX7" role="presentation">
-         <nav class="MainBar_MainBarNav__pVhal" style="height: 60px;">
-            <div class="MainBar_MainBarNavLogo__caIek">
-               <a href="/" aria-label="Wanted" data-attribute-id="gnb"
-                  data-gnb-kind="jobsfeed"> <img src="/image/mainlogo.png"
-                  alt="codeconnect Logo" class="logo"></a>
-            </div>
-            <ul class="Menu_MenuNav__EOf3X" style="margin-bottom: 0px;">
-               <li class="Menu_MenuItem__wI1yA" data-attribute-id="gnb"
-                  data-gnb-kind="jobs"><a href="/hire/main"
-                  class="Menu_jobListLink__GYHAI"><span>채용</span></a></li>
-               <li class="Menu_MenuItem__wI1yA" data-attribute-id="gnb"
-                  data-gnb-kind="event"><a href="/events"><span>커리어</span></a></li>
-               <li class="Menu_MenuItem__wI1yA" data-attribute-id="gnb"
-                  data-gnb-kind="community"><a href="/community/homelist"><span>커뮤니티</span></a></li>
-               <li class="Menu_MenuItem__wI1yA" data-attribute-id="gnb"
-                  data-gnb-kind="resume"><a href="/resumehome/home"><span>이력서</span></a></li>
-               <li class="Menu_MenuItem__wI1yA" data-attribute-id="gnb"
-                  data-gnb-kind="freelancer"><a
-                  href="https://www.wanted.co.kr/gigs/experts" target="_blank"
-                  rel="noopener noreferrer"><span>프리랜서</span></a></li>
-            </ul>
+	<div role="presentation" class="NavBar_className__y2qGg"
+		style="position: fixed;">
+		<div class="NavBar_background__SQmnx"></div>
+		<div class="MainBar_MainBar__40DX7" role="presentation">
+			<nav class="MainBar_MainBarNav__pVhal" style="height: 60px;">
+				<div class="MainBar_MainBarNavLogo__caIek">
+					<a href="/" aria-label="Wanted" data-attribute-id="gnb"
+						data-gnb-kind="jobsfeed"> <img src="/image/mainlogo.png"
+						alt="codeconnect Logo" class="logo"></a>
+				</div>
+				<ul class="Menu_MenuNav__EOf3X" style="margin-bottom: 0px;">
+					<li class="Menu_MenuItem__wI1yA" data-attribute-id="gnb"
+						data-gnb-kind="jobs"><a href="/hire/main"
+						class="Menu_jobListLink__GYHAI"><span>채용</span></a></li>
+					<li class="Menu_MenuItem__wI1yA" data-attribute-id="gnb"
+						data-gnb-kind="event"><a href="/events"><span>커리어</span></a></li>
+					<li class="Menu_MenuItem__wI1yA" data-attribute-id="gnb"
+						data-gnb-kind="community"><a href="/community/homelist"><span>커뮤니티</span></a></li>
+					<li class="Menu_MenuItem__wI1yA" data-attribute-id="gnb"
+						data-gnb-kind="resume"><a href="/resumehome/home"><span>이력서</span></a></li>
+					<li class="Menu_MenuItem__wI1yA" data-attribute-id="gnb"
+						data-gnb-kind="freelancer"><a
+						href="https://www.wanted.co.kr/gigs/experts" target="_blank"
+						rel="noopener noreferrer"><span>프리랜서</span></a></li>
+				</ul>
 
             <aside class="Aside_aside__f0SVC">
                <ul class="Aside_asideList__3WNyu" style="margin-bottom: 0px;">
