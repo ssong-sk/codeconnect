@@ -7,8 +7,10 @@ import org.springframework.stereotype.Service;
 
 import com.code.dto.IruckseoActibityDto;
 import com.code.dto.IruckseoCareerDto;
+import com.code.dto.IruckseoHopeDto;
 import com.code.dto.IruckseoInsertDto;
 import com.code.dto.IruckseoSchoolDto;
+import com.code.dto.IruckseoSelfDto;
 import com.code.dto.IruckseoSpecDto;
 import com.code.mapper.IruckseoInsertMapperInter;
 
@@ -148,6 +150,84 @@ public class IruckseoInsertService implements IruckseoInsertServiceInter {
 	public List<IruckseoSpecDto> OneSpecDatas(IruckseoSpecDto spdto) {
 		// TODO Auto-generated method stub
 		return irmapper.OneSpecDatas(spdto);
+	}
+
+	//스펙 수정폼 띄우기
+	public IruckseoSpecDto selectNumSpec(int sp_num) {
+		// TODO Auto-generated method stub
+		return irmapper.selectNumSpec(sp_num);
+	}
+
+	//스펙 수정하기
+	public void updateSpec(IruckseoSpecDto spdto) {
+		// TODO Auto-generated method stub
+		irmapper.updateSpec(spdto);
+	}
+
+	//스펙 수정 후 리스트 출력
+	public List<IruckseoSpecDto> allSpecDatas(IruckseoSpecDto spdto) {
+		// TODO Auto-generated method stub
+		return irmapper.allSpecDatas(spdto);
+	}
+
+	//스펙 삭제하기
+	public void deleteSpec(int sp_num) {
+		// TODO Auto-generated method stub
+		irmapper.deleteSpec(sp_num);
+	}
+
+	//자기소개서 insert
+	public void insertSelf(IruckseoSelfDto sedto) {
+		// TODO Auto-generated method stub
+		irmapper.insertSelf(sedto);
+	}
+
+	//자기소개서 insert list 출력
+	public List<IruckseoSelfDto> OneSelfDatas(IruckseoSelfDto sedto) {
+		// TODO Auto-generated method stub
+		return irmapper.OneSelfDatas(sedto);
+	}
+
+	//자기소개서 수정폼 띄우기
+	public IruckseoSelfDto selectNumSelf(int se_num) {
+		// TODO Auto-generated method stub
+		return irmapper.selectNumSelf(se_num);
+	}
+
+	//자기소개서 수정하기
+	public void updateSelf(IruckseoSelfDto sedto) {
+		// TODO Auto-generated method stub
+		irmapper.updateSelf(sedto);
+	}
+
+	//자기소개서 수정하고 list 출력
+	public List<IruckseoSelfDto> allSelfDatas(IruckseoSelfDto sedto) {
+		// TODO Auto-generated method stub
+		return irmapper.allSelfDatas(sedto);
+	}
+
+	//자기소개서 삭제하기
+	public void deleteSelf(int se_num) {
+		// TODO Auto-generated method stub
+		irmapper.deleteSelf(se_num);
+	}
+
+	//희망조건 insert
+	public void insertHope(IruckseoHopeDto hodto) {
+		// TODO Auto-generated method stub
+		irmapper.insertHope(hodto);
+	}
+
+	//희망조건 insert 후 list 출력
+	public List<IruckseoHopeDto> OneHopeDatas(IruckseoHopeDto hodto) {
+		// TODO Auto-generated method stub
+		return irmapper.OneHopeDatas(hodto);
+	}
+
+	//희망조건 update
+	public void updateHope(IruckseoHopeDto hodto) {
+		// TODO Auto-generated method stub
+		irmapper.updateHope(hodto);
 	}
 
 }

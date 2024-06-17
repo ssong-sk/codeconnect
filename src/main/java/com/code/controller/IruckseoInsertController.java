@@ -18,8 +18,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.code.dto.IruckseoActibityDto;
 import com.code.dto.IruckseoCareerDto;
+import com.code.dto.IruckseoHopeDto;
 import com.code.dto.IruckseoInsertDto;
 import com.code.dto.IruckseoSchoolDto;
+import com.code.dto.IruckseoSelfDto;
 import com.code.dto.IruckseoSpecDto;
 import com.code.service.IruckseoInsertService;
 
@@ -228,5 +230,108 @@ public class IruckseoInsertController {
     	
     	return spmap;
     }
+    
+    //스펙 수정 폼 띄우기
+    @GetMapping("/resumehome/specupdateform")
+    @ResponseBody
+    public IruckseoSpecDto specform(@RequestParam int sp_num) {
+    	
+    	return irservice.selectNumSpec(sp_num);
+    }
+    
+    //스펙 수정하기
+    @PostMapping("/resumehome/specupdate")
+    @ResponseBody
+    public List<IruckseoSpecDto> specupdate(@RequestBody IruckseoSpecDto spdto) {
+  		
+  		Map<String, Object> camap = new HashMap<>();
+  		
+  		irservice.updateSpec(spdto);
+  		
+  		//경력 전체 조회 
+  		List<IruckseoSpecDto> spAllList = irservice.allSpecDatas(spdto);
+  		
+  		return spAllList;
+  	}
+    
+    //스펙 삭제하기
+    @GetMapping("/resumehome/specdelete")
+  	@ResponseBody
+  	public void specdelete(@RequestParam int sp_num) {
+    	
+    	irservice.deleteSpec(sp_num);
+    	
+    }
+    
+    //자기소개서 insert
+    @PostMapping("/resumehome/selfinsert")
+    @ResponseBody
+    public Map<String, Object> selfinsert(@RequestBody IruckseoSelfDto sedto) {
+    	
+    	Map<String, Object> semap = new HashMap<>();
+    	
+    	irservice.insertSelf(sedto);
+    	
+    	List<IruckseoSelfDto> selist = irservice.OneSelfDatas(sedto);
+    	
+    	semap.put("sedto", sedto);
+    	semap.put("selist", selist);
+    	
+    	return semap;
+    }
+    
+    //자기소개서 수정 폼 띄우기
+    @GetMapping("/resumehome/selfupdateform")
+    @ResponseBody
+    public IruckseoSelfDto selfform(@RequestParam int se_num) {
+    	
+    	return irservice.selectNumSelf(se_num);
+    }
+    
+    //자기소개서 수정하기
+    @PostMapping("/resumehome/selfupdate")
+    @ResponseBody
+    public List<IruckseoSelfDto> selfupdate(@RequestBody IruckseoSelfDto sedto) {
+    	
+    	Map<String, Object> semap = new HashMap<>();
+    	
+    	irservice.updateSelf(sedto);
+    	
+    	//자기소개서 전체 조회
+    	List<IruckseoSelfDto> seAllList = irservice.allSelfDatas(sedto);
+    	
+    	return seAllList;
+    }
+    
+    //자기소개서 삭제하기
+    @GetMapping("/resumehome/selfdelete")
+    @ResponseBody
+    public void selfdelete(@RequestParam int se_num) {
+    	
+    	irservice.deleteSelf(se_num);
+    }
+    
+    //희망조건 insert
+    @PostMapping("/resumehome/hopeinsert")
+    @ResponseBody
+    public Map<String, Object> hopeinsert(@RequestBody IruckseoHopeDto hodto) {
+    	
+    	Map<String, Object> homap = new HashMap<>();
+    	
+    	List<IruckseoHopeDto> holist = irservice.OneHopeDatas(hodto);
+
+    	if( holist.size() == 0 ) {
+    		irservice.insertHope(hodto);
+    	}else {
+    		//저장 후 update
+    		irservice.updateHope(hodto);
+    	}
+    	
+    	
+    	homap.put("hodto", hodto); 
+    	
+    	return homap;
+    }
+ 
  }
 

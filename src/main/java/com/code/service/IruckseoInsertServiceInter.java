@@ -4,8 +4,10 @@ import java.util.List;
 
 import com.code.dto.IruckseoActibityDto;
 import com.code.dto.IruckseoCareerDto;
+import com.code.dto.IruckseoHopeDto;
 import com.code.dto.IruckseoInsertDto;
 import com.code.dto.IruckseoSchoolDto;
+import com.code.dto.IruckseoSelfDto;
 import com.code.dto.IruckseoSpecDto;
 
 public interface IruckseoInsertServiceInter {
@@ -73,4 +75,42 @@ public interface IruckseoInsertServiceInter {
     //스펙 단건 list 출력
   	public List<IruckseoSpecDto> OneSpecDatas(IruckseoSpecDto spdto);
   	
+    //스펙 수정폼 띄우기
+  	public IruckseoSpecDto selectNumSpec(int sp_num);
+  	
+    //스펙 수정하기
+  	public void updateSpec(IruckseoSpecDto spdto);
+  	
+    //스펙 수정 후 리스트 띄우기
+  	public List<IruckseoSpecDto> allSpecDatas(IruckseoSpecDto spdto);
+  	
+    //스펙 삭제하기
+  	public void deleteSpec(int sp_num);
+  	
+    //자기소개서 insert
+  	public void insertSelf(IruckseoSelfDto sedto);
+  	
+	//자기소개서 insert 후 list 출력
+	public List<IruckseoSelfDto> OneSelfDatas(IruckseoSelfDto sedto);
+
+	//자기소개서 수정폼 띄우기
+	public IruckseoSelfDto selectNumSelf(int se_num);
+	
+	//자기소개서 수정하기
+	public void updateSelf(IruckseoSelfDto sedto);
+	
+	//자기소개서 수정하고 list 출력
+	public List<IruckseoSelfDto> allSelfDatas(IruckseoSelfDto sedto);
+	
+	//자기소개서 삭제하기
+	public void deleteSelf(int se_num);
+	
+	//희망조건 insert
+	public void insertHope(IruckseoHopeDto hodto);
+
+	//희망조건 insert 후 list출력
+	public List<IruckseoHopeDto> OneHopeDatas(IruckseoHopeDto hodto);
+	
+	//희망조건 update
+	public void updateHope(IruckseoHopeDto hodto);
 }

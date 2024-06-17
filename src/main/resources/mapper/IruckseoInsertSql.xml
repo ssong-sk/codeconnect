@@ -15,6 +15,14 @@
 	    (pe_num, pe_writeday)
 	    values (#{pe_num}, now())
     </insert>
+    
+    <!-- 이력서 수정하기 -->
+   <update id="updatePersonal" parameterType="IruckseoInsertDto">
+     update personal set 
+     pe_image=#{pe_image}, pe_category=#{pe_category}, pe_title=#{pe_title}
+     where
+     pe_num = #{pe_num}
+   </update>
 
    <!-- school 학력 insert -->
 	<insert id="insertSchool" parameterType="IruckseoSchoolDto"  useGeneratedKeys="true" keyProperty="sc_num">
@@ -169,7 +177,7 @@
 		<selectKey keyProperty="sp_num" resultType="int" order="BEFORE">
 	        select MAX(IFNULL(X.sp_num,0)) + 1 
 	        from ( 
-            	  select MAX(sp_num) AS ac_num   from spec union all
+            	  select MAX(sp_num) AS sp_num   from spec union all
             	  select '0' as sp_num from dual
                   ) X 
 	    </selectKey>	
@@ -190,7 +198,113 @@
      select * from spec where pe_num = #{pe_num} and sp_num = #{sp_num} order by sp_num asc
    </select>
    
+   <!-- 스펙 list 나오기 전체 -->
+   <select id="allSpecDatas" parameterType="IruckseoSpecDto" resultType="IruckseoSpecDto">
+     select * from spec where pe_num = #{pe_num} order by sp_num asc
+   </select>
+   
+   <!-- 스펙 num 값 넘기기 -->
+   <select id="selectNumSpec" parameterType="int" resultType="IruckseoSpecDto">
+     select * from spec where sp_num = #{sp_num}
+   </select>
+   
+   <!-- 스펙 수정하기 -->
+   <update id="updateSpec" parameterType="IruckseoSpecDto">
+     update spec set 
+     sp_category=#{sp_category}, sp_ce_name=#{sp_ce_name}, sp_ce_organization=#{sp_ce_organization}, sp_ce_pass=#{sp_ce_pass}, 
+     sp_ce_passday=#{sp_ce_passday}, sp_la_name=#{sp_la_name}, sp_la_passday=#{sp_la_passday}, sp_la_grade=#{sp_la_grade},
+     sp_aw_name=#{sp_aw_name}, sp_aw_organization=#{sp_aw_organization}, sp_aw_sangday=#{sp_aw_sangday}
+     where
+     sp_num = #{sp_num}
+   </update>
+   
    <!-- 스펙 삭제하기 -->
+   <delete id="deleteSpec" parameterType="int">
+     delete from spec where sp_num = #{sp_num}
+   </delete>
    
+   <!-- 자기소개서 insert -->
+	<insert id="insertSelf" parameterType="IruckseoSelfDto"  useGeneratedKeys="true" keyProperty="se_num">
+		<selectKey keyProperty="se_num" resultType="int" order="BEFORE">
+	        select MAX(IFNULL(X.se_num,0)) + 1 
+	        from ( 
+            	  select MAX(se_num) AS se_num   from self union all
+            	  select '0' as se_num from dual
+                  ) X 
+	    </selectKey>	
+     insert into self 
+     (
+     	pe_num, se_num, se_subject, se_content
+     ) 
+     values 
+     (
+     	#{pe_num},#{se_num}, #{se_subject }, #{se_content }
+	 )
+   </insert>
    
+   <!-- 자기소개서 단건 출력 list -->
+   <select id="OneSelfDatas" parameterType="IruckseoSelfDto"  resultType="IruckseoSelfDto">
+     select * from self where pe_num = #{pe_num} and se_num = #{se_num} order by se_num asc
+   </select>
+   
+   <!-- 자기소개서 list 나오기 전체 -->
+   <select id="allSelfDatas" parameterType="IruckseoSelfDto" resultType="IruckseoSelfDto">
+     select * from self where pe_num = #{pe_num} order by se_num asc
+   </select>
+   
+   <!-- 자기소개서 num 값 넘기기 -->
+   <select id="selectNumSelf" parameterType="int" resultType="IruckseoSelfDto">
+     select * from self where se_num = #{se_num}
+   </select>
+   
+   <!-- 자기소개서 수정하기 -->
+   <update id="updateSelf" parameterType="IruckseoSelfDto">
+     update self set 
+     se_subject=#{se_subject}, se_content=#{se_content}
+     where
+     se_num = #{se_num}
+   </update>
+   
+   <!-- 자기소개서 삭제하기 -->
+   <delete id="deleteSelf" parameterType="int">
+     delete from self where se_num = #{se_num}
+   </delete>
+   
+   <!-- 희망조건 insert -->
+   <insert id="insertHope" parameterType="IruckseoHopeDto"  useGeneratedKeys="true" keyProperty="ho_num">
+		<selectKey keyProperty="ho_num" resultType="int" order="BEFORE">
+	        select MAX(IFNULL(X.ho_num,0)) + 1 
+	        from ( 
+            	  select MAX(ho_num) AS ho_num   from hope union all
+            	  select '0' as ho_num from dual
+                  ) X 
+	    </selectKey>	
+     insert into hope 
+     (
+     	pe_num,ho_num, ho_category, ho_money, ho_check, ho_addr, ho_keyword
+     ) 
+     values 
+     (
+     	#{pe_num},#{ho_num}, #{ho_category }, #{ho_money },#{ho_check },#{ho_addr },#{ho_keyword }
+	 )
+   </insert>
+   
+   <!-- 희망조건 단건 출력 list -->
+   <select id="OneHopeDatas" parameterType="IruckseoHopeDto"  resultType="IruckseoHopeDto">
+     select * from hope where pe_num = #{pe_num} and ho_num = #{ho_num} order by ho_num asc
+   </select>
+   
+   <!-- 희망조건 list 나오기 전체 -->
+   <select id="allHopeDatas" parameterType="IruckseoHopeDto" resultType="IruckseoHopeDto">
+     select * from hope where pe_num = #{pe_num} order by ho_num asc
+   </select>
+   
+   <!-- 희망조건 수정하기 -->
+   <update id="updateHope" parameterType="IruckseoHopeDto">
+     update hope set 
+     ho_category=#{ho_category}, ho_money=#{ho_money}, ho_check=#{ho_check}, ho_addr=#{ho_addr}, ho_keyword=#{ho_keyword}
+     where
+     ho_num = #{ho_num}
+   </update>
+
 </mapper>

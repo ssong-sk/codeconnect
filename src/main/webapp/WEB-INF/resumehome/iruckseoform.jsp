@@ -241,15 +241,15 @@
 <!-- 인정사항 폼 -------------------------------------------------------------------------------------------------------------------------->
                 <div class="personal">
                         <div class="form-caption">
-                            <span style="font-size: 1.3em;"><b>인적사항</b></span>&nbsp;&nbsp;&nbsp;
+                            <h5><b>인적사항</b></h5>&nbsp;&nbsp;&nbsp;
                             <span style="font-size: 0.8em;">자동입력(사진 및 경력 제외)</span>
                         </div>
                         <hr style="width: 100%;">
                         <table class="" style="width: 100%;">
                           <tr>
                       <td class="form-group">
-                          <input type="text" class="form-control" style="width: 150px;" placeholder="이름">
-                          <select class="form-select" style="width: 120px;">
+                          <span>김코드</span>&nbsp;&nbsp;
+                          <select class="form-select" style="width: 120px;" name="pe_category">
                               <option>신입/경력</option>
                               <option>신입</option>
                               <option>경력</option>
@@ -260,8 +260,8 @@
                         <input type="file" name="myphoto" id="myphoto" style="display: none;">
                               <div style="position: relative; display: inline-block;">
                                 <img id="showimg">
-                               <span id="plusphoto" style="position: absolute; top: 80%; left: 50%; 
-                               transform: translate(-50%, -50%); cursor: pointer; ">사진추가</span>
+                               <span id="plusphoto" name="pe_image" style="position: absolute; top: 85%; left: 50%; 
+                               transform: translate(-50%, -50%); cursor: pointer; font-size: 0.8em;">사진추가</span>
                               </div>
                               
                               <script type="text/javascript">
@@ -303,22 +303,22 @@
                     
                     <tr>
                       <td class="form-group">
-                        <input type="text" class="form-control" style="width: 150px;" placeholder="남/여">
-                        <input type="date" class="form-control" style="width: 250px;">
+                        <span>성별 (여)</span>&nbsp;&nbsp;&nbsp;
+                        <span>2000.06.17 (24세)</span>
                       </td>
                     </tr>
                     
                     <tr>
                       <td class="form-group">
-                        <input type="text" class="form-control" style="width: 200px;" placeholder="메일">
-                        <input type="text" class="form-control" style="width: 180px;" placeholder="전화번호">
-                        <input type="text" class="form-control" style="width: 180px;" placeholder="핸드폰">
+                        <span><i class="bi bi-envelope"></i> code@gmail.com</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <span><i class="bi bi-telephone"></i> 010-3333-4444</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <span><i class="bi bi-phone"></i> 010-3333-4444</span>
                       </td>
                     </tr>
                     
                     <tr>
                       <td class="form-group">
-                        <input type="text" class="form-control" style="width: 350px;" placeholder="주소">
+                        <span><i class="bi bi-house"></i> 서울시 강남구 역삼도 1111</span>
                       </td>
                     </tr>
                     
@@ -330,7 +330,7 @@
 <!-- 학력 폼 ---------------------------------------------------------------------------------------------------------------------->
                 <div class="school">
                     <div class="form-caption">
-                        <span style="font-size: 1.3em;"><b>학력</b></span>&nbsp;&nbsp;&nbsp;
+                        <h5><b>학력</b></h5>&nbsp;&nbsp;&nbsp;
                         <span style="font-size: 0.8em;">*필수정보입력</span>
                         <span style="font-size: 0.8em; color: #4876EF; margin-left: 82%;">
                         <a style="cursor: pointer;" id="schoolPlus">+ 추가하기</a></span>
@@ -875,7 +875,7 @@
 <!-- 경력 ------------------------------------------------------------------------------------------------------------------------>
             <div class="career">
                     <div class="form-caption">
-                        <span style="font-size: 1.3em;"><b>경력</b></span>&nbsp;&nbsp;&nbsp;
+                        <h5><b>경력</b></h5>&nbsp;&nbsp;&nbsp;
                         <span style="font-size: 0.8em;">*필수정보입력</span>
                         <span style="font-size: 0.8em; color: #4876EF; margin-left: 82%;">
                             <a style="cursor: pointer;" id="careerPlus">+ 추가하기</a></span>
@@ -1182,7 +1182,7 @@
 <!-- 경험, 활동, 교육 ----------------------------------------------------------------------------------------------------------->
                 <div class="activity">
                         <div class="form-caption">
-                            <span style="font-size: 1.3em;"><b>경험 / 활동 / 교육</b></span>&nbsp;&nbsp;&nbsp;
+                            <h5><b>경험 / 활동 / 교육</b></h5>&nbsp;&nbsp;&nbsp;
                             <span style="font-size: 0.8em;">*필수정보입력</span>
                             <span style="font-size: 0.8em; color: #4876EF; margin-left: 73.4%;">
                         <a style="cursor: pointer;" id="activityPlus">+ 추가하기</a></span>
@@ -1481,126 +1481,448 @@
 <!-- 자격/어학/수상----------------------------------------------------------------------------------------------------------- -->
                 <div class="qualification">
                     <div class="form-caption">
-                        <h4><b>자격 / 어학 / 수상</b></h4>&nbsp;&nbsp;&nbsp;
+                        <h5><b>자격 / 어학 / 수상</b></h5>&nbsp;&nbsp;&nbsp;
                         <span style="font-size: 0.8em;">*필수정보입력</span>
                         <span style="font-size: 0.8em; color: #4876EF; margin-left: 73.4%;">
                             <a style="cursor: pointer;" id="qualificationPlus">+ 추가하기</a></span>
                     </div>
                     <hr style="width: 100%;">
+                    <div id="qualificationList"></div>
                     <div id="qualificationform"></div>
             </div>
             
             <script type="text/javascript">
-                //추가하기 누르면 폼 나타나게 하기
-                $(function () {
-                    //추가하기 클릭시 입력창 추가
-                    $("#qualificationPlus").click(function () {
-                        var qualificationclick = $("#qualificationclick").length;
-            
-                        // 창이 하나도 안열려 있는 경우 추가폼 생성됨
-                        if (qualificationclick == 0) {
-                            var total = "";
-            
-                            total += '<table id="qualificationclick" style="width: 100%;">';
-                            total += '<tr>';
-                            total += '<td class="form-group">';
-                            total += '<select class="form-select" style="width: 200px;" id="qualification-select">';
-                            total += '<option value="none">구분*</option>';
-                            total += '<option value="qualify">자격증·면허증</option>';
-                            total += '<option value="language">어학시험</option>';
-                            total += '<option value="award">수상내역·공모전</option>';
-                            total += '</select>';
-                            total += '</td>';
-                            total += '</tr>';
-                            total += '<!-- 자격증 폼 -->';
-                            total += '<tr id="qualify-options" style="display: none;">';
-                            total += '<td class="form-group">';
-                            total += '<input type="text" class="form-control" style="width: 200px;" placeholder="자격증명*">';
-                            total += '<input type="text" class="form-control" style="width: 200px;" placeholder="발행처/기관*">';
-                            total += '<select class="form-select" style="width: 120px;">';
-                            total += '<option>합격구분*</option>';
-                            total += '<option>1차합격</option>';
-                            total += '<option>2차합격</option>';
-                            total += '<option>필기합격</option>';
-                            total += '<option>실기합격</option>';
-                            total += '<option>최종합격</option>';
-                            total += '</select>';
-                            total += '<input type="date" class="form-control" style="width: 120px;">';
-                            total += '</td>';
-                            total += '</tr>';
-                            total += '<!-- 어학 폼 -->';
-                            total += '<tr id="language-options" style="display: none;">';
-                            total += '<td class="form-group">';
-                            total += '<input type="text" class="form-control" style="width: 200px;" placeholder="어학시험명*">';
-                            total += '<input type="date" class="form-control" style="width: 120px;">';
-                            total += '<input type="text" class="form-control" style="width: 200px;" placeholder="점수*">';
-                            total += '</td>';
-                            total += '</tr>';
-                            total += '<!-- 어워드 폼 -->';
-                            total += '<tr id="award-options" style="display: none;">';
-                            total += '<td class="form-group">';
-                            total += '<input type="text" class="form-control" style="width: 200px;" placeholder="수상·공모전명*">';
-                            total += '<input type="date" class="form-control" style="width: 120px;">';
-                            total += '<input type="text" class="form-control" style="width: 200px;" placeholder="수여·주최기관*">';
-                            total += '</td>';
-                            total += '</tr>';
-                            total += '<!-- 저장 취소 버튼 -->';
-                            total += '<tr>';
-                            total += '<td colspan="2" align="right">';
-                            total += '<br>';
-                            total += '<button type="button" class="btn btn-outline-primary">저장</button>';
-                            total += '&nbsp';
-                            total += '<button type="button" id="qualificationCancle" class="btn btn-outline-primary">취소</button>';
-                            total += '</td>';
-                            total += '</tr>';
-                            total += '</table>';
-            
-                            $("#qualificationform").append(total);
-            
-                            // 자격 / 어학 / 수상 구분 선택하면 카테고리에 맞게 폼 나타내기
-                            var qualificationSelect = document.getElementById('qualification-select');
-                            var qualifyOptions = document.getElementById('qualify-options');
-                            var languageOptions = document.getElementById('language-options');
-                            var awardOptions = document.getElementById('award-options');
-            
-                            qualificationSelect.addEventListener('change', function() {
-                                if (qualificationSelect.value === 'qualify') {
-                                    qualifyOptions.style.display = 'block';
-                                    languageOptions.style.display = 'none';
-                                    awardOptions.style.display = 'none';
-                                } 
-                                else if (qualificationSelect.value === 'language') {
-                                    qualifyOptions.style.display = 'none';
-                                    languageOptions.style.display = 'block';
-                                    awardOptions.style.display = 'none';
-                                } 
-                                else if (qualificationSelect.value === 'award') {
-                                    qualifyOptions.style.display = 'none';
-                                    languageOptions.style.display = 'none';
-                                    awardOptions.style.display = 'block';
-                                } 
-                                else {
-                                    qualifyOptions.style.display = 'none';
-                                    languageOptions.style.display = 'none';
-                                    awardOptions.style.display = 'none';
-                                }
-                            });
-                        }
-                    });
-            
-                    // 취소 클릭시 입력창 삭제
-                    $(document).on("click", "#qualificationCancle", function () {
-                        $("#qualificationform").html("");
-                    });
-                });
-            </script>
+		    //추가하기 누르면 폼 나타나게 하기
+		    $(function () {
+		        //추가하기 클릭시 입력창 추가
+		        $("#qualificationPlus").click(function () {
+		            var qualificationclick = $("#qualificationclick").length;
+		
+		            // 창이 하나도 안열려 있는 경우 추가폼 생성됨
+		            if (qualificationclick == 0) {
+		                var total = "";
+		
+		                total += '<form id="sptotal">';
+		                total += '<table id="qualificationclick" style="width: 100%;">';
+		                total += '<tr>';
+		                total += '<td class="form-group">';
+		                total += '<select class="form-select" style="width: 200px;" id="qualification-select" name="sp_category">';
+		                total += '<option value="none">구분*</option>';
+		                total += '<option value="자격증·면허증">자격증·면허증</option>';
+		                total += '<option value="어학시험">어학시험</option>';
+		                total += '<option value="수상내역·공모전">수상내역·공모전</option>';
+		                total += '</select>';
+		                total += '</td>';
+		                total += '</tr>';
+		                total += '<!-- 자격증 폼 -->';
+		                total += '<tr id="qualify-options" style="display: none;">';
+		                total += '<td class="form-group">';
+		                total += '<input type="text" class="form-control" style="width: 200px;" placeholder="자격증명*" name="sp_ce_name">';
+		                total += '<input type="text" class="form-control" style="width: 200px;" placeholder="발행처/기관*" name="sp_ce_organization">';
+		                total += '<select class="form-select" style="width: 120px;" name="sp_ce_pass">';
+		                total += '<option value="">합격구분*</option>';
+		                total += '<option value="1차합격">1차합격</option>';
+		                total += '<option value="2차합격">2차합격</option>';
+		                total += '<option value="필기합격">필기합격</option>';
+		                total += '<option value="실기합격">실기합격</option>';
+		                total += '<option value="최종합격">최종합격</option>';
+		                total += '</select>';
+		                total += '<input type="date" class="form-control" style="width: 180px;" name="sp_ce_passday">';
+		                total += '</td>';
+		                total += '</tr>';
+		                total += '<!-- 어학 폼 -->';
+		                total += '<tr id="language-options" style="display: none;">';
+		                total += '<td class="form-group">';
+		                total += '<input type="text" class="form-control" style="width: 200px;" name="sp_la_name" placeholder="어학시험명*">';
+		                total += '<input type="date" class="form-control" style="width: 180px;" name="sp_la_passday">';
+		                total += '<input type="text" class="form-control" style="width: 200px;" name="sp_la_grade" placeholder="점수*">';
+		                total += '</td>';
+		                total += '</tr>';
+		                total += '<!-- 어워드 폼 -->';
+		                total += '<tr id="award-options" style="display: none;">';
+		                total += '<td class="form-group">';
+		                total += '<input type="text" class="form-control" style="width: 200px;" name="sp_aw_name" placeholder="수상·공모전명*">';
+		                total += '<input type="date" class="form-control" style="width: 180px;" name="sp_aw_sangday">';
+		                total += '<input type="text" class="form-control" style="width: 200px;" name="sp_aw_organization" placeholder="수여·주최기관*">';
+		                total += '</td>';
+		                total += '</tr>';
+		                total += '<!-- 저장 취소 버튼 -->';
+		                total += '<tr>';
+		                total += '<td colspan="2" align="right">';
+		                total += '<br>';
+		                total += '<button type="button" id="specOk" class="btn btn-outline-primary">저장</button>';
+		                total += '&nbsp';
+		                total += '<button type="button" id="qualificationCancle" class="btn btn-outline-primary">취소</button>';
+		                total += '</td>';
+		                total += '</tr>';
+		                total += '</table>';
+		
+		                $("#qualificationform").append(total);
+		
+		            }
+		        });
+		
+		        // 자격 / 어학 / 수상 구분 선택하면 카테고리에 맞게 폼 나타내기
+		        $(document).on("change", "#qualification-select", function () {
+		            // 해당폼 구분 선택시 다르게
+		            if ($(this).val() === '자격증·면허증') {
+		                $("#qualify-options").css("display","block");
+		                $("#language-options").css("display","none");
+		                $("#award-options").css("display","none");
+		            }
+		            else if($(this).val() === '어학시험') {
+		                $("#qualify-options").css("display","none");
+		                $("#language-options").css("display","block");
+		                $("#award-options").css("display","none");
+		            }           
+		            else {
+		                $("#qualify-options").css("display","none");
+		                $("#language-options").css("display","none");
+		                $("#award-options").css("display","block");
+		            }
+		        });
+		
+		        // 취소 클릭시 입력창 삭제
+		        $(document).on("click", "#qualificationCancle", function () {
+		            $("#qualificationList").show();
+		            $("#qualificationform").html("");
+		        });
+		
+		        //스펙 저장시 insert 하기
+		        $(document).on("click", "#specOk", function(){
+		            // spData에 form 데이터 수집
+		            var spData = {
+		                pe_num: $('#pe_num').val(),
+		                sp_category: $('select[name="sp_category"]').val(),
+		                sp_ce_name: $('input[name="sp_ce_name"]').val(),
+		                sp_ce_organization: $('input[name="sp_ce_organization"]').val(),
+		                sp_ce_pass: $('select[name="sp_ce_pass"]').val(),
+		                sp_ce_passday: $('input[name="sp_ce_passday"]').val(),
+		                sp_la_name: $('input[name="sp_la_name"]').val(),
+		                sp_la_passday: $('input[name="sp_la_passday"]').val(),
+		                sp_la_grade: $('input[name="sp_la_grade"]').val(),
+		                sp_aw_name: $('input[name="sp_aw_name"]').val(),
+		                sp_aw_organization: $('input[name="sp_aw_organization"]').val(),
+		                sp_aw_sangday: $('input[name="sp_aw_sangday"]').val()
+		            }
+		
+		            // 콘솔에 spData 로그 출력
+		            console.log(spData); // 콘솔에 출력하여 데이터 확인
+		
+		            //sp insert 작성 및 list 출력
+		            $.ajax ({
+		                type: "post",
+		                url: "specinsert",
+		                contentType: "application/json",
+		                data: JSON.stringify(spData),
+		                dataType: "json", 
+		                success: function(res) {
+		                    var sp_num = res.splist[0].sp_num; // 카테고리
+		                    var sp_category = res.splist[0].sp_category; // 카테고리
+		
+		                    var sp_name = (sp_category === '자격증·면허증') ? res.splist[0].sp_ce_name
+		                                 : (sp_category === '어학시험') ? res.splist[0].sp_la_name
+		                                 : (sp_category === '수상내역·공모전') ? res.splist[0].sp_aw_name : '';
+		
+		                    var sp_passday = (sp_category === '자격증·면허증') ? res.splist[0].sp_ce_passday
+		                                 : (sp_category === '어학시험') ? res.splist[0].sp_la_passday
+		                                 : (sp_category === '수상내역·공모전') ? res.splist[0].sp_aw_sangday : '';
+		
+		                    var sp_ce_organization = res.splist[0].sp_ce_organization; // 자격 _ 발행처
+		                    var sp_ce_pass = res.splist[0].sp_ce_pass; // 자격 _ 합격구분
+		                    var sp_la_grade = res.splist[0].sp_la_grade; // 어학 _ 점수
+		                    var sp_aw_organization = res.splist[0].sp_aw_organization; // 수상 _ 주최기관
+		
+		                    // 전체 데이터 담기
+		                    var sp = "";
+		
+		                    sp += '<table style="border-bottom: 0.5px solid #D9D9D9; width: 100%; margin-top: 1%;">';
+		                    sp += '<tr>';
+		                    sp += '<td class="form-group">';
+		                    sp += '<span style="font-size: 1.2em;"><b>' + sp_name + '</b></span>&nbsp;';
+		                    sp += '<span>' + sp_passday + '</span>&nbsp;&nbsp;&nbsp;&nbsp;';
+		                    sp += '<span style="cursor: pointer;"><i class="bi bi-pencil spupdate" sp_num=' + sp_num + '></i></span>';
+		                    sp += '<span style="cursor: pointer;"><i class="bi bi-trash3 spdelete" sp_num=' + sp_num + '></i></span>';
+		                    sp += '</td>';
+		
+		                    // 카테고리별 정보 추가
+		                    if (sp_category === "자격증·면허증") {
+		                        sp += '<td class="form-group">';
+		                        sp += '<span>' + sp_ce_organization + '</span>&nbsp;';
+		                        sp += '<span>' + sp_ce_pass + '</span>';
+		                        sp += '</td>';
+		                    } 
+		                    
+		                    else if (sp_category === "어학시험") {
+		                        sp += '<td class="form-group">';
+		                        sp += '<span>점수&nbsp;&nbsp;' + sp_la_grade + '점</span>';
+		                        sp += '</td>';
+		                    }
+		                    
+		                    else if (sp_category === "수상내역·공모전") {
+		                        sp += '<td class="form-group">';
+		                        sp += '<span>' + sp_aw_organization + '</span>';
+		                        sp += '</td>';
+		                    }
+		
+		                    sp += '</tr>';
+		                    sp += '</table>';
+		
+		                    //list 나타내기
+		                    $("#qualificationList").append(sp);
+		
+		                    //form 리셋
+		                    $("#qualificationform").html("");
+		                }
+		            });
+		        });
+		        
+		        
+		        //스펙 삭제하기
+		        $(document).on("click", ".spdelete", function(){
+		        	
+		        	var sp_num = $(this).attr("sp_num");
+		        	var spThis = $(this);
+		        	
+		        	var sp_confirm = confirm("해당 내역을 삭제하시겠습니까?");
+		        	
+		        	if(sp_confirm) {
+		        		
+		        		$.ajax ({
+		        			
+		        			type : "get",
+		        			url : "specdelete",
+		        			dataType : "html",
+		        			data : {"sp_num":sp_num},
+		        			success : function() {
+		        				
+		        				spThis.parents('table').remove();
+		        			}
+		        		})
+		        	}
+		        });
+		        
+		        //스펙 수정폼 띄우기
+		        $(document).on("click", ".spupdate", function(){
+		        	
+		        	var sp_num = $(this).attr("sp_num");
+		        	//alert(sp_num);
+		        	
+		        	$.ajax({
+					    type: "get",
+					    dataType: "json",
+					    url: "specupdateform", // 수정 필요: 실제 URL로 변경
+					    data: {"sp_num": sp_num},
+					    success: function(data) {
+					        // list 사라지게하기
+					        $("#qualificationList").hide();
+					        
+					        var sp_num = data.sp_num; // 자격증 번호
+					        var sp_category = data.sp_category; // 카테고리
+					        
+					        var sp_name = (sp_category === '자격증·면허증') ? data.sp_ce_name
+					                     : (sp_category === '어학시험') ? data.sp_la_name
+					                     : (sp_category === '수상내역·공모전') ? data.sp_aw_name : '';
+					        
+					        var sp_passday = (sp_category === '자격증·면허증') ? data.sp_ce_passday
+					                       : (sp_category === '어학시험') ? data.sp_la_passday
+					                       : (sp_category === '수상내역·공모전') ? data.sp_aw_sangday : '';
+					        
+					        var sp_ce_organization = data.sp_ce_organization; // 자격 _ 발행처
+					        var sp_ce_pass = data.sp_ce_pass; // 자격 _ 합격구분
+					        var sp_la_grade = data.sp_la_grade; // 어학 _ 점수
+					        var sp_aw_organization = data.sp_aw_organization; // 수상 _ 주최기관
+					        
+					        
+					        // 수정 버튼 클릭 시 데이터 넣어주기
+					        var total = "";
+					        
+					        total += '<form id="sptotal">';
+					        total += '<input type="hidden" name="sp_num" id="sp_num" value="'+sp_num+'">'
+					        total += '<table id="qualificationclick" style="width: 100%;">';
+					        total += '<tr>';
+					        total += '<td class="form-group">';
+					        total += '<select class="form-select" style="width: 200px;" id="qualification-select" name="sp_category">';
+					        total += '<option value="none">구분*</option>';
+					        total += '<option value="자격증·면허증">자격증·면허증</option>';
+					        total += '<option value="어학시험">어학시험</option>';
+					        total += '<option value="수상내역·공모전">수상내역·공모전</option>';
+					        total += '</select>';
+					        total += '</td>';
+					        total += '</tr>';
+					        // 자격증 폼
+					        total += '<tr id="qualify-options" style="display: none;">';
+					        total += '<td class="form-group">';
+					        total += '<input type="text" class="form-control" style="width: 200px;" value="'+sp_name+'" name="sp_ce_name">';
+					        total += '<input type="text" class="form-control" style="width: 200px;" value="'+sp_ce_organization+'" name="sp_ce_organization">';
+					        total += '<select class="form-select" style="width: 120px;" name="sp_ce_pass">';
+					        total += '<option value="">합격구분*</option>';
+					        total += '<option value="1차합격">1차합격</option>';
+					        total += '<option value="2차합격">2차합격</option>';
+					        total += '<option value="필기합격">필기합격</option>';
+					        total += '<option value="실기합격">실기합격</option>';
+					        total += '<option value="최종합격">최종합격</option>';
+					        total += '</select>';
+					        total += '<input type="date" class="form-control" style="width: 180px;" name="sp_ce_passday" value="'+sp_passday+'">';
+					        total += '</td>';
+					        total += '</tr>';
+					        // 어학 폼
+					        total += '<tr id="language-options" style="display: none;">';
+					        total += '<td class="form-group">';
+					        total += '<input type="text" class="form-control" style="width: 200px;" name="sp_la_name" value="'+sp_name+'">';
+					        total += '<input type="date" class="form-control" style="width: 180px;" name="sp_la_passday" value="'+sp_passday+'">';
+					        total += '<input type="text" class="form-control" style="width: 200px;" name="sp_la_grade" value="'+sp_la_grade+'">';
+					        total += '</td>';
+					        total += '</tr>';
+					        // 어워드 폼
+					        total += '<tr id="award-options" style="display: none;">';
+					        total += '<td class="form-group">';
+					        total += '<input type="text" class="form-control" style="width: 200px;" name="sp_aw_name" value="'+sp_name+'">';
+					        total += '<input type="date" class="form-control" style="width: 180px;" name="sp_aw_sangday" value="'+sp_passday+'">';
+					        total += '<input type="text" class="form-control" style="width: 200px;" name="sp_aw_organization" value="'+sp_aw_organization+'">';
+					        total += '</td>';
+					        total += '</tr>';
+					        // 저장 취소 버튼
+					        total += '<tr>';
+					        total += '<td colspan="2" align="right">';
+					        total += '<br>';
+					        total += '<button type="button" id="specUpdateOk" class="btn btn-outline-primary">수정</button>';
+					        total += '&nbsp';
+					        total += '<button type="button" id="qualificationCancle" class="btn btn-outline-primary">취소</button>';
+					        total += '</td>';
+					        total += '</tr>';
+					        total += '</table>';
+					
+					        $("#qualificationform").append(total);
+					        
+					        
+					        // 해당폼 구분 선택 시 다르게
+					        $("select[name=sp_category]").val(sp_category);
+					        
+					        // 각 카테고리에 따라 데이터 넣기
+					        if (sp_category === '자격증·면허증') {
+					            $('select[name="sp_ce_pass"]').val(sp_ce_pass);
+					            $("#qualify-options").css("display","block");
+					            $("#language-options").css("display","none");
+					            $("#award-options").css("display","none");
+					        } else if (sp_category === '어학시험') {
+					            $("#qualify-options").css("display","none");
+					            $("#language-options").css("display","block");
+					            $("#award-options").css("display","none");
+					        } else {
+					            $("#qualify-options").css("display","none");
+					            $("#language-options").css("display","none");
+					            $("#award-options").css("display","block");
+					        }
+                    	}
+		        	})
+		        });
+		        
+		        //스펙 수정 버튼을 누르면 실행되어 수정 리스트 띄어주기
+		        $(document).on("click", "#specUpdateOk", function(){
+		        	
+		        	var spData = {
+		        			
+		        			pe_num: $('#pe_num').val(),
+		        			sp_num: $('#sp_num').val(),
+			                sp_category: $('select[name="sp_category"]').val(),
+			                sp_ce_name: $('input[name="sp_ce_name"]').val(),
+			                sp_ce_organization: $('input[name="sp_ce_organization"]').val(),
+			                sp_ce_pass: $('select[name="sp_ce_pass"]').val(),
+			                sp_ce_passday: $('input[name="sp_ce_passday"]').val(),
+			                sp_la_name: $('input[name="sp_la_name"]').val(),
+			                sp_la_passday: $('input[name="sp_la_passday"]').val(),
+			                sp_la_grade: $('input[name="sp_la_grade"]').val(),
+			                sp_aw_name: $('input[name="sp_aw_name"]').val(),
+			                sp_aw_organization: $('input[name="sp_aw_organization"]').val(),
+			                sp_aw_sangday: $('input[name="sp_aw_sangday"]').val()
+		        			
+		        	}
+		        	
+		        	//sp insert 작성 및 list 출력
+		        	$.ajax ({
+		        		
+		        		type: "post",
+                	    url: "specupdate",
+                	    contentType: "application/json",
+                	    data: JSON.stringify(spData),
+                	    dataType: "json", 
+                	    success : function(res) {
+                	    	
+                	    	var sp = "";
+                	    	
+                	    	$.each(res, function(i, dto) {
+                	    		
+                	    		var sp_num = dto.sp_num; // 자격증 번호
+    					        var sp_category = dto.sp_category; // 카테고리
+    					        
+    					        var sp_name = (sp_category === '자격증·면허증') ? dto.sp_ce_name
+    					                     : (sp_category === '어학시험') ? dto.sp_la_name
+    					                     : (sp_category === '수상내역·공모전') ? data.sp_aw_name : '';
+    					        
+    					        var sp_passday = (sp_category === '자격증·면허증') ? dto.sp_ce_passday
+    					                       : (sp_category === '어학시험') ? dto.sp_la_passday
+    					                       : (sp_category === '수상내역·공모전') ? dto.sp_aw_sangday : '';
+    					        
+    					        var sp_ce_organization = dto.sp_ce_organization; // 자격 _ 발행처
+    					        var sp_ce_pass = dto.sp_ce_pass; // 자격 _ 합격구분
+    					        var sp_la_grade = dto.sp_la_grade; // 어학 _ 점수
+    					        var sp_aw_organization = dto.sp_aw_organization; // 수상 _ 주최기관
+    					        
+    					        //list 폼
+    					        sp += '<table style="border-bottom: 0.5px solid #D9D9D9; width: 100%; margin-top: 1%;">';
+    		                    sp += '<tr>';
+    		                    sp += '<td class="form-group">';
+    		                    sp += '<span style="font-size: 1.2em;"><b>' + sp_name + '</b></span>&nbsp;';
+    		                    sp += '<span>' + sp_passday + '</span>&nbsp;&nbsp;&nbsp;&nbsp;';
+    		                    sp += '<span style="cursor: pointer;"><i class="bi bi-pencil spupdate" sp_num=' + sp_num + '></i></span>';
+    		                    sp += '<span style="cursor: pointer;"><i class="bi bi-trash3 spdelete" sp_num=' + sp_num + '></i></span>';
+    		                    sp += '</td>';
+    		
+    		                    // 카테고리별 정보 추가
+    		                    if (sp_category === "자격증·면허증") {
+    		                        sp += '<td class="form-group">';
+    		                        sp += '<span>' + sp_ce_organization + '</span>&nbsp;';
+    		                        sp += '<span>' + sp_ce_pass + '</span>';
+    		                        sp += '</td>';
+    		                    } 
+    		                    
+    		                    else if (sp_category === "어학시험") {
+    		                        sp += '<td class="form-group">';
+    		                        sp += '<span>점수&nbsp;&nbsp;' + sp_la_grade + '점</span>';
+    		                        sp += '</td>';
+    		                    }
+    		                    
+    		                    else if (sp_category === "수상내역·공모전") {
+    		                        sp += '<td class="form-group">';
+    		                        sp += '<span>' + sp_aw_organization + '</span>';
+    		                        sp += '</td>';
+    		                    }
+    		
+    		                    sp += '</tr>';
+    		                    sp += '</table>';
+    		
+                	    	})
+                	    	
+                	    	//list 나타내기
+                  	    	$("#qualificationList").html(sp);
+                  	    	
+                  	    	//form 리셋
+                  	    	$("#qualificationform").html("");	 	
+                  	    	
+                  	    	$("#qualificationList").show();
+                	    }
+		        	})
+		        });
+		    });
+		</script>
                 
 <!-------------- 포트폴리오/기타문서---------------------------------------------------------------------------------------------- -->
                 <div class="portfolio">
                 <form action="portfolioinsert" method="post" enctype="multipart/form-data">
                     <div class="form-caption">
-                        <h4><b>포트폴리오 / 기타문서</b></h4>&nbsp;&nbsp;&nbsp;
-                        <span style="font-size: 0.8em; color: #4876EF; margin-left: 78%;">
+                        <h5><b>포트폴리오 / 기타문서</b></h5>&nbsp;&nbsp;&nbsp;
+                        <span style="font-size: 0.8em; color: #4876EF; margin-left: 74%;">
                     <a style="cursor: pointer;" id="portfolioPlus">+ 추가하기</a></span>
                     </div>
                     <hr style="width: 100%;">
@@ -1640,7 +1962,7 @@
                        total += '<td class="form-group">';
                        total += '<input type="file" name="portfolioname" id="portfolioname" style="display: none;">';
                        total += '<button type="button" id="portfoliofile"';
-                       total += 'class="btn btn-primary" style="width: 980px;">+ 포트폴리오 및 기타문서 추가</button>';
+                       total += 'class="btn btn-primary" style="width: 1100px;">+ 포트폴리오 및 기타문서 추가</button>';
                        total += '</td>';
                        total += '</tr>';
                        total += '<!-- 저장 취소 버튼 -->';
@@ -1671,15 +1993,14 @@
             
 <!-- 자기소개서 ---------------------------------------------------------------------------------------------------------------->
                 <div class="self">
-                    <form action="selfinsert" method="post">
                         <div class="form-caption">
-                            <h4><b>자기소개서</b></h4>&nbsp;&nbsp;&nbsp;
+                            <h5><b>자기소개서</b></h5>&nbsp;&nbsp;&nbsp;
                             <span style="font-size: 0.8em; color: #4876EF; margin-left: 85.2%;">
                          <a style="cursor: pointer;" id="selfPlus">+ 추가하기</a></span>
                         </div>
                         <hr style="width: 100%;">
+                        <div id="selfList"></div>
                         <div id="selfform"></div>
-                    </form>
                 </div>
                 
                 
@@ -1698,66 +2019,249 @@
                               
                                var total = "";
                                                                                                                                  
-                           total += '<table id="selfclick" style="width: 100%;">';
-                           total += '<tr>';
-                           total += '<td class="form-group">';
-                           total += '<input type="text" class="form-control" style="width: 700px;" placeholder="자기소개서 제목">';
-                           total += '</td>';
-                           total += '</tr>';
-                           total += '<tr>';
-                           total += '<td class="form-group">';
-                           total += '<textarea class="form-control" style="height: 200px;"';
-                           total += 'placeholder="코드커넥트인만의 특벽한 자소서 툴과 함께 차별화된 자기소개서를 완성해보세요"></textarea>';
-                           total += '</td>';
-                           total += '</tr>';                                      
-                           total += '<!-- 저장 취소 버튼 -->';
-                           total += '<tr>';
-                           total += '<td colspan="2" align="right">';
-                           total += '<br>';
-                           total += '<button type="submit" class="btn btn-outline-primary">저장</button>';
-                           total +=  '&nbsp';
-                           total += '<button type="button" id="selfCancle" class="btn btn-outline-primary">취소</button>';
-                           total += '</td>';
-                           total += '</tr>';
-                           total += '</table>';
+		                           total += '<form id="setotal">';
+		                           total += '<table id="selfclick" style="width: 100%;">';
+		                           total += '<tr>';
+		                           total += '<td class="form-group">';
+		                           total += '<input type="text" class="form-control" style="width: 700px;" name="se_subject" placeholder="자기소개서 제목">';
+		                           total += '</td>';
+		                           total += '</tr>';
+		                           total += '<tr>';
+		                           total += '<td class="form-group">';
+		                           total += '<textarea class="form-control" style="height: 200px;"';
+		                           total += 'name="se_content" placeholder="코드커넥트인만의 특벽한 자소서 툴과 함께 차별화된 자기소개서를 완성해보세요"></textarea>';
+		                           total += '</td>';
+		                           total += '</tr>';                                      
+		                           total += '<!-- 저장 취소 버튼 -->';
+		                           total += '<tr>';
+		                           total += '<td colspan="2" align="right">';
+		                           total += '<br>';
+		                           total += '<button type="button" id="selfOk" class="btn btn-outline-primary">저장</button>';
+		                           total +=  '&nbsp';
+		                           total += '<button type="button" id="selfCancle" class="btn btn-outline-primary">취소</button>';
+		                           total += '</td>';
+		                           total += '</tr>';
+		                           total += '</table>';
                                                    
-                      
-
                                $("#selfform").append(total);
                            }
                        });
                        
                
-                       // 취소 클릭시 입력창 삭제
+                       // 자기소개서 취소 클릭시 입력창 삭제
                        $(document).on("click", "#selfCancle", function () {
                           
+                    	   $("#selfList").show();
                            $("#selfform").html("");
                        });
                        
-                    })   
+                       //자기소개서 저장 시 insert
+                       $(document).on("click", "#selfOk", function() {
+                    	 
+                    	   var seData = {
+                    			   
+                    			   pe_num: $('#pe_num').val(),
+                    			   se_subject: $('input[name="se_subject"]').val(),
+                    			   se_content: $('textarea[name="se_content"]').val()
+                    	   }
+                    	   
+                    	   //se insert 작성 및 list 출력
+                    	   $.ajax ({
+                    		 
+                    		   type: "post",
+	                     	   url: "selfinsert",
+	                     	   contentType: "application/json",
+	                     	   data: JSON.stringify(seData),
+	                     	   dataType: "json", 
+	                     	   success : function (res) {
+	                     		   
+	                     		  var se_num = res.selist[0].se_num; // num
+	                     	      var se_subject = res.selist[0].se_subject; // 제목
+	                     	      var se_content = res.selist[0].se_content; // 내용
+	                     	      
+	                     	      //전체 데이터 담기
+	                     	      var se = "";
+	                     	      
+	                     	      
+	                     	            se += '<table style="border-bottom: 0.5px solid #D9D9D9; width: 100%; margin-top: 1%;">';
+		                    			se += '<tr>';
+		                    			se += '<td class="form-group">';
+		                    			se += '<span style="font-size: 1.3em;"><b>'+se_subject+'</b></span>&nbsp;';
+		                    			se += '<span style="cursor: pointer;"><i class="bi bi-pencil seupdate" se_num='+se_num+'></i></span>';
+		                    			se += '<span style="cursor: pointer;"><i class="bi bi-trash3 sedelete" se_num='+se_num+'></i></span>';
+		                    			se += '</td>';
+		                    			se += '<td class="form-group" style="margin-top:1%;">';
+		                    			se += '<span>'+se_content+'</span>';
+		                    			se += '</td>';
+		                    			se += '</tr>';
+		                    			se += '</table>';
+			                    			
+		                 			//list 나타내기
+		                 			$("#selfList").append(se);
+		                 			
+		                 			//form 리셋
+		                 	    	$("#selfform").html("");
+	                     	   }
+                    	   })
+                       });
+                       
+                       //자기소개서 삭제하기
+                       $(document).on("click", ".sedelete", function(){
+                    	 
+                    	   var se_num = $(this).attr("se_num");
+                    	   var seThis = $(this);
+                    	   
+                    	   var se_confirm = confirm("해당 내역을 삭제하시겠습니까?");
+                    	   
+                    	   if(se_confirm) {
+                    		   
+                    		   $.ajax ({
+                    			 
+                    			   type : "get",
+                    			   dataType : "html",
+                    			   url : "selfdelete",
+                    			   data : {"se_num":se_num},
+                    			   success : function() {
+                    				   
+                    				   seThis.parents('table').remove();
+                    			   }
+                    		   })
+                    	   }
+                       });
+                       
+                       //자기소개서 수정폼 띄우기
+                       $(document).on("click", ".seupdate", function(){
+                    	 
+                    	   var se_num = $(this).attr("se_num");
+                    	   
+                    	   $.ajax({
+                    		 
+                    		   type : "get",
+                    		   dataType : "json",
+                    		   url : "selfupdateform",
+                    		   data : {"se_num":se_num},
+                    		   success : function(data) {
+                    			   
+                    			   //수정폼 누를 시 list 사라지게 하기
+                    			   $("#selfList").hide();
+                    			   
+                    			   var se_num = data.se_num; // num
+ 	                     	       var se_subject = data.se_subject; // 제목
+ 	                     	       var se_content = data.se_content; // 내용
+ 	                     	       
+ 	                     	       var total = "";
+                                 
+			                           total += '<form id="setotal">';
+			                           total += '<input type="hidden" name="se_num" id="se_num" value="'+se_num+'">';
+			                           total += '<table id="selfclick" style="width: 100%;">';
+			                           total += '<tr>';
+			                           total += '<td class="form-group">';
+			                           total += '<input type="text" class="form-control" style="width: 700px;" name="se_subject" value="'+se_subject+'">';
+			                           total += '</td>';
+			                           total += '</tr>';
+			                           total += '<tr>';
+			                           total += '<td class="form-group">';
+			                           total += '<textarea class="form-control" style="height: 200px;"';
+			                           total += 'name="se_content" value="'+se_content+'">'+se_content+'</textarea>';
+			                           total += '</td>';
+			                           total += '</tr>';                                      
+			                           total += '<!-- 저장 취소 버튼 -->';
+			                           total += '<tr>';
+			                           total += '<td colspan="2" align="right">';
+			                           total += '<br>';
+			                           total += '<button type="button" id="selfUpdateOk" class="btn btn-outline-primary">수정</button>';
+			                           total +=  '&nbsp';
+			                           total += '<button type="button" id="selfCancle" class="btn btn-outline-primary">취소</button>';
+			                           total += '</td>';
+			                           total += '</tr>';
+			                           total += '</table>';
+	                                                 
+	                             $("#selfform").append(total);
+                    		   }
+                    	   })
+                       });
+                       
+                       //자기소개서 수정버튼 누르면 실행되어 수정 리스트 띄어주기
+                       $(document).on("click", "#selfUpdateOk", function(){
+                    	 
+                          var seData = {
+                    			   
+                    			   pe_num: $('#pe_num').val(),
+                    			   se_num: $('#se_num').val(),
+                    			   se_subject: $('input[name="se_subject"]').val(),
+                    			   se_content: $('textarea[name="se_content"]').val()
+                    	   }
+                          
+                          $.ajax ({
+                        	
+                        	  type : "post",
+							  url: "selfupdate",
+	                    	  contentType: "application/json",
+	                          data: JSON.stringify(seData),
+	                          dataType: "json",
+	                          success : function(res) {
+	                        	  
+	                        	  var se = "";
+	                        	  
+	                        	  $.each(res, function(i, dto){
+	                        		
+	                        		  var se_num = dto.se_num; // num
+	 	                     	      var se_subject = dto.se_subject; // 제목
+	 	                     	      var se_content = dto.se_content; // 내용
+	 	                     	      
+	 	                     	      //수정리스트 나타내기
+		 	                     	    se += '<table style="border-bottom: 0.5px solid #D9D9D9; width: 100%; margin-top: 1%;">';
+		                    			se += '<tr>';
+		                    			se += '<td class="form-group">';
+		                    			se += '<span style="font-size: 1.3em;"><b>'+se_subject+'</b></span>&nbsp;';
+		                    			se += '<span style="cursor: pointer;"><i class="bi bi-pencil seupdate" se_num='+se_num+'></i></span>';
+		                    			se += '<span style="cursor: pointer;"><i class="bi bi-trash3 sedelete" se_num='+se_num+'></i></span>';
+		                    			se += '</td>';
+		                    			se += '<td class="form-group" style="margin-top:1%;">';
+		                    			se += '<span>'+se_content+'</span>';
+		                    			se += '</td>';
+		                    			se += '</tr>';
+		                    			se += '</table>';
+	                        	  })
+	                        	  
+
+	                    	    	//list 나타내기
+	                      	    	$("#selfList").html(se);
+	                      	    	
+	                      	    	//form 리셋
+	                      	    	$("#selfform").html("");	 	
+	                      	    	
+	                      	    	$("#selfList").show();
+	                          }
+                          })
+                    	   
+                       })
+                       
+                    });  
                 </script>
                 
  <!-- 희망근무조건 ---------------------------------------------------------------------------------------------------------------->
             <div class="hope">
-                <form action="hopeinsert" method="post">
+            <input type="hidden" name="ho_num" id="ho_num" value="">
                     <div class="form-caption">
-                        <h4><b>희망근무조건</b></h4>
+                        <h5><b>희망근무조건</b></h5>
                     </div>
                     <hr style="width: 100%;">
+                    <div id="hopeList"></div>
                     <div id="hopeform"></div>
                     
                     <table id="hopeclick" style="width: 100%;">
                      <tr>
                        <td class="form-group">
-                         <select class="form-select" style="width: 300px;">
-                          <option>고용형태</option>
-                          <option>정규직</option>
-                          <option>계약직</option>
-                          <option>프리랜서</option>
-                          <option>인턴직</option>
+                         <select class="form-select" style="width: 300px;" name="ho_category">
+                          <option value="">고용형태</option>
+                          <option value="정규직">정규직</option>
+                          <option value="계약직">계약직</option>
+                          <option value="프리랜서">프리랜서</option>
+                          <option value="인턴직">인턴직</option>
                       </select>
-                         <input type="text" class="form-control" style="width: 200px;" placeholder="희망연봉">만원이상 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                         <input type="checkbox">면접 후 결정
+                         <input type="text" class="form-control" style="width: 200px;" placeholder="희망연봉" name="ho_money">만원이상 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                         <input type="checkbox" name="ho_check">면접 후 결정
                        </td>
                      </tr>
                      
@@ -1773,7 +2277,7 @@
                       
                       <tr>
                            <td class="form-group" style="margin-top: 1%;">
-                             <div id="areaform"></div>
+                             <div id="areaform" ></div>
                            </td>
                       </tr>   
                       
@@ -1782,22 +2286,23 @@
                                <div id="areaClick" style="display: none;">
                                  <div class="areaSelect">
                                     <ul style="text-align: center;">
-                                       <li>서울특별시 전지역</li>
-                                       <li>부산광역시 전지역</li>
-                                       <li>대구광역시 전지역</li>
-                                       <li>인천광역시 전지역</li>
-                                       <li>광주광역시 전지역</li>
-                                       <li>대전광역시 전지역</li>
-                                       <li>울산광역시 전지역</li>
-                                       <li>세종특별자치시 전지역</li>
-                                       <li>경기도 전지역</li>
-                                       <li>강원특별자치시 전지역</li>
-                                       <li>충청북도 전지역</li>
-                                       <li>충청남도 전지역</li>
-                                       <li>전라북도 전지역</li>
-                                       <li>전라남도 전지역</li>
-                                       <li>경상북도 전지역</li>
-                                       <li>제주특별자치도 전지역</li>
+                                       <li value="서울특별시 전지역">서울특별시 전지역</li>
+                                       <li value="부산광역시 전지역">부산광역시 전지역</li>
+                                       <li value="대구광역시 전지역">대구광역시 전지역</li>
+                                       <li value="인천광역시 전지역">인천광역시 전지역</li>
+                                       <li value="광주광역시 전지역">광주광역시 전지역</li>
+                                       <li value="대전광역시 전지역">대전광역시 전지역</li>
+                                       <li value="울산광역시 전지역">울산광역시 전지역</li>
+                                       <li value="세종특별자치시 전지역">세종특별자치시 전지역</li>
+                                       <li value="경기도 전지역">경기도 전지역</li>
+                                       <li value="강원특별자치시 전지역">강원특별자치시 전지역</li>
+                                       <li value="충청북도 전지역">충청북도 전지역</li>
+                                       <li value="충청남도 전지역">충청남도 전지역</li>
+                                       <li value="전라북도 전지역">전라북도 전지역</li>
+                                       <li value="전라남도 전지역">전라남도 전지역</li>
+                                       <li value="경상북도 전지역">경상북도 전지역</li>
+                                       <li value="경상남도 전지역">경상남도 전지역</li>
+                                       <li value="제주특별자치도 전지역">제주특별자치도 전지역</li>
                                     </ul>
                                  </div>
                                  <button type="button" id="areaCancle" style="float: right; margin-top:1%;" class="btn btn-outline-primary">닫기</button>
@@ -1827,28 +2332,27 @@
                              <div id="jobClick" style="display: none;">
                               <div class="jobSelect">
                                  <ul style="text-align: center;">
-                                       <li>서버/백엔드 개발자</li>
-                                       <li>프론트엔드 개발자</li>
-                                       <li>웹 풀스택 개발자</li>
-                                       <li>안드로이드 개발자</li>
-                                       <li>IOS 개발자</li>
-                                       <li>크로스플랫폼 앱개발자</li>
-                                       <li>세종특별자치시 전지역</li>
-                                       <li>게임 클라이언트 개발자</li>
-                                       <li>게임 서버 개발자</li>
-                                       <li>DBA</li>
-                                       <li>빅데이터 엔지니어</li>
-                                       <li>인공지능/머신러닝</li>
-                                       <li>devops/시스템 엔지니어</li>
-                                       <li>정보보안 담당자</li>
-                                       <li>QA 엔지니어</li>
-                                      <li>개발 PM</li>
-                                       <li>HW/임베디드</li>
-                                       <li>SW/솔루션</li>
-                                       <li>웹퍼블리셔</li>
-                                       <li>VR/AR/3D</li>
-                                       <li>블록체인</li>
-                                       <li>기술지원</li>
+                                       <li value="서버/백엔드 개발자">서버/백엔드 개발자</li>
+                                       <li value="프론트엔드 개발자">프론트엔드 개발자</li>
+                                       <li value="웹 풀스택 개발자">웹 풀스택 개발자</li>
+                                       <li value="안드로이드 개발자">안드로이드 개발자</li>
+                                       <li value="IOS 개발자">IOS 개발자</li>
+                                       <li value="크로스플랫폼 앱개발자">크로스플랫폼 앱개발자</li>
+                                       <li value="게임 클라이언트 개발자">게임 클라이언트 개발자</li>
+                                       <li value="게임 서버 개발자">게임 서버 개발자</li>
+                                       <li value="DBA">DBA</li>
+                                       <li value="빅데이터 엔지니어">빅데이터 엔지니어</li>
+                                       <li value="인공지능/머신러닝">인공지능/머신러닝</li>
+                                       <li value="devops/시스템 엔지니어">devops/시스템 엔지니어</li>
+                                       <li value="정보보안 담당자">정보보안 담당자</li>
+                                       <li value="QA 엔지니어">QA 엔지니어</li>
+                                       <li value="개발 PM">개발 PM</li>
+                                       <li value="HW/임베디드">HW/임베디드</li>
+                                       <li value="SW/솔루션">SW/솔루션</li>
+                                       <li value="웹퍼블리셔">웹퍼블리셔</li>
+                                       <li value="VR/AR/3D">VR/AR/3D</li>
+                                       <li value="블록체인">블록체인</li>
+                                       <li value="기술지원">기술지원</li>
                                  </ul>
                               </div>
                               
@@ -1861,12 +2365,10 @@
                         <tr>
                            <td colspan="2" align="right">
                               <br>
-                              <button type="submit" class="btn btn-outline-primary">저장</button>
-                              <button type="button" id="hopeCancel" class="btn btn-outline-primary">취소</button>
+                              <button type="button" id="hopeOK"  class="btn btn-outline-primary">저장</button>
                            </td>
                         </tr>
                     </table>        
-                    </form>
                 </div>
                 
                 
@@ -1874,6 +2376,71 @@
                 <script type="text/javascript">
 
                 $(function () {
+                	
+                	// 희망조건 insert 후 list 출력하기
+                    $(document).on("click", "#hopeOK", function () {
+                       
+                    	//console.log($("#areaform div"));
+                    	//console.log($("#areaform div").eq(0));
+                    	
+                    	//희망지역 담기
+                    	var selectedAreas = $("#areaform div").length;
+                    	var areasave = "";
+                    	for( var i = 0 ; i < selectedAreas ; i++){
+                    		if( i == (selectedAreas-1) ){
+                    			areasave +=  $("#areaform div").eq(i).attr("value");
+                    		}else{
+                    			areasave +=  $("#areaform div").eq(i).attr("value") + ",";
+                    		}
+                    	}
+                    	
+                    	//console.log($("#jobform div").eq(0));
+                    	//희망직무 담기
+                    	var selectedJob = $("#jobform div").length;
+                    	var jobsave = "";
+                    	for( var j = 0 ; j < selectedJob ; j++){
+                    		if( j == (selectedJob-1) ){
+                    			jobsave +=  $("#jobform div").eq(j).attr("value");
+                    		}else{
+                    			jobsave +=  $("#jobform div").eq(j).attr("value") + ",";
+                    		}
+                    	}
+
+                    	//희망조건 데이터 생성
+                    	
+                    	var hoCheck = $('input[name="ho_check"]').is(':checked');
+                        var hoMoney = hoCheck ? '' : $('input[name="ho_money"]').val();
+                    	
+                        var hoData = {
+                 			   
+                        		pe_num: $('#pe_num').val(), 
+                        		ho_num: $('#ho_num').val(), 
+                                ho_category: $('select[name="ho_category"]').val(),
+                                ho_money: hoMoney, // ho_check 값에 따라 설정된 ho_money
+                                ho_check: hoCheck ? '면접 후 결정' : '', // 체크 여부에 따라 값 설정
+                                ho_addr: areasave,  // 희망지역 저장
+                                ho_keyword: jobsave // 희망직무 저장
+                 	   }
+                       
+                       $.ajax ({
+                     	
+                     	      type : "post",
+							  url: "hopeinsert",
+	                    	  contentType: "application/json",
+	                          data: JSON.stringify(hoData),
+	                          dataType: "json",
+	                          success : function(res) {
+	                        	 $("#ho_num").val(res.hodto.ho_num); 
+	                        	 $("#hopeOK").html("수정"); 
+	                        	 $("#areaPlus").html("+수정하기");
+	                        	 $("#jobPlus").html("+수정하기");
+	                        	 $('#areaClick').css('display', 'none');
+	                        	 $('#jobClick').css('display', 'none');
+	                          }
+                 	   
+                       })	
+                        
+                    });
                    
                    
                    ////지역/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1933,7 +2500,7 @@
                            
                            //li index 번호
                            var a = $(this).index();  
-                            var total = '<div class="areaStyle" style="border: 1px solid #4876EF; border-radius: 12px; padding: 8px;">' + area + '&nbsp;&nbsp;&nbsp;&nbsp;<i class="bi bi-x-lg areaDelete" value='+a+'></i></div>';
+                            var total = '<div class="areaStyle" style="border: 1px solid #4876EF; border-radius: 12px; padding: 8px;" value="'+area+'">' + area + '&nbsp;&nbsp;&nbsp;&nbsp;<i class="bi bi-x-lg areaDelete" value='+a+'></i></div>';
                             
                             $("#areaform").append(total);
                             
@@ -2009,7 +2576,7 @@
                            
                            //li index 번호
                            var j = $(this).index(); 
-                            var total = '<div class="jobStyle" style="border: 1px solid #4876EF; border-radius: 12px; padding: 8px;">' + job + '&nbsp;&nbsp;&nbsp;&nbsp;<i class="bi bi-x-lg jobDelete"  value='+j+'></i></div>';
+                            var total = '<div class="jobStyle" style="border: 1px solid #4876EF; border-radius: 12px; padding: 8px;" value="'+job+'">' + job + '&nbsp;&nbsp;&nbsp;&nbsp;<i class="bi bi-x-lg jobDelete"  value='+j+'></i></div>';
                             
                             $("#jobform").append(total);
                             
@@ -2037,18 +2604,16 @@
                         $(this).parent().remove();
                     });
                     
-                    
                 });
                 </script>
                 
 <!-- 동의내역 --------------------------------------------------------------------------------------------------------------------->
                 <div class="consent">
-                    <form action="consentinsert" method="post">
                         <hr style="width: 100%;">
                         <table class="" style="width: 100%;">
                           <tr>
                       <td class="form-group">
-                          <input type="checkbox" style="font-size: 1.2em;">모두 동의합니다.&nbsp;&nbsp;&nbsp;&nbsp;
+                          <input type="checkbox" style="font-size: 1.2em;" id="consentAllCheck">모두 동의합니다.&nbsp;&nbsp;&nbsp;&nbsp;
                           <span style="font-size: 0.8em;">이력서 작성을 위한 개인정보 수집 및 이용 동의(필수/선택)</span>
                       </td>
                     </tr>
@@ -2061,7 +2626,7 @@
                     
                     <tr>
                       <td class="form-group">
-                          <span style="font-size: 0.8em;"><input type="checkbox">  필수 항목에 대한 개인정보 수집 및 이용 동의</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                          <span style="font-size: 0.8em;"><input type="checkbox" id="consentCheck1">  필수 항목에 대한 개인정보 수집 및 이용 동의</span>&nbsp;&nbsp;&nbsp;&nbsp;
                           <span style="font-size: 0.8em;"><a id="requireClick" style="text-decoration: none; color: gray; cursor: pointer;"
                           data-bs-toggle="modal" data-bs-target="#requireModal">상세보기 ></a></span>
                       </td>
@@ -2069,19 +2634,47 @@
                     
                     <tr>
                       <td class="form-group">
-                          <span style="font-size: 0.8em;"><input type="checkbox" >  선택 항목에 대한 개인정보 수집 및 이용 동의</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                          <span style="font-size: 0.8em;"><input type="checkbox" id="consentCheck2">  선택 항목에 대한 개인정보 수집 및 이용 동의</span>&nbsp;&nbsp;&nbsp;&nbsp;
                           <span style="font-size: 0.8em; "><a style="text-decoration: none; color: gray; cursor: pointer;" id="choiceClick"
                           data-bs-toggle="modal" data-bs-target="#choiceModal">상세보기 ></a></span>
                       </td>
                     </tr>
 
                         </table>
-                    </form>
                   <br>
                   <br>
                   <br>
                   <br>  
                 </div>
+                
+                <script type="text/javascript">
+               
+                	//체크박스 전체선택 체크 및 해제
+                	$(function() {
+                		
+                		$("#consentAllCheck").click(function() {
+                			
+                			var allcheck = $(this).is(":checked");
+                			
+                			
+                			
+                			if(allcheck) {
+                				
+                				$("#consentCheck1").prop('checked', true);
+                				$("#consentCheck2").prop('checked', true);
+                			}
+                			
+                			else {
+                				$("#consentCheck1").prop('checked', false);
+                				$("#consentCheck2").prop('checked', false);
+                				
+                			}
+                		})
+                	})
+                	>
+
+               </script>
+               
 
                 <!-- 필수항목 자세히 보기 누르면 나오는 The Modal -->
                <div class="modal" id="requireModal">
@@ -2144,10 +2737,12 @@
                  </div>
                </div>   
                 
+                
 <!-- 최종 저장 및 미리보기 --------------------------------------------------------------------------------------------------------->
                   
                   <div class="fixed_final">
-                      <input type="text" class="form-control" style="height: 40px; width: 47.5%;" placeholder="이력서 제목을 입력해주세요">&nbsp;&nbsp;&nbsp;&nbsp;
+                      <input type="text" class="form-control" name="pe_title" style="height: 40px; 
+                      width: 49%;" placeholder="이력서 제목을 입력해주세요">&nbsp;&nbsp;&nbsp;&nbsp;
                       <button type="button" class="btn btn-outline-primary">미리보기</button>&nbsp;
                       <button type="button"  class="btn btn-primary">작성완료</button>
                   </div>
