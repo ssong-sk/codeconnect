@@ -12,14 +12,18 @@
         #{com_name}, #{com_companyname})
     </insert>
     
+    <!-- <insert id="insertCommunity" parameterType="com.code.dto.CommunityDto">
+	    insert into community (com_num, com_category, com_title, com_content, com_photo, com_post_type)
+	    values (#{com_num}, #{com_category}, #{com_title}, #{com_content}, #{com_photo}, #{com_post_type})
+	</insert> -->
+    
     <select id="getAllDatas" resultType="CommunityDto">
         select * from community order by com_num desc
     </select>
     
-    <select id="getData" parameterType="String" resultType="CommunityDto">
+    <select id="getData" parameterType="int" resultType="CommunityDto">
         select * from community where com_num = #{com_num}
     </select>
-    
     <update id="updateCommunity" parameterType="CommunityDto">
         update community set 
         	com_photo = #{com_photo}, com_title = #{com_title}, com_content = #{com_content},
@@ -36,12 +40,16 @@
     	select * from community where com_post_type = 'interview'
     </select>
     
-    <!-- 추가된 메소드 -->
+    <!-- post_type 가져오는 쿼리 -->
     <select id="getTotalCountByType" parameterType="String" resultType="int">
         select count(*) from community where com_post_type = #{type}
     </select>
     
     <select id="getAllDatasByType" parameterType="String" resultType="CommunityDto">
         select * from community where com_post_type = #{type} order by com_num desc
+    </select>
+    <!-- com_categoty별 데이터 가져오는 쿼리 -->
+    <select id="getAllDatasByCategory" parameterType="String" resultType="CommunityDto">
+    	select * from community where com_category = #{com_category} order by com_num desc
     </select>
 </mapper>

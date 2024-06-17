@@ -5,15 +5,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gowun+Dodum&family=IBM+Plex+Sans+KR&display=swap" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Dongle&family=Gaegu&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@100..900&family=Noto+Serif+KR&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3c2a4c379a7f83fd166976b93258be7f&libraries=services"></script>
 
 <title>기업 정보 수정</title>
 <style>
     body {
-        font-family: 'Noto Sans KR', sans-serif;
+        font-family: 'IBM Plex Sans KR', sans-serif;
         background-color: #ffffff;
     }
     .container {
@@ -41,27 +43,103 @@
     .btn-danger {
         width: 100px;
     }
+    #map {
+        width: 100%;
+        height: 400px;
+        margin-top: 20px;
+        display: none;
+    }
 </style>
+<script>
+    function openPostcodePopup() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                var roadAddr = data.roadAddress; 
+                var extraRoadAddr = ''; 
+                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                    extraRoadAddr += data.bname;
+                }
+                if(data.buildingName !== '' && data.apartment === 'Y'){
+                    extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                }
+                if(extraRoadAddr !== ''){
+                    extraRoadAddr = ' (' + extraRoadAddr + ')';
+                }
+                var fullAddr = roadAddr + extraRoadAddr;
+                document.getElementById('c_postnum').value = data.zonecode;
+                document.getElementById('c_addr').value = fullAddr;
+                document.getElementById('c_addrdetail').focus();
+                
+                // 지도 표시
+                displayMap(fullAddr);
+            }
+        }).open();
+    }
+
+    function displayMap(address) {
+        var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+            mapOption = { 
+                center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+                level: 3 // 지도의 확대 레벨
+            };  
+
+        var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+        // 주소-좌표 변환 객체를 생성합니다
+        var geocoder = new kakao.maps.services.Geocoder();
+
+        // 주소로 좌표를 검색합니다
+        geocoder.addressSearch(address, function(result, status) {
+            // 정상적으로 검색이 완료됐으면 
+            if (status === kakao.maps.services.Status.OK) {
+
+                var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+                // 결과값으로 받은 위치를 지도의 중심으로 설정합니다
+                map.setCenter(coords);
+
+                // 마커를 생성하고 지도에 표시합니다
+                var marker = new kakao.maps.Marker({
+                    map: map,
+                    position: coords
+                });
+                
+                document.getElementById('map').style.display = 'block';
+            } 
+        });
+    }
+</script>
 </head>
 <body>
     <div class="container">
         <h1 class="mb-4">기업 정보 수정</h1>
         
-          <form action="update" method="post">
+        <form action="update" method="post" enctype="multipart/form-data">
             <input type="hidden" name="c_num" id="c_num" value="${dto.c_num}">
             <div class="mb-3">
                 <label for="c_name" class="form-label">기업명</label>
-                <input type="text" class="form-control" id="c_name" name="c_name" value="${dto.c_name }" disabled>
+                <input type="text" class="form-control" id="c_name" name="c_name" value="${dto.c_name}" disabled>
             </div>
             <div class="mb-3">
                 <label for="c_phone" class="form-label">기업 대표 전화번호</label>
                 <input type="text" class="form-control" id="c_phone" name="c_phone" value="${dto.c_phone}">
             </div>
             <div class="mb-3">
-                <label for="companyAddress" class="c_addr">대표 주소</label>
-                <input type="text" class="form-control" id="c_addr" name="c_addr" value="${dto.c_addr}">
-                <button type="button" class="btn btn-link">변경</button>
+                <label for="c_postnum" class="form-label">우편번호</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="c_postnum" name="c_postnum" value="${dto.c_postnum}" readonly>
+                    <button type="button" class="btn btn-link" onclick="openPostcodePopup()">주소찾기</button>
+                </div>
             </div>
+            <div class="mb-3">
+                <label for="c_addr" class="form-label">대표 주소</label>
+                <input type="text" class="form-control" id="c_addr" name="c_addr" value="${dto.c_addr}" readonly>
+            </div>
+            <div class="mb-3">
+                <label for="c_addrdetail" class="form-label">상세 주소</label>
+                <input type="text" class="form-control" id="c_addrdetail" name="c_addrdetail" value="${dto.c_addrdetail}">
+            </div>
+            <div id="map"></div>
             <div class="mb-3">
                 <label for="c_local" class="form-label">대표 지역</label>
                 <select class="form-select" id="c_local" name="c_local" required="required">
@@ -90,13 +168,19 @@
                 <input type="text" class="form-control" id="c_reginum" name="c_reginum" value="${dto.c_reginum}" disabled>
             </div>
             <div class="mb-3">
+                <label for="c_registration_file" class="form-label">사업자 등록증 파일</label>
+                <input type="file" class="form-control" id="c_registration_file" name="c_registration_file" accept=".pdf, .png, .jpg">
+                <small class="form-text">파일 형식: PDF, PNG, JPG (10MB 이하로 가능합니다.)</small>
+                <div>현재 파일 : ${dto.c_regi_file }</div>
+            </div>
+            <div class="mb-3">
                 <label for="c_money" class="form-label">매출액</label>
                 <div class="input-group">
                     <input type="text" class="form-control" id="c_money" name="c_money" value="${dto.c_money}">
                     <span class="input-group-text">억</span>
                 </div>
             </div>
-           <div class="mb-3">
+            <div class="mb-3">
                 <label for="c_salary" class="form-label">평균임금</label>
                 <div class="input-group">
                     <input type="text" class="form-control" id="c_salary" name="c_salary" value="${dto.c_salary}">
@@ -133,7 +217,6 @@
                 <label for="c_birthyear" class="form-label">설립년도</label>
                 <input type="text" class="form-control" id="c_birthyear" name="c_birthyear" value="${dto.c_birthyear}">
             </div>
-
             <div class="mb-3">
                 <label for="c_insa_phone" class="form-label">인사담당자 전화번호</label>
                 <input type="text" class="form-control" id="c_insa_phone" name="c_insa_phone" value="${dto.c_insa_phone}">
@@ -143,6 +226,7 @@
                 <input type="email" class="form-control" id="c_insa_email" name="c_insa_email" value="${dto.c_insa_email}">
             </div>
             <button type="submit" class="btn btn-danger">저장</button>
+            <button type="button" class="btn btn-back" onclick="location.href='main'">뒤로가기</button>
         </form>
     </div>
 </body>

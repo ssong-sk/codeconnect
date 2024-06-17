@@ -16,16 +16,21 @@
 <body>
 
 기업 마이페이지 입니다.
-<button onclick="location.href='/company/'" >기업 임시 통합페이지로 가기</button>
 
-<button class="btn btn-info" >공고 등록하기</button>
-<button class="btn btn-info" >인재풀 탐색하기</button>
-<button class="btn btn-info" >전체 지원자 관리</button>
-<button class="btn btn-info" >채용공고 관리</button>
-<button class="btn btn-info" >제안보낸 인재풀 관리</button>
-<button class="btn btn-info" onclick="location.href='companyupdate'">기업 정보수정</button>
+<b>${sessionScope.c_myid }님 로그인중</b><br><br><br>
+	<button type="button" class="btn btn-danger"
+	style="width: 100px;" onclick="location.href='logoutprocess'">로그아웃</button>
 
-<button class="btn btn-info"  onclick="location.href='introduce'">기업 소개하기</button>
+
+<br><br>
+<button class="btn btn-info" onclick="location.href='/hire/hirewrite'">공고 등록하기</button><br><br>
+<button class="btn btn-info" >인재풀 탐색하기</button><br><br>
+<button class="btn btn-info" >전체 지원자 관리</button><br><br>
+<button class="btn btn-info" >채용공고 관리</button><br><br>
+<button class="btn btn-info" >제안보낸 인재풀 관리</button><br><br>
+<button class="btn btn-info" onclick="location.href='companyupdate'">기업 정보수정</button><br><br>
+<button class="btn btn-info" onclick="location.href='intromain'">기업 소개하기</button><br><br>
+<button type="button" class="btn btn-info" onclick="location.href='showimsi'">내 기업 소개 페이지로 이동</button>
 
 </body>
 </html>

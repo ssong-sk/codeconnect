@@ -20,6 +20,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.code.dto.CommunityDto;
+import com.code.dto.RegisterDto;
+import com.code.mapper.RegisterMapperInter;
 import com.code.service.CommunityServiceInter;
 
 @Controller
@@ -27,6 +29,9 @@ public class CommunityController {
 
     @Autowired
     CommunityServiceInter service;
+    
+    @Autowired
+    RegisterMapperInter mapperinter;
 
     @GetMapping("/community/homelist")
     public ModelAndView list() {
@@ -34,20 +39,26 @@ public class CommunityController {
 
         int totalCount = service.getTotalCountByType("home");
         List<CommunityDto> list = service.getAllDatasByType("home");
+        
+        List<CommunityDto> newcomerList=service.getAllDatasByCategory("신입");
+        List<CommunityDto> prepareList=service.getAllDatasByCategory("취준");
+        List<CommunityDto> letterList=service.getAllDatasByCategory("자소서");
+        List<CommunityDto> interviewList=service.getAllDatasByCategory("면접");
+        List<CommunityDto> qaList=service.getAllDatasByCategory("Q&A");
 
         mview.addObject("totalCount", totalCount);
         mview.addObject("list", list);
+        mview.addObject("newcomerList", newcomerList);
+        mview.addObject("prepareList", prepareList);
+        mview.addObject("letterList", letterList);
+        mview.addObject("interviewList", interviewList);
+        mview.addObject("qaList", qaList);
 
         mview.setViewName("community/homelist"); // "community/homelist.jsp"로 매핑
         return mview;
     }
 
-    @GetMapping("/community/writeform")
-    public String form() {
-        return "community/homeform"; // "community/homeform.jsp"로 매핑
-    }
-
-    @PostMapping("/community/insert")
+    @PostMapping("/community/homeinsert")
     public String insert(@ModelAttribute CommunityDto dto,
                          @RequestParam ArrayList<MultipartFile> upload,
                          HttpSession session) {
@@ -71,13 +82,21 @@ public class CommunityController {
         }
 
         dto.setCom_photo(uploadName);
+        dto.setCom_post_type("home"); //com_post_type을 'home'으로 설정
+        
+        //System.out.println("---------컨트롤러---------");
+        //System.out.println(dto.toString());
+        //System.out.println("---------컨트롤러---------");
+        
+        
         service.insertCommunity(dto);
-        return "redirect:/community/list";
+        return "redirect:/community/homelist";
     }
 
     @GetMapping("/community/updateform")
-    public String updateform(@RequestParam String com_num, Model model) {
-        CommunityDto dto = service.getData(com_num);
+    public String updateform(@RequestParam("com_num") String comNum, Model model) {
+    	int comNumInt = Integer.parseInt(comNum);
+        CommunityDto dto = service.getData(comNumInt);
         model.addAttribute("dto", dto);
         return "community/homeupdateform"; // "community/homeupdateform.jsp"로 매핑
     }
@@ -107,25 +126,38 @@ public class CommunityController {
 
         dto.setCom_photo(uploadName);
         service.updateCommunity(dto);
-        return "redirect:/community/list";
+        return "redirect:/community/homelist";
     }
 
     @GetMapping("/community/delete")
     public String delete(@RequestParam String com_num) {
         service.deleteCommunity(com_num);
-        return "redirect:/community/list";
+        return "redirect:/community/homelist";
     }
 
-    @GetMapping("/community/detail")
-    public ModelAndView detail(@RequestParam String com_num) {
-        ModelAndView mview = new ModelAndView();
-
-        CommunityDto dto = service.getData(com_num);
-
-        mview.addObject("dto", dto);
-
-        mview.setViewName("community/homedetail"); // "community/homedetail.jsp"로 매핑
-        return mview;
+	/*
+	 * @GetMapping("/community/detail") public ModelAndView detail(@RequestParam
+	 * String com_num) { ModelAndView mview = new ModelAndView();
+	 * 
+	 * CommunityDto dto = service.getData(com_num);
+	 * 
+	 * mview.addObject("dto", dto);
+	 * 
+	 * mview.setViewName("community/homedetail"); // "community/homedetail.jsp"로 매핑
+	 * return mview; }
+	 */
+    
+    @GetMapping("/community/homedetail")
+    public String detail(@RequestParam("com_num") int comNum, Model model) {
+        CommunityDto dto = service.getData(comNum);
+        
+        // 디버깅 출력
+        //System.out.println("닉네임: " + dto.getCom_nickname());
+        //System.out.println("작성시간: " + dto.getCom_writetime());
+        
+        dto.setCom_content(dto.getCom_content().replace("\n", "<br/>")); //content 줄바꿈 로직 추가
+        model.addAttribute("dto", dto);
+        return "community/homedetail"; // "community/homedetail.jsp"로 매핑
     }
 
     @GetMapping("/community/interviewlist")
@@ -142,5 +174,45 @@ public class CommunityController {
         return mview;
     }
     
+    @GetMapping("/community/homeform")
+    public String form(HttpSession session, Model model) {
+        if (session.getAttribute("loginok") == null) {
+            return "redirect:/login"; // 로그인 안되면 로그인 페이지로 리다이렉트
+        }
+
+        String id = (String) session.getAttribute("myid");
+        
+        
+        RegisterDto dto = mapperinter.getDataById(id);
+        String nickname = dto.getR_nickname();
+        String name = dto.getR_name();
+        String userid = dto.getR_id();
+        
+        //System.out.println(nickname);
+        
+        model.addAttribute("userNickname", nickname);
+        model.addAttribute("name", name);
+        model.addAttribute("userid", userid);
+        return "community/homeform"; // "community/homeform.jsp"로 매핑
+    }
     
+    @GetMapping("/community/hometotalpost")
+    public String homeTotalPost(Model model)
+    {
+    	List<CommunityDto> list=service.getAllDatasByType("home");
+    	
+    	model.addAttribute("list", list);
+    	
+    	return "community/hometotalpost";
+    }
+    
+    @GetMapping("community/homefavoritelist")
+    public String homeFavoriteList(Model model)
+    {
+    	List<CommunityDto> list=service.getAllDatasByType("home");
+    	
+    	model.addAttribute("list", list);
+    	
+		return "community/homefavoritelist";
+    }
 }

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import com.code.dto.RegisterDto;
 
 import com.code.service.RegisterService;
 
@@ -47,20 +48,28 @@ public class LoginController {
 	{
 		
 		int check=service.loginIdPassCheck(r_id, r_pass);
-		
-//		System.out.println("id :" + r_id);
-//		System.out.println("pass: " + r_pass);
-		
-		
+			
 		if(check==1) {
+			
+			RegisterDto mdto = service.getDataById(r_id);
 			
 			session.setMaxInactiveInterval(60*60*8); //8시간
 			
 			session.setAttribute("myid", r_id);
 			session.setAttribute("loginok", "yes");
 			session.setAttribute("saveok", cbsave);
-
-			return "/layout/main";
+			
+			session.setAttribute("r_name",mdto.getR_name());
+			session.setAttribute("r_nickname", mdto.getR_nickname());
+			session.setAttribute("r_birthday", mdto.getR_birthday());
+			session.setAttribute("r_hp", mdto.getR_hp());
+			session.setAttribute("r_zipcode",mdto.getR_zipcode());
+			session.setAttribute("r_addr",mdto.getR_addr());
+			session.setAttribute("r_addr_detail", mdto.getR_addr_detail());
+			session.setAttribute("r_email",mdto.getR_email());
+			session.setAttribute("r_gender", mdto.getR_gender());
+			
+			return "redirect:/main";
 			
 		}else {
 			return "/member/passfail";
@@ -73,6 +82,7 @@ public class LoginController {
 	public String logout(HttpSession session)
 	{
 		session.removeAttribute("loginok");
+		session.removeAttribute("userNickname"); //
 		return "redirect:main";
 	}
 	
