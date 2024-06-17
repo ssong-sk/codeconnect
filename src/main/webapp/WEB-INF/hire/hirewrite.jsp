@@ -455,7 +455,7 @@ span.connect {
 
 
 /* 예상 연봉 */
-#salary {
+#salary1, #salary2{
    width: 380px;
    padding: 10px;
    border: 1px solid #ccc;
@@ -631,7 +631,15 @@ input:disabled {
 					<input type="hidden" class="job" value="job" name="h_job">
 					<input type="hidden" class="career" value="career" name="h_career">
 					<input type="hidden" class="location" value="location" name="h_location">
+					<input type="hidden" class="tech" value="tech" name="h_tech">
+					<input type="hidden" class="salary" value="salary" name="h_salary">
+					<input type="hidden" class="cate" value="cate" name="h_category">
+					<input type="hidden" class="deadline" value="deadline" name="h_deadline">
 					
+				<div class="d-inline-flex" style="float: right;">
+					<i class="bi bi-asterisk imstar" style="margin-top: 1px;"></i>&nbsp; : &nbsp; 필수 작성 항목입니다.
+				</div>
+					<br><br>
                   <!-- 직무 -->
                   <div class="title_div">
                      <span class="title">직무</span> <span><i
@@ -644,7 +652,7 @@ input:disabled {
                            <span>직무 선택</span> <i class="bi bi-caret-down-fill"
                               style="color: gray;"></i>
                         </button>
-                        <ul class="selectbox-option hide">
+                        <ul class="selectbox-option hide" >
                            <li><button type="button" class="option-btn">서버/백엔드 개발자</button></li>
                            <li><button type="button" class="option-btn">프론트엔드 개발자</button></li>
                            <li><button type="button" class="option-btn">웹 풀스택 개발자</button></li>
@@ -849,8 +857,8 @@ input:disabled {
                      <button type="button" class="location">
                         <i class="bi bi-search"></i>
                      </button>
-                     <input type="text" id="address1" placeholder="주소" readonly> <input
-                        type="text" id="address2" placeholder="상세주소">
+                     <input type="text" id="address1" placeholder="주소" required="required" readonly> 
+                     <input type="text" id="address2" placeholder="상세주소" required="required">
                   </div>
                   <div class="daum-postcode-overlay" id="postcode-overlay"></div>
                   <div class="daum-postcode-layer" id="postcode-layer"></div>
@@ -863,7 +871,7 @@ input:disabled {
                         <span class="title">공고명</span>
                         <span><i class="bi bi-asterisk imstar"></i></span>
                         <br>
-                        <div><textarea class="textarea" placeholder="직무명만 기재 가능하며 그 외 텍스트는 수정/삭제 후 승인될 수 있습니다."></textarea></div>
+                        <div><textarea class="textarea" name="h_title" placeholder="직무명만 기재 가능하며 그 외 텍스트는 수정/삭제 후 승인될 수 있습니다." required="required"></textarea></div>
                      </div>
                      
                      <br><br>
@@ -872,7 +880,7 @@ input:disabled {
                         <span class="title">공고ㆍ서론</span>
                         <span><i class="bi bi-asterisk imstar"></i></span>
                         <br>
-                        <div><pre style="font-family: IBM Plex Sans KR; overflow-x: hidden; font-size: 12pt;"><textarea class="textarea" placeholder="텍스트만 입력 가능합니다.(홈페이지 url, 이모티콘, 이미지 등록불가)"></textarea></pre></div>
+                        <div><pre style="font-family: IBM Plex Sans KR; overflow-x: hidden; font-size: 12pt;"><textarea required="required" name="h_subject" class="textarea" placeholder="텍스트만 입력 가능합니다.(홈페이지 url, 이모티콘, 이미지 등록불가)"></textarea></pre></div>
                      </div>
                      
                      <br><br>
@@ -881,7 +889,7 @@ input:disabled {
                         <span class="title">주요업무</span>
                         <span><i class="bi bi-asterisk imstar"></i></span>
                         <br>
-                        <div><pre style="font-family: IBM Plex Sans KR; overflow-x: hidden; font-size: 12pt;"><textarea class="textarea" placeholder="내용 작성"></textarea></pre></div>
+                        <div><pre style="font-family: IBM Plex Sans KR; overflow-x: hidden; font-size: 12pt;"><textarea required="required" name="h_major" class="textarea" placeholder="내용 작성"></textarea></pre></div>
                      </div>
                      
                      <br><br>
@@ -890,7 +898,7 @@ input:disabled {
                         <span class="title">자격요건</span>
                         <span><i class="bi bi-asterisk imstar"></i></span>
                         <br>
-                        <div><pre style="font-family: IBM Plex Sans KR; overflow-x: hidden; font-size: 12pt;"><textarea class="textarea" placeholder="주요업무 및 전형절차를 함께 작성해주세요."></textarea></pre></div>
+                        <div><pre style="font-family: IBM Plex Sans KR; overflow-x: hidden; font-size: 12pt;"><textarea required="required" name="h_require" class="textarea" placeholder="주요업무 및 전형절차를 함께 작성해주세요."></textarea></pre></div>
                      </div>
                      
                      <br><br>
@@ -898,7 +906,7 @@ input:disabled {
                      <div class="title_div">
                         <span class="title">우대 사항</span>
                         <br>
-                        <div><pre style="font-family: IBM Plex Sans KR; overflow-x: hidden; font-size: 12pt;"><textarea class="textarea" placeholder="내용 작성"></textarea></pre></div>
+                        <div><pre style="font-family: IBM Plex Sans KR; overflow-x: hidden; font-size: 12pt;"><textarea name="h_preference" class="textarea" placeholder="내용 작성"></textarea></pre></div>
                      </div>
                      
                      <br><br>
@@ -907,7 +915,15 @@ input:disabled {
                         <span class="title">혜택 및 복지</span>
                         <span><i class="bi bi-asterisk imstar"></i></span>
                         <br>
-                        <div><pre style="font-family: IBM Plex Sans KR; overflow-x: hidden; font-size: 12pt;"><textarea class="textarea" placeholder="내용 작성"></textarea></pre></div>
+                        <div><pre style="font-family: IBM Plex Sans KR; overflow-x: hidden; font-size: 12pt;"><textarea required="required" name="h_benefit" class="textarea" placeholder="내용 작성"></textarea></pre></div>
+                     </div>
+                     
+                     <br><br>
+                     <!-- 채용절차 및 지원 유의사항 -->
+                     <div class="title_div">
+                        <span class="title">채용절차 및 지원 유의사항</span>
+                        <br>
+                        <div><pre style="font-family: IBM Plex Sans KR; overflow-x: hidden; font-size: 12pt;"><textarea name="h_process" class="textarea" placeholder="내용 작성"></textarea></pre></div>
                      </div>
                      
                      <br><br>
@@ -927,8 +943,7 @@ input:disabled {
 	                        </button>
 	                        <ul class="techselectbox-option techhide">
 		                        <li><button type="button" class="techoption-btn">Java</button></li>
-								<li><button type="button" class="techoption-btn">Spring
-										Boot</button></li>
+								<li><button type="button" class="techoption-btn">Spring Boot</button></li>
 								<li><button type="button" class="techoption-btn">Node.js</button></li>
 								<li><button type="button" class="techoption-btn">Python</button></li>
 								<li><button type="button" class="techoption-btn">Django</button></li>
@@ -956,8 +971,7 @@ input:disabled {
 								<li><button type="button" class="techoption-btn">SwiftUI</button></li>
 								<li><button type="button" class="techoption-btn">Xcode</button></li>
 								<li><button type="button" class="techoption-btn">Flutter</button></li>
-								<li><button type="button" class="techoption-btn">React
-										Native</button></li>
+								<li><button type="button" class="techoption-btn">React Native</button></li>
 								<li><button type="button" class="techoption-btn">MSSQL</button></li>
 								<li><button type="button" class="techoption-btn">PostgreSQL</button></li>
 								<li><button type="button" class="techoption-btn">NoSQL</button></li>
@@ -1008,16 +1022,16 @@ input:disabled {
                   <br><br>
                   <!-- 채용시 예상 연봉 -->
                   <div class="title_div">
-                     <span class="title">채용시 예상 연봉 (최소~최대, 단위: 원)</span> <span><i
+                     <span class="title">채용시 예상 연봉 (최소~최대, 단위: 만원)</span> <span><i
                         class="bi bi-asterisk imstar"></i></span>
                   </div>
                   <p class="info">연봉 정보는 통계 자료로만 쓰이며, 개별 연봉 정보는 절대 공개되지 않습니다.</p>
                   <span class="salary" style="display: flex; align-items: center;">
-                     <input type="text" id="salary" placeholder="0"
+                     <input type="text" id="salary1" placeholder="0" required="required"
                      style="width: 200px; margin-top: 10px; margin-right: 10px;">
-                     ~ <input type="text" id="salary" placeholder="0"
+                     ~ <input type="text" id="salary2" placeholder="0" required="required"
                      style="width: 200px; margin-top: 10px; margin: 10px 10px 0px 10px;">
-                     원
+                     만원
                   </span> <br>
                   <br>
                   
@@ -1067,8 +1081,8 @@ input:disabled {
                   <div class="title_div">
                      <span class="title">지원 알림 이메일</span>
                   </div>
-                  <input type="text" id="email" placeholder="ex) email@gmail.com"
-                     style="width: 250px; margin-top: 10px;"> <br>
+                  <input type="text" id="email" name="h_c_id" placeholder="ex) email@gmail.com"
+                     style="width: 270px; margin-top: 10px;" value="${c_id }"> <br>
                   <br>
                   <br>
                   <!-- 게시 마감일 설정 -->
@@ -1091,7 +1105,7 @@ input:disabled {
                         </span>
                      </div>
                   </div>
-                  <input type="date" name="input_date" style="margin-left: 200px;">
+					<input type="date" name="input_date" class="deadline-date" style="margin-left: 200px;">
                   <br><br> <br>
                   <br>
                </div>
@@ -1104,15 +1118,6 @@ input:disabled {
    </div>
 </form>
 <script type="text/javascript">
-	//alert($("#c_num").val()+","+$("#ci_num").val());
-	var sele = $(this).text();
-	var job1 = $(".toggle-btn .selected").text();
-    var job2 = $(".toggle-btn2 .selected").text();
-    var job3 = $(".toggle-btn3 .selected").text();
-
-    // 텍스트 값을 쉼표로 구분하여 결합
-     jobs = job1 + "," + job2 + "," + job3;
-  
 $(document).ready(function() {
    // 직무 select1
    const toggleBtn1 = $('.toggle-btn');

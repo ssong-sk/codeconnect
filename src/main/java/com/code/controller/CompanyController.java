@@ -50,6 +50,7 @@ public class CompanyController {
 		
 		int c_num = cservice.selectC_num(c_id);
 		int ci_num = ciservice.selectCi_num(c_num);
+		model.addAttribute("c_id",c_id);
 		model.addAttribute("c_num",c_num);
 		model.addAttribute("ci_num",ci_num);
     	return "/hire/hirewrite";
