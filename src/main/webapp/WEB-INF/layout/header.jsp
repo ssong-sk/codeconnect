@@ -22,24 +22,21 @@
 		<div class="MainBar_MainBar__40DX7" role="presentation">
 			<nav class="MainBar_MainBarNav__pVhal" style="height: 60px;">
 				<div class="MainBar_MainBarNavLogo__caIek">
-					<a href="/" aria-label="Wanted" data-attribute-id="gnb"
-						data-gnb-kind="jobsfeed"> <img src="/image/mainlogo.png"
+					<a href="/"><img src="/image/mainlogo.png"
 						alt="codeconnect Logo" class="logo"></a>
 				</div>
 				<ul class="Menu_MenuNav__EOf3X" style="margin-bottom: 0px;">
-					<li class="Menu_MenuItem__wI1yA" data-attribute-id="gnb"
-						data-gnb-kind="jobs"><a href="/wdlist"
+					<li class="Menu_MenuItem__wI1yA"
+						><a href="#"
 						class="Menu_jobListLink__GYHAI"><span>채용</span></a></li>
-					<li class="Menu_MenuItem__wI1yA" data-attribute-id="gnb"
-						data-gnb-kind="event"><a href="/events"><span>커리어</span></a></li>
-					<li class="Menu_MenuItem__wI1yA" data-attribute-id="gnb"
-						data-gnb-kind="community"><a href="/community"><span>소셜</span></a></li>
-					<li class="Menu_MenuItem__wI1yA" data-attribute-id="gnb"
-						data-gnb-kind="resume"><a href="/cv/list"><span>이력서</span></a></li>
-					<li class="Menu_MenuItem__wI1yA" data-attribute-id="gnb"
-						data-gnb-kind="freelancer"><a
-						href="https://www.wanted.co.kr/gigs/experts" target="_blank"
-						rel="noopener noreferrer"><span>프리랜서</span></a></li>
+					<li class="Menu_MenuItem__wI1yA" 
+						><a href="#"><span>커리어</span></a></li>
+					<li class="Menu_MenuItem__wI1yA" 
+						><a href="#"><span>소셜</span></a></li>
+					<li class="Menu_MenuItem__wI1yA" 
+						><a href="#"><span>이력서</span></a></li>
+					<li class="Menu_MenuItem__wI1yA"><a
+						href="#"><span>프리랜서</span></a></li>
 				</ul>
 
 				<aside class="Aside_aside__f0SVC">

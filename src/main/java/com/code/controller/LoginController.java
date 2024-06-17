@@ -69,7 +69,7 @@ public class LoginController {
 			session.setAttribute("r_email",mdto.getR_email());
 			session.setAttribute("r_gender", mdto.getR_gender());
 			
-			return "redirect:/main";
+			return "/layout/main";
 			
 		}else {
 			return "/member/passfail";

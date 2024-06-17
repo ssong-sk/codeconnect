@@ -1,0 +1,236 @@
+@charset "UTF-8";
+
+
+#container {
+    width: 100%;
+}
+
+#container .content {
+    margin-top: 70px;
+    margin-bottom: 40px;
+}
+
+#container .content {
+    width: 940px;
+    margin: 0 auto;
+}
+
+.errorlay .new-login-warp {
+    height: 695px;
+}
+
+.new-login-warp {
+    width: 475px;
+    padding: 12px 20px 0 28px;
+    background-color: #fff;
+    box-sizing: border-box;
+    border-right: none;
+    position: relative;
+}
+
+
+/* -------------------------------------cNewPageWrap---------------------------------- */
+.cNewPageWrap {
+    padding: 0 0 0 0;
+}
+
+.cNewPageWrap * {
+    font-family: "Min Sans", "Malgun Gothic", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    vertical-align: middle;
+    box-sizing: border-box;
+}
+
+.cNewPageContainer {
+    padding: 0 0 0 0;
+}
+
+
+
+/* -------------------------------------cLogin---------------------------------- */
+.cLogin-input-idpw li {
+    position: relative;
+    padding: 0 0 5px 0;
+}
+
+.cInput {
+    width: 100%;
+    height: 50px;
+    font-weight: 500;
+    font-size: 15px;
+    color: #333 !important;
+    letter-spacing: -0.75pt;
+    padding: 0 0 0 15px;
+    border-radius: 6px;
+    border: 1px solid #E1E1E1;
+    background: #fff;
+}
+
+.cRemove {
+    position: absolute;
+    right: 15px;
+    top: 16px;
+    width: 16px;
+    height: 0;
+    margin: 0 0 0 0;
+    padding: 16px 0 0 0;
+    background: url(/ui/m_static/image/member/2022/cRemove.svg) no-repeat 50% 50%;
+    overflow: hidden;
+}
+
+cLogin-save {
+    padding: 1px 0 7px 0;
+}
+
+input[type="checkbox"] {
+    position: absolute;
+    left: -9999px;
+}
+
+.cLogin-save label {
+    display: inline-block;
+    position: relative;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 24px;
+    color: #666666;
+    letter-spacing: -0.7pt;
+    padding: 0 8px 0 27px;
+}
+
+.cLogin-input-idpw li .cError {
+    display: block;
+    font-weight: 500;
+    font-size: 14px;
+    color: #ff460a;
+    letter-spacing: -0.65pt;
+    padding: 5px 0 0 0;
+}
+
+.cLogin-save {
+    padding: 1px 0 7px 0;
+}
+
+label {
+    cursor: pointer;
+}
+
+.cLogin-save input:checked + label:after {
+    background-image: url(/ui/m_static/image/member/2022/check-on.svg);
+}
+
+cLogin-save label:after {
+    content: "";
+    display: block;
+    width: 22px;
+    height: 22px;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin: -11px 0 0 0;
+    background: url(/ui/m_static/image/member/2022/check.svg) no-repeat 50% 50%;
+}
+/* -------------------------------------cLogin-links---------------------------------- */
+
+.cLogin-links.in-tooltip {
+    position: relative;
+}
+
+.cLogin-links {
+    text-align: center;
+    padding: 4px 0 0 0;
+}
+
+.cLogin-links li:first-child {
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.cLogin-links li {
+    display: inline-block;
+    position: relative;
+    padding: 0 0 0 15px;
+    margin-left: 12px;
+}
+
+.cLogin-links li a {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 22px;
+    color: #666666;
+    letter-spacing: -0.7pt;
+}
+
+a:link, a:visited {
+    font-family: "Min sans", sans-serif;
+}
+
+/* -------------------------------------cDef---------------------------------- */
+
+.cDef-btn.on {
+    color: #fff;
+    border-color: #ff460a;
+    background: #ff460a;
+}
+
+.cDef-btn {
+    width: 100%;
+    height: 50px;
+    font-weight: bold;
+    font-size: 18px;
+    color: #666666;
+    letter-spacing: -0.75pt;
+    border-radius: 32px;
+    border: 1px solid #E1E1E1;
+    background: #F7F7F7;
+    margin: 10px 0;
+}
+
+/* -------------------------------------cTab---------------------------------- */
+.cTab {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    padding: 0 0 40px 0;
+}
+
+.cTab li {
+    width: 50%;
+    text-align: center;
+    border-bottom: 1px solid #cecece;
+}
+
+.cTab li button.on, .cTab li a.on {
+    color: #ff460a;
+}
+
+.cTab li button, .cTab li a {
+    position: relative;
+    text-align: center;
+    display: inline-block;
+    width: 100%;
+    height: 59px;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 59px;
+    color: #747474;
+    letter-spacing: -0.9pt;
+    padding: 0;
+    background: transparent;
+}
+
+.cTab li button.on:after, .cTab li a.on:after {
+    opacity: 1;
+}
+
+.cTab li button:after, .cTab li a:after {
+    content: "";
+    opacity: 0;
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 100%;
+    height: 3px;
+    background: #ff460a;
+}
