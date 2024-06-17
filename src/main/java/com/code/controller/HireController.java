@@ -4,7 +4,6 @@ package com.code.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-
 import org.springframework.stereotype.Controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,27 +17,25 @@ import com.code.service.HireService;
 
 @Controller
 public class HireController {
-   
-   @Autowired
-   CompanyService com_service;
-   
-   @Autowired
-   HireService hservice;
-   
-   @GetMapping("/hire/main")
-   public String hireMain(@ModelAttribute("hdto") HireDto dto) {
-      
-      return "hire/hiremain";
-   }
-   
-   @PostMapping("/hire/insert")
-   public String hireInsert(@ModelAttribute("hdto") HireDto hdto) {
-      
-      hservice.hireInsert(hdto);
+	
+	@Autowired
+	CompanyService com_service;
+	
+	@Autowired
+	HireService hservice;
+	
+	@GetMapping("/hire/main")
+	public String hireMain(@ModelAttribute("hdto") HireDto dto) {
+		
+		return "hire/hiremain";
+	}
+	
+	@PostMapping("/hire/insert")
+	public String hireInsert(@ModelAttribute("hdto") HireDto hdto) {
+		
+		hservice.hireInsert(hdto);
 
-      return "/hire/hirewrite";
-   }
-   
-   
+		return "/hire/hirewrite";
+	}
 
 }

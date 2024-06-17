@@ -11,8 +11,10 @@ public interface CommunityServiceInter {
     void updateCommunity(CommunityDto dto);
     void deleteCommunity(String com_num);
     
-    // 추가 메소드
+    //post_type interview 로직
     int getTotalCountByType(String type);
     List<CommunityDto> getAllDatasByType(String type);
 	List<CommunityDto> getInterviews();
+	
+	List<CommunityDto> getAllDatasByCategory(String category);
 }

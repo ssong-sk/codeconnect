@@ -6,10 +6,7 @@ body {
 	color: #333;
 	background-color: #f8f8f8;
 	line-height: 1.42857143;
-	font-family: Pretendard Variable, Pretendard JP Variable, -apple-system,
-		system-ui, BlinkMacSystemFont, Roboto, Segoe UI, Helvetica, Arial,
-		Apple SD Gothic Neo, Nanum Gothic, Malgun Gothic, Apple Color Emoji,
-		Segoe UI Emoji, Segoe UI Symbol, sans-serif;
+	font-family: 'IBM Plex Sans KR';
 }
 
 .NavBar_background__SQmnx {
@@ -31,10 +28,6 @@ body {
 }
 
 button, div, h1, h2, h3, h4, h5, h6, input, p, select, span, textarea {
-	font-family: Pretendard Variable, Pretendard JP Variable, -apple-system,
-		system-ui, BlinkMacSystemFont, Roboto, Segoe UI, Helvetica, Arial,
-		Apple SD Gothic Neo, Nanum Gothic, Malgun Gothic, Apple Color Emoji,
-		Segoe UI Emoji, Segoe UI Symbol, sans-serif;
 	font-size: 15px;
 	line-height: 22px;
 }

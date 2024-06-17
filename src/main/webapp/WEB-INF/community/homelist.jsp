@@ -13,8 +13,7 @@
 <title>Insert title here</title>
 <style type="text/css">
 
-	/* 전체 폰트 변경 */
-	* {
+	body {
 		font-family: 'IBM Plex Sans KR', sans-serif;
 	}
 	
@@ -193,7 +192,7 @@
 <div class="commutitle" style="max-width: 1200px; margin: 50px auto;">
 	<div class="container">
         <div class="linkgo d-flex justify-content-between" style="width: 100%;">
-            <a href="#">
+            <a href="${root}/community/hometotalpost">
                 <h2>
                     <b>실시간 전체글 ${totalCount}개<i class="bi bi-chevron-right"></i></b>
                 </h2>
@@ -211,10 +210,10 @@
     
 	<div class="section_inner">
 		<div class="wrap_title d-flex justify-content-between align-items-center" style="margin-bottom: 20px;">
-			<a href="#" style="margin-top: 25px;">
+			<a href="${root}/community/homefavoritelist" style="margin-top: 25px;">
 				<b class="hot">HOT</b> <b>이번주 전체 인기글</b>
 			</a>
-			<a href="#" style="font-size: 20px; color: gray;">
+			<a href="${root}/community/homefavoritelist" style="font-size: 20px; color: gray;">
 			더보기<i class="bi bi-chevron-right"></i>&nbsp;&nbsp;</a>
 		</div>
 		<ul class="list_story">
@@ -238,7 +237,7 @@
         </div>
         <div class="category" style="margin-top: 50px;">
         	<ul class="list_category js-category">
-    			<li><a href="#">전체글</a></li>
+    			<li><a href="${root}/community/hometotalpost">전체글</a></li>
     			<li><a href="#">신입</a></li>
     			<li><a href="#">취준</a></li>
     			<li><a href="#">자소서</a></li>
@@ -249,8 +248,8 @@
        	<div class="community_list">
 		    <div class="section_inner" style="width: 48%;">
 		        <div class="wrap_title d-flex justify-content-between align-items-center">
-		            <a class="title" href="#"><b>전체글</b></a>
-		            <a href="#" style="font-size: 1.1em;">더보기<i class="bi bi-chevron-right"></i></a>
+		            <a class="title" href="${root}/community/hometotalpost"><b>전체글</b></a>
+		            <a href="${root}/community/hometotalpost" style="font-size: 1.1em;">더보기<i class="bi bi-chevron-right"></i></a>
 		        </div>
 		        <ul class="list_story" style="margin-top: 20px;">
 		            <c:forEach var="dto" items="${list}" begin="0" end="3">
@@ -268,7 +267,7 @@
 		            <a href="#" style="font-size: 1.1em;">더보기<i class="bi bi-chevron-right"></i></a>
 		        </div>
 		        <ul class="list_story" style="margin-top: 20px;">
-		            <c:forEach var="dto" items="${list}" begin="0" end="3">
+		            <c:forEach var="dto" items="${newcomerList}" begin="0" end="3">
 		                <li class="item d-flex justify-content-between align-items-center">
 		                <a class="title_link" href="#">${dto.com_title}</a>
 		                <span class="comment"><i class="bi bi-chat-left"></i>&nbsp;${dto.com_commentcount}</span>
@@ -283,7 +282,7 @@
 		            <a href="#" style="font-size: 1.1em;">더보기<i class="bi bi-chevron-right"></i></a>
 		        </div>
 		        <ul class="list_story" style="margin-top: 20px;">
-		            <c:forEach var="dto" items="${list}" begin="0" end="3">
+		            <c:forEach var="dto" items="${prepareList}" begin="0" end="3">
 		                <li class="item d-flex justify-content-between align-items-center">
 		                <a class="title_link" href="#">${dto.com_title}</a>
 		                <span class="comment"><i class="bi bi-chat-left"></i>&nbsp;${dto.com_commentcount}</span>
@@ -298,7 +297,7 @@
 		            <a href="#" style="font-size: 1.1em;">더보기<i class="bi bi-chevron-right"></i></a>
 		        </div>
 		        <ul class="list_story" style="margin-top: 20px;">
-		            <c:forEach var="dto" items="${list}" begin="0" end="3">
+		            <c:forEach var="dto" items="${letterList}" begin="0" end="3">
 		                <li class="item d-flex justify-content-between align-items-center">
 		                <a class="title_link" href="#">${dto.com_title}</a>
 		                <span class="comment"><i class="bi bi-chat-left"></i>&nbsp;${dto.com_commentcount}</span>
@@ -313,7 +312,7 @@
 		            <a href="#" style="font-size: 1.1em;">더보기<i class="bi bi-chevron-right"></i></a>
 		        </div>
 		        <ul class="list_story" style="margin-top: 20px;">
-		            <c:forEach var="dto" items="${list}" begin="0" end="3">
+		            <c:forEach var="dto" items="${interviewList}" begin="0" end="3">
 		                <li class="item d-flex justify-content-between align-items-center">
 		                <a class="title_link" href="#">${dto.com_title}</a>
 		                <span class="comment"><i class="bi bi-chat-left"></i>&nbsp;${dto.com_commentcount}</span>
@@ -328,7 +327,7 @@
 		            <a href="#" style="font-size: 1.1em;">더보기<i class="bi bi-chevron-right"></i></a>
 		        </div>
 		        <ul class="list_story" style="margin-top: 20px;">
-		            <c:forEach var="dto" items="${list}" begin="0" end="3">
+		            <c:forEach var="dto" items="${qaList}" begin="0" end="3">
 		                <li class="item d-flex justify-content-between align-items-center">
 		                <a class="title_link" href="#">${dto.com_title}</a>
 		                <span class="comment"><i class="bi bi-chat-left"></i>&nbsp;${dto.com_commentcount}</span>
