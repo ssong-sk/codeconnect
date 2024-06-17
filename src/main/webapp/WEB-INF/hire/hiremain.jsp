@@ -1270,7 +1270,7 @@ svg{
 				</div>
          
 	            <button class="refresh" type="button">
-	               <img src="../image_icon/refresh.png" style="width: 25px; height: 25px; margin-left: -2px;">
+	               <img src="../hire_img/refresh.png" style="width: 25px; height: 25px; margin-left: -2px;">
 	            </button>
 	            <br><br>
 				<div class="category2-wrapper"
@@ -1959,7 +1959,7 @@ $(".btnapply").click(function() {
     // 버튼 너비 계산
     $('.regionbtn.category3').css('width', '70px');
     if(selectedCount >= '10'){
-       $('.regionbtn.category3').css('width', 'auto');
+       $('.regionbtn.category3').css('width', '90px');
     }
 });
 

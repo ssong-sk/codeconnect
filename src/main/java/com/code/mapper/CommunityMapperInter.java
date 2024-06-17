@@ -7,6 +7,7 @@ import com.code.dto.CommunityDto;
 
 @Mapper
 	public interface CommunityMapperInter {
+	
 	public int getTotalCount();
 	public void insertCommunity(CommunityDto dto);
     List<CommunityDto> getAllDatas();
@@ -14,9 +15,11 @@ import com.code.dto.CommunityDto;
     public void updateCommunity(CommunityDto dto);
     public void deleteCommunity(String com_num);
     
-    // interview 목록을 가져오는 메소드 추가
+    //interview 목록을 가져오는 메소드 추가
     List<CommunityDto> getInterviews();
-    // 추가 메소드
+    //com_post_type
     int getTotalCountByType(String type);
     List<CommunityDto> getAllDatasByType(String type);
+    
+    List<CommunityDto> getAllDatasByCategory(String category);
 }

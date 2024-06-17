@@ -613,6 +613,7 @@ input:disabled {
 </style>
 </head>
 <body>
+<form action="insert" method="post">
    <div class="all">
       <div id="wrap">
          <div class="center">
@@ -625,8 +626,12 @@ input:disabled {
                <!-- 컨텐츠 시작 -->
                <div class="content">
 
-					<input type="hidden" name="c_num" value="${c_num }" id="c_num">
-					<input type="hidden" name="ci_num" value="${ci_num }" id="ci_num">
+					<input type="hidden" name="h_c_num" value="${c_num }" id="h_c_num">
+					<input type="hidden" name="h_ci_num" value="${ci_num }" id="h_ci_num">
+					<input type="hidden" class="job" value="job" name="h_job">
+					<input type="hidden" class="career" value="career" name="h_career">
+					<input type="hidden" class="location" value="location" name="h_location">
+					
                   <!-- 직무 -->
                   <div class="title_div">
                      <span class="title">직무</span> <span><i
@@ -640,34 +645,21 @@ input:disabled {
                               style="color: gray;"></i>
                         </button>
                         <ul class="selectbox-option hide">
-                           <li><button type="button" class="option-btn">서버/백엔드
-                                 개발자</button></li>
-                           <li><button type="button" class="option-btn">프론트엔드
-                                 개발자</button></li>
-                           <li><button type="button" class="option-btn">웹
-                                 풀스택 개발자</button></li>
-                           <li><button type="button" class="option-btn">안드로이드
-                                 개발자</button></li>
-                           <li><button type="button" class="option-btn">IOS
-                                 개발자</button></li>
-                           <li><button type="button" class="option-btn">크로스플랫폼
-                                 앱개발자</button></li>
-                           <li><button type="button" class="option-btn">게임
-                                 클라이언트 개발자</button></li>
-                           <li><button type="button" class="option-btn">게임
-                                 서버 개발자</button></li>
+                           <li><button type="button" class="option-btn">서버/백엔드 개발자</button></li>
+                           <li><button type="button" class="option-btn">프론트엔드 개발자</button></li>
+                           <li><button type="button" class="option-btn">웹 풀스택 개발자</button></li>
+                           <li><button type="button" class="option-btn">안드로이드 개발자</button></li>
+                           <li><button type="button" class="option-btn">IOS 개발자</button></li>
+                           <li><button type="button" class="option-btn">크로스플랫폼 앱개발자</button></li>
+                           <li><button type="button" class="option-btn">게임 클라이언트 개발자</button></li>
+                           <li><button type="button" class="option-btn">게임 서버 개발자</button></li>
                            <li><button type="button" class="option-btn">DBA</button></li>
-                           <li><button type="button" class="option-btn">빅데이터
-                                 엔지니어</button></li>
+                           <li><button type="button" class="option-btn">빅데이터 엔지니어</button></li>
                            <li><button type="button" class="option-btn">인공지능/머신러닝</button></li>
-                           <li><button type="button" class="option-btn">devops/시스템
-                                 엔지니어</button></li>
-                           <li><button type="button" class="option-btn">정보보안
-                                 담당자</button></li>
-                           <li><button type="button" class="option-btn">QA
-                                 엔지니어</button></li>
-                           <li><button type="button" class="option-btn">개발
-                                 PM</button></li>
+                           <li><button type="button" class="option-btn">devops/시스템 엔지니어</button></li>
+                           <li><button type="button" class="option-btn">정보보안 담당자</button></li>
+                           <li><button type="button" class="option-btn">QA 엔지니어</button></li>
+                           <li><button type="button" class="option-btn">개발 PM</button></li>
                            <li><button type="button" class="option-btn">HW/임베디드</button></li>
                            <li><button type="button" class="option-btn">SW/솔루션</button></li>
                            <li><button type="button" class="option-btn">웹퍼블리셔</button></li>
@@ -1106,11 +1098,20 @@ input:disabled {
             </div>
          </div>
       </div>
+      
 	<br><br>
-      <jsp:include page="footer.jsp"></jsp:include>
+  <jsp:include page="footer.jsp"></jsp:include>
    </div>
+</form>
 <script type="text/javascript">
 	//alert($("#c_num").val()+","+$("#ci_num").val());
+	var sele = $(this).text();
+	var job1 = $(".toggle-btn .selected").text();
+    var job2 = $(".toggle-btn2 .selected").text();
+    var job3 = $(".toggle-btn3 .selected").text();
+
+    // 텍스트 값을 쉼표로 구분하여 결합
+     jobs = job1 + "," + job2 + "," + job3;
   
 $(document).ready(function() {
    // 직무 select1
@@ -1121,6 +1122,7 @@ $(document).ready(function() {
 
    toggleBtn1.click(function() {
       selectBox1.toggleClass('hide');
+
    });
 
    options1.click(function() {
