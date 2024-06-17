@@ -75,7 +75,7 @@
             <span style="font-size: 10pt; color: gray;">
             	(필수) 코드커넥트 채용사이트를 통한 채용 성공 시 합격자 연봉의 7% 수수료가 발생함을 인지하고 이에 동의 합니다.
             </span>&nbsp;&nbsp;&nbsp;&nbsp;
-            <button type="button" class="btn btn-primary savebtn">
+            <button type="button" class="btn btn-primary savebtn" >
                 공고 등록하기
             </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </div>
@@ -85,6 +85,11 @@
     </div>
     
     <script type="text/javascript">
+    
+ // 배열 초기화
+    
+    	
+    
          $(".savebtn").click(function() {
              var isChecked = $("#agreeCheckbox").is(":checked");
              if (!isChecked) {
@@ -92,7 +97,49 @@
              } else {
                  $("#errorMessage").hide();
              }
+             console.log(jobs);
          });
+         
+         
+    </script>
+    <script type="text/javascript">
+    $(".savebtn").click(function() {
+    	
+    	/* h_job(직무) 값 구하기 */
+        var job1 = $(".toggle-btn span.selected").text().replace(/\s+/g, ' ').trim();
+        var job2 = $(".toggle-btn2 span.selected").text().replace(/\s+/g, ' ').trim();
+        var job3 = $(".toggle-btn3 span.selected").text().replace(/\s+/g, ' ').trim();
+
+        var job = [job1, job2, job3].filter(Boolean).join(',');
+
+        $('input.job').val(job);
+        
+        //alert($('input.job').val());
+        
+        /* h_career(경력) 값 구하기 */
+        if($("#newcomer-checkbox").is(":checked")){
+        	 $('input.career').val("신입");
+        }else{
+        	var career1 = $(".careertoggle-btn span.selected").text();
+            var career2 = $(".careertoggle-btn2 span.selected").text();
+            
+            var career = career1 +"~"+ career2;
+            
+            $('input.career').val(career);       	
+        }
+        alert($('input.career').val());
+        
+        /* h_location(근무지) 값 구하기 */
+        var location1 = $("#address1").val();
+        var location2 = $("#address2").val();
+        
+        var location = location1 +" "+ location2;
+        
+        $('input.location').val(location);
+        
+        alert($('input.location').val());
+        
+    });
     </script>
 </body>
 </html>

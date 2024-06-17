@@ -28,7 +28,7 @@
 				</div>
 				<ul class="Menu_MenuNav__EOf3X" style="margin-bottom: 0px;">
 					<li class="Menu_MenuItem__wI1yA" data-attribute-id="gnb"
-						data-gnb-kind="jobs"><a href="/wdlist"
+						data-gnb-kind="jobs"><a href="/hire/main"
 						class="Menu_jobListLink__GYHAI"><span>채용</span></a></li>
 					<li class="Menu_MenuItem__wI1yA" data-attribute-id="gnb"
 						data-gnb-kind="event"><a href="/events"><span>커리어</span></a></li>
