@@ -85,36 +85,32 @@ public class CommunityController {
         dto.setCom_photo(uploadName);
         dto.setCom_post_type("home"); //com_post_type을 'home'으로 설정
         
-        //System.out.println("---------컨트롤러---------");
-        //System.out.println(dto.toString());
-        //System.out.println("---------컨트롤러---------");
-        
-        
         service.insertCommunity(dto);
         return "redirect:/community/homelist";
     }
 
-    @GetMapping("/community/updateform")
+    @GetMapping("/community/homeupdateform")
     public String updateform(@RequestParam("com_num") String comNum, Model model) {
-    	int comNumInt = Integer.parseInt(comNum);
+        int comNumInt = Integer.parseInt(comNum);
         CommunityDto dto = service.getData(comNumInt);
         model.addAttribute("dto", dto);
         return "community/homeupdateform"; // "community/homeupdateform.jsp"로 매핑
     }
 
-    @PostMapping("/community/update")
+    @PostMapping("/community/homeupdate")
     public String update(@ModelAttribute CommunityDto dto,
                          @RequestParam ArrayList<MultipartFile> upload,
+                         @RequestParam("existingPhoto") String existingPhoto,
                          HttpSession session) {
         String path = session.getServletContext().getRealPath("/communityimage");
-        String uploadName = "";
+        // 이미지를 새로 업로드하지 않을 경우 기존 이미지를 유지하는 로직 추가(existingPhoto 파라미터 받아와서 사용)
+        String uploadName = existingPhoto; // 기존 이미지 파일명을 가져옴
 
-        if (upload.get(0).getOriginalFilename().equals(""))
-            uploadName = "null";
-        else {
+        if (!upload.isEmpty() && !upload.get(0).getOriginalFilename().equals("")) {
+            // 새로운 이미지를 업로드할 경우
+            uploadName = ""; 
             for (MultipartFile f : upload) {
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
-                String fName = sdf.format(new Date()) + "_" + f.getOriginalFilename();
+                String fName = f.getOriginalFilename();
                 uploadName += fName + ",";
                 try {
                     f.transferTo(new File(path + "\\" + fName));
@@ -122,12 +118,14 @@ public class CommunityController {
                     e.printStackTrace();
                 }
             }
-            uploadName = uploadName.substring(0, uploadName.length() - 1);
+            uploadName = uploadName.substring(0, uploadName.length() - 1); // 마지막 쉼표 제거
         }
 
         dto.setCom_photo(uploadName);
+        dto.setCom_post_type("home"); // com_post_type을 'home'으로 설정
+
         service.updateCommunity(dto);
-        return "redirect:/community/homelist";
+        return "redirect:/community/homedetail?com_num=" + dto.getCom_num();
     }
 
     @GetMapping("/community/delete")
@@ -230,5 +228,6 @@ public class CommunityController {
     	
 		return "community/homefavoritelist";
     }
+    
 
 }

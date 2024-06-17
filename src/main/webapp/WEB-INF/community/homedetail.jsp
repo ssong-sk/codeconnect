@@ -15,6 +15,22 @@
     body {
         font-family: 'IBM Plex Sans KR', sans-serif;
     }
+    .post_view_wrap .title {
+    	color: #666;
+        font-size: 14px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .title_left {
+    	display: flex;
+        align-items: center;
+    }
+    .title_right {
+    	display: flex;
+        align-items: center;
+        gap: 10px;
+    }
     .post_view_wrap {
         margin: 20px auto;
         max-width: 800px;
@@ -28,6 +44,8 @@
     }
     .post_view_wrap .content {
         margin-bottom: 20px;
+        margin-top: 30px;
+        min-height: 200px;
     }
     .post_view_wrap .meta {
         color: #666;
@@ -54,9 +72,9 @@
         align-items: center;
         gap: 10px;
     }
-    .posttotalgo a {
+    .totalpostgo a {
         margin-top: 20px;
-        margin-left: 545px;
+        margin-left: 555px;
         background-color: #ffffff;
         color: #5c667b;
         border: 1px solid #ddd;
@@ -80,6 +98,7 @@
         text-align: center;
     }
     .post_emoticom button img {
+    	margin-top: 20px;
         width: 30px;
         height: 30px;
     }
@@ -87,6 +106,20 @@
         display: block;
         margin-top: 10px;
         font-size: 10px;
+    }
+    .homelistgo a {
+    	margin-top: 5px;
+        margin-left: 1271px;
+        background-color: #ffffff;
+        color: #5c667b;
+        border: 1px solid #ddd;
+        font-size: 13.5px;
+        width: 80px;
+        text-align: center;
+        padding: 5px 10px;
+        border-radius: 5px;
+        text-decoration: none;
+        display: inline-block;
     }
 
 </style>
@@ -110,13 +143,21 @@
 </head>
 <body>
 
-<div class="posttotalgo">
+<div class="totalpostgo">
     <a href="${pageContext.request.contextPath}/community/hometotalpost"><span><i class="bi bi-chevron-left"></i>전체 게시글</span></a>
 </div>
-<div class="post_view_wrap">
+<div class="post_view_wrap" style="margin-top: 15px;">
     <!-- 게시글 상단 -->
-    <div style="margin-top: 15px;">
-        <h5><b>${dto.com_title}</b></h5>
+    <div class="title" style="margin-top: 15px;">
+    	<div class="title_left">
+        	<h5><b>${dto.com_title}</b></h5>
+        </div>
+        <div class="title_right">
+        	<button type="button" class="btn btn-outline-primary btn-sm"
+        	onclick="location.href='homeupdateform?com_num=${dto.com_num}&com_photo=${dto.com_photo}'">수정</button>
+        	<button type="button" class="btn btn-outline-secondary btn-sm"
+        	onclick="location.href='delete?com_num=${dto.com_num}'">삭제</button>
+        </div>
     </div>
     <!-- 게시글 메타 정보 -->
     <div class="meta" style="margin-top: 30px;">
@@ -134,7 +175,7 @@
         </div>
     </div>
     <!-- 게시글 내용 -->
-    <div class="content" style="margin-top: 35px; height: 500px;">
+    <div class="content">
         <%-- <p>${dto.com_content}</p> --%>
         <c:out value="${dto.com_content}" escapeXml="false"/>
     </div>
@@ -152,6 +193,8 @@
         </button>
     </div>
 </div>
-
+<div class="homelistgo">
+	<a href="${pageContext.request.contextPath}/community/homelist"><span>목록<i class="bi bi-chevron-right"></i></span></a>
+</div>
 </body>
 </html>
