@@ -41,7 +41,6 @@
 						href="https://www.wanted.co.kr/gigs/experts" target="_blank"
 						rel="noopener noreferrer"><span>프리랜서</span></a></li>
 				</ul>
-
             <aside class="Aside_aside__f0SVC">
                <ul class="Aside_asideList__3WNyu" style="margin-bottom: 0px;">
                   <div class="SearchInput_SearchInputContainer__wGe1Q">
