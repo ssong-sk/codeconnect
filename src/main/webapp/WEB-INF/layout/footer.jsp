@@ -30,6 +30,12 @@ a, abbr, acronym, address, applet, article, aside, audio, b, big,
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 }
+
+button, div, h1, h2, h3, h4, h5, h6, input, p, select, span, textarea {
+	font-family: IBM Plex Sans KR;
+/*	font-size: 15px; */
+	line-height: 22px;
+}
 </style>
 
 </head>

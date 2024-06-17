@@ -45,4 +45,9 @@ public class RegisterController {
 	{
 		return "/member/mypage";
 	}
+	
+	@GetMapping("/member/memberform")
+	public String memberform() {
+		return "/member/memberform";
+	}
 }

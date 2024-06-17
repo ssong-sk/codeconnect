@@ -24,3 +24,7 @@ mybatis:
   type-aliases-package: com.code.*
   mapper-locations:
   - /mapper/**/*.xml
+  
+  
+  
+  

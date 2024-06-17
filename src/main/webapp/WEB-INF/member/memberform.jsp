@@ -16,6 +16,7 @@
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="/css/memberform.css">
 <title>사용자 등록</title>
 
 <script type="text/javascript">

@@ -343,7 +343,6 @@
 					onclick="location.href='${pageContext.request.contextPath}/community/homeform'">글쓰기</button>
 				</c:if>
 			</div>
-			
         </div>
 	</div>
 		

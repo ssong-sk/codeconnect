@@ -65,7 +65,7 @@
 									<li><a href="#" class="lineAfter" id="searchId">아이디 찾기</a></li>
 									<li><a href="#" class="lineAfter" id="searchPass">비밀번호
 											찾기</a></li>
-									<li><a href="${root}/member/memberform" class="JoinLink"
+									<li><a href="/member/memberform" class="JoinLink"
 										id="joinlink">회원가입</a></li>
 
 								</ul>
