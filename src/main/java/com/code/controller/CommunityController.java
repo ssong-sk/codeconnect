@@ -149,21 +149,34 @@ public class CommunityController {
     @GetMapping("/community/homedetail")
     public String detail(@RequestParam("com_num") int comNum, HttpSession session, Model model) {
         CommunityDto dto = service.getData(comNum);
-        //조회수 증가 로직 추가
+        // 조회수 증가 로직 추가
         service.increaseReadCount(comNum);
-        
-        //content 줄바꿈 로직 추가
+
+        // content 줄바꿈 로직 추가
         dto.setCom_content(dto.getCom_content().replace("\n", "<br/>"));
-        
-        //세션에서 사용자 닉네임을 가져와 모델에 추가
+
+        // 세션에서 사용자 닉네임을 가져와 모델에 추가
         String userNickname = (String) session.getAttribute("userNickname");
+        if (userNickname == null) {
+            // 세션에 닉네임이 없으면 데이터베이스에서 조회하여 설정
+            String userId = (String) session.getAttribute("myid");
+            if (userId != null) {
+                RegisterDto userDto = mapperinter.getDataById(userId);
+                if (userDto != null) {
+                    userNickname = userDto.getR_nickname();
+                    session.setAttribute("userNickname", userNickname);
+                }
+            }
+        }
+
+        // userNickname이 여전히 null인 경우 기본 닉네임 설정
         if (userNickname == null) {
             userNickname = dto.getCom_nickname(); // 기본 닉네임 설정
         }
-        
+
         model.addAttribute("dto", dto);
         model.addAttribute("userNickname", userNickname);
-        
+
         return "community/homedetail"; // "community/homedetail.jsp"로 매핑
     }
     
