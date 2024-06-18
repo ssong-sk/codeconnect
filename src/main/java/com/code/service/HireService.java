@@ -26,4 +26,9 @@ public class HireService implements HireServiceInter {
         return mapper.getHireList();
 	}
 
+	@Override
+	public List<HireDto> searchHire(String search_job, String search_tech) {
+		return mapper.searchHire(search_job, search_tech);
+	}
+
 }
