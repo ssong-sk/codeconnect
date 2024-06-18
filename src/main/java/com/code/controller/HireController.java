@@ -42,9 +42,9 @@ public class HireController {
 	
 	@ResponseBody
 	@GetMapping("/hire/search")
-	public List<HireDto> hireSearch(String search_job) {
+	public List<HireDto> hireSearch(String search_job, String search_tech) {
 		
-		List<HireDto> slist=hservice.searchHire(search_job);
+		List<HireDto> slist=hservice.searchHire(search_job, search_tech);
 		
 		return slist;
 	}
