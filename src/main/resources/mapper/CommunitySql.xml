@@ -48,8 +48,16 @@
     <select id="getAllDatasByType" parameterType="String" resultType="CommunityDto">
         select * from community where com_post_type = #{type} order by com_num desc
     </select>
-    <!-- com_categoty별 데이터 가져오는 쿼리 -->
+    <!-- 카테고리별 데이터 조회 쿼리 추가 -->
     <select id="getAllDatasByCategory" parameterType="String" resultType="CommunityDto">
-    	select * from community where com_category = #{com_category} order by com_num desc
+    	select * from community where com_category = #{category} order by com_num desc
     </select>
+    <update id="increaseReadCount" parameterType="int">
+    	update community set com_readcount = com_readcount+1
+    	where com_num = #{com_num}
+    </update>
+    <update id="updateLikeCount" parameterType="int">
+    	update community set com_likes = com_likes+1
+    	where com_num = #{com_num}
+    </update>
 </mapper>

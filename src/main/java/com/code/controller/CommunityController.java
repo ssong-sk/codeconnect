@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -84,36 +85,32 @@ public class CommunityController {
         dto.setCom_photo(uploadName);
         dto.setCom_post_type("home"); //com_post_type을 'home'으로 설정
         
-        //System.out.println("---------컨트롤러---------");
-        //System.out.println(dto.toString());
-        //System.out.println("---------컨트롤러---------");
-        
-        
         service.insertCommunity(dto);
         return "redirect:/community/homelist";
     }
 
-    @GetMapping("/community/updateform")
+    @GetMapping("/community/homeupdateform")
     public String updateform(@RequestParam("com_num") String comNum, Model model) {
-    	int comNumInt = Integer.parseInt(comNum);
+        int comNumInt = Integer.parseInt(comNum);
         CommunityDto dto = service.getData(comNumInt);
         model.addAttribute("dto", dto);
         return "community/homeupdateform"; // "community/homeupdateform.jsp"로 매핑
     }
 
-    @PostMapping("/community/update")
+    @PostMapping("/community/homeupdate")
     public String update(@ModelAttribute CommunityDto dto,
                          @RequestParam ArrayList<MultipartFile> upload,
+                         @RequestParam("existingPhoto") String existingPhoto,
                          HttpSession session) {
         String path = session.getServletContext().getRealPath("/communityimage");
-        String uploadName = "";
+        // 이미지를 새로 업로드하지 않을 경우 기존 이미지를 유지하는 로직 추가(existingPhoto 파라미터 받아와서 사용)
+        String uploadName = existingPhoto; // 기존 이미지 파일명을 가져옴
 
-        if (upload.get(0).getOriginalFilename().equals(""))
-            uploadName = "null";
-        else {
+        if (!upload.isEmpty() && !upload.get(0).getOriginalFilename().equals("")) {
+            // 새로운 이미지를 업로드할 경우
+            uploadName = ""; 
             for (MultipartFile f : upload) {
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
-                String fName = sdf.format(new Date()) + "_" + f.getOriginalFilename();
+                String fName = f.getOriginalFilename();
                 uploadName += fName + ",";
                 try {
                     f.transferTo(new File(path + "\\" + fName));
@@ -121,12 +118,14 @@ public class CommunityController {
                     e.printStackTrace();
                 }
             }
-            uploadName = uploadName.substring(0, uploadName.length() - 1);
+            uploadName = uploadName.substring(0, uploadName.length() - 1); // 마지막 쉼표 제거
         }
 
         dto.setCom_photo(uploadName);
+        dto.setCom_post_type("home"); // com_post_type을 'home'으로 설정
+
         service.updateCommunity(dto);
-        return "redirect:/community/homelist";
+        return "redirect:/community/homedetail?com_num=" + dto.getCom_num();
     }
 
     @GetMapping("/community/delete")
@@ -148,16 +147,30 @@ public class CommunityController {
 	 */
     
     @GetMapping("/community/homedetail")
-    public String detail(@RequestParam("com_num") int comNum, Model model) {
+    public String detail(@RequestParam("com_num") int comNum, HttpSession session, Model model) {
         CommunityDto dto = service.getData(comNum);
+        //조회수 증가 로직 추가
+        service.increaseReadCount(comNum);
         
-        // 디버깅 출력
-        //System.out.println("닉네임: " + dto.getCom_nickname());
-        //System.out.println("작성시간: " + dto.getCom_writetime());
+        //content 줄바꿈 로직 추가
+        dto.setCom_content(dto.getCom_content().replace("\n", "<br/>"));
         
-        dto.setCom_content(dto.getCom_content().replace("\n", "<br/>")); //content 줄바꿈 로직 추가
+        //세션에서 사용자 닉네임을 가져와 모델에 추가
+        String userNickname = (String) session.getAttribute("userNickname");
+        if (userNickname == null) {
+            userNickname = dto.getCom_nickname(); // 기본 닉네임 설정
+        }
+        
         model.addAttribute("dto", dto);
+        model.addAttribute("userNickname", userNickname);
+        
         return "community/homedetail"; // "community/homedetail.jsp"로 매핑
+    }
+    
+    @PostMapping("/community/updateLike")
+    @ResponseBody
+    public void updateLike(@RequestParam("com_num") int com_num) {
+        service.updateLikeCount(com_num);
     }
 
     @GetMapping("/community/interviewlist")
@@ -215,4 +228,6 @@ public class CommunityController {
     	
 		return "community/homefavoritelist";
     }
+    
+
 }
