@@ -26,7 +26,7 @@
     }
     .sidebar {
         width: 250px;
-        height: 530px;
+        height:530px;
         border: 1px solid #E0E0E0;
         padding: 20px;
         background-color: #fff;
@@ -83,6 +83,7 @@
         flex-direction: column;
         flex-grow: 1;
         background-color: #fff;
+        
         border-radius: 10px;
         padding: 20px;
         overflow-y: auto;
@@ -131,53 +132,42 @@
     table {
         table-layout: fixed;
         width: 100%;
-        border-collapse: collapse;
     }
-    .table-hover th, td {
+    th, td {
         text-overflow: ellipsis;
         overflow: hidden;
-      
-    }
-    .table th {
-        background-color: #f2f2f2;
-        color: #000;
-    }
-    .table-hover td {
-        background-color: #fff;
-        color: #000;
     }
     th:nth-child(1), td:nth-child(1) {
-        width: 5%;
+        width: 10%;
     }
     th:nth-child(2), td:nth-child(2) {
         width: 30%;
     }
     th:nth-child(3), td:nth-child(3) {
-        width: 25%;
+        width: 20%;
     }
     th:nth-child(4), td:nth-child(4) {
-        width: 15%;
+        width: 25%;
     }
     th:nth-child(5), td:nth-child(5) {
-        width: 25%;
+        width: 15%;
     }
 </style>
 <script>
     $(document).ready(function() {
         function filterTable(tabType) {
-            let today = new Date().toISOString().split('T')[0];
             let counter = 1;
             $('tbody tr').each(function() {
-                let endDate = $(this).find('td:last').text();
+                let status = $(this).find('td:last').text();
                 $(this).show();
-                if (tabType === '채용중') {
-                    if (endDate !== '상시모집' && endDate <= today) {
-                        $(this).hide();
-                    }
-                } else if (tabType === '채용종료') {
-                    if (endDate === '상시모집' || endDate > today) {
-                        $(this).hide();
-                    }
+                if (tabType === '지원접수' && status !== '지원접수') {
+                    $(this).hide();
+                } else if (tabType === '서류합격' && status !== '서류합격') {
+                    $(this).hide();
+                } else if (tabType === '최종합격' && status !== '최종합격') {
+                    $(this).hide();
+                } else if (tabType === '불합격' && status !== '불합격') {
+                    $(this).hide();
                 }
                 if ($(this).is(':visible')) {
                     $(this).find('td:first').text(counter++);
@@ -191,7 +181,7 @@
             filterTable($(this).text());
         });
 
-        filterTable('공고 전체');
+        filterTable('지원접수');
     });
 </script>
 </head>
@@ -203,12 +193,12 @@
             <button class="btn" onclick="location.href='/hire/hirewrite'">+  공고 등록하기</button>
             <button class="btn" >🔍 인재풀 탐색하기</button>
             <div class="menu-divider"></div>
-            <div class="menu-item" onclick="location.href='jiwon'" >전체 지원자 관리</div>
+            <div class="menu-item"  style="font-weight: bold;" onclick="location.href='jiwon'">전체 지원자 관리</div>
             <div class="menu-item" onclick="location.href='companyhire'" >
-                <span style="font-weight: bold;">채용공고 관리</span>
+                <span>채용공고 관리</span>
                 <span>+</span>
             </div>
-            <div class="menu-item" onclick="location.href='injae'">제안 보낸 인재풀 관리</div>
+            <div class="menu-item"  onclick="location.href='injae'">제안 보낸 인재풀 관리</div>
             <div class="menu-divider"></div>
             <div class="menu-item" onclick="location.href='companyupdate'">기업 정보 수정</div>
             <div class="menu-item" onclick="location.href='intromain'">기업 소개 하기</div>
@@ -218,16 +208,17 @@
         
         <div class="main-content-wrapper">
             <div class="header">
-                <h1>제안 보낸 인재풀 관리</h1>
+                <h1>전체 지원자 관리</h1>
                 <div class="search-bar">
-                    <input type="text" class="form-control" placeholder="지원자 검색">
+                    <input type="text" class="form-control" placeholder="공고 검색">
                     <button class="btn btn-primary ms-2"><i class="bi bi-search"></i></button>
                 </div>
             </div>
             <div class="tabs">
-                <button class="active btn btn-light">공고 전체</button>
-                <button class="btn btn-light">채용중</button>
-                <button class="btn btn-light">채용종료</button>
+                <button class="active btn btn-light">지원접수</button>
+                <button class="btn btn-light">서류합격</button>
+                <button class="btn btn-light">최종합격</button>
+                <button class="btn btn-light">불합격</button>
             </div>
             <div class="table-responsive">
                 <table class="table table-hover">
@@ -235,25 +226,32 @@
                         <tr>
                             <th>번호</th>
                             <th>공고명</th>
-                            <th>직군</th>
-                            <th>지원건수</th>
-                            <th>마감일</th>
+                            <th>지원자</th>
+                            <th>지원일자</th>
+                            <th>합불여부</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td></td>
                             <td>웹디자이너</td>
-                            <td>자바 스프링부트 웹디자이너</td>
-                            <td>20</td>
-                            <td>상시모집</td>
+                            <td>홍길동</td>
+                            <td>2024-05-01</td>
+                            <td>최종합격</td>
                         </tr>
                         <tr>
                             <td></td>
                             <td>백엔드 전문가</td>
-                            <td>백엔드 관리자</td>
-                            <td>13</td>
-                            <td>2024-06-09</td>
+                            <td>김철수</td>
+                            <td>2024-06-18</td>
+                            <td>지원접수</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>백엔드 전문가</td>
+                            <td>이길수</td>
+                            <td>2024-05-18</td>
+                            <td>불합격</td>
                         </tr>
                     </tbody>
                 </table>

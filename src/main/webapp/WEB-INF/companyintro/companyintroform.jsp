@@ -262,9 +262,9 @@ th:nth-child(5), td:nth-child(5) {
 				<h5 onclick="location.href='main'">코드커넥트 채용 솔루션</h5>
 				<button class="btn" onclick="location.href='/hire/hirewrite'">+
 					공고 등록하기</button>
-				<button class="btn">🔍 인재풀 탐색하기</button>
+				<button class="btn" onclick="location.href='injae'">🔍 인재풀 탐색하기</button>
 				<div class="menu-divider"></div>
-				<div class="menu-item">전체 지원자 관리</div>
+				<div class="menu-item" onclick="location.href='jiwon'">전체 지원자 관리</div>
 				<div class="menu-item" onclick="location.href='companyhire'">
 					<span>채용공고 관리</span> <span>+</span>
 				</div>

@@ -201,14 +201,14 @@
         <div class="sidebar">
             <h5 onclick="location.href='main'">코드커넥트 채용 솔루션</h5>
             <button class="btn" onclick="location.href='/hire/hirewrite'">+  공고 등록하기</button>
-            <button class="btn" >🔍 인재풀 탐색하기</button>
+            <button class="btn">🔍 인재풀 탐색하기</button>
             <div class="menu-divider"></div>
-            <div class="menu-item" onclick="location.href='jiwon'" >전체 지원자 관리</div>
-            <div class="menu-item" onclick="location.href='companyhire'" >
-                <span style="font-weight: bold;">채용공고 관리</span>
+            <div class="menu-item" onclick="location.href='jiwon'">전체 지원자 관리</div>
+            <div class="menu-item" onclick="location.href='companyhire'">
+                <span>채용공고 관리</span>
                 <span>+</span>
             </div>
-            <div class="menu-item" onclick="location.href='injae'">제안 보낸 인재풀 관리</div>
+            <div class="menu-item" onclick="location.href='injae'" style="font-weight: bold;">제안 보낸 인재풀 관리</div>
             <div class="menu-divider"></div>
             <div class="menu-item" onclick="location.href='companyupdate'">기업 정보 수정</div>
             <div class="menu-item" onclick="location.href='intromain'">기업 소개 하기</div>
@@ -224,42 +224,91 @@
                     <button class="btn btn-primary ms-2"><i class="bi bi-search"></i></button>
                 </div>
             </div>
+           
+            <!-- 채워야할 부분 -->
             <div class="tabs">
-                <button class="active btn btn-light">공고 전체</button>
-                <button class="btn btn-light">채용중</button>
-                <button class="btn btn-light">채용종료</button>
+                <button class="active">제안 인재</button>
+                <button>수락 인재</button>
+                <button>최종합격</button>
             </div>
+            
             <div class="table-responsive">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>번호</th>
-                            <th>공고명</th>
-                            <th>직군</th>
-                            <th>지원건수</th>
-                            <th>마감일</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td></td>
-                            <td>웹디자이너</td>
-                            <td>자바 스프링부트 웹디자이너</td>
-                            <td>20</td>
-                            <td>상시모집</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>백엔드 전문가</td>
-                            <td>백엔드 관리자</td>
-                            <td>13</td>
-                            <td>2024-06-09</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">제안 인재</h5>
+                        <p class="card-text">전체</p>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">이름</th>
+                                    <th scope="col">포지션</th>
+                                    <th scope="col">상태</th>
+                                    <th scope="col">지원 날짜</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Rows will be dynamically inserted here -->
+                                <tr>
+                                    <td colspan="5" class="text-center">No data available</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">수락 인재</h5>
+                        <p class="card-text">전체</p>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">이름</th>
+                                    <th scope="col">포지션</th>
+                                    <th scope="col">상태</th>
+                                    <th scope="col">지원 날짜</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Rows will be dynamically inserted here -->
+                                <tr>
+                                    <td colspan="5" class="text-center">No data available</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">최종합격</h5>
+                        <p class="card-text">전체</p>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">이름</th>
+                                    <th scope="col">포지션</th>
+                                    <th scope="col">상태</th>
+                                    <th scope="col">지원 날짜</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Rows will be dynamically inserted here -->
+                                <tr>
+                                    <td colspan="5" class="text-center">No data available</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
+            <!-- End of 채워야할 부분 -->
         </div>
     </div>
 </div>
+
 </body>
 </html>
