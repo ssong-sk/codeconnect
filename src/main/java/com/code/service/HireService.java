@@ -1,5 +1,8 @@
 package com.code.service;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,5 +19,17 @@ public class HireService implements HireServiceInter {
 	public void hireInsert(HireDto dto) {
 		mapper.hireInsert(dto);
 	}
+
+	@Override
+	public List<HireDto> getHireList() {
+		return mapper.getHireList();
+	}
+	
+	@Override
+	public List<HireDto> searchHire(String search_job) {
+		return mapper.searchHire(search_job);
+	}
+
+
 
 }
