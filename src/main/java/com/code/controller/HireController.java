@@ -2,6 +2,11 @@ package com.code.controller;
 
 import java.util.List;
 
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.code.dto.HireDto;
+import com.code.service.CompanyIntroService;
 import com.code.service.CompanyService;
 import com.code.service.HireService;
 
@@ -24,14 +30,15 @@ public class HireController {
 	@Autowired
 	HireService hservice;
 	
-	@GetMapping("/hire/main")
-	   public String hireMain(@ModelAttribute("hdto") HireDto dto, Model model) {      
-	            
-	        List<HireDto> hlist = hservice.getHireList();
-	        model.addAttribute("hlist", hlist);
-	      
-	      return "hire/hiremain";
-	   }
+  @GetMapping("/hire/main")
+  public String hireMain(@ModelAttribute("hdto") HireDto dto, Model model) {      
+
+    List<HireDto> hlist = hservice.getHireList();
+    model.addAttribute("hlist", hlist);
+
+    return "hire/hiremain";
+  }
+
 	
 	@ResponseBody
 	@GetMapping("/hire/search")

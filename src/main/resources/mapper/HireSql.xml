@@ -20,4 +20,5 @@
 	JOIN company_intro ci ON h.h_ci_num = ci.ci_num 
 	WHERE h_job REGEXP #{search_job}
 </select>
+
 </mapper>
