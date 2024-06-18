@@ -9,8 +9,16 @@
 </insert>
 
 <select id="getHireList" resultType="hdto">
+   SELECT h.*, c.c_name, ci.ci_image FROM hire h
+   JOIN company c ON h.h_c_num = c.c_num 
+   JOIN company_intro ci ON h.h_ci_num = ci.ci_num
+</select>
+
+<select id="searchHire" parameterType="Map" resultType="hdto">
 	SELECT h.*, c.c_name, ci.ci_image FROM hire h
-	JOIN company c ON h.h_c_num = c.c_num JOIN company_intro ci ON h.h_ci_num = ci.ci_num
+	JOIN company c ON h.h_c_num = c.c_num 
+	JOIN company_intro ci ON h.h_ci_num = ci.ci_num 
+	WHERE h_job REGEXP #{search_job}
 </select>
 
 </mapper>
