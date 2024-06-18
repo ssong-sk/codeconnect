@@ -30,8 +30,11 @@ public class HireDto {
 	private String h_process;
 	private String h_salary;
 	private String h_c_id;
-	private Date h_deadline;
+	private String h_deadline;
 	private String h_writeday;
 	private int h_count;
+	
+	private String c_name;
+	private String ci_image;
 
 }

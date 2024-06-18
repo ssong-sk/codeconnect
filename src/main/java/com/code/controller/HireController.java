@@ -1,15 +1,15 @@
 package com.code.controller;
 
-
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.stereotype.Controller;
-
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.code.dto.HireDto;
 import com.code.service.CompanyService;
@@ -25,17 +25,20 @@ public class HireController {
 	HireService hservice;
 	
 	@GetMapping("/hire/main")
-	public String hireMain(@ModelAttribute("hdto") HireDto dto) {
-		
-		return "hire/hiremain";
-	}
+	   public String hireMain(@ModelAttribute("hdto") HireDto dto, Model model) {      
+	            
+	        List<HireDto> hlist = hservice.getHireList();
+	        model.addAttribute("hlist", hlist);
+	      
+	      return "hire/hiremain";
+	   }
 	
-	@PostMapping("/hire/insert")
-	public String hireInsert(@ModelAttribute("hdto") HireDto hdto) {
+	@ResponseBody
+	@GetMapping("/hire/search")
+	public List<HireDto> hireSearch(String search_job) {
 		
-		hservice.hireInsert(hdto);
-
-		return "redirect:/company/main";
+		List<HireDto> slist=hservice.searchHire(search_job);
+		
+		return slist;
 	}
-
 }
