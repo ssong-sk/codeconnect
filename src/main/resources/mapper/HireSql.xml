@@ -14,11 +14,23 @@
    JOIN company_intro ci ON h.h_ci_num = ci.ci_num
 </select>
 
-<select id="searchHire" parameterType="Map" resultType="hdto">
-	SELECT h.*, c.c_name, ci.ci_image FROM hire h
-	JOIN company c ON h.h_c_num = c.c_num 
-	JOIN company_intro ci ON h.h_ci_num = ci.ci_num 
-	WHERE h_job REGEXP #{search_job}
+<select id="searchHire" parameterType="String" resultType="hdto">
+    SELECT h.*, c.c_name, ci.ci_image 
+    FROM hire h
+    JOIN company c ON h.h_c_num = c.c_num 
+    JOIN company_intro ci ON h.h_ci_num = ci.ci_num 
+    WHERE
+    <choose>
+        <when test="search_job != null and search_tech == null">
+            h_job REGEXP #{search_job}
+        </when>
+        <when test="search_job == null and search_tech != null">
+            h_tech REGEXP #{search_tech}
+        </when>
+        <when test="search_job != null and search_tech != null">
+            h_job REGEXP #{search_job} and h_tech REGEXP #{search_tech})
+        </when>
+    </choose>
 </select>
 
 </mapper>
