@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,15 +22,18 @@
         background-color: #f8f9fa;
         font-family: 'IBM Plex Sans KR', sans-serif;
     }
-    .back-button {
-        background-color: #adb5bd;
-        color: #fff;
+    .back_button {
+        background-color: #ffffff;
+        color: #5c667b;
+        font-size: 15px;
+        border: 1px solid #ddd;
         padding: 5px 10px;
         border-radius: 5px;
         text-decoration: none;
         display: inline-block;
         margin-bottom: 8px;
-        margin-left: -687px;
+        margin-left: -694px;
+        
     }
     .form-container {
         background: #fff;
@@ -61,12 +65,12 @@
         padding: 10px;
         border: none;
         border-radius: 5px;
-        background-color: #28a745;
+        background-color: #2D65F2;
         color: #fff;
         font-size: 16px;
     }
     .form-container button:hover {
-        background-color: #218838;
+        background-color: #1E4BB8;
     }
     @media (max-width: 768px) {
         .form-container {
@@ -126,7 +130,7 @@
 </script>
 </head>
 <body>
-<a href="${pageContext.request.contextPath}/community/homelist" onclick="scrollToTop()" class="back-button"><i class="bi bi-chevron-left"></i>&nbsp;이전페이지</a>
+<a href="${pageContext.request.contextPath}/community/homelist" onclick="scrollToTop()" class="back_button"><i class="bi bi-chevron-left"></i>&nbsp;이전페이지</a>
 <div class="form-container">
     <h2>게시글 작성</h2>
     <form action="${pageContext.request.contextPath}/community/homeinsert" method="post" enctype="multipart/form-data">

@@ -15,6 +15,22 @@
     body {
         font-family: 'IBM Plex Sans KR', sans-serif;
     }
+    .post_view_wrap .title {
+        color: #666;
+        font-size: 14px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .title_left {
+        display: flex;
+        align-items: center;
+    }
+    .title_right {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
     .post_view_wrap {
         margin: 20px auto;
         max-width: 800px;
@@ -28,21 +44,23 @@
     }
     .post_view_wrap .content {
         margin-bottom: 20px;
+        margin-top: 30px;
+        min-height: 200px;
     }
     .post_view_wrap .meta {
         color: #666;
         font-size: 14px;
         display: flex;
         justify-content: space-between;
-        align-items: center;
+        align-items: center.
     }
     .meta-left {
         display: flex;
         align-items: center;
     }
     .meta-left .memberimage {
-        width: 70px;
-        height: 50px;
+        width: 45px;
+        height: 45px;
         margin-right: 10px;
     }
     .meta-left .details {
@@ -52,11 +70,11 @@
     .meta-right {
         display: flex;
         align-items: center;
-        gap: 10px;
+        gap: 10px.
     }
-    .posttotalgo a {
+    .totalpostgo a {
         margin-top: 20px;
-        margin-left: 545px;
+        margin-left: 560px;
         background-color: #ffffff;
         color: #5c667b;
         border: 1px solid #ddd;
@@ -68,38 +86,217 @@
         text-decoration: none;
         display: inline-block;
     }
-
+    .post_emoticom {
+        text-align: center;
+        margin-top: 20px;
+    }
+    .post_emoticom button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        display: inline-block;
+        text-align: center;
+    }
+    .post_emoticom button img {
+        margin-top: 20px;
+        width: 30px;
+        height: 30px;
+    }
+    .post_emoticom button span {
+        display: block;
+        margin-top: 10px;
+        font-size: 10px;
+    }
+    .homelistgo a {
+        margin-top: 10px;
+        margin-left: 1283px;
+        background-color: #ffffff;
+        color: #5c667b;
+        border: 1px solid #ddd;
+        font-size: 13.5px;
+        width: 80px;
+        text-align: center;
+        padding: 5px 10px;
+        border-radius: 5px;
+        text-decoration: none;
+        display: inline-block;
+    }
+    .comment-section {
+        margin: 20px auto; /* 중앙 정렬을 위해 auto 사용 */
+        max-width: 800px; /* 게시글 상세 페이지와 동일한 너비 */
+    }
+    .comment-list {
+        margin-top: 10px;
+    }
+    .comment {
+        margin-bottom: 10px;
+    }
+    .comment .day {
+        color: gray;
+        font-size: 0.9em;
+    }
+    /* 댓글 수정 모달 스타일 추가 */
+    .modal-dialog {
+        max-width: 600px; /* 모달 너비 설정 */
+        margin: 1.75rem auto; /* 중앙 정렬을 위해 auto 사용 */
+    }
 </style>
 <script type="text/javascript">
+    $(document).ready(function() {
+        // 좋아요 수 증가 ajax
+        $('#like_button').click(function() {
+            const com_num = ${dto.com_num};
+            $.ajax({
+                url: "${pageContext.request.contextPath}/community/updateLike",
+                type: "POST",
+                data: { com_num: com_num },
+                success: function() {
+                    location.reload();
+                }
+            });
+        });
 
+     	// 댓글 등록 버튼 클릭
+        $("#btnCommentAdd").click(function() {
+            var content = $("#content").val();
+            var cc_num = ${dto.com_num}; // 게시글 번호를 cc_num으로 매핑
+
+            if (content.trim().length == 0) {
+                alert("댓글 내용을 입력해주세요.");
+                return;
+            }
+            $.ajax({
+                type: "post",
+                dataType: "html",
+                url: "${pageContext.request.contextPath}/community/ainsert",
+                data: {
+                    cc_num: cc_num,
+                    cc_content: content
+                },
+                success: function() {
+                    listComments();
+                    $("#content").val("");
+                }
+            });
+        });
+
+        // 댓글 삭제
+        $(document).on("click", "i.ccDel", function() {
+            var cc_idx = $(this).attr("cc_idx");
+            if (confirm("해당 댓글을 삭제할까요?")) {
+                $.ajax({
+                    type: "get",
+                    dataType: "html",
+                    url: "${pageContext.request.contextPath}/community/adelete",
+                    data: { cc_idx: cc_idx },
+                    success: function() {
+                        alert("삭제 완료!");
+                        listComments();
+                    }
+                });
+            }
+        });
+
+        // 댓글 수정 모달 표시
+        $(document).on("click", "i.ccMod", function() {
+            cc_idx = $(this).attr("cc_idx");
+            $.ajax({
+                type: "get",
+                dataType: "json",
+                url: "${pageContext.request.contextPath}/community/adata",
+                data: { cc_idx: cc_idx },
+                success: function(data) {
+                    $("#ucontent").val(data.cc_content);
+                    $("#myUpdateContentModal").modal("show");
+                }
+            });
+        });
+
+        // 댓글 수정
+        $("#btnUpdateOk").click(function() {
+            var content = $("#ucontent").val();
+            $.ajax({
+                type: "post",
+                dataType: "html",
+                url: "${pageContext.request.contextPath}/community/aupdate",
+                data: {
+                    cc_idx: cc_idx,
+                    cc_content: content
+                },
+                success: function() {
+                    alert("수정 완료!");
+                    listComments();
+                }
+            });
+        });
+
+    });
+
+    function listComments() {
+        var cc_num = ${dto.com_num};
+        $.ajax({
+            type: "get",
+            dataType: "json",
+            url: "${pageContext.request.contextPath}/community/alist",
+            data: { cc_num: cc_num },
+            success: function(data) {
+                var s = "";
+                $.each(data, function(i, dto) {
+                    s += "<div class='comment'><b>" + dto.cc_nickname + "</b>: " + dto.cc_content;
+                    s += "<span class='day'>" + dto.cc_writetime + "</span>&nbsp;";
+                    if ("${sessionScope.loginok}" == 'yes' && "${sessionScope.myid}" == dto.cc_user_id) {
+                        s += "<i class='bi bi-pencil-square ccMod' cc_idx='" + dto.cc_idx + "'></i>&nbsp;";
+                        s += "<i class='bi bi-trash-fill ccDel' cc_idx='" + dto.cc_idx + "'></i>";
+                    }
+                    s += "</div>";
+                });
+                $("div.comment-list").html(s);
+            }
+        });
+    }
+
+    // 초기 로드 시 댓글 목록 불러오기
+    $(document).ready(function() {
+        listComments();
+    });
 </script>
+
 </head>
 <body>
 
-<div class="posttotalgo">
-    <a href="${pageContext.request.contextPath}/community/homeposttotal"><span><i class="bi bi-chevron-left"></i>전체 게시글</span></a>
+<div class="totalpostgo">
+    <a href="${pageContext.request.contextPath}/community/hometotalpost"><span><i class="bi bi-chevron-left"></i>전체 게시글</span></a>
 </div>
-<div class="post_view_wrap">
+<div class="post_view_wrap" style="margin-top: 15px;">
     <!-- 게시글 상단 -->
-    <div>
-        <h2>${dto.com_title}</h2>
+    <div class="title" style="margin-top: 15px;">
+        <div class="title_left">
+            <h5><b>${dto.com_title}</b></h5>
+        </div>
+        <div class="title_right">
+            <button type="button" class="btn btn-outline-primary btn-sm"
+            onclick="location.href='homeupdateform?com_num=${dto.com_num}&com_photo=${dto.com_photo}'">수정</button>
+            <button type="button" class="btn btn-outline-secondary btn-sm"
+            onclick="location.href='delete?com_num=${dto.com_num}'">삭제</button>
+        </div>
     </div>
     <!-- 게시글 메타 정보 -->
-    <div class="meta">
+    <div class="meta" style="margin-top: 30px;">
         <div class="meta-left">
-            <img class="memberimage" src="/communityimage/nam.png" alt="User Image">
+            <img class="memberimage" src="/communityimage/no_image.png" alt="User Image">
             <div class="details">
-                <span>닉네임: ${userNickname }</span>
-                <span>작성시간: <fmt:formatDate value="${dto.com_writetime}" pattern="yyyy-MM-dd HH:mm" /></span>
+                <span>${userNickname }</span>
+                <span><fmt:formatDate value="${dto.com_writetime}" pattern="yyyy-MM-dd HH:mm" /></span>
             </div>
         </div>
         <div class="meta-right">
-            <span><i class="bi bi-hand-thumbs-up"></i>&nbsp;${dto.com_likes}</span>
+            <input type="hidden" id="readcount" name="com_readcount" value="">
+            <span><i class="bi bi-hand-thumbs-up"></i>&nbsp;${dto.com_likes}</span>&nbsp;&nbsp;
             <span><i class="bi bi-chat-left"></i>&nbsp;${dto.com_commentcount}</span>
         </div>
     </div>
     <!-- 게시글 내용 -->
-    <div class="content" style="margin-top: 40px; height: 500px;">
+    <div class="content">
         <%-- <p>${dto.com_content}</p> --%>
         <c:out value="${dto.com_content}" escapeXml="false"/>
     </div>
@@ -109,7 +306,54 @@
             <img src="${pageContext.request.contextPath}/communityimage/${dto.com_photo}" class="img-fluid">
         </div>
     </c:if>
+    <div class="post_emoticom" style="margin-bottom: 20px;">
+        <button id="like_button">
+            <img src="/communityimage/likeimg4.png" alt="좋아요">
+            <span>이 글이 좋아요</span>
+            <span style="margin-top: 5px;">${dto.com_likes}</span>
+        </button>
+    </div>
 </div>
 
+<!-- comment board -->
+<div class="comment-section" style="width: 900px;">
+    <h5>댓글</h5>
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="댓글을 입력하세요" id="content" aria-describedby="button-addon2">
+        <button class="btn btn-outline-secondary" type="button" id="btnCommentAdd">등록</button>
+    </div>
+    <!-- 댓글 리스트 -->
+    <div class="comment-list"></div>
+</div>
+
+<!-- The 댓글 수정 Modal -->
+<div class="modal" id="myUpdateContentModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">댓글수정</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <input type="text" id="ucontent" class="form-control">
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-bs-dismiss="modal" id="btnUpdateOk">수정</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="homelistgo">
+    <a href="${pageContext.request.contextPath}/community/homelist"><span>목록<i class="bi bi-chevron-right"></i></span></a>
+</div>
 </body>
 </html>

@@ -680,6 +680,7 @@ svg{
                                  style="font-size: 10pt; margin-top: 10px;"></div>
                            </div>
                            <input type="hidden" id="search_job" name="search_job">
+                           
                         </div>
 
                         <!-- Modal Footer -->
@@ -790,6 +791,7 @@ svg{
                            <div class="tech-select">
                               <div id="selected-tech" style="font-size: 10pt; margin-top: 10px;"></div>
                            </div>
+                           <input type="hidden" id="search_tech" name="search_tech">
                         </div>
 
                         <!-- Modal Footer -->
@@ -1398,6 +1400,9 @@ svg{
 /* 직무 select */
 $(document).ready(function() {
 	const MAX_SELECTIONS = 5;
+	/* 직무 검색 시 사용 */
+	var selectedJob="";
+	var search_job="";
 	$('.option-btn').click(function() {
 		if ($('#selected-job .selected-job').length >= MAX_SELECTIONS) {
 			alert('5개 이상의 직무를 선택할 수 없습니다.');
@@ -1406,6 +1411,17 @@ $(document).ready(function() {
 		const jobText = $(this).text();
 		addSelectedJob(jobText);
 		$(this).prop('disabled', true);
+		
+		/* 직무 검색 시 사용 */
+		var selectedJob = $(this).text().trim();
+
+		if (search_job !== "") {
+			search_job += "|";
+		}
+		search_job += selectedJob;
+		//alert(search_job);
+		$("#search_job").val(search_job);
+	
 	});
 
 	$('.apply-btn').click(function() {
@@ -1440,7 +1456,9 @@ $(document).ready(function() {
 		});
 
 		removeButton.on('click', function() {
+			const jobText = jobElement.find('span').text().trim();
 			jobElement.remove();
+			removeJobFromSearch(jobText);
 			$('.option-btn').each(function() {
 				if ($(this).text() === jobText) {
 					$(this).prop('disabled', false);
@@ -1472,15 +1490,36 @@ $(document).ready(function() {
 		$('.option-btn').prop('disabled', false);
 		updateToggleText();
 	}
+	
+	function removeJobFromSearch(jobText) {
+        const jobList = search_job.split('|');
+        const jobIndex = jobList.indexOf(jobText);
+        if (jobIndex !== -1) {
+            jobList.splice(jobIndex, 1);
+            search_job = jobList.join('|');
+            $("#search_job").val(search_job);
+        }
+    }
+	
 });
 
 /* 기술 스택 select */
 $(document).ready(function() {
+	
+	/* 기술 검색 시 사용 */
+	var search_tech = "";
 
 	$('.techoption-btn').click(function() {
 		const techText = $(this).text();
 		addSelectedTech(techText);
 		$(this).prop('disabled', true);
+		
+		/* 기술 검색 시 사용 */
+		if (search_tech !== "") {
+			search_tech += "|";
+		}
+		search_tech += techText.trim();
+		$("#search_tech").val(search_tech);
 	});
 
 	$('.techapply-btn').click(function() {
@@ -1493,34 +1532,37 @@ $(document).ready(function() {
 
 	function addSelectedTech(techText) {
 		const techElement = $('<div>').addClass('selected-tech').css({
-			display : 'inline-block',
-			marginLeft : '6px',
-			marginRight : '10px',
-			marginBottom : '5px',
-			border : '1px solid #ccc',
-			backgroundColor : '#fafafa',
-			padding : '6px',
-			borderRadius : '15px',
-			fontWeight : 'bold',
-			paddingLeft : '8px'
+			display: 'inline-block',
+			marginLeft: '6px',
+			marginRight: '10px',
+			marginBottom: '5px',
+			border: '1px solid #ccc',
+			backgroundColor: '#fafafa',
+			padding: '6px',
+			borderRadius: '15px',
+			fontWeight: 'bold',
+			paddingLeft: '8px'
 		});
 
 		const techTextElement = $('<span>').text(techText);
 		const removeButton = $('<button>').html('<i class="bi bi-x-lg"></i>').css({
-			marginLeft : '10px',
-			border : 'none',
-			background : 'none',
-			color : 'blue',
-			cursor : 'pointer'
+			marginLeft: '10px',
+			border: 'none',
+			background: 'none',
+			color: 'blue',
+			cursor: 'pointer'
 		});
 
 		removeButton.on('click', function() {
+			const techText = techElement.find('span').text().trim();
+			removeTechFromSearch(techText);
 			techElement.remove();
 			$('.techoption-btn').each(function() {
 				if ($(this).text() === techText) {
 					$(this).prop('disabled', false);
 				}
 			});
+			updateToggleText();
 		});
 
 		techElement.append(techTextElement).append(removeButton);
@@ -1535,19 +1577,27 @@ $(document).ready(function() {
 		} else {
 			const firstTechText = selectedTechs.first().find('span').text().trim();
 			const remainingTechsCount = selectedTechs.length - 1;
-			toggleText.text(remainingTechsCount > 0 ? '기술・'
-				+ firstTechText
-				+ ' 외 '
-				+ remainingTechsCount
-				: '기술・' + firstTechText);
+			toggleText.text(remainingTechsCount > 0 ? '기술・' + firstTechText + ' 외 ' + remainingTechsCount : '기술・' + firstTechText);
 		}
 	}
 
 	function resetSelectedTechs() {
 		$('#selected-tech').empty();
 		$('.techoption-btn').prop('disabled', false);
+		search_tech = "";  // 추가: search_tech 초기화
+		$("#search_tech").val(search_tech);  // 추가: 초기화된 값 설정
 		updateToggleText();
 	}
+	
+	function removeTechFromSearch(techText) {
+        const techList = search_tech.split('|');
+        const techIndex = techList.indexOf(techText);
+        if (techIndex !== -1) {
+        	techList.splice(techIndex, 1);
+        	search_tech = techList.join('|');
+            $("#search_tech").val(search_tech);
+        }
+    }
 });
 </script>
 
@@ -1926,27 +1976,16 @@ $(document).click(function(event) {
 <!-- 검색 기능 -->
 <script type="text/javascript">
 /* 개발직무 검색 */
-var selectedJob="";
-var search_job="";
-$('.option-btn').click(function() {
-	var selectedJob = $(this).text().trim();
-	// search_job이 빈 문자열이 아니면 쉼표를 추가하여 선택된 작업을 추가합니다.
-	if (search_job !== "") {
-		search_job += "|";
-	}
-	search_job += selectedJob;
-	//alert(search_job);
-	$("#search_job").val(search_job);
-});
 
-$(".apply-btn").click(function(){
+function alist() {
     var search_job = $("#search_job").val();
-    alert(search_job);
-    $.ajax({
+	$.ajax({
         type: "get",
         url: "search",
         dataType: "json",
-        data: {"search_job": search_job},
+        data: {
+        	"search_job": search_job
+        },
         success: function(res) {
         	//alert(res.length);
         	
@@ -2002,6 +2041,82 @@ $(".apply-btn").click(function(){
             $('#hireListContainer').html(s); // 업데이트할 요소의 ID를 지정
         }
     });
+}
+
+function alist2() {
+    var search_tech = $("#search_tech").val();
+	$.ajax({
+        type: "get",
+        url: "search",
+        dataType: "json",
+        data: {
+        	"search_tech": search_tech
+        },
+        success: function(res) {
+        	//alert(res.length);
+        	
+        	$(".hirelist").hide();
+        	
+            var s = "<section class='s_hirelist'>";
+            $.each(res, function(index, h) {
+                s += "<div class='hireinfo'>";
+                s += "<a target='_self' title='" + h.h_title + "' href='#'>";
+                s += "<div class='img_box'>";
+                s += "<div class='img_filter'></div>";
+                s += "<img alt='" + h.c_name + "' class='img' src='../../companyintro_uploads/" + h.ci_image + "'>";
+                s += "<div class='bKGmxJ'></div>";
+                s += "<div class='counts'>";
+                s += "<div class='position_view_count'>";
+                s += "<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20'>";
+                s += "<g fill='none' fill-rule='evenodd'>";
+                s += "<path d='M0 0h16v16H0z'></path>";
+                s += "<g stroke='#FFF' stroke-linecap='round'>";
+                s += "<path d='M8 10c.86 0 1.556-.672 1.556-1.5S8.859 7 8 7c-.86 0-1.556.672-1.556 1.5S7.141 10 8 10z'></path>";
+                s += "<path d='M15 8.5c-1.469 2.243-4.108 4.5-7 4.5-2.892 0-5.531-2.257-7-4.5C2.788 6.369 4.882 4 8 4s5.212 2.369 7 4.5z'></path>";
+                s += "</g>";
+                s += "</g>";
+                s += "</svg>";
+                s += "<span>87</span>";
+                s += "</div>";
+                s += "<button aria-pressed='false' type='button' class='scrap' onclick='location.href=\"hire/hirewrite\"'>";
+                s += "<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' viewBox='0 0 24 24'>";
+                s += "<path fill='#fff' fill-rule='evenodd' d='M10.725 14.71a2 2 0 0 1 2.55 0l3.975 3.289V5H6.75v12.999l3.975-3.29ZM4.75 20.123V5a2 2 0 0 1 2-2h10.5a2 2 0 0 1 2 2v15.124a1 1 0 0 1-1.638.77L12 16.25l-5.612 4.645a1 1 0 0 1-1.638-.77Z' clip-rule='evenodd'></path>";
+                s += "</svg>";
+                s += "</button>";
+                s += "</div>";
+                s += "</div>";
+                s += "<div class='hireinfo-content'>";
+                s += "<div class='content-company'>";
+                s += "<span>" + h.c_name + "</span>";
+                s += "</div>";
+                s += "<h2 class='position_card_info_title'>" + h.h_title + "</h2>";
+                s += "<ul class='content-techlist'>";
+                $.each(h.h_tech.split(','), function(index, tech) {
+                    s += "<li>" + tech.trim() + "</li>";
+                });
+                s += "</ul>";
+                s += "<ul class='content-area'>";
+                s += "<li>" + h.h_location + "</li>";
+                s += "<li>· 경력 " + h.h_career + "년</li>";
+                s += "</ul>";
+                s += "</div>";
+                s += "</a>";
+                s += "</div>";
+            });
+            s += "</section>";
+            $('#hireListContainer').html(s); // 업데이트할 요소의 ID를 지정
+        }
+    });
+}
+
+$(".apply-btn").click(function(){
+    alist();
+    alist2();
+    
+});
+
+$(".techapply-btn").click(function(){
+    alist2(); 
 });
 
 </script>

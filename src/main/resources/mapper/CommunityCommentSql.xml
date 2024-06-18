@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.code.mapper.CommunityCommentMapperInter">
+   <insert id="insertComment" parameterType="CommunityCommentDto">
+     insert into community_comment (cc_num, cc_user_id, cc_nickname, cc_content, cc_writetime, cc_updatetime)
+    values (#{cc_num}, #{cc_user_id}, #{cc_nickname}, #{cc_content}, now(), now())
+   </insert>
+   <select id="getAllComment" parameterType="int" resultType="CommunityCommentDto">
+     select * from community_comment where cc_num = #{cc_num}
+   </select>
+   <select id="getComment" parameterType="int" resultType="CommunityCommentDto">
+      select * from community_comment where cc_idx = #{cc_idx}
+   </select>
+   <update id="updateComment" parameterType="CommunityCommentDto">
+      update community_comment set cc_content=#{cc_content}, cc_updatetime=now() where cc_idx = #{cc_idx}
+   </update>
+   <delete id="deleteComment" parameterType="int">
+     delete from community_comment where cc_idx = #{cc_idx}
+   </delete>
+</mapper>
