@@ -424,8 +424,8 @@
                         <label for="c_insa_email" class="form-label">인사담당자 이메일</label>
                         <input type="email" class="form-control" id="c_insa_email" name="c_insa_email" value="${dto.c_insa_email}">
                     </div>
-                    <button type="submit" class="btn btn-danger">저장</button>
-                    <button type="button" class="btn btn-back" onclick="location.href='main'">뒤로가기</button>
+                    <button type="submit" class="btn btn-outline-primary" style="width: 100px;">저장</button>
+                    
                 </form>
             </div>
         </div>
