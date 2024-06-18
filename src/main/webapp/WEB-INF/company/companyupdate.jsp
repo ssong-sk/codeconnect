@@ -112,8 +112,8 @@
 </head>
 <body>
     <div class="container">
-        <h1 class="mb-4">기업 정보 수정</h1>
-        
+        <h2 class="mb-4">기업 정보 수정</h2>
+        <hr>
         <form action="update" method="post" enctype="multipart/form-data">
             <input type="hidden" name="c_num" id="c_num" value="${dto.c_num}">
             <div class="mb-3">

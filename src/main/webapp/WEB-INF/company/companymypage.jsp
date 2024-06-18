@@ -82,7 +82,7 @@
         <button class="btn">🔍 인재풀 탐색하기</button>
         <div class="menu-divider"></div>
         <div class="menu-item">전체 지원자 관리</div>
-        <div class="menu-item">
+        <div class="menu-item" onclick="location.href='companyhire'">
             <span>채용공고 관리</span>
             <span>+</span>
         </div>

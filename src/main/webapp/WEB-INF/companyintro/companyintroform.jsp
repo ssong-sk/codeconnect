@@ -19,7 +19,7 @@
 
 <style>
 body {
-	font-family: 'Noto Sans KR', sans-serif;
+	font-family: 'IBM Plex Sans KR', sans-serif;
 }
 
 .container {
@@ -77,7 +77,7 @@ h1 {
 </head>
 <body>
 	<div class="container">
-		<div style="font-size: 20px;">기업 소개글 작성</div>
+		<h2 class="mb-4">기업 소개글 작성</h2>
 		<form action="insertintro" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="c_num" id="c_num" value="${cdto.c_num}">
 

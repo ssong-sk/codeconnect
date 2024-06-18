@@ -73,7 +73,7 @@
 
 <body>
     <div class="container">
-        <div style="font-size: 20px;">기업 소개글 수정</div>
+        <h2 class="mb-4">기업 소개글 작성</h2>
         <form action="updateintro" method="post" enctype="multipart/form-data">
             <input type="hidden" name="c_num" id="c_num" value="${dto.c_num}">
             <hr>
