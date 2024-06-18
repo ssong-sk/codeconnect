@@ -1,7 +1,6 @@
 package com.code.service;
 
-
-
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -24,14 +23,7 @@ public class HireService implements HireServiceInter {
 
 	@Override
 	public List<HireDto> getHireList() {
-		return mapper.getHireList();
+        return mapper.getHireList();
 	}
-	
-	@Override
-	public List<HireDto> searchHire(String search_job) {
-		return mapper.searchHire(search_job);
-	}
-
-
 
 }
