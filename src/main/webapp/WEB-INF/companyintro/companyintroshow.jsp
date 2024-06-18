@@ -244,7 +244,12 @@
             </tr>
             <tr>
                 <th>기업 유형</th>
-                <td>기타 법인</td>
+                <td>
+                    <c:choose>
+                        <c:when test="${not empty cdto.c_size}">${cdto.c_size}</c:when>
+                        <c:otherwise>―</c:otherwise>
+                    </c:choose>
+                </td>
             </tr>
             <tr>
                 <th>평균연봉</th>

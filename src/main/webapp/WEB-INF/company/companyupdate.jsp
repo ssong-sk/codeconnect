@@ -188,6 +188,17 @@
                 </div>
             </div>
             <div class="mb-3">
+                <label for="c_size" class="form-label">기업 규모</label>
+                <select class="form-select" id="c_size" name="c_size">
+                    <option value="">기업 규모 선택</option>
+                    <option value="대기업" <c:if test="${dto.c_size == '대기업'}">selected</c:if>>대기업</option>
+                    <option value="중견기업" <c:if test="${dto.c_size == '중견기업'}">selected</c:if>>중견기업</option>
+                    <option value="중소기업" <c:if test="${dto.c_size == '중소기업'}">selected</c:if>>중소기업</option>
+                    <option value="공기업" <c:if test="${dto.c_size == '공기업'}">selected</c:if>>공기업</option>
+                </select>
+            </div>
+            
+            <div class="mb-3">
                 <label for="c_category" class="form-label">산업군</label>
                 <select class="form-select" id="c_category" name="c_category">
                     <option value="">산업군 선택</option>

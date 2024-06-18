@@ -35,8 +35,6 @@
     .loginform button {
         width: 100%;
         padding: 10px;
-        background-color: #007bff;
-        color: white;
         border: none;
         border-radius: 5px;
         margin-top: 10px;
@@ -49,6 +47,14 @@
     }
     .loginform .options input[type="checkbox"] {
         margin-right: 5px;
+    }
+    .links a {
+        text-decoration: none;
+        color: black;
+        transition: color 0.3s;
+    }
+    .links a:hover {
+        color: blue;
     }
 </style>
 <title>기업 회원로그인</title>
@@ -73,10 +79,10 @@
         
         <div class="options">
             <div>
-                <input type="checkbox" name="c_cbsave" ${sessionScope.c_saveok == null? "":"checked" }> 아이디 저장
+                <input type="checkbox" name="c_cbsave" ${sessionScope.c_saveok == null? "":"checked" }>
                 <label for="c_cbsave">아이디 저장</label>
             </div>
-            <button type="submit" class="btn btn-info">로그인</button>
+            <button type="submit" class="btn btn-primary">로그인</button>
         </div>
     </form>
 
