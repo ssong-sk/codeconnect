@@ -1346,12 +1346,13 @@ svg{
 			</div>
 			<!-- 채용공고 리스트 -->
 			<section class="hirelist">
+			<c:forEach var="h" items="${hlist}">
 				<div class="hireinfo">
-					<a target="_self" title="(React Native) 모바일앱 개발자" href="#">
+					<a target="_self" title="${h.h_title }" href="#">
 						<div class="img_box">
 							<div class="img_filter"></div>
-							<img alt="먼치팩토리" class="img"
-							src="https://cdn.jumpit.co.kr/lg/images/team_83986/20220819150817537_1080_720.webp">
+							<img alt="${h.c_name }" class="img"
+							src="../../companyintro_uploads/${h.ci_image }">
 							<div class="bKGmxJ"></div>
 							<div class="counts">
 								<div class="position_view_count">
@@ -1376,164 +1377,22 @@ svg{
 						</div>
                         <div class="hireinfo-content">
 							<div class="content-company">
-								<span>먼치팩토리</span>
+								<span>${h.c_name }</span>
 							</div>
-							<h2 class="position_card_info_title">(React Native) 모바일앱 개발자</h2>
+							<h2 class="position_card_info_title">${h.h_title }</h2>
 							<ul class="content-techlist">
-								<li>Java</li>
-								<li>· Objective-C</li>
-								<li>· React Native</li>
-								<li>· iOS</li>
-								<li>· Android OS</li>
+								<c:forEach var="tech" items="${h.h_tech.split(',')}" varStatus="status">
+		                            <li><c:out value="${tech}"/>${status.index != 0 ? ' · ' : ''}</li>
+		                        </c:forEach>
 							</ul>
 							<ul class="content-area">
-								<li>서울 강남구</li>
-								<li>· 경력 4~15년</li>
+								<li>${h.h_location }</li>
+								<li>· 경력&nbsp;${h.h_career }년</li>
 							</ul>
 						</div>
 					</a>
 				</div>
-				<div class="hireinfo">
-					<a target="_self" title="(React Native) 모바일앱 개발자" href="#">
-						<div class="img_box">
-							<div class="img_filter"></div>
-							<img alt="먼치팩토리" class="img"
-							src="https://cdn.jumpit.co.kr/lg/images/team_83986/20220819150817537_1080_720.webp">
-							<div class="bKGmxJ"></div>
-							<div class="counts">
-								<div class="position_view_count">
-									<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20">
-                                    <g fill="none" fill-rule="evenodd">
-									<path d="M0 0h16v16H0z"></path>
-                                    <g stroke="#FFF" stroke-linecap="round">
-                                    <path
-									d="M8 10c.86 0 1.556-.672 1.556-1.5S8.859 7 8 7c-.86 0-1.556.672-1.556 1.5S7.141 10 8 10z"></path>
-                                    <path
-									d="M15 8.5c-1.469 2.243-4.108 4.5-7 4.5-2.892 0-5.531-2.257-7-4.5C2.788 6.369 4.882 4 8 4s5.212 2.369 7 4.5z"></path></g></g></svg>
-									<span>87</span>
-								</div>
-								<button aria-pressed="false" type="button" class="scrap" onclick="location.href='hire/hirewrite'">
-									<svg xmlns="http://www.w3.org/2000/svg" width="24"
-									height="24" fill="none" viewBox="0 0 24 24">
-									<path fill="#fff" fill-rule="evenodd"
-									d="M10.725 14.71a2 2 0 0 1 2.55 0l3.975 3.289V5H6.75v12.999l3.975-3.29ZM4.75 20.123V5a2 2 0 0 1 2-2h10.5a2 2 0 0 1 2 2v15.124a1 1 0 0 1-1.638.77L12 16.25l-5.612 4.645a1 1 0 0 1-1.638-.77Z"
-									clip-rule="evenodd"></path></svg>
-								</button>
-							</div>
-						</div>
-                        <div class="hireinfo-content">
-							<div class="content-company">
-								<span>먼치팩토리</span>
-							</div>
-							<h2 class="position_card_info_title">(React Native) 모바일앱 개발자</h2>
-							<ul class="content-techlist">
-								<li>Java</li>
-								<li>· Objective-C</li>
-								<li>· React Native</li>
-								<li>· iOS</li>
-								<li>· Android OS</li>
-							</ul>
-							<ul class="content-area">
-								<li>서울 강남구</li>
-								<li>· 경력 4~15년</li>
-							</ul>
-						</div>
-					</a>
-				</div>
-                  <div class="hireinfo">
-					<a target="_self" title="(React Native) 모바일앱 개발자" href="#">
-						<div class="img_box">
-							<div class="img_filter"></div>
-							<img alt="먼치팩토리" class="img"
-							src="https://cdn.jumpit.co.kr/lg/images/team_83986/20220819150817537_1080_720.webp">
-							<div class="bKGmxJ"></div>
-							<div class="counts">
-								<div class="position_view_count">
-									<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20">
-                                    <g fill="none" fill-rule="evenodd">
-									<path d="M0 0h16v16H0z"></path>
-                                    <g stroke="#FFF" stroke-linecap="round">
-                                    <path
-									d="M8 10c.86 0 1.556-.672 1.556-1.5S8.859 7 8 7c-.86 0-1.556.672-1.556 1.5S7.141 10 8 10z"></path>
-                                    <path
-									d="M15 8.5c-1.469 2.243-4.108 4.5-7 4.5-2.892 0-5.531-2.257-7-4.5C2.788 6.369 4.882 4 8 4s5.212 2.369 7 4.5z"></path></g></g></svg>
-									<span>87</span>
-								</div>
-								<button aria-pressed="false" type="button" class="scrap" onclick="location.href='hire/hirewrite'">
-									<svg xmlns="http://www.w3.org/2000/svg" width="24"
-									height="24" fill="none" viewBox="0 0 24 24">
-									<path fill="#fff" fill-rule="evenodd"
-									d="M10.725 14.71a2 2 0 0 1 2.55 0l3.975 3.289V5H6.75v12.999l3.975-3.29ZM4.75 20.123V5a2 2 0 0 1 2-2h10.5a2 2 0 0 1 2 2v15.124a1 1 0 0 1-1.638.77L12 16.25l-5.612 4.645a1 1 0 0 1-1.638-.77Z"
-									clip-rule="evenodd"></path></svg>
-								</button>
-							</div>
-						</div>
-                        <div class="hireinfo-content">
-							<div class="content-company">
-								<span>먼치팩토리</span>
-							</div>
-							<h2 class="position_card_info_title">(React Native) 모바일앱 개발자</h2>
-							<ul class="content-techlist">
-								<li>Java</li>
-								<li>· Objective-C</li>
-								<li>· React Native</li>
-								<li>· iOS</li>
-								<li>· Android OS</li>
-							</ul>
-							<ul class="content-area">
-								<li>서울 강남구</li>
-								<li>· 경력 4~15년</li>
-							</ul>
-						</div>
-					</a>
-				</div>
-                  <div class="hireinfo">
-					<a target="_self" title="(React Native) 모바일앱 개발자" href="#">
-						<div class="img_box">
-							<div class="img_filter"></div>
-							<img alt="먼치팩토리" class="img"
-							src="https://cdn.jumpit.co.kr/lg/images/team_83986/20220819150817537_1080_720.webp">
-							<div class="bKGmxJ"></div>
-							<div class="counts">
-								<div class="position_view_count">
-									<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20">
-                                    <g fill="none" fill-rule="evenodd">
-									<path d="M0 0h16v16H0z"></path>
-                                    <g stroke="#FFF" stroke-linecap="round">
-                                    <path
-									d="M8 10c.86 0 1.556-.672 1.556-1.5S8.859 7 8 7c-.86 0-1.556.672-1.556 1.5S7.141 10 8 10z"></path>
-                                    <path
-									d="M15 8.5c-1.469 2.243-4.108 4.5-7 4.5-2.892 0-5.531-2.257-7-4.5C2.788 6.369 4.882 4 8 4s5.212 2.369 7 4.5z"></path></g></g></svg>
-									<span>87</span>
-								</div>
-								<button aria-pressed="false" type="button" class="scrap" onclick="location.href='hire/hirewrite'">
-									<svg xmlns="http://www.w3.org/2000/svg" width="24"
-									height="24" fill="none" viewBox="0 0 24 24">
-									<path fill="#fff" fill-rule="evenodd"
-									d="M10.725 14.71a2 2 0 0 1 2.55 0l3.975 3.289V5H6.75v12.999l3.975-3.29ZM4.75 20.123V5a2 2 0 0 1 2-2h10.5a2 2 0 0 1 2 2v15.124a1 1 0 0 1-1.638.77L12 16.25l-5.612 4.645a1 1 0 0 1-1.638-.77Z"
-									clip-rule="evenodd"></path></svg>
-								</button>
-							</div>
-						</div>
-                        <div class="hireinfo-content">
-							<div class="content-company">
-								<span>먼치팩토리</span>
-							</div>
-							<h2 class="position_card_info_title">(React Native) 모바일앱 개발자</h2>
-							<ul class="content-techlist">
-								<li>Java</li>
-								<li>· Objective-C</li>
-								<li>· React Native</li>
-								<li>· iOS</li>
-								<li>· Android OS</li>
-							</ul>
-							<ul class="content-area">
-								<li>서울 강남구</li>
-								<li>· 경력 4~15년</li>
-							</ul>
-						</div>
-					</a>
-				</div>
+				</c:forEach>
 				<div class="list_skeleton"></div>
 			</section>
 		</div>
