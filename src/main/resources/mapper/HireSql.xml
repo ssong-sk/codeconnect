@@ -18,6 +18,6 @@
 	SELECT h.*, c.c_name, ci.ci_image FROM hire h
 	JOIN company c ON h.h_c_num = c.c_num 
 	JOIN company_intro ci ON h.h_ci_num = ci.ci_num 
-	WHERE h_job REGEXP #{search_job}
+	WHERE h_job REGEXP #{search_job} and h_tech REGEXP #{search_tech}
 </select>
 </mapper>

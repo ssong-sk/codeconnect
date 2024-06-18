@@ -1940,15 +1940,15 @@ $('.option-btn').click(function() {
 });
 
 $(".apply-btn").click(function(){
-    var data = $("#search_job").val();
-    //alert(data);
+    var search_job = $("#search_job").val();
+    alert(search_job);
     $.ajax({
         type: "get",
         url: "search",
         dataType: "json",
-        data: {"data": data},
+        data: {"search_job": search_job},
         success: function(res) {
-        	alert(res.length);
+        	//alert(res.length);
         	
         	$(".hirelist").hide();
         	
