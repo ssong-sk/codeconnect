@@ -249,6 +249,10 @@ th:nth-child(5), td:nth-child(5) {
 .btn-outline-primary {
     width: 100px;
 }
+
+#ci_image_upload, #ci_logo_upload {
+    display: none;
+}
 </style>
 
 <script>
@@ -281,6 +285,24 @@ th:nth-child(5), td:nth-child(5) {
         });
 
         filterTable('공고 전체');
+
+        $('#inputimagebutton').click(function() {
+            $('#ci_image_upload').click();
+        });
+
+        $('#inputlogobutton').click(function() {
+            $('#ci_logo_upload').click();
+        });
+
+        $('#ci_image_upload').change(function() {
+            var fileName = $(this).val().split('\\').pop();
+            $(this).siblings('.file-name').text(fileName);
+        });
+
+        $('#ci_logo_upload').change(function() {
+            var fileName = $(this).val().split('\\').pop();
+            $(this).siblings('.file-name').text(fileName);
+        });
     });
 </script>
 </head>
@@ -313,12 +335,13 @@ th:nth-child(5), td:nth-child(5) {
                     <div class="mb-3">
                         <label for="ci_image" class="form-label">대표 이미지</label>
                         <div id="ci_image" class="image-upload-box">
-                            <i class="bi bi-plus-circle" style="font-size: 24px;"></i>
+                            <i id="inputimagebutton" class="bi bi-plus-circle" style="font-size: 24px;"></i>
                             <p>1080 x 790 이상<br>1장 필수</p>
                             <input type="file" class="form-control" name="ci_image_upload" id="ci_image_upload" style="width: 200px;" multiple="multiple">
+                            <span class="file-name"></span>
                             <c:if test="${not empty dto.ci_image}">
                                 <div class="existing-image">
-                                    <p>현재 이미지:</p>
+                                    <p>기존 이미지:</p>
                                     <img src="../companyintro_uploads/${dto.ci_image}" alt="현재 이미지" style="height: 200px;">
                                 </div>
                             </c:if>
@@ -327,12 +350,13 @@ th:nth-child(5), td:nth-child(5) {
                     <div class="mb-3">
                         <label for="ci_logo" class="form-label">로고 이미지</label>
                         <div id="ci_logo" class="image-upload-box">
-                            <i class="bi bi-plus-circle" style="font-size: 24px;"></i>
+                            <i  id="inputlogobutton" class="bi bi-plus-circle" style="font-size: 24px;"></i>
                             <p>정방형 300 x 300 이상<br>로고는 정중앙에 배치 필요</p>
                             <input type="file" name="ci_logo_upload" id="ci_logo_upload" class="form-control" style="width: 200px;" multiple="multiple">
+                            <span class="file-name"></span>
                             <c:if test="${not empty dto.ci_logo}">
                                 <div class="existing-logo">
-                                    <p>현재 로고:</p>
+                                    <p>기존 로고:</p>
                                     <img src="../companyintro_uploads/${dto.ci_logo}" alt="현재 로고" style="height: 100px;">
                                 </div>
                             </c:if>

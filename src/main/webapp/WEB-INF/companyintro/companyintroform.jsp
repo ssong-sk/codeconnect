@@ -216,9 +216,12 @@ th:nth-child(5), td:nth-child(5) {
 	background-color: #f8f9fa;
 }
 
-
 .btn-outline-primary{
 	width: 100px;
+}
+
+#ci_image_upload, #ci_logo_upload {
+    display: none;
 }
 </style>
 
@@ -252,6 +255,24 @@ th:nth-child(5), td:nth-child(5) {
         });
 
         filterTable('공고 전체');
+
+        $('#inputimagebutton').click(function() {
+            $('#ci_image_upload').click();
+        });
+
+        $('#inputlogobutton').click(function() {
+            $('#ci_logo_upload').click();
+        });
+
+        $('#ci_image_upload').change(function() {
+            var fileName = $(this).val().split('\\').pop();
+            $(this).siblings('.file-name').text(fileName);
+        });
+
+        $('#ci_logo_upload').change(function() {
+            var fileName = $(this).val().split('\\').pop();
+            $(this).siblings('.file-name').text(fileName);
+        });
     });
 </script>
 </head>
@@ -291,23 +312,25 @@ th:nth-child(5), td:nth-child(5) {
 					<div class="mb-3">
 						<label for="ci_image" class="form-label">대표 이미지</label>
 						<div id="ci_image" class="image-upload-box">
-							<i class="bi bi-plus-circle" style="font-size: 24px;"></i>
+							<i id="inputimagebutton" class="bi bi-plus-circle" style="font-size: 24px;"></i>
 							<p>
 								1080 x 790 이상<br>1장 필수
 							</p>
 							<input type="file" class="form-control" name="ci_image_upload"
 								id="ci_image_upload" style="width: 200px;" multiple="multiple">
+                            <span class="file-name"></span>
 						</div>
 					</div>
 					<div class="mb-3">
 						<label for="ci_logo" class="form-label">로고 이미지</label>
 						<div id="ci_logo" class="image-upload-box">
-							<i class="bi bi-plus-circle" style="font-size: 24px;"></i>
+							<i id="inputlogobutton" class="bi bi-plus-circle" style="font-size: 24px;"></i>
 							<p>
 								정방형 300 x 300 이상<br>로고는 정중앙에 배치 필요
 							</p>
 							<input type="file" name="ci_logo_upload" id="ci_logo_upload"
 								class="form-control" style="width: 200px;" multiple="multiple">
+                            <span class="file-name"></span>
 						</div>
 					</div>
 					<div class="mb-3">

@@ -224,7 +224,7 @@
                                         <div class="candidate-name">이름</div>
                                         <div class="candidate-position">제안한 포지션</div>
                                         <div class="candidate-status">제안 수락 여부</div>
-                                        <div class="candidate-date">지원 날짜</div>
+                                        <div class="candidate-date">제안 보낸 날짜</div>
                                     </div>
                                 </div>
                                 <div class="candidate-actions">
@@ -240,12 +240,12 @@
                                         <div class="candidate-name">이름</div>
                                         <div class="candidate-position">제안한 포지션</div>
                                         <div class="candidate-status">제안 수락 여부</div>
-                                        <div class="candidate-date">지원 날짜</div>
+                                        <div class="candidate-date">제안 보낸 날짜</div>
                                     </div>
                                 </div>
                                 <div class="candidate-actions">
                                     <button class="action-btn">지원서 확인</button>
-                                    <button class="action-btn">여기가능함</button>
+                                    <button class="action-btn">아직안정함</button>
                                 </div>
                             </div>
                         </div>
@@ -263,12 +263,12 @@
                                         <div class="candidate-name">이름</div>
                                         <div class="candidate-position">제안한 포지션</div>
                                         <div class="candidate-status">제안 수락 여부</div>
-                                        <div class="candidate-date">지원 날짜</div>
+                                        <div class="candidate-date">제안 보낸 날짜</div>
                                     </div>
                                 </div>
                                 <div class="candidate-actions">
                                     <button class="action-btn">지원서 확인</button>
-                                    <button class="action-btn">여기가능함</button>
+                                    <button class="action-btn">아직안정함</button>
                                 </div>
                             </div>
                             <!-- Repeat for more candidates -->
@@ -279,7 +279,7 @@
                                         <div class="candidate-name">이름</div>
                                         <div class="candidate-position">제안한 포지션</div>
                                         <div class="candidate-status">제안 수락 여부</div>
-                                        <div class="candidate-date">지원 날짜</div>
+                                        <div class="candidate-date">제안 보낸 날짜</div>
                                     </div>
                                 </div>
                                 <div class="candidate-actions">
@@ -302,7 +302,7 @@
                                         <div class="candidate-name">이름</div>
                                         <div class="candidate-position">제안한 포지션</div>
                                         <div class="candidate-status">제안 수락 여부</div>
-                                        <div class="candidate-date">지원 날짜</div>
+                                        <div class="candidate-date">제안 보낸 날짜</div>
                                     </div>
                                 </div>
                                 <div class="candidate-actions">
@@ -318,7 +318,7 @@
                                         <div class="candidate-name">이름</div>
                                         <div class="candidate-position">제안한 포지션</div>
                                         <div class="candidate-status">제안 수락 여부</div>
-                                        <div class="candidate-date">지원 날짜</div>
+                                        <div class="candidate-date">제안 보낸 날짜</div>
                                     </div>
                                 </div>
                                 <div class="candidate-actions">
