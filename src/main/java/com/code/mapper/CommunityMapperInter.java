@@ -30,4 +30,7 @@ import com.code.dto.CommunityDto;
     
     //homedetail 좋아요 수 증가
     void updateLikeCount(int com_num);
+    
+    //좋아요 수 감소 메소드 추가
+    void decreaseLikeCount(int com_num);
 }

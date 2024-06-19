@@ -8,6 +8,7 @@ spring:
     view:
       prefix: /WEB-INF/
       suffix: .jsp
+      static-path-pattern: /resources/**
   devtools:
     livereload:
       enabled: true
@@ -24,3 +25,7 @@ mybatis:
   type-aliases-package: com.code.*
   mapper-locations:
   - /mapper/**/*.xml
+  
+  
+  
+  

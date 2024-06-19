@@ -70,7 +70,7 @@ public class LoginController {
 			session.setAttribute("r_gender", mdto.getR_gender());
 			session.setAttribute("r_num", mdto.getR_num());
 			
-			return "redirect:/main";
+			return "/layout/main";
 			
 		}else {
 			return "/member/passfail";

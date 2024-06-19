@@ -34,8 +34,8 @@ public class CommunityService implements CommunityServiceInter {
     public CommunityDto getData(int com_num) {
         CommunityDto dto = mapper.getData(com_num);
         // 디버깅 출력
-        System.out.println("닉네임: " + dto.getCom_nickname());
-        System.out.println("작성시간: " + dto.getCom_writetime());
+        //System.out.println("닉네임: " + dto.getCom_nickname());
+        //System.out.println("작성시간: " + dto.getCom_writetime());
         return dto;
     }
 
@@ -81,5 +81,11 @@ public class CommunityService implements CommunityServiceInter {
 		// TODO Auto-generated method stub
 		mapper.updateLikeCount(com_num);
 		
+	}
+
+	@Override
+	public void decreaseLikeCount(int com_num) {
+		// TODO Auto-generated method stub
+		mapper.decreaseLikeCount(com_num);
 	}
 }
