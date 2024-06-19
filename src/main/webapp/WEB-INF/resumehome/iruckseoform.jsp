@@ -22,7 +22,7 @@
       margin: 0 auto;
       width: 100%;
       height: 100%;
-      max-width: 1100px;
+      max-width: 1000px;
   }
   
   #wrap {
@@ -213,6 +213,14 @@
   max-height: none !important; /* 최대 크기를 무제한으로 설정 */
   margin: 0 auto; /* 화면 중앙에 위치하도록 설정 */
   }
+  
+  /*미리보기 모달창*/
+   .modal-fullsize1 {
+  width: 1000px !important;
+  max-width: none !important; /* 최대 크기를 무제한으로 설정 */
+  max-height: none !important; /* 최대 크기를 무제한으로 설정 */
+  margin: 0 auto; /* 화면 중앙에 위치하도록 설정 */
+  }
     
   /*최종저장 버튼*/
   .fixed_final {
@@ -231,12 +239,12 @@
 </style>
 </head>
 <body>
-  <form action="totalinsert" id="" method="post" enctype="multipart/form-data">
+  <form action="personalupdate" id="pe_form" method="post" enctype="multipart/form-data" >
+   <input type="hidden"   name="pe_title" id="pe_title" />
     <input type="hidden" name="pe_num" id="pe_num" value="${irdto.pe_num }">
     <div class="all">
         <div id="wrap">
             <div class="center">
-
                 
 <!-- 인정사항 폼 -------------------------------------------------------------------------------------------------------------------------->
                 <div class="personal">
@@ -248,7 +256,7 @@
                         <table class="" style="width: 100%;">
                           <tr>
                       <td class="form-group">
-                          <span>김코드</span>&nbsp;&nbsp;
+                          <span>${rdto.r_name }</span>&nbsp;&nbsp;
                           <select class="form-select" style="width: 120px;" name="pe_category">
                               <option>신입/경력</option>
                               <option>신입</option>
@@ -257,7 +265,7 @@
                       </td>
                       
                       <td rowspan="4">
-                        <input type="file" name="myphoto" id="myphoto" style="display: none;">
+                        <input type="file" name="myphoto" id="myphoto" style="display: none;" multiple="multiple">
                               <div style="position: relative; display: inline-block;">
                                 <img id="showimg">
                                <span id="plusphoto" name="pe_image" style="position: absolute; top: 85%; left: 50%; 
@@ -303,22 +311,22 @@
                     
                     <tr>
                       <td class="form-group">
-                        <span>성별 (여)</span>&nbsp;&nbsp;&nbsp;
-                        <span>2000.06.17 (24세)</span>
+                        <span>성별 (${rdto.r_gender })</span>&nbsp;&nbsp;&nbsp;
+                        <span>${rdto.r_birthday}</span>
                       </td>
                     </tr>
                     
                     <tr>
                       <td class="form-group">
-                        <span><i class="bi bi-envelope"></i> code@gmail.com</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <span><i class="bi bi-telephone"></i> 010-3333-4444</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <span><i class="bi bi-phone"></i> 010-3333-4444</span>
+                        <span><i class="bi bi-envelope"></i>${rdto.r_email}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <span><i class="bi bi-telephone"></i>${rdto.r_hp}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <span><i class="bi bi-phone"></i>${rdto.r_hp}</span>
                       </td>
                     </tr>
                     
                     <tr>
                       <td class="form-group">
-                        <span><i class="bi bi-house"></i> 서울시 강남구 역삼도 1111</span>
+                        <span><i class="bi bi-house"></i>${rdto.r_addr}${rdto.r_addr_detail}</span>
                       </td>
                     </tr>
                     
@@ -357,7 +365,7 @@
                             total += '<table id="schoolclick" style="width: 100%;  margin-top: 2%;">';
                             total += '<tr>';
                             total += '<td class="form-group">';
-                            total += '<select class="form-select" style="width: 250px;" id="education-select" name="sc_category">';
+                            total += '<select class="form-select" style="width: 250px;" id="education-select" name="sc_category" >';
                             total += '<option value="none">학력구분 선택*</option>';
                             total += '<option value="고등학교 졸업">고등학교 졸업</option>';
                             total += '<option value="대학·대학원 이상 졸업">대학·대학원 이상 졸업</option>';
@@ -1184,7 +1192,7 @@
                         <div class="form-caption">
                             <h5><b>경험 / 활동 / 교육</b></h5>&nbsp;&nbsp;&nbsp;
                             <span style="font-size: 0.8em;">*필수정보입력</span>
-                            <span style="font-size: 0.8em; color: #4876EF; margin-left: 73.4%;">
+                            <span style="font-size: 0.8em; color: #4876EF; margin-left: 71.4%;">
                         <a style="cursor: pointer;" id="activityPlus">+ 추가하기</a></span>
                         </div>
                         <hr style="width: 100%;">
@@ -1483,7 +1491,7 @@
                     <div class="form-caption">
                         <h5><b>자격 / 어학 / 수상</b></h5>&nbsp;&nbsp;&nbsp;
                         <span style="font-size: 0.8em;">*필수정보입력</span>
-                        <span style="font-size: 0.8em; color: #4876EF; margin-left: 73.4%;">
+                        <span style="font-size: 0.8em; color: #4876EF; margin-left: 71.4%;">
                             <a style="cursor: pointer;" id="qualificationPlus">+ 추가하기</a></span>
                     </div>
                     <hr style="width: 100%;">
@@ -1919,15 +1927,14 @@
                 
 <!-------------- 포트폴리오/기타문서---------------------------------------------------------------------------------------------- -->
                 <div class="portfolio">
-                <form action="portfolioinsert" method="post" enctype="multipart/form-data">
                     <div class="form-caption">
                         <h5><b>포트폴리오 / 기타문서</b></h5>&nbsp;&nbsp;&nbsp;
-                        <span style="font-size: 0.8em; color: #4876EF; margin-left: 74%;">
+                        <span style="font-size: 0.8em; color: #4876EF; margin-left: 75.2%;">
                     <a style="cursor: pointer;" id="portfolioPlus">+ 추가하기</a></span>
                     </div>
                     <hr style="width: 100%;">
+                    <div id="portfolioList"></div>
                     <div id="portfolioform"></div>
-                </form>
               </div>
                 
                 <script type="text/javascript">
@@ -1937,7 +1944,7 @@
                        //버튼 클릭 시 포트폴리오 또는 기타 자료 첨부
                        $("#portfolioform").on("click", "#portfoliofile", function () {
                           
-                        $("#portfolioname").trigger("click");
+                        $("#pe_file").trigger("click");
                     });
                                    
                        
@@ -1951,31 +1958,32 @@
                            if (portfolioclick == 0) {
                               
                                var total = "";
-                                                                                                                                              
-                       total += '<table id="portfolioclick" style="width: 100%;">';
-                       total += '<tr>';
-                       total += '<td class="form-group">';
-                       total += '<p style="font-size: 0.8em;">내 포트폴리오 및 추가로 제출할 문서를 첨부해보세요</p>';
-                       total += '</td>';
-                       total += '</tr>';
-                       total += '<tr>';
-                       total += '<td class="form-group">';
-                       total += '<input type="file" name="portfolioname" id="portfolioname" style="display: none;">';
-                       total += '<button type="button" id="portfoliofile"';
-                       total += 'class="btn btn-primary" style="width: 1100px;">+ 포트폴리오 및 기타문서 추가</button>';
-                       total += '</td>';
-                       total += '</tr>';
-                       total += '<!-- 저장 취소 버튼 -->';
-                       total += '<tr>';
-                       total += '<td colspan="2" align="right">';
-                       total += '<br>';
-                       total += '<button type="submit" class="btn btn-outline-primary">저장</button>';
-                       total +=  '&nbsp';
-                       total += '<button type="button" id="portfolioCancle" class="btn btn-outline-primary">취소</button>';
-                       total += '</td>';
-                       total += '</tr>';
-                       total += '</table>';
-                               
+                                                         
+                                   total += '<form id="pototal">';
+			                       total += '<table id="portfolioclick" style="width: 100%;">';
+			                       total += '<tr>';
+			                       total += '<td class="form-group">';
+			                       total += '<p style="font-size: 0.8em;">내 포트폴리오 및 추가로 제출할 문서를 첨부해보세요</p>';
+			                       total += '</td>';
+			                       total += '</tr>';
+			                       total += '<tr>';
+			                       total += '<td class="form-group">';
+			                       total += '<input type="file" name="pe_file" id="pe_file" style="display: none;" multiple="multiple" >';
+			                       total += '<button type="button" id="portfoliofile"';
+			                       total += 'class="btn btn-primary" name="po_file" style="width: 1000px;">+ 포트폴리오 및 기타문서 추가</button>';
+			                       total += '</td>';
+			                       total += '</tr>';
+			                       total += '<!-- 저장 취소 버튼 -->';
+			                       total += '<tr>';
+			                       total += '<td colspan="2" align="right">';
+			                       total += '<br>';
+			                       total += '<button type="button" id="portfolioOk" class="btn btn-outline-primary">저장</button>';
+			                       total +=  '&nbsp';
+			                       total += '<button type="button" id="portfolioCancle" class="btn btn-outline-primary">취소</button>';
+			                       total += '</td>';
+			                       total += '</tr>';
+			                       total += '</table>';
+			                       total += '</form>';                               
                                
                
                                $("#portfolioform").append(total);
@@ -1985,7 +1993,136 @@
                        // 취소 클릭시 입력창 삭제
                        $(document).on("click", "#portfolioCancle", function () {
                           
+                           $("#portfolioList").show();
                            $("#portfolioform").html("");
+                       });
+                       
+                       //포트폴리오 저장시 insert
+                       $(document).on("click", "#portfolioOk", function() {
+						  
+                    	   var formData = new FormData();
+                    	   
+                    	   formData.append('pe_num', $('#pe_num').val());
+                    	    
+                    	    var poFileInput = $("#pe_file")[0];
+                    	    
+                    	    console.log(poFileInput.files[0]);
+                    	    
+                    	    if (poFileInput.files.length > 0) {
+                    	        formData.append('po_filepath', poFileInput.files[0]);
+                    	    }
+
+                    	    console.log("Form Data:", formData);
+
+                    	    $.ajax({
+                    	        type: "post",
+                    	        url: "/resumehome/portfolioinsert",
+                    	        data: formData,
+                    	        processData: false,
+                    	        contentType: false,
+                    	        enctype: 'multipart/form-data',
+                    	        //dataType: "json",
+						        success: function(res) {
+						        	 
+						            var po_num = res.polist[0].po_num;
+						            var po_file = res.polist[0].po_file;
+
+						            // 리스트에 추가할 HTML 코드 생성
+						            var po = '<table>' +
+						                     '<tr>' +
+						                     '<td class="form-group">';
+						                     
+						                     if (po_file !== 'no') { // 파일이 있는 경우에만 링크 추가
+						                    	    var filePath = "../iruckseoportfolio/" + po_file; // 포트폴리오 파일이 저장된 경로
+						                    	    po += '<a  id="download" url="'+filePath+'" fileName="'+po_file+'">' +
+						                    	          '<span><b>' + po_file + '</b></span>' +
+						                    	          '</a>';
+						                    	}
+								            po += '<span style="cursor: pointer;" id="poDelete" ><i class="bi bi-trash3 podelete" po_num=' + po_num + '></i></span>' +
+								                  '</td>' +
+								                  '</tr>' +
+								                  '</table>';
+	                     		       
+	                     		       //list 나타내기
+	                     		       $("#portfolioList").append(po);
+	                     		       
+	                     		       //form 리셋
+	                     		       $("#portfolioform").html("");
+	                     	   }
+                    	   })
+                       });
+                       
+                       //포트폴리오 삭제하기
+                       $(document).on("click", ".podelete", function() {
+                    	   var poThis = $(this);
+                    	   var poData = {
+                    			po_num: $(this).attr("po_num"),
+       		        			pe_num: $('#pe_num').val()
+  	     		        	}
+                    	   $.ajax ({
+                    		   type : "post",
+                    		   url : "portfoliodelete",
+                    		   contentType: "application/json",
+                    		   data: JSON.stringify(poData),
+                    		   dataType : "json",
+                    		   success : function(data) {
+                    			   console.log(data); 
+                    			   
+                    			   var code = data.CODE;
+                    			   
+                    			   if(code == "00"){
+                    				   poThis.parents('table').remove();
+                    			   }else{
+                    				   alert("삭제가 되지 않았습니다");
+                    			   }
+                    			   
+                    		   }
+                    	   })
+                       });
+                       
+					   //포트폴리오 다운로드하기                       
+                       $(document).on("click", "#download", function() {
+                    	   
+                    	   var url = $(this).attr("url");
+                    	   var fileName = $(this).attr("fileName");
+                    	   
+                           $.ajax({
+                               url: url,
+                               cache: false,
+                               xhr: function () {
+                                   var xhr = new XMLHttpRequest();
+                                   xhr.onreadystatechange = function () {
+                                       if (xhr.readyState == 2) {
+                                           if (xhr.status == 200) {
+                                               xhr.responseType = "blob";
+                                           } else {
+                                               xhr.responseType = "text";
+                                           }
+                                       }
+                                   };
+                                   return xhr;
+                               },
+                               success: function (data) {
+                                   //Convert the Byte Data to BLOB object.
+                                   var blob = new Blob([data], { type: "application/octetstream" });
+                
+                                   //Check the Browser type and download the File.
+                                   var isIE = false || !!document.documentMode;
+                                   if (isIE) {
+                                       window.navigator.msSaveBlob(blob, fileName);
+                                   } else {
+                                       var url = window.URL || window.webkitURL;
+                                       link = url.createObjectURL(blob);
+                                       var a = $("<a />");
+                                       a.attr("download", fileName);
+                                       a.attr("href", link);
+                                       $("body").append(a);
+                                       a[0].click();
+                                       $("body").remove(a);
+                                   }
+                               }
+                           });
+                    	   
                        });
                        
                     })   
@@ -1995,7 +2132,7 @@
                 <div class="self">
                         <div class="form-caption">
                             <h5><b>자기소개서</b></h5>&nbsp;&nbsp;&nbsp;
-                            <span style="font-size: 0.8em; color: #4876EF; margin-left: 85.2%;">
+                            <span style="font-size: 0.8em; color: #4876EF; margin-left: 84%;">
                          <a style="cursor: pointer;" id="selfPlus">+ 추가하기</a></span>
                         </div>
                         <hr style="width: 100%;">
@@ -2042,6 +2179,7 @@
 		                           total += '</td>';
 		                           total += '</tr>';
 		                           total += '</table>';
+		                           total += '</form>';
                                                    
                                $("#selfform").append(total);
                            }
@@ -2260,8 +2398,8 @@
                           <option value="프리랜서">프리랜서</option>
                           <option value="인턴직">인턴직</option>
                       </select>
-                         <input type="text" class="form-control" style="width: 200px;" placeholder="희망연봉" name="ho_money">만원이상 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                         <input type="checkbox" name="ho_check">면접 후 결정
+                         <input type="text" class="form-control" style="width: 200px;" placeholder="희망연봉" name="ho_money" id="ho_money">만원이상 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                         <input type="checkbox" name="ho_check" id="ho_check">면접 후 결정
                        </td>
                      </tr>
                      
@@ -2376,6 +2514,18 @@
                 <script type="text/javascript">
 
                 $(function () {
+                	
+                	//희망조건 중 연봉 면접 후 결정 선택시 이벤트
+                	$("#ho_check").change(function(){
+			            if ($(this).is(":checked")) {
+			                // 체크박스가 체크된 경우
+			                $("#ho_money").prop("disabled", true); // 입력 필드를 비활성화
+			                $("#ho_money").val(''); // 입력 필드 비우기
+			            } else {
+			                // 체크박스가 체크 해제된 경우
+			                $("#ho_money").prop("disabled", false); // 입력 필드를 활성화
+			            }
+			        });
                 	
                 	// 희망조건 insert 후 list 출력하기
                     $(document).on("click", "#hopeOK", function () {
@@ -2655,23 +2805,13 @@
                 		$("#consentAllCheck").click(function() {
                 			
                 			var allcheck = $(this).is(":checked");
-                			
-                			
-                			
-                			if(allcheck) {
-                				
-                				$("#consentCheck1").prop('checked', true);
-                				$("#consentCheck2").prop('checked', true);
-                			}
-                			
-                			else {
-                				$("#consentCheck1").prop('checked', false);
-                				$("#consentCheck2").prop('checked', false);
-                				
-                			}
-                		})
+
+                				$("#consentCheck1").prop('checked', allcheck);
+                				$("#consentCheck2").prop('checked', allcheck);
+                		
+                		});
                 	})
-                	>
+                	
 
                </script>
                
@@ -2741,11 +2881,62 @@
 <!-- 최종 저장 및 미리보기 --------------------------------------------------------------------------------------------------------->
                   
                   <div class="fixed_final">
-                      <input type="text" class="form-control" name="pe_title" style="height: 40px; 
-                      width: 49%;" placeholder="이력서 제목을 입력해주세요">&nbsp;&nbsp;&nbsp;&nbsp;
-                      <button type="button" class="btn btn-outline-primary">미리보기</button>&nbsp;
-                      <button type="button"  class="btn btn-primary">작성완료</button>
+                      <input type="text" class="form-control"   id="pe_title_temp" style="height: 40px; 
+                      width: 49%;" placeholder="이력서 제목을 입력해주세요" required="required">&nbsp;&nbsp;&nbsp;&nbsp;
+                      <button type="button" id="allDataSelect" class="btn btn-outline-primary" 
+                      data-bs-target="#ListSelect" data-bs-toggle="modal">미리보기</button>&nbsp;
+                      <button type="button" id="allDataUpdate" class="btn btn-primary">작성완료</button>
                   </div>
+                  
+                  
+                  <!--미리보기  The Modal -->
+				<div class="modal" id="ListSelect">
+				  <div class="modal-dialog modal-dialog-scrollable modal-fullsize1">
+				    <div class="modal-content">
+				
+				      <!-- Modal Header -->
+				      <div class="modal-header">
+				        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+				      </div>
+				
+				      <!-- 이력서 출력문 -->
+				      <div class="modal-body">
+				      
+				        <!-- 학력 -->
+				        <div>
+				        <h5><b>학력</b></h5>	       
+				        <hr>
+				        <c:forEach items="${scDto}" var="school">
+	                        <span>${school.schoolName }</span>
+	                        <br>
+                        </c:forEach>
+				        
+				        
+				        
+				        
+				        </div>
+                      </div>  
+
+				
+				    </div>
+				  </div>
+				</div>
+                  
+                  
+                <script type="text/javascript">
+                  
+               
+                $(function () {
+                
+                  //이력서 최종 저장하기 (update)	
+                  $(document).on("click", "#allDataUpdate", function() {
+                	  
+                	  $("#pe_title").val($("#pe_title_temp").val());
+					  $("#pe_form").submit();
+                  });
+                });
+                  
+                  </script>
                
             </div>
         </div>

@@ -8,6 +8,7 @@ import com.code.dto.IruckseoActibityDto;
 import com.code.dto.IruckseoCareerDto;
 import com.code.dto.IruckseoHopeDto;
 import com.code.dto.IruckseoInsertDto;
+import com.code.dto.IruckseoPortfolioDto;
 import com.code.dto.IruckseoSchoolDto;
 import com.code.dto.IruckseoSelfDto;
 import com.code.dto.IruckseoSpecDto;
@@ -17,6 +18,15 @@ public interface IruckseoInsertMapperInter {
 	
 	//personal insert _ pe_num 등록
 	public void insertPersonal(IruckseoInsertDto irdto);
+	
+	//이력서 update
+	public void updatePersonal(IruckseoInsertDto irdto);
+	
+	//이력서 단건 list 출력
+	public List<IruckseoInsertDto> OnePersonalDatas(IruckseoInsertDto pedto);
+	
+	//이력서 list 출력
+	public List<IruckseoInsertDto> allPersonalDatas(IruckseoInsertDto pedto);
 	
 	//school insert
 	public void insertSchool(IruckseoSchoolDto scdto);
@@ -89,6 +99,15 @@ public interface IruckseoInsertMapperInter {
 
 	//스펙 삭제하기
 	public void deleteSpec(int sp_num);
+	
+	//포트폴리오 insert
+	public void insertPortfolio(IruckseoPortfolioDto podto);
+	
+	//포트폴리오 insert 후 list
+	public List<IruckseoPortfolioDto> OnePortfolioDatas(IruckseoPortfolioDto podto);
+	
+	//포트폴리오 삭제
+	public void deletePortfolio(int po_num);
 
 	//자기소개서 insert
 	public void insertSelf(IruckseoSelfDto sedto);
@@ -116,6 +135,5 @@ public interface IruckseoInsertMapperInter {
 
 	//희망조건 update
 	public void updateHope(IruckseoHopeDto hodto);
-
 	
 }

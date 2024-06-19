@@ -9,6 +9,7 @@ import com.code.dto.IruckseoActibityDto;
 import com.code.dto.IruckseoCareerDto;
 import com.code.dto.IruckseoHopeDto;
 import com.code.dto.IruckseoInsertDto;
+import com.code.dto.IruckseoPortfolioDto;
 import com.code.dto.IruckseoSchoolDto;
 import com.code.dto.IruckseoSelfDto;
 import com.code.dto.IruckseoSpecDto;
@@ -17,14 +18,32 @@ import com.code.mapper.IruckseoInsertMapperInter;
 @Service
 public class IruckseoInsertService implements IruckseoInsertServiceInter {
 	
-	//school mapperinter
+	//전체 이력서내역  mapperinter
 	@Autowired
 	IruckseoInsertMapperInter irmapper;
 
-	//personal insert 
+	//이력서 insert 
 	public void insertPersonal(IruckseoInsertDto irdto) {
 		// TODO Auto-generated method stub
 		irmapper.insertPersonal(irdto);
+	}
+	
+	//이력서 update
+	public void updatePersonal(IruckseoInsertDto irdto) {
+		// TODO Auto-generated method stub
+		irmapper.updatePersonal(irdto);
+	}
+	
+	//이력서 단건 list
+	public List<IruckseoInsertDto> OnePersonalDatas(IruckseoInsertDto pedto) {
+		// TODO Auto-generated method stub
+		return irmapper.OnePersonalDatas(pedto);
+	}
+	
+    //이력서 리스트 출력
+	public List<IruckseoInsertDto> allPersonalDatas(IruckseoInsertDto pedto) {
+		// TODO Auto-generated method stub
+		return irmapper.allPersonalDatas(pedto);
 	}
 	
 	//school insert
@@ -33,6 +52,7 @@ public class IruckseoInsertService implements IruckseoInsertServiceInter {
 		// TODO Auto-generated method stub
 		irmapper.insertSchool(scdto);
 	}
+
 
 	//학력 전체리스트 출력
 	public List<IruckseoSchoolDto> allSchoolDatas(IruckseoSchoolDto scdto) {
@@ -174,6 +194,24 @@ public class IruckseoInsertService implements IruckseoInsertServiceInter {
 	public void deleteSpec(int sp_num) {
 		// TODO Auto-generated method stub
 		irmapper.deleteSpec(sp_num);
+	}
+	
+	//포트폴리오 insert
+	public void insertPortfolio(IruckseoPortfolioDto podto) {
+		// TODO Auto-generated method stub
+		irmapper.insertPortfolio(podto);
+	}
+	
+	//포트폴리오 insert 후 list
+	public List<IruckseoPortfolioDto> OnePortfolioDatas(IruckseoPortfolioDto podto) {
+		// TODO Auto-generated method stub
+		return irmapper.OnePortfolioDatas(podto);
+	}
+	
+	//포트폴리오 삭제하기
+	public void deletePortfolio(int po_num) {
+		// TODO Auto-generated method stub
+		irmapper.deletePortfolio(po_num);
 	}
 
 	//자기소개서 insert

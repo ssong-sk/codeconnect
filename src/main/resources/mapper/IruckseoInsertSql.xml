@@ -12,17 +12,27 @@
                   ) X;
 	    </selectKey>
 	    insert into personal
-	    (pe_num, pe_writeday)
-	    values (#{pe_num}, now())
+	    (pe_num, r_num, pe_writeday)
+	    values (#{pe_num},#{r_num}, now())
     </insert>
     
     <!-- 이력서 수정하기 -->
    <update id="updatePersonal" parameterType="IruckseoInsertDto">
      update personal set 
-     pe_image=#{pe_image}, pe_category=#{pe_category}, pe_title=#{pe_title}
+     pe_image=#{pe_image}, pe_category=#{pe_category}, pe_title=#{pe_title}, pe_filepath=#{pe_filepath}
      where
      pe_num = #{pe_num}
    </update>
+   
+   <!-- 이력서 인적사항 list 출력 -->
+   <select id="allPersonalDatas" parameterType="IruckseoInsertDto" resultType="IruckseoInsertDto">
+     select * from personal where pe_num = #{pe_num} order by pe_num ASC
+   </select>
+   
+   <!-- school 학력 단건 list 출력 -->
+   <select id="OnePersonalDatas" parameterType="IruckseoInsertDto"    resultType="IruckseoInsertDto">
+     select * from personal where pe_num = #{pe_num} order by pe_num asc
+   </select>
 
    <!-- school 학력 insert -->
 	<insert id="insertSchool" parameterType="IruckseoSchoolDto"  useGeneratedKeys="true" keyProperty="sc_num">
@@ -221,6 +231,35 @@
    <!-- 스펙 삭제하기 -->
    <delete id="deleteSpec" parameterType="int">
      delete from spec where sp_num = #{sp_num}
+   </delete>
+   
+   <!-- 포트폴리오 insert -->
+	<insert id="insertPortfolio" parameterType="IruckseoPortfolioDto"  useGeneratedKeys="true" keyProperty="po_num">
+		<selectKey keyProperty="po_num" resultType="int" order="BEFORE">
+	        select MAX(IFNULL(X.po_num,0)) + 1 
+	        from ( 
+            	  select MAX(po_num) AS po_num from portfolio union all
+            	  select '0' as po_num from dual
+                  ) X 
+	    </selectKey>	
+     insert into portfolio 
+     (
+     	pe_num, po_num, po_file, po_filepath
+     ) 
+     values 
+     (
+     	#{pe_num},#{po_num}, #{po_file }, #{po_filepath }
+	 )
+   </insert>
+   
+   <!-- 포트폴리오 단건 출력 list -->
+   <select id="OnePortfolioDatas" parameterType="IruckseoPortfolioDto"  resultType="IruckseoPortfolioDto">
+     select * from portfolio where pe_num = #{pe_num} and po_num = #{po_num} order by po_num asc
+   </select>
+   
+   <!-- 포트폴리오 삭제하기 -->
+   <delete id="deletePortfolio" parameterType="int">
+     delete from portfolio where po_num = #{po_num}
    </delete>
    
    <!-- 자기소개서 insert -->
