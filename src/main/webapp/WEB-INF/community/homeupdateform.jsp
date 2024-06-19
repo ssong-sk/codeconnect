@@ -10,6 +10,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gowun+Dodum&family=IBM+Plex+Sans+KR&display=swap" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <title>게시글 수정</title>
 <style>
@@ -65,12 +67,12 @@
         padding: 10px;
         border: none;
         border-radius: 5px;
-        background-color: #28a745;
+        background-color: #2D65F2;
         color: #fff;
         font-size: 16px;
     }
     .form-container button:hover {
-        background-color: #218838;
+        background-color: #1E4BB8;
     }
     @media (max-width: 768px) {
         .form-container {
@@ -136,13 +138,34 @@
     function scrollToTop() {
         window.scrollTo(0, 0);
     }
+    
+    function showSuccessModal() {
+        $('#successModal').modal('show');
+    }
+
+    function submitForm(event) {
+        event.preventDefault();
+        var form = $(event.target);
+        var formData = new FormData(form[0]);
+
+        $.ajax({
+            type: 'POST',
+            url: form.attr('action'),
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function() {
+                showSuccessModal();
+            }
+        });
+    }
 </script>
 </head>
 <body>
 <a href="${pageContext.request.contextPath}/community/homelist" onclick="scrollToTop()" class="back_button"><i class="bi bi-chevron-left"></i>&nbsp;이전페이지</a>
 <div class="form-container">
     <h2>게시글 수정</h2>
-    <form action="${pageContext.request.contextPath}/community/homeupdate" method="post" enctype="multipart/form-data">
+    <form action="${pageContext.request.contextPath}/community/homeupdate" method="post" enctype="multipart/form-data" onsubmit="submitForm(event)">
         <input type="hidden" id="num" name="com_num" value="${dto.com_num}">
         <input type="hidden" id="id" name="com_user_id" value="${dto.com_user_id}">
         <input type="hidden" id="name" name="com_name" value="${dto.com_name}">
@@ -183,9 +206,28 @@
             </c:if>
         </div>
         <div style="margin-top: 25px;">
-            <button type="submit">게시글 수정</button>
+            <button type="submit" class="btn btn-primary">게시글 수정</button>
         </div>
     </form>
+  
+</div>
+
+<!-- Success Modal -->
+<div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="successModalLabel">게시글 수정</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        수정이 완료되었습니다.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="location.href='${pageContext.request.contextPath}/community/homedetail?com_num=${dto.com_num}'">확인</button>
+      </div>
+    </div>
+  </div>
 </div>
 </body>
 </html>

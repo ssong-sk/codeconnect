@@ -6,7 +6,7 @@
     values (#{cc_num}, #{cc_user_id}, #{cc_nickname}, #{cc_content}, now(), now())
    </insert>
    <select id="getAllComment" parameterType="int" resultType="CommunityCommentDto">
-     select * from community_comment where cc_num = #{cc_num}
+     select * from community_comment where cc_num = #{cc_num} order by cc_writetime desc
    </select>
    <select id="getComment" parameterType="int" resultType="CommunityCommentDto">
       select * from community_comment where cc_idx = #{cc_idx}

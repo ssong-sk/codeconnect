@@ -22,7 +22,9 @@ public interface CommunityServiceInter {
 	//조회수 증가 메소드 추가(homedetail-homelist)
 	void increaseReadCount(int com_num);
 	
-	//homedetail 좋아요 수 증가
+	//homedetail 좋아요 수 증가(처음 클릭 시)
     void updateLikeCount(int com_num);
+    //homedetail 좋아요 수 감소(다시 클릭 시)
+    void decreaseLikeCount(int com_num); 
 	
 }

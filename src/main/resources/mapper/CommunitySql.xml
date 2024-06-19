@@ -56,8 +56,13 @@
     	update community set com_readcount = com_readcount+1
     	where com_num = #{com_num}
     </update>
+    <!-- homedetail 좋아요 수 증가 -->
     <update id="updateLikeCount" parameterType="int">
     	update community set com_likes = com_likes+1
+    	where com_num = #{com_num}
+    </update>
+    <update id="decreaseLikeCount">
+    	update community set com_likes = com_likes-1
     	where com_num = #{com_num}
     </update>
 </mapper>
