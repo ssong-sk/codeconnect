@@ -23,29 +23,71 @@ import com.code.service.HireService;
 
 @Controller
 public class HireController {
-	
+
 	@Autowired
 	CompanyService com_service;
-	
+
 	@Autowired
 	HireService hservice;
-	
-  @GetMapping("/hire/main")
-  public String hireMain(@ModelAttribute("hdto") HireDto dto, Model model) {      
 
-    List<HireDto> hlist = hservice.getHireList();
-    model.addAttribute("hlist", hlist);
+	@GetMapping("/hire/main")
+	public String hireMain(@ModelAttribute("hdto") HireDto dto, Model model) {
+		List<HireDto> hlist = hservice.getHireList();
 
-    return "hire/hiremain";
-  }
+		for (HireDto h : hlist) {
+			String careerValue = h.getH_career();
 
-	
+			if (!"신입".equals(careerValue)) {
+				String formattedCareer = formatCareer(careerValue);
+				h.setH_career(formattedCareer);
+			}
+		}
+
+		model.addAttribute("hlist", hlist);
+		return "hire/hiremain";
+	}
+
+	private String formatCareer(String careerValue) {
+		String[] parts = careerValue.split("\\|");
+		int[] careerArray = new int[parts.length];
+		for (int i = 0; i < parts.length; i++) {
+			careerArray[i] = Integer.parseInt(parts[i]);
+		}
+		java.util.Arrays.sort(careerArray);
+
+		StringBuilder result = new StringBuilder();
+		int rangeStart = careerArray[0];
+		for (int i = 1; i < careerArray.length; i++) {
+			if (i < careerArray.length && careerArray[i] == careerArray[i - 1] + 1) {
+				continue;
+			} else {
+				if (rangeStart == careerArray[i - 1]) {
+					result.append(rangeStart);
+				} else {
+					result.append(rangeStart).append("~").append(careerArray[i - 1]);
+				}
+				if (i < careerArray.length) {
+					result.append(", ");
+				}
+				rangeStart = careerArray[i];
+			}
+		}
+		if (careerArray.length > 0) {
+			if (rangeStart == careerArray[careerArray.length - 1]) {
+				result.append(rangeStart);
+			} else {
+				result.append(rangeStart).append("~").append(careerArray[careerArray.length - 1]);
+			}
+		}
+		return result.toString();
+	}
+
 	@ResponseBody
 	@GetMapping("/hire/search")
-	public List<HireDto> hireSearch(String search_job, String search_tech) {
-		
-		List<HireDto> slist=hservice.searchHire(search_job, search_tech);
-		
+	public List<HireDto> hireSearch(String search_job, String search_tech, String search_career) {
+
+		List<HireDto> slist = hservice.searchHire(search_job, search_tech, search_career);
+
 		return slist;
 	}
 }

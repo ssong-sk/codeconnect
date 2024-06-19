@@ -9,5 +9,5 @@ public interface HireServiceInter {
 	
 	public void hireInsert(HireDto dto);
 	public List<HireDto> getHireList();
-	public List<HireDto> searchHire(String search_job, String search_tech);
+	public List<HireDto> searchHire(String search_job, String search_tech, String search_career);
 }

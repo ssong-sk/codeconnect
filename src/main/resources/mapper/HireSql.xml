@@ -22,13 +22,16 @@
     WHERE
     <choose>
         <when test="search_job != null and search_tech == null">
-            h_job REGEXP #{search_job}
+            h.h_job REGEXP #{search_job}
         </when>
         <when test="search_job == null and search_tech != null">
-            h_tech REGEXP #{search_tech}
+            h.h_tech REGEXP #{search_tech}
         </when>
         <when test="search_job != null and search_tech != null">
-            h_job REGEXP #{search_job} and h_tech REGEXP #{search_tech}
+            h.h_job REGEXP #{search_job} and h_tech REGEXP #{search_tech}
+        </when>
+        <when test="search_career != null">
+            h.h_career REGEXP #{search_career}
         </when>
     </choose>
 </select>
