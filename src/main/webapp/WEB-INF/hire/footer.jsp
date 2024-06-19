@@ -94,7 +94,7 @@
 	        var job2 = $(".toggle-btn2 span.selected").text().replace(/\s+/g, ' ').trim();
 	        var job3 = $(".toggle-btn3 span.selected").text().replace(/\s+/g, ' ').trim();
 	
-	        var job = [job1, job2, job3].filter(Boolean).join(',');
+	        var job = [job1, job2, job3].filter(Boolean).join('|');
 	
 	        $('input.job').val(job);
 	        
@@ -127,7 +127,7 @@
 	        if (selectedTechs.length === 0) {
 	            $('input.tech').val(null);
 	        } else {
-	            var selectedTechString = selectedTechs.join(",");
+	            var selectedTechString = selectedTechs.join("|");
 	            $('input.tech').val(selectedTechString);
 	        }
 	        
@@ -148,7 +148,7 @@
 	        if (selectedCates.length === 0) {
 	            $('input.cate').val(null);
 	        } else {
-	            var selectedCateString = selectedCates.join(",");
+	            var selectedCateString = selectedCates.join("|");
 	            $('input.cate').val(selectedCateString);
 	        }
 	        
