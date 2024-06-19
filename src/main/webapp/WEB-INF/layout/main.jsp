@@ -19,7 +19,7 @@
 	src="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <title>Insert title here</title>
-
+<link rel="stylesheet" type="text/css" href="/css/main.css">
 
 <script type="text/javascript">
 	$(document).ready(function() {
