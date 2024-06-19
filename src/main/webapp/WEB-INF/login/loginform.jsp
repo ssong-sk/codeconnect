@@ -105,20 +105,20 @@
 						<c:if test="${tab == 2}">
 							<div class="company" style="display: none;">
 								<!-- 기업회원용 로그인 폼 -->
-								<form action="loginprocess" method="post">
+								<form action="/company/loginprocess" method="post">
 									<div class="cNewPageContainer">
 										<fieldset>
 											<ul class="cLogin-input-idpw">
-												<li><input type="text" id="r_id" name="r_id"
-													class="cInput" autocapitalize="off" placeholder="기업 아이디"
-													value="${sessionScope.saveok == null ? '' : sessionScope.myid }"></li>
-												<li><input type="password" id="r_pass" name="r_pass"
+												<li><input type="text" id="c_id" name="c_id"
+													class="cInput" autocapitalize="off" placeholder="기업 아이디" required="required" 
+													value="${sessionScope.c_saveok == null ? '' : sessionScope.c_myid }"></li>
+												<li><input type="password" id="c_pass" name="c_pass"
 													maxlength="20" class="cInput" placeholder="비밀번호"
 													tabindex="2"></li>
 											</ul>
 											<div class="cLogin-save">
-												<input type="checkbox" name="cbsave"
-													${sessionScope.saveok == null ? "" : "checked"}><label
+												<input type="checkbox" name="c_cbsave"
+													${sessionScope.c_saveok == null ? "" : "checked"}><label
 													for="SaveID">아이디저장</label>
 											</div>
 											<button type="submit" class="cDef-btn on" id="btnLogin">로그인</button>
@@ -129,8 +129,8 @@
 												찾기</a></li>
 										<li><a href="#" class="lineAfter" id="searchPass">비밀번호
 												찾기</a></li>
-										<li><a href="/member/memberform" class="JoinLink"
-											id="joinlink">회원가입</a></li>
+										<li><a href="/company/form" class="JoinLink"
+											id="joinlink">기업회원가입</a></li>
 									</ul>
 								</form>
 								<div class="cNewPageContainer snslogin" id="social_area"

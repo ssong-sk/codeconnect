@@ -36,6 +36,7 @@ body {
 	display: flex;
 	width: 90%;
 	max-width: 1200px;
+	
 }
 
 .sidebar {
@@ -168,17 +169,17 @@ body {
 						<input type="hidden" name="c_num" id="c_num" value="${dto.c_num}">
 						<div class="row">
 							<div class="col-md-6">
-								<div class="mb-3">
+								<div class="mb-4">
 									<label for="c_name" class="form-label">기업명</label> <input
 										type="text" class="form-control" id="c_name" name="c_name"
 										value="${dto.c_name}" disabled>
 								</div>
-								<div class="mb-3">
+								<div class="mb-4">
 									<label for="c_phone" class="form-label">기업 대표 전화번호</label> <input
 										type="text" class="form-control" id="c_phone" name="c_phone"
 										value="${dto.c_phone}">
 								</div>
-								<div class="mb-3">
+								<div class="mb-4">
 									<label for="c_postnum" class="form-label">우편번호</label>
 									<div class="input-group">
 										<input type="text" class="form-control" id="c_postnum"
@@ -187,18 +188,18 @@ body {
 											onclick="openPostcodePopup()">주소찾기</button>
 									</div>
 								</div>
-								<div class="mb-3">
+								<div class="mb-4">
 									<label for="c_addr" class="form-label">대표 주소</label> <input
 										type="text" class="form-control" id="c_addr" name="c_addr"
 										value="${dto.c_addr}" readonly>
 								</div>
-								<div class="mb-3">
+								<div class="mb-4">
 									<label for="c_addrdetail" class="form-label">상세 주소</label> <input
 										type="text" class="form-control" id="c_addrdetail"
 										name="c_addrdetail" value="${dto.c_addrdetail}">
 								</div>
 								<div id="map"></div>
-								<div class="mb-3">
+								<div class="mb-4">
 									<label for="c_local" class="form-label">대표 지역</label> <select
 										class="form-select" id="c_local" name="c_local"
 										required="required">
@@ -239,12 +240,12 @@ body {
 											<c:if test="${dto.c_local == '제주'}">selected</c:if>>제주</option>
 									</select>
 								</div>
-								<div class="mb-3">
+								<div class="mb-4">
 									<label for="c_reginum" class="form-label">사업자 등록번호</label> <input
 										type="text" class="form-control" id="c_reginum"
 										name="c_reginum" value="${dto.c_reginum}" disabled>
 								</div>
-								<div class="mb-3">
+								<div class="mb-4">
 									<label for="c_registration_file" class="form-label">사업자
 										등록증 파일</label> <input type="file" class="form-control"
 										id="c_registration_file" name="c_registration_file"
@@ -254,7 +255,7 @@ body {
 								</div>
 							</div>
 							<div class="col-md-6">
-								<div class="mb-3">
+								<div class="mb-4">
 									<label for="c_money" class="form-label">매출액</label>
 									<div class="input-group">
 										<input type="text" class="form-control" id="c_money"
@@ -262,7 +263,7 @@ body {
 											class="input-group-text">억</span>
 									</div>
 								</div>
-								<div class="mb-3">
+								<div class="mb-4">
 									<label for="c_salary" class="form-label">평균임금</label>
 									<div class="input-group">
 										<input type="text" class="form-control" id="c_salary"
@@ -270,7 +271,7 @@ body {
 											class="input-group-text">만</span>
 									</div>
 								</div>
-								<div class="mb-3">
+								<div class="mb-4">
 									<label for="c_size" class="form-label">기업 규모</label> <select
 										class="form-select" id="c_size" name="c_size">
 										<option value="">기업 규모 선택</option>
@@ -284,7 +285,7 @@ body {
 											<c:if test="${dto.c_size == '공기업'}">selected</c:if>>공기업</option>
 									</select>
 								</div>
-								<div class="mb-3">
+								<div class="mb-4">
 									<label for="c_category" class="form-label">산업군</label> <select
 										class="form-select" id="c_category" name="c_category">
 										<option value="">산업군 선택</option>
@@ -306,7 +307,7 @@ body {
 											<c:if test="${dto.c_category == '기타'}">selected</c:if>>기타</option>
 									</select>
 								</div>
-								<div class="mb-3">
+								<div class="mb-4">
 									<label for="c_peoplesu" class="form-label">직원수</label> <select
 										class="form-select" id="c_peoplesu" name="c_peoplesu"
 										required="required">
@@ -325,22 +326,22 @@ body {
 											<c:if test="${dto.c_peoplesu == '1001+'}">selected</c:if>>1001+</option>
 									</select>
 								</div>
-								<div class="mb-3">
+								<div class="mb-4">
 									<label for="c_birthyear" class="form-label">설립년도</label> <input
 										type="text" class="form-control" id="c_birthyear"
 										name="c_birthyear" value="${dto.c_birthyear}">
 								</div>
-								<div class="mb-3">
+								<div class="mb-4">
 									<label for="c_insa_phone" class="form-label">인사담당자 전화번호</label>
 									<input type="text" class="form-control" id="c_insa_phone"
 										name="c_insa_phone" value="${dto.c_insa_phone}">
 								</div>
-								<div class="mb-3">
+								<div class="mb-4">
 									<label for="c_insa_email" class="form-label">인사담당자 이메일</label>
 									<input type="email" class="form-control" id="c_insa_email"
 										name="c_insa_email" value="${dto.c_insa_email}">
 								</div>
-								<div class="mb-3">
+								<div class="mb-4">
 									<button type="submit" class="btn btn-outline-primary"
 									>저장</button>
 								</div>
