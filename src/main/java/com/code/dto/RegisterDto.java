@@ -25,4 +25,5 @@ public class RegisterDto {
 	private String r_gender;
 	private Timestamp r_gaipday;
 
+
 }

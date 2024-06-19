@@ -1,11 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.code.mapper.HireMapper">
+<mapper namespace="com.code.mapper.HireMapperInter">
 
-<insert id="hireInsert">
+<insert id="hireInsert" parameterType="hdto">
 	insert into hire value(null, #{h_c_num}, #{h_ci_num}, #{h_category}, #{h_job}, #{h_tech}, 
 	#{h_career}, #{h_grade}, #{h_location}, #{h_title}, #{h_subject}, #{h_major}, #{h_require}, 
-	#{h_preference}, #{h_benefit}, #{h_process}, #{h_c_id}, #{h_deadline},now(),0)
+	#{h_preference}, #{h_benefit}, #{h_process}, #{h_salary}, #{h_c_id}, #{h_deadline},now(),0)
 </insert>
+
+<select id="getHireList" resultType="hdto">
+   SELECT h.*, c.c_name, ci.ci_image FROM hire h
+   JOIN company c ON h.h_c_num = c.c_num 
+   JOIN company_intro ci ON h.h_ci_num = ci.ci_num
+</select>
+
+<select id="searchHire" parameterType="String" resultType="hdto">
+    SELECT h.*, c.c_name, ci.ci_image 
+    FROM hire h
+    JOIN company c ON h.h_c_num = c.c_num 
+    JOIN company_intro ci ON h.h_ci_num = ci.ci_num 
+    WHERE
+    <choose>
+        <when test="search_job != null and search_tech == null">
+            h_job REGEXP #{search_job}
+        </when>
+        <when test="search_job == null and search_tech != null">
+            h_tech REGEXP #{search_tech}
+        </when>
+        <when test="search_job != null and search_tech != null">
+            h_job REGEXP #{search_job} and h_tech REGEXP #{search_tech}
+        </when>
+    </choose>
+</select>
 
 </mapper>

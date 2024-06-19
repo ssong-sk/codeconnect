@@ -163,6 +163,7 @@ public class CompanyIntroController {
 		return "redirect:/company/intromain";
 	}
 
+	//기업 마이페이지에서 '내 기업 소개 페이지로 이동'버튼을 눌렀을때.
 	//companyintro '나의' 기업 소개글 완성본 보기(임시)
 	@GetMapping("/company/showimsi")
 	public String detail(Model model, HttpSession session) {
@@ -184,18 +185,18 @@ public class CompanyIntroController {
 		
 		model.addAttribute("cdto", cdto);
 
-		return "companyintro/companyintroshow"; // 파라미터를 모델로 전달하고 JSP로 이동
+		return "/companyintro/companyintroshow"; // 파라미터를 모델로 전달하고 JSP로 이동
 
 	}
 
 
-	//아직 없어.
+	//아직없어.
 	//companyintro 소개글 완성본 보기
-	@GetMapping("company/introshow")
+	@GetMapping("/company/introshow")
 	public String introshow(@RequestParam String c_num,Model model, HttpSession session) {
 
 
 
-		return "companyintro/companyintroshow";
+		return "/companyintro/companyintroshow";
 	}
 }

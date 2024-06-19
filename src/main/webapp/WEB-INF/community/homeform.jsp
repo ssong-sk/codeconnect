@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,12 +14,26 @@
 <style>
     body {
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
         min-height: 100vh;
         margin: 0;
         background-color: #f8f9fa;
         font-family: 'IBM Plex Sans KR', sans-serif;
+    }
+    .back_button {
+        background-color: #ffffff;
+        color: #5c667b;
+        font-size: 15px;
+        border: 1px solid #ddd;
+        padding: 5px 10px;
+        border-radius: 5px;
+        text-decoration: none;
+        display: inline-block;
+        margin-bottom: 8px;
+        margin-left: -694px;
+        
     }
     .form-container {
         background: #fff;
@@ -27,7 +42,7 @@
         box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
         max-width: 800px;
         width: 100%;
-        margin: 50px auto;
+        margin: 0 auto;
     }
     .form-container h2 {
         margin-bottom: 20px;
@@ -50,12 +65,12 @@
         padding: 10px;
         border: none;
         border-radius: 5px;
-        background-color: #28a745;
+        background-color: #2D65F2;
         color: #fff;
         font-size: 16px;
     }
     .form-container button:hover {
-        background-color: #218838;
+        background-color: #1E4BB8;
     }
     @media (max-width: 768px) {
         .form-container {
@@ -77,6 +92,7 @@
     }
 </style>
 <script type="text/javascript">
+	/* 이미지파일 첨부 관련 js */
     $(document).ready(function(){
         $('#upload').change(function(){
             var fileName = $(this).val().split('\\').pop();
@@ -88,58 +104,41 @@
         });
     });
     
-    //이미지가 하단에 미리보기로 뜨도록 하는 js
-    /* $(document).ready(function(){
-        $('#upload').change(function(){
-            var files = this.files;
-            var content = $('#content');
-            
-            for (var i = 0; i < files.length; i++) {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    var image = new Image();
-                    image.src = e.target.result;
-                    image.style.maxWidth = '100%';
-                    image.style.height = 'auto';
-                    image.style.marginTop = '10px';
-                    
-                    $('#image-preview').append(image);
-                }
-                reader.readAsDataURL(files[i]);
-            }
-        });
-    }); */
-    
+    /* content 하단에 첨부이미지 미리보기 */
     $(document).ready(function(){
         $('#upload').change(function(){
             var files = this.files;
-            var content = $('#content');
+            var imageContainer = $('#image-container');
+            imageContainer.empty();
             
             for (var i = 0; i < files.length; i++) {
                 var reader = new FileReader();
                 reader.onload = function (e) {
-                    var image = new Image();
-                    image.src = e.target.result;
-                    image.style.maxWidth = '100%';
-                    image.style.height = 'auto';
-                    image.style.marginTop = '10px';
-                    
-                    content.append(image);
+                    var image = $('<img>').attr('src', e.target.result);
+                    imageContainer.append(image);
                 }
                 reader.readAsDataURL(files[i]);
             }
         });
     });
     
+    /* 이전페이지 클릭시 상단으로 이동 */
+    function scrollToTop() {
+        window.scrollTo(0, 0);
+    }
+    
 </script>
 </head>
 <body>
+<a href="${pageContext.request.contextPath}/community/homelist" onclick="scrollToTop()" class="back_button"><i class="bi bi-chevron-left"></i>&nbsp;이전페이지</a>
 <div class="form-container">
     <h2>게시글 작성</h2>
     <form action="${pageContext.request.contextPath}/community/homeinsert" method="post" enctype="multipart/form-data">
+    	<input type="hidden" id="id" name="com_user_id" value="${userid }">
+    	<input type="hidden" id="name" name="com_name" value="${name }">
         <div>
             <label for="nickname">닉네임</label>
-            <input type="text" id="nickname" name="com_nickname" value="r_nickname 제발 불러와라" readonly>
+            <input type="text" id="nickname" name="com_nickname" value="${userNickname }" readonly>
         </div>
         <div>
             <label for="category">카테고리</label>
@@ -157,13 +156,15 @@
         </div>
         <div>
             <label for="content">내용</label>
-            <div id="content" name="com_content" style="height: 360px; border: 1px solid #ced4da; padding: 10px; margin-top: 10px; overflow-y: auto;" contenteditable="true" placeholder="내용을 입력해주세요"></div>
+            <!-- <input id="content" name="com_content" style="height: 360px; border: 1px solid #ced4da; padding: 10px; margin-top: 10px; overflow-y: auto;" contenteditable="true" placeholder="내용을 입력해주세요"> -->
+            <textarea id="content" name="com_content" style="height: 360px; border: 1px solid #ced4da; padding: 10px; margin-top: 10px; overflow-y: auto;" placeholder="내용을 입력해주세요"></textarea>
         </div>
         <div style="margin-top: 10px;">
             <label for="upload" class="custom-file-upload"><i class="bi bi-images"></i> 이미지 첨부</label>
             <input type="file" id="upload" name="upload" multiple>&nbsp;
             <span id="file-status" style="font-size: 14px;">이미지 첨부 없음</span>
         </div>
+        <div id="image-container" class="image-container" style="margin-top: 10px;"></div>
         <div style="margin-top: 25px;">
             <button type="submit">게시글 등록</button>
         </div>

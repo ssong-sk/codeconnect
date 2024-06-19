@@ -85,19 +85,19 @@ p.info {
 
 
 /* 컨텐츠 시작 */
-/* 직무 */
-.select-wrapper, .select-wrapper2, .select-wrapper3 {
+/* 직무 및 학력*/
+.select-wrapper, .select-wrapper2, .select-wrapper3, .select-wrapper4 {
    position: relative;
    width: 266px;
    font-family: IBM Plex Sans KR;
    margin-right: 10px;
 }
 
-.selectbox, .selectbox2, .selectbox3 {
+.selectbox, .selectbox2, .selectbox3, .selectbox4 {
    position: relative;
 }
 
-.toggle-btn, .toggle-btn2, .toggle-btn3 {
+.toggle-btn, .toggle-btn2, .toggle-btn3, .toggle-btn4 {
    width: 100%;
    padding: 10px;
    border: 1px solid #ccc;
@@ -109,18 +109,18 @@ p.info {
    border-radius: 10px;
 }
 
-.toggle-btn span, .toggle-btn2 span, .toggle-btn3 span {
+.toggle-btn span, .toggle-btn2 span, .toggle-btn3 span, .toggle-btn4 span {
    pointer-events: none;
    font-weight: bold;
    color: #696969;
    font-family: IBM Plex Sans KR;
 }
 
-.toggle-btn span.selected, .toggle-btn2 span.selected, .toggle-btn3 span.selected {
+.toggle-btn span.selected, .toggle-btn2 span.selected, .toggle-btn3 span.selected, .toggle-btn4 span.selected {
    color: black; /* 선택된 경우 검정색 */
 }
 
-.selectbox-option, .selectbox-option2, .selectbox-option3 {
+.selectbox-option, .selectbox-option2, .selectbox-option3, .selectbox-option4 {
    position: absolute;
    top: 100%;
    left: 0;
@@ -138,11 +138,11 @@ p.info {
    overflow-y: auto; /* 세로 스크롤바 활성화 */
 }
 
-.selectbox-option.hide, .selectbox-option2.hide2, .selectbox-option3.hide3 {
-   display: none;
+.selectbox-option.hide, .selectbox-option2.hide2, .selectbox-option3.hide3, .selectbox-option4.hide4 {
+   display: none;   
 }
 
-.option-btn, .option-btn2, .option-btn3 {
+.option-btn, .option-btn2, .option-btn3, .option-btn4 {
    width: 100%;
    padding: 10px;
    border: none;
@@ -152,7 +152,7 @@ p.info {
    font-family: IBM Plex Sans KR;
 }
 
-.option-btn:hover, .option-btn2:hover, .option-btn3:hover {
+.option-btn:hover, .option-btn2:hover, .option-btn3:hover, .option-btn4:hover {
    background-color: #EDF2FD;
    width: 780px;
    border-radius: 10px;
@@ -455,7 +455,7 @@ span.connect {
 
 
 /* 예상 연봉 */
-#salary {
+#salary1, #salary2{
    width: 380px;
    padding: 10px;
    border: 1px solid #ccc;
@@ -613,505 +613,491 @@ input:disabled {
 </style>
 </head>
 <body>
-   <div class="all">
-      <div id="wrap">
-         <div class="center">
-            <div class="d-inline-flex top">
-               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img alt="뒤로가기" class="backimg"
-                  src="../hire_img/chevron.png">&nbsp;&nbsp;&nbsp;&nbsp;
-               <h2 style="font-weight: bold; font-size: 30px;">채용 공고 등록</h2>
-            </div>
-            <div class="bottom">
-               <!-- 컨텐츠 시작 -->
-               <div class="content">
+<form action="insert" method="post">
+	<div class="all">
+		<div id="wrap">
+			<div class="center">
+				<div class="d-inline-flex top">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+					<img alt="뒤로가기" class="backimg" src="../hire_img/chevron.png">&nbsp;&nbsp;&nbsp;&nbsp;
+					<h2 style="font-weight: bold; font-size: 30px;">채용 공고 등록</h2>
+            	</div>
+            	<div class="bottom">
+            	
+            	
+				<!-- 컨텐츠 시작 -->
+				<div class="content">
+				<input type="hidden" name="h_c_num" value="${c_num }" id="h_c_num">
+				<input type="hidden" name="h_ci_num" value="${ci_num }" id="h_ci_num">
+				<input type="hidden" class="job" value="job" name="h_job">
+				<input type="hidden" class="career" value="career" name="h_career">
+				<input type="hidden" class="location" value="location" name="h_location">
+				<input type="hidden" class="tech" value="tech" name="h_tech">
+				<input type="hidden" class="salary" value="salary" name="h_salary">
+				<input type="hidden" class="cate" value="cate" name="h_category">
+				<input type="hidden" class="deadline" value="deadline" name="h_deadline">
+					
+				<div class="d-inline-flex" style="float: right;">
+					<i class="bi bi-asterisk imstar" style="margin-top: 1px;"></i>&nbsp; : &nbsp; 필수 작성 항목입니다.
+				</div>
+				<br><br>
+				<!-- 직무 -->
+				<div class="title_div">
+				   <span class="title">직무</span> <span><i class="bi bi-asterisk imstar"></i></span>
+				</div>
+				<div class="d-inline-flex">
+					<!-- 직무선택 1 -->
+					<section class="select-wrapper" data-role="selectbox">
+						<section class="selectbox">
+							<button type="button" class="toggle-btn">
+								<span>직무 선택</span><i class="bi bi-caret-down-fill" style="color: gray;"></i>
+							</button>
+							<ul class="selectbox-option hide" >
+								<li><button type="button" class="option-btn">서버/백엔드 개발자</button></li>
+								<li><button type="button" class="option-btn">프론트엔드 개발자</button></li>
+								<li><button type="button" class="option-btn">웹 풀스택 개발자</button></li>
+								<li><button type="button" class="option-btn">안드로이드 개발자</button></li>
+								<li><button type="button" class="option-btn">IOS 개발자</button></li>
+								<li><button type="button" class="option-btn">크로스플랫폼 앱개발자</button></li>
+								<li><button type="button" class="option-btn">게임 클라이언트 개발자</button></li>
+								<li><button type="button" class="option-btn">게임 서버 개발자</button></li>
+								<li><button type="button" class="option-btn">DBA</button></li>
+								<li><button type="button" class="option-btn">빅데이터 엔지니어</button></li>
+								<li><button type="button" class="option-btn">인공지능/머신러닝</button></li>
+								<li><button type="button" class="option-btn">devops/시스템 엔지니어</button></li>
+								<li><button type="button" class="option-btn">정보보안 담당자</button></li>
+								<li><button type="button" class="option-btn">QA 엔지니어</button></li>
+								<li><button type="button" class="option-btn">개발 PM</button></li>
+								<li><button type="button" class="option-btn">HW/임베디드</button></li>
+								<li><button type="button" class="option-btn">SW/솔루션</button></li>
+								<li><button type="button" class="option-btn">웹퍼블리셔</button></li>
+								<li><button type="button" class="option-btn">VR/AR/3D</button></li>
+								<li><button type="button" class="option-btn">블록체인</button></li>
+								<li><button type="button" class="option-btn">기술지원</button></li>
+							</ul>
+						</section>
+					</section>
+					<!-- 직무 선택 2 -->
+					<section class="select-wrapper2" data-role="selectbox2">
+						<section class="selectbox2">
+							<button type="button" class="toggle-btn2">
+								<span>직무 선택</span><i class="bi bi-caret-down-fill" style="color: gray;"></i>
+							</button>
+							<ul class="selectbox-option2 hide2">
+								<li><button type="button" class="option-btn2">서버/백엔드 개발자</button></li>
+								<li><button type="button" class="option-btn2">프론트엔드 개발자</button></li>
+								<li><button type="button" class="option-btn2">웹 풀스택 개발자</button></li>
+								<li><button type="button" class="option-btn2">안드로이드 개발자</button></li>
+								<li><button type="button" class="option-btn2">IOS 개발자</button></li>
+								<li><button type="button" class="option-btn2">크로스플랫폼 앱개발자</button></li>
+								<li><button type="button" class="option-btn2">게임 클라이언트 개발자</button></li>
+								<li><button type="button" class="option-btn2">게임 서버 개발자</button></li>
+								<li><button type="button" class="option-btn2">DBA</button></li>
+								<li><button type="button" class="option-btn2">빅데이터 엔지니어</button></li>
+								<li><button type="button" class="option-btn2">인공지능/머신러닝</button></li>
+								<li><button type="button" class="option-btn2">devops/시스템 엔지니어</button></li>
+								<li><button type="button" class="option-btn2">정보보안 담당자</button></li>
+								<li><button type="button" class="option-btn2">QA 엔지니어</button></li>
+								<li><button type="button" class="option-btn2">개발 PM</button></li>
+								<li><button type="button" class="option-btn2">HW/임베디드</button></li>
+								<li><button type="button" class="option-btn2">SW/솔루션</button></li>
+								<li><button type="button" class="option-btn2">웹퍼블리셔</button></li>
+								<li><button type="button" class="option-btn2">VR/AR/3D</button></li>
+								<li><button type="button" class="option-btn2">블록체인</button></li>
+								<li><button type="button" class="option-btn2">기술지원</button></li>
+							</ul>
+						</section>
+					</section>
+					<section class="select-wrapper3" data-role="selectbox3">
+						<section class="selectbox3">
+							<button type="button" class="toggle-btn3">
+								<span>직무 선택</span><i class="bi bi-caret-down-fill" style="color: gray;"></i>
+							</button>
+							<ul class="selectbox-option3 hide3">
+								<li><button type="button" class="option-btn3">서버/백엔드 개발자</button></li>
+								<li><button type="button" class="option-btn3">프론트엔드 개발자</button></li>
+								<li><button type="button" class="option-btn3">웹 풀스택 개발자</button></li>
+								<li><button type="button" class="option-btn3">안드로이드 개발자</button></li>
+								<li><button type="button" class="option-btn3">IOS 개발자</button></li>
+								<li><button type="button" class="option-btn3">크로스플랫폼 앱개발자</button></li>
+								<li><button type="button" class="option-btn3">게임 클라이언트 개발자</button></li>
+								<li><button type="button" class="option-btn3">게임 서버 개발자</button></li>
+								<li><button type="button" class="option-btn3">DBA</button></li>
+								<li><button type="button" class="option-btn3">빅데이터 엔지니어</button></li>
+								<li><button type="button" class="option-btn3">인공지능/머신러닝</button></li>
+								<li><button type="button" class="option-btn3">devops/시스템 엔지니어</button></li>
+								<li><button type="button" class="option-btn3">정보보안 담당자</button></li>
+								<li><button type="button" class="option-btn3">QA 엔지니어</button></li>
+								<li><button type="button" class="option-btn3">개발 PM</button></li>
+								<li><button type="button" class="option-btn3">HW/임베디드</button></li>
+								<li><button type="button" class="option-btn3">SW/솔루션</button></li>
+								<li><button type="button" class="option-btn3">웹퍼블리셔</button></li>
+								<li><button type="button" class="option-btn3">VR/AR/3D</button></li>
+								<li><button type="button" class="option-btn3">블록체인</button></li>
+								<li><button type="button" class="option-btn3">기술지원</button></li>
+							</ul>
+						</section>
+					</section>
+				</div>
+				<br><br><br><br>
 
-					<input type="hidden" name="c_num" value="${c_num }" id="c_num">
-					<input type="hidden" name="ci_num" value="${ci_num }" id="ci_num">
-                  <!-- 직무 -->
-                  <div class="title_div">
-                     <span class="title">직무</span> <span><i
-                        class="bi bi-asterisk imstar"></i></span>
-                  </div>
-                  <div class="d-inline-flex">
-                  <section class="select-wrapper" data-role="selectbox">
-                     <section class="selectbox">
-                        <button type="button" class="toggle-btn">
-                           <span>직무 선택</span> <i class="bi bi-caret-down-fill"
-                              style="color: gray;"></i>
-                        </button>
-                        <ul class="selectbox-option hide">
-                           <li><button type="button" class="option-btn">서버/백엔드
-                                 개발자</button></li>
-                           <li><button type="button" class="option-btn">프론트엔드
-                                 개발자</button></li>
-                           <li><button type="button" class="option-btn">웹
-                                 풀스택 개발자</button></li>
-                           <li><button type="button" class="option-btn">안드로이드
-                                 개발자</button></li>
-                           <li><button type="button" class="option-btn">IOS
-                                 개발자</button></li>
-                           <li><button type="button" class="option-btn">크로스플랫폼
-                                 앱개발자</button></li>
-                           <li><button type="button" class="option-btn">게임
-                                 클라이언트 개발자</button></li>
-                           <li><button type="button" class="option-btn">게임
-                                 서버 개발자</button></li>
-                           <li><button type="button" class="option-btn">DBA</button></li>
-                           <li><button type="button" class="option-btn">빅데이터
-                                 엔지니어</button></li>
-                           <li><button type="button" class="option-btn">인공지능/머신러닝</button></li>
-                           <li><button type="button" class="option-btn">devops/시스템
-                                 엔지니어</button></li>
-                           <li><button type="button" class="option-btn">정보보안
-                                 담당자</button></li>
-                           <li><button type="button" class="option-btn">QA
-                                 엔지니어</button></li>
-                           <li><button type="button" class="option-btn">개발
-                                 PM</button></li>
-                           <li><button type="button" class="option-btn">HW/임베디드</button></li>
-                           <li><button type="button" class="option-btn">SW/솔루션</button></li>
-                           <li><button type="button" class="option-btn">웹퍼블리셔</button></li>
-                           <li><button type="button" class="option-btn">VR/AR/3D</button></li>
-                           <li><button type="button" class="option-btn">블록체인</button></li>
-                           <li><button type="button" class="option-btn">기술지원</button></li>
-                        </ul>
-                     </section>
-                  </section>
-                  <section class="select-wrapper2" data-role="selectbox2">
-                     <section class="selectbox2">
-                        <button type="button" class="toggle-btn2">
-                           <span>직무 선택</span> <i class="bi bi-caret-down-fill"
-                              style="color: gray;"></i>
-                        </button>
-                        <ul class="selectbox-option2 hide2">
-                           <li><button type="button" class="option-btn2">서버/백엔드
-                                 개발자</button></li>
-                           <li><button type="button" class="option-btn2">프론트엔드
-                                 개발자</button></li>
-                           <li><button type="button" class="option-btn2">웹
-                                 풀스택 개발자</button></li>
-                           <li><button type="button" class="option-btn2">안드로이드
-                                 개발자</button></li>
-                           <li><button type="button" class="option-btn2">IOS
-                                 개발자</button></li>
-                           <li><button type="button" class="option-btn2">크로스플랫폼
-                                 앱개발자</button></li>
-                           <li><button type="button" class="option-btn2">게임
-                                 클라이언트 개발자</button></li>
-                           <li><button type="button" class="option-btn2">게임
-                                 서버 개발자</button></li>
-                           <li><button type="button" class="option-btn2">DBA</button></li>
-                           <li><button type="button" class="option-btn2">빅데이터
-                                 엔지니어</button></li>
-                           <li><button type="button" class="option-btn2">인공지능/머신러닝</button></li>
-                           <li><button type="button" class="option-btn2">devops/시스템
-                                 엔지니어</button></li>
-                           <li><button type="button" class="option-btn2">정보보안
-                                 담당자</button></li>
-                           <li><button type="button" class="option-btn2">QA
-                                 엔지니어</button></li>
-                           <li><button type="button" class="option-btn2">개발
-                                 PM</button></li>
-                           <li><button type="button" class="option-btn2">HW/임베디드</button></li>
-                           <li><button type="button" class="option-btn2">SW/솔루션</button></li>
-                           <li><button type="button" class="option-btn2">웹퍼블리셔</button></li>
-                           <li><button type="button" class="option-btn2">VR/AR/3D</button></li>
-                           <li><button type="button" class="option-btn2">블록체인</button></li>
-                           <li><button type="button" class="option-btn2">기술지원</button></li>
-                        </ul>
-                     </section>
-                  </section>
-                  <section class="select-wrapper3" data-role="selectbox3">
-                     <section class="selectbox3">
-                        <button type="button" class="toggle-btn3">
-                           <span>직무 선택</span> <i class="bi bi-caret-down-fill"
-                              style="color: gray;"></i>
-                        </button>
-                        <ul class="selectbox-option3 hide3">
-                           <li><button type="button" class="option-btn3">서버/백엔드
-                                 개발자</button></li>
-                           <li><button type="button" class="option-btn3">프론트엔드
-                                 개발자</button></li>
-                           <li><button type="button" class="option-btn3">웹
-                                 풀스택 개발자</button></li>
-                           <li><button type="button" class="option-btn3">안드로이드
-                                 개발자</button></li>
-                           <li><button type="button" class="option-btn3">IOS
-                                 개발자</button></li>
-                           <li><button type="button" class="option-btn3">크로스플랫폼
-                                 앱개발자</button></li>
-                           <li><button type="button" class="option-btn3">게임
-                                 클라이언트 개발자</button></li>
-                           <li><button type="button" class="option-btn3">게임
-                                 서버 개발자</button></li>
-                           <li><button type="button" class="option-btn3">DBA</button></li>
-                           <li><button type="button" class="option-btn3">빅데이터
-                                 엔지니어</button></li>
-                           <li><button type="button" class="option-btn3">인공지능/머신러닝</button></li>
-                           <li><button type="button" class="option-btn3">devops/시스템
-                                 엔지니어</button></li>
-                           <li><button type="button" class="option-btn3">정보보안
-                                 담당자</button></li>
-                           <li><button type="button" class="option-btn3">QA
-                                 엔지니어</button></li>
-                           <li><button type="button" class="option-btn3">개발
-                                 PM</button></li>
-                           <li><button type="button" class="option-btn3">HW/임베디드</button></li>
-                           <li><button type="button" class="option-btn3">SW/솔루션</button></li>
-                           <li><button type="button" class="option-btn3">웹퍼블리셔</button></li>
-                           <li><button type="button" class="option-btn3">VR/AR/3D</button></li>
-                           <li><button type="button" class="option-btn3">블록체인</button></li>
-                           <li><button type="button" class="option-btn3">기술지원</button></li>
-                        </ul>
-                     </section>
-                  </section>
-                  </div>
-                  <br><br><br><br>
-
-                  <!-- 경력 -->
-                  <div class="title_div">
-                     <span class="title">경력</span> <span><i
-                        class="bi bi-asterisk imstar"></i></span>
-                  </div>
-                  <p class="info">| 인턴 공고: 등록 불가 | 계약직 공고: 계약 기간 1년 이상 등록 가능</p>
-                  <div class="d-inline-flex">
-                  <span class="careerform" style="display: flex; align-items: center;">
-                     <div class="d-inline-flex careerform">
-                        <section class="select-career" data-role="selectcareer">
-                           <section class="selectcareer">
-                              <button type="button" class="careertoggle-btn">
-                                 <span>년</span> <i class="bi bi-caret-down-fill"
-                                    style="color: gray;"></i>
-                              </button>
-                              <ul class="selectcareer-option careerhide">
-                                 <li><button type="button" class="careeroption-btn">1</button></li>
-                                 <li><button type="button" class="careeroption-btn">2</button></li>
-                                 <li><button type="button" class="careeroption-btn">3</button></li>
-                                 <li><button type="button" class="careeroption-btn">4</button></li>
-                                 <li><button type="button" class="careeroption-btn">5</button></li>
-                                 <li><button type="button" class="careeroption-btn">6</button></li>
-                                 <li><button type="button" class="careeroption-btn">7</button></li>
-                                 <li><button type="button" class="careeroption-btn">8</button></li>
-                                 <li><button type="button" class="careeroption-btn">9</button></li>
-                              </ul>
-                           </section>
-                        </section>
-                        <span class="connect">~</span>
+				<!-- 경력 -->
+				<div class="title_div">
+				   <span class="title">경력</span><span><i class="bi bi-asterisk imstar"></i></span>
+				</div>
+				<p class="info">| 인턴 공고: 등록 불가 | 계약직 공고: 계약 기간 1년 이상 등록 가능</p>
+				<div class="d-inline-flex">
+					<span class="careerform" style="display: flex; align-items: center;">
+						<div class="d-inline-flex careerform">
+							<section class="select-career" data-role="selectcareer">
+								<section class="selectcareer">
+									<button type="button" class="careertoggle-btn">
+										<span>년</span> <i class="bi bi-caret-down-fill" style="color: gray;"></i>
+									</button>
+									<ul class="selectcareer-option careerhide">
+										<li><button type="button" class="careeroption-btn">1</button></li>
+										<li><button type="button" class="careeroption-btn">2</button></li>
+										<li><button type="button" class="careeroption-btn">3</button></li>
+										<li><button type="button" class="careeroption-btn">4</button></li>
+										<li><button type="button" class="careeroption-btn">5</button></li>
+										<li><button type="button" class="careeroption-btn">6</button></li>
+										<li><button type="button" class="careeroption-btn">7</button></li>
+										<li><button type="button" class="careeroption-btn">8</button></li>
+										<li><button type="button" class="careeroption-btn">9</button></li>
+									</ul>
+								</section>
+							</section>
+						<span class="connect">~</span>
                         <section class="select-career2" data-role="selectcareer2">
-                           <section class="selectcareer2">
-                              <button type="button" class="careertoggle-btn2">
-                                 <span>년</span> <i class="bi bi-caret-down-fill"
-                                    style="color: gray;"></i>
-                              </button>
-                              <ul class="selectcareer-option2 careerhide2">
-                                 <li><button type="button" class="careeroption-btn2">1</button></li>
-                                 <li><button type="button" class="careeroption-btn2">2</button></li>
-                                 <li><button type="button" class="careeroption-btn2">3</button></li>
-                                 <li><button type="button" class="careeroption-btn2">4</button></li>
-                                 <li><button type="button" class="careeroption-btn2">5</button></li>
-                                 <li><button type="button" class="careeroption-btn2">6</button></li>
-                                 <li><button type="button" class="careeroption-btn2">7</button></li>
-                                 <li><button type="button" class="careeroption-btn2">8</button></li>
-                                 <li><button type="button" class="careeroption-btn2">9</button></li>
-                              </ul>
-                           </section>
+							<section class="selectcareer2">
+								<button type="button" class="careertoggle-btn2">
+									<span>년</span><i class="bi bi-caret-down-fill" style="color: gray;"></i>
+								</button>
+									<ul class="selectcareer-option2 careerhide2">
+										<li><button type="button" class="careeroption-btn2">1</button></li>
+										<li><button type="button" class="careeroption-btn2">2</button></li>
+										<li><button type="button" class="careeroption-btn2">3</button></li>
+										<li><button type="button" class="careeroption-btn2">4</button></li>
+										<li><button type="button" class="careeroption-btn2">5</button></li>
+										<li><button type="button" class="careeroption-btn2">6</button></li>
+										<li><button type="button" class="careeroption-btn2">7</button></li>
+										<li><button type="button" class="careeroption-btn2">8</button></li>
+										<li><button type="button" class="careeroption-btn2">9</button></li>
+									</ul>
+							</section>
                         </section>
-                     </div>
-                  </span>
-	                  	<!-- 경력 비활성화 폼 -->
-	                  	 <span class="careerform2" style="display: none; align-items: center;">
-	                     <div class="d-inline-flex careerform2">
-	                        <section class="select-career3" data-role="selectcareer3">
-	                           <section class="selectcareer3">
-	                              <button type="button" class="careertoggle-btn3">
-	                                 <span>년</span> <i class="bi bi-caret-down-fill"
-	                                    style="color: gray;"></i>
-	                              </button>
-	                           </section>
-	                        </section>
-	                        <span class="connect">~</span>
-	                        <section class="select-career4" data-role="selectcareer4">
-	                           <section class="selectcareer4">
-	                              <button type="button" class="careertoggle-btn4">
-	                                 <span>년</span> <i class="bi bi-caret-down-fill"
-	                                    style="color: gray;"></i>
-	                              </button>
-	                           </section>
-	                        </section>
-	                     </div>                    
-	                  </span> 
-                  <div class="careercheckbox-wrapper">
-                        <input type="checkbox" id="newcomer-checkbox"> <span
-                           class="newcomer">신입</span>
-                  </div>
-				</div><br><br><br><br>
+					</div>
+				</span>
+				<!-- 경력 비활성화 폼 -->
+				<span class="careerform2" style="display: none; align-items: center;">
+					<div class="d-inline-flex careerform2">
+						<section class="select-career3" data-role="selectcareer3">
+							<section class="selectcareer3">
+								<button type="button" class="careertoggle-btn3">
+									<span>년</span><i class="bi bi-caret-down-fill" style="color: gray;"></i>
+								</button>
+							</section>
+						</section>
+						<span class="connect">~</span>
+						<section class="select-career4" data-role="selectcareer4">
+							<section class="selectcareer4">
+								<button type="button" class="careertoggle-btn4">
+									<span>년</span><i class="bi bi-caret-down-fill" style="color: gray;"></i>
+								</button>
+							</section>
+						</section>
+					</div>                    
+				</span> 
+				<div class="careercheckbox-wrapper">
+					<input type="checkbox" id="newcomer-checkbox"> 
+					<span class="newcomer">신입</span>
+				</div>
+			</div>
+			<br><br><br><br>
 
+			<!-- 학력 -->
+			<div class="title_div">
+			   <span class="title">학력</span> <span><i
+			      class="bi bi-asterisk imstar"></i></span>
+			</div>
+			<section class="select-wrapper4" data-role="selectbox">
+			   <section class="selectbox4">
+			      <button type="button" class="toggle-btn4">
+			         <span name='h_grade'>학력 선택</span> <i class="bi bi-caret-down-fill"
+			            style="color: gray;"></i>
+			      </button>
+			      <ul class="selectbox-option4 hide4">
+			         <li><button type="button" class="option-btn4">대학교졸업(4년) 이상</button></li>
+			         <li><button type="button" class="option-btn4">대학졸업(2,3년) 이상</button></li>
+			         <li><button type="button" class="option-btn4">고등학교졸업 이상</button></li>
+			         <li><button type="button" class="option-btn4">무관</button></li>
+			      </ul>
+			   </section>
+			</section>
+            <br><br><br><br>
 
-                  <!-- 근무지 -->
-                  <div class="title_div">
-                     <span class="title">근무지</span> <span><i
-                        class="bi bi-asterisk imstar"></i></span>
-                  </div>
-                  <p class="info">근무지 주소 입력 시 공고에 지도가 표시됩니다.</p>
-                  <div class="d-inline-flex address">
-                     <button type="button" class="location">
-                        <i class="bi bi-search"></i>
-                     </button>
-                     <input type="text" id="address1" placeholder="주소" readonly> <input
-                        type="text" id="address2" placeholder="상세주소">
-                  </div>
-                  <div class="daum-postcode-overlay" id="postcode-overlay"></div>
-                  <div class="daum-postcode-layer" id="postcode-layer"></div>
-                  <br><br><br>
-                  <hr>
+			<!-- 근무지 -->
+			<div class="title_div">
+			   <span class="title">근무지</span><span><i class="bi bi-asterisk imstar"></i></span>
+			</div>
+			<p class="info">근무지 주소 입력 시 공고에 지도가 표시됩니다.</p>
+			<div class="d-inline-flex address">
+			   <button type="button" class="location">
+			      <i class="bi bi-search"></i>
+			   </button>
+			   <input type="text" id="address1" placeholder="주소" required="required" readonly> 
+			   <input type="text" id="address2" placeholder="상세주소" required="required">
+			</div>
+			<div class="daum-postcode-overlay" id="postcode-overlay"></div>
+			<div class="daum-postcode-layer" id="postcode-layer"></div>
+			<br><br><br>
+			<hr>
 
-                  <div class="content2">
-                     <!-- 공고명 -->
-                     <div class="title_div">
-                        <span class="title">공고명</span>
-                        <span><i class="bi bi-asterisk imstar"></i></span>
-                        <br>
-                        <div><textarea class="textarea" placeholder="직무명만 기재 가능하며 그 외 텍스트는 수정/삭제 후 승인될 수 있습니다."></textarea></div>
-                     </div>
+			<div class="content2">
+				<!-- 공고명 -->
+				<div class="title_div">
+				   <span class="title">공고명</span>
+				   <span><i class="bi bi-asterisk imstar"></i></span>
+				   <br>
+				   <div><textarea class="textarea" name="h_title" placeholder="직무명만 기재 가능하며 그 외 텍스트는 수정/삭제 후 승인될 수 있습니다." required="required"></textarea></div>
+				</div>
                      
-                     <br><br>
-                     <!-- 공고ㆍ서론 -->
-                     <div class="title_div">
-                        <span class="title">공고ㆍ서론</span>
-                        <span><i class="bi bi-asterisk imstar"></i></span>
-                        <br>
-                        <div><pre style="font-family: IBM Plex Sans KR; overflow-x: hidden; font-size: 12pt;"><textarea class="textarea" placeholder="텍스트만 입력 가능합니다.(홈페이지 url, 이모티콘, 이미지 등록불가)"></textarea></pre></div>
-                     </div>
+				<br><br>
+				<!-- 공고ㆍ서론 -->
+				<div class="title_div">
+				   <span class="title">공고ㆍ서론</span>
+				   <span><i class="bi bi-asterisk imstar"></i></span>
+				   <br>
+				   <div><pre style="font-family: IBM Plex Sans KR; overflow-x: hidden; font-size: 12pt;"><textarea required="required" name="h_subject" class="textarea" placeholder="텍스트만 입력 가능합니다.(홈페이지 url, 이모티콘, 이미지 등록불가)"></textarea></pre></div>
+				</div>
                      
-                     <br><br>
-                     <!-- 주요업무 -->
-                     <div class="title_div">
-                        <span class="title">주요업무</span>
-                        <span><i class="bi bi-asterisk imstar"></i></span>
-                        <br>
-                        <div><pre style="font-family: IBM Plex Sans KR; overflow-x: hidden; font-size: 12pt;"><textarea class="textarea" placeholder="내용 작성"></textarea></pre></div>
-                     </div>
+				<br><br>
+				<!-- 주요업무 -->
+				<div class="title_div">
+				   <span class="title">주요업무</span>
+				   <span><i class="bi bi-asterisk imstar"></i></span>
+				   <br>
+				   <div><pre style="font-family: IBM Plex Sans KR; overflow-x: hidden; font-size: 12pt;"><textarea required="required" name="h_major" class="textarea" placeholder="내용 작성"></textarea></pre></div>
+				</div>
                      
-                     <br><br>
-                     <!-- 자격요건 -->
-                     <div class="title_div">
-                        <span class="title">자격요건</span>
-                        <span><i class="bi bi-asterisk imstar"></i></span>
-                        <br>
-                        <div><pre style="font-family: IBM Plex Sans KR; overflow-x: hidden; font-size: 12pt;"><textarea class="textarea" placeholder="주요업무 및 전형절차를 함께 작성해주세요."></textarea></pre></div>
-                     </div>
+				<br><br>
+				<!-- 자격요건 -->
+				<div class="title_div">
+				   <span class="title">자격요건</span>
+				   <span><i class="bi bi-asterisk imstar"></i></span>
+				   <br>
+				   <div><pre style="font-family: IBM Plex Sans KR; overflow-x: hidden; font-size: 12pt;"><textarea required="required" name="h_require" class="textarea" placeholder="주요업무 및 전형절차를 함께 작성해주세요."></textarea></pre></div>
+				</div>
                      
-                     <br><br>
-                     <!-- 우대 사항 -->
-                     <div class="title_div">
-                        <span class="title">우대 사항</span>
-                        <br>
-                        <div><pre style="font-family: IBM Plex Sans KR; overflow-x: hidden; font-size: 12pt;"><textarea class="textarea" placeholder="내용 작성"></textarea></pre></div>
-                     </div>
+				<br><br>
+				<!-- 우대 사항 -->
+				<div class="title_div">
+				   <span class="title">우대 사항</span>
+				   <br>
+				   <div><pre style="font-family: IBM Plex Sans KR; overflow-x: hidden; font-size: 12pt;"><textarea name="h_preference" class="textarea" placeholder="내용 작성"></textarea></pre></div>
+				</div>
                      
-                     <br><br>
-                     <!-- 혜택 및 복지 -->
-                     <div class="title_div">
-                        <span class="title">혜택 및 복지</span>
-                        <span><i class="bi bi-asterisk imstar"></i></span>
-                        <br>
-                        <div><pre style="font-family: IBM Plex Sans KR; overflow-x: hidden; font-size: 12pt;"><textarea class="textarea" placeholder="내용 작성"></textarea></pre></div>
-                     </div>
+				<br><br>
+				<!-- 혜택 및 복지 -->
+				<div class="title_div">
+				   <span class="title">혜택 및 복지</span>
+				   <span><i class="bi bi-asterisk imstar"></i></span>
+				   <br>
+				   <div><pre style="font-family: IBM Plex Sans KR; overflow-x: hidden; font-size: 12pt;"><textarea required="required" name="h_benefit" class="textarea" placeholder="내용 작성"></textarea></pre></div>
+				</div>
                      
-                     <br><br>
-                     <!-- 기술 스택ㆍ툴 -->
-                     <div class="title_div">
-                        <span class="title">기술 스택ㆍ툴</span>
-                     </div>
-                     <p class="info">
-                        - 선택한 직무에서 사용중인 기술 스택, 업무 툴 등을 등록해주세요. (다중 선택 가능)<br>
-                     </p>
-                     <div class="title_div">
-                        <section class="techselect-wrapper" data-role="techselectbox">
-	                     <section class="techselectbox">
-	                        <button type="button" class="techtoggle-btn">
-	                           <span>기술 스택ㆍ툴</span> <i class="bi bi-caret-down-fill"
-	                              style="color: gray;"></i>
-	                        </button>
-	                        <ul class="techselectbox-option techhide">
-		                        <li><button type="button" class="techoption-btn">Java</button></li>
-								<li><button type="button" class="techoption-btn">Spring
-										Boot</button></li>
-								<li><button type="button" class="techoption-btn">Node.js</button></li>
-								<li><button type="button" class="techoption-btn">Python</button></li>
-								<li><button type="button" class="techoption-btn">Django</button></li>
-								<li><button type="button" class="techoption-btn">PHP</button></li>
-								<li><button type="button" class="techoption-btn">C</button></li>
-								<li><button type="button" class="techoption-btn">C++</button></li>
-								<li><button type="button" class="techoption-btn">C#</button></li>
-								<li><button type="button" class="techoption-btn">AWS</button></li>
-								<li><button type="button" class="techoption-btn">MySQL</button></li>
-								<li><button type="button" class="techoption-btn">Oracle</button></li>
-								<li><button type="button" class="techoption-btn">React</button></li>
-								<li><button type="button" class="techoption-btn">Vue.js</button></li>
-								<li><button type="button" class="techoption-btn">JQuery</button></li>
-								<li><button type="button" class="techoption-btn">HTML5</button></li>
-								<li><button type="button" class="techoption-btn">CSS3</button></li>
-								<li><button type="button" class="techoption-btn">JavaScript</button></li>
-								<li><button type="button" class="techoption-btn">Svelte</button></li>
-								<li><button type="button" class="techoption-btn">TypeScript</button></li>
-								<li><button type="button" class="techoption-btn">AngularJS</button></li>
-								<li><button type="button" class="techoption-btn">Kotlin</button></li>
-								<li><button type="button" class="techoption-btn">RxJava</button></li>
-								<li><button type="button" class="techoption-btn">Swift</button></li>
-								<li><button type="button" class="techoption-btn">Objective-C</button></li>
-								<li><button type="button" class="techoption-btn">Rxswift</button></li>
-								<li><button type="button" class="techoption-btn">SwiftUI</button></li>
-								<li><button type="button" class="techoption-btn">Xcode</button></li>
-								<li><button type="button" class="techoption-btn">Flutter</button></li>
-								<li><button type="button" class="techoption-btn">React
-										Native</button></li>
-								<li><button type="button" class="techoption-btn">MSSQL</button></li>
-								<li><button type="button" class="techoption-btn">PostgreSQL</button></li>
-								<li><button type="button" class="techoption-btn">NoSQL</button></li>
-								<li><button type="button" class="techoption-btn">MariaDB</button></li>
-								<li><button type="button" class="techoption-btn">MongoDB</button></li>
-								<li><button type="button" class="techoption-btn">SQL</button></li>
-								<li><button type="button" class="techoption-btn">R</button></li>
-								<li><button type="button" class="techoption-btn">Hadoop</button></li>
-								<li><button type="button" class="techoption-btn">Spark</button></li>
-								<li><button type="button" class="techoption-btn">Kafka</button></li>
-								<li><button type="button" class="techoption-btn">TensorFlow</button></li>
-								<li><button type="button" class="techoption-btn">PyTorch</button></li>
-								<li><button type="button" class="techoption-btn">Elasticsearch</button></li>
-								<li><button type="button" class="techoption-btn">OpenCV</button></li>
-								<li><button type="button" class="techoption-btn">Linux</button></li>
-								<li><button type="button" class="techoption-btn">Kubernetes</button></li>
-								<li><button type="button" class="techoption-btn">Docker</button></li>
-								<li><button type="button" class="techoption-btn">Network</button></li>
-								<li><button type="button" class="techoption-btn">GCP</button></li>
-								<li><button type="button" class="techoption-btn">Windows</button></li>
-								<li><button type="button" class="techoption-btn">AZURE</button></li>
-								<li><button type="button" class="techoption-btn">Terraform</button></li>
-								<li><button type="button" class="techoption-btn">ISMS</button></li>
-								<li><button type="button" class="techoption-btn">CISA</button></li>
-								<li><button type="button" class="techoption-btn">CISSP</button></li>
-								<li><button type="button" class="techoption-btn">Firewall</button></li>
-								<li><button type="button" class="techoption-btn">VPN</button></li>
-								<li><button type="button" class="techoption-btn">IPS</button></li>
-								<li><button type="button" class="techoption-btn">CPPG</button></li>
-								<li><button type="button" class="techoption-btn">FW</button></li>
-								<li><button type="button" class="techoption-btn">Embedded</button></li>
-								<li><button type="button" class="techoption-btn">Pads</button></li>
-								<li><button type="button" class="techoption-btn">FPGA</button></li>
-								<li><button type="button" class="techoption-btn">PCB</button></li>
-								<li><button type="button" class="techoption-btn">RF</button></li>
-								<li><button type="button" class="techoption-btn">.NET</button></li>
-								<li><button type="button" class="techoption-btn">Golang</button></li>
-								<li><button type="button" class="techoption-btn">Nft</button></li>
-								<li><button type="button" class="techoption-btn">Solidity</button></li>
-								<li><button type="button" class="techoption-btn">Blockchain</button></li>
-	                        </ul>
-	                     </section>
-	                  </section>
-                        <div id="selected-tech" style="font-size: 10pt; margin-top: 10px;"></div>
-                     </div>
-                  </div>
+				<br><br>
+				<!-- 채용절차 및 지원 유의사항 -->
+				<div class="title_div">
+				   <span class="title">채용절차 및 지원 유의사항</span>
+				   <br>
+				   <div><pre style="font-family: IBM Plex Sans KR; overflow-x: hidden; font-size: 12pt;"><textarea name="h_process" class="textarea" placeholder="내용 작성"></textarea></pre></div>
+				</div>
+                     
+				<br><br>
+				<!-- 기술 스택ㆍ툴 -->
+				<div class="title_div">
+				   <span class="title">기술 스택ㆍ툴</span>
+				</div>
+				<p class="info">
+				- 선택한 직무에서 사용중인 기술 스택, 업무 툴 등을 등록해주세요. (다중 선택 가능)<br>
+				</p>
+				<div class="title_div">
+				<section class="techselect-wrapper" data-role="techselectbox">
+					<section class="techselectbox">
+				                    <button type="button" class="techtoggle-btn">
+				                       <span>기술 스택ㆍ툴</span><i class="bi bi-caret-down-fill" style="color: gray;"></i>
+				                    </button>
+				                    <ul class="techselectbox-option techhide">
+				                     <li><button type="button" class="techoption-btn">Java</button></li>
+							<li><button type="button" class="techoption-btn">Spring Boot</button></li>
+							<li><button type="button" class="techoption-btn">Node.js</button></li>
+							<li><button type="button" class="techoption-btn">Python</button></li>
+							<li><button type="button" class="techoption-btn">Django</button></li>
+							<li><button type="button" class="techoption-btn">PHP</button></li>
+							<li><button type="button" class="techoption-btn">C</button></li>
+							<li><button type="button" class="techoption-btn">C++</button></li>
+							<li><button type="button" class="techoption-btn">C#</button></li>
+							<li><button type="button" class="techoption-btn">AWS</button></li>
+							<li><button type="button" class="techoption-btn">MySQL</button></li>
+							<li><button type="button" class="techoption-btn">Oracle</button></li>
+							<li><button type="button" class="techoption-btn">React</button></li>
+							<li><button type="button" class="techoption-btn">Vue.js</button></li>
+							<li><button type="button" class="techoption-btn">JQuery</button></li>
+							<li><button type="button" class="techoption-btn">HTML5</button></li>
+							<li><button type="button" class="techoption-btn">CSS3</button></li>
+							<li><button type="button" class="techoption-btn">JavaScript</button></li>
+							<li><button type="button" class="techoption-btn">Svelte</button></li>
+							<li><button type="button" class="techoption-btn">TypeScript</button></li>
+							<li><button type="button" class="techoption-btn">AngularJS</button></li>
+							<li><button type="button" class="techoption-btn">Kotlin</button></li>
+							<li><button type="button" class="techoption-btn">RxJava</button></li>
+							<li><button type="button" class="techoption-btn">Swift</button></li>
+							<li><button type="button" class="techoption-btn">Objective-C</button></li>
+							<li><button type="button" class="techoption-btn">Rxswift</button></li>
+							<li><button type="button" class="techoption-btn">SwiftUI</button></li>
+							<li><button type="button" class="techoption-btn">Xcode</button></li>
+							<li><button type="button" class="techoption-btn">Flutter</button></li>
+							<li><button type="button" class="techoption-btn">React Native</button></li>
+							<li><button type="button" class="techoption-btn">MSSQL</button></li>
+							<li><button type="button" class="techoption-btn">PostgreSQL</button></li>
+							<li><button type="button" class="techoption-btn">NoSQL</button></li>
+							<li><button type="button" class="techoption-btn">MariaDB</button></li>
+							<li><button type="button" class="techoption-btn">MongoDB</button></li>
+							<li><button type="button" class="techoption-btn">SQL</button></li>
+							<li><button type="button" class="techoption-btn">R</button></li>
+							<li><button type="button" class="techoption-btn">Hadoop</button></li>
+							<li><button type="button" class="techoption-btn">Spark</button></li>
+							<li><button type="button" class="techoption-btn">Kafka</button></li>
+							<li><button type="button" class="techoption-btn">TensorFlow</button></li>
+							<li><button type="button" class="techoption-btn">PyTorch</button></li>
+							<li><button type="button" class="techoption-btn">Elasticsearch</button></li>
+							<li><button type="button" class="techoption-btn">OpenCV</button></li>
+							<li><button type="button" class="techoption-btn">Linux</button></li>
+							<li><button type="button" class="techoption-btn">Kubernetes</button></li>
+							<li><button type="button" class="techoption-btn">Docker</button></li>
+							<li><button type="button" class="techoption-btn">Network</button></li>
+							<li><button type="button" class="techoption-btn">GCP</button></li>
+							<li><button type="button" class="techoption-btn">Windows</button></li>
+							<li><button type="button" class="techoption-btn">AZURE</button></li>
+							<li><button type="button" class="techoption-btn">Terraform</button></li>
+							<li><button type="button" class="techoption-btn">ISMS</button></li>
+							<li><button type="button" class="techoption-btn">CISA</button></li>
+							<li><button type="button" class="techoption-btn">CISSP</button></li>
+							<li><button type="button" class="techoption-btn">Firewall</button></li>
+							<li><button type="button" class="techoption-btn">VPN</button></li>
+							<li><button type="button" class="techoption-btn">IPS</button></li>
+							<li><button type="button" class="techoption-btn">CPPG</button></li>
+							<li><button type="button" class="techoption-btn">FW</button></li>
+							<li><button type="button" class="techoption-btn">Embedded</button></li>
+							<li><button type="button" class="techoption-btn">Pads</button></li>
+							<li><button type="button" class="techoption-btn">FPGA</button></li>
+							<li><button type="button" class="techoption-btn">PCB</button></li>
+							<li><button type="button" class="techoption-btn">RF</button></li>
+							<li><button type="button" class="techoption-btn">.NET</button></li>
+							<li><button type="button" class="techoption-btn">Golang</button></li>
+							<li><button type="button" class="techoption-btn">Nft</button></li>
+							<li><button type="button" class="techoption-btn">Solidity</button></li>
+							<li><button type="button" class="techoption-btn">Blockchain</button></li>
+						</ul>
+					</section>
+				</section>
+				<div id="selected-tech" style="font-size: 10pt; margin-top: 10px;"></div>
+				</div>
+			</div>
                   
-                  <br><br>
-                  <!-- 채용시 예상 연봉 -->
-                  <div class="title_div">
-                     <span class="title">채용시 예상 연봉 (최소~최대, 단위: 원)</span> <span><i
-                        class="bi bi-asterisk imstar"></i></span>
-                  </div>
-                  <p class="info">연봉 정보는 통계 자료로만 쓰이며, 개별 연봉 정보는 절대 공개되지 않습니다.</p>
-                  <span class="salary" style="display: flex; align-items: center;">
-                     <input type="text" id="salary" placeholder="0"
-                     style="width: 200px; margin-top: 10px; margin-right: 10px;">
-                     ~ <input type="text" id="salary" placeholder="0"
-                     style="width: 200px; margin-top: 10px; margin: 10px 10px 0px 10px;">
-                     원
-                  </span> <br>
-                  <br>
+			<br><br>
+			<!-- 채용시 예상 연봉 -->
+			<div class="title_div">
+				<span class="title">채용시 예상 연봉 (최소~최대, 단위: 만원)</span> 
+				<span><i class="bi bi-asterisk imstar"></i></span>
+			</div>
+			<p class="info">연봉 정보는 통계 자료로만 쓰이며, 개별 연봉 정보는 절대 공개되지 않습니다.</p>
+			<span class="salary" style="display: flex; align-items: center;">
+				<input type="text" id="salary1" placeholder="0" required="required" 
+				style="width: 200px; margin-top: 10px; margin-right: 10px;">
+				~ 
+				<input type="text" id="salary2" placeholder="0" required="required"
+				style="width: 200px; margin-top: 10px; margin: 10px 10px 0px 10px;">
+				만원
+			</span> 
+			<br><br>
                   
-                  <!-- 카테고리 선택 -->
-                  <div class="title_div">
-                     <span class="title">카테고리 선택</span>
-                  </div>
-                  <p class="info">
-                        현재 기업에서 시행중인 복지를 등록해주세요. (다중 선택 가능)<br>
-                  </p>
-                  <div class="title_div">
-                        <section class="cateselect-wrapper" data-role="cateselectbox">
-	                     <section class="cateselectbox">
-	                        <button type="button" class="catetoggle-btn">
-	                           <span>카테고리</span> <i class="bi bi-caret-down-fill"
-	                              style="color: gray;"></i>
-	                        </button>
-	                        <ul class="cateselectbox-option catehide">
-	                           <li><button type="button" class="cateoption-btn">4.5일제</button></li>
-	                           <li><button type="button" class="cateoption-btn">재택근무</button></li>
-	                           <li><button type="button" class="cateoption-btn">유연근무제</button></li>
-	                           <li><button type="button" class="cateoption-btn">시차출근제</button></li>
-	                           <li><button type="button" class="cateoption-btn">인센티브</button></li>
-	                           <li><button type="button" class="cateoption-btn">코드리뷰</button></li>
-	                           <li><button type="button" class="cateoption-btn">반바지/슬리퍼 OK</button></li>
-	                           <li><button type="button" class="cateoption-btn">자유복장</button></li>
-	                           <li><button type="button" class="cateoption-btn">맛있는간식냠냠</button></li>
-	                           <li><button type="button" class="cateoption-btn">맥북으로개발</button></li>
-	                           <li><button type="button" class="cateoption-btn">닉네임사용</button></li>
-	                           <li><button type="button" class="cateoption-btn">수평적조직</button></li>
-	                           <li><button type="button" class="cateoption-btn">반려동물</button></li>
-	                           <li><button type="button" class="cateoption-btn">누적투자금100억이상</button></li>
-	                           <li><button type="button" class="cateoption-btn">스톡옵션제공</button></li>
-	                           <li><button type="button" class="cateoption-btn">도서구입비지원</button></li>
-	                           <li><button type="button" class="cateoption-btn">택시비지원</button></li>
-	                           <li><button type="button" class="cateoption-btn">병역특례</button></li>
-	                           <li><button type="button" class="cateoption-btn">전공우대</button></li>
-	                        </ul>
-	                     </section>
-	                  </section>
-                        <div id="selected-cate" style="font-size: 10pt; margin-top: 10px;"></div>
-                     </div>
-                  <br><br>
+			<!-- 카테고리 선택 -->
+			<div class="title_div">
+			   <span class="title">카테고리 선택</span>
+			</div>
+			<p class="info">
+			      현재 기업에서 시행중인 복지를 등록해주세요. (다중 선택 가능)<br>
+			</p>
+            <div class="title_div">
+				<section class="cateselect-wrapper" data-role="cateselectbox">
+					<section class="cateselectbox">
+						<button type="button" class="catetoggle-btn">
+							<span>카테고리</span> <i class="bi bi-caret-down-fill" style="color: gray;"></i>
+						</button>
+						<ul class="cateselectbox-option catehide">
+							<li><button type="button" class="cateoption-btn">4.5일제</button></li>
+							<li><button type="button" class="cateoption-btn">재택근무</button></li>
+							<li><button type="button" class="cateoption-btn">유연근무제</button></li>
+							<li><button type="button" class="cateoption-btn">시차출근제</button></li>
+							<li><button type="button" class="cateoption-btn">인센티브</button></li>
+							<li><button type="button" class="cateoption-btn">코드리뷰</button></li>
+							<li><button type="button" class="cateoption-btn">반바지/슬리퍼 OK</button></li>
+							<li><button type="button" class="cateoption-btn">자유복장</button></li>
+							<li><button type="button" class="cateoption-btn">맛있는간식냠냠</button></li>
+							<li><button type="button" class="cateoption-btn">맥북으로개발</button></li>
+							<li><button type="button" class="cateoption-btn">닉네임사용</button></li>
+							<li><button type="button" class="cateoption-btn">수평적조직</button></li>
+							<li><button type="button" class="cateoption-btn">반려동물</button></li>
+							<li><button type="button" class="cateoption-btn">누적투자금100억이상</button></li>
+							<li><button type="button" class="cateoption-btn">스톡옵션제공</button></li>
+							<li><button type="button" class="cateoption-btn">도서구입비지원</button></li>
+							<li><button type="button" class="cateoption-btn">택시비지원</button></li>
+							<li><button type="button" class="cateoption-btn">병역특례</button></li>
+							<li><button type="button" class="cateoption-btn">전공우대</button></li>
+						</ul>
+					</section>
+				</section>
+				<div id="selected-cate" style="font-size: 10pt; margin-top: 10px;"></div>
+			</div>
+			<br><br>
                   
                   
-                  <!-- 지원 알림 이메일 -->
-                  <div class="title_div">
-                     <span class="title">지원 알림 이메일</span>
-                  </div>
-                  <input type="text" id="email" placeholder="ex) email@gmail.com"
-                     style="width: 250px; margin-top: 10px;"> <br>
-                  <br>
-                  <br>
-                  <!-- 게시 마감일 설정 -->
-                  <div class="title_div">
-                     <span class="title" style="margin-right: 3px;">게시 마감일 설정</span> <span><i
-                        class="bi bi-asterisk imstar"></i></span>
-                     <div class="form-check form-check-inline"
-                        style="margin-left: 60px;">
-                        <span class="radio"> <input class="form-check-input"
-                           type="radio" name="flexRadioDefault" id="flexRadioDefault1"
-                           checked="checked"> <label class="form-check-label"
-                           for="flexRadioDefault1">상시</label>
-                        </span>
-                     </div>
-                     <div class="form-check form-check-inline"
-                        style="margin-left: 30px;">
-                        <span class="radio"> <input class="form-check-input"
-                           type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-                           <label class="form-check-label" for="flexRadioDefault2">직접설정</label>
-                        </span>
-                     </div>
-                  </div>
-                  <input type="date" name="input_date" style="margin-left: 200px;">
-                  <br><br> <br>
-                  <br>
-               </div>
-            </div>
+			<!-- 지원 알림 이메일 -->
+			<div class="title_div">
+			   <span class="title">지원 알림 이메일</span>
+			</div>
+			<input type="text" id="email" name="h_c_id" placeholder="ex) email@gmail.com" 
+			style="width: 270px; margin-top: 10px;" value="${c_id }"> <br>
+			<br><br>
+			<!-- 게시 마감일 설정 -->
+			<div class="title_div">
+				<span class="title" style="margin-right: 3px;">게시 마감일 설정</span> 
+				<span><i class="bi bi-asterisk imstar"></i></span>
+				<div class="form-check form-check-inline" style="margin-left: 60px;">
+					<span class="radio"> <input class="form-check-input" 
+					type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked="checked">
+						<label class="form-check-label" for="flexRadioDefault1">상시</label>
+					</span>
+				</div>
+				<div class="form-check form-check-inline" style="margin-left: 30px;">
+					<span class="radio"> 
+						<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+						<label class="form-check-label" for="flexRadioDefault2">직접설정</label>
+					</span>
+				</div>
+			</div>
+			<input type="date" name="input_date" class="deadline-date" style="margin-left: 200px;">
+			<br><br><br><br>
          </div>
       </div>
-	<br><br>
-      <jsp:include page="footer.jsp"></jsp:include>
    </div>
+</div>
+<br><br>
+<jsp:include page="footer.jsp"></jsp:include>
+</div>
+</form>
 <script type="text/javascript">
-	//alert($("#c_num").val()+","+$("#ci_num").val());
-  
 $(document).ready(function() {
    // 직무 select1
    const toggleBtn1 = $('.toggle-btn');
@@ -1121,6 +1107,7 @@ $(document).ready(function() {
 
    toggleBtn1.click(function() {
       selectBox1.toggleClass('hide');
+
    });
 
    options1.click(function() {
@@ -1203,76 +1190,123 @@ $(document).ready(function() {
 });
  </script>
 
-   <!-- 경력 select -->
+<!-- 경력 select -->
 <script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function() {
 
+    /* 경력1 select */
+    const toggleBtn = document.querySelector('.careertoggle-btn');
+    const selectBox = document.querySelector('.selectcareer-option');
+    const options = document.querySelectorAll('.careeroption-btn');
+    const toggleText = document.querySelector('.careertoggle-btn span');
 
-    document.addEventListener('DOMContentLoaded', function() {
+    toggleBtn.addEventListener('click', function() {
+        selectBox.classList.toggle('careerhide');
+    });
 
-        /* 경력1 select */
-        const toggleBtn = document.querySelector('.careertoggle-btn');
-        const selectBox = document.querySelector('.selectcareer-option');
-        const options = document.querySelectorAll('.careeroption-btn');
-        const toggleText = document.querySelector('.careertoggle-btn span');
-
-        toggleBtn.addEventListener('click', function() {
-            selectBox.classList.toggle('careerhide');
-        });
-
-        options.forEach(function(option) {
-            option.addEventListener('click', function() {
-                toggleText.textContent = this.textContent;
-                toggleText.classList.add('selected');
-                selectBox.classList.add('careerhide');
-            });
-        });
-
-        document.addEventListener('click', function(event) {
-            if (!selectBox.parentElement.contains(event.target)) {
-                selectBox.classList.add('careerhide');
-            }
-        });
-
-        /* 경력2 select */
-        const toggleBtn2 = document.querySelector('.careertoggle-btn2');
-        const selectBox2 = document.querySelector('.selectcareer-option2');
-        const options2 = document.querySelectorAll('.careeroption-btn2');
-        const toggleText2 = document.querySelector('.careertoggle-btn2 span');
-
-        toggleBtn2.addEventListener('click', function() {
-            selectBox2.classList.toggle('careerhide2');
-        });
-
-        options2.forEach(function(option) {
-            option.addEventListener('click', function() {
-                toggleText2.textContent = this.textContent;
-                toggleText2.classList.add('selected');
-                selectBox2.classList.add('careerhide2');
-            });
-        });
-
-        document.addEventListener('click', function(event) {
-            if (!selectBox2.parentElement.contains(event.target)) {
-                selectBox2.classList.add('careerhide2');
-            }
-        });
-
-
-        /* 신입 체크박스 */
-        const newcomerCheckbox = document.getElementById('newcomer-checkbox');
-        const careerForm = document.querySelector('.careerform');
-        const careerForm2 = document.querySelector('.careerform2');
-        careerForm2.style.display = 'none';
-        newcomerCheckbox.addEventListener('change', function() {
-            if (this.checked) {
-                careerForm.style.display = 'none';
-                careerForm2.style.display = 'flex';
-            } else {
-                careerForm.style.display = 'flex';
-                careerForm2.style.display = 'none';
-            }
+    options.forEach(function(option) {
+        option.addEventListener('click', function() {
+            toggleText.textContent = this.textContent;
+            toggleText.classList.add('selected');
+            selectBox.classList.add('careerhide');
         });
     });
+
+    document.addEventListener('click', function(event) {
+        if (!selectBox.parentElement.contains(event.target)) {
+            selectBox.classList.add('careerhide');
+        }
+    });
+
+    /* 경력2 select */
+    const toggleBtn2 = document.querySelector('.careertoggle-btn2');
+    const selectBox2 = document.querySelector('.selectcareer-option2');
+    const options2 = document.querySelectorAll('.careeroption-btn2');
+    const toggleText2 = document.querySelector('.careertoggle-btn2 span');
+
+    toggleBtn2.addEventListener('click', function() {
+        selectBox2.classList.toggle('careerhide2');
+    });
+
+    options2.forEach(function(option) {
+        option.addEventListener('click', function() {
+            toggleText2.textContent = this.textContent;
+            toggleText2.classList.add('selected');
+            selectBox2.classList.add('careerhide2');
+        });
+    });
+
+    document.addEventListener('click', function(event) {
+        if (!selectBox2.parentElement.contains(event.target)) {
+            selectBox2.classList.add('careerhide2');
+        }
+    });
+
+
+    /* 신입 체크박스 */
+    const newcomerCheckbox = document.getElementById('newcomer-checkbox');
+    const careerForm = document.querySelector('.careerform');
+    const careerForm2 = document.querySelector('.careerform2');
+    careerForm2.style.display = 'none';
+    newcomerCheckbox.addEventListener('change', function() {
+        if (this.checked) {
+            careerForm.style.display = 'none';
+            careerForm2.style.display = 'flex';
+        } else {
+            careerForm.style.display = 'flex';
+            careerForm2.style.display = 'none';
+        }
+    });
+});
+</script>
+
+<script type="text/javascript">
+//학력
+const toggleBtn4 = $('.toggle-btn4');
+const selectBox4 = $('.selectbox-option4');
+const options4 = $('.option-btn4');
+const toggleText4 = $('.toggle-btn4 span');
+
+toggleBtn4.click(function() {
+   selectBox4.toggleClass('hide4');
+
+});
+
+options4.click(function() {
+   toggleText4.text($(this).text());
+   toggleText4.addClass('selected');
+   selectBox4.addClass('hide4');
+});
+
+$(document).click(function(event) {
+   if (!selectBox4.parent().is(event.target) && !selectBox4.parent().has(event.target).length) {
+      selectBox4.addClass('hide4');
+   }
+});
+</script>
+<script type="text/javascript">
+//학력
+const toggleBtn4 = $('.toggle-btn4');
+const selectBox4 = $('.selectbox-option4');
+const options4 = $('.option-btn4');
+const toggleText4 = $('.toggle-btn4 span');
+
+toggleBtn4.click(function() {
+   selectBox4.toggleClass('hide4');
+
+});
+
+options4.click(function() {
+   toggleText4.text($(this).text());
+   toggleText4.addClass('selected');
+   selectBox4.addClass('hide4');
+});
+
+$(document).click(function(event) {
+   if (!selectBox4.parent().is(event.target) && !selectBox4.parent().has(event.target).length) {
+      selectBox4.addClass('hide4');
+   }
+});
 </script>
 
 <!-- 기술 스택 . 툴 -->
@@ -1435,21 +1469,21 @@ $(document).ready(function() {
 
 <!-- 게시 마감일 설정 -->
 <script type="text/javascript">
-   // 라디오 버튼 상태에 따라 input_date 활성화/비활성화
-   $('input[name="flexRadioDefault"]').change(function() {
-      if ($('#flexRadioDefault1').is(':checked')) {
-         $('input[name="input_date"]').attr('disabled', true);
-      } else if ($('#flexRadioDefault2').is(':checked')) {
-         $('input[name="input_date"]').removeAttr('disabled');
-      }
-   });
-
-   // 페이지 로드 시 초기 상태 설정
+// 라디오 버튼 상태에 따라 input_date 활성화/비활성화
+$('input[name="flexRadioDefault"]').change(function() {
    if ($('#flexRadioDefault1').is(':checked')) {
       $('input[name="input_date"]').attr('disabled', true);
    } else if ($('#flexRadioDefault2').is(':checked')) {
       $('input[name="input_date"]').removeAttr('disabled');
    }
+});
+
+// 페이지 로드 시 초기 상태 설정
+if ($('#flexRadioDefault1').is(':checked')) {
+   $('input[name="input_date"]').attr('disabled', true);
+} else if ($('#flexRadioDefault2').is(':checked')) {
+   $('input[name="input_date"]').removeAttr('disabled');
+}
 </script>
 </body>
 </html>

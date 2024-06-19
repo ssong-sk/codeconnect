@@ -28,4 +28,9 @@ public class CompanyDto {
 	private int c_salary;
 	private Timestamp c_gaipday;
 	private Timestamp c_updateday;
+	
+	private String c_addrdetail;
+	private String c_postnum;
+	
+	private String c_size;//기업의 규모:대/중견/중소/공기업 추가
 }

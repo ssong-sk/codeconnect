@@ -136,22 +136,7 @@ ul {
 	font-family: IBM Plex Sans KR;
 }
 
-/* .option-btn-selected{
-	background-color: #EDEDED;
-	width: 210px;
-	border-radius: 10px;
-	padding: 10px;
-	border: none;
-	cursor: pointer;
-	text-align: left;
-	font-weight: 600;
-	margin-top: 5px;
-	font-family: IBM Plex Sans KR;
-	 pointer-events : none;   
-} */
-
 /* 직무 선택 */
-
 /* 모달 관련 */
 .modal-content, .modal-header, .modal-footer, .modal-body {
 	border: none;
@@ -194,7 +179,6 @@ ul {
 	padding-top: 4px;
 	justify-content: space-between;
 }
-
 
 .job-select, .tech-select, .region-select {
 	max-height: 350px; /* 스크롤바가 나타날 최대 높이 */
@@ -462,7 +446,7 @@ button {
 }
 
 /* 리스트 표시 및 정렬 */
-.hirelist {
+.hirelist, .s_hirelist{
 	z-index: 2;
 	display: flex;
 	flex-wrap: wrap;
@@ -648,7 +632,6 @@ svg{
          <div class="center">
             <div class="category">
 
-
                <!-- 개발 직무 선택 -->
                <span class="title">개발 직무</span>
                <button class="job" type="button" data-bs-toggle="modal"
@@ -669,34 +652,21 @@ svg{
                         <div class="modal-body d-inline-flex">
                            <section class="selectbox">
                               <ul class="selectbox-option hide">
-                                 <li><button type="button" class="option-btn">서버/백엔드
-                                       개발자</button></li>
-                                 <li><button type="button" class="option-btn">프론트엔드
-                                       개발자</button></li>
-                                 <li><button type="button" class="option-btn">웹
-                                       풀스택 개발자</button></li>
-                                 <li><button type="button" class="option-btn">안드로이드
-                                       개발자</button></li>
-                                 <li><button type="button" class="option-btn">IOS
-                                       개발자</button></li>
-                                 <li><button type="button" class="option-btn">크로스플랫폼
-                                       앱개발자</button></li>
-                                 <li><button type="button" class="option-btn">게임
-                                       클라이언트 개발자</button></li>
-                                 <li><button type="button" class="option-btn">게임
-                                       서버 개발자</button></li>
+                                 <li><button type="button" class="option-btn">서버/백엔드 개발자</button></li>
+                                 <li><button type="button" class="option-btn">프론트엔드 개발자</button></li>
+                                 <li><button type="button" class="option-btn">웹 풀스택 개발자</button></li>
+                                 <li><button type="button" class="option-btn">안드로이드 개발자</button></li>
+                                 <li><button type="button" class="option-btn">IOS 개발자</button></li>
+                                 <li><button type="button" class="option-btn">크로스플랫폼 앱개발자</button></li>
+                                 <li><button type="button" class="option-btn">게임 클라이언트 개발자</button></li>
+                                 <li><button type="button" class="option-btn">게임 서버 개발자</button></li>
                                  <li><button type="button" class="option-btn">DBA</button></li>
-                                 <li><button type="button" class="option-btn">빅데이터
-                                       엔지니어</button></li>
+                                 <li><button type="button" class="option-btn">빅데이터 엔지니어</button></li>
                                  <li><button type="button" class="option-btn">인공지능/머신러닝</button></li>
-                                 <li><button type="button" class="option-btn">devops/시스템
-                                       엔지니어</button></li>
-                                 <li><button type="button" class="option-btn">정보보안
-                                       담당자</button></li>
-                                 <li><button type="button" class="option-btn">QA
-                                       엔지니어</button></li>
-                                 <li><button type="button" class="option-btn">개발
-                                       PM</button></li>
+                                 <li><button type="button" class="option-btn">devops/시스템 엔지니어</button></li>
+                                 <li><button type="button" class="option-btn">정보보안 담당자</button></li>
+                                 <li><button type="button" class="option-btn">QA 엔지니어</button></li>
+                                 <li><button type="button" class="option-btn">개발 PM</button></li>
                                  <li><button type="button" class="option-btn">HW/임베디드</button></li>
                                  <li><button type="button" class="option-btn">SW/솔루션</button></li>
                                  <li><button type="button" class="option-btn">웹퍼블리셔</button></li>
@@ -709,6 +679,8 @@ svg{
                               <div id="selected-job"
                                  style="font-size: 10pt; margin-top: 10px;"></div>
                            </div>
+                           <input type="hidden" id="search_job" name="search_job">
+                           
                         </div>
 
                         <!-- Modal Footer -->
@@ -819,6 +791,7 @@ svg{
                            <div class="tech-select">
                               <div id="selected-tech" style="font-size: 10pt; margin-top: 10px;"></div>
                            </div>
+                           <input type="hidden" id="search_tech" name="search_tech">
                         </div>
 
                         <!-- Modal Footer -->
@@ -835,7 +808,7 @@ svg{
             </div>
          </div>
       </div>
-   </div>
+	</div>
    <br>
    <br>
    <div class="bottomlist">
@@ -1270,7 +1243,7 @@ svg{
 				</div>
          
 	            <button class="refresh" type="button">
-	               <img src="../image_icon/refresh.png" style="width: 25px; height: 25px; margin-left: -2px;">
+	               <img src="../hire_img/refresh.png" style="width: 25px; height: 25px; margin-left: -2px;">
 	            </button>
 	            <br><br>
 				<div class="category2-wrapper"
@@ -1363,196 +1336,70 @@ svg{
 			</div>
 			<!-- 채용공고 리스트 -->
 			<section class="hirelist">
-				<div class="hireinfo">
-					<a target="_self" title="(React Native) 모바일앱 개발자" href="#">
-						<div class="img_box">
-							<div class="img_filter"></div>
-							<img alt="먼치팩토리" class="img"
-							src="https://cdn.jumpit.co.kr/lg/images/team_83986/20220819150817537_1080_720.webp">
-							<div class="bKGmxJ"></div>
-							<div class="counts">
-								<div class="position_view_count">
-									<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20">
-                                    <g fill="none" fill-rule="evenodd">
-									<path d="M0 0h16v16H0z"></path>
-                                    <g stroke="#FFF" stroke-linecap="round">
-                                    <path
-									d="M8 10c.86 0 1.556-.672 1.556-1.5S8.859 7 8 7c-.86 0-1.556.672-1.556 1.5S7.141 10 8 10z"></path>
-                                    <path
-									d="M15 8.5c-1.469 2.243-4.108 4.5-7 4.5-2.892 0-5.531-2.257-7-4.5C2.788 6.369 4.882 4 8 4s5.212 2.369 7 4.5z"></path></g></g></svg>
-									<span>87</span>
-								</div>
-								<button aria-pressed="false" type="button" class="scrap" onclick="location.href='hire/hirewrite'">
-									<svg xmlns="http://www.w3.org/2000/svg" width="24"
-									height="24" fill="none" viewBox="0 0 24 24">
-									<path fill="#fff" fill-rule="evenodd"
-									d="M10.725 14.71a2 2 0 0 1 2.55 0l3.975 3.289V5H6.75v12.999l3.975-3.29ZM4.75 20.123V5a2 2 0 0 1 2-2h10.5a2 2 0 0 1 2 2v15.124a1 1 0 0 1-1.638.77L12 16.25l-5.612 4.645a1 1 0 0 1-1.638-.77Z"
-									clip-rule="evenodd"></path></svg>
-								</button>
-							</div>
-						</div>
-                        <div class="hireinfo-content">
-							<div class="content-company">
-								<span>먼치팩토리</span>
-							</div>
-							<h2 class="position_card_info_title">(React Native) 모바일앱 개발자</h2>
-							<ul class="content-techlist">
-								<li>Java</li>
-								<li>· Objective-C</li>
-								<li>· React Native</li>
-								<li>· iOS</li>
-								<li>· Android OS</li>
-							</ul>
-							<ul class="content-area">
-								<li>서울 강남구</li>
-								<li>· 경력 4~15년</li>
-							</ul>
-						</div>
-					</a>
-				</div>
-				<div class="hireinfo">
-					<a target="_self" title="(React Native) 모바일앱 개발자" href="#">
-						<div class="img_box">
-							<div class="img_filter"></div>
-							<img alt="먼치팩토리" class="img"
-							src="https://cdn.jumpit.co.kr/lg/images/team_83986/20220819150817537_1080_720.webp">
-							<div class="bKGmxJ"></div>
-							<div class="counts">
-								<div class="position_view_count">
-									<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20">
-                                    <g fill="none" fill-rule="evenodd">
-									<path d="M0 0h16v16H0z"></path>
-                                    <g stroke="#FFF" stroke-linecap="round">
-                                    <path
-									d="M8 10c.86 0 1.556-.672 1.556-1.5S8.859 7 8 7c-.86 0-1.556.672-1.556 1.5S7.141 10 8 10z"></path>
-                                    <path
-									d="M15 8.5c-1.469 2.243-4.108 4.5-7 4.5-2.892 0-5.531-2.257-7-4.5C2.788 6.369 4.882 4 8 4s5.212 2.369 7 4.5z"></path></g></g></svg>
-									<span>87</span>
-								</div>
-								<button aria-pressed="false" type="button" class="scrap" onclick="location.href='hire/hirewrite'">
-									<svg xmlns="http://www.w3.org/2000/svg" width="24"
-									height="24" fill="none" viewBox="0 0 24 24">
-									<path fill="#fff" fill-rule="evenodd"
-									d="M10.725 14.71a2 2 0 0 1 2.55 0l3.975 3.289V5H6.75v12.999l3.975-3.29ZM4.75 20.123V5a2 2 0 0 1 2-2h10.5a2 2 0 0 1 2 2v15.124a1 1 0 0 1-1.638.77L12 16.25l-5.612 4.645a1 1 0 0 1-1.638-.77Z"
-									clip-rule="evenodd"></path></svg>
-								</button>
-							</div>
-						</div>
-                        <div class="hireinfo-content">
-							<div class="content-company">
-								<span>먼치팩토리</span>
-							</div>
-							<h2 class="position_card_info_title">(React Native) 모바일앱 개발자</h2>
-							<ul class="content-techlist">
-								<li>Java</li>
-								<li>· Objective-C</li>
-								<li>· React Native</li>
-								<li>· iOS</li>
-								<li>· Android OS</li>
-							</ul>
-							<ul class="content-area">
-								<li>서울 강남구</li>
-								<li>· 경력 4~15년</li>
-							</ul>
-						</div>
-					</a>
-				</div>
-                  <div class="hireinfo">
-					<a target="_self" title="(React Native) 모바일앱 개발자" href="#">
-						<div class="img_box">
-							<div class="img_filter"></div>
-							<img alt="먼치팩토리" class="img"
-							src="https://cdn.jumpit.co.kr/lg/images/team_83986/20220819150817537_1080_720.webp">
-							<div class="bKGmxJ"></div>
-							<div class="counts">
-								<div class="position_view_count">
-									<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20">
-                                    <g fill="none" fill-rule="evenodd">
-									<path d="M0 0h16v16H0z"></path>
-                                    <g stroke="#FFF" stroke-linecap="round">
-                                    <path
-									d="M8 10c.86 0 1.556-.672 1.556-1.5S8.859 7 8 7c-.86 0-1.556.672-1.556 1.5S7.141 10 8 10z"></path>
-                                    <path
-									d="M15 8.5c-1.469 2.243-4.108 4.5-7 4.5-2.892 0-5.531-2.257-7-4.5C2.788 6.369 4.882 4 8 4s5.212 2.369 7 4.5z"></path></g></g></svg>
-									<span>87</span>
-								</div>
-								<button aria-pressed="false" type="button" class="scrap" onclick="location.href='hire/hirewrite'">
-									<svg xmlns="http://www.w3.org/2000/svg" width="24"
-									height="24" fill="none" viewBox="0 0 24 24">
-									<path fill="#fff" fill-rule="evenodd"
-									d="M10.725 14.71a2 2 0 0 1 2.55 0l3.975 3.289V5H6.75v12.999l3.975-3.29ZM4.75 20.123V5a2 2 0 0 1 2-2h10.5a2 2 0 0 1 2 2v15.124a1 1 0 0 1-1.638.77L12 16.25l-5.612 4.645a1 1 0 0 1-1.638-.77Z"
-									clip-rule="evenodd"></path></svg>
-								</button>
-							</div>
-						</div>
-                        <div class="hireinfo-content">
-							<div class="content-company">
-								<span>먼치팩토리</span>
-							</div>
-							<h2 class="position_card_info_title">(React Native) 모바일앱 개발자</h2>
-							<ul class="content-techlist">
-								<li>Java</li>
-								<li>· Objective-C</li>
-								<li>· React Native</li>
-								<li>· iOS</li>
-								<li>· Android OS</li>
-							</ul>
-							<ul class="content-area">
-								<li>서울 강남구</li>
-								<li>· 경력 4~15년</li>
-							</ul>
-						</div>
-					</a>
-				</div>
-                  <div class="hireinfo">
-					<a target="_self" title="(React Native) 모바일앱 개발자" href="#">
-						<div class="img_box">
-							<div class="img_filter"></div>
-							<img alt="먼치팩토리" class="img"
-							src="https://cdn.jumpit.co.kr/lg/images/team_83986/20220819150817537_1080_720.webp">
-							<div class="bKGmxJ"></div>
-							<div class="counts">
-								<div class="position_view_count">
-									<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20">
-                                    <g fill="none" fill-rule="evenodd">
-									<path d="M0 0h16v16H0z"></path>
-                                    <g stroke="#FFF" stroke-linecap="round">
-                                    <path
-									d="M8 10c.86 0 1.556-.672 1.556-1.5S8.859 7 8 7c-.86 0-1.556.672-1.556 1.5S7.141 10 8 10z"></path>
-                                    <path
-									d="M15 8.5c-1.469 2.243-4.108 4.5-7 4.5-2.892 0-5.531-2.257-7-4.5C2.788 6.369 4.882 4 8 4s5.212 2.369 7 4.5z"></path></g></g></svg>
-									<span>87</span>
-								</div>
-								<button aria-pressed="false" type="button" class="scrap" onclick="location.href='hire/hirewrite'">
-									<svg xmlns="http://www.w3.org/2000/svg" width="24"
-									height="24" fill="none" viewBox="0 0 24 24">
-									<path fill="#fff" fill-rule="evenodd"
-									d="M10.725 14.71a2 2 0 0 1 2.55 0l3.975 3.289V5H6.75v12.999l3.975-3.29ZM4.75 20.123V5a2 2 0 0 1 2-2h10.5a2 2 0 0 1 2 2v15.124a1 1 0 0 1-1.638.77L12 16.25l-5.612 4.645a1 1 0 0 1-1.638-.77Z"
-									clip-rule="evenodd"></path></svg>
-								</button>
-							</div>
-						</div>
-                        <div class="hireinfo-content">
-							<div class="content-company">
-								<span>먼치팩토리</span>
-							</div>
-							<h2 class="position_card_info_title">(React Native) 모바일앱 개발자</h2>
-							<ul class="content-techlist">
-								<li>Java</li>
-								<li>· Objective-C</li>
-								<li>· React Native</li>
-								<li>· iOS</li>
-								<li>· Android OS</li>
-							</ul>
-							<ul class="content-area">
-								<li>서울 강남구</li>
-								<li>· 경력 4~15년</li>
-							</ul>
-						</div>
-					</a>
-				</div>
-				<div class="list_skeleton"></div>
+			    <c:forEach var="h" items="${hlist}">
+			        <div class="hireinfo">
+			            <a target="_self" title="${h.h_title}" href="#">
+			                <div class="img_box">
+			                    <div class="img_filter"></div>
+			                    <img alt="${h.c_name}" class="img" src="../../companyintro_uploads/${h.ci_image}">
+			                    <div class="bKGmxJ"></div>
+			                    <div class="counts">
+			                        <div class="position_view_count">
+			                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20">
+			                                <g fill="none" fill-rule="evenodd">
+			                                    <path d="M0 0h16v16H0z"></path>
+			                                    <g stroke="#FFF" stroke-linecap="round">
+			                                        <path
+			                                            d="M8 10c.86 0 1.556-.672 1.556-1.5S8.859 7 8 7c-.86 0-1.556.672-1.556 1.5S7.141 10 8 10z">
+			                                        </path>
+			                                        <path
+			                                            d="M15 8.5c-1.469 2.243-4.108 4.5-7 4.5-2.892 0-5.531-2.257-7-4.5C2.788 6.369 4.882 4 8 4s5.212 2.369 7 4.5z">
+			                                        </path>
+			                                    </g>
+			                                </g>
+			                            </svg>
+			                            <span>87</span>
+			                        </div>
+			                        <button aria-pressed="false" type="button" class="scrap"
+			                            onclick="location.href='hire/hirewrite'">
+			                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+			                                viewBox="0 0 24 24">
+			                                <path fill="#fff" fill-rule="evenodd"
+			                                    d="M10.725 14.71a2 2 0 0 1 2.55 0l3.975 3.289V5H6.75v12.999l3.975-3.29ZM4.75 20.123V5a2 2 0 0 1 2-2h10.5a2 2 0 0 1 2 2v15.124a1 1 0 0 1-1.638.77L12 16.25l-5.612 4.645a1 1 0 0 1-1.638-.77Z"
+			                                    clip-rule="evenodd"></path>
+			                            </svg>
+			                        </button>
+			                    </div>
+			                </div>
+			                <div class="hireinfo-content">
+			                    <div class="content-company">
+			                        <span>${h.c_name}</span>
+			                    </div>
+			                    <h2 class="position_card_info_title">${h.h_title}</h2>
+								<ul class="content-techlist">
+								    <c:forEach var="htech" items="${h.h_tech.split(',')}">
+								        <li><c:out value="${htech}" /></li>
+								    </c:forEach>
+								</ul>
+			                    <ul class="content-area">
+			                        <li><c:out value="${h.h_location.length() > 7 ? h.h_location.substring(0, 7) : h.h_location}" /></li>
+			                        <li>
+									    <c:choose>
+									        <c:when test="${h.h_career == '신입'}">
+									            <c:out value="·&nbsp;&nbsp;${h.h_career}" escapeXml="false"/>
+									        </c:when>
+									        <c:otherwise>
+									            <c:out value="·&nbsp;&nbsp;경력 ${h.h_career}년" escapeXml="false"/>
+									        </c:otherwise>
+									    </c:choose>
+									</li>
+			                    </ul>
+			                </div>
+			            </a>
+			        </div>
+			    </c:forEach>
 			</section>
+			<div id="hireListContainer"></div>
 		</div>
 	</div>
 </div>
@@ -1562,6 +1409,9 @@ svg{
 /* 직무 select */
 $(document).ready(function() {
 	const MAX_SELECTIONS = 5;
+	/* 직무 검색 시 사용 */
+	var selectedJob="";
+	var search_job="";
 	$('.option-btn').click(function() {
 		if ($('#selected-job .selected-job').length >= MAX_SELECTIONS) {
 			alert('5개 이상의 직무를 선택할 수 없습니다.');
@@ -1570,6 +1420,17 @@ $(document).ready(function() {
 		const jobText = $(this).text();
 		addSelectedJob(jobText);
 		$(this).prop('disabled', true);
+		
+		/* 직무 검색 시 사용 */
+		var selectedJob = $(this).text().trim();
+
+		if (search_job !== "") {
+			search_job += "|";
+		}
+		search_job += selectedJob;
+		//alert(search_job);
+		$("#search_job").val(search_job);
+	
 	});
 
 	$('.apply-btn').click(function() {
@@ -1604,7 +1465,9 @@ $(document).ready(function() {
 		});
 
 		removeButton.on('click', function() {
+			const jobText = jobElement.find('span').text().trim();
 			jobElement.remove();
+			removeJobFromSearch(jobText);
 			$('.option-btn').each(function() {
 				if ($(this).text() === jobText) {
 					$(this).prop('disabled', false);
@@ -1636,15 +1499,36 @@ $(document).ready(function() {
 		$('.option-btn').prop('disabled', false);
 		updateToggleText();
 	}
+	
+	function removeJobFromSearch(jobText) {
+        const jobList = search_job.split('|');
+        const jobIndex = jobList.indexOf(jobText);
+        if (jobIndex !== -1) {
+            jobList.splice(jobIndex, 1);
+            search_job = jobList.join('|');
+            $("#search_job").val(search_job);
+        }
+    }
+	
 });
 
 /* 기술 스택 select */
 $(document).ready(function() {
+	
+	/* 기술 검색 시 사용 */
+	var search_tech = "";
 
 	$('.techoption-btn').click(function() {
 		const techText = $(this).text();
 		addSelectedTech(techText);
 		$(this).prop('disabled', true);
+		
+		/* 기술 검색 시 사용 */
+		if (search_tech !== "") {
+			search_tech += "|";
+		}
+		search_tech += techText.trim();
+		$("#search_tech").val(search_tech);
 	});
 
 	$('.techapply-btn').click(function() {
@@ -1657,34 +1541,37 @@ $(document).ready(function() {
 
 	function addSelectedTech(techText) {
 		const techElement = $('<div>').addClass('selected-tech').css({
-			display : 'inline-block',
-			marginLeft : '6px',
-			marginRight : '10px',
-			marginBottom : '5px',
-			border : '1px solid #ccc',
-			backgroundColor : '#fafafa',
-			padding : '6px',
-			borderRadius : '15px',
-			fontWeight : 'bold',
-			paddingLeft : '8px'
+			display: 'inline-block',
+			marginLeft: '6px',
+			marginRight: '10px',
+			marginBottom: '5px',
+			border: '1px solid #ccc',
+			backgroundColor: '#fafafa',
+			padding: '6px',
+			borderRadius: '15px',
+			fontWeight: 'bold',
+			paddingLeft: '8px'
 		});
 
 		const techTextElement = $('<span>').text(techText);
 		const removeButton = $('<button>').html('<i class="bi bi-x-lg"></i>').css({
-			marginLeft : '10px',
-			border : 'none',
-			background : 'none',
-			color : 'blue',
-			cursor : 'pointer'
+			marginLeft: '10px',
+			border: 'none',
+			background: 'none',
+			color: 'blue',
+			cursor: 'pointer'
 		});
 
 		removeButton.on('click', function() {
+			const techText = techElement.find('span').text().trim();
+			removeTechFromSearch(techText);
 			techElement.remove();
 			$('.techoption-btn').each(function() {
 				if ($(this).text() === techText) {
 					$(this).prop('disabled', false);
 				}
 			});
+			updateToggleText();
 		});
 
 		techElement.append(techTextElement).append(removeButton);
@@ -1699,19 +1586,27 @@ $(document).ready(function() {
 		} else {
 			const firstTechText = selectedTechs.first().find('span').text().trim();
 			const remainingTechsCount = selectedTechs.length - 1;
-			toggleText.text(remainingTechsCount > 0 ? '기술・'
-				+ firstTechText
-				+ ' 외 '
-				+ remainingTechsCount
-				: '기술・' + firstTechText);
+			toggleText.text(remainingTechsCount > 0 ? '기술・' + firstTechText + ' 외 ' + remainingTechsCount : '기술・' + firstTechText);
 		}
 	}
 
 	function resetSelectedTechs() {
 		$('#selected-tech').empty();
 		$('.techoption-btn').prop('disabled', false);
+		search_tech = "";  // 추가: search_tech 초기화
+		$("#search_tech").val(search_tech);  // 추가: 초기화된 값 설정
 		updateToggleText();
 	}
+	
+	function removeTechFromSearch(techText) {
+        const techList = search_tech.split('|');
+        const techIndex = techList.indexOf(techText);
+        if (techIndex !== -1) {
+        	techList.splice(techIndex, 1);
+        	search_tech = techList.join('|');
+            $("#search_tech").val(search_tech);
+        }
+    }
 });
 </script>
 
@@ -1959,7 +1854,7 @@ $(".btnapply").click(function() {
     // 버튼 너비 계산
     $('.regionbtn.category3').css('width', '70px');
     if(selectedCount >= '10'){
-       $('.regionbtn.category3').css('width', 'auto');
+       $('.regionbtn.category3').css('width', '90px');
     }
 });
 
@@ -2085,6 +1980,154 @@ $(document).click(function(event) {
 		$('#myModal2').hide();
 	}
 });
+</script>
+
+<!-- 검색 기능 -->
+<script type="text/javascript">
+/* 개발직무 검색 */
+
+function alist() {
+    var search_job = $("#search_job").val();
+	$.ajax({
+        type: "get",
+        url: "search",
+        dataType: "json",
+        data: {
+        	"search_job": search_job
+        },
+        success: function(res) {
+        	//alert(res.length);
+        	
+        	$(".hirelist").hide();
+        	
+            var s = "<section class='s_hirelist'>";
+            $.each(res, function(index, h) {
+                s += "<div class='hireinfo'>";
+                s += "<a target='_self' title='" + h.h_title + "' href='#'>";
+                s += "<div class='img_box'>";
+                s += "<div class='img_filter'></div>";
+                s += "<img alt='" + h.c_name + "' class='img' src='../../companyintro_uploads/" + h.ci_image + "'>";
+                s += "<div class='bKGmxJ'></div>";
+                s += "<div class='counts'>";
+                s += "<div class='position_view_count'>";
+                s += "<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20'>";
+                s += "<g fill='none' fill-rule='evenodd'>";
+                s += "<path d='M0 0h16v16H0z'></path>";
+                s += "<g stroke='#FFF' stroke-linecap='round'>";
+                s += "<path d='M8 10c.86 0 1.556-.672 1.556-1.5S8.859 7 8 7c-.86 0-1.556.672-1.556 1.5S7.141 10 8 10z'></path>";
+                s += "<path d='M15 8.5c-1.469 2.243-4.108 4.5-7 4.5-2.892 0-5.531-2.257-7-4.5C2.788 6.369 4.882 4 8 4s5.212 2.369 7 4.5z'></path>";
+                s += "</g>";
+                s += "</g>";
+                s += "</svg>";
+                s += "<span>87</span>";
+                s += "</div>";
+                s += "<button aria-pressed='false' type='button' class='scrap' onclick='location.href=\"hire/hirewrite\"'>";
+                s += "<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' viewBox='0 0 24 24'>";
+                s += "<path fill='#fff' fill-rule='evenodd' d='M10.725 14.71a2 2 0 0 1 2.55 0l3.975 3.289V5H6.75v12.999l3.975-3.29ZM4.75 20.123V5a2 2 0 0 1 2-2h10.5a2 2 0 0 1 2 2v15.124a1 1 0 0 1-1.638.77L12 16.25l-5.612 4.645a1 1 0 0 1-1.638-.77Z' clip-rule='evenodd'></path>";
+                s += "</svg>";
+                s += "</button>";
+                s += "</div>";
+                s += "</div>";
+                s += "<div class='hireinfo-content'>";
+                s += "<div class='content-company'>";
+                s += "<span>" + h.c_name + "</span>";
+                s += "</div>";
+                s += "<h2 class='position_card_info_title'>" + h.h_title + "</h2>";
+                s += "<ul class='content-techlist'>";
+                $.each(h.h_tech.split(','), function(index, tech) {
+                    s += "<li>" + tech.trim() + "</li>";
+                });
+                s += "</ul>";
+                s += "<ul class='content-area'>";
+                s += "<li>" + h.h_location + "</li>";
+                s += "<li>· 경력 " + h.h_career + "년</li>";
+                s += "</ul>";
+                s += "</div>";
+                s += "</a>";
+                s += "</div>";
+            });
+            s += "</section>";
+            $('#hireListContainer').html(s); // 업데이트할 요소의 ID를 지정
+        }
+    });
+}
+
+function alist2() {
+    var search_tech = $("#search_tech").val();
+	$.ajax({
+        type: "get",
+        url: "search",
+        dataType: "json",
+        data: {
+        	"search_tech": search_tech
+        },
+        success: function(res) {
+        	//alert(res.length);
+        	
+        	$(".hirelist").hide();
+        	
+            var s = "<section class='s_hirelist'>";
+            $.each(res, function(index, h) {
+                s += "<div class='hireinfo'>";
+                s += "<a target='_self' title='" + h.h_title + "' href='#'>";
+                s += "<div class='img_box'>";
+                s += "<div class='img_filter'></div>";
+                s += "<img alt='" + h.c_name + "' class='img' src='../../companyintro_uploads/" + h.ci_image + "'>";
+                s += "<div class='bKGmxJ'></div>";
+                s += "<div class='counts'>";
+                s += "<div class='position_view_count'>";
+                s += "<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20'>";
+                s += "<g fill='none' fill-rule='evenodd'>";
+                s += "<path d='M0 0h16v16H0z'></path>";
+                s += "<g stroke='#FFF' stroke-linecap='round'>";
+                s += "<path d='M8 10c.86 0 1.556-.672 1.556-1.5S8.859 7 8 7c-.86 0-1.556.672-1.556 1.5S7.141 10 8 10z'></path>";
+                s += "<path d='M15 8.5c-1.469 2.243-4.108 4.5-7 4.5-2.892 0-5.531-2.257-7-4.5C2.788 6.369 4.882 4 8 4s5.212 2.369 7 4.5z'></path>";
+                s += "</g>";
+                s += "</g>";
+                s += "</svg>";
+                s += "<span>87</span>";
+                s += "</div>";
+                s += "<button aria-pressed='false' type='button' class='scrap' onclick='location.href=\"hire/hirewrite\"'>";
+                s += "<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' viewBox='0 0 24 24'>";
+                s += "<path fill='#fff' fill-rule='evenodd' d='M10.725 14.71a2 2 0 0 1 2.55 0l3.975 3.289V5H6.75v12.999l3.975-3.29ZM4.75 20.123V5a2 2 0 0 1 2-2h10.5a2 2 0 0 1 2 2v15.124a1 1 0 0 1-1.638.77L12 16.25l-5.612 4.645a1 1 0 0 1-1.638-.77Z' clip-rule='evenodd'></path>";
+                s += "</svg>";
+                s += "</button>";
+                s += "</div>";
+                s += "</div>";
+                s += "<div class='hireinfo-content'>";
+                s += "<div class='content-company'>";
+                s += "<span>" + h.c_name + "</span>";
+                s += "</div>";
+                s += "<h2 class='position_card_info_title'>" + h.h_title + "</h2>";
+                s += "<ul class='content-techlist'>";
+                $.each(h.h_tech.split(','), function(index, tech) {
+                    s += "<li>" + tech.trim() + "</li>";
+                });
+                s += "</ul>";
+                s += "<ul class='content-area'>";
+                s += "<li>" + h.h_location + "</li>";
+                s += "<li>· 경력 " + h.h_career + "년</li>";
+                s += "</ul>";
+                s += "</div>";
+                s += "</a>";
+                s += "</div>";
+            });
+            s += "</section>";
+            $('#hireListContainer').html(s); // 업데이트할 요소의 ID를 지정
+        }
+    });
+}
+
+$(".apply-btn").click(function(){
+    alist();
+    alist2();
+    
+});
+
+$(".techapply-btn").click(function(){
+    alist2(); 
+});
+
 </script>
 </body>
 </html>

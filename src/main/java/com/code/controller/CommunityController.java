@@ -16,10 +16,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.code.dto.CommunityDto;
+import com.code.dto.RegisterDto;
 import com.code.mapper.RegisterMapperInter;
 import com.code.service.CommunityServiceInter;
 
@@ -38,9 +40,20 @@ public class CommunityController {
 
         int totalCount = service.getTotalCountByType("home");
         List<CommunityDto> list = service.getAllDatasByType("home");
+        
+        List<CommunityDto> newcomerList=service.getAllDatasByCategory("신입");
+        List<CommunityDto> prepareList=service.getAllDatasByCategory("취준");
+        List<CommunityDto> letterList=service.getAllDatasByCategory("자소서");
+        List<CommunityDto> interviewList=service.getAllDatasByCategory("면접");
+        List<CommunityDto> qaList=service.getAllDatasByCategory("Q&A");
 
         mview.addObject("totalCount", totalCount);
         mview.addObject("list", list);
+        mview.addObject("newcomerList", newcomerList);
+        mview.addObject("prepareList", prepareList);
+        mview.addObject("letterList", letterList);
+        mview.addObject("interviewList", interviewList);
+        mview.addObject("qaList", qaList);
 
         mview.setViewName("community/homelist"); // "community/homelist.jsp"로 매핑
         return mview;
@@ -72,39 +85,32 @@ public class CommunityController {
         dto.setCom_photo(uploadName);
         dto.setCom_post_type("home"); //com_post_type을 'home'으로 설정
         
-        //디버깅 출력
-		/*
-		 * System.out.println("com_category: " + dto.getCom_category());
-		 * System.out.println("com_title: " + dto.getCom_title());
-		 * System.out.println("com_content: " + dto.getCom_content());
-		 * System.out.println("com_photo: " + dto.getCom_photo());
-		 */
-        
         service.insertCommunity(dto);
         return "redirect:/community/homelist";
     }
 
-    @GetMapping("/community/updateform")
+    @GetMapping("/community/homeupdateform")
     public String updateform(@RequestParam("com_num") String comNum, Model model) {
-    	int comNumInt = Integer.parseInt(comNum);
+        int comNumInt = Integer.parseInt(comNum);
         CommunityDto dto = service.getData(comNumInt);
         model.addAttribute("dto", dto);
         return "community/homeupdateform"; // "community/homeupdateform.jsp"로 매핑
     }
 
-    @PostMapping("/community/update")
+    @PostMapping("/community/homeupdate")
     public String update(@ModelAttribute CommunityDto dto,
                          @RequestParam ArrayList<MultipartFile> upload,
+                         @RequestParam("existingPhoto") String existingPhoto,
                          HttpSession session) {
         String path = session.getServletContext().getRealPath("/communityimage");
-        String uploadName = "";
+        // 이미지를 새로 업로드하지 않을 경우 기존 이미지를 유지하는 로직 추가(existingPhoto 파라미터 받아와서 사용)
+        String uploadName = existingPhoto; // 기존 이미지 파일명을 가져옴
 
-        if (upload.get(0).getOriginalFilename().equals(""))
-            uploadName = "null";
-        else {
+        if (!upload.isEmpty() && !upload.get(0).getOriginalFilename().equals("")) {
+            // 새로운 이미지를 업로드할 경우
+            uploadName = ""; 
             for (MultipartFile f : upload) {
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
-                String fName = sdf.format(new Date()) + "_" + f.getOriginalFilename();
+                String fName = f.getOriginalFilename();
                 uploadName += fName + ",";
                 try {
                     f.transferTo(new File(path + "\\" + fName));
@@ -112,12 +118,14 @@ public class CommunityController {
                     e.printStackTrace();
                 }
             }
-            uploadName = uploadName.substring(0, uploadName.length() - 1);
+            uploadName = uploadName.substring(0, uploadName.length() - 1); // 마지막 쉼표 제거
         }
 
         dto.setCom_photo(uploadName);
+        dto.setCom_post_type("home"); // com_post_type을 'home'으로 설정
+
         service.updateCommunity(dto);
-        return "redirect:/community/homelist";
+        return "redirect:/community/homedetail?com_num=" + dto.getCom_num();
     }
 
     @GetMapping("/community/delete")
@@ -139,12 +147,68 @@ public class CommunityController {
 	 */
     
     @GetMapping("/community/homedetail")
-    public String detail(@RequestParam("com_num") int comNum, Model model) {
+    public String detail(@RequestParam("com_num") int comNum, HttpSession session, Model model) {
         CommunityDto dto = service.getData(comNum);
+        //조회수 증가 로직 추가
+        service.increaseReadCount(comNum);
+
+        //content 줄바꿈 로직 추가
+        dto.setCom_content(dto.getCom_content().replace("\n", "<br/>"));
+
+        //세션에서 사용자 닉네임을 가져와 모델에 추가
+        String userNickname = (String) session.getAttribute("userNickname");
+        if (userNickname == null) {
+            //세션에 닉네임이 없으면 데이터베이스에서 조회하여 설정
+            String userId = (String) session.getAttribute("myid");
+            if (userId != null) {
+                RegisterDto userDto = mapperinter.getDataById(userId);
+                if (userDto != null) {
+                    userNickname = userDto.getR_nickname();
+                    session.setAttribute("userNickname", userNickname);
+                }
+            }
+        }
+
+        //userNickname이 여전히 null인 경우 기본 닉네임 설정
+        if (userNickname == null) {
+            userNickname = dto.getCom_nickname(); // 기본 닉네임 설정
+        }
+
         model.addAttribute("dto", dto);
+        model.addAttribute("userNickname", userNickname);
+
         return "community/homedetail"; // "community/homedetail.jsp"로 매핑
     }
+    
+    
+    //homedetail 페이지 좋아요 버튼
+    @PostMapping("/community/updateLike")
+    @ResponseBody
+    public void updateLike(@RequestParam("com_num") int com_num, HttpSession session) {
+        service.updateLikeCount(com_num);
+        // 사용자가 좋아요를 누른 게시글 목록을 세션에 저장
+        List<Integer> likedPosts = (List<Integer>) session.getAttribute("likedPosts");
+        if (likedPosts == null) {
+            likedPosts = new ArrayList<>();
+        }
+        likedPosts.add(com_num);
+        session.setAttribute("likedPosts", likedPosts);
+    }
 
+    @PostMapping("/community/removeLike")
+    @ResponseBody
+    public void removeLike(@RequestParam("com_num") int com_num, HttpSession session) {
+        service.decreaseLikeCount(com_num);
+        // 사용자가 좋아요를 취소한 게시글 목록을 세션에서 제거
+        List<Integer> likedPosts = (List<Integer>) session.getAttribute("likedPosts");
+        if (likedPosts != null) {
+            likedPosts.remove(Integer.valueOf(com_num));
+            session.setAttribute("likedPosts", likedPosts);
+        }
+    }
+
+
+    
     @GetMapping("/community/interviewlist")
     public ModelAndView interviewList() {
         ModelAndView mview = new ModelAndView();
@@ -165,18 +229,41 @@ public class CommunityController {
             return "redirect:/login"; // 로그인 안되면 로그인 페이지로 리다이렉트
         }
 
-        String nickname = (String) session.getAttribute("userNickname");
+        String id = (String) session.getAttribute("myid");
+        
+        
+        RegisterDto dto = mapperinter.getDataById(id);
+        String nickname = dto.getR_nickname();
+        String name = dto.getR_name();
+        String userid = dto.getR_id();
+        
+        //System.out.println(nickname);
+        
         model.addAttribute("userNickname", nickname);
+        model.addAttribute("name", name);
+        model.addAttribute("userid", userid);
         return "community/homeform"; // "community/homeform.jsp"로 매핑
     }
     
-    @GetMapping("/community/homeposttotal")
-    public String homePostTotal(Model model)
+    @GetMapping("/community/hometotalpost")
+    public String homeTotalPost(Model model)
     {
     	List<CommunityDto> list=service.getAllDatasByType("home");
     	
     	model.addAttribute("list", list);
     	
-    	return "community/homeposttotal";
+    	return "community/hometotalpost";
     }
+    
+    @GetMapping("community/homefavoritelist")
+    public String homeFavoriteList(Model model)
+    {
+    	List<CommunityDto> list=service.getAllDatasByType("home");
+    	
+    	model.addAttribute("list", list);
+    	
+		return "community/homefavoritelist";
+    }
+    
+
 }

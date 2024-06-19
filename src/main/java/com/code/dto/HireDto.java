@@ -1,6 +1,7 @@
 package com.code.dto;
 
-import java.sql.Timestamp;
+import java.sql.Date;
+
 
 import org.apache.ibatis.type.Alias;
 
@@ -27,9 +28,13 @@ public class HireDto {
 	private String h_preference;
 	private String h_benefit;
 	private String h_process;
+	private String h_salary;
 	private String h_c_id;
-	private Timestamp h_deadline;
+	private String h_deadline;
 	private String h_writeday;
 	private int h_count;
+	
+	private String c_name;
+	private String ci_image;
 
 }

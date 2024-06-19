@@ -21,6 +21,7 @@ public class CommunityService implements CommunityServiceInter {
 
     @Override
     public void insertCommunity(CommunityDto dto) {
+    	 
         mapper.insertCommunity(dto);
     }
 
@@ -31,7 +32,11 @@ public class CommunityService implements CommunityServiceInter {
 
     @Override
     public CommunityDto getData(int com_num) {
-        return mapper.getData(com_num); //int 타입으로 변경
+        CommunityDto dto = mapper.getData(com_num);
+        // 디버깅 출력
+        //System.out.println("닉네임: " + dto.getCom_nickname());
+        //System.out.println("작성시간: " + dto.getCom_writetime());
+        return dto;
     }
 
     @Override
@@ -58,4 +63,29 @@ public class CommunityService implements CommunityServiceInter {
     public List<CommunityDto> getAllDatasByType(String type) {
         return mapper.getAllDatasByType(type);
     }
+
+	@Override
+	public List<CommunityDto> getAllDatasByCategory(String category) {
+		// TODO Auto-generated method stub
+		return mapper.getAllDatasByCategory(category);
+	}
+
+	@Override
+	public void increaseReadCount(int com_num) {
+		// TODO Auto-generated method stub
+		mapper.increaseReadCount(com_num);
+	}
+
+	@Override
+	public void updateLikeCount(int com_num) {
+		// TODO Auto-generated method stub
+		mapper.updateLikeCount(com_num);
+		
+	}
+
+	@Override
+	public void decreaseLikeCount(int com_num) {
+		// TODO Auto-generated method stub
+		mapper.decreaseLikeCount(com_num);
+	}
 }

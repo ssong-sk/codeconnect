@@ -1,55 +1,167 @@
 package com.code.controller;
 
-import java.util.HashMap;
+import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.code.dto.RegisterDto;
 import com.code.service.RegisterService;
 
-@RestController
-public class LoginRestController {
+@Controller
+public class RegisterController {
 
 	@Autowired
 	RegisterService service;
 	
-	@GetMapping("/member/login")
-	public Map<String, String> loginprocess(String r_id,String r_pass,HttpSession session)
+	@GetMapping("/")
+	public String start()
 	{
-		Map<String, String> map=new HashMap<>();
-		
-		int result=service.loginIdPassCheck(r_id, r_pass);
-		
-		if(result==1)
-		{
-			session.setMaxInactiveInterval(60*60*4);
-			
-			//로그인한 아이디로 정보얻어 세션에 저장
-			RegisterDto mdto=service.getDataById(r_id);
-			
-			session.setAttribute("loginok", "yes");
-			session.setAttribute("myid", r_id);
-			session.setAttribute("loginname", mdto.getR_name());
-			session.setAttribute("r_num", mdto.getR_num());
-
-		
-		}
-		
-		map.put("result", result==1?"success":"fail");
-		
-		return map;
+		return "/layout/main";
 	}
 	
-	@GetMapping("/member/logout")
-	public void logoutprocess(HttpSession session)
+	@GetMapping("/main")
+	public String form(HttpSession session,Model model)
 	{
-		//로그아웃시 제거할 세션
-		session.removeAttribute("loginok");
-		session.removeAttribute("myid");
+		//폼의 아이디얻어줌
+		String myid=(String)session.getAttribute("myid");
+		//로그인중인지 아닌지
+		String loginok=(String)session.getAttribute("loginok");
+		
+		//한번도 실행안하면 null
+		if(loginok==null)
+			return "/login/loginform";
+		else {
+			
+			String name=service.getName(myid);
+			model.addAttribute("name", name);
+			return "/login/logoutform";
+		}
+		
 	}
+	
+	//insert
+	@PostMapping("member/insert")
+	public String insert(@ModelAttribute RegisterDto dto,
+			HttpSession session)
+	{	
+		String myid=(String)session.getAttribute("myid");
+		String loginok=(String)session.getAttribute("loginok");
+		
+		try {
+			service.insertRegister(dto);
+		} catch (IllegalStateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "error";
+		}
+		    return "/member/gaipsuccess";
+	}
+	
+	
+	
+	//회원정보로 가기
+		@GetMapping("/member/myinfo")
+		public String myinfo(Model model)
+		{
+			List<RegisterDto> list=service.getAllRegister();
+			model.addAttribute("list", list);
+			return "/member/memberinfo";
+		}
+		
+		//회원목록 삭제
+		@GetMapping("/member/delete")
+		@ResponseBody
+		public void deleteMember(int r_num)
+		{
+			service.deleteRegister(r_num);
+		}
+		
+		//수정폼에 출력할 데이타 반환
+		@GetMapping("/member/updateform")
+		@ResponseBody
+		public RegisterDto getData(String r_num)
+		{
+			return service.getDataByNum(r_num);
+		}
+		
+		//수정
+		@PostMapping("/member/update")
+		@ResponseBody
+		public void update(RegisterDto dto)
+		{
+			service.updateRegister(dto);
+		}
+		
+		
+		//탈퇴
+		@GetMapping("/member/deleteme")
+		@ResponseBody
+		public void deleteme(String num,HttpSession session)
+		{
+			service.deleteme(num);
+			
+			session.removeAttribute("loginok");
+			session.removeAttribute("myid");
+			
+		}
+	
+	
+	@GetMapping("/member/mypage")
+	public String mypage()
+	{
+		return "/member/mypage";
+	}
+	
+	@GetMapping("/member/mypage2")
+	public String mypage2()
+	{
+		return "/member/mypage2";
+	}
+	
+	@GetMapping("/member/memberform")
+	public String memberform() {
+		return "/member/memberform";
+	}
+	
+	@GetMapping("/member/register2")
+	public String position() {
+		return "/member/register2";
+	}
+	
+	 @PostMapping("/checkDuplicateId")
+	    public ResponseEntity<String> checkDuplicateId(@RequestBody Map<String, String> requestData) {
+	        String id = requestData.get("id");
+	        boolean isUnique = service.isIdUnique(id);
+	        if (isUnique) {
+	            return ResponseEntity.ok("unique");
+	        } else {
+	            return ResponseEntity.ok("duplicate");
+	        }
+	    }
+	 
+	 @PostMapping("/checkDuplicateNn")
+	 public ResponseEntity<String> checkDuplicateNn(@RequestBody Map<String, String> requestData) {
+		 String nickname = requestData.get("nickname");
+		 boolean a = service.isNicknameUnique(nickname);
+		 if(a) {
+			 return ResponseEntity.ok("unique");
+		 } else {
+			 return ResponseEntity.ok("duplicate");
+		 }
+		 
+	 }
 }

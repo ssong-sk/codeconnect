@@ -68,6 +68,7 @@ public class LoginController {
 			session.setAttribute("r_addr_detail", mdto.getR_addr_detail());
 			session.setAttribute("r_email",mdto.getR_email());
 			session.setAttribute("r_gender", mdto.getR_gender());
+			session.setAttribute("r_num", mdto.getR_num());
 			
 			return "/layout/main";
 			
