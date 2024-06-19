@@ -106,7 +106,7 @@ public class IruckseoInsertController {
 			}
     		
     	}
-		        // 최종 insert
+		 // 최종 insert
         irservice.updatePersonal(pedto);
 		
         return "redirect:conditionform";
@@ -120,12 +120,16 @@ public class IruckseoInsertController {
 		
 		List<IruckseoInsertDto> peDto = irservice.allPersonalDatas(pedto);
 		List<IruckseoSchoolDto> scDto = irservice.allSchoolDatas(scdto);
-		List<IruckseoCareerDto> caDto = irservice.allCareerDatas(cadto);
+		//List<IruckseoCareerDto> cadto = irservice.allCareerDatas(cadto)
+		System.out.println("Loaded Personal Data: " + peDto);
+	    System.out.println("Loaded School Data: " + scDto);
 		
 
 		model.addAttribute("peDto", peDto);
 		model.addAttribute("scDto", scDto);
-		model.addAttribute("caDto", caDto);
+		
+		System.out.println("Model contains peDto: " + model.containsAttribute("peDto"));
+		System.out.println("Model contains scDto: " + model.containsAttribute("scDto"));
 		
 		return "personallist";
 	}

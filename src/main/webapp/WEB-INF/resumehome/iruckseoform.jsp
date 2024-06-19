@@ -240,7 +240,7 @@
 </head>
 <body>
   <form action="personalupdate" id="pe_form" method="post" enctype="multipart/form-data" >
-   <input type="hidden"   name="pe_title" id="pe_title" />
+    <input type="hidden"   name="pe_title" id="pe_title">
     <input type="hidden" name="pe_num" id="pe_num" value="${irdto.pe_num }">
     <div class="all">
         <div id="wrap">
@@ -2882,7 +2882,7 @@
                   
                   <div class="fixed_final">
                       <input type="text" class="form-control"   id="pe_title_temp" style="height: 40px; 
-                      width: 49%;" placeholder="이력서 제목을 입력해주세요" required="required">&nbsp;&nbsp;&nbsp;&nbsp;
+                      width: 43%;" placeholder="이력서 제목을 입력해주세요" required="required">&nbsp;&nbsp;&nbsp;&nbsp;
                       <button type="button" id="allDataSelect" class="btn btn-outline-primary" 
                       data-bs-target="#ListSelect" data-bs-toggle="modal">미리보기</button>&nbsp;
                       <button type="button" id="allDataUpdate" class="btn btn-primary">작성완료</button>
@@ -2907,8 +2907,8 @@
 				        <h5><b>학력</b></h5>	       
 				        <hr>
 				        
-				        <c:forEach items="${scDto}" var="school">
-	                        <span>${school.school_Name }</span>
+				        <c:forEach  var="scDto" items="${personallist}" varStatus="i">
+	                        <span>${scDto.sc_hi_name }</span>
 	                        <br>
                         </c:forEach>
 				        
