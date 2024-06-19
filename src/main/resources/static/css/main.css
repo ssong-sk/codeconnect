@@ -63,7 +63,6 @@ button, div, h1, h2, h3, h4, h5, h6, input, p, select, span, textarea {
 
 
 
-
 /* -------------------------------------supports---------------------------------- */
 @supports 
 (-webkit-line-clamp:2) and (-webkit-box-orient:vertical) { .JobCard_JobCard__thumb__reward__text__i15UM
@@ -171,10 +170,50 @@ button, div, h1, h2, h3, h4, h5, h6, input, p, select, span, textarea {
     }
 }
 
+/* -------------------------------------MatchedBanner---------------------------------- */
+.MatchedBanner_MatchedBanner__jSUtn {
+    padding: 0 32px;
+    height: 124px;
+    border-radius: 12px;
+    background-color: hsla(225, 5%, 46%, .04);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 32px;
+    position: relative;
+}
 
+.MatchedBanner_MatchedBanner__img__Sab_3 {
+    width: 200px;
+    min-width: 200px;
+    max-width: 200px;
+}
 
+.MatchedBanner_MatchedBanner__img__Sab_3>img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
+.MatchedBanner_MatchedBanner__info__HEO_b {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    height: 100%;
+}
 
+.MatchedBanner_MatchedBanner__info__title__ciAu_ {
+    white-space: pre;
+}
+
+.MatchedBanner_MatchedBanner__btn__XNKYB {
+    width: 158px;
+    height: 48px;
+    padding: 12px 28px;
+    background-color: #fff;
+    border-radius: 10px;
+    color: #06f;
+}
 /* -------------------------------------CarouselHeader---------------------------------- */
 .CarouselHeader_CarouselHeader__5VBaX {
 	display: flex;
@@ -350,7 +389,11 @@ button, div, h1, h2, h3, h4, h5, h6, input, p, select, span, textarea {
     line-height: 26px;
 }
 
-
+.Typography_Typography__headline2__vR7L_ {
+    font-size: 17px;
+    letter-spacing: 0;
+    line-height: 24px;
+}
 
 
 /* -------------------------------------IconButton---------------------------------- */
@@ -580,11 +623,24 @@ ListCard_ListCard__Contents__Information__nzox0 {
     will-change: opacity;
 }
 
+.ListCard_List__RGzzX+.ListCard_List__RGzzX {
+    border-top: 1px solid hsla(225, 5%, 46%, .08);
+    -webkit-transition: border-color .2s ease;
+    transition: border-color .2s ease;
+    will-change: border-color;
+}
+
+.ListCard_ListCard__x7sMD:hover:after {
+        opacity: .0375;
+    }
+
 .List_TagList__yoeks {
     padding: 0 16px;
 }
 
-
+.TagArea_TagArea__listType__aDS6g {
+    margin-top: 72px;
+}
 
 
 /* -------------------------------------JobCard---------------------------------- */
@@ -763,6 +819,11 @@ ListCard_ListCard__Contents__Information__nzox0 {
     text-shadow: 0 0 16px rgba(0, 0, 0, .35);
 }
 
+.ThemeCard_ThemeCard__cHwR_:hover [class*=Thumbnail] img {
+    -webkit-transform: scale(1.025);
+    transform: scale(1.025);
+}
+
 
 /* -------------------------------------TopBannerArea---------------------------------- */
 
@@ -803,6 +864,10 @@ ListCard_ListCard__Contents__Information__nzox0 {
     height: 32px;
     -o-object-fit: contain;
     object-fit: contain;
+}
+
+.Contents_Contents__MoreCount__uO4am {
+    color: rgba(55, 56, 60, .61);
 }
 
 /* -------------------------------------AvatarGroup---------------------------------- */
@@ -930,7 +995,7 @@ TopBannerArea_MainBannerArea__dots__tIsvd {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     line-height: normal;
-/*     border: none; */
+    border: none; 
     background-color: none;
     cursor: pointer;
     white-space: nowrap;
@@ -940,12 +1005,31 @@ Button_Button__outlined__0HnEd {
     background-color: #fff;
 }
 
+.Button_Button__containedSizeMedium__xBgIW, .Button_Button__outlinedSizeMedium__XNxma {
+    min-width: 64px;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.Button_Button__containedPrimary__kCB60, .Button_Button__contained__qyP2s {
+    color: #06f;
+    background-color: #fff;
+}
+
+.Button_Button__contained__qyP2s {
+    border: none;
+}
+
 /* .Button_Button__outlinedPrimary__8mJWi, .Button_Button__outlined__0HnEd { */
 /*     --button-color: #06f; */
 /*     color: var(--button-color); */
 /*     -webkit-box-shadow: 0 0 0 1px var(--button-color) inset; */
 /*     box-shadow: 0 0 0 1px var(--button-color) inset; */
 /* } */
+
+.Button_Button__interaction__1LUyr:hover {
+    opacity: .05;
+}
 
 .Button_Button__outlined__0HnEd {
     background-color: #fff;

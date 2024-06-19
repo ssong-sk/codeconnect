@@ -13,7 +13,7 @@
 <body>
 <script type="text/javascript">
   alert("가입성공!!!");
-  history.back();
+ 	history.back();
 </script>
 </body>
 </html>

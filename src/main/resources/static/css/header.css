@@ -19,6 +19,16 @@ body {
 	width: 100%;
 }
 
+.NavBar_background__vfmQj {
+    position: absolute;
+    z-index: -1;
+    background: hsla(0, 0%, 100%, .88);
+    -webkit-backdrop-filter: saturate(150%) blur(32px);
+    backdrop-filter: saturate(150%) blur(32px);
+    height: 100%;
+    width: 100%;
+}
+
 .NavBar_className__y2qGg {
 	width: 100%;
 	position: fixed;
