@@ -1,0 +1,104 @@
+@charset "UTF-8";
+
+.Onboarding_Onboarding__iZWNi { 
+    display: flex; 
+    justify-content: center; 
+    background-color: #fff;
+    min-height: 100vh;
+}
+
+.Onboarding_Onboarding__Container__MgoZF {
+ 
+    display: flex;
+ 
+    align-items: center;
+ 
+    flex-direction: column;
+    width: 400px;
+    margin: 0 10px;
+}
+
+.Onboarding_Onboarding__Container__content__LHj2F>div>div {
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.SelectInputSearch_SelectInputSearch__pafWS {
+    position: relative;
+}
+
+.SelectInputSearch_SelectInputSearch__InputField__RuY7Q {
+    background-image: none;
+    background-color: transparent;
+    text-overflow: ellipsis;
+    width: 100%;
+    padding: 0 20px 12px 0;
+    caret-color: transparent;
+    cursor: pointer;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    color: #171719;
+    border: none;
+    border-bottom: 2px solid #f7f7f8;
+}
+
+.SelectInputSearch_SelectInputSearch__chevron__MI_H7 {
+    position: absolute;
+    right: 0;
+    top: 5px;
+    color: rgba(55, 56, 60, .16);
+    font-size: 16px;
+    pointer-events: none;
+}
+
+.SvgIcon_SvgIcon__root__svg__ohdSc {
+    user-select: none;
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    fill: currentColor;
+    flex-shrink: 0;
+    font-size: inherit;
+}
+
+.DropdownSearch_SelectInputSearch__InputField__WVbJ4 {
+    background-image: none;
+    background-color: transparent;
+    width: 100%;
+    padding: 0 20px 12px 0;
+    cursor: pointer;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    color: #171719;
+    text-overflow: ellipsis;
+    border: none;
+    border-bottom: 2px solid #f7f7f8;
+}
+
+.DropdownSearch_SelectInputSearch__guideText__A58Hr {
+    color: rgba(55, 56, 60, .28);
+    display: block;
+    margin-top: 12px;
+}
+
+.Typography_Typography__weightMedium__GXnOM {
+    font-weight: 500;
+}
+
+.Typography_Typography__label2__svmAA {
+    font-size: 13px;
+    letter-spacing: .0194em;
+    line-height: 18px;
+}
+
+.Typography_Typography__root__RdAI1 {
+    margin: 0;
+}
+
+.DropdownSearch_SelectInputSearch__x3ITF {
+    position: relative;
+}
+
+

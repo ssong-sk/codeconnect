@@ -15,10 +15,26 @@
 	rel="stylesheet">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<script
+	src="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="/css/main.css">
 
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('.slick-slide').slick({
+			autoplay : true, // 자동 재생 설정
+			autoplaySpeed : 3000, // 재생 속도 (3초마다)
+			dots : true, // 페이지네이션(점) 사용 여부
+			arrows : true, // 이전/다음 버튼 사용 여부
+			infinite : true, // 무한 루프 여부
+			speed : 2000, // 슬라이드 전환 속도 (2초)
+			slidesToShow : 1, // 보여질 슬라이드 개수
+			slidesToScroll : 1 // 스크롤시 이동할 슬라이드 개수
+		});
+	});
+</script>
 </head>
 <c:set var="root" value="<%=request.getContextPath()%>" />
 <body>
@@ -26,11 +42,6 @@
 		<section class="Section_Section__XyOtJ">
 			<c:if test="${sessionScope.loginok==null }">
 				<article class="MatchedBanner_MatchedBanner__jSUtn">
-					<div class="MatchedBanner_MatchedBanner__img__Sab_3">
-						<img
-							src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fjobsfeed%2Fimage-ai_banner-desktop.png&amp;w=600&amp;q=100"
-							fetchpriority="high" alt="matched banner">
-					</div>
 					<div class="MatchedBanner_MatchedBanner__info__HEO_b">
 						<h6 class="Typography_Typography__root__RdAI1 Typography_Typography__headline2__vR7L_ Typography_Typography__weightBold__KkJEY MatchedBanner_MatchedBanner__info__title__ciAu_">내 이력서를 분석해<br>관심 있을 만한 포지션을 추천해 드려요.</h6>
 						<button type="button" onclick="location.href='/login/main'"
@@ -624,367 +635,6 @@
 											<p
 												class="Typography_Typography__root__RdAI1 Typography_Typography__body2__5Mmhi Typography_Typography__weightMedium__GXnOM BannerItem_BannerItem__info__desc__pNpL7">깊이
 												있는 인재관리와 직원 경험 제공</p>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div data-index="9" class="slick-slide" tabindex="-1"
-								aria-hidden="true" style="outline: none; width: 1060px;">
-								<div>
-									<div class="BannerItem_BannerItem__NtVfT">
-										<div class="BannerItem_BannerItem__link__olAEK">
-											<a href="/themes/jaranda_2024"
-												data-landing-uri="/themes/jaranda_2024"
-												data-attribute-id="jobs__mainBanner__click"
-												data-link-kind="THEME"
-												data-content-title="구성원의 가족까지 생각하는 기업"><img
-												src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fbanners%2F2364%2Ff2c13959.jpg&amp;w=1060&amp;q=100"
-												fetchpriority="auto" alt="구성원의 가족까지 생각하는 기업"
-												class="BannerItem_BannerItem__link__img__JHO6H">
-												<div class="BannerItem_BannerItem__overlay__zQ88O"
-													style="background: linear-gradient(270deg, rgba(38, 38, 33, 0), rgba(38, 38, 33, 0.43))"></div></a>
-										</div>
-										<div class="BannerItem_BannerItem__info__1QEVE">
-											<h3
-												class="Typography_Typography__root__RdAI1 Typography_Typography__title3__J1fCl Typography_Typography__title3__weightBold__xwZk7 Typography_Typography__weightBold__KkJEY BannerItem_BannerItem__info__title__todNv">구성원의
-												가족까지 생각하는 기업</h3>
-											<p
-												class="Typography_Typography__root__RdAI1 Typography_Typography__body2__5Mmhi Typography_Typography__weightMedium__GXnOM BannerItem_BannerItem__info__desc__pNpL7">'일·가정
-												양립’ 기업을 소개합니다.</p>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div data-index="10" class="slick-slide" tabindex="-1"
-								aria-hidden="true" style="outline: none; width: 1060px;">
-								<div>
-									<div class="BannerItem_BannerItem__NtVfT">
-										<div class="BannerItem_BannerItem__link__olAEK">
-											<a
-												href="https://www.bizplay.co.kr/vuch_te_01.act?infw=wanted_202405"
-												target="_blank" rel="noopener noreferrer"
-												data-landing-uri="https://www.bizplay.co.kr/vuch_te_01.act?infw=wanted_202405"
-												data-attribute-id="jobs__mainBanner__click"
-												data-link-kind="CUSTOM_URL"
-												data-content-title="올인원 bzp 출장관리"><img
-												src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fbanners%2F2371%2Fcb115077.jpg&amp;w=1060&amp;q=100"
-												fetchpriority="auto" alt="올인원 bzp 출장관리"
-												class="BannerItem_BannerItem__link__img__JHO6H">
-												<div class="BannerItem_BannerItem__overlay__zQ88O"
-													style="background: linear-gradient(270deg, rgba(38, 38, 33, 0), rgba(38, 38, 33, 0.43))"></div></a>
-										</div>
-										<div class="BannerItem_BannerItem__info__1QEVE">
-											<h3
-												class="Typography_Typography__root__RdAI1 Typography_Typography__title3__J1fCl Typography_Typography__title3__weightBold__xwZk7 Typography_Typography__weightBold__KkJEY BannerItem_BannerItem__info__title__todNv">올인원
-												bzp 출장관리</h3>
-											<p
-												class="Typography_Typography__root__RdAI1 Typography_Typography__body2__5Mmhi Typography_Typography__weightMedium__GXnOM BannerItem_BannerItem__info__desc__pNpL7">출장규정
-												자동화로 손쉬운 임직원 관리</p>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div data-index="11" tabindex="-1"
-								class="slick-slide slick-cloned" aria-hidden="true"
-								style="width: 1060px;">
-								<div>
-									<div class="BannerItem_BannerItem__NtVfT">
-										<div class="BannerItem_BannerItem__link__olAEK">
-											<a href="/company/370" data-landing-uri="/company/370"
-												data-attribute-id="jobs__mainBanner__click"
-												data-link-kind="COMPANY_DETAIL"
-												data-content-title="EA 개발 직군 선수 영입" data-content-id="370"><img
-												src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fbanners%2F2373%2F6f7e6f62.jpg&amp;w=1060&amp;q=100"
-												fetchpriority="auto" alt="EA 개발 직군 선수 영입"
-												class="BannerItem_BannerItem__link__img__JHO6H">
-												<div class="BannerItem_BannerItem__overlay__zQ88O"
-													style="background: linear-gradient(270deg, rgba(38, 38, 33, 0), rgba(38, 38, 33, 0.43))"></div></a>
-										</div>
-										<div class="BannerItem_BannerItem__info__1QEVE">
-											<h3
-												class="Typography_Typography__root__RdAI1 Typography_Typography__title3__J1fCl Typography_Typography__title3__weightBold__xwZk7 Typography_Typography__weightBold__KkJEY BannerItem_BannerItem__info__title__todNv">EA
-												개발 직군 선수 영입</h3>
-											<p
-												class="Typography_Typography__root__RdAI1 Typography_Typography__body2__5Mmhi Typography_Typography__weightMedium__GXnOM BannerItem_BannerItem__info__desc__pNpL7">자소서
-												없이 오늘 지원, 9월 입사!</p>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div data-index="12" tabindex="-1"
-								class="slick-slide slick-cloned" aria-hidden="true"
-								style="width: 1060px;">
-								<div>
-									<div class="BannerItem_BannerItem__NtVfT">
-										<div class="BannerItem_BannerItem__link__olAEK">
-											<a href="/company/403" data-landing-uri="/company/403"
-												data-attribute-id="jobs__mainBanner__click"
-												data-link-kind="COMPANY_DETAIL"
-												data-content-title="삼쩜삼 개발직군 대규모 채용" data-content-id="403"><img
-												src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fbanners%2F2367%2F2d2da733.jpg&amp;w=1060&amp;q=100"
-												fetchpriority="auto" alt="삼쩜삼 개발직군 대규모 채용"
-												class="BannerItem_BannerItem__link__img__JHO6H">
-												<div class="BannerItem_BannerItem__overlay__zQ88O"
-													style="background: linear-gradient(270deg, rgba(38, 38, 33, 0), rgba(38, 38, 33, 0.43))"></div></a>
-										</div>
-										<div class="BannerItem_BannerItem__info__1QEVE">
-											<h3
-												class="Typography_Typography__root__RdAI1 Typography_Typography__title3__J1fCl Typography_Typography__title3__weightBold__xwZk7 Typography_Typography__weightBold__KkJEY BannerItem_BannerItem__info__title__todNv">삼쩜삼
-												개발직군 대규모 채용</h3>
-											<p
-												class="Typography_Typography__root__RdAI1 Typography_Typography__body2__5Mmhi Typography_Typography__weightMedium__GXnOM BannerItem_BannerItem__info__desc__pNpL7">24.05.27.
-												- 24.06.16.</p>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div data-index="13" tabindex="-1"
-								class="slick-slide slick-cloned" aria-hidden="true"
-								style="width: 1060px;">
-								<div>
-									<div class="BannerItem_BannerItem__NtVfT">
-										<div class="BannerItem_BannerItem__link__olAEK">
-											<a href="/wd/223838" data-landing-uri="/wd/223838"
-												data-attribute-id="jobs__mainBanner__click"
-												data-link-kind="POSITION"
-												data-content-title="토스 PC 플랫폼 디자이너" data-content-id="223838"><img
-												src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fbanners%2F2374%2Fabe3e5db.jpg&amp;w=1060&amp;q=100"
-												fetchpriority="auto" alt="토스 PC 플랫폼 디자이너"
-												class="BannerItem_BannerItem__link__img__JHO6H">
-												<div class="BannerItem_BannerItem__overlay__zQ88O"
-													style="background: linear-gradient(270deg, rgba(38, 38, 33, 0), rgba(38, 38, 33, 0.43))"></div></a>
-										</div>
-										<div class="BannerItem_BannerItem__info__1QEVE">
-											<h3
-												class="Typography_Typography__root__RdAI1 Typography_Typography__title3__J1fCl Typography_Typography__title3__weightBold__xwZk7 Typography_Typography__weightBold__KkJEY BannerItem_BannerItem__info__title__todNv">토스
-												PC 플랫폼 디자이너</h3>
-											<p
-												class="Typography_Typography__root__RdAI1 Typography_Typography__body2__5Mmhi Typography_Typography__weightMedium__GXnOM BannerItem_BannerItem__info__desc__pNpL7">서류
-												패스의 기회, 놓치지 마세요!</p>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div data-index="14" tabindex="-1"
-								class="slick-slide slick-cloned" aria-hidden="true"
-								style="width: 1060px;">
-								<div>
-									<div class="BannerItem_BannerItem__NtVfT">
-										<div class="BannerItem_BannerItem__link__olAEK">
-											<a href="/events/2024_job_festa"
-												data-landing-uri="/events/2024_job_festa"
-												data-attribute-id="jobs__mainBanner__click"
-												data-link-kind="EVENT_DETAIL"
-												data-content-title="2024 관광 일자리 페스타"><img
-												src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fbanners%2F2385%2F1203d6e1.jpg&amp;w=1060&amp;q=100"
-												fetchpriority="auto" alt="2024 관광 일자리 페스타"
-												class="BannerItem_BannerItem__link__img__JHO6H">
-												<div class="BannerItem_BannerItem__overlay__zQ88O"
-													style="background: linear-gradient(270deg, rgba(38, 38, 33, 0), rgba(38, 38, 33, 0.43))"></div></a>
-										</div>
-										<div class="BannerItem_BannerItem__info__1QEVE">
-											<h3
-												class="Typography_Typography__root__RdAI1 Typography_Typography__title3__J1fCl Typography_Typography__title3__weightBold__xwZk7 Typography_Typography__weightBold__KkJEY BannerItem_BannerItem__info__title__todNv">2024
-												관광 일자리 페스타</h3>
-											<p
-												class="Typography_Typography__root__RdAI1 Typography_Typography__body2__5Mmhi Typography_Typography__weightMedium__GXnOM BannerItem_BannerItem__info__desc__pNpL7">지역
-												관광기업들의 채용 정보가 한 곳에!</p>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div data-index="15" tabindex="-1"
-								class="slick-slide slick-cloned" aria-hidden="true"
-								style="width: 1060px;">
-								<div>
-									<div class="BannerItem_BannerItem__NtVfT">
-										<div class="BannerItem_BannerItem__link__olAEK">
-											<a href="/events/work_recipe03"
-												data-landing-uri="/events/work_recipe03"
-												data-attribute-id="jobs__mainBanner__click"
-												data-link-kind="EVENT_DETAIL"
-												data-content-title="WORK RECIPE"><img
-												src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fbanners%2F2365%2F8540675a.jpg&amp;w=1060&amp;q=100"
-												fetchpriority="auto" alt="WORK RECIPE"
-												class="BannerItem_BannerItem__link__img__JHO6H">
-												<div class="BannerItem_BannerItem__overlay__zQ88O"
-													style="background: linear-gradient(270deg, rgba(84, 83, 20, 0), rgba(84, 83, 20, 0.43))"></div></a>
-										</div>
-										<div class="BannerItem_BannerItem__info__1QEVE">
-											<h3
-												class="Typography_Typography__root__RdAI1 Typography_Typography__title3__J1fCl Typography_Typography__title3__weightBold__xwZk7 Typography_Typography__weightBold__KkJEY BannerItem_BannerItem__info__title__todNv">WORK
-												RECIPE</h3>
-											<p
-												class="Typography_Typography__root__RdAI1 Typography_Typography__body2__5Mmhi Typography_Typography__weightMedium__GXnOM BannerItem_BannerItem__info__desc__pNpL7">일할
-												맛 나는 기업, 오비맥주</p>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div data-index="16" tabindex="-1"
-								class="slick-slide slick-cloned" aria-hidden="true"
-								style="width: 1060px;">
-								<div>
-									<div class="BannerItem_BannerItem__NtVfT">
-										<div class="BannerItem_BannerItem__link__olAEK">
-											<a href="/themes/newposition"
-												data-landing-uri="/themes/newposition"
-												data-attribute-id="jobs__mainBanner__click"
-												data-link-kind="THEME" data-content-title="이번 주 신규 포지션"><img
-												src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fbanners%2F2078%2Fa78a154c.jpg&amp;w=1060&amp;q=100"
-												fetchpriority="auto" alt="이번 주 신규 포지션"
-												class="BannerItem_BannerItem__link__img__JHO6H">
-												<div class="BannerItem_BannerItem__overlay__zQ88O"
-													style="background: linear-gradient(270deg, rgba(84, 84, 84, 0), rgba(84, 84, 84, 0.43))"></div></a>
-										</div>
-										<div class="BannerItem_BannerItem__info__1QEVE">
-											<h3
-												class="Typography_Typography__root__RdAI1 Typography_Typography__title3__J1fCl Typography_Typography__title3__weightBold__xwZk7 Typography_Typography__weightBold__KkJEY BannerItem_BannerItem__info__title__todNv">이번
-												주 신규 포지션</h3>
-											<p
-												class="Typography_Typography__root__RdAI1 Typography_Typography__body2__5Mmhi Typography_Typography__weightMedium__GXnOM BannerItem_BannerItem__info__desc__pNpL7">눈여겨볼
-												이번 주 채용공고를 소개합니다.</p>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div data-index="17" tabindex="-1"
-								class="slick-slide slick-cloned" aria-hidden="true"
-								style="width: 1060px;">
-								<div>
-									<div class="BannerItem_BannerItem__NtVfT">
-										<div class="BannerItem_BannerItem__link__olAEK">
-											<a href="/company/1797" data-landing-uri="/company/1797"
-												data-attribute-id="jobs__mainBanner__click"
-												data-link-kind="COMPANY_DETAIL"
-												data-content-title="그렙 프로그래머스 적극 채용" data-content-id="1797"><img
-												src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fbanners%2F2375%2Feb6da3f4.jpg&amp;w=1060&amp;q=100"
-												fetchpriority="auto" alt="그렙 프로그래머스 적극 채용"
-												class="BannerItem_BannerItem__link__img__JHO6H">
-												<div class="BannerItem_BannerItem__overlay__zQ88O"
-													style="background: linear-gradient(270deg, rgba(38, 38, 33, 0), rgba(38, 38, 33, 0.43))"></div></a>
-										</div>
-										<div class="BannerItem_BannerItem__info__1QEVE">
-											<h3
-												class="Typography_Typography__root__RdAI1 Typography_Typography__title3__J1fCl Typography_Typography__title3__weightBold__xwZk7 Typography_Typography__weightBold__KkJEY BannerItem_BannerItem__info__title__todNv">그렙
-												프로그래머스 적극 채용</h3>
-											<p
-												class="Typography_Typography__root__RdAI1 Typography_Typography__body2__5Mmhi Typography_Typography__weightMedium__GXnOM BannerItem_BannerItem__info__desc__pNpL7">개발
-												기획 교육 마케팅 영업 채용 중</p>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div data-index="18" tabindex="-1"
-								class="slick-slide slick-cloned" aria-hidden="true"
-								style="width: 1060px;">
-								<div>
-									<div class="BannerItem_BannerItem__NtVfT">
-										<div class="BannerItem_BannerItem__link__olAEK">
-											<a href="/themes/investment"
-												data-landing-uri="/themes/investment"
-												data-attribute-id="jobs__mainBanner__click"
-												data-link-kind="THEME"
-												data-content-title="최근 100억 이상 투자 받은 기업"><img
-												src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fbanners%2F1948%2F65930f6a.jpg&amp;w=1060&amp;q=100"
-												fetchpriority="auto" alt="최근 100억 이상 투자 받은 기업"
-												class="BannerItem_BannerItem__link__img__JHO6H">
-												<div class="BannerItem_BannerItem__overlay__zQ88O"
-													style="background: linear-gradient(270deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.43))"></div></a>
-										</div>
-										<div class="BannerItem_BannerItem__info__1QEVE">
-											<h3
-												class="Typography_Typography__root__RdAI1 Typography_Typography__title3__J1fCl Typography_Typography__title3__weightBold__xwZk7 Typography_Typography__weightBold__KkJEY BannerItem_BannerItem__info__title__todNv">최근
-												100억 이상 투자 받은 기업</h3>
-											<p
-												class="Typography_Typography__root__RdAI1 Typography_Typography__body2__5Mmhi Typography_Typography__weightMedium__GXnOM BannerItem_BannerItem__info__desc__pNpL7">채용
-												중 포지션 확인하기</p>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div data-index="19" tabindex="-1"
-								class="slick-slide slick-cloned" aria-hidden="true"
-								style="width: 1060px;">
-								<div>
-									<div class="BannerItem_BannerItem__NtVfT">
-										<div class="BannerItem_BannerItem__link__olAEK">
-											<a href="http://talenx.com/" target="_blank"
-												rel="noopener noreferrer"
-												data-landing-uri="http://talenx.com/"
-												data-attribute-id="jobs__mainBanner__click"
-												data-link-kind="CUSTOM_URL" data-content-title="인재관리의 모든 것"><img
-												src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fbanners%2F2372%2Fea23e64c.jpg&amp;w=1060&amp;q=100"
-												fetchpriority="auto" alt="인재관리의 모든 것"
-												class="BannerItem_BannerItem__link__img__JHO6H">
-												<div class="BannerItem_BannerItem__overlay__zQ88O"
-													style="background: linear-gradient(270deg, rgba(38, 38, 33, 0), rgba(38, 38, 33, 0.43))"></div></a>
-										</div>
-										<div class="BannerItem_BannerItem__info__1QEVE">
-											<h3
-												class="Typography_Typography__root__RdAI1 Typography_Typography__title3__J1fCl Typography_Typography__title3__weightBold__xwZk7 Typography_Typography__weightBold__KkJEY BannerItem_BannerItem__info__title__todNv">인재관리의
-												모든 것</h3>
-											<p
-												class="Typography_Typography__root__RdAI1 Typography_Typography__body2__5Mmhi Typography_Typography__weightMedium__GXnOM BannerItem_BannerItem__info__desc__pNpL7">깊이
-												있는 인재관리와 직원 경험 제공</p>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div data-index="20" tabindex="-1"
-								class="slick-slide slick-cloned" aria-hidden="true"
-								style="width: 1060px;">
-								<div>
-									<div class="BannerItem_BannerItem__NtVfT">
-										<div class="BannerItem_BannerItem__link__olAEK">
-											<a href="/themes/jaranda_2024"
-												data-landing-uri="/themes/jaranda_2024"
-												data-attribute-id="jobs__mainBanner__click"
-												data-link-kind="THEME"
-												data-content-title="구성원의 가족까지 생각하는 기업"><img
-												src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fbanners%2F2364%2Ff2c13959.jpg&amp;w=1060&amp;q=100"
-												fetchpriority="auto" alt="구성원의 가족까지 생각하는 기업"
-												class="BannerItem_BannerItem__link__img__JHO6H">
-												<div class="BannerItem_BannerItem__overlay__zQ88O"
-													style="background: linear-gradient(270deg, rgba(38, 38, 33, 0), rgba(38, 38, 33, 0.43))"></div></a>
-										</div>
-										<div class="BannerItem_BannerItem__info__1QEVE">
-											<h3
-												class="Typography_Typography__root__RdAI1 Typography_Typography__title3__J1fCl Typography_Typography__title3__weightBold__xwZk7 Typography_Typography__weightBold__KkJEY BannerItem_BannerItem__info__title__todNv">구성원의
-												가족까지 생각하는 기업</h3>
-											<p
-												class="Typography_Typography__root__RdAI1 Typography_Typography__body2__5Mmhi Typography_Typography__weightMedium__GXnOM BannerItem_BannerItem__info__desc__pNpL7">'일·가정
-												양립’ 기업을 소개합니다.</p>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div data-index="21" tabindex="-1"
-								class="slick-slide slick-cloned" aria-hidden="true"
-								style="width: 1060px;">
-								<div>
-									<div class="BannerItem_BannerItem__NtVfT">
-										<div class="BannerItem_BannerItem__link__olAEK">
-											<a
-												href="https://www.bizplay.co.kr/vuch_te_01.act?infw=wanted_202405"
-												target="_blank" rel="noopener noreferrer"
-												data-landing-uri="https://www.bizplay.co.kr/vuch_te_01.act?infw=wanted_202405"
-												data-attribute-id="jobs__mainBanner__click"
-												data-link-kind="CUSTOM_URL"
-												data-content-title="올인원 bzp 출장관리"><img
-												src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fbanners%2F2371%2Fcb115077.jpg&amp;w=1060&amp;q=100"
-												fetchpriority="auto" alt="올인원 bzp 출장관리"
-												class="BannerItem_BannerItem__link__img__JHO6H">
-												<div class="BannerItem_BannerItem__overlay__zQ88O"
-													style="background: linear-gradient(270deg, rgba(38, 38, 33, 0), rgba(38, 38, 33, 0.43))"></div></a>
-										</div>
-										<div class="BannerItem_BannerItem__info__1QEVE">
-											<h3
-												class="Typography_Typography__root__RdAI1 Typography_Typography__title3__J1fCl Typography_Typography__title3__weightBold__xwZk7 Typography_Typography__weightBold__KkJEY BannerItem_BannerItem__info__title__todNv">올인원
-												bzp 출장관리</h3>
-											<p
-												class="Typography_Typography__root__RdAI1 Typography_Typography__body2__5Mmhi Typography_Typography__weightMedium__GXnOM BannerItem_BannerItem__info__desc__pNpL7">출장규정
-												자동화로 손쉬운 임직원 관리</p>
 										</div>
 									</div>
 								</div>

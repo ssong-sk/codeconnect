@@ -35,6 +35,8 @@ public class LoginRestController {
 			session.setAttribute("loginok", "yes");
 			session.setAttribute("myid", r_id);
 			session.setAttribute("loginname", mdto.getR_name());
+			session.setAttribute("r_num", mdto.getR_num());
+
 		
 		}
 		
@@ -49,7 +51,5 @@ public class LoginRestController {
 		//로그아웃시 제거할 세션
 		session.removeAttribute("loginok");
 		session.removeAttribute("myid");
-		
-		
 	}
 }

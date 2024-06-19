@@ -15,7 +15,23 @@
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <link rel="stylesheet" type="text/css" href="/css/loginform.css">
 <title>Insert title here</title>
+<script type="text/javascript">
 
+function tabLayer(tabNumber) {
+    // 모든 버튼에서 'on' 클래스를 제거합니다.
+    document.querySelector('.cTab1').classList.remove('on');
+    document.querySelector('.cTab2').classList.remove('on');
+
+    // 선택한 탭 번호에 따라 'on' 클래스를 추가합니다.
+    if (tabNumber === 1) {
+        document.querySelector('.cTab1').classList.add('on');
+        location.href="#개인"
+    } else if (tabNumber === 2) {
+        document.querySelector('.cTab2').classList.add('on');
+        location.href="#기업"
+    }
+}
+</script>
 </head>
 <body>
 	<div id="container">
@@ -25,15 +41,15 @@
 					<div class="cNewPageWrap">
 						<ul class="cTab">
 							<li>
-								<button type="button" class="cTab1 on"
-									onclick="location.href='#개인'">개인회원</button>
+								<button type="button" class="cTab1 on" onclick="tabLayer(1)">개인회원</button>
 							</li>
 							<li>
-								<button type="button" class="cTab2"
-									onclick="location.href='#기업'">기업회원</button>
+								<button type="button" class="cTab2" onclick="tabLayer(2)">기업회원</button>
 							</li>
 						</ul>
+						
 						<!-- 개인회원탭 -->
+						<c:if test="">
 						<div class="alone">
 							<!-- 로그인입력 -->
 							<form action="loginprocess" method="post">
@@ -43,7 +59,7 @@
 										<ul class="cLogin-input-idpw">
 											<li><input type="text" id=r_id name="r_id"
 												class="cInput" autocapitalize="off"
-												placeholder="코트커넥트 아이디 또는 이메일 아이디" 
+												placeholder="코트커넥트 아이디 또는 이메일 아이디"
 												value="${sessionScope.saveok==null?'':sessionScope.myid }"></li>
 											<li><input type="password" id="r_pass" name="r_pass"
 												maxlength="20" class="cInput" placeholder="비밀번호"
@@ -75,6 +91,53 @@
 								style="display: block;"></div>
 
 						</div>
+						</c:if>
+						
+							<!--기업회원용 -->
+						<c:if test="">
+						<div class="company">
+							<!-- 로그인입력 -->
+							<form action="loginprocess" method="post">
+
+								<div class="cNewPageContainer">
+									<fieldset class="">
+										<ul class="cLogin-input-idpw">
+											<li><input type="text" id=r_id name="r_id"
+												class="cInput" autocapitalize="off"
+												placeholder="코트커넥트 아이디 또는 이메일 아이디"
+												value="${sessionScope.saveok==null?'':sessionScope.myid }"></li>
+											<li><input type="password" id="r_pass" name="r_pass"
+												maxlength="20" class="cInput" placeholder="비밀번호"
+												tabindex="2">
+										</ul>
+
+										<div class="cLogin-save">
+											<input type="checkbox" name="cbsave"
+												${sessionScope.saveok==null?"":"checked" }><label
+												for="SaveID">아이디저장</label>
+										</div>
+
+										<button type="submit" class="cDef-btn on" id="btnLogin">로그인</button>
+
+									</fieldset>
+								</div>
+
+								<ul class="cLogin-links in-tooltip">
+									<li><a href="#" class="lineAfter" id="searchId">아이디 찾기</a></li>
+									<li><a href="#" class="lineAfter" id="searchPass">비밀번호
+											찾기</a></li>
+									<li><a href="/member/memberform" class="JoinLink"
+										id="joinlink">회원가입</a></li>
+
+								</ul>
+							</form>
+							<!-- 로그인기본 -->
+							<div class="cNewPageContainer snslogin" id="social_area"
+								style="display: block;"></div>
+
+						</div>
+						</c:if>
+						
 					</div>
 				</div>
 				<div class="bannerWrap">

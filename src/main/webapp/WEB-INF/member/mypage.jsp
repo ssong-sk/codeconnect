@@ -23,7 +23,8 @@
 	<div class="MainLayout_MainLayout__2EBgM">
 		<div class="MainLayout_MainLayout__root__p6itg">
 			<div class="Grid_Grid__container__J9CcC Grid_Grid__spacing__5__ZwgDV">
-				<div
+			
+							<div
 					class="Grid_Grid__item__FUkSS Grid_Grid__align-items_flex-start__PA0JE Grid_Grid__grid__xs__12__rVqKh Grid_Grid__grid__md__4__YPyIl MainLayout_MainLayout__sidebar__G8teL"
 					style="padding-top: 59px; padding-left: 50px;">
 					<div
@@ -40,7 +41,7 @@
 							<li class="LnbDesktop_LnbDesktop__item__sZEI4"><a
 								class="Button_Button__root__V1ie3 Button_Button__text__GCOTx Button_Button__textAssistive__Dx57x Button_Button__textSizeMedium__KekFB Button_Button__fullWidth__RU4tf LnbDesktop_LnbDesktop__text__2eGDD"
 								data-attribute-id="myActivity__snb" data-snb-kind="myActivity"
-								href="#"><span class="Button_Button__label__1Kk0v">
+								href="${root }/member/mypage2"><span class="Button_Button__label__1Kk0v">
 										<h6
 											class="Typography_Typography__root__xYuMs Typography_Typography__headline1__R9fZk Typography_Typography__weightMedium__O0Rdi">내
 											활동</h6>

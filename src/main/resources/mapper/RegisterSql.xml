@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.code.mapper.RegisterMapperInter">
    <insert id="insertRegister" parameterType="RDto">
-     insert into register (r_id,r_pass,r_name,r_birthday,r_hp,r_zipcode,r_addr,r_addr_detail,r_email,r_gender,r_gaipday) 
-     values (#{r_id },#{r_pass },#{r_name },#{r_birthday },#{r_hp },#{r_zipcode },#{r_addr },#{r_addr_detail },
+     insert into register (r_id,r_pass,r_name,r_nickname,r_birthday,r_hp,r_zipcode,r_addr,r_addr_detail,r_email,r_gender,r_gaipday) 
+     values (#{r_id },#{r_pass },#{r_name },#{r_nickname }#{r_birthday },#{r_hp },#{r_zipcode },#{r_addr },#{r_addr_detail },
      #{r_email },#{r_gender },now())
    </insert>
    <select id="getAllRegister" resultType="RDto">
@@ -21,7 +21,13 @@
    <select id="getDataById" parameterType="String" resultType="RDto">
       select * from register where r_id=#{r_id}
    </select>
-   <select id="getDataByNum" parameterType="String" resultType="RDto">
+   <select id="getDataByNum" parameterType="int" resultType="RDto">
       select * from register where r_num=#{r_num}
    </select>
+    <select id="countById" resultType="int">
+        SELECT COUNT(*) FROM register WHERE r_id = #{r_id}
+    </select>
+    <select id="countByNickname" parameterType="String" resultType="int">
+    	select count(*) from register where r_nickname = #{r_nickname}
+    </select>
 </mapper>
