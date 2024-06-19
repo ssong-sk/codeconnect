@@ -188,10 +188,9 @@
 
 </style>
 <script type="text/javascript">
-	/* 주제별 커뮤니티 하단 title 보여지는 글자수 조정 */
     $(document).ready(function(){
         $('.title_link').each(function(){
-            var maxLength = 28; // 최대 글자수 설정
+            var maxLength = 28;
             var text = $(this).text();
             if (text.length > maxLength) {
                 var cut = text.substring(0, maxLength) + '...';
@@ -228,13 +227,13 @@
     <div class="section_inner">
         <div class="wrap_title d-flex justify-content-between align-items-center" style="margin-bottom: 20px;">
             <a href="${root}/community/homefavoritelist" style="margin-top: 25px;">
-                <b class="hot">HOT</b> <b>이번주 전체 인기글</b>
+                <b class="hot">HOT</b> &nbsp;<b>전체 인기글</b>
             </a>
             <a href="${root}/community/homefavoritelist" style="font-size: 20px; color: gray;">
             더보기<i class="bi bi-chevron-right"></i>&nbsp;&nbsp;</a>
         </div>
         <ul class="list_story">
-            <c:forEach var="dto" items="${list}"  begin="0" end="4"> <!-- 게시글 5개까지만 출력 -->
+            <c:forEach var="dto" items="${list}"  begin="0" end="4">
                 <c:if test="${dto.com_post_type == 'home'}">
                     <li class="item">
                         <a class="title_link" href="${root}/community/homedetail?com_num=${dto.com_num}">${dto.com_title}</a>
@@ -256,13 +255,13 @@
         </div>
         <div class="category" style="margin-top: 50px;">
             <ul class="list_category js-category">
-                <li><a href="${root}/community/hometotalpost">전체글</a></li>
-                <li><a href="#">신입</a></li>
-                <li><a href="#">취준</a></li>
-                <li><a href="#">자소서</a></li>
-                <li><a href="#">면접</a></li>
-                <li><a href="#">Q&A</a></li>
-            </ul>
+			    <li><a href="${root}/community/hometotalpost?category=<%= java.net.URLEncoder.encode("전체글", "UTF-8") %>">전체글</a></li>
+			    <li><a href="${root}/community/hometotalpost?category=<%= java.net.URLEncoder.encode("신입", "UTF-8") %>">신입</a></li>
+			    <li><a href="${root}/community/hometotalpost?category=<%= java.net.URLEncoder.encode("취준", "UTF-8") %>">취준</a></li>
+			    <li><a href="${root}/community/hometotalpost?category=<%= java.net.URLEncoder.encode("자소서", "UTF-8") %>">자소서</a></li>
+			    <li><a href="${root}/community/hometotalpost?category=<%= java.net.URLEncoder.encode("면접", "UTF-8") %>">면접</a></li>
+			    <li><a href="${root}/community/hometotalpost?category=<%= java.net.URLEncoder.encode("Q&A", "UTF-8") %>">Q&A</a></li>
+			</ul>
             <div class="community_list">
                 <div class="section_inner" style="width: 48%;">
                     <div class="wrap_title d-flex justify-content-between align-items-center">

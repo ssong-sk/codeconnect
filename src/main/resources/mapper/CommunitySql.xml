@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.code.mapper.CommunityMapperInter">
+
+	<!-- 전체 게시글 수 조회 -->
     <select id="getTotalCount" resultType="int">
         select count(*) from community
     </select>
     
+    <!-- 커뮤니티 글  삽입 -->
     <insert id="insertCommunity" parameterType="CommunityDto">
         insert into community (com_user_id, com_nickname, com_title, com_content, com_photo, com_category, com_writetime, com_updatetime, com_post_type,
         com_name, com_companyname) 
@@ -12,18 +15,17 @@
         #{com_name}, #{com_companyname})
     </insert>
     
-    <!-- <insert id="insertCommunity" parameterType="com.code.dto.CommunityDto">
-	    insert into community (com_num, com_category, com_title, com_content, com_photo, com_post_type)
-	    values (#{com_num}, #{com_category}, #{com_title}, #{com_content}, #{com_photo}, #{com_post_type})
-	</insert> -->
-    
+    <!-- 모든 데이터 조회 -->
     <select id="getAllDatas" resultType="CommunityDto">
         select * from community order by com_num desc
     </select>
     
+    <!-- 특정 게시글 데이터 조회 -->
     <select id="getData" parameterType="int" resultType="CommunityDto">
         select * from community where com_num = #{com_num}
     </select>
+    
+    <!-- 커뮤니티 글 업데이트 -->
     <update id="updateCommunity" parameterType="CommunityDto">
         update community set 
         	com_photo = #{com_photo}, com_title = #{com_title}, com_content = #{com_content},
@@ -31,6 +33,7 @@
         where com_num = #{com_num}
     </update>
     
+    <!-- 커뮤니티 글 삭제 -->
     <delete id="deleteCommunity" parameterType="String">
         delete from community where com_num = #{com_num}
     </delete>
@@ -40,23 +43,28 @@
     	select * from community where com_post_type = 'interview'
     </select>
     
-    <!-- post_type 가져오는 쿼리 -->
+    <!-- post_type에 따른 전체 게시글 수 조회 -->
     <select id="getTotalCountByType" parameterType="String" resultType="int">
         select count(*) from community where com_post_type = #{type}
     </select>
     
+    <!-- post_type에 따른 모든 데이터 조회 -->
     <select id="getAllDatasByType" parameterType="String" resultType="CommunityDto">
         select * from community where com_post_type = #{type} order by com_num desc
     </select>
+    
     <!-- 카테고리별 데이터 조회 쿼리 추가 -->
     <select id="getAllDatasByCategory" parameterType="String" resultType="CommunityDto">
     	select * from community where com_category = #{category} order by com_num desc
     </select>
+    
+    <!-- 조회수 증가 -->
     <update id="increaseReadCount" parameterType="int">
     	update community set com_readcount = com_readcount+1
     	where com_num = #{com_num}
     </update>
-    <!-- homedetail 좋아요 수 증가 -->
+    
+    <!-- homedetail 좋아요 수 증가, 감소 -->
     <update id="updateLikeCount" parameterType="int">
     	update community set com_likes = com_likes+1
     	where com_num = #{com_num}
@@ -65,4 +73,17 @@
     	update community set com_likes = com_likes-1
     	where com_num = #{com_num}
     </update>
+    
+    <!-- 댓글 수 증가, 감소 -->
+    <update id="incrementCommentCount" parameterType="int">
+        update community set com_commentcount = com_commentcount+1 
+        where com_num = #{com_num}
+    </update>
+    <update id="decrementCommentCount" parameterType="int">
+        <!-- update community set com_commentcount = com_commentcount-1 
+        where com_num = #{com_num} and com_commentcount>0 -->
+        update community set com_commentcount = CASE WHEN com_commentcount > 0 THEN com_commentcount-1 ELSE 0 END
+    	where com_num = #{com_num}
+    </update>
+    
 </mapper>
