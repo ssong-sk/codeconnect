@@ -115,14 +115,17 @@ public class IruckseoInsertController {
 	//이력서 미리보기 list 출력하기
 	@GetMapping("/resumehome/personallist")
 	public String personallist(Model model, @ModelAttribute("pedto") IruckseoInsertDto pedto,
-			                                @ModelAttribute("scdto") IruckseoSchoolDto scdto) {
+			                                @ModelAttribute("scdto") IruckseoSchoolDto scdto,
+			                                @ModelAttribute("cadto") IruckseoCareerDto cadto) {
 		
 		List<IruckseoInsertDto> peDto = irservice.allPersonalDatas(pedto);
 		List<IruckseoSchoolDto> scDto = irservice.allSchoolDatas(scdto);
+		List<IruckseoCareerDto> caDto = irservice.allCareerDatas(cadto);
 		
 
 		model.addAttribute("peDto", peDto);
 		model.addAttribute("scDto", scDto);
+		model.addAttribute("caDto", caDto);
 		
 		return "personallist";
 	}

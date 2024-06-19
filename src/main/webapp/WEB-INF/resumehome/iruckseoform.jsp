@@ -2906,8 +2906,9 @@
 				        <div>
 				        <h5><b>학력</b></h5>	       
 				        <hr>
+				        
 				        <c:forEach items="${scDto}" var="school">
-	                        <span>${school.schoolName }</span>
+	                        <span>${school.school_Name }</span>
 	                        <br>
                         </c:forEach>
 				        
