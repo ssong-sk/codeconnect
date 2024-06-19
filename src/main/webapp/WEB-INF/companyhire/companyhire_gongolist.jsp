@@ -222,7 +222,7 @@
             <div class="header">
                 <h1>채용공고 관리</h1>
                 <div class="search-bar">
-                    <input type="text" class="form-control" placeholder="지원자 검색">
+                    <input type="text" class="form-control" placeholder="공고 검색">
                     <button class="btn btn-primary ms-2"><i class="bi bi-search"></i></button>
                 </div>
             </div>
