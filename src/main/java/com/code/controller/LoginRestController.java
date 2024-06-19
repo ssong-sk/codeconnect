@@ -35,6 +35,7 @@ public class LoginRestController {
 			session.setAttribute("loginok", "yes");
 			session.setAttribute("myid", r_id);
 			session.setAttribute("loginname", mdto.getR_name());
+			session.setAttribute("r_num", mdto.getR_num());
 		
 		}
 		
