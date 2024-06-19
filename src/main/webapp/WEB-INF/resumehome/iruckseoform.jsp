@@ -2909,6 +2909,7 @@
 				        <c:forEach items="${scDto}" var="school">
 	                        <span>${school.schoolName }</span>
 	                        <br>
+	                        
                         </c:forEach>
 				        
 				        
