@@ -1,0 +1,113 @@
+public Map<String, Object> portfolioinsert(@ModelAttribute IruckseoPortfolioDto podto,@RequestParam MultipartFile po_upload,
+    		HttpSession session) {
+    	
+        String path = session.getServletContext().getRealPath("/iruckseoportfolio");
+        //System.out.println(path);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+
+        // 파일 업로드 처리
+        if (po_upload != null && !po_upload.isEmpty()) {
+            String uploadfileName = sdf.format(new Date()) + "_" + po_upload.getOriginalFilename();
+            podto.setPo_file(uploadfileName);
+            //System.out.println(uploadfileName);
+            
+
+            try {
+                po_upload.transferTo(new File(path + "\\" + uploadfileName));
+            } catch (IllegalStateException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        } else {
+            podto.setPo_file("no");
+        }
+
+        Map<String, Object> pomap = new HashMap<>();
+        
+        // 최종 insert
+        irservice.insertPortfolio(podto);
+        
+        // 데이터 리스트 가져오기
+        List<IruckseoPortfolioDto> polist = irservice.OnePortfolioDatas(podto);
+        
+        // 반환할 데이터 맵에 추가
+        pomap.put("podto", podto);
+        pomap.put("polist", polist);
+        
+        return pomap;
+
+
+
+
+
+
+
+
+
+
+
+
+
+//포트폴리오 저장시 insert
+                       $(document).on("click", "#portfolioOk", function() {
+						  
+                    	   var poData  = {
+                    			   
+                    			   pe_num : $('#pe_num').val(),
+                    			   pe_file: $('input[name="pe_file"]').val(),
+                    	   }
+						
+						    // FormData에 입력된 데이터를 추가
+						    formData.append('pe_num', $('#pe_num').val());
+						    console.log("Form Datatest:", formData);
+						    
+						    // 파일 선택 요소의 파일을 FormData에 추가
+						    var poFileInput = $('input[name="po_upload"]')[0]; // 파일 input 요소를 선택
+						    if (poFileInput.files.length > 0) {
+						        formData.append('po_upload', poFileInput.files[0]); // 'po_upload'는 서버에서 사용되는 파라미터 이름과 일치
+						    }
+						
+						    console.log("Form Data:", formData);
+						    console.log("File Input:", poFileInput);
+
+						    // AJAX 요청 보내기
+						    $.ajax({
+						        type: "post",
+						        url: "portfolioinsert",
+						        data: formData,
+						        processData: false, // FormData를 문자열로 변환하지 않음
+						        contentType: false, // multipart/form-data 형식으로 보내기 위해 false로 설정
+						        dataType: "json",
+						        success: function(res) {
+						        	 console.log("Server Response:", res);
+						            var po_num = res.polist[0].po_num;
+						            var po_file = res.polist[0].po_file;
+
+						            // 리스트에 추가할 HTML 코드 생성
+						            var po = '<table>' +
+						                     '<tr>' +
+						                     '<td class="form-group">';
+						                     
+						                     if (po_file !== 'no') { // 파일이 있는 경우에만 링크 추가
+						                    	    var filePath = "../iruckseoportfolio/" + po_file; // 포트폴리오 파일이 저장된 경로
+						                    	    po += '<a href="' + filePath + '">' +
+						                    	          '<span><b>' + po_file + '</b></span>' +
+						                    	          '</a>';
+						                    	}
+								            po += '<span style="cursor: pointer;"><i class="bi bi-pencil seupdate" po_num=' + po_num + '></i></span>' +
+								                  '<span style="cursor: pointer;"><i class="bi bi-trash3 sedelete" po_num=' + po_num + '></i></span>' +
+								                  '</td>' +
+								                  '</tr>' +
+								                  '</table>';
+	                     		       
+	                     		       //list 나타내기
+	                     		       $("#portfolioList").append(po);
+	                     		       
+	                     		       //form 리셋
+	                     		       $("#portfolioform").html("");
+	                     	   }
+                    	   })
+                       })

@@ -17,7 +17,7 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="/css/main.css">
+
 
 </head>
 <c:set var="root" value="<%=request.getContextPath()%>" />

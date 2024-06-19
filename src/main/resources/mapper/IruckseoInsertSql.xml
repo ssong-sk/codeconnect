@@ -1,12 +1,349 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.code.mapper.IruckseoInsertMapperInter">
-   <insert id="insertSchool" parameterType="IruckseoSchoolDto">
-     insert into school (sc_category, sc_hi_name, sc_hi_transfer, sc_hi_check, sc_hi_iphack, sc_hi_jolup, sc_hi_major, sc_uni_category,
-     sc_uni_name, sc_uni_transfer, sc_uni_major, sc_uni_check, sc_uni_iphack, sc_uni_jolup, sc_uni_grade, sc_uni_sum) 
-     values (#{sc_category }, #{sc_hi_name },#{sc_hi_transfer },#{sc_hi_check },#{sc_hi_iphack },#{sc_hi_jolup },#{sc_hi_major },
-     #{sc_uni_category },#{sc_uni_name }, #{sc_uni_transfer },#{sc_uni_major },#{sc_uni_check },#{sc_uni_iphack },
-     #{sc_uni_jolup },#{sc_uni_grade },#{sc_uni_sum })
+
+   <!--이력서  pe_num 미리 넣기 및 insert -->
+   <insert id="insertPersonal" parameterType="IruckseoInsertDto" useGeneratedKeys="true" keyProperty="pe_num">
+	    <selectKey keyProperty="pe_num" resultType="int" order="BEFORE">
+	        select MAX(IFNULL(X.pe_num,0)) + 1 
+	        from ( 
+            	  select MAX(pe_num) AS pe_num   from personal union all
+            	  select '0' as pe_num from dual
+                  ) X;
+	    </selectKey>
+	    insert into personal
+	    (pe_num, r_num, pe_writeday)
+	    values (#{pe_num},#{r_num}, now())
+    </insert>
+    
+    <!-- 이력서 수정하기 -->
+   <update id="updatePersonal" parameterType="IruckseoInsertDto">
+     update personal set 
+     pe_image=#{pe_image}, pe_category=#{pe_category}, pe_title=#{pe_title}, pe_filepath=#{pe_filepath}
+     where
+     pe_num = #{pe_num}
+   </update>
+   
+   <!-- 이력서 인적사항 list 출력 -->
+   <select id="allPersonalDatas" parameterType="IruckseoInsertDto" resultType="IruckseoInsertDto">
+     select * from personal where pe_num = #{pe_num} order by pe_num ASC
+   </select>
+   
+   <!-- school 학력 단건 list 출력 -->
+   <select id="OnePersonalDatas" parameterType="IruckseoInsertDto"    resultType="IruckseoInsertDto">
+     select * from personal where pe_num = #{pe_num} order by pe_num asc
+   </select>
+
+   <!-- school 학력 insert -->
+	<insert id="insertSchool" parameterType="IruckseoSchoolDto"  useGeneratedKeys="true" keyProperty="sc_num">
+		<selectKey keyProperty="sc_num" resultType="int" order="BEFORE">
+	        select MAX(IFNULL(X.sc_num,0)) + 1 
+	        from ( 
+            	  select MAX(sc_num) AS sc_num   from school union all
+            	  select '0' as sc_num from dual
+                  ) X 
+	    </selectKey>	
+     insert into school 
+     (
+     	pe_num,sc_num, sc_category, sc_hi_name, sc_hi_transfer, sc_hi_check, sc_hi_iphack, sc_hi_jolup, sc_hi_major, sc_uni_category,
+     	sc_uni_name, sc_uni_transfer, sc_uni_major, sc_uni_check, sc_uni_iphack, sc_uni_jolup, sc_uni_grade, sc_uni_sum
+     ) 
+     values 
+     (
+     	#{pe_num},#{sc_num}, #{sc_category }, #{sc_hi_name },#{sc_hi_transfer },#{sc_hi_check },#{sc_hi_iphack },#{sc_hi_jolup },#{sc_hi_major },
+     	#{sc_uni_category },#{sc_uni_name }, #{sc_uni_transfer },#{sc_uni_major },#{sc_uni_check },#{sc_uni_iphack },
+     	#{sc_uni_jolup },#{sc_uni_grade },#{sc_uni_sum }
+	 )
    </insert>
    
+   <!-- school 학력 단건 list 출력 -->
+   <select id="OneSchoolDatas" parameterType="IruckseoSchoolDto"    resultType="IruckseoSchoolDto">
+     select * from school where pe_num = #{pe_num} and sc_num = #{sc_num} order by sc_num asc
+   </select>
+   
+   <!-- school 학력 전체 list 출력 -->
+   <select id="allSchoolDatas" parameterType="IruckseoSchoolDto" resultType="IruckseoSchoolDto">
+     select * from school where pe_num = #{pe_num} order by sc_num ASC
+   </select>
+   
+   <!-- 학력 sc_num값 넘기기 -->
+   <select id="selectNumSchool" parameterType="int" resultType="IruckseoSchoolDto">
+     select * from school where sc_num = #{sc_num}
+   </select>
+   
+   <!-- school 학력 업데이트 -->
+   <update id="updateSchool" parameterType="IruckseoSchoolDto">
+     update school set 
+     sc_category=#{sc_category}, sc_hi_name=#{sc_hi_name}, sc_hi_transfer=#{sc_hi_transfer}, sc_hi_check=#{sc_hi_check}, 
+     sc_hi_iphack=#{sc_hi_iphack}, sc_hi_jolup=#{sc_hi_jolup}, sc_hi_major=#{sc_hi_major}, 
+     sc_uni_category=#{sc_uni_category}, sc_uni_name=#{sc_uni_name}, sc_uni_transfer=#{sc_uni_transfer}, sc_uni_major=#{sc_uni_major},
+     sc_uni_check=#{sc_uni_check}, sc_uni_iphack=#{sc_uni_iphack}, sc_uni_jolup=#{sc_uni_jolup}, sc_uni_grade=#{sc_uni_grade},
+     sc_uni_sum=#{sc_uni_sum }
+     where
+     sc_num = #{sc_num}
+   </update>
+   
+   <!-- 학력 삭제 -->
+   <delete id="deleteSchool" parameterType="int">
+     delete from school where sc_num = #{sc_num}
+   </delete>
+   
+   <!-- 경력 insert -->
+   <insert id="insertCareer" parameterType="IruckseoCareerDto"  useGeneratedKeys="true" keyProperty="ca_num">
+		<selectKey keyProperty="ca_num" resultType="int" order="BEFORE">
+	        select MAX(IFNULL(X.ca_num,0)) + 1 
+	        FROM ( 
+            	  select MAX(ca_num) AS ca_num from career union all
+            	  select '0' as ca_num fROM DUAL
+                  ) X 
+	    </selectKey>	
+     insert into career 
+     (
+     	pe_num, ca_num, ca_name, ca_ipsa, ca_resign, ca_work, ca_position, ca_content
+     ) 
+     values 
+     (
+     	#{pe_num}, #{ca_num}, #{ca_name }, #{ca_ipsa }, #{ca_resign }, #{ca_work }, #{ca_position }, #{ca_content }
+	 )
+   </insert>
+   
+   <!-- 경력 단건 출력 list -->
+   <select id="OneCareerDatas" parameterType="IruckseoCareerDto"  resultType="IruckseoCareerDto">
+     select * from career where pe_num = #{pe_num} and ca_num = #{ca_num} order by ca_num asc
+   </select>
+   
+   <!-- 경력 전체 출력 list -->
+   <select id="allCareerDatas" parameterType="IruckseoCareerDto" resultType="IruckseoCareerDto">
+     select * from career where pe_num = #{pe_num} order by ca_num asc
+   </select>
+   
+   <!-- 경력 ca_num값 넘기기 -->
+   <select id="selectNumCareer" parameterType="int" resultType="IruckseoCareerDto">
+     select * from career where ca_num = #{ca_num}
+   </select>
+   
+   <!-- 경력 updete -->
+   <update id="updateCareer" parameterType="IruckseoCareerDto">
+     update career set 
+     ca_name=#{ca_name}, ca_ipsa=#{ca_ipsa}, ca_resign=#{ca_resign}, ca_work=#{ca_work}, ca_position=#{ca_position}, ca_content=#{ca_content}
+     where
+     ca_num = #{ca_num}
+   </update>
+   
+   <!-- 경력 삭제 -->
+   <delete id="deleteCareer" parameterType="int">
+     delete from career where ca_num = #{ca_num}
+   </delete>
+   
+   <!-- 경험활동 insert -->
+	<insert id="insertActibity" parameterType="IruckseoActibityDto"  useGeneratedKeys="true" keyProperty="ac_num">
+		<selectKey keyProperty="ac_num" resultType="int" order="BEFORE">
+	        select MAX(IFNULL(X.ac_num,0)) + 1 
+	        from ( 
+            	  select MAX(ac_num) AS ac_num   from actibity union all
+            	  select '0' as ac_num from dual
+                  ) X 
+	    </selectKey>	
+     insert into actibity 
+     (
+     	pe_num,ac_num, ac_category, ac_name, ac_start, ac_end, ac_content
+     ) 
+     values 
+     (
+     	#{pe_num},#{ac_num}, #{ac_category }, #{ac_name },#{ac_start },#{ac_end },#{ac_content }
+	 )
+   </insert>
+   
+   <!-- 경험활동 단건 출력 list -->
+   <select id="OneActibityDatas" parameterType="IruckseoActibityDto"  resultType="IruckseoActibityDto">
+     select * from actibity where pe_num = #{pe_num} and ac_num = #{ac_num} order by ac_num asc
+   </select>
+   
+   <!-- 경험활동 list 나오기 전체 -->
+   <select id="allActibityDatas" parameterType="IruckseoActibityDto" resultType="IruckseoActibityDto">
+     select * from actibity where pe_num = #{pe_num} order by ac_num asc
+   </select>
+   
+   <!-- 경험활동 num 값 넘기기 -->
+   <select id="selectNumActibity" parameterType="int" resultType="IruckseoActibityDto">
+     select * from actibity where ac_num = #{ac_num}
+   </select>
+   
+   <!-- 경험활동 수정하기 -->
+   <update id="updateActibity" parameterType="IruckseoActibityDto">
+     update actibity set 
+     ac_category=#{ac_category}, ac_name=#{ac_name}, ac_start=#{ac_start}, ac_end=#{ac_end}, ac_content=#{ac_content}
+     where
+     ac_num = #{ac_num}
+   </update>
+   
+   <!-- 경험활동 삭제하기 -->
+   <delete id="deleteActibity" parameterType="int">
+     delete from actibity where ac_num = #{ac_num}
+   </delete>
+   
+   <!-- 스펙 insert -->
+	<insert id="insertSpec" parameterType="IruckseoSpecDto"  useGeneratedKeys="true" keyProperty="sp_num">
+		<selectKey keyProperty="sp_num" resultType="int" order="BEFORE">
+	        select MAX(IFNULL(X.sp_num,0)) + 1 
+	        from ( 
+            	  select MAX(sp_num) AS sp_num   from spec union all
+            	  select '0' as sp_num from dual
+                  ) X 
+	    </selectKey>	
+     insert into spec 
+     (
+     	pe_num, sp_num, sp_category, sp_ce_name, sp_ce_organization, sp_ce_pass, sp_ce_passday, sp_la_name, sp_la_passday,
+     	sp_la_grade, sp_aw_name, sp_aw_organization, sp_aw_sangday
+     ) 
+     values 
+     (
+     	#{pe_num},#{sp_num}, #{sp_category }, #{sp_ce_name },#{sp_ce_organization },#{sp_ce_pass },#{sp_ce_passday },
+     	#{sp_la_name }, #{sp_la_passday }, #{sp_la_grade }, #{sp_aw_name }, #{sp_aw_organization }, #{sp_aw_sangday }
+	 )
+   </insert>
+   
+   <!-- 스펙 단건 출력 list -->
+   <select id="OneSpecDatas" parameterType="IruckseoSpecDto"  resultType="IruckseoSpecDto">
+     select * from spec where pe_num = #{pe_num} and sp_num = #{sp_num} order by sp_num asc
+   </select>
+   
+   <!-- 스펙 list 나오기 전체 -->
+   <select id="allSpecDatas" parameterType="IruckseoSpecDto" resultType="IruckseoSpecDto">
+     select * from spec where pe_num = #{pe_num} order by sp_num asc
+   </select>
+   
+   <!-- 스펙 num 값 넘기기 -->
+   <select id="selectNumSpec" parameterType="int" resultType="IruckseoSpecDto">
+     select * from spec where sp_num = #{sp_num}
+   </select>
+   
+   <!-- 스펙 수정하기 -->
+   <update id="updateSpec" parameterType="IruckseoSpecDto">
+     update spec set 
+     sp_category=#{sp_category}, sp_ce_name=#{sp_ce_name}, sp_ce_organization=#{sp_ce_organization}, sp_ce_pass=#{sp_ce_pass}, 
+     sp_ce_passday=#{sp_ce_passday}, sp_la_name=#{sp_la_name}, sp_la_passday=#{sp_la_passday}, sp_la_grade=#{sp_la_grade},
+     sp_aw_name=#{sp_aw_name}, sp_aw_organization=#{sp_aw_organization}, sp_aw_sangday=#{sp_aw_sangday}
+     where
+     sp_num = #{sp_num}
+   </update>
+   
+   <!-- 스펙 삭제하기 -->
+   <delete id="deleteSpec" parameterType="int">
+     delete from spec where sp_num = #{sp_num}
+   </delete>
+   
+   <!-- 포트폴리오 insert -->
+	<insert id="insertPortfolio" parameterType="IruckseoPortfolioDto"  useGeneratedKeys="true" keyProperty="po_num">
+		<selectKey keyProperty="po_num" resultType="int" order="BEFORE">
+	        select MAX(IFNULL(X.po_num,0)) + 1 
+	        from ( 
+            	  select MAX(po_num) AS po_num from portfolio union all
+            	  select '0' as po_num from dual
+                  ) X 
+	    </selectKey>	
+     insert into portfolio 
+     (
+     	pe_num, po_num, po_file, po_filepath
+     ) 
+     values 
+     (
+     	#{pe_num},#{po_num}, #{po_file }, #{po_filepath }
+	 )
+   </insert>
+   
+   <!-- 포트폴리오 단건 출력 list -->
+   <select id="OnePortfolioDatas" parameterType="IruckseoPortfolioDto"  resultType="IruckseoPortfolioDto">
+     select * from portfolio where pe_num = #{pe_num} and po_num = #{po_num} order by po_num asc
+   </select>
+   
+   <!-- 포트폴리오 삭제하기 -->
+   <delete id="deletePortfolio" parameterType="int">
+     delete from portfolio where po_num = #{po_num}
+   </delete>
+   
+   <!-- 자기소개서 insert -->
+	<insert id="insertSelf" parameterType="IruckseoSelfDto"  useGeneratedKeys="true" keyProperty="se_num">
+		<selectKey keyProperty="se_num" resultType="int" order="BEFORE">
+	        select MAX(IFNULL(X.se_num,0)) + 1 
+	        from ( 
+            	  select MAX(se_num) AS se_num   from self union all
+            	  select '0' as se_num from dual
+                  ) X 
+	    </selectKey>	
+     insert into self 
+     (
+     	pe_num, se_num, se_subject, se_content
+     ) 
+     values 
+     (
+     	#{pe_num},#{se_num}, #{se_subject }, #{se_content }
+	 )
+   </insert>
+   
+   <!-- 자기소개서 단건 출력 list -->
+   <select id="OneSelfDatas" parameterType="IruckseoSelfDto"  resultType="IruckseoSelfDto">
+     select * from self where pe_num = #{pe_num} and se_num = #{se_num} order by se_num asc
+   </select>
+   
+   <!-- 자기소개서 list 나오기 전체 -->
+   <select id="allSelfDatas" parameterType="IruckseoSelfDto" resultType="IruckseoSelfDto">
+     select * from self where pe_num = #{pe_num} order by se_num asc
+   </select>
+   
+   <!-- 자기소개서 num 값 넘기기 -->
+   <select id="selectNumSelf" parameterType="int" resultType="IruckseoSelfDto">
+     select * from self where se_num = #{se_num}
+   </select>
+   
+   <!-- 자기소개서 수정하기 -->
+   <update id="updateSelf" parameterType="IruckseoSelfDto">
+     update self set 
+     se_subject=#{se_subject}, se_content=#{se_content}
+     where
+     se_num = #{se_num}
+   </update>
+   
+   <!-- 자기소개서 삭제하기 -->
+   <delete id="deleteSelf" parameterType="int">
+     delete from self where se_num = #{se_num}
+   </delete>
+   
+   <!-- 희망조건 insert -->
+   <insert id="insertHope" parameterType="IruckseoHopeDto"  useGeneratedKeys="true" keyProperty="ho_num">
+		<selectKey keyProperty="ho_num" resultType="int" order="BEFORE">
+	        select MAX(IFNULL(X.ho_num,0)) + 1 
+	        from ( 
+            	  select MAX(ho_num) AS ho_num   from hope union all
+            	  select '0' as ho_num from dual
+                  ) X 
+	    </selectKey>	
+     insert into hope 
+     (
+     	pe_num,ho_num, ho_category, ho_money, ho_check, ho_addr, ho_keyword
+     ) 
+     values 
+     (
+     	#{pe_num},#{ho_num}, #{ho_category }, #{ho_money },#{ho_check },#{ho_addr },#{ho_keyword }
+	 )
+   </insert>
+   
+   <!-- 희망조건 단건 출력 list -->
+   <select id="OneHopeDatas" parameterType="IruckseoHopeDto"  resultType="IruckseoHopeDto">
+     select * from hope where pe_num = #{pe_num} and ho_num = #{ho_num} order by ho_num asc
+   </select>
+   
+   <!-- 희망조건 list 나오기 전체 -->
+   <select id="allHopeDatas" parameterType="IruckseoHopeDto" resultType="IruckseoHopeDto">
+     select * from hope where pe_num = #{pe_num} order by ho_num asc
+   </select>
+   
+   <!-- 희망조건 수정하기 -->
+   <update id="updateHope" parameterType="IruckseoHopeDto">
+     update hope set 
+     ho_category=#{ho_category}, ho_money=#{ho_money}, ho_check=#{ho_check}, ho_addr=#{ho_addr}, ho_keyword=#{ho_keyword}
+     where
+     ho_num = #{ho_num}
+   </update>
+
 </mapper>
