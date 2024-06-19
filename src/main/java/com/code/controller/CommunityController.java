@@ -2,6 +2,9 @@ package com.code.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -40,7 +43,6 @@ public class CommunityController {
 
         int totalCount = service.getTotalCountByType("home");
         List<CommunityDto> list = service.getAllDatasByType("home");
-        
         List<CommunityDto> newcomerList=service.getAllDatasByCategory("신입");
         List<CommunityDto> prepareList=service.getAllDatasByCategory("취준");
         List<CommunityDto> letterList=service.getAllDatasByCategory("자소서");
@@ -86,7 +88,7 @@ public class CommunityController {
         dto.setCom_post_type("home"); //com_post_type을 'home'으로 설정
         
         service.insertCommunity(dto);
-        return "redirect:/community/homelist";
+		return "redirect:/community/homelist";
     }
 
     @GetMapping("/community/homeupdateform")
@@ -245,15 +247,44 @@ public class CommunityController {
         return "community/homeform"; // "community/homeform.jsp"로 매핑
     }
     
+//    @GetMapping("/community/hometotalpost")
+//    public String homeTotalPost(Model model)
+//    {
+//    	List<CommunityDto> list=service.getAllDatasByType("home");
+//    	
+//    	model.addAttribute("list", list);
+//    	
+//    	return "community/hometotalpost";
+//    }
+    
+	/*
+	 * @GetMapping("/community/hometotalpost") public String homeTotalPost(Model
+	 * model, @RequestParam(value = "category", required = false) String category) {
+	 * 
+	 * List<CommunityDto> list; if (category == null || category.isEmpty()) { list =
+	 * service.getAllDatasByType("home"); } else { list =
+	 * service.getAllDatasByCategory(category); } model.addAttribute("list", list);
+	 * model.addAttribute("category", category == null ? "전체" : category); // 카테고리가
+	 * 없을 경우 "전체"로 설정 return "community/hometotalpost"; }
+	 */
+    
     @GetMapping("/community/hometotalpost")
-    public String homeTotalPost(Model model)
-    {
-    	List<CommunityDto> list=service.getAllDatasByType("home");
-    	
-    	model.addAttribute("list", list);
-    	
-    	return "community/hometotalpost";
-    }
+    public String homeTotalPost(Model model, @RequestParam(value = "category", required = false) String category) {
+        if (category != null) {
+            category = URLDecoder.decode(category, StandardCharsets.UTF_8);
+        }
+        List<CommunityDto> list;
+        if (category == null || category.isEmpty() || category.equals("전체글")) {
+            list = service.getAllDatasByType("home");
+            category = "전체";
+        } else {
+            list = service.getAllDatasByCategory(category);
+        }
+        
+        model.addAttribute("list", list);
+        model.addAttribute("category", category);
+        return "community/hometotalpost";
+   }
     
     @GetMapping("community/homefavoritelist")
     public String homeFavoriteList(Model model)

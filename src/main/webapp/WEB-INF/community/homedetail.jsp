@@ -269,7 +269,7 @@
                     type: "get",
                     dataType: "html",
                     url: "${pageContext.request.contextPath}/community/adelete",
-                    data: { cc_idx: cc_idx },
+                    data: { cc_idx: cc_idx, cc_num: ${dto.com_num} },
                     success: function() {
                         //alert("삭제 완료!");
                         listComments();
@@ -283,7 +283,7 @@
         listComments();
     });
     
-
+	//댓글 목록
     function listComments() {
         var cc_num = ${dto.com_num};
         $.ajax({
@@ -466,4 +466,3 @@
 </div>
 </body>
 </html>
-
