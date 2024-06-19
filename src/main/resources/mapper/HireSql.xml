@@ -28,7 +28,7 @@
             h_tech REGEXP #{search_tech}
         </when>
         <when test="search_job != null and search_tech != null">
-            h_job REGEXP #{search_job} and h_tech REGEXP #{search_tech})
+            h_job REGEXP #{search_job} and h_tech REGEXP #{search_tech}
         </when>
     </choose>
 </select>
