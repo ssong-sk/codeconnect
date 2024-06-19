@@ -26,7 +26,7 @@
     }
     .sidebar {
         width: 250px;
-        height:530px;
+        height:540px;
         border: 1px solid #E0E0E0;
         padding: 20px;
         background-color: #fff;
@@ -123,6 +123,8 @@
         color: #fff;
     }
     .tabs button.active {
+    	background-color: #f0f4ff; /* Light sky blue */
+    	color: #007bff;
         border-bottom: 2px solid #0d6efd;
         font-weight: bold;
     }

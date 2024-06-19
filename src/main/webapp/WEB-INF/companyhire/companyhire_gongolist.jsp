@@ -26,7 +26,7 @@
     }
     .sidebar {
         width: 250px;
-        height: 530px;
+        height: 540px;
         border: 1px solid #E0E0E0;
         padding: 20px;
         background-color: #fff;
@@ -122,7 +122,9 @@
         color: #fff;
     }
     .tabs button.active {
-        border-bottom: 2px solid #0d6efd;
+        background-color: #f0f4ff; /* Light sky blue */
+        color: #007bff;
+        border-bottom: 2px solid #007bff;
         font-weight: bold;
     }
     .table-responsive {
@@ -218,7 +220,7 @@
         
         <div class="main-content-wrapper">
             <div class="header">
-                <h1>제안 보낸 인재풀 관리</h1>
+                <h1>채용공고 관리</h1>
                 <div class="search-bar">
                     <input type="text" class="form-control" placeholder="지원자 검색">
                     <button class="btn btn-primary ms-2"><i class="bi bi-search"></i></button>

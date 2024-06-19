@@ -26,7 +26,7 @@
     }
     .sidebar {
         width: 250px;
-        height: 530px;
+        height: 540px;
         border: 1px solid #E0E0E0;
         padding: 20px;
         background-color: #fff;
@@ -104,96 +104,83 @@
         margin-left: 10px;
         padding: 5px;
     }
-    .tabs {
+    .table-section {
         display: flex;
         justify-content: space-between;
-        margin-bottom: 20px;
+        gap: 10px;
     }
-    .tabs button {
-        flex-grow: 1;
-        padding: 10px;
-        border: 1px solid #ddd;
+    .table-column {
+        flex: 1;
+        border: 1px solid #E0E0E0;
+        border-radius: 10px;
         background-color: #fff;
+    }
+    .table-column h5 {
+        text-align: left;
+        padding: 10px 10px;
+        border-bottom: 1px solid #E0E0E0;
+        margin: 0;
+        background-color: #f8f9fa;
+    }
+    .table-wrapper {
+        padding: 10px;
+    }
+    .table-responsive {
+        margin-top: 10px;
+    }
+    .candidate-card {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border: 1px solid #E0E0E0;
+        border-radius: 5px;
+        padding: 10px;
+        margin-bottom: 10px;
+        background-color: #f8f9fa;
+    }
+    .candidate-info {
+        display: flex;
+        align-items: center;
+    }
+    .candidate-photo {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: #ddd;
+        margin-right: 10px;
+    }
+    .candidate-details {
+        display: flex;
+        flex-direction: column;
+    }
+    .candidate-name {
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+    .candidate-position,
+    .candidate-status,
+    .candidate-date {
+        font-size: 0.9em;
+        color: #555;
+    }
+    .candidate-actions {
+        display: flex;
+        flex-direction: column;
+    }
+    .action-btn {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 5px 10px;
+        margin-bottom: 5px;
         cursor: pointer;
         transition: background-color 0.3s;
     }
-    .tabs button:hover {
-        background-color: #0d6efd;
-        color: #fff;
-    }
-    .tabs button.active {
-        border-bottom: 2px solid #0d6efd;
-        font-weight: bold;
-    }
-    .table-responsive {
-        margin-top: 20px;
-    }
-    table {
-        table-layout: fixed;
-        width: 100%;
-        border-collapse: collapse;
-    }
-    .table-hover th, td {
-        text-overflow: ellipsis;
-        overflow: hidden;
-      
-    }
-    .table th {
-        background-color: #f2f2f2;
-        color: #000;
-    }
-    .table-hover td {
-        background-color: #fff;
-        color: #000;
-    }
-    th:nth-child(1), td:nth-child(1) {
-        width: 5%;
-    }
-    th:nth-child(2), td:nth-child(2) {
-        width: 30%;
-    }
-    th:nth-child(3), td:nth-child(3) {
-        width: 25%;
-    }
-    th:nth-child(4), td:nth-child(4) {
-        width: 15%;
-    }
-    th:nth-child(5), td:nth-child(5) {
-        width: 25%;
+    .action-btn:hover {
+        background-color: #0056b3;
     }
 </style>
-<script>
-    $(document).ready(function() {
-        function filterTable(tabType) {
-            let today = new Date().toISOString().split('T')[0];
-            let counter = 1;
-            $('tbody tr').each(function() {
-                let endDate = $(this).find('td:last').text();
-                $(this).show();
-                if (tabType === '채용중') {
-                    if (endDate !== '상시모집' && endDate <= today) {
-                        $(this).hide();
-                    }
-                } else if (tabType === '채용종료') {
-                    if (endDate === '상시모집' || endDate > today) {
-                        $(this).hide();
-                    }
-                }
-                if ($(this).is(':visible')) {
-                    $(this).find('td:first').text(counter++);
-                }
-            });
-        }
-
-        $('.tabs button').click(function() {
-            $('.tabs button').removeClass('active');
-            $(this).addClass('active');
-            filterTable($(this).text());
-        });
-
-        filterTable('공고 전체');
-    });
-</script>
 </head>
 <body>
 <div class="wrapper">
@@ -224,88 +211,126 @@
                     <button class="btn btn-primary ms-2"><i class="bi bi-search"></i></button>
                 </div>
             </div>
-           
-            <!-- 채워야할 부분 -->
-            <div class="tabs">
-                <button class="active">제안 인재</button>
-                <button>수락 인재</button>
-                <button>최종합격</button>
+            
+            <div class="table-section">
+                <div class="table-column">
+                    <h5>제안 인재</h5>
+                    <div class="table-wrapper">
+                        <div class="table-responsive">
+                            <div class="candidate-card">
+                                <div class="candidate-info">
+                                    <div class="candidate-photo"></div>
+                                    <div class="candidate-details">
+                                        <div class="candidate-name">이름</div>
+                                        <div class="candidate-position">제안한 포지션</div>
+                                        <div class="candidate-status">제안 수락 여부</div>
+                                        <div class="candidate-date">지원 날짜</div>
+                                    </div>
+                                </div>
+                                <div class="candidate-actions">
+                                    <button class="action-btn">지원서 확인</button>
+                                    <button class="action-btn">여기가능함</button>
+                                </div>
+                            </div>
+                            <!-- Repeat for more candidates -->
+                            <div class="candidate-card">
+                                <div class="candidate-info">
+                                    <div class="candidate-photo"></div>
+                                    <div class="candidate-details">
+                                        <div class="candidate-name">이름</div>
+                                        <div class="candidate-position">제안한 포지션</div>
+                                        <div class="candidate-status">제안 수락 여부</div>
+                                        <div class="candidate-date">지원 날짜</div>
+                                    </div>
+                                </div>
+                                <div class="candidate-actions">
+                                    <button class="action-btn">지원서 확인</button>
+                                    <button class="action-btn">여기가능함</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="table-column">
+                    <h5>수락 인재</h5>
+                    <div class="table-wrapper">
+                        <div class="table-responsive">
+                            <div class="candidate-card">
+                                <div class="candidate-info">
+                                    <div class="candidate-photo"></div>
+                                    <div class="candidate-details">
+                                        <div class="candidate-name">이름</div>
+                                        <div class="candidate-position">제안한 포지션</div>
+                                        <div class="candidate-status">제안 수락 여부</div>
+                                        <div class="candidate-date">지원 날짜</div>
+                                    </div>
+                                </div>
+                                <div class="candidate-actions">
+                                    <button class="action-btn">지원서 확인</button>
+                                    <button class="action-btn">여기가능함</button>
+                                </div>
+                            </div>
+                            <!-- Repeat for more candidates -->
+                            <div class="candidate-card">
+                                <div class="candidate-info">
+                                    <div class="candidate-photo"></div>
+                                    <div class="candidate-details">
+                                        <div class="candidate-name">이름</div>
+                                        <div class="candidate-position">제안한 포지션</div>
+                                        <div class="candidate-status">제안 수락 여부</div>
+                                        <div class="candidate-date">지원 날짜</div>
+                                    </div>
+                                </div>
+                                <div class="candidate-actions">
+                                    <button class="action-btn">지원서 확인</button>
+                                    <button class="action-btn">아직안정함</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="table-column">
+                    <h5>최종합격</h5>
+                    <div class="table-wrapper">
+                        <div class="table-responsive">
+                            <div class="candidate-card">
+                                <div class="candidate-info">
+                                    <div class="candidate-photo"></div>
+                                    <div class="candidate-details">
+                                        <div class="candidate-name">이름</div>
+                                        <div class="candidate-position">제안한 포지션</div>
+                                        <div class="candidate-status">제안 수락 여부</div>
+                                        <div class="candidate-date">지원 날짜</div>
+                                    </div>
+                                </div>
+                                <div class="candidate-actions">
+                                    <button class="action-btn">지원서 확인</button>
+                                    <button class="action-btn">아직안정함</button>
+                                </div>
+                            </div>
+                            <!-- Repeat for more candidates -->
+                            <div class="candidate-card">
+                                <div class="candidate-info">
+                                    <div class="candidate-photo"></div>
+                                    <div class="candidate-details">
+                                        <div class="candidate-name">이름</div>
+                                        <div class="candidate-position">제안한 포지션</div>
+                                        <div class="candidate-status">제안 수락 여부</div>
+                                        <div class="candidate-date">지원 날짜</div>
+                                    </div>
+                                </div>
+                                <div class="candidate-actions">
+                                    <button class="action-btn">지원서 확인</button>
+                                    <button class="action-btn">아직안정함</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             
-            <div class="table-responsive">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">제안 인재</h5>
-                        <p class="card-text">전체</p>
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">이름</th>
-                                    <th scope="col">포지션</th>
-                                    <th scope="col">상태</th>
-                                    <th scope="col">지원 날짜</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <!-- Rows will be dynamically inserted here -->
-                                <tr>
-                                    <td colspan="5" class="text-center">No data available</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">수락 인재</h5>
-                        <p class="card-text">전체</p>
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">이름</th>
-                                    <th scope="col">포지션</th>
-                                    <th scope="col">상태</th>
-                                    <th scope="col">지원 날짜</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <!-- Rows will be dynamically inserted here -->
-                                <tr>
-                                    <td colspan="5" class="text-center">No data available</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">최종합격</h5>
-                        <p class="card-text">전체</p>
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">이름</th>
-                                    <th scope="col">포지션</th>
-                                    <th scope="col">상태</th>
-                                    <th scope="col">지원 날짜</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <!-- Rows will be dynamically inserted here -->
-                                <tr>
-                                    <td colspan="5" class="text-center">No data available</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <!-- End of 채워야할 부분 -->
         </div>
     </div>
 </div>
