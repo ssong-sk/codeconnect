@@ -28,4 +28,11 @@ public interface CompanyMapperInter {
 	
 	//기업 회원 비밀번호 변경
     public void updateCompanyPass(CompanyDto dto);
+    
+   //기업 회원 기업명 변경
+    public void updateCompanyName(CompanyDto dto);
+    
+    //기업 사업자등록번호 변경
+    public void updateCompanyRegiNum(CompanyDto dto);
+    
 }

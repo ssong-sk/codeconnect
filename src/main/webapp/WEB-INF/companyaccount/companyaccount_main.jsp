@@ -253,7 +253,7 @@ body {
 						<p>기업명 변경</p>
 						<i class="bi bi-building-gear"></i>
 					</div>
-					<div class="option-card" onclick="location.href='changebusinessnum'">
+					<div class="option-card" onclick="location.href='updateRegiNumForm'">
 						<p>사업자등록번호 변경</p>
 						<i class="bi bi-shield-lock"></i>
 					</div>
@@ -264,5 +264,7 @@ body {
 			</div>
 		</div>
 	</div>
+	
+	
 </body>
 </html>

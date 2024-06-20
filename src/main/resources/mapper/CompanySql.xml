@@ -65,11 +65,24 @@
 	</select>
 
 	<!-- 기업 비밀번호 바꾸기 -->
-	<update id="updateCompanyPass">
+	<update id="updateCompanyPass"  parameterType="CompanyDto">
 		UPDATE company
 		SET c_pass = #{c_pass}
 		WHERE c_num = #{c_num}
 	</update>
 
+   <!-- 기업명 바꾸기 -->
+	<update id="updateCompanyName"  parameterType="CompanyDto">
+		UPDATE company
+		SET c_name = #{c_name}
+		WHERE c_num = #{c_num}
+	</update>
+	
+	<!-- 사업자등록번호 변경 -->
+	<update id="updateCompanyRegiNum"  parameterType="CompanyDto">
+		UPDATE company
+		SET c_reginum = #{c_reginum}, c_regi_file=#{c_regi_file}
+		WHERE c_num = #{c_num}
+	</update>
 
 </mapper>

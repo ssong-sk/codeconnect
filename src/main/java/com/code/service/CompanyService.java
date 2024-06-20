@@ -16,7 +16,7 @@ public class CompanyService implements CompanyServiceInter{
 
 	@Autowired
 	CompanyMapperInter cmapperInter;
-	
+
 	@Override
 	public void insertCompany(CompanyDto dto) {
 		// TODO Auto-generated method stub
@@ -44,11 +44,11 @@ public class CompanyService implements CompanyServiceInter{
 	@Override
 	public int loginIdPassCheck(String c_id,String c_pass) {
 		// TODO Auto-generated method stub
-		
+
 		Map<String, String> map=new HashMap<>();
 		map.put("c_id", c_id);
 		map.put("c_pass", c_pass);
-		
+
 		return cmapperInter.loginIdPassCheck(map);
 	}
 
@@ -76,22 +76,33 @@ public class CompanyService implements CompanyServiceInter{
 		cmapperInter.updateCompany(dto);
 	}
 
-	
+
 	//채용공고에서 사용
 	@Override
 	public int selectC_num(String c_id) {
 		return cmapperInter.selectC_num(c_id);
 	}
-	
+
 	//기업 비밀번호 update
 	@Override
 	public void updateCompanyPass(CompanyDto dto) {
-	    // 데이터베이스에 변경된 비밀번호를 반영하는 코드 작성
-	    // 예: MyBatis, JPA 등을 사용하여 업데이트 쿼리를 실행합니다.
+
 		cmapperInter.updateCompanyPass(dto);
 	}
 
-	
+	//기업명 update
+	@Override
+	public void updateCompanyName(CompanyDto dto) {
+		// TODO Auto-generated method stub
+		cmapperInter.updateCompanyName(dto);
+	}
+
+	//사업자등록번호 update	
+	@Override
+	public void updateCompanyRegiNum(CompanyDto dto) {
+		// TODO Auto-generated method stub
+		cmapperInter.updateCompanyRegiNum(dto);
+	}
 }
 
 

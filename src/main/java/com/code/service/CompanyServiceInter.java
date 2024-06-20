@@ -26,7 +26,12 @@ public interface CompanyServiceInter {
 	
 	//기업회원 비밀번호 update
 	public void updateCompanyPass(CompanyDto dto);
+
+	//기업회원 기업명 update
+	public void updateCompanyName(CompanyDto dto);
 	
+	//기업회원 사업자등록번호 update
+	public void updateCompanyRegiNum(CompanyDto dto);
 }
 
 
