@@ -39,11 +39,11 @@
 </select>
 
 <select id="getHireData" parameterType="int" resultType="hdto">
-   SELECT h.*, c.*, ci.* 
-   FROM hire h
-   JOIN company c ON h.h_c_num = c.c_num 
-   JOIN company_intro ci ON h.h_ci_num = ci.ci_num
-   where h.h_num = #{h_num}
+	SELECT h.*, c.*, ci.* 
+	FROM hire h
+	JOIN company c ON h.h_c_num = c.c_num 
+	JOIN company_intro ci ON h.h_ci_num = ci.ci_num
+	where h.h_num = #{h_num}
 </select>
 
 

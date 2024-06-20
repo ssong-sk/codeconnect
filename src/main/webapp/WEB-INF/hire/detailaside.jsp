@@ -235,9 +235,11 @@
     left: 100%; /* 처음에는 화면 밖으로 */
     transition: left 0.5s ease-in-out;
 }
+
 .banner img.active {
     left: 0; /* 활성화된 이미지를 화면 안으로 */
 }
+
 .banner img.previous {
     left: -100%; /* 이전 이미지를 화면 밖으로 */
     display: none;
