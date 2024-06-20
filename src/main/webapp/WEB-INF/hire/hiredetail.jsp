@@ -290,7 +290,16 @@ span.con{
 				<div class="content">
 					<div class="content_detail">
 						<span class="sub">경력</span>
-						<span class="con">${hdto.h_career }</span>
+						<span class="con">
+							<c:choose>
+						        <c:when test="${hdto.h_career == '신입'}">
+						            <c:out value="${hdto.h_career}" escapeXml="false"/>
+						        </c:when>
+						        <c:otherwise>
+	                                <c:out value="${hdto.h_career}년" escapeXml="false"/>
+						        </c:otherwise>
+						    </c:choose>
+						</span>
 					</div>
 					<div class="content_detail">
 						<span class="sub">학력</span>
