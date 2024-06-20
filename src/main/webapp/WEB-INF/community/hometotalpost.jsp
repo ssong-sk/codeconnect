@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,38 +11,38 @@
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <title>${category} 게시글</title>
 <style>
-	body {
-		font-family: 'IBM Plex Sans KR', sans-serif;
-	}
-	
-	/* 최상단 카테고리 nav */
-	.nav {
-		margin-top: 50px;
-		margin-left: 150px;
-	}
-	.nav ul {
-		list-style-type: none;
-		display: flex;
-		gap: 20px;
-		padding: 0;
-		justify-content: flex-start;
-		margin-top: 40px;
-		margin-left: 100px;
-	}
-	.nav ul a {
-	   display: block;
-	   color: gray;
-	   text-decoration: none;
-	   font-weight: 700;
-	   font-size: 17px;
-	   line-height: 32px;
-	   padding: 0 15px;
-	}
-	.nav ul .active {
-		color: blue;
-		border-bottom: 2px solid blue;
-	}
-	.post_list_wrap {
+    body {
+        font-family: 'IBM Plex Sans KR', sans-serif;
+    }
+    
+    /* 최상단 카테고리 nav */
+    .nav {
+        margin-top: 50px;
+        margin-left: 150px;
+    }
+    .nav ul {
+        list-style-type: none;
+        display: flex;
+        gap: 20px;
+        padding: 0;
+        justify-content: flex-start;
+        margin-top: 40px;
+        margin-left: 100px;
+    }
+    .nav ul a {
+       display: block;
+       color: gray;
+       text-decoration: none;
+       font-weight: 700;
+       font-size: 17px;
+       line-height: 32px;
+       padding: 0 15px;
+    }
+    .nav ul .active {
+        color: blue;
+        border-bottom: 2px solid blue;
+    }
+    .post_list_wrap {
         margin: 50px auto;
         max-width: 800px;
         padding: 20px;
@@ -56,15 +56,15 @@
     .post_list_wrap .post_item {
         margin-bottom: 20px;
     }
-	.container { 
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		margin-bottom: 20px;
-		max-width: 1200px;
+    .container { 
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        max-width: 1200px;
         margin: 50px auto;
-	}
-	.container h4 {
+    }
+    .container h4 {
         display: inline-block;
         color: black;
     }
@@ -75,68 +75,68 @@
         width: 100%;
     }
     .inpbox.line.filter {
-	    display: flex;
-	    justify-content: space-between;
-	    align-items: center;
-	}
-	.filter-box {
-	    border: 1px solid #d7dce5;
-	    padding: 10px;
-	    border-radius: 5px;
-	}
-	.list_qna {
-	    max-width: 1200px;
-	    margin: 30px auto;
-	}
-	.qna-list {
-	    list-style: none;
-	    padding: 0;
-	}
-	.qna-list li {
-	    padding: 20px 0;
-	    border-bottom: 1px solid #eaeaea;
-	}
-	.qna-item {
-	    display: flex;
-	    justify-content: space-between;
-	}
-	.qna-title {
-	    text-decoration: none;
-	    color: #000;
-	    font-size: 18px;
-	    font-weight: bold;
-	}
-	.qna-description {
-	    margin: 10px 0 0 0;
-	    color: #555;
-	}
-	.qna-meta {
-	    text-align: right;
-	    color: #999;
-	}
-	.qna-meta span {
-	    display: block;
-	}
-	.hot-label {
-	    color: #ff7f50;
-	    font-weight: bold;
-	}
-	.writebtn {
-		background-color: #2D65F2;
-	}
-	
-	/* 주제별 커뮤니티 상단 */
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .filter-box {
+        border: 1px solid #d7dce5;
+        padding: 10px;
+        border-radius: 5px;
+    }
+    .list_qna {
+        max-width: 1200px;
+        margin: 30px auto;
+    }
+    .qna-list {
+        list-style: none;
+        padding: 0;
+    }
+    .qna-list li {
+        padding: 20px 0;
+        border-bottom: 1px solid #eaeaea;
+    }
+    .qna-item {
+        display: flex;
+        justify-content: space-between;
+    }
+    .qna-title {
+        text-decoration: none;
+        color: #000;
+        font-size: 18px;
+        font-weight: bold;
+    }
+    .qna-description {
+        margin: 10px 0 0 0;
+        color: #555;
+    }
+    .qna-meta {
+        text-align: right;
+        color: #999;
+    }
+    .qna-meta span {
+        display: block;
+    }
+    .hot-label {
+        color: #ff7f50;
+        font-weight: bold;
+    }
+    .writebtn {
+        background-color: #2D65F2;
+    }
+    
+    /* 주제별 커뮤니티 상단 */
     ul.list_category {
-    	display: flex;
-    	gap: 15px;
-    	padding: 0;
-    	justify-content: center;
-    	flex-wrap: wrap;
+        display: flex;
+        gap: 15px;
+        padding: 0;
+        justify-content: center;
+        flex-wrap: wrap;
     }
     
     ul.list_category li {
-    	text-align: center;
-    	border: 1px solid #d7dce5;
+        text-align: center;
+        border: 1px solid #d7dce5;
         border-radius: 10px;
         height: 65px;
         width: 180px;
@@ -155,35 +155,103 @@
     }
     
     .post_list a {
-    	text-decoration: none;
+        text-decoration: none;
         color: #373f57;
         display: block;
         line-height: 40px;
     }
     
     .content_text {
-    	overflow: hidden; /* 내용이 넘칠 경우 숨기기 */
-	    text-overflow: ellipsis; /* 넘치는 내용 줄임표 처리 */
-	    white-space: nowrap; /* 줄바꿈 없이 한 줄로 처리 */
+        overflow: hidden; /* 내용이 넘칠 경우 숨기기 */
+        text-overflow: ellipsis; /* 넘치는 내용 줄임표 처리 */
+        white-space: nowrap; /* 줄바꿈 없이 한 줄로 처리 */
     }
     
+    .pagination a {
+        margin: 0 5px;
+        text-decoration: none;
+        color: black;
+    }
+    .pagination a.active {
+        font-weight: bold;
+        color: blue;
+    }
+    /* 페이징 스타일 */
+    .pagination {
+        display: flex;
+        justify-content: center;
+        margin-top: 40px;
+        margin-bottom: 50px;
+    }
+
+    .pagination a {
+        padding: 10px 15px;
+        margin: 0 5px;
+        color: gray;
+        text-decoration: none;
+        transition: background-color 0.3s;
+        border-radius: 5px;
+        border: none;
+    }
+
+    .pagination a:hover {
+        background-color: #e9ecef;
+    }
+
+    .pagination a.active {
+        border: 1px solid #dee2e6;
+        background-color: white;
+        pointer-events: none;
+        box-shadow: none;
+    }
 
 </style>
 <script type="text/javascript">
-	$(document).ready(function(){
-			
-		// content 말줄임표 처리
+    $(document).ready(function(){
+        // content 말줄임표 처리
         $('.content_text').each(function(){
-        	var maxLength = 96;
+            var maxLength = 96;
             var text = $(this).text();
             if (text.length > maxLength) {
                 var cut = text.substring(0, maxLength) + '...';
                 $(this).text(cut);
             }
         });
-	});
+        
+     	/* //체크박스 클릭 이벤트
+     	//최신순에 체크되는 것이 디폴트
+        $('.btn_sort').on('change', function() {
+            $('.btn_sort').not(this).prop('checked', false); // 다른 체크박스 해제
+            var sortBy = $(this).val();
+            var category = "${category}";
+            window.location.href = "${root}/community/hometotalpost?category=" + encodeURIComponent(category) + "&sortBy=" + sortBy;
+        });
+     	
+     	//체크박스 상태 설정
+        var urlParams = new URLSearchParams(window.location.search);
+        var sortBy = urlParams.get('sortBy') || 'new'; // 기본값은 'new'
+        $('#' + sortBy).prop('checked', true); */
+    
+     	//체크박스 클릭 이벤트
+        $('.btn_sort').on('change', function() {
+            //모든 체크박스를 해제
+            $('.btn_sort').prop('checked', false);
+            //현재 클릭한 체크박스만 체크
+            $(this).prop('checked', true);
+            var sortBy = $(this).val();
+            var category = "${category}";
+            window.location.href = "${root}/community/hometotalpost?category=" + encodeURIComponent(category) + "&sortBy=" + sortBy;
+        });
+
+        //체크박스 상태 설정
+        var urlParams = new URLSearchParams(window.location.search);
+        var sortBy = urlParams.get('sortBy') || 'new'; // 기본값은 'new'
+        $('#' + sortBy).prop('checked', true);
+
+    });
 </script>
 </head>
+
 <body>
 <nav class="nav">
     <ul>
@@ -191,6 +259,27 @@
         <a class="nav-link" href="${root}/community/interviewlist">현직자 인터뷰</a>
     </ul>
 </nav>
+<%-- <div style="max-width: 1200px; margin: 0px auto;">
+    <div class="container2">
+        <div class="linkgo" style="width: 100%;">
+            <div>
+                <h2><b>${category} 방</b></h2>
+                <span style="display: block; margin-top: 10px; color: #5c667b;">현재까지 등록된 ${category} 게시글입니다.</span>
+            </div>
+            <img src="/communityimage/communitytwo.png" style="height: 250px;">
+        </div>
+        <div class="category" style="margin-top: -13px;">
+            <ul class="list_category js-category">
+                <li><a href="${root}/community/hometotalpost?category=<%= java.net.URLEncoder.encode("전체글", "UTF-8") %>">전체글</a></li>
+                <li><a href="${root}/community/hometotalpost?category=<%= java.net.URLEncoder.encode("신입", "UTF-8") %>">신입</a></li>
+                <li><a href="${root}/community/hometotalpost?category=<%= java.net.URLEncoder.encode("취준", "UTF-8") %>">취준</a></li>
+                <li><a href="${root}/community/hometotalpost?category=<%= java.net.URLEncoder.encode("자소서", "UTF-8") %>">자소서</a></li>
+                <li><a href="${root}/community/hometotalpost?category=<%= java.net.URLEncoder.encode("면접", "UTF-8") %>">면접</a></li>
+                <li><a href="${root}/community/hometotalpost?category=<%= java.net.URLEncoder.encode("Q&A", "UTF-8") %>">Q&A</a></li>
+            </ul>
+        </div>
+    </div>
+</div> --%>
 <div style="max-width: 1200px; margin: 0px auto;">
     <div class="container2">
         <div class="linkgo" style="width: 100%;">
@@ -212,6 +301,8 @@
         </div>
     </div>
 </div>
+
+
 <div class="commutitle" style="max-width: 1200px; margin: 50px auto;">
     <div class="container">
         <div class="linkgo d-flex justify-content-between" style="width: 100%;">
@@ -230,29 +321,32 @@
         </div>
     </div>
     <div class="inpbox line filter d-flex justify-content-between align-items-center" style="margin-top: -20px;">
-        <div class="filter-box">
-            <span class="chk">
-                <input type="checkbox" id="popular" class="btn_sort" value="popular">
-                <label class="lbl" for="popular">인기순</label>
-            </span>
-            <span class="chk">
-                <input type="checkbox" id="new" class="btn_sort" value="new" checked="checked">
-                <label class="lbl" for="new">최신순</label>
-            </span>
-            <span class="chk">
-                <input type="checkbox" id="maxlike" class="btn_sort" value="maxlike">
-                <label class="lbl" for="maxlike">공감 많은 순</label>
-            </span>
-            <span class="chk">
-                <input type="checkbox" id="maxcomment" class="btn_sort" value="maxcomment">
-                <label class="lbl" for="maxcomment">댓글 많은 순</label>
-            </span>
-        </div>
-        <button type="button" class="btn btn-primary writebtn" style="width: 200px;"
-        onclick="location.href='${pageContext.request.contextPath}/community/homeform'">게시글 작성</button>
-    </div>
+	    <div class="filter-box">
+	        <span class="chk">
+	            <input type="checkbox" id="popular" class="btn_sort" value="popular">
+	            <label class="lbl" for="popular">인기순</label>
+	        </span>&nbsp;
+	        <span class="chk">
+	            <input type="checkbox" id="new" class="btn_sort" value="new">
+	            <label class="lbl" for="new">최신순</label>
+	        </span>&nbsp;
+	        <span class="chk">
+	            <input type="checkbox" id="maxlike" class="btn_sort" value="maxlike">
+	            <label class="lbl" for="maxlike">공감 많은 순</label>
+	        </span>&nbsp;
+	        <span class="chk">
+	            <input type="checkbox" id="maxcomment" class="btn_sort" value="maxcomment">
+	            <label class="lbl" for="maxcomment">댓글 많은 순</label>
+	        </span>
+	    </div>
+	    <!-- 로그인한 회원만 버튼 나타나도록 -->
+	    <c:if test="${sessionScope.loginok != null}">
+	        <button type="button" class="btn btn-primary writebtn" style="width: 200px;"
+	        onclick="location.href='${pageContext.request.contextPath}/community/homeform'">게시글 작성</button>
+	    </c:if>
+	</div>
 </div>
-<div class="list_qna" style="max-width: 1200px; margin: 30px auto;">
+<%-- <div class="list_qna" style="max-width: 1200px; margin: 30px auto;">
     <ul class="qna-list">
         <c:forEach var="dto" items="${list}">
             <li style="border-top: 1px solid #eaeaea;">
@@ -260,20 +354,76 @@
                     <div class="post_list">
                         <a href="${root}/community/homedetail?com_num=${dto.com_num}">
                             <h5><b>${dto.com_title}</b></h5>
-							<span class="content_text">${dto.com_content}</span>
-								<div>
-									&nbsp;<span><i class="bi bi-hand-thumbs-up"></i>&nbsp;${dto.com_likes}</span>&nbsp;&nbsp;&nbsp;
-									<span><i class="bi bi-chat-left"></i>&nbsp;${dto.com_commentcount}</span>&nbsp;&nbsp;
-									<span><i class="bi bi-eye"></i>&nbsp;${dto.com_readcount}</span>&nbsp;&nbsp;&nbsp;&nbsp;
-									<span>${dto.com_nickname }&nbsp;&nbsp;<fmt:formatDate value="${dto.com_writetime}" pattern="yyyy-MM-dd HH:mm" /></span>
-								</div>
-									
-						</a>
+                            <span class="content_text">${dto.com_content}</span>
+                            <div>
+                                &nbsp;<span><i class="bi bi-hand-thumbs-up"></i>&nbsp;${dto.com_likes}</span>&nbsp;&nbsp;&nbsp;
+                                <span><i class="bi bi-chat-left"></i>&nbsp;${dto.com_commentcount}</span>&nbsp;&nbsp;
+                                <span><i class="bi bi-eye"></i>&nbsp;${dto.com_readcount}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <br>
+                                <span>'${dto.com_nickname }'님&nbsp;&nbsp;<fmt:formatDate value="${dto.com_writetime}" pattern="yyyy-MM-dd HH:mm" />&nbsp;작성</span>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </li>
         </c:forEach>
     </ul>
+</div> --%>
+<div class="list_qna" style="max-width: 1200px; margin: 30px auto;">
+    <ul class="qna-list">
+        <c:if test="${topPost != null}">
+            <li style="border-top: 1px solid #eaeaea;">
+                <div class="qna-item">
+                    <div class="post_list">
+                        <a href="${root}/community/homedetail?com_num=${topPost.com_num}">
+                            <span class="hot" style="color: blue; font-weight: bold; font-size: 17px;">HOT</span>&nbsp;&nbsp;<b style="font-size: 20px;">${topPost.com_title}</b><br>
+                            <span class="content_text">${topPost.com_content}</span>
+                            <div>
+                                &nbsp;<span><i class="bi bi-hand-thumbs-up"></i>&nbsp;${topPost.com_likes}</span>&nbsp;&nbsp;&nbsp;
+                                <span><i class="bi bi-chat-left"></i>&nbsp;${topPost.com_commentcount}</span>&nbsp;&nbsp;
+                                <span><i class="bi bi-eye"></i>&nbsp;${topPost.com_readcount}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <br>
+                                <span>'${topPost.com_nickname }'님&nbsp;&nbsp;<fmt:formatDate value="${topPost.com_writetime}" pattern="yyyy-MM-dd HH:mm" />&nbsp;작성</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </li>
+        </c:if>
+        <c:forEach var="dto" items="${otherPosts}">
+            <li style="border-top: 1px solid #eaeaea;">
+                <div class="qna-item">
+                    <div class="post_list">
+                        <a href="${root}/community/homedetail?com_num=${dto.com_num}">
+                            <h5><b>${dto.com_title}</b></h5>
+                            <span class="content_text">${dto.com_content}</span>
+                            <div>
+                                &nbsp;<span><i class="bi bi-hand-thumbs-up"></i>&nbsp;${dto.com_likes}</span>&nbsp;&nbsp;&nbsp;
+                                <span><i class="bi bi-chat-left"></i>&nbsp;${dto.com_commentcount}</span>&nbsp;&nbsp;
+                                <span><i class="bi bi-eye"></i>&nbsp;${dto.com_readcount}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <br>
+                                <span>'${dto.com_nickname }'님&nbsp;&nbsp;<fmt:formatDate value="${dto.com_writetime}" pattern="yyyy-MM-dd HH:mm" />&nbsp;작성</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </li>
+        </c:forEach>
+    </ul>
+</div>
+
+
+
+<div class="pagination">
+    <c:if test="${startPage > 1}">
+        <a href="?category=${category}&pageNum=${startPage - 1}" class="page-link"><i class="bi bi-chevron-left"></i>이전</a>
+    </c:if>
+    <c:forEach begin="${startPage}" end="${endPage}" var="i">
+        <a href="?category=${category}&pageNum=${i}" class="page-link ${currentPage == i ? 'active' : ''}">${i}</a>
+    </c:forEach>
+    <c:if test="${endPage < totalPage}">
+        <a href="?category=${category}&pageNum=${endPage + 1}" class="page-link">다음<i class="bi bi-chevron-right"></i></a>
+    </c:if>
 </div>
 </body>
 </html>
