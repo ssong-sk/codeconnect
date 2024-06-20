@@ -159,7 +159,7 @@
               <div class="mylist-area" style="width: 80%;">
                 <div style="margin-left: 4%;">
 	                <img class="mylist-img" src="">
-	                <span style="margin-left: 3%;"><b>000님</b></span>
+	                <span style="margin-left: 3%;"><b>${rdto.r_name } 님</b></span>
                 </div>
                 
                 <div class="mylist-state">
@@ -204,7 +204,7 @@
 	              <!-- 추천공고 -->
 	              <div class="mylist-chu">
 	                <span style="font-size: 1.2em;"><b>추천공고</b></span>
-	                <span style="font-size: 0.9em; float: right; color: gray; margin-top: 1%;"><a>더보기 ></a></span>
+	                <span style="font-size: 0.9em; float: right; color: gray; margin-top: 1%;"><a href="#">더보기 ></a></span>
 	                <hr>
 	              </div>   
 	              

@@ -16,7 +16,7 @@ import com.code.dto.IruckseoSpecDto;
 @Mapper
 public interface IruckseoInsertMapperInter {
 	
-	//personal insert _ pe_num 등록
+	//personal insert _ pe_num 등록 -> 등록누르면 바로 insert
 	public void insertPersonal(IruckseoInsertDto irdto);
 	
 	//이력서 update
@@ -26,7 +26,10 @@ public interface IruckseoInsertMapperInter {
 	public List<IruckseoInsertDto> OnePersonalDatas(IruckseoInsertDto pedto);
 	
 	//이력서 list 출력
-	public List<IruckseoInsertDto> allPersonalDatas(IruckseoInsertDto pedto);
+	public List<IruckseoInsertDto> allPersonalDatas();
+	
+	//이력서 갯수출력
+	public int getPersonalCount();
 	
 	//school insert
 	public void insertSchool(IruckseoSchoolDto scdto);
@@ -135,5 +138,9 @@ public interface IruckseoInsertMapperInter {
 
 	//희망조건 update
 	public void updateHope(IruckseoHopeDto hodto);
+
+	public List<IruckseoHopeDto> allHopeDatas();
+
+
 	
 }

@@ -25,8 +25,29 @@
    </update>
    
    <!-- 이력서 인적사항 list 출력 -->
-   <select id="allPersonalDatas" parameterType="IruckseoInsertDto" resultType="IruckseoInsertDto">
-     select * from personal where pe_num = #{pe_num} order by pe_num ASC
+   <!-- <select id="allPersonalDatas" resultType="IruckseoInsertDto">
+     select * from personal order by pe_num desc
+   </select> -->
+   
+   <!-- 이력서 갯수 구하기 -->
+   <select id="getPersonalCount" resultType="int">
+     select count(*) from personal
+   </select>
+   
+   <!-- 이력서 현황 리스트 출력 _ join -->
+   <select id="allPersonalDatas" resultType="IruckseoInsertDto">
+       select x.pe_num , x.pe_title , x.pe_writeday , x.ho_check ,  x.ho_addr , x.ho_keyword ,  PERIOD_DIFF( x.ca_resign ,   x.ca_ipsa ) as ca_resign
+	   from ( 
+ 	      select pe.pe_num , pe.pe_title , pe.pe_writeday  , ( case when  LENGTH(TRIM(ho.ho_money)) = 0 || ho.ho_money IS NULL THEN ho.ho_check else ho.ho_money END ) AS ho_check
+                , ho.ho_addr , ho.ho_keyword
+                ,SUBSTR(REPLACE(MAX(ca.ca_resign),'-',''),1,6) AS ca_resign
+                ,SUBSTR(REPLACE(MIN(ca.ca_ipsa),'-',''),1,6) as ca_ipsa
+           from personal pe 
+           LEFT outer JOIN career ca ON (pe.pe_num = ca.pe_num) 
+           LEFT outer JOIN hope ho ON (pe.pe_num = ho.pe_num)
+           GROUP BY pe.pe_num , pe.pe_title , pe.pe_writeday , ho.ho_money , ho.ho_check ,  ho.ho_addr , ho.ho_keyword
+        ) x
+        order by x.pe_writeday desc
    </select>
    
    <!-- school 학력 단건 list 출력 -->
@@ -334,8 +355,8 @@
    </select>
    
    <!-- 희망조건 list 나오기 전체 -->
-   <select id="allHopeDatas" parameterType="IruckseoHopeDto" resultType="IruckseoHopeDto">
-     select * from hope where pe_num = #{pe_num} order by ho_num asc
+   <select id="allHopeDatas" resultType="IruckseoHopeDto">
+     select * from hope order by ho_num desc
    </select>
    
    <!-- 희망조건 수정하기 -->

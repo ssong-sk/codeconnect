@@ -41,9 +41,15 @@ public class IruckseoInsertService implements IruckseoInsertServiceInter {
 	}
 	
     //이력서 리스트 출력
-	public List<IruckseoInsertDto> allPersonalDatas(IruckseoInsertDto pedto) {
+	public List<IruckseoInsertDto> allPersonalDatas() {
 		// TODO Auto-generated method stub
-		return irmapper.allPersonalDatas(pedto);
+		return irmapper.allPersonalDatas();
+	}
+	
+	//이력서 갯수
+	public int getPersonalCount() {
+		// TODO Auto-generated method stub
+		return irmapper.getPersonalCount();
 	}
 	
 	//school insert
@@ -267,5 +273,11 @@ public class IruckseoInsertService implements IruckseoInsertServiceInter {
 		// TODO Auto-generated method stub
 		irmapper.updateHope(hodto);
 	}
+
+	public List<IruckseoHopeDto> allHopeDatas() {
+		// TODO Auto-generated method stub
+		return irmapper.allHopeDatas();
+	}
+
 
 }

@@ -47,15 +47,6 @@ public class IruckseoInsertController {
 	@Autowired
 	RegisterService reservice;
 	
-	
-	@GetMapping("/resumehome/list")
-	public ModelAndView list() {
-		
-		ModelAndView mview = new ModelAndView();
-		
-		return mview;
-	}
-	
 	//이력서 등록 폼
 	@GetMapping("/resumehome/form")
 	public ModelAndView form(HttpSession session ) {
@@ -118,14 +109,14 @@ public class IruckseoInsertController {
 			                                @ModelAttribute("scdto") IruckseoSchoolDto scdto,
 			                                @ModelAttribute("cadto") IruckseoCareerDto cadto) {
 		
-		List<IruckseoInsertDto> peDto = irservice.allPersonalDatas(pedto);
+		//List<IruckseoInsertDto> peDto = irservice.allPersonalDatas(pedto);
 		List<IruckseoSchoolDto> scDto = irservice.allSchoolDatas(scdto);
 		//List<IruckseoCareerDto> cadto = irservice.allCareerDatas(cadto)
-		System.out.println("Loaded Personal Data: " + peDto);
+		//System.out.println("Loaded Personal Data: " + peDto);
 	    System.out.println("Loaded School Data: " + scDto);
 		
 
-		model.addAttribute("peDto", peDto);
+		//model.addAttribute("peDto", peDto);
 		model.addAttribute("scDto", scDto);
 		
 		System.out.println("Model contains peDto: " + model.containsAttribute("peDto"));

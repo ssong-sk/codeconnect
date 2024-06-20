@@ -23,7 +23,10 @@ public interface IruckseoInsertServiceInter {
 	public List<IruckseoInsertDto> OnePersonalDatas(IruckseoInsertDto pedto);
 	
 	//이력서 list 출력
-	public List<IruckseoInsertDto> allPersonalDatas(IruckseoInsertDto pedto);
+	public List<IruckseoInsertDto> allPersonalDatas();
+	
+	//이력서 갯수출력
+	public int getPersonalCount();
 	
 	//insert school
 	public void insertSchool (IruckseoSchoolDto scdto);
@@ -117,9 +120,7 @@ public interface IruckseoInsertServiceInter {
 	
 	//자기소개서 수정하기
 	public void updateSelf(IruckseoSelfDto sedto);
-	
-	//자기소개서 수정하고 list 출력
-	public List<IruckseoSelfDto> allSelfDatas(IruckseoSelfDto sedto);
+
 	
 	//자기소개서 삭제하기
 	public void deleteSelf(int se_num);
@@ -132,4 +133,7 @@ public interface IruckseoInsertServiceInter {
 	
 	//희망조건 update
 	public void updateHope(IruckseoHopeDto hodto);
+
+
+	public List<IruckseoHopeDto> allHopeDatas();
 }
