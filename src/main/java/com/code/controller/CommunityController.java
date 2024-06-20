@@ -4,10 +4,10 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
-import java.text.ParseException;
+import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -49,6 +49,17 @@ public class CommunityController {
         List<CommunityDto> interviewList=service.getAllDatasByCategory("면접");
         List<CommunityDto> qaList=service.getAllDatasByCategory("Q&A");
 
+        // 이번 주 월요일과 일요일 날짜를 계산
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+        Date startDate = new Date(cal.getTimeInMillis());
+        cal.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+        cal.add(Calendar.WEEK_OF_YEAR, 1);
+        Date endDate = new Date(cal.getTimeInMillis());
+        
+        //이번 주 인기 게시글 조회 (homelist에서는 5개만 보이게)
+        List<CommunityDto> popularPosts = service.getWeeklyPopularPosts(startDate, endDate);
+        
         mview.addObject("totalCount", totalCount);
         mview.addObject("list", list);
         mview.addObject("newcomerList", newcomerList);
@@ -56,11 +67,13 @@ public class CommunityController {
         mview.addObject("letterList", letterList);
         mview.addObject("interviewList", interviewList);
         mview.addObject("qaList", qaList);
+        mview.addObject("popularPosts", popularPosts); //최근 한 주 인기 게시글 추가
 
         mview.setViewName("community/homelist"); // "community/homelist.jsp"로 매핑
         return mview;
     }
 
+    /*
     @PostMapping("/community/homeinsert")
     public String insert(@ModelAttribute CommunityDto dto,
                          @RequestParam ArrayList<MultipartFile> upload,
@@ -73,7 +86,7 @@ public class CommunityController {
         else {
             for (MultipartFile f : upload) {
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
-                String fName = sdf.format(new Date()) + "_" + f.getOriginalFilename();
+                String fName = sdf.format(new java.util.Date()) + "_" + f.getOriginalFilename();
                 uploadName += fName + ",";
                 try {
                     f.transferTo(new File(path + "\\" + fName));
@@ -88,8 +101,45 @@ public class CommunityController {
         dto.setCom_post_type("home"); //com_post_type을 'home'으로 설정
         
         service.insertCommunity(dto);
+        
 		return "redirect:/community/homelist";
     }
+    */
+    
+    @PostMapping("/community/homeinsert")
+    public String insert(@ModelAttribute CommunityDto dto,
+                         @RequestParam ArrayList<MultipartFile> upload,
+                         HttpSession session) {
+        String path = session.getServletContext().getRealPath("/communityimage");
+        String uploadName = "";
+
+        if (upload.get(0).getOriginalFilename().equals(""))
+            uploadName = "no";
+        else {
+            for (MultipartFile f : upload) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+                String fName = sdf.format(new java.util.Date()) + "_" + f.getOriginalFilename();
+                uploadName += fName + ",";
+                try {
+                    f.transferTo(new File(path + "\\" + fName));
+                } catch (IllegalStateException | IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            uploadName = uploadName.substring(0, uploadName.length() - 1);
+        }
+
+        dto.setCom_photo(uploadName);
+        dto.setCom_post_type("home"); //com_post_type을 'home'으로 설정
+
+        service.insertCommunity(dto);
+        int insertedComNum = service.getInsertId();
+
+        return "redirect:/community/homedetail?com_num=" + insertedComNum;
+    }
+
+
+
 
     @GetMapping("/community/homeupdateform")
     public String updateform(@RequestParam("com_num") String comNum, Model model) {
@@ -247,54 +297,218 @@ public class CommunityController {
         return "community/homeform"; // "community/homeform.jsp"로 매핑
     }
     
-//    @GetMapping("/community/hometotalpost")
-//    public String homeTotalPost(Model model)
-//    {
-//    	List<CommunityDto> list=service.getAllDatasByType("home");
-//    	
-//    	model.addAttribute("list", list);
-//    	
-//    	return "community/hometotalpost";
-//    }
-    
-	/*
-	 * @GetMapping("/community/hometotalpost") public String homeTotalPost(Model
-	 * model, @RequestParam(value = "category", required = false) String category) {
-	 * 
-	 * List<CommunityDto> list; if (category == null || category.isEmpty()) { list =
-	 * service.getAllDatasByType("home"); } else { list =
-	 * service.getAllDatasByCategory(category); } model.addAttribute("list", list);
-	 * model.addAttribute("category", category == null ? "전체" : category); // 카테고리가
-	 * 없을 경우 "전체"로 설정 return "community/hometotalpost"; }
-	 */
-    
+    /*
     @GetMapping("/community/hometotalpost")
-    public String homeTotalPost(Model model, @RequestParam(value = "category", required = false) String category) {
+    public String homeTotalPost(
+        Model model,
+        @RequestParam(value = "category", required = false) String category,
+        @RequestParam(value = "pageNum", defaultValue = "1") int currentPage) {
+
         if (category != null) {
             category = URLDecoder.decode(category, StandardCharsets.UTF_8);
         }
+
+        int perPage = 7; // 한 페이지당 게시글 수
+        int perBlock = 10; // 한 블록당 보여줄 페이지 수
+        int totalCount;
         List<CommunityDto> list;
+
         if (category == null || category.isEmpty() || category.equals("전체글")) {
-            list = service.getAllDatasByType("home");
-            category = "전체";
+            totalCount = service.getTotalCountByType("home");
+            list = service.getAllDatasByTypePaged("home", (currentPage - 1) * perPage, perPage);
+            category = "전체글";
         } else {
-            list = service.getAllDatasByCategory(category);
+            totalCount = service.getTotalCountByCategory("home", category);
+            list = service.getAllDatasByCategoryPaged("home", category, (currentPage - 1) * perPage, perPage);
         }
-        
+
+        int totalPage = (int) Math.ceil((double) totalCount / perPage);
+        int startPage = (currentPage - 1) / perBlock * perBlock + 1;
+        int endPage = startPage + perBlock - 1;
+        if (endPage > totalPage) {
+            endPage = totalPage;
+        }
+
         model.addAttribute("list", list);
         model.addAttribute("category", category);
+        model.addAttribute("totalCount", totalCount);
+        model.addAttribute("currentPage", currentPage);
+        model.addAttribute("totalPage", totalPage);
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
+
         return "community/hometotalpost";
-   }
+    }
+    */
     
-    @GetMapping("community/homefavoritelist")
-    public String homeFavoriteList(Model model)
-    {
-    	List<CommunityDto> list=service.getAllDatasByType("home");
-    	
-    	model.addAttribute("list", list);
-    	
-		return "community/homefavoritelist";
+    /*
+    @GetMapping("/community/hometotalpost")
+    public String homeTotalPost(
+        Model model,
+        @RequestParam(value = "category", required = false) String category,
+        @RequestParam(value = "pageNum", defaultValue = "1") int currentPage) {
+
+        if (category != null) {
+            category = URLDecoder.decode(category, StandardCharsets.UTF_8);
+        }
+
+        int perPage = 7; // 한 페이지당 게시글 수
+        int perBlock = 10; // 한 블록당 보여줄 페이지 수
+        int totalCount;
+        CommunityDto topPost = null;
+        List<CommunityDto> otherPosts;
+
+        if (category == null || category.isEmpty() || category.equals("전체글")) {
+            totalCount = service.getTotalCountByType("home");
+            otherPosts = service.getAllDatasByTypePaged("home", (currentPage - 1) * perPage, perPage);
+            category = "전체글";
+        } else {
+            totalCount = service.getTotalCountByCategory("home", category);
+            topPost = service.getTopPostByCategory("home", category);
+            otherPosts = service.getOtherPostsByCategory("home", category, (currentPage - 1) * perPage, perPage);
+        }
+
+        int totalPage = (int) Math.ceil((double) totalCount / perPage);
+        int startPage = (currentPage - 1) / perBlock * perBlock + 1;
+        int endPage = startPage + perBlock - 1;
+        if (endPage > totalPage) {
+            endPage = totalPage;
+        }
+
+        model.addAttribute("topPost", topPost);
+        model.addAttribute("otherPosts", otherPosts);
+        model.addAttribute("category", category);
+        model.addAttribute("totalCount", totalCount);
+        model.addAttribute("currentPage", currentPage);
+        model.addAttribute("totalPage", totalPage);
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
+
+        return "community/hometotalpost";
+    }
+    */
+    
+    /*
+    @GetMapping("/community/hometotalpost")
+    public String homeTotalPost(
+        Model model,
+        @RequestParam(value = "category", required = false) String category,
+        @RequestParam(value = "pageNum", defaultValue = "1") int currentPage) {
+
+        if (category != null) {
+            category = URLDecoder.decode(category, StandardCharsets.UTF_8);
+        }
+
+        int perPage = 7; // 한 페이지당 게시글 수
+        int perBlock = 10; // 한 블록당 보여줄 페이지 수
+        int totalCount;
+        CommunityDto topPost = null;
+        List<CommunityDto> otherPosts;
+
+        if (category == null || category.isEmpty() || category.equals("전체글")) {
+            category = "전체글";
+            totalCount = service.getTotalCountByType("home");
+            topPost = service.getTopPostByType("home");
+            otherPosts = service.getOtherPostsByType("home", (currentPage - 1) * perPage, perPage);
+        } else {
+            totalCount = service.getTotalCountByCategory("home", category);
+            topPost = service.getTopPostByCategory("home", category);
+            otherPosts = service.getOtherPostsByCategory("home", category, (currentPage - 1) * perPage, perPage);
+        }
+
+        int totalPage = (int) Math.ceil((double) totalCount / perPage);
+        int startPage = (currentPage - 1) / perBlock * perBlock + 1;
+        int endPage = startPage + perBlock - 1;
+        if (endPage > totalPage) {
+            endPage = totalPage;
+        }
+
+        model.addAttribute("topPost", topPost);
+        model.addAttribute("otherPosts", otherPosts);
+        model.addAttribute("category", category);
+        model.addAttribute("totalCount", totalCount);
+        model.addAttribute("currentPage", currentPage);
+        model.addAttribute("totalPage", totalPage);
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
+
+        return "community/hometotalpost";
+    }
+	*/
+    
+    
+    @GetMapping("/community/hometotalpost")
+    public String homeTotalPost(
+        Model model,
+        @RequestParam(value = "category", required = false) String category,
+        @RequestParam(value = "sortBy", required = false, defaultValue = "new") String sortBy,
+        @RequestParam(value = "pageNum", defaultValue = "1") int currentPage) {
+
+        if (category != null) {
+            category = URLDecoder.decode(category, StandardCharsets.UTF_8);
+        }
+
+        int perPage = 7; // 한 페이지당 게시글 수
+        int perBlock = 10; // 한 블록당 보여줄 페이지 수
+        int totalCount;
+        final CommunityDto topPost; // topPost를 final로 선언
+        List<CommunityDto> otherPosts;
+
+        if (category == null || category.isEmpty() || category.equals("전체글")) {
+            category = "전체글";
+            totalCount = service.getTotalCountByType("home");
+            topPost = service.getTopPostByType("home");
+            otherPosts = service.getPostsByTypeAndSort("home", sortBy, (currentPage - 1) * perPage, perPage);
+        } else {
+            totalCount = service.getTotalCountByCategory("home", category);
+            topPost = service.getTopPostByCategory("home", category);
+            otherPosts = service.getPostsByCategoryAndSort("home", category, sortBy, (currentPage - 1) * perPage, perPage);
+        }
+
+        // checkbox 카테고리 선택시 최상단 인기글 제외하고 아래 리스트 출력하기
+        if (topPost != null) {
+            otherPosts.removeIf(post -> post.getCom_num() == topPost.getCom_num());
+        }
+
+        int totalPage = (int) Math.ceil((double) totalCount / perPage);
+        int startPage = (currentPage - 1) / perBlock * perBlock + 1;
+        int endPage = startPage + perBlock - 1;
+        if (endPage > totalPage) {
+            endPage = totalPage;
+        }
+
+        model.addAttribute("topPost", topPost);
+        model.addAttribute("otherPosts", otherPosts);
+        model.addAttribute("category", category);
+        model.addAttribute("totalCount", totalCount);
+        model.addAttribute("currentPage", currentPage);
+        model.addAttribute("totalPage", totalPage);
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
+
+        return "community/hometotalpost";
     }
     
+    
+
+
+
+    @GetMapping("/community/homepopularlist")
+    public String homepopularlist(Model model) {
+        // 이번 주 월요일과 일요일 날짜를 계산
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+        Date startDate = new Date(cal.getTimeInMillis());
+        cal.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+        cal.add(Calendar.WEEK_OF_YEAR, 1);
+        Date endDate = new Date(cal.getTimeInMillis());
+
+        // 이번 주 인기 게시글 조회 (homepopularlist에서는 list 20개 출력)
+        List<CommunityDto> popularPosts = service.getWeeklyPopularPostsAll(startDate, endDate);
+
+        model.addAttribute("popularPosts", popularPosts);
+
+        return "community/homepopularlist";
+    }
 
 }
