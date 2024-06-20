@@ -1,8 +1,5 @@
 package com.code.dto;
 
-import java.sql.Date;
-
-
 import org.apache.ibatis.type.Alias;
 
 
@@ -35,6 +32,9 @@ public class HireDto {
 	private int h_count;
 	
 	private String c_name;
+	private String c_birthyear;
 	private String ci_image;
+	private String ci_soge;
+	private String ci_logo;
 
 }
