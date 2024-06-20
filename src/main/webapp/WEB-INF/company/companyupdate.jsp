@@ -158,14 +158,14 @@ body {
 				<div class="menu-item" onclick="location.href='companyupdate'" style="font-weight: bold;">기업 정보 수정</div>
 				<div class="menu-item" onclick="location.href='intromain'">기업 소개 하기</div>
 				<div class="menu-item" onclick="location.href='showimsi'">내 기업 소개 페이지로 이동</div>
-				<div class="menu-item" onclick="location.href='#'">계정 관리</div>
+				<div class="menu-item" onclick="location.href='account'">계정 관리</div>
 			</div>
 			<div class="main-content-wrapper">
 				<div class="header">
 					<h1>기업 정보 수정</h1>
 				</div>
 				<div class="container mt-4">
-					<form action="update" method="post" enctype="multipart/form-data">
+					<form id="companyForm" action="update" method="post" enctype="multipart/form-data">
 						<input type="hidden" name="c_num" id="c_num" value="${dto.c_num}">
 						<div class="row">
 							<div class="col-md-6">
@@ -342,23 +342,18 @@ body {
 										name="c_insa_email" value="${dto.c_insa_email}">
 								</div>
 								<div class="mb-4">
-									<button type="submit" class="btn btn-outline-primary"
-									>저장</button>
+									<button type="button" class="btn btn-outline-primary" onclick="saveFormWithAlert()">저장</button>
 								</div>
 							</div>
 						</div>
-
-
 					</form>
 				</div>
 			</div>
 		</div>
 	</div>
 	<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-	<script
-		src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	<script
-		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3c2a4c379a7f83fd166976b93258be7f&libraries=services"></script>
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3c2a4c379a7f83fd166976b93258be7f&libraries=services"></script>
 	<script>
     function openPostcodePopup() {
         new daum.Postcode({
@@ -410,6 +405,11 @@ body {
                 document.getElementById('map').style.display = 'block';
             } 
         });
+    }
+
+    function saveFormWithAlert() {
+        alert('저장되었습니다!');
+        document.getElementById('companyForm').submit();
     }
 </script>
 </body>

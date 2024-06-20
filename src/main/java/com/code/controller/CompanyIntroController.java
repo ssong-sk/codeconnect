@@ -195,8 +195,6 @@ public class CompanyIntroController {
 	@GetMapping("/company/introshow")
 	public String introshow(@RequestParam String c_num,Model model, HttpSession session) {
 
-
-
 		return "/companyintro/companyintroshow";
 	}
 }

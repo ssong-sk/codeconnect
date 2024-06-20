@@ -92,7 +92,7 @@
 									type="button" onclick="location.href='/company/main'">
 									<span class="Button_Button__label__1Kk0v"> <span
 										class="Typography_Typography__root__xYuMs Typography_Typography__label2__BRssq Typography_Typography__weightBold__e15ql">
-											${sessionScope.c_myid}님</span>
+											${sessionScope.c_loginname}님</span>
 									</span> 
 									
 									

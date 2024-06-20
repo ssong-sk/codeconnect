@@ -323,7 +323,7 @@ th:nth-child(5), td:nth-child(5) {
                 <div class="menu-item" onclick="location.href='companyupdate'">기업 정보 수정</div>
                 <div class="menu-item" onclick="location.href='intromain'" style="font-weight: bold;">기업 소개 하기</div>
                 <div class="menu-item" onclick="location.href='showimsi'">내 기업 소개 페이지로 이동</div>
-                <div class="menu-item" onclick="location.href='#'">계정 관리</div>
+                <div class="menu-item" onclick="location.href='account'">계정 관리</div>
             </div>
 
             <div class="main-content-wrapper">
@@ -374,10 +374,18 @@ th:nth-child(5), td:nth-child(5) {
                         <label for="ci_link" class="form-label">기업사이트 주소</label>
                         <input type="text" class="form-control" id="ci_link" name="ci_link" value="${dto.ci_link}">
                     </div>
-                    <button type="submit" class="btn btn-outline-primary">저장</button>
+                    <button type="submit" class="btn btn-outline-primary" onclick="saveFormWithAlert()">저장</button>
                 </form>
             </div>
         </div>
     </div>
+<script type="text/javascript">
+function saveFormWithAlert() {
+    alert('저장되었습니다!');
+    document.getElementById('companyForm').submit();
+}
+
+</script>
 </body>
+
 </html>
