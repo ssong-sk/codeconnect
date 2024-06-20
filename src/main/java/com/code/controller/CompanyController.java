@@ -212,7 +212,7 @@ public class CompanyController {
 	    String c_pass = dto.getC_pass();
 	    String c_num = dto.getC_num();
 
-	    // Check password and delete account if correct
+	    //비밀번호 체크하고 일치하면 계정 삭제, 아니면 계정삭제 불가
 	    if (input_pass.equals(c_pass)) {
 	        cservice.deleteCompany(c_num);
 	        session.removeAttribute("c_loginok");

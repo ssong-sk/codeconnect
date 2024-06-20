@@ -99,103 +99,73 @@ body {
 	flex-grow: 1;
 	background-color: #fff;
 	border-radius: 10px;
-	padding: 20px;
+	padding: 40px;
 	overflow-y: auto;
 }
 
-.header {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	margin-bottom: 20px;
+.form-container {
+	max-width: 600px;
+	margin: auto;
+	background-color: #fff;
+	padding: 40px;
+	border: 1px solid #dcdcdc;
+	border-radius: 5px;
 }
 
-.header h1 {
+.form-container h2 {
+	text-align: center;
+	margin-bottom: 20px;
 	font-size: 24px;
 }
 
-.account-info {
-	display: flex;
-	align-items: center;
-	padding: 20px;
-	border: 1px solid #E0E0E0;
-	border-radius: 5px;
-	margin-bottom: 20px;
-}
-
-.account-info img {
-	border-radius: 50%;
-	width: 80px;
-	height: 80px;
-	margin-right: 20px;
-}
-
-.account-info div {
-	display: flex;
-	flex-direction: column;
-}
-
-.account-info div p {
-	margin: 0;
-}
-
-.account-info .btn {
-	margin-top: 10px;
-}
-
-.options {
-	display: flex;
-	justify-content: space-between;
-	margin-bottom: 20px;
-}
-
-.option-card {
-	flex: 1;
-	height: 260px; 
-	border : 1px solid #E0E0E0;
-	border-radius: 5px;
-	padding: 20px;
+.form-container p {
 	text-align: center;
-	cursor: pointer;
-	margin-right: 10px;
-	transition: border-color 0.3s;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+	color: #666;
+	font-size: 16px;
+	margin-bottom: 20px;
 }
 
-.option-card:last-child {
-	margin-right: 0;
+.form-container .form-control {
+	margin-bottom: 15px;
+	height: 50px;
+	font-size: 16px;
 }
 
-.option-card:hover {
-	border-color: #007bff;
+.form-container .btn-secondary {
+	width: 100px;
+	height: 40px;
+	font-size: 16px;
+	margin-right: 30px;
 }
 
-.option-card img {
-	margin-bottom: 10px;
+.form-container .btn-danger {
+	width: 100px;
+	height: 40px;
+	font-size: 16px;
 }
 
-.option-card p {
-	margin: 0;
+.alert {
+	display: none;
+	font-size: 16px;
+	margin-bottom: 20px;
 }
 
-.option-card p:first-of-type {
+.icon {
+	font-size: 50px;
+	color: #dc3545;
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+.warning-text {
+	text-align: center;
+	color: #dc3545;
 	font-weight: bold;
-	margin-bottom: 10px;
-}
-
-.btn-outline-danger {
-	padding: 10px 20px;
-	margin-top: 20px;
-	cursor: pointer;
-	align-self: flex-end;
+	font-size: 18px;
+	margin-bottom: 20px;
 }
 
 </style>
-
-
 </head>
 <body>
 	<div class="wrapper">
@@ -225,15 +195,28 @@ body {
 			</div>
 
 			<div class="main-content-wrapper">
-				<h2>계정 탈퇴 폼입니다.</h2>
-				<br>
-				<p>계정 삭제 후 계정은 복구할 수 없습니다.</p>
-				
-				<!-- 비밀번호 확인용 input text창 -->
-				<form id="deleteForm">
-					<input type="password" name="input_pass" id="input_pass" class="form-control" placeholder="비밀번호 확인">
-					<button type="submit" class="btn btn-danger">계정 삭제</button>
-				</form>
+				<div class="form-container">
+					<div class="icon">
+						<i class="bi bi-exclamation-triangle-fill"></i>
+					</div>
+					<h2>정말 탈퇴하시겠어요?</h2>
+					<p>탈퇴 버튼 선택 시 계정은 삭제되며 복구되지 않습니다.</p>
+					<div class="warning-text">
+						<i class="bi bi-lock-fill"></i> 비밀번호를 입력해주세요.
+					</div>
+					
+					<div class="alert alert-danger" role="alert" id="errorAlert">
+						비밀번호가 다릅니다.
+					</div>
+
+					<form id="deleteForm">
+						<input type="password" name="input_pass" id="input_pass" class="form-control" placeholder="비밀번호 확인">
+						<div class="d-flex justify-content-center">
+							<!-- <button type="button" class="btn btn-secondary" onclick="window.history.back()">취소</button>-->
+							<button type="submit" class="btn btn-danger">탈퇴</button>
+						</div>
+					</form>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -251,9 +234,9 @@ body {
 					success: function(response) {
 						if (response.status === 'success') {
 							alert('계정이 삭제되었습니다.');
-							window.location.href = '/main'; // redirect to main page
+							window.location.href = '/main'; //계정삭제후 바로 메인페이지로 이동
 						} else {
-							alert(response.message); // show the error message
+							$('#errorAlert').text(response.message).show(); // 에러 메시지 보여주기
 						}
 					}
 				});
