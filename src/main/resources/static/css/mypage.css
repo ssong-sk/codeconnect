@@ -163,6 +163,30 @@ a, abbr, acronym, address, applet, article, aside, audio, b, big,
 	flex-direction: column;
 }
 
+.Grid_Grid__item__4GoIZ {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.Grid_Grid__align-items_flex-start__nEOiH {
+    align-items: flex-start;
+}
+
+
+/*  ---------------------------------------Subheader-------------------------------------------- */
+.Subheader_Subheader__label__n1JUS {
+    display: flex;
+    align-items: center;
+}
+
+.Subheader_Subheader__label__title__LR61o {
+    color: #000;
+}
+
+.Subheader_Subheader__iconButton__yaHa5 {
+    opacity: .8;
+}
+
 /*  ---------------------------------------LnbDesktop Layout-------------------------------------------- */
 .LnbDesktop_LnbDesktop__root__yg5QP {
 	position: sticky;
@@ -370,6 +394,36 @@ a, abbr, acronym, address, applet, article, aside, audio, b, big,
 	line-height: 22px;
 }
 
+.Typography_Typography__headline1__oRteu {
+    font-size: 18px;
+    letter-spacing: -.002em;
+    line-height: 26px;
+}
+
+.Typography_Typography__displayInline__hUA5n {
+    display: inline;
+}
+
+.Typography_Typography__body1__q3AOP {
+    font-size: 16px;
+    letter-spacing: .0057em;
+    line-height: 24px;
+}
+
+.Typography_Typography__displayBlock__A3AK8 {
+    display: block;
+}
+
+.Typography_Typography__weightRegular__jzmck {
+    font-weight: 400;
+}
+
+.Typography_Typography__caption1__P91eH {
+    font-size: 12px;
+    letter-spacing: .0252em;
+    line-height: 16px;
+}
+
 /*  ---------------------------------------ProfileView Layout-------------------------------------------- */
 .ProfileView_ProfileView__root__eOS_q {
 	margin-bottom: 32px;
@@ -494,6 +548,110 @@ a, abbr, acronym, address, applet, article, aside, audio, b, big,
 	font-weight: 600;
 }
 
+.ProfileViewCareerList_ProfileViewCareerList__listitem__DimPG:last-child {
+    padding-bottom: 0;
+}
+
+.ProfileViewCareerList_ProfileViewCareerList__listitem__DimPG {
+    align-items: flex-start;
+}
+
+.ProfileView_ProfileView__subheader__icon__k8e0f {
+    font-size: 20px;
+    color: rgba(55, 56, 60, .28);
+}
+
+.ProfileViewCareerList_ProfileViewCareerList__listitemTextSparse__YRjU_ {
+    gap: 3px;
+}
+
+.ProfileViewCareerList_ProfileViewCareerList__listitemText__0MuCi {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.ProfileViewCareerList_ProfileViewCareerList__companyName__qtvK7 {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-right: 2px;
+    color: #000;
+}
+
+.ProfileViewCareerList_ProfileViewCareerList__period__eCYP_ {
+    color: rgba(55, 56, 60, .61);
+}
+/*  ---------------------------------------ListItem------------------------------------------- */
+
+.ListItem_ListItem__root__4HTKO {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    -ms-flex-align: center;
+    align-items: center;
+    position: relative;
+    text-decoration: none;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    text-align: left;
+    padding-top: 12px;
+    padding-bottom: 20px;
+}
+
+.ListItemText_ListItemText__root__j76to {
+    flex: 1 1 auto;
+    gap: 4px;
+    color: inherit;
+}
+
+/*  ---------------------------------------ListItemAvatar-------------------------------------------- */
+
+.ListItemAvatar_ListItemAvatar__root__6tOWo {
+    min-width: 60px;
+    flex-shrink: 0;
+}
+
+.List_List__root__nWfeE {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+
+/*  ---------------------------------------Avatar-------------------------------------------- */
+
+.Avatar_Avatar__roundedSizeLarge__BIXTE {
+    border-radius: 12px;
+}
+
+.Avatar_Avatar__sizeLarge__ONMwJ {
+    width: 48px;
+    height: 48px;
+    font-size: 32px;
+}
+
+.Avatar_Avatar__root__p2QCs {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border: 1px solid #f7f7f7;
+    color: #fff;
+    background-color: #fff;
+    line-height: 1;
+    overflow: hidden;
+    user-select: none;
+}
+
+.Avatar_Avatar__defaultBackground__uv7ri {
+    background-color: hsla(225, 5%, 46%, .16);
+}
 /*  ---------------------------------------SvgIcon Layout-------------------------------------------- */
 .SvgIcon_SvgIcon__root__8vwon {
 	display: flex;
@@ -602,6 +760,19 @@ a, abbr, acronym, address, applet, article, aside, audio, b, big,
 	height: 1px;
 	margin: 0;
 	border: none;
+}
+
+ .Divider_Divider__root__vpedr { 
+    height: 1px;
+    margin: 0;
+    border: none;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    background-color: hsla(225, 5%, 46%, .22);
+}
+
+.LnbDesktop_LnbDesktop__divider__0BR8n {
+    background-color: hsla(225, 5%, 46%, .08);
 }
 
 /*  ---------------------------------------Box Layout-------------------------------------------- */

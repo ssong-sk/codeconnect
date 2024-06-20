@@ -2,6 +2,9 @@ package com.code.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -40,7 +43,6 @@ public class CommunityController {
 
         int totalCount = service.getTotalCountByType("home");
         List<CommunityDto> list = service.getAllDatasByType("home");
-        
         List<CommunityDto> newcomerList=service.getAllDatasByCategory("신입");
         List<CommunityDto> prepareList=service.getAllDatasByCategory("취준");
         List<CommunityDto> letterList=service.getAllDatasByCategory("자소서");
@@ -86,7 +88,7 @@ public class CommunityController {
         dto.setCom_post_type("home"); //com_post_type을 'home'으로 설정
         
         service.insertCommunity(dto);
-        return "redirect:/community/homelist";
+		return "redirect:/community/homelist";
     }
 
     @GetMapping("/community/homeupdateform")
@@ -149,16 +151,16 @@ public class CommunityController {
     @GetMapping("/community/homedetail")
     public String detail(@RequestParam("com_num") int comNum, HttpSession session, Model model) {
         CommunityDto dto = service.getData(comNum);
-        // 조회수 증가 로직 추가
+        //조회수 증가 로직 추가
         service.increaseReadCount(comNum);
 
-        // content 줄바꿈 로직 추가
+        //content 줄바꿈 로직 추가
         dto.setCom_content(dto.getCom_content().replace("\n", "<br/>"));
 
-        // 세션에서 사용자 닉네임을 가져와 모델에 추가
+        //세션에서 사용자 닉네임을 가져와 모델에 추가
         String userNickname = (String) session.getAttribute("userNickname");
         if (userNickname == null) {
-            // 세션에 닉네임이 없으면 데이터베이스에서 조회하여 설정
+            //세션에 닉네임이 없으면 데이터베이스에서 조회하여 설정
             String userId = (String) session.getAttribute("myid");
             if (userId != null) {
                 RegisterDto userDto = mapperinter.getDataById(userId);
@@ -169,7 +171,7 @@ public class CommunityController {
             }
         }
 
-        // userNickname이 여전히 null인 경우 기본 닉네임 설정
+        //userNickname이 여전히 null인 경우 기본 닉네임 설정
         if (userNickname == null) {
             userNickname = dto.getCom_nickname(); // 기본 닉네임 설정
         }
@@ -180,12 +182,35 @@ public class CommunityController {
         return "community/homedetail"; // "community/homedetail.jsp"로 매핑
     }
     
+    
+    //homedetail 페이지 좋아요 버튼
     @PostMapping("/community/updateLike")
     @ResponseBody
-    public void updateLike(@RequestParam("com_num") int com_num) {
+    public void updateLike(@RequestParam("com_num") int com_num, HttpSession session) {
         service.updateLikeCount(com_num);
+        // 사용자가 좋아요를 누른 게시글 목록을 세션에 저장
+        List<Integer> likedPosts = (List<Integer>) session.getAttribute("likedPosts");
+        if (likedPosts == null) {
+            likedPosts = new ArrayList<>();
+        }
+        likedPosts.add(com_num);
+        session.setAttribute("likedPosts", likedPosts);
     }
 
+    @PostMapping("/community/removeLike")
+    @ResponseBody
+    public void removeLike(@RequestParam("com_num") int com_num, HttpSession session) {
+        service.decreaseLikeCount(com_num);
+        // 사용자가 좋아요를 취소한 게시글 목록을 세션에서 제거
+        List<Integer> likedPosts = (List<Integer>) session.getAttribute("likedPosts");
+        if (likedPosts != null) {
+            likedPosts.remove(Integer.valueOf(com_num));
+            session.setAttribute("likedPosts", likedPosts);
+        }
+    }
+
+
+    
     @GetMapping("/community/interviewlist")
     public ModelAndView interviewList() {
         ModelAndView mview = new ModelAndView();
@@ -222,15 +247,44 @@ public class CommunityController {
         return "community/homeform"; // "community/homeform.jsp"로 매핑
     }
     
+//    @GetMapping("/community/hometotalpost")
+//    public String homeTotalPost(Model model)
+//    {
+//    	List<CommunityDto> list=service.getAllDatasByType("home");
+//    	
+//    	model.addAttribute("list", list);
+//    	
+//    	return "community/hometotalpost";
+//    }
+    
+	/*
+	 * @GetMapping("/community/hometotalpost") public String homeTotalPost(Model
+	 * model, @RequestParam(value = "category", required = false) String category) {
+	 * 
+	 * List<CommunityDto> list; if (category == null || category.isEmpty()) { list =
+	 * service.getAllDatasByType("home"); } else { list =
+	 * service.getAllDatasByCategory(category); } model.addAttribute("list", list);
+	 * model.addAttribute("category", category == null ? "전체" : category); // 카테고리가
+	 * 없을 경우 "전체"로 설정 return "community/hometotalpost"; }
+	 */
+    
     @GetMapping("/community/hometotalpost")
-    public String homeTotalPost(Model model)
-    {
-    	List<CommunityDto> list=service.getAllDatasByType("home");
-    	
-    	model.addAttribute("list", list);
-    	
-    	return "community/hometotalpost";
-    }
+    public String homeTotalPost(Model model, @RequestParam(value = "category", required = false) String category) {
+        if (category != null) {
+            category = URLDecoder.decode(category, StandardCharsets.UTF_8);
+        }
+        List<CommunityDto> list;
+        if (category == null || category.isEmpty() || category.equals("전체글")) {
+            list = service.getAllDatasByType("home");
+            category = "전체";
+        } else {
+            list = service.getAllDatasByCategory(category);
+        }
+        
+        model.addAttribute("list", list);
+        model.addAttribute("category", category);
+        return "community/hometotalpost";
+   }
     
     @GetMapping("community/homefavoritelist")
     public String homeFavoriteList(Model model)

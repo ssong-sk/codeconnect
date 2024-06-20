@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
@@ -10,6 +9,8 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
 <title>게시글 상세</title>
 <style>
     body {
@@ -90,6 +91,18 @@
         text-align: center;
         margin-top: 20px;
     }
+    .post_emoticom button:hover {
+        color: red;
+    }
+    .post_emoticom button:hover img {
+        filter: invert(35%) sepia(82%) saturate(5778%) hue-rotate(357deg) brightness(96%) contrast(110%);
+    }
+    .post_emoticom button.liked {
+        color: red;
+    }
+    .post_emoticom button.liked img {
+        filter: invert(35%) sepia(82%) saturate(5778%) hue-rotate(357deg) brightness(96%) contrast(110%);
+    }
     .post_emoticom button {
         background: none;
         border: none;
@@ -143,20 +156,42 @@
 </style>
 <script type="text/javascript">
     $(document).ready(function() {
-        // 좋아요 수 증가 ajax
+        // 좋아요 버튼 클릭 이벤트
         $('#like_button').click(function() {
             const com_num = ${dto.com_num};
-            $.ajax({
-                url: "${pageContext.request.contextPath}/community/updateLike",
-                type: "POST",
-                data: { com_num: com_num },
-                success: function() {
-                    location.reload();
-                }
-            });
+            const isLiked = $(this).hasClass('liked');
+            const actionUrl = isLiked ? "${pageContext.request.contextPath}/community/removeLike" : "${pageContext.request.contextPath}/community/updateLike";
+            
+	            $.ajax({
+	                url: actionUrl,
+	                type: "POST",
+	                data: { com_num: com_num },
+	                success: function() {
+	                    let likeCount = parseInt($('#like_button span:last-child').text());
+	                    let metaLikeCount = parseInt($('.meta-right span i').next().text());
+	                    
+	                    if (isLiked) {
+	                        $('#like_button').removeClass('liked');
+	                        $('#like_button span:last-child').text(likeCount - 1);
+	                        $('.meta-right span i').next().text(metaLikeCount - 1);
+	                    } else {
+	                        $('#like_button').addClass('liked');
+	                        $('#like_button span:last-child').text(likeCount + 1);
+	                        $('.meta-right span i').next().text(metaLikeCount + 1);
+	                    }
+	                }
+	            });
         });
 
-     	// 댓글 등록 버튼 클릭
+        // 초기 로드 시 좋아요 상태 확인
+        if (sessionStorage.getItem('likedPosts')) {
+            let likedPosts = JSON.parse(sessionStorage.getItem('likedPosts'));
+            if (likedPosts.includes(${dto.com_num})) {
+                $('#like_button').addClass('liked');
+            }
+        }
+
+        // 댓글 등록 버튼 클릭
         $("#btnCommentAdd").click(function() {
             var content = $("#content").val();
             var cc_num = ${dto.com_num}; // 게시글 번호를 cc_num으로 매핑
@@ -180,21 +215,15 @@
             });
         });
 
-        // 댓글 삭제
-        $(document).on("click", "i.ccDel", function() {
-            var cc_idx = $(this).attr("cc_idx");
-            if (confirm("해당 댓글을 삭제할까요?")) {
-                $.ajax({
-                    type: "get",
-                    dataType: "html",
-                    url: "${pageContext.request.contextPath}/community/adelete",
-                    data: { cc_idx: cc_idx },
-                    success: function() {
-                        alert("삭제 완료!");
-                        listComments();
-                    }
-                });
-            }
+        
+
+        // 게시글 삭제 버튼 클릭
+        $("#btnDelete").click(function() {
+            $("#confirmPostDeleteModal").modal("show");
+
+            $("#btnConfirmPostDelete").off("click").on("click", function() {
+                location.href = 'delete?com_num=${dto.com_num}';
+            });
         });
 
         // 댓글 수정 모달 표시
@@ -212,7 +241,7 @@
             });
         });
 
-        // 댓글 수정
+        //댓글 수정
         $("#btnUpdateOk").click(function() {
             var content = $("#ucontent").val();
             $.ajax({
@@ -224,14 +253,37 @@
                     cc_content: content
                 },
                 success: function() {
-                    alert("수정 완료!");
+                    //alert("수정 완료!");
                     listComments();
                 }
             });
         });
+        
+     	//댓글 삭제
+        $(document).on("click", "i.ccDel", function() {
+            var cc_idx = $(this).attr("cc_idx");
+            $("#confirmDeleteModal").modal("show");
 
+            $("#btnConfirmDelete").off("click").on("click", function() {
+                $.ajax({
+                    type: "get",
+                    dataType: "html",
+                    url: "${pageContext.request.contextPath}/community/adelete",
+                    data: { cc_idx: cc_idx, cc_num: ${dto.com_num} },
+                    success: function() {
+                        //alert("삭제 완료!");
+                        listComments();
+                        $("#confirmDeleteModal").modal("hide");
+                    }
+                });
+            });
+        });
+
+        //초기 로드 시 댓글 목록 불러오기
+        listComments();
     });
-
+    
+	//댓글 목록
     function listComments() {
         var cc_num = ${dto.com_num};
         $.ajax({
@@ -243,9 +295,9 @@
                 var s = "";
                 $.each(data, function(i, dto) {
                     s += "<div class='comment'><b>" + dto.cc_nickname + "</b>: " + dto.cc_content;
-                    s += "<span class='day'>" + dto.cc_writetime + "</span>&nbsp;";
+                    s += "&nbsp;&nbsp;<span class='day'>" + dto.cc_writetime + "</span>&nbsp;";
                     if ("${sessionScope.loginok}" == 'yes' && "${sessionScope.myid}" == dto.cc_user_id) {
-                        s += "<i class='bi bi-pencil-square ccMod' cc_idx='" + dto.cc_idx + "'></i>&nbsp;";
+                        s += "&nbsp;<i class='bi bi-pencil-square ccMod' cc_idx='" + dto.cc_idx + "'></i>&nbsp;";
                         s += "<i class='bi bi-trash-fill ccDel' cc_idx='" + dto.cc_idx + "'></i>";
                     }
                     s += "</div>";
@@ -254,11 +306,6 @@
             }
         });
     }
-
-    // 초기 로드 시 댓글 목록 불러오기
-    $(document).ready(function() {
-        listComments();
-    });
 </script>
 
 </head>
@@ -273,12 +320,14 @@
         <div class="title_left">
             <h5><b>${dto.com_title}</b></h5>
         </div>
+        <!-- 글 작성한 본인만 수정, 삭제 가능하도록 -->
         <div class="title_right">
-            <button type="button" class="btn btn-outline-primary btn-sm"
-            onclick="location.href='homeupdateform?com_num=${dto.com_num}&com_photo=${dto.com_photo}'">수정</button>
-            <button type="button" class="btn btn-outline-secondary btn-sm"
-            onclick="location.href='delete?com_num=${dto.com_num}'">삭제</button>
-        </div>
+		    <c:if test="${sessionScope.loginok == 'yes' && sessionScope.myid == dto.com_user_id}">
+		        <button type="button" class="btn btn-outline-primary btn-sm"
+		            onclick="location.href='homeupdateform?com_num=${dto.com_num}&com_photo=${dto.com_photo}'">수정</button>
+		        <button type="button" class="btn btn-outline-secondary btn-sm" id="btnDelete">삭제</button>
+		    </c:if>
+		</div>
     </div>
     <!-- 게시글 메타 정보 -->
     <div class="meta" style="margin-top: 30px;">
@@ -291,7 +340,7 @@
         </div>
         <div class="meta-right">
             <input type="hidden" id="readcount" name="com_readcount" value="">
-            <span><i class="bi bi-hand-thumbs-up"></i>&nbsp;${dto.com_likes}</span>&nbsp;&nbsp;
+            <span><i class="bi bi-hand-thumbs-up"></i>&nbsp;<span>${dto.com_likes}</span></span>&nbsp;&nbsp;&nbsp;
             <span><i class="bi bi-chat-left"></i>&nbsp;${dto.com_commentcount}</span>
         </div>
     </div>
@@ -306,13 +355,29 @@
             <img src="${pageContext.request.contextPath}/communityimage/${dto.com_photo}" class="img-fluid">
         </div>
     </c:if>
+    <c:if test="${sessionScope.loginok == 'yes'}">
     <div class="post_emoticom" style="margin-bottom: 20px;">
-        <button id="like_button">
-            <img src="/communityimage/likeimg4.png" alt="좋아요">
-            <span>이 글이 좋아요</span>
-            <span style="margin-top: 5px;">${dto.com_likes}</span>
-        </button>
+        <c:choose>
+            <c:when test="${sessionScope.likedPosts != null && sessionScope.likedPosts.contains(dto.com_num)}">
+                <!-- 이미 좋아요를 누른 경우 -->
+                <button id="like_button" class="liked">
+                    <img src="/communityimage/likeimg4.png" alt="좋아요">
+                    <span>이 글이 좋아요</span>
+                    <span style="margin-top: 5px;">${dto.com_likes}</span>
+                </button>
+            </c:when>
+            <c:otherwise>
+                <!-- 아직 좋아요를 누르지 않은 경우 -->
+                <button id="like_button">
+                    <img src="/communityimage/likeimg4.png" alt="좋아요">
+                    <span>이 글이 좋아요</span>
+                    <span style="margin-top: 5px;">${dto.com_likes}</span>
+                </button>
+            </c:otherwise>
+        </c:choose>
     </div>
+	</c:if>
+
 </div>
 
 <!-- comment board -->
@@ -320,7 +385,7 @@
     <h5>댓글</h5>
     <div class="input-group mb-3">
         <input type="text" class="form-control" placeholder="댓글을 입력하세요" id="content" aria-describedby="button-addon2">
-        <button class="btn btn-outline-secondary" type="button" id="btnCommentAdd">등록</button>
+        <button class="btn btn-outline-primary" type="button" id="btnCommentAdd">등록</button>
     </div>
     <!-- 댓글 리스트 -->
     <div class="comment-list"></div>
@@ -348,6 +413,50 @@
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
       </div>
 
+    </div>
+  </div>
+</div>
+
+<!-- The 게시글 삭제 확인 Modal -->
+<div class="modal" id="confirmPostDeleteModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">게시글 삭제</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <!-- Modal body -->
+      <div class="modal-body">
+        정말 삭제하시겠습니까?
+      </div>
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" id="btnConfirmPostDelete">네</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">아니요</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- The 댓글 삭제 확인 Modal -->
+<div class="modal" id="confirmDeleteModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">댓글 삭제</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <!-- Modal body -->
+      <div class="modal-body">
+        정말 삭제하시겠습니까?
+      </div>
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" id="btnConfirmDelete">네</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">아니요</button>
+      </div>
     </div>
   </div>
 </div>

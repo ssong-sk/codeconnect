@@ -12,10 +12,10 @@ import com.code.mapper.RegisterMapperInter;
 
 @Service
 public class RegisterService implements RegisterServiceInter {
-	
+
 	@Autowired
 	RegisterMapperInter mapperInter;
-	
+
 	@Override
 	public void insertRegister(RegisterDto dto) {
 		mapperInter.insertRegister(dto);
@@ -42,11 +42,11 @@ public class RegisterService implements RegisterServiceInter {
 	@Override
 	public int loginIdPassCheck(String r_id, String r_pass) {
 		// TODO Auto-generated method stub
-		
-		Map<String,String> map = new HashMap<>();
+
+		Map<String, String> map = new HashMap<>();
 		map.put("r_id", r_id);
 		map.put("r_pass", r_pass);
-		
+
 		return mapperInter.loginIdPassCheck(map);
 	}
 
@@ -60,6 +60,38 @@ public class RegisterService implements RegisterServiceInter {
 	public RegisterDto getDataByNum(String r_num) {
 		// TODO Auto-generated method stub
 		return mapperInter.getDataByNum(r_num);
+	}
+
+	@Override
+	public boolean isIdUnique(String r_id) {
+		int count = mapperInter.countById(r_id);
+		return count == 0;
+	}
+	@Override
+	public boolean isNicknameUnique(String r_nickname) {
+		int count = mapperInter.countByNickname(r_nickname);
+		return count == 0;
+	}
+
+	
+	
+	
+	
+	
+	
+	public void updateRegister(RegisterDto dto) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void deleteRegister(int num) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void deleteme(String num) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

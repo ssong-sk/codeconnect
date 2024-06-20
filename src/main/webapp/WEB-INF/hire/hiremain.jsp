@@ -1379,14 +1379,23 @@ svg{
 			                        <span>${h.c_name}</span>
 			                    </div>
 			                    <h2 class="position_card_info_title">${h.h_title}</h2>
-			                    <ul class="content-techlist">
-			                        <c:forEach var="htech" items="${h.h_tech.split(',')}">
-			                            <li><c:out value="${htech}" /></li>
-			                        </c:forEach>
-			                    </ul>
+								<ul class="content-techlist">
+								    <c:forEach var="htech" items="${h.h_tech.split(',')}">
+								        <li><c:out value="${htech}" /></li>
+								    </c:forEach>
+								</ul>
 			                    <ul class="content-area">
-			                        <li>${h.h_location}</li>
-			                        <li>· 경력  ${h.h_career}년</li>
+			                        <li><c:out value="${h.h_location.length() > 7 ? h.h_location.substring(0, 7) : h.h_location}" /></li>
+			                        <li>
+									    <c:choose>
+									        <c:when test="${h.h_career == '신입'}">
+									            <c:out value="·&nbsp;&nbsp;${h.h_career}" escapeXml="false"/>
+									        </c:when>
+									        <c:otherwise>
+									            <c:out value="·&nbsp;&nbsp;경력 ${h.h_career}년" escapeXml="false"/>
+									        </c:otherwise>
+									    </c:choose>
+									</li>
 			                    </ul>
 			                </div>
 			            </a>

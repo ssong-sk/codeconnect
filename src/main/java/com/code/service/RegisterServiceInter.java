@@ -13,5 +13,7 @@ public interface RegisterServiceInter {
 	public int loginIdPassCheck(String r_id,String r_pass);
 	public RegisterDto getDataById(String r_id);
 	public RegisterDto getDataByNum(String r_num);
+	public boolean isIdUnique(String r_id);
+	public boolean isNicknameUnique(String r_nickname);
 
 }

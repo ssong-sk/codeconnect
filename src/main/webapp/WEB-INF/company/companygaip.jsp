@@ -1,49 +1,57 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-	rel="stylesheet">
-<link
-	href="https://fonts.googleapis.com/css2?family=Dongle&family=Gaegu&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@100..900&family=Noto+Serif+KR&display=swap"
-	rel="stylesheet">
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gowun+Dodum&family=IBM+Plex+Sans+KR&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 
 <title>CODECONNECT - 기업 회원가입</title>
 <style>
 body {
-	font-family: 'Noto Sans KR', sans-serif;
+	font-family: 'IBM Plex Sans KR', sans-serif;
 	background-color: #ffffff;
 }
 
 .signup-form {
 	margin: 50px auto;
-	width: 400px;
+	width: 600px;
 	padding: 20px;
 	border-radius: 10px;
-	background-color: #f5f5f5;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	background-color: #ffffff;
 }
 
 .signup-form h2 {
 	text-align: center;
 	margin-bottom: 20px;
-	color: #007bff;
+	color: black;
+
 }
 
 .form-group {
 	margin-bottom: 15px;
 }
 
-.btn-info {
+.btn-primary {
 	width: 100%;
+}
+
+.input-group {
+	display: flex;
+	align-items: center;
+}
+
+.input-group input[type="email"] {
+	flex: 1;
+}
+
+.input-group button {
+	margin-left: 10px;
 }
 </style>
 
@@ -53,7 +61,7 @@ body {
 	//중복체크 버튼클릭시 아이디 체크
 	$("#btnidcheck").click(function(){
 		var c_id = $("#c_id").val();
-		alert(c_id);
+		//alert(c_id);
 		
 		$.ajax({
 			type: "get",
@@ -62,9 +70,9 @@ body {
 			data: {"c_id": c_id},
 			success: function(res){
 				if(res.count == 0){
-					$("span.idsuccess").text("ok");
+					$("span.idsuccess").text("사용 가능한 아이디입니다!");
 				} else {
-					$("span.idsuccess").text("fail");
+					$("span.idsuccess").text("중복 아이디입니다. 다른 아이디를 입력해주세요.");
 					$("#c_id").val("");
 				}
 			}
@@ -82,9 +90,9 @@ body {
 		var p2 = $(this).val();
 		
 		if(p1 == p2)
-			$("span.passsuccess").text("ok");
+			$("span.passsuccess").text("비밀번호 확인 완료");
 		else
-			$("span.passsuccess").text("fail");
+			$("span.passsuccess").text("비밀번호 불일치. 다시 입력바랍니다.");
 	});
 	
 	// 폼 제출 시 사업자 등록 번호 확인
@@ -104,11 +112,14 @@ body {
 
 	<div class="signup-form">
 		<h2>기업 회원가입</h2>
+		<br>
 		<form action="gaip" method="post">
 			<div class="form-group">
-				<label for="c_id">아이디 (기업 대표 이메일주소)</label> 
-				<input type="email" class="form-control" id="c_id" name="c_id" placeholder="아이디" required="required"> 
-				<button type="button" class="btn btn-danger btn-sm" id="btnidcheck">중복체크</button>
+				<label for="c_id">아이디 (기업 대표 이메일주소)</label>
+				<div class="input-group">
+					<input type="email" class="form-control" id="c_id" name="c_id" placeholder="아이디" required="required"> 
+					<button type="button" class="btn btn-outline-primary btn-sm" id="btnidcheck">중복체크</button>
+				</div>
 				<span class="idsuccess" style="width: 60px; color: green;"></span>
 			</div>
 			<div class="form-group">
@@ -179,8 +190,8 @@ body {
 					<option value="1001+">1001+</option>
 				</select>
 			</div>
-			<button type="submit" class="btn btn-info">회원가입</button><br>
-			<button type="button" class="btn btn-info" onclick="history.back()">뒤로</button>
+			<button type="submit" class="btn btn-primary">회원가입</button><br>
+			<!-- <button type="button" class="btn btn-info" onclick="history.back()">뒤로</button>-->
 		</form>
 	</div>
 

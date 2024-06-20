@@ -26,5 +26,4 @@ public class CommunityDto {
 	private String com_name;
 	private String com_companyname;
 	
-	
 }
