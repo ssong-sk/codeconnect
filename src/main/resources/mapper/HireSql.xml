@@ -29,7 +29,17 @@
         <if test="search_region != null and search_region != ''">
             AND h.h_location REGEXP #{search_region}
         </if>
+        <if test="search_career != null and search_career != ''">
+            AND h.h_career REGEXP #{search_career}
+        </if>
+        <if test="search_cate != null and search_cate != ''">
+            AND h.h_category REGEXP #{search_cate}
+        </if>
     </where>
+</select>
+
+<select id="getHireData" parameterType="int" resultType="hdto">
+	select * from hire where h_num=#{h_num}
 </select>
 
 </mapper>

@@ -751,7 +751,7 @@ svg{
                                  <li><button type="button" class="techoption-btn">NoSQL</button></li>
                                  <li><button type="button" class="techoption-btn">MariaDB</button></li>
                                  <li><button type="button" class="techoption-btn">MongoDB</button></li>
-                                 <li><button type="button" class="techoption-btn">SQL</button></li>
+                                 <li><button type="button" class="techoption-btn">#SQL</button></li>
                                  <li><button type="button" class="techoption-btn">R</button></li>
                                  <li><button type="button" class="techoption-btn">Hadoop</button></li>
                                  <li><button type="button" class="techoption-btn">Spark</button></li>
@@ -878,6 +878,7 @@ svg{
                <div>
                   <button type="button" class="btn btn-outline-light resetcareer"
                      style="color: black; border: 1px solid lightgray;">초기화</button>
+                  <input type="hidden" id="search_career" name="search_career">
                </div>
             </div>
 
@@ -1340,7 +1341,7 @@ svg{
 			<section class="hirelist">
 			    <c:forEach var="h" items="${hlist}">
 			        <div class="hireinfo">
-			            <a target="_self" title="${h.h_title}" href="#">
+			            <a target="_self" title="${h.h_title}" href="detail?h_num=${h.h_num }">
 			                <div class="img_box">
 			                    <div class="img_filter"></div>
 			                    <img alt="${h.c_name}" class="img" src="../../companyintro_uploads/${h.ci_image}">
@@ -1678,14 +1679,28 @@ document.addEventListener('DOMContentLoaded', function() {
 });
  
 /* 카테고리2 버튼 클릭 */
+var search_cate = ""; // 전역 변수로 선언하여 클릭 이벤트 핸들러 외부에 유지
+
 $(".category2").click(function() {
     var category2press = $(this).attr("aria-pressed");
+    var category2text = $(this).val();
+
     $(this).attr("aria-pressed", category2press === "true" ? "false" : "true");
 
-    // 이모티콘과 띄어쓰기를 제거한 후 텍스트만 추출
-    var category2text = $(this).val();
-    
-    alert(category2text);
+    if (category2press == "false") {
+        // 버튼이 눌리지 않은 상태에서 클릭된 경우
+        if (search_cate != "") {
+            search_cate += "|";
+        }
+        search_cate += category2text;
+        $("#search_cate").val(search_cate);
+    } else {
+        // 버튼이 눌린 상태에서 클릭된 경우
+        var regex = new RegExp(category2text.trim() + "(\\|)?", "g");
+        search_cate = search_cate.replace(regex, "").replace(/^\|/, '').replace(/\|$/, '');
+        $("#search_cate").val(search_cate);
+    }
+    alert($("#search_cate").val()); // 현재 search_cate 값을 알림으로 표시
 });
  
 
@@ -2051,12 +2066,13 @@ $(document).click(function(event) {
 
 <!-- 검색 기능 -->
 <script type="text/javascript">
-/* 개발직무 검색 */
-
-    $(".apply-btn, .techapply-btn, .btnapply").click(function() {
+	/* 직무,기술,지역 검색 */
+    $(".apply-btn, .techapply-btn, .btnapply, .category2").click(function() {
         var search_job = $("#search_job").val();
-        var search_tech = $("#search_tech").val();
+        var search_tech = $("#search_tech").val().replace(/\+/g, '\\+').replace(/#/g, '\\#'); // + 및 # 문자 이스케이프
         var search_region = $("#search_region").val();
+        var search_career = $("#search_career").val();
+        var search_cate = $("#search_cate").val();
         
         $.ajax({
             type: "GET",
@@ -2065,7 +2081,38 @@ $(document).click(function(event) {
             data: {
                 "search_job": search_job,
                 "search_tech": search_tech,
-                "search_region": search_region
+                "search_region": search_region,
+                "search_career": search_career,
+                "search_cate": search_cate
+            },
+            success: function(res) {
+                renderResults(res);
+            },
+            error: function(xhr, status, error) {
+                console.error("검색 중 오류 발생: " + error);
+                alert("검색 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.");
+            }
+        });
+    });
+    
+    //경력 검색
+    $("input[name='career']").change(function() {
+        var search_job = $("#search_job").val();
+        var search_tech = $("#search_tech").val().replace(/\+/g, '\\+').replace(/#/g, '\\#'); // + 및 # 문자 이스케이프
+        var search_region = $("#search_region").val();
+        var search_career = $("#search_career").val();
+        var search_cate = $("#search_cate").val();
+        
+        $.ajax({
+            type: "GET",
+            url: "search", // 실제 검색을 처리하는 서버의 URL로 변경해야 합니다.
+            dataType: "json",
+            data: {
+                "search_job": search_job,
+                "search_tech": search_tech,
+                "search_region": search_region,
+                "search_career": search_career,
+                "search_cate": search_cate
             },
             success: function(res) {
                 renderResults(res);
@@ -2078,7 +2125,7 @@ $(document).click(function(event) {
     });
 
 
-    // 결과를 화면에 표시하는 함수
+	// 결과를 화면에 표시하는 함수
     function renderResults(res) {
         $('.hirelist').hide(); // 기존 리스트 삭제
 
@@ -2086,7 +2133,6 @@ $(document).click(function(event) {
             $('#hireListContainer').html('<p>검색 결과가 없습니다.</p>');
             return;
         }
-
         var s = "<section class='s_hirelist'>";
         $.each(res, function(index, h) {
             s += "<div class='hireinfo'>";
@@ -2126,8 +2172,14 @@ $(document).click(function(event) {
             });
             s += "</ul>";
             s += "<ul class='content-area'>";
-            s += "<li>" + h.h_location + "</li>";
-            s += "<li>· 경력 " + h.h_career + "년</li>";
+            s += "<li>" + (h.h_location.length > 7 ? h.h_location.substring(0, 7) : h.h_location) + "</li>";
+            s += "<li>";
+            if (h.h_career == '신입') {
+                s += "·&nbsp;&nbsp;" + h.h_career;
+            } else {
+                s += "·&nbsp;&nbsp;경력 " + h.h_career + "년";
+            }
+            s += "</li>";
             s += "</ul>";
             s += "</div>";
             s += "</a>";
