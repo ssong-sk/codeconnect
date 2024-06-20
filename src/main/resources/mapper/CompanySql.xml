@@ -55,4 +55,11 @@
     	select c_num from company where c_id = #{c_id}
     </select>
     
+    
+    <!-- 비밀번호변경 -->
+    <update id="updateCompanyPass" parameterType="CompanyDto" >
+      update company set c_pass=#{c_pass} where c_num={c_num}
+    </update>
+    
+    
 </mapper>

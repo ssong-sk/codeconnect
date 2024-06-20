@@ -87,6 +87,14 @@ public class CompanyService implements CompanyServiceInter{
 		return cmapperInter.selectC_num(c_id);
 	}
 	
+	//기업 회원 비밀번호 변경
+	@Override
+	public void updateCompanyPass(CompanyDto dto) {
+		// TODO Auto-generated method stub
+		cmapperInter.updateCompanyPass(dto);
+		
+	}
+	
 }
 
 

@@ -22,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.code.dto.CompanyDto;
+import com.code.dto.CompanyIntroDto;
 import com.code.dto.HireDto;
 import com.code.service.CompanyIntroService;
 import com.code.service.CompanyService;
@@ -173,20 +174,68 @@ public class CompanyController {
 
 	    cservice.updateCompany(dto); // db update
 
-	    return "redirect:/company/myinfo"; // redirect to the myinfo mapping
+	    return "redirect:/company/companyupdate"; // redirect to the myinfo mapping
 	}
 
 
+	//기업 계정관리 페이지로 이동
+	@GetMapping("/company/account")
+	public String accountmain(HttpSession session,Model model) {
+		String c_myid = (String) session.getAttribute("c_myid");
+		CompanyDto dto = cservice.getDataById(c_myid); // myid로 CompanyDto를 가져오는 서비스 메서드
+		
+		String c_num = dto.getC_num();
+		
+		CompanyIntroDto cdto = ciservice.getDataByNum(c_num);
+		model.addAttribute("dto", dto);
+		model.addAttribute("cdto", cdto);
+		
+		return "/companyaccount/companyaccount_main";
+	}
+	
+	
+	//기업회원 : 계정탈퇴 버튼 -> 계정탈퇴 폼으로 이동
+	@GetMapping("/company/deleteaccount")
+	public String comdeleteaccount() {
+		
+		return "/companyaccount/companyaccount_delete";
+	}
+	
 
-
-	// 탈퇴
+	//계정 탈퇴하기
 	@GetMapping("/company/deleteme")
 	@ResponseBody
-	public void deleteme(String c_num, HttpSession session) {
-		cservice.deleteCompany(c_num);
+	public Map<String, String> deleteme(HttpSession session, @RequestParam String input_pass) {
+	    Map<String, String> response = new HashMap<>();
+	    String c_myid = (String) session.getAttribute("c_myid");
+	    CompanyDto dto = cservice.getDataById(c_myid);
+	    String c_pass = dto.getC_pass();
+	    String c_num = dto.getC_num();
 
-		session.removeAttribute("c_loginok");
-		session.removeAttribute("c_myid");
+	    // Check password and delete account if correct
+	    if (input_pass.equals(c_pass)) {
+	        cservice.deleteCompany(c_num);
+	        session.removeAttribute("c_loginok");
+	        session.removeAttribute("c_myid");
+	        response.put("status", "success");
+	    } else {
+	        response.put("status", "error");
+	        response.put("message", "비밀번호가 다릅니다.");
+	    }
+
+	    return response;
 	}
+
+
+
+	
+	//기업회원 : 내 비밀번호 변경
+	@PostMapping("/company/changepass")
+	public void companyupdatepassword(@ModelAttribute CompanyDto dto, String c_num) {
+	
+		cservice.updateCompanyPass(dto);
+	}
+	
+	
 
 }
