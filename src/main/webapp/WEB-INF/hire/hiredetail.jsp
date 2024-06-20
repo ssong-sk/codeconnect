@@ -12,18 +12,84 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <title>Insert title here</title>
-<script type="text/javascript">
-	var h_category = "${hdto.h_category}"; // 예: '맥북으로개발|수평적조직'
-	var categories = h_category.split('|'); // ['맥북으로개발', '수평적조직']
-</script>
+<style type="text/css">
+.all {
+	height: 100%;
+}
+
+.center {
+	margin: 0 auto;
+	width: 100%;
+	height: 100%;
+	max-width: 1080px;
+}
+
+#wrap {
+	margin-top: 100px;
+	font-family: IBM Plex Sans KR;
+}
+
+.mainhire {
+	position: relative;
+    width: 630px;
+}
+</style>
 </head>
 <body>
-<div>
-	<br><br>
-	<h2>${hdto.h_title }</h2>
-	<br><br>
-	<div>
-		${categories }
+<div class="all">
+	<div id="wrap">
+		<div class="center">
+			<div class="mainhire">
+				<br><br>
+				<h2>${hdto.h_title }</h2>
+				<br><br>
+				<br><br>
+				<br><br>
+				<br><br>
+				<br><br>
+				<br><br>
+				<br><br>
+				<br><br>
+				<br><br>
+				<br><br>
+				<br><br>
+				<br><br>
+				<br><br>
+				<br><br>
+				<br><br>
+				<br><br>
+				<br><br>
+				<br><br>
+				<br><br>
+				<br><br>
+				<br><br>
+				<br><br>
+				<br><br>
+				<br><br>
+				<br><br>
+				<br><br>
+				<br><br>
+				<br><br>
+				<br><br>
+				<br><br>
+				<br><br>
+				<br><br>
+				<br><br>
+				<br><br>
+				<br><br>
+				<br><br>
+				<br><br>
+				<br><br>
+				<br><br>
+				<br><br>
+				<br><br>
+				<br><br>
+				
+			</div>
+		<div>
+			<jsp:include page="detailaside.jsp"></jsp:include>
+		</div>
+		</div>
 	</div>
 </div>
 
