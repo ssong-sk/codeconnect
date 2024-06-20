@@ -14,3 +14,4 @@ public interface HireMapperInter {
 	public List<HireDto> searchHire(String search_job, String search_tech, String search_region, String search_career, String search_cate);
 	public HireDto getHireData(int h_num);
 }
+

@@ -83,7 +83,6 @@
 
     <script type="text/javascript">
     $(".savebtn").click(function() {
-       
       var isChecked = $("#agreeCheckbox").is(":checked");
       if (!isChecked) {
          event.preventDefault();

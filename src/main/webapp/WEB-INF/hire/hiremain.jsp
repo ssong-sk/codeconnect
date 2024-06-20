@@ -2,6 +2,7 @@
    pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -822,6 +823,7 @@ svg{
 
             <div class="career">
                <div class="career_row">
+               <input type="hidden" id="search_career" name="search_career">
                   <div class="career_item">
                      <input type="radio" class="form-check-input"
                         style="color: green;" name="career" id="all" value="all"
@@ -1285,7 +1287,7 @@ svg{
 					<button aria-pressed="false" tabindex="-1" class="category2"
 					style="display: inline-block;" value="맥북으로개발">💻 맥북으로개발</button>
 					&nbsp;
-					<button aria-pressed="false" tabindex="-1" class="category2"
+					<button button="false" tabindex="-1" class="category2"
 					style="display: inline-block;" value="닉네임사용">👩‍ 닉네임사용</button>
 					&nbsp;
 					<button aria-pressed="false" tabindex="-1" class="category2" 
@@ -1392,7 +1394,7 @@ svg{
 									            <c:out value="·&nbsp;&nbsp;${h.h_career}" escapeXml="false"/>
 									        </c:when>
 									        <c:otherwise>
-									            <c:out value="·&nbsp;&nbsp;경력 ${h.h_career}년" escapeXml="false"/>
+				                                <c:out value="·&nbsp;&nbsp;경력 ${h.h_career}년" escapeXml="false"/>
 									        </c:otherwise>
 									    </c:choose>
 									</li>
@@ -1426,7 +1428,7 @@ $(document).ready(function() {
 		
 		/* 직무 검색 시 사용 */
 		var selectedJob = $(this).text().trim();
-
+		//alert(selectedJob);
 		if (search_job !== "") {
 			search_job += "|";
 		}
@@ -1532,10 +1534,12 @@ $(document).ready(function() {
 		}
 		search_tech += techText.trim();
 		$("#search_tech").val(search_tech);
+		
 	});
 
 	$('.techapply-btn').click(function() {
 		updateToggleText();
+		alert($("#search_tech").val());
 	});
 
 	$('.resettech').click(function() {
@@ -1618,7 +1622,7 @@ $(document).ready(function() {
 $(".career").hide();
 
 $(".carreerbtn").click(function(){
-   $(".career").toggle();
+	$(".career").toggle();
 })
 
 $(".resetcareer").click(function(){
@@ -1653,6 +1657,7 @@ $('input[name="career"]').change(function() {
 });
 
 </script>
+
 
 <script type="text/javascript">
 /* 카테고리2 슬라이드 기능 */
