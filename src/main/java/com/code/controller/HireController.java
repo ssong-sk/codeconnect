@@ -105,15 +105,21 @@ public class HireController {
    
    @GetMapping("/hire/detail")
    public ModelAndView detail(int h_num) {
-	   
-	   ModelAndView mview = new ModelAndView();
-	   
-	   HireDto hdto = hservice.getHireData(h_num);
-	   
-	   mview.addObject("hdto", hdto);
-	   mview.setViewName("/hire/hiredetail");
-	   
-	   return mview;
+      
+      ModelAndView mview = new ModelAndView();
+      
+      HireDto hdto = hservice.getHireData(h_num);
+      
+      String careerValue = hdto.getH_career();
+      if (!"신입".equals(careerValue)) {
+         String formattedCareer = formatCareer(careerValue);
+         hdto.setH_career(formattedCareer);
+      }
+      
+      mview.addObject("hdto", hdto);
+      mview.setViewName("/hire/hiredetail");
+      
+      return mview;
    }
 
 }
