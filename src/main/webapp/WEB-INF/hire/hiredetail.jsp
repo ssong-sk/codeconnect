@@ -290,7 +290,7 @@ span.con{
 				<div class="content">
 					<div class="content_detail">
 						<span class="sub">경력</span>
-						<span class="con">${hdto.h_career }</span>
+						<span class="con">${hdto.h_career }년</span>
 					</div>
 					<div class="content_detail">
 						<span class="sub">학력</span>
