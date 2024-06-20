@@ -141,6 +141,18 @@ span.con{
     unicode-bidi: isolate;
 }
 
+.map_link{
+	display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    color: rgb(102, 102, 102);
+    line-height: 24px;
+}
+
+.map_link:hover{
+    color: rgb(102, 102, 102);
+}
+
 /* 기업/서비스 소개 */
 .soge_title{
 	margin: 48px 0px 16px;
@@ -223,6 +235,7 @@ span.con{
 .soge-intro {
 	background: linear-gradient(rgba(255, 255, 255, 0.5) 0%, rgb(255, 255, 255) 100%);
 }
+
 </style>
 </head>
 <body>
@@ -290,7 +303,16 @@ span.con{
 				<div class="content">
 					<div class="content_detail">
 						<span class="sub">경력</span>
-						<span class="con">${hdto.h_career }년</span>
+						<span class="con">
+							<c:choose>
+						        <c:when test="${hdto.h_career == '신입'}">
+						            <c:out value="${hdto.h_career}" escapeXml="false"/>
+						        </c:when>
+						        <c:otherwise>
+	                                <c:out value="${hdto.h_career}년" escapeXml="false"/>
+						        </c:otherwise>
+						    </c:choose>
+						</span>
 					</div>
 					<div class="content_detail">
 						<span class="sub">학력</span>
@@ -302,7 +324,11 @@ span.con{
 					</div>
 					<div class="content_detail">
 						<span class="sub">근무지역</span>
-						<span class="con">${hdto.h_location }</span>
+						<span class="con" id="location">${hdto.h_location }</span>
+						&nbsp;&nbsp;&nbsp;
+						<a class="map_link" target="_blank" title="네이버 지도보기로 이동">
+							<i class="bi bi-geo-alt"></i> 지도보기
+						</a>
 					</div>
 				</div>
 				
@@ -329,6 +355,7 @@ span.con{
 			</div>
 		</div>
 	</div>
+	<br><br><br>
 </div>
 
 <script type="text/javascript">
@@ -346,6 +373,7 @@ $(".plus_soge").click(function() {
     
     if (!expanded) {
         sogePre.css("max-height", "none");
+        sogeCon.hide(); // 추가 컨텐츠 숨기기
         $(this).html('접기 <i class="bi bi-chevron-up"></i>');
     } else {
         sogePre.css("max-height", "168px"); // 초기 높이로 설정
@@ -360,5 +388,16 @@ $(".soge-intro").css({
 });
 </script>
 
+<!-- 지도보기 -->
+<script type="text/javascript">
+$(".map_link").click(function() {
+    var address = $("#location").text();
+    var encodedAddress = encodeURIComponent(address);
+    var naverMapUrl = "https://map.naver.com/v5/search/" + encodedAddress;
+
+    window.open(naverMapUrl, '_blank');
+});
+
+</script>
 </body>
 </html>
