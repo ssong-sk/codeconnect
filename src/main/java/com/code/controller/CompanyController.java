@@ -226,16 +226,38 @@ public class CompanyController {
 	    return response;
 	}
 
-
-
+	
+	// 비밀번호 변경 폼으로 이동
+	//기업회원 : 비밀번호 변경 버튼 클릭
+	@GetMapping("/company/changepassform")
+	public String comchangepassform() {
+		
+		return "/companyaccount/companyaccount_changepassform";
+	}
 	
 	//기업회원 : 내 비밀번호 변경
 	@PostMapping("/company/changepass")
-	public void companyupdatepassword(@ModelAttribute CompanyDto dto, String c_num) {
-	
-		cservice.updateCompanyPass(dto);
+	@ResponseBody
+	public Map<String, String> companyupdatepassword(HttpSession session, @RequestParam String original_pass, @RequestParam String new_pass) {
+	    Map<String, String> response = new HashMap<>();
+	    String c_myid = (String) session.getAttribute("c_myid");
+	    CompanyDto dto = cservice.getDataById(c_myid);
+	    String c_pass = dto.getC_pass(); // 기존의 비밀번호 가져오기
+
+	    // 비밀번호 체크하고 일치하면 비밀번호 변경, 아니면 변경 불가
+	    if (original_pass.equals(c_pass)) { // 기존의 비밀번호 일치
+	        dto.setC_pass(new_pass); // 새로운 비밀번호 설정
+	        cservice.updateCompanyPass(dto); // 데이터베이스에 변경 사항 반영
+	        response.put("message", "비밀번호가 변경되었습니다.");
+	        response.put("status", "success");
+	    } else {
+	        response.put("status", "error");
+	        response.put("message", "기존 비밀번호가 다릅니다.");
+	    }
+
+	    return response;
 	}
-	
+
 	
 
 }

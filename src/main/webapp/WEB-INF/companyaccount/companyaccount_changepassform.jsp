@@ -201,6 +201,38 @@ body {
 
 </style>
 
+<script type="text/javascript">
+$(function(){
+    $("#passchangebtn").click(function(event){
+        event.preventDefault();
+
+        var original_pass = $("#original_pass").val();
+        var new_pass = $("#new_pass").val();
+        var new_pass2 = $("#new_pass2").val();
+
+        if (new_pass === new_pass2) {
+            $.ajax({
+                url: 'changepass',
+                type: 'POST',
+                data: {
+                    original_pass: original_pass,
+                    new_pass: new_pass
+                },
+                success: function(response) {
+                    if (response.status === 'success') {
+                        alert('비밀번호가 변경되었습니다.');
+                        window.location.href = '/company/account';
+                    } else {
+                        alert(response.message);
+                    }
+                }
+            });
+        } else {
+            alert("새 비밀번호가 일치하지 않습니다. 다시 확인해주세요.");
+        }
+    });
+});
+</script>
 </head>
 <body>
 	<div class="wrapper">
@@ -231,36 +263,24 @@ body {
 
 			<div class="main-content-wrapper">
 				<div class="header">
-					<h1>계정 관리</h1>
+					<h1>비밀번호 변경</h1>
 				</div>
-
-				<div class="account-info">
-					<img src="../companyintro_uploads/${cdto.ci_logo}">
-					<div>
-						<p style="font-weight: bold;">${dto.c_name}</p>
-						<p>${dto.c_id}</p>
-						<p>${dto.c_phone}</p>
-					</div>
+				
+				<div>
+				<form id="changepassform">
+					<!-- 기존 비밀번호 확인 -->
+					<input type="password" class="form-control mb-3" id="original_pass" name="original_pass" placeholder="기존 비밀번호 확인">
+					
+					<!-- 변경할 비밀번호 입력 -->
+					<input type="password" class="form-control mb-3" id="new_pass" name="new_pass" placeholder="새 비밀번호 입력">
+					
+					<!-- 변경할 비밀번호 재확인 -->
+					<input type="password" class="form-control mb-3" id="new_pass2" name="new_pass2" placeholder="새 비밀번호 확인">
+					
+					<!-- 비밀번호 변경 버튼 -->
+					<button type="submit" class="btn btn-outline-primary" id="passchangebtn">비밀번호 변경</button>
+				</form>
 				</div>
-
-				<div class="options">
-					<div class="option-card" onclick="location.href='changepassform'">
-						<p>비밀번호 변경</p>
-						<p>주기적인 비밀번호 변경을 통해<br>개인정보를 안전하게 보호하세요.</p>
-						<i class="bi bi-person-lock"></i>
-					</div>
-					<div class="option-card" onclick="location.href='changecompanyname'">
-						<p>기업명 변경</p>
-						<i class="bi bi-building-gear"></i>
-					</div>
-					<div class="option-card" onclick="location.href='changebusinessnum'">
-						<p>사업자등록번호 변경</p>
-						<i class="bi bi-shield-lock"></i>
-					</div>
-				</div>
-
-				<button class="btn btn-outline-danger" onclick="location.href='deleteaccount'">계정
-					탈퇴</button>
 			</div>
 		</div>
 	</div>

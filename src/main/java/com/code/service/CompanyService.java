@@ -77,23 +77,20 @@ public class CompanyService implements CompanyServiceInter{
 	}
 
 	
-	
-	
-	
-	
 	//채용공고에서 사용
 	@Override
 	public int selectC_num(String c_id) {
 		return cmapperInter.selectC_num(c_id);
 	}
 	
-	//기업 회원 비밀번호 변경
+	//기업 비밀번호 update
 	@Override
 	public void updateCompanyPass(CompanyDto dto) {
-		// TODO Auto-generated method stub
+	    // 데이터베이스에 변경된 비밀번호를 반영하는 코드 작성
+	    // 예: MyBatis, JPA 등을 사용하여 업데이트 쿼리를 실행합니다.
 		cmapperInter.updateCompanyPass(dto);
-		
 	}
+
 	
 }
 
