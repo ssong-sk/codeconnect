@@ -2,22 +2,16 @@ package com.code.controller;
 
 import java.util.List;
 
-import java.util.List;
-
-import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.code.dto.HireDto;
-import com.code.service.CompanyIntroService;
 import com.code.service.CompanyService;
 import com.code.service.HireService;
 
@@ -29,6 +23,14 @@ public class HireController {
 
 	@Autowired
 	HireService hservice;
+	
+	@PostMapping("/hire/insert")
+	public String hireInsert(@ModelAttribute("hdto") HireDto hdto) {
+
+		hservice.hireInsert(hdto);
+
+		return "/hire/hiremain";
+	}
 
 	@GetMapping("/hire/main")
 	public String hireMain(@ModelAttribute("hdto") HireDto dto, Model model) {
@@ -84,9 +86,18 @@ public class HireController {
 
 	@ResponseBody
 	@GetMapping("/hire/search")
-	public List<HireDto> hireSearch(String search_job, String search_tech) {
+	public List<HireDto> hireSearch(String search_job, String search_tech, String search_region, String search_career) {
 		
-		List<HireDto> slist=hservice.searchHire(search_job, search_tech, search_tech);
+		List<HireDto> slist=hservice.searchHire(search_job, search_tech, search_region, search_career);
+		
+		for (HireDto h : slist) {
+			String careerValue = h.getH_career();
+
+			if (!"신입".equals(careerValue)) {
+				String formattedCareer = formatCareer(careerValue);
+				h.setH_career(formattedCareer);
+			}
+		}
 		
 		return slist;
 	}

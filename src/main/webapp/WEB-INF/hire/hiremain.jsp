@@ -1286,7 +1286,7 @@ svg{
 					<button aria-pressed="false" tabindex="-1" class="category2"
 					style="display: inline-block;" value="맥북으로개발">💻 맥북으로개발</button>
 					&nbsp;
-					<button aria-pressed="false" tabindex="-1" class="category2"
+					<button button="false" tabindex="-1" class="category2"
 					style="display: inline-block;" value="닉네임사용">👩‍ 닉네임사용</button>
 					&nbsp;
 					<button aria-pressed="false" tabindex="-1" class="category2" 
@@ -1619,7 +1619,6 @@ $(document).ready(function() {
 <script type="text/javascript">
 /* 경력 버튼 이벤트 */
 $(".career").hide();
-<<<<<<< HEAD
 
 $(".carreerbtn").click(function(){
 	$(".career").toggle();
@@ -1658,46 +1657,6 @@ $('input[name="career"]').change(function() {
 
 </script>
 
-<script type="text/javascript">
-=======
->>>>>>> 25dec7d03765ac5e1ef0d1a75a1b5016f7c81032
-
-$(".carreerbtn").click(function(){
-   $(".career").toggle();
-})
-
-$(".resetcareer").click(function(){
-   // 모든 input 요소의 체크 상태를 해제
-    $("input[type='radio']").prop('checked', false);
-    // "전체" 항목을 선택
-    $("#all").prop('checked', true);
-    // "경력" 버튼 내용을 원래대로 돌려놓기
-    $(".carreerbtn").html('경력 <span><i class="bi bi-chevron-down"></i></span>').css('width','70px');
-})
-
-$('input[name="career"]').change(function() {
-    // 선택된 경력 텍스트 가져오기
-    var selectedCareer = $('input[name="career"]:checked').next().text().trim();
-    // 경력 버튼 텍스트 업데이트
-    $('.carreerbtn').html('경력 <span style="color: blue;">' + selectedCareer + '</span> <span class="bi bi-chevron-down" style="vertical-align: middle;font-size: 15px;font-weight: bold;"></span>');
-    // 버튼 너비 조정
-    $('.carreerbtn').css('width', '90px');
-    $('div.region').css('margin-left', '94px');
-    if(selectedCareer == '10년 이상'){
-       $('.carreerbtn').css('width', '130px');
-       $('div.region').css('margin-left', '134px');
-    }
-    
-    /* 경력 검색 시 사용 */   
-    var careerlabelText = $('input[name="career"]:checked').next().text().trim();
-    var careerlabelremoveYear = careerlabelText.replace('년 이상', '').replace('년', '').trim();
-    //alert(careerlabelremoveYear);
-    
-    $("#search_career").val(careerlabelremoveYear);
-    //alert( $("#search_career").val());
-});
-
-</script>
 
 <script type="text/javascript">
 /* 카테고리2 슬라이드 기능 */
@@ -1736,10 +1695,6 @@ document.addEventListener('DOMContentLoaded', function() {
 $(".category2").click(function() {
     var category2press = $(this).attr("aria-pressed");
     $(this).attr("aria-pressed", category2press === "true" ? "false" : "true");
-<<<<<<< HEAD
-});	
-
-=======
 
     // 이모티콘과 띄어쓰기를 제거한 후 텍스트만 추출
     var category2text = $(this).val();
@@ -1747,7 +1702,6 @@ $(".category2").click(function() {
     alert(category2text);
 });
  
->>>>>>> 25dec7d03765ac5e1ef0d1a75a1b5016f7c81032
 
 /* 지역 버튼 이벤트 */
 $(".region").hide();
@@ -2112,317 +2066,121 @@ $(document).click(function(event) {
 <!-- 검색 기능 -->
 <script type="text/javascript">
 /* 개발직무 검색 */
-
-<<<<<<< HEAD
-function alist() {
-    var search_job = $("#search_job").val();
-	$.ajax({
-        type: "get",
-        url: "search",
-        dataType: "json",
-        data: {
-        	"search_job": search_job
-        },
-        success: function(res) {
-        	//alert(res.length);
-        	
-        	$(".hirelist").hide();
-        	
-            var s = "<section class='s_hirelist'>";
-            $.each(res, function(index, h) {
-                s += "<div class='hireinfo'>";
-                s += "<a target='_self' title='" + h.h_title + "' href='#'>";
-                s += "<div class='img_box'>";
-                s += "<div class='img_filter'></div>";
-                s += "<img alt='" + h.c_name + "' class='img' src='../../companyintro_uploads/" + h.ci_image + "'>";
-                s += "<div class='bKGmxJ'></div>";
-                s += "<div class='counts'>";
-                s += "<div class='position_view_count'>";
-                s += "<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20'>";
-                s += "<g fill='none' fill-rule='evenodd'>";
-                s += "<path d='M0 0h16v16H0z'></path>";
-                s += "<g stroke='#FFF' stroke-linecap='round'>";
-                s += "<path d='M8 10c.86 0 1.556-.672 1.556-1.5S8.859 7 8 7c-.86 0-1.556.672-1.556 1.5S7.141 10 8 10z'></path>";
-                s += "<path d='M15 8.5c-1.469 2.243-4.108 4.5-7 4.5-2.892 0-5.531-2.257-7-4.5C2.788 6.369 4.882 4 8 4s5.212 2.369 7 4.5z'></path>";
-                s += "</g>";
-                s += "</g>";
-                s += "</svg>";
-                s += "<span>87</span>";
-                s += "</div>";
-                s += "<button aria-pressed='false' type='button' class='scrap' onclick='location.href=\"hire/hirewrite\"'>";
-                s += "<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' viewBox='0 0 24 24'>";
-                s += "<path fill='#fff' fill-rule='evenodd' d='M10.725 14.71a2 2 0 0 1 2.55 0l3.975 3.289V5H6.75v12.999l3.975-3.29ZM4.75 20.123V5a2 2 0 0 1 2-2h10.5a2 2 0 0 1 2 2v15.124a1 1 0 0 1-1.638.77L12 16.25l-5.612 4.645a1 1 0 0 1-1.638-.77Z' clip-rule='evenodd'></path>";
-                s += "</svg>";
-                s += "</button>";
-                s += "</div>";
-                s += "</div>";
-                s += "<div class='hireinfo-content'>";
-                s += "<div class='content-company'>";
-                s += "<span>" + h.c_name + "</span>";
-                s += "</div>";
-                s += "<h2 class='position_card_info_title'>" + h.h_title + "</h2>";
-                s += "<ul class='content-techlist'>";
-                $.each(h.h_tech.split(','), function(index, tech) {
-                    s += "<li>" + tech.trim() + "</li>";
-                });
-                s += "</ul>";
-                s += "<ul class='content-area'>";
-                s += "<li>" + (h.h_location.length > 7 ? h.h_location.substring(0, 7) : h.h_location) + "</li>";
-                s += "<li>";
-                if (h.h_career == '신입') {
-                    s += "·&nbsp;&nbsp;" + h.h_career;
-                } else {
-                    s += "·&nbsp;&nbsp;경력 " + h.h_career + "년";
-                }
-                s += "</li>";
-                s += "</ul>";
-                s += "</div>";
-                s += "</a>";
-                s += "</div>";
-            });
-            s += "</section>";
-            $('#hireListContainer').html(s); // 업데이트할 요소의 ID를 지정
-        }
-
     $(".apply-btn, .techapply-btn, .btnapply").click(function() {
-        var search_job = $("#search_job").val();
-        var search_tech = $("#search_tech").val();
-        var search_region = $("#search_region").val();
-        
-        $.ajax({
-            type: "GET",
-            url: "search", // 실제 검색을 처리하는 서버의 URL로 변경해야 합니다.
-            dataType: "json",
-            data: {
-                "search_job": search_job,
-                "search_tech": search_tech,
-                "search_region": search_region
-            },
-            success: function(res) {
-                renderResults(res);
-            },
-            error: function(xhr, status, error) {
-                console.error("검색 중 오류 발생: " + error);
-                alert("검색 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.");
-            }
-        });
-    });
-
-
-function alist2() {
+    var search_job = $("#search_job").val();
     var search_tech = $("#search_tech").val();
-	$.ajax({
-        type: "get",
-        url: "search",
-        dataType: "json",
-        data: {
-        	"search_tech": search_tech
-        },
-        success: function(res) {
-        	//alert(res.length);
-        	
-        	$(".hirelist").hide();
-        	
-            var s = "<section class='s_hirelist'>";
-            $.each(res, function(index, h) {
-                s += "<div class='hireinfo'>";
-                s += "<a target='_self' title='" + h.h_title + "' href='#'>";
-                s += "<div class='img_box'>";
-                s += "<div class='img_filter'></div>";
-                s += "<img alt='" + h.c_name + "' class='img' src='../../companyintro_uploads/" + h.ci_image + "'>";
-                s += "<div class='bKGmxJ'></div>";
-                s += "<div class='counts'>";
-                s += "<div class='position_view_count'>";
-                s += "<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20'>";
-                s += "<g fill='none' fill-rule='evenodd'>";
-                s += "<path d='M0 0h16v16H0z'></path>";
-                s += "<g stroke='#FFF' stroke-linecap='round'>";
-                s += "<path d='M8 10c.86 0 1.556-.672 1.556-1.5S8.859 7 8 7c-.86 0-1.556.672-1.556 1.5S7.141 10 8 10z'></path>";
-                s += "<path d='M15 8.5c-1.469 2.243-4.108 4.5-7 4.5-2.892 0-5.531-2.257-7-4.5C2.788 6.369 4.882 4 8 4s5.212 2.369 7 4.5z'></path>";
-                s += "</g>";
-                s += "</g>";
-                s += "</svg>";
-                s += "<span>87</span>";
-                s += "</div>";
-                s += "<button aria-pressed='false' type='button' class='scrap' onclick='location.href=\"hire/hirewrite\"'>";
-                s += "<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' viewBox='0 0 24 24'>";
-                s += "<path fill='#fff' fill-rule='evenodd' d='M10.725 14.71a2 2 0 0 1 2.55 0l3.975 3.289V5H6.75v12.999l3.975-3.29ZM4.75 20.123V5a2 2 0 0 1 2-2h10.5a2 2 0 0 1 2 2v15.124a1 1 0 0 1-1.638.77L12 16.25l-5.612 4.645a1 1 0 0 1-1.638-.77Z' clip-rule='evenodd'></path>";
-                s += "</svg>";
-                s += "</button>";
-                s += "</div>";
-                s += "</div>";
-                s += "<div class='hireinfo-content'>";
-                s += "<div class='content-company'>";
-                s += "<span>" + h.c_name + "</span>";
-                s += "</div>";
-                s += "<h2 class='position_card_info_title'>" + h.h_title + "</h2>";
-                s += "<ul class='content-techlist'>";
-                $.each(h.h_tech.split(','), function(index, tech) {
-                    s += "<li>" + tech.trim() + "</li>";
-                });
-                s += "</ul>";
-                s += "<ul class='content-area'>";
-                s += "<li>" + (h.h_location.length > 7 ? h.h_location.substring(0, 7) : h.h_location) + "</li>";
-                s += "<li>";
-                if (h.h_career == '신입') {
-                    s += "·&nbsp;&nbsp;" + h.h_career;
-                } else {
-                    s += "·&nbsp;&nbsp;경력 " + h.h_career + "년";
-                }
-                s += "</li>";
-                s += "</ul>";
-                s += "</div>";
-                s += "</a>";
-                s += "</div>";
-            });
-            s += "</section>";
-            $('#hireListContainer').html(s); // 업데이트할 요소의 ID를 지정
-
-    // 결과를 화면에 표시하는 함수
-    function renderResults(res) {
-        $('.hirelist').hide(); // 기존 리스트 삭제
-
-        if (res.length === 0) {
-            $('#hireListContainer').html('<p>검색 결과가 없습니다.</p>');
-            return;
-        }
-
-function alist4() {
+    var search_region = $("#search_region").val();
     var search_career = $("#search_career").val();
-    //alert(search_career);
+    
     $.ajax({
-        type: "get",
+        type: "GET",
         url: "search",
         dataType: "json",
         data: {
+            "search_job": search_job,
+            "search_tech": search_tech,
+            "search_region": search_region,
             "search_career": search_career
         },
         success: function(res) {
-            alert(res.length);
-            $(".hirelist").hide();
-            
-            var s = "<section class='s_hirelist'>";
-            $.each(res, function(index, h) {
-                s += "<div class='hireinfo'>";
-                s += "<a target='_self' title='" + h.h_title + "' href='#'>";
-                s += "<div class='img_box'>";
-                s += "<div class='img_filter'></div>";
-                s += "<img alt='" + h.c_name + "' class='img' src='../../companyintro_uploads/" + h.ci_image + "'>";
-                s += "<div class='bKGmxJ'></div>";
-                s += "<div class='counts'>";
-                s += "<div class='position_view_count'>";
-                s += "<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20'>";
-                s += "<g fill='none' fill-rule='evenodd'>";
-                s += "<path d='M0 0h16v16H0z'></path>";
-                s += "<g stroke='#FFF' stroke-linecap='round'>";
-                s += "<path d='M8 10c.86 0 1.556-.672 1.556-1.5S8.859 7 8 7c-.86 0-1.556.672-1.556 1.5S7.141 10 8 10z'></path>";
-                s += "<path d='M15 8.5c-1.469 2.243-4.108 4.5-7 4.5-2.892 0-5.531-2.257-7-4.5C2.788 6.369 4.882 4 8 4s5.212 2.369 7 4.5z'></path>";
-                s += "</g>";
-                s += "</g>";
-                s += "</svg>";
-                s += "<span>87</span>";
-                s += "</div>";
-                s += "<button aria-pressed='false' type='button' class='scrap' onclick='location.href=\"hire/hirewrite\"'>";
-                s += "<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' viewBox='0 0 24 24'>";
-                s += "<path fill='#fff' fill-rule='evenodd' d='M10.725 14.71a2 2 0 0 1 2.55 0l3.975 3.289V5H6.75v12.999l3.975-3.29ZM4.75 20.123V5a2 2 0 0 1 2-2h10.5a2 2 0 0 1 2 2v15.124a1 1 0 0 1-1.638.77L12 16.25l-5.612 4.645a1 1 0 0 1-1.638-.77Z' clip-rule='evenodd'></path>";
-                s += "</svg>";
-                s += "</button>";
-                s += "</div>";
-                s += "</div>";
-                s += "<div class='hireinfo-content'>";
-                s += "<div class='content-company'>";
-                s += "<span>" + h.c_name + "</span>";
-                s += "</div>";
-                s += "<h2 class='position_card_info_title'>" + h.h_title + "</h2>";
-                s += "<ul class='content-techlist'>";
-                $.each(h.h_tech.split(','), function(index, tech) {
-                    s += "<li>" + tech.trim() + "</li>";
-                });
-                s += "</ul>";
-                s += "<ul class='content-area'>";
-                s += "<li>" + (h.h_location.length > 7 ? h.h_location.substring(0, 7) : h.h_location) + "</li>";
-                s += "<li>";
-                if (h.h_career == '신입') {
-                    s += "·&nbsp;&nbsp;" + h.h_career;
-                } else {
-                    s += "·&nbsp;&nbsp;경력 " + h.h_career + "년";
-                }
-                s += "</li>";
-                s += "</ul>";
-                s += "</div>";
-                s += "</a>";
-                s += "</div>";
-            });
-            s += "</section>";
-            $("#hireListContainer").html(s).show();
+            renderResults(res);
+        },
+        error: function(xhr, status, error) {
+            console.error("검색 중 오류 발생: " + error);
+            alert("검색 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.");
         }
     });
+});
+
+$("input[name=career]").change(function() {
+    var search_job = $("#search_job").val();
+    var search_tech = $("#search_tech").val();
+    var search_region = $("#search_region").val();
+    var search_career = $("#search_career").val();
+    
+    $.ajax({
+        type: "GET",
+        url: "search",
+        dataType: "json",
+        data: {
+            "search_job": search_job,
+            "search_tech": search_tech,
+            "search_region": search_region,
+            "search_career": search_career
+        },
+        success: function(res) {
+            renderResults(res);
+        },
+        error: function(xhr, status, error) {
+            console.error("검색 중 오류 발생: " + error);
+            alert("검색 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.");
+        }
+    });
+}   );
+
+// 결과를 화면에 표시하   는 함수
+function renderResults(re   s) {
+    $('.hirelist').hide(); // 기존 리스트    삭제
+
+    if (res.length ===    0) {
+        $('#hireListContainer').html('<p>검색 결과가 없습니다.</p   >');
+        ret   urn;
+       }
+    var s = "<section class='s_hirelist   '>";
+    $.each(res, function(index,    h) {
+        s += "<div class='hireinfo   '>";
+        s += "<a target='_self' title='" + h.h_title + "' href='#   '>";
+        s += "<div class='img_box   '>";
+        s += "<div class='img_filter'></di   v>";
+        s += "<img alt='" + h.c_name + "' class='img' src='../../companyintro_uploads/" + h.ci_image + "   '>";
+        s += "<div class='bKGmxJ'></di   v>";
+        s += "<div class='counts   '>";
+        s += "<div class='position_view_count   '>";
+        s += "<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20   '>";
+        s += "<g fill='none' fill-rule='evenodd   '>";
+        s += "<path d='M0 0h16v16H0z'></pat   h>";
+        s += "<g stroke='#FFF' stroke-linecap='round   '>";
+        s += "<path d='M8 10c.86 0 1.556-.672 1.556-1.5S8.859 7 8 7c-.86 0-1.556.672-1.556 1.5S7.141 10 8 10z'></pat   h>";
+        s += "<path d='M15 8.5c-1.469 2.243-4.108 4.5-7 4.5-2.892 0-5.531-2.257-7-4.5C2.788 6.369 4.882 4 8 4s5.212 2.369 7 4.5z'></pat   h>";
+        s += "</   g>";
+        s += "</   g>";
+        s += "</sv   g>";
+        s += "<span>87</spa   n>";
+        s += "</di   v>";
+        s += "<button aria-pressed='false' type='button' class='scrap' onclick='location.href=\"hire/hirewrite\"   '>";
+        s += "<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' viewBox='0 0 24 24   '>";
+        s += "<path fill='#fff' fill-rule='evenodd' d='M10.725 14.71a2 2 0 0 1 2.55 0l3.975 3.289V5H6.75v12.999l3.975-3.29ZM4.75 20.123V5a2 2 0 0 1 2-2h10.5a2 2 0 0 1 2 2v15.124a1 1 0 0 1-1.638.77L12 16.25l-5.612 4.645a1 1 0 0 1-1.638-.77Z' clip-rule='evenodd'></pat   h>";
+        s += "</sv   g>";
+        s += "</butto   n>";
+        s += "</di   v>";
+        s += "</di   v>";
+        s += "<div class='hireinfo-content   '>";
+        s += "<div class='content-company   '>";
+        s += "<span>" + h.c_name + "</spa   n>";
+        s += "</di   v>";
+        s += "<h2 class='position_card_info_title'>" + h.h_title + "</h   2>";
+        s += "<ul class='content-techlist   '>";
+        $.each(h.h_tech.split(','), function(index, tec   h) {
+            s += "<li>" + tech.trim() + "</l   i>";
+           });
+        s += "</u   l>";
+        s += "<ul class='content-area   '>";
+        s += "<li>" + (h.h_location.length > 7 ? h.h_location.substring(0, 7) : h.h_location) + "</l   i>";
+        s += "<l   i>";
+        if (h.h_career == '신입   ') {
+            s += "·&nbsp;&nbsp;" + h.h_car   eer;
+        } el   se {
+            s += "·&nbsp;&nbsp;경력 " + h.h_career +    "년";
+           }
+        s += "</l   i>";
+        s += "</u   l>";
+        s += "</di   v>";
+        s += "</   a>";
+        s += "</di   v>";
+       });
+    s += "</sectio   n>";
+    $('#hireListContainer').html(s); // 업데이트할 요소의 ID   를 지정
 }
-
-$(".apply-btn").click(function(){
-    alist();
-    alist2();
-});
-
-$(".techapply-btn").click(function(){
-    alist2();
-});
-        var s = "<section class='s_hirelist'>";
-        $.each(res, function(index, h) {
-            s += "<div class='hireinfo'>";
-            s += "<a target='_self' title='" + h.h_title + "' href='#'>";
-            s += "<div class='img_box'>";
-            s += "<div class='img_filter'></div>";
-            s += "<img alt='" + h.c_name + "' class='img' src='../../companyintro_uploads/" + h.ci_image + "'>";
-            s += "<div class='bKGmxJ'></div>";
-            s += "<div class='counts'>";
-            s += "<div class='position_view_count'>";
-            s += "<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20'>";
-            s += "<g fill='none' fill-rule='evenodd'>";
-            s += "<path d='M0 0h16v16H0z'></path>";
-            s += "<g stroke='#FFF' stroke-linecap='round'>";
-            s += "<path d='M8 10c.86 0 1.556-.672 1.556-1.5S8.859 7 8 7c-.86 0-1.556.672-1.556 1.5S7.141 10 8 10z'></path>";
-            s += "<path d='M15 8.5c-1.469 2.243-4.108 4.5-7 4.5-2.892 0-5.531-2.257-7-4.5C2.788 6.369 4.882 4 8 4s5.212 2.369 7 4.5z'></path>";
-            s += "</g>";
-            s += "</g>";
-            s += "</svg>";
-            s += "<span>87</span>";
-            s += "</div>";
-            s += "<button aria-pressed='false' type='button' class='scrap' onclick='location.href=\"hire/hirewrite\"'>";
-            s += "<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' viewBox='0 0 24 24'>";
-            s += "<path fill='#fff' fill-rule='evenodd' d='M10.725 14.71a2 2 0 0 1 2.55 0l3.975 3.289V5H6.75v12.999l3.975-3.29ZM4.75 20.123V5a2 2 0 0 1 2-2h10.5a2 2 0 0 1 2 2v15.124a1 1 0 0 1-1.638.77L12 16.25l-5.612 4.645a1 1 0 0 1-1.638-.77Z' clip-rule='evenodd'></path>";
-            s += "</svg>";
-            s += "</button>";
-            s += "</div>";
-            s += "</div>";
-            s += "<div class='hireinfo-content'>";
-            s += "<div class='content-company'>";
-            s += "<span>" + h.c_name + "</span>";
-            s += "</div>";
-            s += "<h2 class='position_card_info_title'>" + h.h_title + "</h2>";
-            s += "<ul class='content-techlist'>";
-            $.each(h.h_tech.split(','), function(index, tech) {
-                s += "<li>" + tech.trim() + "</li>";
-            });
-            s += "</ul>";
-            s += "<ul class='content-area'>";
-            s += "<li>" + h.h_location + "</li>";
-            s += "<li>· 경력 " + h.h_career + "년</li>";
-            s += "</ul>";
-            s += "</div>";
-            s += "</a>";
-            s += "</div>";
-        });
-        s += "</section>";
-        $('#hireListContainer').html(s); // 업데이트할 요소의 ID를 지정
-    }
-
-$('input[type=radio][name=career]').change(function() {
-    if (this.checked) {
-
-    	alist4();
-    }
-});
 
 
 </script>

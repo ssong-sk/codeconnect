@@ -105,9 +105,31 @@
 	        	var career1 = $(".careertoggle-btn span.selected").text();
 	            var career2 = $(".careertoggle-btn2 span.selected").text();
 	            
-	            var career = career1 +"~"+ career2;
+	            var careerValue = career1 +"~"+ career2;
+
+	            if (careerValue.includes('~')) {
+	                var range = careerValue.split('~');
+	                var start = parseInt(range[0], 20);
+	                var end = parseInt(range[1], 20);
+	                
+	                // 범위 내의 숫자들을 배열에 저장
+	                var careerRange = [];
+	                for (var i = start; i <= end; i++) {
+	                    careerRange.push(i);
+	                }
+	                
+	                // 배열을 문자열로 변환하여 다른 변수에 저장
+	                var careerValues = careerRange.join('|');
+
+	                // 디버깅용: 배열 출력
+	                console.log('Career Range: ' + careerValues);
+	            } else {
+	                // 범위 값이 아닌 경우
+	                var careerNum = parseInt(careerValue, 10);
+	                var careerValues = careerNum.toString();
+	            }
+	            $('input.career').val(careerValues);
 	            
-	            $('input.career').val(career);       	
 	        }
 	        
 	        /* h_location(근무지) 값 구하기 */
@@ -127,7 +149,7 @@
 	        if (selectedTechs.length === 0) {
 	            $('input.tech').val(null);
 	        } else {
-	            var selectedTechString = selectedTechs.join("|");
+	            var selectedTechString = selectedTechs.join(",");
 	            $('input.tech').val(selectedTechString);
 	        }
 	        
