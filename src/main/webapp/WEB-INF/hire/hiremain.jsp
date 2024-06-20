@@ -783,7 +783,7 @@ svg{
                                  <li><button type="button" class="techoption-btn">PCB</button></li>
                                  <li><button type="button" class="techoption-btn">RF</button></li>
                                  <li><button type="button" class="techoption-btn">.NET</button></li>
-                                 <li><button type="button" class="techoption-btn">Golang</button></li>
+                                 <li><button type="button" clas	s="techoption-btn">Golang</button></li>
                                  <li><button type="button" class="techoption-btn">Nft</button></li>
                                  <li><button type="button" class="techoption-btn">Solidity</button></li>
                                  <li><button type="button" class="techoption-btn">Blockchain</button></li>

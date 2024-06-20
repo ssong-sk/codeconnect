@@ -26,8 +26,8 @@
 }
 
 .detailaside .wrap {
-    position: sticky;
-    top: 180px;
+    position: fixed;
+    top: 160px;
 }
 
 /* 배너?느낌 */
