@@ -1,0 +1,451 @@
+@charset "UTF-8";
+
+.page-title-sub {
+	display: block;
+	margin-bottom: 35px;
+	text-align: center;
+}
+
+body, body.fullfooter #wrap, #ent_container {
+	background: #f7f7f7;
+}
+
+.hide {
+	display: none !important;
+}
+
+a:link, a:visited, a:hover, a:active, a:focus, a, button[type="button"]
+	{
+	cursor: pointer;
+}
+
+.show {
+	display: block !important;
+}
+
+.cNewPageWrap * {
+	font-family: IBM Plex Sans KR;
+	-webkit-font-smoothing: antialiased;
+	vertical-align: middle;
+	box-sizing: border-box;
+}
+
+.cNewPageWrap * {
+	font-family: "IBM Plex Sans KR";
+	-webkit-font-smoothing: antialiased;
+	vertical-align: middle;
+	box-sizing: border-box;
+}
+
+#ent_container {
+	background: #fff;
+}
+
+#ent_container {
+	padding: 0 0 0px 0;
+	background: #fff;
+}
+
+#ent_header, #ent_container, #ent_footer {
+	width: 100%;
+	min-width: 320px;
+}
+
+body.fullfooter .joinv2_Wrap, body.noResume.fullfooter .footer_absbtm,
+	body.fullfooter #container {
+	display: table;
+	width: 100%;
+}
+
+html, body.fullfooter, body.fullfooter .joinv2_Wrap, body.fullfooter #wrap,
+	body.fullfooter.cGnbBody .inc_menu_wrap {
+	height: 100%;
+}
+
+input[type='text'], input[type='password'], input[type='submit'], input[type='search']
+	{
+	-webkit-appearance: none;
+	border-radius: 12px;
+}
+
+/* ---------------------------------------------content--------------------------------------------------- */
+.content {
+	padding: 20px;
+}
+
+/* ---------------------------------------------jBox-Layout--------------------------------------------------- */
+.jBox-Layout {
+	max-width: 450px;
+	border: 1px solid #e1e1e1;
+	background: #fff;
+	margin: 0 auto;
+}
+
+.jBox-Layout {
+	padding: 10px 20px 20px 20px;
+}
+
+/* ----------------------------------------------pg_step--------------------------------------------------- */
+.pg_step_wrap {
+	width: 100%;
+	margin-top: 17px;
+	margin-bottom: 20px;
+	height: 35px;
+}
+
+.pg_step_title {
+	float: left;
+}
+
+.pg_step_title>h1 {
+	font-size: 17px;
+	font-weight: bold;
+	letter-spacing: -1px;
+	padding-top: 7px;
+}
+
+/* ----------------------------------------------joinv2--------------------------------------------------- */
+.joinv2_Wrap {
+	font-family: 'IBM Plex Sans KR';
+	-webkit-font-smoothing: antialiased;
+	letter-spacing: -0.06em;
+}
+
+.joinv2_Wrap dl dt {
+	font-weight: bold;
+	font-size: 15px;
+	color: #121212;
+	margin: 0 0 9px 0;
+}
+
+.joinv2_Wrap * {
+	box-sizing: border-box;
+	letter-spacing: -0.85px;
+}
+
+.joinv2_Wrap select, .joinv2_Wrap input[type="text"], .joinv2_Wrap textarea
+	{
+	width: 100%;
+	height: 50px;
+	font-weight: 400;
+	font-size: 14px;
+	color: #121212;
+	letter-spacing: -0.06em;
+	padding: 0 15px;
+	border-radius: 6px;
+	border: 1px solid #E1E1E1;
+	background: #fff;
+}
+
+.joinv2_Wrap dl dd {
+	margin: 0 0 23px 0;
+}
+
+.joinv2_Wrap .j_page_Container .j_nameWrap {
+	position: relative;
+}
+
+.joinv2_Wrap dl ~ dl {
+	margin-top: 23px;
+}
+
+.joinv2_Wrap input[type="password"], .joinv2_Wrap textarea {
+	width: 100%;
+	height: 50px;
+	font-weight: 400;
+	font-size: 14px;
+	color: #121212;
+	letter-spacing: -0.06em;
+	padding: 0 15px;
+	border-radius: 6px;
+	border: 1px solid #E1E1E1;
+	background: #fff;
+}
+
+.joinv2_Wrap input[type="email"], .joinv2_Wrap textarea {
+	width: 100%;
+	height: 50px;
+	font-weight: 400;
+	font-size: 14px;
+	color: #121212;
+	letter-spacing: -0.06em;
+	padding: 0 15px;
+	border-radius: 6px;
+	border: 1px solid #E1E1E1;
+	background: #fff;
+}
+
+.joinv2_Wrap .j_page_Container .j_emailWrap .cRemove {
+	position: absolute !important;
+	right: 15px !important;
+	top: 16px !important;
+	margin: 0 0 0 0;
+}
+
+.joinv2_Wrap dl .j_nameWrap.pw_2mt {
+	margin-top: -12px;
+}
+
+.joinv2_Wrap dl dd.posBtn_R input {
+	padding-right: 67px;
+}
+
+input.ipt-error {
+	border: 1px solid #FF0A0A !important;
+}
+
+.input_error_t {
+	margin-top: 8px;
+	color: #FF0A0A;
+	font-size: 13px;
+	font-weight: 500;
+}
+
+.hide {
+	display: none;
+}
+
+input[placeholder], [placeholder], *[placeholder] {
+	color: #CCC;
+	font-weight: 500;
+}
+
+input[placeholder] {
+	color: #999;
+	opacity: 1;
+}
+
+.cRemove {
+	position: absolute;
+	right: 15px;
+	top: 16px;
+	width: 16px;
+	height: 0;
+	margin: 0 0 0 0;
+	padding: 16px 0 0 0;
+	overflow: hidden;
+	background: url(/ui/m_static/image/member/2022/cRemove.svg) no-repeat
+		50% 50%;
+}
+
+.gender_box_c {
+	width: 100%;
+	height: 50px;
+}
+
+.gender_box_c p.last.gender_check {
+	vertical-align: top;
+	padding-top: 8px;
+}
+
+.gender_box_c p.last {
+	position: relative;
+	width: 100%;
+	padding-right: 0;
+	box-sizing: border-box;
+	vertical-align: middle;
+}
+
+.gender_chk_r[type="checkbox"], .gender_chk_r[type="radio"] {
+	box-sizing: border-box;
+	padding: 0;
+	position: absolute;
+	left: -9999px;
+}
+
+.gender_box_c label.gen-box {
+	display: block;
+	cursor: pointer;
+	height: 50px;
+	font-size: 14px;
+	line-height: 50px;
+	border: 1px solid #e4e4e4;
+	background: #fff;
+	padding: 0;
+	text-align: center;
+	outline: 0;
+	box-sizing: border-box;
+	position: relative;
+	z-index: 1;
+}
+
+.box_man_gen {
+	float: left;
+	width: 50%;
+	color: #CCC;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+	border-bottom-left-radius: 6px;
+}
+
+.box_woman_gen {
+	left: -1px;
+	float: left;
+	width: 50%;
+	color: #CCC;
+	border-top-left-radius: 0;
+	border-top-right-radius: 6px;
+	border-bottom-right-radius: 6px;
+	border-bottom-left-radius: 0;
+}
+
+.gender_box_c .gender_chk_r[type="radio"]:checked+label.gen-box {
+	border-color: #FF460A;
+	color: #FF460A;
+	z-index: 101;
+	background: #FFF6F3;
+}
+
+input[type="hidden"] {
+	position: absolute;
+	left: -9999px;
+	width: 0;
+	height: 0;
+	font-size: 0;
+	line-height: 0;
+	text-indent: -9999em;
+	overflow: hidden;
+	visibility: hidden;
+}
+
+.joinv2_Wrap input[type="tel"], .joinv2_Wrap textarea {
+	width: 100%;
+	height: 50px;
+	font-weight: 400;
+	font-size: 14px;
+	color: #121212;
+	letter-spacing: -0.06em;
+	padding: 0 15px;
+	border-radius: 6px;
+	border: 1px solid #E1E1E1;
+	background: #fff;
+}
+
+.joinv2_Wrap .j_page_Container .phone_num_wrap {
+	position: relative;
+}
+
+.joinv2_Wrap .j_page_Container .phone_num_wrap .cRemove {
+	right: 145px;
+	top: 16px;
+	margin: 0 0 0 0;
+}
+
+.suggestBox {
+	position: absolute;
+	left: 0;
+	top: 53px;
+	z-index: 9999;
+	width: 100%;
+	display: none;
+}
+
+.suggestBox {
+	position: absolute;
+	left: 0;
+	margin-top: -3.5px;
+	width: 100%;
+	border: 1px solid #E1E1E1;
+	z-index: 20;
+	border-top: none;
+	border-radius: 0px 0px 6px 6px;
+	background: #fff;
+	box-sizing: border-box;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+suggestBox .suggestBox_list {
+	padding-top: 5px;
+}
+
+.suggestBox .suggestBox_list .list_scroll {
+	position: relative;
+	overflow-y: auto;
+	max-height: 200px;
+}
+
+.suggestBox .suggestBox_list .list_scroll div.ps-scrollbar-x:last-child
+	{
+	width: auto !important;
+}
+
+button:active, button:hover, a:active, a:hover {
+	outline: 0;
+}
+
+.certifi_num_btn.activate {
+	background-color: #FF460A;
+}
+
+button[disabled], html input[disabled] {
+	cursor: default;
+}
+
+.footer_join_ybtn {
+	background-color: #4876EF;
+	color: #fff;
+	cursor: pointer;
+	font-weight: bold;
+	font-size: 18px;
+	width: 100%;
+	border: none;
+	border-radius: 32px;
+	height: 56px;
+	margin-top: 20px;
+	margin-bottom: 15px;
+	letter-spacing: -1.3px !important;
+}
+
+.footer_join_nbtn {
+	background-color: #B2B2B2;
+	color: #fff;
+	cursor: pointer;
+	font-weight: bold;
+	font-size: 18px;
+	width: 100%;
+	border: none;
+	border-radius: 32px;
+	height: 56px;
+	margin-top: 20px;
+	margin-bottom: 15px;
+	letter-spacing: -1.3px !important;
+}
+
+.certifi_num_btn {
+	width: 120px;
+	background-color: #4876EF;
+	float: right;
+	color: #fff;
+	font-weight: 400;
+	font-size: 15px;
+	border: none;
+	height: 50px;
+	border-radius: 6px;
+}
+
+.joinv2_Wrap input[type="addr"], .joinv2_Wrap textarea {
+	width: 277px;
+	height: 50px;
+	font-weight: 400;
+	font-size: 14px;
+	color: #121212;
+	letter-spacing: -0.06em;
+	padding: 0 15px;
+	border-radius: 6px;
+	border: 1px solid #E1E1E1;
+	background: #fff;
+}
+
+.joinv2_Wrap input[type="addr_detail"], .joinv2_Wrap textarea {
+	width: 100%;
+	height: 50px;
+	font-weight: 400;
+	font-size: 14px;
+	color: #121212;
+	letter-spacing: -0.06em;
+	padding: 0 15px;
+	border-radius: 6px;
+	border: 1px solid #E1E1E1;
+	background: #fff;
+}

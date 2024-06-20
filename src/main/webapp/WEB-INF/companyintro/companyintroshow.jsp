@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page import="java.util.Calendar" %>
@@ -15,16 +14,22 @@
     body {
         font-family: 'IBM Plex Sans KR', sans-serif;
         padding: 20px;
+        background-color: #f7f7f7;
     }
     .container {
         padding-left: 20px;
         padding-right: 20px;
     }
-    .company-info {
+    .company-info, .company-details {
         background-color: white;
         padding: 20px;
         border-radius: 8px;
         margin-bottom: 20px;
+    }
+    .company-details-wrapper {
+        border: 1px solid #ddd; /* 연한 회색 테두리 */
+        padding: 0 auto;
+        border-radius: 8px;
     }
     .header-img {
         width: 100%;
@@ -57,15 +62,10 @@
         margin-top: 20px;
         font-size: 16px;
     }
-    .company-details {
-        background-color: white;
-        padding: 20px;
-        border-radius: 8px;
-        border: 1px solid #ddd;
-    }
-    .company-details h2 {
+    .section-title {
         font-size: 22px;
         font-weight: bold;
+        margin-bottom: 10px;
     }
     .company-details table {
         width: 100%;
@@ -74,6 +74,7 @@
     .company-details th, .company-details td {
         text-align: left;
         padding: 10px;
+        font-family: 'IBM Plex Sans KR', sans-serif;
     }
     .company-details th {
         font-weight: bold;
@@ -81,10 +82,60 @@
     .company-details tr:not(:last-child) {
         border-bottom: 1px solid #ddd;
     }
+    .map-container {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .map-section {
+        width: 66.66%;
+    }
     #map {
         width: 100%;
         height: 400px;
-        margin-top: 20px;
+        border-radius: 8px;
+    }
+    .address-section {
+        font-size: 14px;
+        color: grey;
+        margin-top: 10px;
+    }
+    .ratings-container {
+        width: 30%;
+        background-color: white;
+        border-radius: 8px;
+        padding: 20px;
+    }
+    .ratings {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+    .ratings .score {
+        font-size: 28px;
+        font-weight: bold;
+        margin-right: 10px;
+    }
+    .ratings .stars {
+        color: #f39c12;
+    }
+    .ratings .stars i {
+        font-size: 24px; /* Increase this value to make the stars bigger */
+        margin-right: 5px; /* Adjust spacing between stars if needed */
+    }
+    .ratings-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+    }
+    .ratings-list li {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 0;
+        border-bottom: 1px solid #ddd;
     }
 </style>
 <title>Company Profile</title>
@@ -119,21 +170,55 @@
             </div>
         </div>
         <p class="company-description">
-        <c:choose>
-        <c:when test="${not empty dto.ci_soge}">${dto.ci_soge}</c:when>
-            <c:otherwise>${cdto.c_category}전문, ${cdto.c_name}입니다.</c:otherwise>
-        </c:choose>
+            <c:choose>
+                <c:when test="${not empty dto.ci_soge}">${dto.ci_soge}</c:when>
+                <c:otherwise>${cdto.c_category}전문, ${cdto.c_name}입니다.</c:otherwise>
+            </c:choose>
         </p>
-        <div id="map"></div>
+        <div class="map-container">
+            <div class="map-section">
+                <h2 class="section-title">위치</h2>
+                <div id="map"></div>
+                <p class="address-section">
+                    <c:choose>
+                        <c:when test="${not empty cdto.c_postnum and not empty cdto.c_addr}">
+                            ${cdto.c_postnum} ${cdto.c_addr} ${cdto.c_addrdetail}
+                        </c:when>
+                        <c:otherwise>―</c:otherwise>
+                                 </c:choose>
+            </p>
+        </div>
+        <div class="ratings-container">
+            <h2 class="section-title">전체 리뷰 및 통계</h2>
+            <div class="ratings">
+                <div class="score">3.5</div>
+                <div class="stars">
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-half"></i>
+                    <i class="bi bi-star"></i>
+                </div>
+            </div>
+            <ul class="ratings-list">
+                <li><span>복지 및 급여:</span> <span>4.0</span></li>
+                <li><span>근무환경:</span> <span>4.5</span></li>
+                <li><span>사내문화:</span> <span>3.5</span></li>
+                <li><span>승진 기회 및 가능성:</span> <span>2.5</span></li>
+                <li><span>경영진:</span> <span>2.5</span></li>
+            </ul>
+        </div>
     </div>
+</div>
+<div class="map-container2">
+<h2 class="section-title">기업 정보</h2>
+<div class="company-details-wrapper">
     <div class="company-details">
-        <h2>기업 정보</h2>
-        <br>
         <table>
             <tr>
                 <th>산업군</th>
                 <td>
-                <c:choose>
+                    <c:choose>
                         <c:when test="${not empty cdto.c_category}">${cdto.c_category}</c:when>
                         <c:otherwise>―</c:otherwise>
                     </c:choose>
@@ -142,7 +227,7 @@
             <tr>
                 <th>연혁</th>
                 <td>
-                <c:choose>
+                    <c:choose>
                         <c:when test="${not empty cdto.c_birthyear}">${currentYear - cdto.c_birthyear}년 (${cdto.c_birthyear}년 설립)</c:when>
                         <c:otherwise>―</c:otherwise>
                     </c:choose>
@@ -150,7 +235,8 @@
             </tr>
             <tr>
                 <th>매출(연)</th>
-                <td><c:choose>
+                <td>
+                    <c:choose>
                         <c:when test="${not empty cdto.c_money}">${cdto.c_money}억</c:when>
                         <c:otherwise>―</c:otherwise>
                     </c:choose>
@@ -158,11 +244,17 @@
             </tr>
             <tr>
                 <th>기업 유형</th>
-                <td>기타 법인</td>
+                <td>
+                    <c:choose>
+                        <c:when test="${not empty cdto.c_size}">${cdto.c_size}</c:when>
+                        <c:otherwise>―</c:otherwise>
+                    </c:choose>
+                </td>
             </tr>
             <tr>
                 <th>평균연봉</th>
-                <td><c:choose>
+                <td>
+                    <c:choose>
                         <c:when test="${not empty cdto.c_salary}">${cdto.c_salary}만원</c:when>
                         <c:otherwise>―</c:otherwise>
                     </c:choose>
@@ -174,7 +266,8 @@
             </tr>
             <tr>
                 <th>홈페이지</th>
-                <td><c:choose>
+                <td>
+                    <c:choose>
                         <c:when test="${not empty dto.ci_link}"><a href="${dto.ci_link}">${dto.ci_link}</a></c:when>
                         <c:otherwise>―</c:otherwise>
                     </c:choose>
@@ -182,27 +275,18 @@
             </tr>
             <tr>
                 <th>사원수</th>
-                <td><c:choose>
-                        <c:when test="${not empty cdto.c_peoplesu}">${cdto.c_peoplesu}명</c:when>
-                        <c:otherwise>―</c:otherwise>
-                    </c:choose>
-                </td>
-            </tr>
-            <tr>
-                <th>본사 주소</th>
                 <td>
                     <c:choose>
-                        <c:when test="${not empty cdto.c_postnum and not empty cdto.c_addr}">
-                            ${cdto.c_postnum} ${cdto.c_addr} ${cdto.c_addrdetail}
-                        </c:when>
+                        <c:when test="${not empty cdto.c_peoplesu}">${cdto.c_peoplesu}명</c:when>
                         <c:otherwise>―</c:otherwise>
                     </c:choose>
                 </td>
             </tr>
         </table>
     </div>
+    </div>
 </div>
-
+</div>
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3c2a4c379a7f83fd166976b93258be7f&libraries=services"></script>
 <script>
     var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -244,7 +328,6 @@
         } 
     });
 </script>
-
 <br>
 </body>
 </html>
