@@ -3,7 +3,9 @@ package com.code.service;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.code.dto.CommunityDto;
+import com.code.mapper.CommunityCommentMapperInter;
 import com.code.mapper.CommunityMapperInter;
 import org.springframework.context.annotation.Primary;
 
@@ -13,7 +15,7 @@ public class CommunityService implements CommunityServiceInter {
 
     @Autowired
     CommunityMapperInter mapper;
-
+    
     @Override
     public int getTotalCount() {
         return mapper.getTotalCount();
@@ -21,7 +23,6 @@ public class CommunityService implements CommunityServiceInter {
 
     @Override
     public void insertCommunity(CommunityDto dto) {
-    	 
         mapper.insertCommunity(dto);
     }
 
@@ -80,7 +81,6 @@ public class CommunityService implements CommunityServiceInter {
 	public void updateLikeCount(int com_num) {
 		// TODO Auto-generated method stub
 		mapper.updateLikeCount(com_num);
-		
 	}
 
 	@Override
@@ -88,4 +88,16 @@ public class CommunityService implements CommunityServiceInter {
 		// TODO Auto-generated method stub
 		mapper.decreaseLikeCount(com_num);
 	}
+
+	@Override
+    public void incrementCommentCount(int com_num) {
+        mapper.incrementCommentCount(com_num);
+    }
+
+    @Override
+    public void decrementCommentCount(int com_num) {
+        mapper.decrementCommentCount(com_num);
+    }
+
+	
 }
