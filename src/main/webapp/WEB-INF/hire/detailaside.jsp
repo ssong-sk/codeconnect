@@ -6,15 +6,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link
-	href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gowun+Dodum&family=IBM+Plex+Sans+KR&display=swap"
-	rel="stylesheet">
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gowun+Dodum&family=Noto+Sans+Korean&family=IBM+Plex+Sans+KR&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <title>Insert title here</title>
 <style type="text/css">
 .detailaside {
@@ -260,6 +256,82 @@
     cursor: pointer;
     border-radius: 4px;
 }
+
+/* 입사지원 창 */
+.ipsa{
+	position: fixed;
+    z-index: 3;
+    background-color: rgb(255, 255, 255);
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 8px 16px;
+    height: 100%;
+    left: calc(50% + 190px);
+    top: 200px;
+    width: 470px;
+}
+
+.head{
+	padding: 8px 24px;
+    background-color: rgb(51, 51, 51);
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+}
+
+.head h1{
+	width: calc(100% - 36px);
+    font-size: 15px;
+    line-height: 24px;
+    font-weight: 700;
+    color: rgb(255, 255, 255);
+    overflow-wrap: break-word;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+}
+
+.xbtn{
+	position: absolute;
+    top: 10px;
+    right: 24px;
+    width: 20px;
+    height: 20px;
+    border: none;
+    border-radius: 0px;
+    background: none;
+    cursor: pointer;
+}
+.modalcenter{
+	position: relative;
+    display: flex;
+    flex-direction: column;
+    background: rgb(255, 255, 255);
+    border-radius: unset;
+    padding-top: 0px;
+    padding: 0px 23px 24px;
+    overflow-y: auto;
+    flex-grow: 1;
+    border-right: 1px solid rgb(153, 153, 153);
+    border-left: 1px solid rgb(153, 153, 153);
+    border-image: initial;
+    border-bottom: none;
+    border-top: none;
+    height: calc(-300px + 100vh);
+    max-height: calc(-308px + 100vh);
+}
+
+section h1{
+	font-size: 20px;
+    line-height: 30px;
+    margin-bottom: 2px;
+    display: block;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    unicode-bidi: isolate;
+}
 </style>
 </head>
 <body>
@@ -307,7 +379,7 @@
 					</div>
 				</dl>
 				<div class="support">
-					<button type="button" class="supportbtn">지원하기</button>
+					<button type="button" class="supportbtn" data-bs-toggle="modal" data-bs-target="#myModal">지원하기</button>
 					<ul class="bottom">
 						<li class="bottomtag">
 							<i class="bi bi-bookmark bold-icon"></i>
@@ -331,6 +403,20 @@
 			</div>
 		</div>		
 	</aside>
+	
+	<div class="ipsa">
+		<header class="head">
+			<h1>입사지원</h1>
+			<button class="xbtn"><i class="bi bi-x-lg" style="color: white;"></i></button>
+		</header>
+		<div>
+			<div class="modalcenter">
+				<section style="margin-top: 24px;">
+					<h1>${hdto.h_title}</h1>
+				</section>
+			</div>
+		</div>
+	</div>
 </body>
 <script type="text/javascript">
 
