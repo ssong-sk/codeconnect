@@ -159,30 +159,30 @@
 	</select>
 	
 	<!-- checkbox -->
-	<select id="getPostsByTypeAndSort" resultType="com.code.dto.CommunityDto">
-	    SELECT * FROM community 
-	    WHERE com_post_type = #{type}
-	    ORDER BY 
+	<select id="getPostsByTypeAndSort" resultType="CommunityDto">
+	    select * from community 
+	    where com_post_type = #{type}
+	    order by 
 	        <choose>
-	            <when test="sortBy == 'popular'">com_readcount DESC</when>
-	            <when test="sortBy == 'maxlike'">com_likes DESC</when>
-	            <when test="sortBy == 'maxcomment'">com_commentcount DESC</when>
-	            <otherwise>com_writetime DESC</otherwise>
+	            <when test="sortBy == 'popular'">com_readcount desc</when>
+	            <when test="sortBy == 'maxlike'">com_likes desc</when>
+	            <when test="sortBy == 'maxcomment'">com_commentcount desc</when>
+	            <otherwise>com_writetime desc</otherwise>
 	        </choose>
-	    LIMIT #{offset}, #{limit}
+	    limit #{offset}, #{limit}
 	</select>
 	
-	<select id="getPostsByCategoryAndSort" resultType="com.code.dto.CommunityDto">
-	    SELECT * FROM community 
-	    WHERE com_post_type = #{type} AND com_category = #{category}
-	    ORDER BY 
+	<select id="getPostsByCategoryAndSort" resultType="CommunityDto">
+	    select * from community 
+	    where com_post_type = #{type} and com_category = #{category}
+	    order by 
 	        <choose>
-	            <when test="sortBy == 'popular'">com_readcount DESC</when>
-	            <when test="sortBy == 'maxlike'">com_likes DESC</when>
-	            <when test="sortBy == 'maxcomment'">com_commentcount DESC</when>
-	            <otherwise>com_writetime DESC</otherwise>
+	            <when test="sortBy == 'popular'">com_readcount desc</when>
+	            <when test="sortBy == 'maxlike'">com_likes desc</when>
+	            <when test="sortBy == 'maxcomment'">com_commentcount desc</when>
+	            <otherwise>com_writetime desc</otherwise>
 	        </choose>
-	    LIMIT #{offset}, #{limit}
+	    limit #{offset}, #{limit}
 	</select>
 	
 	
