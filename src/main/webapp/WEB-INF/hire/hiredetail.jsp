@@ -338,6 +338,7 @@ span.con{
 			</div>
 		</div>
 	</div>
+	<br><br><br>
 </div>
 
 <script type="text/javascript">
@@ -355,6 +356,7 @@ $(".plus_soge").click(function() {
     
     if (!expanded) {
         sogePre.css("max-height", "none");
+        sogeCon.hide(); // 추가 컨텐츠 숨기기
         $(this).html('접기 <i class="bi bi-chevron-up"></i>');
     } else {
         sogePre.css("max-height", "168px"); // 초기 높이로 설정
