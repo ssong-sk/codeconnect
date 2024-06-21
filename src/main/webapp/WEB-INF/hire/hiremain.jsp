@@ -826,7 +826,7 @@ svg{
                <input type="hidden" id="search_career" name="search_career">
                   <div class="career_item">
                      <input type="radio" class="form-check-input"
-                        style="color: green;" name="career" id="all" value="all"
+                        name="career" id="all" value="all"
                         checked="checked"><label for="all">&nbsp;전체</label>
                   </div>
                   <div class="career_item">
