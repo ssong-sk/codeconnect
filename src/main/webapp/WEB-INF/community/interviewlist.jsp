@@ -387,8 +387,16 @@
 	        </c:forEach>
 	     </div>
 	</div>
+	
+	<div class="writebtn" style="margin-top: 20px;">
+	    <c:if test="${sessionScope.loginok!=null }">
+	        <button type="button" class="btn btn-outline-primary" style="margin-left: 1100px;"
+	        onclick="location.href='${pageContext.request.contextPath}/community/interviewform'">글쓰기</button>
+	    </c:if>
+	</div>
+
     
-    <nav aria-label="Page navigation example" style="margin-top: 50px;">
+    <nav aria-label="Page navigation example" style="margin-top: 40px;">
         <ul class="pagination justify-content-center">
             <c:if test="${startPage>1}">
                 <li class="page-item">
@@ -415,5 +423,6 @@
         </ul>
     </nav>
 </div>
+
 </body>
 </html>
