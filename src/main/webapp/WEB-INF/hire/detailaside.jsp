@@ -674,7 +674,7 @@ div.footerdiv{
 					<img alt="먼치팩토리 로고" height="70" src="../../companyintro_uploads/${hdto.ci_logo }" width="70">
 					<div class="name">
 						<h2>${hdto.c_name }</h2>
-						<span>기업정보 보기 ❯</span>
+						<span>기업정보 보기 <i class="bi bi-chevron-right"></i></span>
 					</div> 
 				</a>
 				<dl class="details">

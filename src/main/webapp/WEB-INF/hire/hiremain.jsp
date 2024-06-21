@@ -1625,6 +1625,11 @@ $(".carreerbtn").click(function(){
 	$(".career").toggle();
 })
 
+$(".resetcareer").click(function() {
+	$("#search_career").val('전체');
+	//alert($("#search_career").val());
+})
+
 $(".resetcareer").click(function(){
    // 모든 input 요소의 체크 상태를 해제
     $("input[type='radio']").prop('checked', false);
@@ -2081,14 +2086,14 @@ $(document).click(function(event) {
 <!-- 검색 기능 -->
 <script type="text/javascript">
 	/* 직무,기술,지역 검색 */
-    $(".apply-btn, .techapply-btn, .btnapply, .category2").click(function() {
+    $(".apply-btn, .techapply-btn, .btnapply, .category2, .resetcareer").click(function() {
         var search_job = $("#search_job").val();
         var search_tech = $("#search_tech").val().replace(/\+/g, '\\+').replace(/#/g, '\\#'); // + 및 # 문자 이스케이프
         var search_region = $("#search_region").val();
         var search_career = $("#search_career").val();
         var search_cate = $("#search_cate").val();
         
-        $.ajax({
+        	$.ajax({
             type: "GET",
             url: "search", // 실제 검색을 처리하는 서버의 URL로 변경해야 합니다.
             dataType: "json",
@@ -2107,6 +2112,8 @@ $(document).click(function(event) {
                 alert("검색 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.");
             }
         });
+        
+        
     });
     
     //경력 검색
@@ -2117,7 +2124,7 @@ $(document).click(function(event) {
         var search_career = $("#search_career").val();
         var search_cate = $("#search_cate").val();
         
-        $.ajax({
+        	$.ajax({
             type: "GET",
             url: "search", // 실제 검색을 처리하는 서버의 URL로 변경해야 합니다.
             dataType: "json",
