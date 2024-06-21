@@ -783,7 +783,7 @@ svg{
                                  <li><button type="button" class="techoption-btn">PCB</button></li>
                                  <li><button type="button" class="techoption-btn">RF</button></li>
                                  <li><button type="button" class="techoption-btn">.NET</button></li>
-                                 <li><button type="button" class="techoption-btn">Golang</button></li>
+                                 <li><button type="button" clas	s="techoption-btn">Golang</button></li>
                                  <li><button type="button" class="techoption-btn">Nft</button></li>
                                  <li><button type="button" class="techoption-btn">Solidity</button></li>
                                  <li><button type="button" class="techoption-btn">Blockchain</button></li>
@@ -826,7 +826,7 @@ svg{
                <input type="hidden" id="search_career" name="search_career">
                   <div class="career_item">
                      <input type="radio" class="form-check-input"
-                        style="color: green;" name="career" id="all" value="all"
+                        name="career" id="all" value="all"
                         checked="checked"><label for="all">&nbsp;전체</label>
                   </div>
                   <div class="career_item">

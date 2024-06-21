@@ -86,4 +86,104 @@
     	where com_num = #{com_num}
     </update>
     
+    <!-- 페이징 처리 -->
+    <select id="getAllDatasByTypePaged" parameterType="map" resultType="CommunityDto">
+	    select * from community where com_post_type = #{postType}
+	    order by com_num desc
+	    limit #{startNum}, #{perPage}
+	</select>
+	<select id="getAllDatasByCategoryPaged" parameterType="map" resultType="CommunityDto">
+	    select * from community where com_post_type = #{postType}
+	    <if test="category != null and category != ''">
+	        and com_category = #{category}
+	    </if>
+	    order by com_num desc
+	    limit #{startNum}, #{perPage}
+	</select>
+    <select id="getTotalCountByCategory" parameterType="map" resultType="int">
+	    select count(*) from community where com_post_type = #{postType} 
+	    <if test="category != null and category != ''">
+	        and com_category = #{category}
+	    </if>
+	</select>
+
+	<!-- 이번 주 인기게시글 조회 (homelist에서 5개 출력)-->
+	<select id="getWeeklyPopularPosts" parameterType="map" resultType="CommunityDto">
+		select * from community where com_writetime between #{startDate} and #{endDate}
+    	order by com_readcount desc limit 5
+	</select>
+	<!-- 이번 주 인기게시글 조회 (homepopularlist에서 20개 출력)-->
+	<select id="getWeeklyPopularPostsAll" parameterType="map" resultType="CommunityDto">
+		select * from community where com_writetime between #{startDate} and #{endDate}
+    	order by com_readcount desc limit 20
+	</select>
+	
+	<!-- 카테고리별 조회수가 가장 많은 게시글 조회 -->
+    <select id="getTopPostByCategory" parameterType="map" resultType="CommunityDto">
+        select * from community where com_post_type = #{postType} 
+        and com_category = #{category} order by com_readcount desc limit 1
+    </select>
+    <!-- 카테고리별 나머지 게시글 조회 (조회수가 가장 많은 게시글 제외, 최신 글 우선) -->
+    <select id="getOtherPostsByCategory" parameterType="map" resultType="CommunityDto">
+        select * from community where com_post_type = #{postType} 
+        and com_category = #{category} 
+        and com_num != (
+            select com_num from community 
+            where com_post_type = #{postType} 
+            and com_category = #{category} 
+            order by com_readcount desc 
+            limit 1
+        )
+        order by com_num desc 
+        limit #{startNum}, #{perPage}
+    </select>
+	
+	<!-- 전체글도 동일하게 -->
+	<select id="getTopPostByType" parameterType="map" resultType="CommunityDto">
+	    select * from community where com_post_type = #{postType} 
+	    order by com_readcount desc limit 1
+	</select>
+	
+	<select id="getOtherPostsByType" parameterType="map" resultType="CommunityDto">
+	    select * from community where com_post_type = #{postType} 
+	    and com_num != (
+	        select com_num from community where com_post_type = #{postType} 
+	        order by com_readcount desc limit 1
+	    )
+	    order by com_num desc 
+	    limit #{startNum}, #{perPage}
+	</select>
+	
+	<select id="getInsertId" resultType="int">
+	    select last_insert_id()
+	</select>
+	
+	<!-- checkbox -->
+	<select id="getPostsByTypeAndSort" resultType="CommunityDto">
+	    select * from community 
+	    where com_post_type = #{type}
+	    order by 
+	        <choose>
+	            <when test="sortBy == 'popular'">com_readcount desc</when>
+	            <when test="sortBy == 'maxlike'">com_likes desc</when>
+	            <when test="sortBy == 'maxcomment'">com_commentcount desc</when>
+	            <otherwise>com_writetime desc</otherwise>
+	        </choose>
+	    limit #{offset}, #{limit}
+	</select>
+	
+	<select id="getPostsByCategoryAndSort" resultType="CommunityDto">
+	    select * from community 
+	    where com_post_type = #{type} and com_category = #{category}
+	    order by 
+	        <choose>
+	            <when test="sortBy == 'popular'">com_readcount desc</when>
+	            <when test="sortBy == 'maxlike'">com_likes desc</when>
+	            <when test="sortBy == 'maxcomment'">com_commentcount desc</when>
+	            <otherwise>com_writetime desc</otherwise>
+	        </choose>
+	    limit #{offset}, #{limit}
+	</select>
+	
+	
 </mapper>
