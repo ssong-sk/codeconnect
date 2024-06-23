@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -250,7 +251,7 @@
             <div class="center">
   <form action="personalupdate" id="pe_form" method="post" enctype="multipart/form-data" >
     <input type="hidden"   name="pe_title" id="pe_title">
-    <input type="hidden" name="pe_num" id="pe_num" value="${irdto.pe_num }">
+    <input type="hidden" name="pe_num" id="pe_num" value="${pedto.pe_num }">
                 
 <!-- 인정사항 폼 -------------------------------------------------------------------------------------------------------------------------->
                 <div class="personal">
@@ -263,17 +264,17 @@
                           <tr>
                       <td class="form-group">
                           <span>${rdto.r_name }</span>&nbsp;&nbsp;
-                          <select class="form-select" style="width: 120px;" name="pe_category">
-                              <option>신입/경력</option>
-                              <option>신입</option>
-                              <option>경력</option>
+                          <select class="form-select" style="width: 120px;" name="pe_category" itemprop="" >
+                              <option value="신입/경력">신입/경력</option>
+                              <option value="신입">신입</option>
+                              <option value="경력">경력</option>
                           </select>
                       </td>
                       
                       <td rowspan="4">
                         <input type="file" name="myphoto" id="myphoto" style="display: none;" multiple="multiple">
                               <div style="position: relative;  display: inline-block;" id="photo_img">
-                                <img id="showimg">
+                                <img id="showimg" src="../iruckseoimage/${pedto.pe_image}">
                                <span id="plusphoto" name="pe_image" style="position: absolute; top: 85%; left: 50%; 
                                transform: translate(-50%, -50%); cursor: pointer; font-size: 0.8em;">사진추가</span>
                               </div>
@@ -281,6 +282,9 @@
                               <script type="text/javascript">
                               
                                     $(function () {
+                                    	
+                                       var pe_category= "${pedto.pe_category}";	
+                                       $("select[name=pe_category]").val(pe_category).prop("selected",true);
                                          
                                        //버튼 클릭 시 파일 열기 (증명사진넣기)
                                        $("#plusphoto").click(function () {
@@ -351,7 +355,36 @@
                     </div>
                     <hr style="width: 100%;">
 
-                    <div id="schoolList"></div>
+                    <div id="schoolList">
+                    
+                    <c:if test="${fn:length(sclist) != 0}" >
+                    <c:forEach items="${sclist }" var="scdto">
+                   	<table style="border-bottom: 0.5px solid #D9D9D9; width: 100%; margin-top: 1%;">
+           				<tr>
+                    		<td class="form-group">
+                            <span style="font-size: 1.3em;"><b>${scdto.sc_category}</b></span>&nbsp;
+                            <c:if test="${scdto.sc_category ne '고등학교 졸업'}" > 
+                            	<b>${scdto.sc_uni_category}</b>&nbsp;&nbsp;&nbsp;&nbsp;
+                            </c:if>
+                            <span>${scdto.sc_iphack} ~ ${scdto.sc_jolup} ( ${scdto.sc_transfer } ${scdto.sc_check})</span><br>
+                            <span style="cursor: pointer;"><i class="bi bi-pencil scupdate" sc_num='${scdto.sc_num}'></i></span>
+                            <span style="cursor: pointer;"><i class="bi bi-trash3 scdelete" sc_num='${scdto.sc_num}'></i></span>
+                              </td>
+                                <td class="form-group">
+                                <span>${scdto.sc_major}</span>
+                                </td>
+                            <c:if test="${scdto.sc_category ne '고등학교 졸업'}" > 
+	                                <td class="form-group">
+	                                <span>학점</span>&nbsp;&nbsp;&nbsp;&nbsp;
+	                                <span>${scdto.sc_uni_grade} / ${scdto.sc_uni_sum}</span>
+	                                </td>
+                            </c:if>
+                                </tr>
+                              	</table>
+                    </c:forEach>
+                    </c:if>
+                    
+                    </div>
                     <div id="schoolform"></div> 
                </div>
             
@@ -896,6 +929,29 @@
                     </div>
                     <hr style="width: 100%;">
                     <div id="careerList"></div>
+                    <!-- 리스트 출력 -->
+
+                    <c:if test="${fn:length(calist) != 0}" >
+                    <c:forEach items="${calist}" var="cadto">
+                      <table style="border-bottom: 0.5px solid #D9D9D9; width: 100%; margin-top: 1%;">
+                  		<tr>
+                  	   	  <td class="form-group">
+                  			<span style="font-size: 1.3em;"><b>${cadto.ca_name}</b></span>&nbsp;
+                  			<span>${cadto.ca_ipsa} ~ ${cadto.ca_resign}</span>
+                  			<span style="cursor: pointer;"><i class="bi bi-pencil caupdate" ca_num='${cadto.ca_num }'></i></span>
+                  			<span style="cursor: pointer;"><i class="bi bi-trash3 cadelete" ca_num='${cadto.ca_num }'></i></span>
+                  		  </td>
+                  		  <td class="form-group">
+                  			<span>${cadto.ca_work}팀  ${cadto.ca_position}</span>
+                  		  </td>
+                  		  <td class="form-group" style="margin-top:1%;">
+                  			<span>${cadto.ca_content}</span>
+                  		  </td>
+                  		</tr>
+                  	   </table>
+                    </c:forEach>
+                    </c:if>
+
                     <div id="careerform"></div>
             </div>
             
@@ -1202,7 +1258,26 @@
                         <a style="cursor: pointer;" id="activityPlus">+ 추가하기</a></span>
                         </div>
                         <hr style="width: 100%;">
-                        <div id="activityList"></div>
+                        <div id="activityList">
+                         <c:if test="${fn:length(aclist) != 0}" >
+                          <c:forEach items="${aclist }" var="acdto">
+                           <table style="border-bottom: 0.5px solid #D9D9D9; width: 100%; margin-top: 1%;">
+                    		 <tr>
+                    			<td class="form-group">
+                    			  <span style="font-size: 1.3em;"><b>${acdto.ac_category} -> ${acdto.ac_name}</b></span>&nbsp;
+                    			  <span>${acdto.ac_start} ~ ${acdto.ac_end}</span>
+                    			  <span style="cursor: pointer;"><i class="bi bi-pencil acupdate" ac_num='${acdto.ac_num}'></i></span>
+                    		      <span style="cursor: pointer;"><i class="bi bi-trash3 acdelete" ac_num='${acdto.ac_num}'></i></span>
+                    			</td>
+                    			<td class="form-group" style="margin-top:1%;">
+                    			  <span>${acdto.ac_content}</span>
+                    			</td>
+                    	      </tr>
+                   			</table>
+                   		  </c:forEach>	
+                   		  </c:if>
+                   		  </div>
+                   		  
                         <div id="activityform"></div>
                 </div>
                 
@@ -1501,9 +1576,52 @@
                             <a style="cursor: pointer;" id="qualificationPlus">+ 추가하기</a></span>
                     </div>
                     <hr style="width: 100%;">
-                    <div id="qualificationList"></div>
+                   <div id="qualificationList">
+                     <%-- <c:if test="${fn:length(splist) != 0}" >
+				     <c:forEach items="${splist}" var="spdto">
+					    <table style="border-bottom: 0.5px solid #D9D9D9; width: 100%; margin-top: 1%;">
+					        <tr>
+					            <td class="form-group">
+					                <span style="font-size: 1.2em;"><b>${spdto.sp_name}</b></span>&nbsp;
+					                <span>${spdto.sp_passday}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+					                <span style="cursor: pointer;">
+					                    <i class="bi bi-pencil spupdate" sp_num="${spdto.sp_num}"></i>
+					                </span>
+					                <span style="cursor: pointer;">
+					                    <i class="bi bi-trash3 spdelete" sp_num="${spdto.sp_num}"></i>
+					                </span>
+					            </td>
+					            
+					            <!-- 카테고리별 정보 출력 -->
+					            <c:choose>
+					                <c:when test="${spdto.sp_category eq '자격증·면허증'}">
+					                    <td class="form-group">
+					                        <span>${spdto.sp_ce_organization}</span>&nbsp;
+					                        <span>${spdto.sp_ce_pass}</span>
+					                    </td>
+					                </c:when>
+					                
+					                <c:when test="${spdto.sp_category eq '어학시험'}">
+					                    <td class="form-group">
+					                        <span>점수&nbsp;&nbsp;${spdto.sp_la_grade}점</span>
+					                    </td>
+					                </c:when>
+					                
+					                <c:when test="${spdto.sp_category eq '수상내역·공모전'}">
+					                    <td class="form-group">
+					                        <span>${spdto.sp_aw_organization}</span>
+					                    </td>
+					                </c:when>
+					            </c:choose>
+					            
+					        </tr>
+					    </table>
+					</c:forEach>
+					</c:if> --%>
+				   </div>
+                    
                     <div id="qualificationform"></div>
-               </div>
+                </div>
             
             <script type="text/javascript">
 		    //추가하기 누르면 폼 나타나게 하기
@@ -1939,7 +2057,27 @@
                     <a style="cursor: pointer;" id="portfolioPlus">+ 추가하기</a></span>
                     </div>
                     <hr style="width: 100%;">
-                    <div id="portfolioList"></div>
+                    <div id="portfolioList">
+                      <c:if test="${fn:length(polist) != 0}" >
+                       <c:forEach items="${polist}" var="podto">
+					      <table>
+					          <tr>
+					              <td class="form-group">
+					                  <c:if test="${not empty podto.po_file}">
+					                      <c:set var="filePath" value="../iruckseoportfolio/${podto.po_file}" />
+					                      <a id="download" url="${filePath}" fileName="${podto.po_file}">
+					                          <span><b>${podto.po_file}</b></span>
+					                      </a>
+					                  </c:if>
+					                  <span style="cursor: pointer;" id="poDelete">
+					                      <i class="bi bi-trash3 podelete" po_num="${podto.po_num}"></i>
+					                  </span>
+					              </td>
+					          </tr>
+					      </table>
+					  </c:forEach>
+					  </c:if>
+                    </div>
                     <div id="portfolioform"></div>
               </div>
                 
@@ -2142,7 +2280,26 @@
                          <a style="cursor: pointer;" id="selfPlus">+ 추가하기</a></span>
                         </div>
                         <hr style="width: 100%;">
-                        <div id="selfList"></div>
+                        <div id="selfList">
+                           <c:forEach items="${selist}" var="sedto">
+							    <table style="border-bottom: 0.5px solid #D9D9D9; width: 100%; margin-top: 1%;">
+							        <tr>
+							            <td class="form-group">
+							                <span style="font-size: 1.3em;"><b>${sedto.se_subject}</b></span>&nbsp;
+							                <span style="cursor: pointer;">
+							                    <i class="bi bi-pencil seupdate" se_num="${sedto.se_num}"></i>
+							                </span>
+							                <span style="cursor: pointer;">
+							                    <i class="bi bi-trash3 sedelete" se_num="${sedto.se_num}"></i>
+							                </span>
+							            </td>
+							            <td class="form-group" style="margin-top: 1%;">
+							                <span>${sedto.se_content}</span>
+							            </td>
+							        </tr>
+							    </table>
+							</c:forEach>
+                        </div>
                         <div id="selfform"></div>
                 </div>
                 
@@ -2888,10 +3045,10 @@
                   
                   <div class="fixed_final">
                       <input type="text" class="form-control"   id="pe_title_temp" style="height: 40px; 
-                      width: 43%;" placeholder="이력서 제목을 입력해주세요" required="required">&nbsp;&nbsp;&nbsp;&nbsp;
+                      width: 43%;" value="${pedto.pe_title }" required="required">&nbsp;&nbsp;&nbsp;&nbsp;
                       <button type="button" id="allDataSelect" class="btn btn-outline-primary" 
                       data-bs-target="#ListSelect" data-bs-toggle="modal">미리보기</button>&nbsp;
-                      <button type="button" id="allDataUpdate" class="btn btn-primary">작성완료</button>
+                      <button type="button" id="allDataUpdate" class="btn btn-primary">수정완료</button>
                   </div>
                   
                   
@@ -3061,52 +3218,52 @@
 					</div>
 					
 					<!-- 희망근무조건 -->
-					<div class="hope">
-						<div class="form-caption">
-	                        <h5><b>희망근무조건</b></h5>
-	                    </div>
-	                    <hr style="width: 100%;">
-	                    <div id="hopeList"></div>
-	                    <div id="hopeform"></div>
-	                    
-	                    <table id="hopeclick" style="width: 100%;">
-	                     <tr>
-	                       <td class="form-group">
-	                         <span id="modal_ho_category"> </span>
-	                         <span id="modal_ho_money"> </span>
-	                       </td>
-	                     </tr>
-	                     
-	                     <!-- 희망근무지------------------------------------------------------------------------------------------------------------------ -->
-	                      <tr>
-	                        <td class="form-group" style="margin-top: 2%;">
-	                            &nbsp;<span style="font-size: 0.8em; display: inline-block;">희망 근무지</span>&nbsp;&nbsp;&nbsp;
-	                            <span style="font-size: 0.8em; color: #4876EF; display: inline-block;">
-	                        </td>
-	                      </tr>
-	                      
-	                      <tr>
-	                           <td class="form-group" style="margin-top: 1%;">
-	                             <div id="modal_areaform" ></div>
-	                           </td>
-	                      </tr>   
-	
-	                        <!-- 직무 --------------------------------------------------------------------------------------------------------->
-	                        <tr>
-	                           <td class="form-group" style="margin-top: 2%;">
-	                            &nbsp;<span style="font-size: 0.8em; display: inline-block;">직무 키워드</span>&nbsp;&nbsp;&nbsp;
-	                            <span style="font-size: 0.8em; color: #4876EF; display: inline-block;">
-	                           </td>
-	                         </tr>
-	                         
-	                       <tr>
-	                           <td class="form-group" style="margin-top: 1%;">
-	                             <div id="modal_jobform"></div>
-	                           </td>
-	                        </tr>   
-	                      
-	                       </table>
-					</div>
+					
+					<div class="form-caption">
+                        <h5><b>희망근무조건</b></h5>
+                    </div>
+                    <hr style="width: 100%;">
+                    <div id="hopeList"></div>
+                    <div id="hopeform"></div>
+                    
+                    <table id="hopeclick" style="width: 100%;">
+                     <tr>
+                       <td class="form-group">
+                         <span id="modal_ho_category"> </span>
+                         <span id="modal_ho_money"> </span>
+                       </td>
+                     </tr>
+                     
+                     <!-- 희망근무지------------------------------------------------------------------------------------------------------------------ -->
+                      <tr>
+                        <td class="form-group" style="margin-top: 2%;">
+                            &nbsp;<span style="font-size: 0.8em; display: inline-block;">희망 근무지</span>&nbsp;&nbsp;&nbsp;
+                            <span style="font-size: 0.8em; color: #4876EF; display: inline-block;">
+                        </td>
+                      </tr>
+                      
+                      <tr>
+                           <td class="form-group" style="margin-top: 1%;">
+                             <div id="modal_areaform" ></div>
+                           </td>
+                      </tr>   
+
+                        <!-- 직무 --------------------------------------------------------------------------------------------------------->
+                        <tr>
+                           <td class="form-group" style="margin-top: 2%;">
+                            &nbsp;<span style="font-size: 0.8em; display: inline-block;">직무 키워드</span>&nbsp;&nbsp;&nbsp;
+                            <span style="font-size: 0.8em; color: #4876EF; display: inline-block;">
+                           </td>
+                         </tr>
+                         
+                       <tr>
+                           <td class="form-group" style="margin-top: 1%;">
+                             <div id="modal_jobform"></div>
+                           </td>
+                        </tr>   
+                      
+                       </table>
+					
 					
 					
 

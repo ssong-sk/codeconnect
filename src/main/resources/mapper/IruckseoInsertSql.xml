@@ -23,19 +23,24 @@
      where
      pe_num = #{pe_num}
    </update>
-   
+
    <!-- 이력서 인적사항 list 출력 -->
-   <!-- <select id="allPersonalDatas" resultType="IruckseoInsertDto">
-     select * from personal order by pe_num desc
-   </select> -->
+   <select id="allPersonallist" parameterType="IruckseoInsertDto" resultType="IruckseoInsertDto">
+     select * from personal  where pe_num = #{pe_num} order by pe_num ASC
+   </select>
+   
+   <!-- 이력서 pe_num으로조회 -->
+   <select id="Personallist" parameterType="int" resultType="IruckseoInsertDto">
+     select * from personal  where pe_num = #{pe_num}
+   </select>
    
    <!-- 이력서 갯수 구하기 -->
-   <select id="getPersonalCount" resultType="int">
-     select count(*) from personal
+   <select id="getPersonalCount" parameterType="int" resultType="int">
+     select count(*) from personal where r_num = ${r_num}
    </select>
    
    <!-- 이력서 현황 리스트 출력 _ join -->
-   <select id="allPersonalDatas" resultType="IruckseoInsertDto">
+   <select id="allPersonalDatas" parameterType="int" resultType="IruckseoInsertDto">
        select x.pe_num , x.pe_title , x.pe_writeday , x.ho_check ,  x.ho_addr , x.ho_keyword ,  PERIOD_DIFF( x.ca_resign ,   x.ca_ipsa ) as ca_resign
 	   from ( 
  	      select pe.pe_num , pe.pe_title , pe.pe_writeday  , ( case when  LENGTH(TRIM(ho.ho_money)) = 0 || ho.ho_money IS NULL THEN ho.ho_check else ho.ho_money END ) AS ho_check
@@ -45,10 +50,16 @@
            from personal pe 
            LEFT outer JOIN career ca ON (pe.pe_num = ca.pe_num) 
            LEFT outer JOIN hope ho ON (pe.pe_num = ho.pe_num)
+           where pe.r_num = ${r_num} 
            GROUP BY pe.pe_num , pe.pe_title , pe.pe_writeday , ho.ho_money , ho.ho_check ,  ho.ho_addr , ho.ho_keyword
         ) x
         order by x.pe_writeday desc
    </select>
+   
+   <!-- 이력서 삭제하기  -->
+   <delete id="deletePersonal" parameterType="int">
+     delete from personal where pe_num = #{pe_num}
+   </delete>
    
    <!-- school 학력 단건 list 출력 -->
    <select id="OnePersonalDatas" parameterType="IruckseoInsertDto"    resultType="IruckseoInsertDto">
@@ -78,13 +89,31 @@
    </insert>
    
    <!-- school 학력 단건 list 출력 -->
-   <select id="OneSchoolDatas" parameterType="IruckseoSchoolDto"    resultType="IruckseoSchoolDto">
+   <select id="OneSchoolDatas" parameterType="IruckseoSchoolDto"  resultType="IruckseoSchoolDto">
      select * from school where pe_num = #{pe_num} and sc_num = #{sc_num} order by sc_num asc
    </select>
    
    <!-- school 학력 전체 list 출력 -->
    <select id="allSchoolDatas" parameterType="IruckseoSchoolDto" resultType="IruckseoSchoolDto">
      select * from school where pe_num = #{pe_num} order by sc_num ASC
+   </select>
+   
+   <!-- 학력 pe_num으로 조회 -->
+   <select id="Schoollist" parameterType="int" resultType="IruckseoSchoolDto">
+     select 
+		sc_category 
+		, (case when sc_category = "고등학교 졸업" then sc_hi_name else sc_uni_name end ) AS sc_name
+		, (case when sc_category = "고등학교 졸업" then sc_hi_transfer else sc_uni_transfer end ) AS sc_transfer
+		, (case when sc_category = "고등학교 졸업" then sc_hi_check else sc_uni_check end ) AS sc_check
+		, (case when sc_category = "고등학교 졸업" then sc_hi_iphack else sc_uni_iphack end ) AS sc_iphack
+		, (case when sc_category = "고등학교 졸업" then sc_hi_jolup else sc_uni_jolup end ) AS sc_jolup
+		, (case when sc_category = "고등학교 졸업" then sc_hi_major else sc_uni_major end ) AS sc_major
+		,sc_uni_grade
+		,sc_uni_sum
+		,sc_uni_category
+		,sc_num
+		from school 
+	   where pe_num = #{pe_num}
    </select>
    
    <!-- 학력 sc_num값 넘기기 -->
@@ -143,6 +172,19 @@
      select * from career where ca_num = #{ca_num}
    </select>
    
+   <!-- 경력 pe_num으로 조회 -->
+   <select id="Careerlist" parameterType="int" resultType="IruckseoCareerDto">
+      select 
+		ca_name, 
+		ca_ipsa,
+		ca_resign,
+		ca_work,
+		ca_position,
+		ca_content
+		from career 
+	   where pe_num = #{pe_num}
+   </select>
+   
    <!-- 경력 updete -->
    <update id="updateCareer" parameterType="IruckseoCareerDto">
      update career set 
@@ -183,6 +225,18 @@
    <!-- 경험활동 list 나오기 전체 -->
    <select id="allActibityDatas" parameterType="IruckseoActibityDto" resultType="IruckseoActibityDto">
      select * from actibity where pe_num = #{pe_num} order by ac_num asc
+   </select>
+   
+   <!-- 경험활동 pe_num으로 조회 -->
+   <select id="Actibitylist" parameterType="int" resultType="IruckseoActibityDto">
+     select 
+		ac_category, 
+		ac_name,
+		ac_start,
+		ac_end,
+		ac_content
+		from actibity 
+	   where pe_num = #{pe_num}
    </select>
    
    <!-- 경험활동 num 값 넘기기 -->
@@ -234,6 +288,30 @@
      select * from spec where pe_num = #{pe_num} order by sp_num asc
    </select>
    
+   <!-- 스펙 pe_num으로 조회 -->
+   <select id="Speclist" parameterType="int" resultType="IruckseoSpecDto">
+      SELECT 
+	    sp_category,
+	    CASE sp_category
+	        WHEN '자격증·면허증' THEN sp_ce_name
+	        WHEN '어학시험' THEN sp_la_name
+	        WHEN '수상내역·공모전' THEN sp_aw_name
+	        ELSE ''
+	    END AS sp_name,
+	    CASE sp_category
+	        WHEN '자격증·면허증' THEN sp_ce_passday
+	        WHEN '어학시험' THEN sp_la_passday
+	        WHEN '수상내역·공모전' THEN sp_aw_sangday
+	        ELSE ''
+	    END AS sp_passday,
+	    sp_ce_organization,
+	    sp_ce_pass,
+	    sp_la_grade,
+	    sp_aw_organization
+	FROM spec 
+	WHERE pe_num = #{pe_num};
+   </select>
+   
    <!-- 스펙 num 값 넘기기 -->
    <select id="selectNumSpec" parameterType="int" resultType="IruckseoSpecDto">
      select * from spec where sp_num = #{sp_num}
@@ -278,6 +356,15 @@
      select * from portfolio where pe_num = #{pe_num} and po_num = #{po_num} order by po_num asc
    </select>
    
+   <!-- 포트폴리오 pe_num으로 조회 -->
+   <select id="Portfoliolist" parameterType="int" resultType="IruckseoPortfolioDto">
+     select 
+	    po_file,
+	    po_filepath
+     from portfolio 
+     where pe_num = #{pe_num}
+   </select>
+   
    <!-- 포트폴리오 삭제하기 -->
    <delete id="deletePortfolio" parameterType="int">
      delete from portfolio where po_num = #{po_num}
@@ -305,6 +392,15 @@
    <!-- 자기소개서 단건 출력 list -->
    <select id="OneSelfDatas" parameterType="IruckseoSelfDto"  resultType="IruckseoSelfDto">
      select * from self where pe_num = #{pe_num} and se_num = #{se_num} order by se_num asc
+   </select>
+   
+   <!-- 포트폴리오 pe_num으로 조회 -->
+   <select id="Selflist" parameterType="int" resultType="IruckseoSelfDto">
+     select 
+	    se_subject,
+	    se_content
+     from self 
+     where pe_num = #{pe_num}
    </select>
    
    <!-- 자기소개서 list 나오기 전체 -->
@@ -357,6 +453,11 @@
    <!-- 희망조건 list 나오기 전체 -->
    <select id="allHopeDatas" resultType="IruckseoHopeDto">
      select * from hope order by ho_num desc
+   </select>
+   
+   <!-- 희망조건 pe_num으로 조회 -->
+   <select id="Hopelist" parameterType="int" resultType="IruckseoHopeDto">
+     select * from hope  where pe_num = #{pe_num}
    </select>
    
    <!-- 희망조건 수정하기 -->

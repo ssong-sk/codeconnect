@@ -39,17 +39,35 @@ public class IruckseoInsertService implements IruckseoInsertServiceInter {
 		// TODO Auto-generated method stub
 		return irmapper.OnePersonalDatas(pedto);
 	}
-	
-    //이력서 리스트 출력
-	public List<IruckseoInsertDto> allPersonalDatas() {
+
+	//이력서 인적사항 list 출력
+	public List<IruckseoInsertDto> allPersonallist(IruckseoInsertDto pedto) {
 		// TODO Auto-generated method stub
-		return irmapper.allPersonalDatas();
+		return irmapper.allPersonallist(pedto);
+	}
+	
+	//이력서 pe_num으로 조회
+	public IruckseoInsertDto Personallist(int pe_num) {
+		// TODO Auto-generated method stub
+		return irmapper.Personallist(pe_num);
+	}
+	
+    //이력서 희망조건 및 제목 리스트 출력
+	public List<IruckseoInsertDto> allPersonalDatas(int r_num) {
+		// TODO Auto-generated method stub
+		return irmapper.allPersonalDatas(r_num);
 	}
 	
 	//이력서 갯수
-	public int getPersonalCount() {
+	public int getPersonalCount(int r_num) {
 		// TODO Auto-generated method stub
-		return irmapper.getPersonalCount();
+		return irmapper.getPersonalCount(r_num);
+	}
+	
+	//이력서 전체 삭제
+	public void deletePersonal(int pe_num) {
+		// TODO Auto-generated method stub
+		irmapper.deletePersonal(pe_num);
 	}
 	
 	//school insert
@@ -72,6 +90,13 @@ public class IruckseoInsertService implements IruckseoInsertServiceInter {
 		// TODO Auto-generated method stub
 		return irmapper.OneSchoolDatas(scdto);
 	}
+	
+	//학력 pe_num 조회
+	public List<IruckseoSchoolDto> Schoollist(int pe_num) {
+		// TODO Auto-generated method stub
+		return irmapper.Schoollist(pe_num);
+	}
+
 
 	//학력 school 삭제하기
 	@Override
@@ -111,6 +136,12 @@ public class IruckseoInsertService implements IruckseoInsertServiceInter {
 		// TODO Auto-generated method stub
 		return irmapper.selectNumCareer(ca_num);
 	}
+	
+	//경력 pe_num 조회
+	public List<IruckseoCareerDto> Careerlist(int pe_num) {
+		// TODO Auto-generated method stub
+		return irmapper.Careerlist(pe_num);
+	}
 
 	//경력 수정하기
 	public void updateCareer(IruckseoCareerDto cadto) {
@@ -141,6 +172,13 @@ public class IruckseoInsertService implements IruckseoInsertServiceInter {
 		// TODO Auto-generated method stub
 		return irmapper.OneActibityDatas(acdto);
 	}
+	
+	//경험활동 pe_num 조회
+	public List<IruckseoActibityDto> Actibitylist(int pe_num) {
+		// TODO Auto-generated method stub
+		return irmapper.Actibitylist(pe_num);
+	}
+
 	
 	//경험활동 수정폼 띄우기
 	public IruckseoActibityDto selectNumActibity(int ac_num) {
@@ -176,6 +214,12 @@ public class IruckseoInsertService implements IruckseoInsertServiceInter {
 	public List<IruckseoSpecDto> OneSpecDatas(IruckseoSpecDto spdto) {
 		// TODO Auto-generated method stub
 		return irmapper.OneSpecDatas(spdto);
+	}
+	
+	//스펙 pe_num 조회
+	public List<IruckseoSpecDto> Speclist(int pe_num) {
+		// TODO Auto-generated method stub
+		return irmapper.Speclist(pe_num);
 	}
 
 	//스펙 수정폼 띄우기
@@ -214,6 +258,12 @@ public class IruckseoInsertService implements IruckseoInsertServiceInter {
 		return irmapper.OnePortfolioDatas(podto);
 	}
 	
+	//포트폴리오 pe_num 조회
+	public List<IruckseoPortfolioDto> Portfoliolist(int pe_num) {
+		// TODO Auto-generated method stub
+		return irmapper.Portfoliolist(pe_num);
+	}
+	
 	//포트폴리오 삭제하기
 	public void deletePortfolio(int po_num) {
 		// TODO Auto-generated method stub
@@ -249,6 +299,12 @@ public class IruckseoInsertService implements IruckseoInsertServiceInter {
 		// TODO Auto-generated method stub
 		return irmapper.allSelfDatas(sedto);
 	}
+	
+	//자기소개서 pe_num 조회
+	public List<IruckseoSelfDto> Selflist(int pe_num) {
+		// TODO Auto-generated method stub
+		return irmapper.Selflist(pe_num);
+	}
 
 	//자기소개서 삭제하기
 	public void deleteSelf(int se_num) {
@@ -274,10 +330,16 @@ public class IruckseoInsertService implements IruckseoInsertServiceInter {
 		irmapper.updateHope(hodto);
 	}
 
+	//희망조건 list 불러오기
 	public List<IruckseoHopeDto> allHopeDatas() {
 		// TODO Auto-generated method stub
 		return irmapper.allHopeDatas();
 	}
 
+	//희망조건 pe_num 조회
+	public List<IruckseoHopeDto> Hopelist(int pe_num) {
+		// TODO Auto-generated method stub
+		return irmapper.Hopelist(pe_num);
+	}
 
 }
