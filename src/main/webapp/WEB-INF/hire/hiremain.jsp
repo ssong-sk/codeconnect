@@ -633,7 +633,7 @@ svg {
       <div id="wrap">
          <div class="center">
             <div class="category">
-				<input type="hidden" id="r_num" name="r_num" value="${r_num }">
+				<input type="text" id="r_num" name="r_num" value="${r_num }">
                <!-- 개발 직무 선택 -->
                <span class="title">개발 직무</span>
                <button class="job" type="button" data-bs-toggle="modal"
@@ -1367,28 +1367,45 @@ svg {
 			                            <span>87</span>
 			                        </div>
 			                        </a>
-			                        <c:if test="${scraped}">
-									    <input type="hidden" id="r_num" name="r_num" value="${r_num}">
-									    <input type="hidden" id="h_num" name="h_num" value="${h.h_num}">
-									    <button aria-pressed="true" type="button" class="scrap" value="${h.h_num}">
-									        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-									            <path fill="#fff" fill-rule="evenodd"
-									                d="M6.403 20.825a1 1 0 0 1-1.653-.757V5a2 2 0 0 1 2-2h10.5a2 2 0 0 1 2 2v15.068a1 1 0 0 1-1.653.757L12 16l-5.597 4.825Z"
-									                clip-rule="evenodd"></path>
-									        </svg>
-									    </button>
-									</c:if>
-									<c:if test="${not scraped}">
-									    <input type="hidden" id="r_num" name="r_num" value="${r_num}">
-									    <input type="hidden" id="h_num" name="h_num" value="${h.h_num}">
-									    <button aria-pressed="false" type="button" class="scrap" value="${h.h_num}">
-									        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-									            <path fill="#fff" fill-rule="evenodd"
-									                d="M10.725 14.71a2 2 0 0 1 2.55 0l3.975 3.289V5H6.75v12.999l3.975-3.29ZM4.75 20.123V5a2 2 0 0 1 2-2h10.5a2 2 0 0 1 2 2v15.124a1 1 0 0 1-1.638.77L12 16.25l-5.612 4.645a1 1 0 0 1-1.638-.77Z"
-									                clip-rule="evenodd"></path>
-									        </svg>
-									    </button>
-									</c:if>
+									<c:set var="myid" value="${sessionScope.myid}" />
+									
+									<%-- 사용자별 스크랩 리스트 --%>
+									<c:set var="userScrapedMap" value="${sessionScope.userScrapedMap}" />
+									<c:set var="scraped" value="${userScrapedMap[myid]}" />
+									
+									<%-- 임시 변수로 스크랩 여부 저장 --%>
+									<c:set var="isScraped" value="false" />
+									
+									<%-- scraped 리스트를 순회하면서 현재 h_num이 있는지 확인 --%>
+									<c:forEach var="scrap" items="${scraped}">
+									    <c:if test="${scrap.h_num == h.h_num}">
+									        <c:set var="isScraped" value="true" />
+									    </c:if>
+									</c:forEach>
+									<c:choose>
+									    <c:when test="${isScraped}">
+									        <input type="hidden" id="r_num" name="r_num" value="${r_num}">
+									        <input type="hidden" id="h_num" name="h_num" value="${h.h_num}">
+									        <button aria-pressed="true" type="button" class="scrap" value="${h.h_num}" onclick="deleteScrap(${r_num}, ${h.h_num})">
+									            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+									                <path fill="#fff" fill-rule="evenodd"
+									                      d="M6.403 20.825a1 1 0 0 1-1.653-.757V5a2 2 0 0 1 2-2h10.5a2 2 0 0 1 2 2v15.068a1 1 0 0 1-1.653.757L12 16l-5.597 4.825Z"
+									                      clip-rule="evenodd"></path>
+									            </svg>
+									        </button>
+									    </c:when>
+									    <c:otherwise>
+									        <input type="hidden" id="r_num" name="r_num" value="${r_num}">
+									        <input type="hidden" id="h_num" name="h_num" value="${h.h_num}">
+									        <button aria-pressed="false" type="button" class="scrap" value="${h.h_num}" onclick="addScrap(${r_num}, ${h.h_num})">
+									            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+									                <path fill="#fff" fill-rule="evenodd"
+									                      d="M10.725 14.71a2 2 0 0 1 2.55 0l3.975 3.289V5H6.75v12.999l3.975-3.29ZM4.75 20.123V5a2 2 0 0 1 2-2h10.5a2 2 0 0 1 2 2v15.124a1 1 0 0 1-1.638.77L12 16.25l-5.612 4.645a1 1 0 0 1-1.638-.77Z"
+									                      clip-rule="evenodd"></path>
+									            </svg>
+									        </button>
+									    </c:otherwise>
+									</c:choose>
 			                    </div>
 			                </div>
 			            <a target="_self" title="${h.h_title}" href="detail?h_num=${h.h_num }">

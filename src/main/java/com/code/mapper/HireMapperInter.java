@@ -17,7 +17,6 @@ public interface HireMapperInter {
 	//스크랩
 	public void scrapInsert(HireDto dto);
 	public int getRnumById(String r_id);
-	public boolean getScrap(int r_num, int h_num);
 	public void scrapDelete(int r_num, int h_num);
 }
 

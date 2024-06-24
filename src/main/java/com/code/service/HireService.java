@@ -48,14 +48,6 @@ public class HireService implements HireServiceInter {
 	}
 
 	@Override
-	public boolean getScrap(int r_num, int h_num) {		
-		Map<String, Object> params = new HashMap<>();
-	    params.put("r_num", r_num);
-	    params.put("h_num", h_num);
-		return mapper.getScrap(r_num, h_num);
-	}
-
-	@Override
 	public void scrapDelete(int r_num, int h_num) {
 		Map<String, Object> params = new HashMap<>();
 	    params.put("r_num", r_num);
