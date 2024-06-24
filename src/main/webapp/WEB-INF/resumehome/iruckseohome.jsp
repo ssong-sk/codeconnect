@@ -230,7 +230,7 @@
 	              </div>   
 	              
 	              <div class="mylist-chuimg">
-					    <c:forEach items="${hlist}" var="hdto" varStatus="loop">
+					    <c:forEach items="${hlist}" var="h" varStatus="loop">
 					      <c:if test="${loop.index < 24 }">
 					        <div class="chu-item">
 					            <a href="#"><img alt="" src="../companyintro_uploads/${hdto.ci_image}" class="chu-img"></a>

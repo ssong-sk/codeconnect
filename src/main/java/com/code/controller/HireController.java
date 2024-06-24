@@ -165,7 +165,7 @@ public class HireController {
    @PostMapping("/scrap")
    public void scrapinsert(@ModelAttribute("hdto") HireDto hdto, HttpSession session) {
        // 로그인한 사용자의 r_num을 가져옵니다.
-       int r_num = (int) session.getAttribute("r_num");
+	   int r_num =  Integer.parseInt((String)session.getAttribute("r_num"));
        hdto.setR_num(r_num);
 
        // 스크랩을 데이터베이스에 삽입
