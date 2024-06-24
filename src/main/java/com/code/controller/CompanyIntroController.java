@@ -228,6 +228,7 @@ public class CompanyIntroController {
 	    model.addAttribute("dto", dto);
 	    model.addAttribute("cdto", cdto);
 	    model.addAttribute("rlist", rlist);
+	  
 	    
 	    // Return the view name
 	    return "/companyintro/companyintroshow2";
