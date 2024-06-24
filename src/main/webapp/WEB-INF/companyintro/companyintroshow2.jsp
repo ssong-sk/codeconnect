@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page import="java.util.Calendar"%>
@@ -272,17 +272,17 @@ body {
                 <div class="ratings-container">
                     <h2 class="section-title">전체 리뷰 및 통계</h2>
                     <div class="ratings">
-                        <div class="score">3.5</div>
+                        <div class="score"><%= String.format("%.1f", request.getAttribute("avgAll")) %></div>
                         <div class="stars">
                             <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-half"></i> <i class="bi bi-star"></i>
                         </div>
                     </div>
                     <ul class="ratings-list">
-                        <li><span>복지 및 급여:</span> <span>4.0</span></li>
-                        <li><span>근무환경:</span> <span>4.5</span></li>
-                        <li><span>사내문화:</span> <span>3.5</span></li>
-                        <li><span>승진 기회 및 가능성:</span> <span>2.5</span></li>
-                        <li><span>경영진:</span> <span>2.5</span></li>
+                        <li><span>복지 및 급여:</span> <span><%= String.format("%.1f", request.getAttribute("avgHappy")) %></span></li>
+                        <li><span>근무환경:</span> <span><%= String.format("%.1f", request.getAttribute("avgEnvironment")) %></span></li>
+                        <li><span>사내문화:</span> <span><%= String.format("%.1f", request.getAttribute("avgCulture")) %></span></li>
+                        <li><span>승진 기회 및 가능성:</span> <span><%= String.format("%.1f", request.getAttribute("avgPossibility")) %></span></li>
+                        <li><span>경영진:</span> <span><%= String.format("%.1f", request.getAttribute("avgHeads")) %></span></li>
                     </ul>
                     <c:if test="${sessionScope.loginok != null}">
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reviewModal">자세히 보기</button>
@@ -441,7 +441,7 @@ body {
                             </div>
                         </div>
 
-						<br>
+                        <br>
                         <!-- 코멘트 -->
                         <label for="cr_comment">코멘트</label>
                         <textarea id="cr_comment" name="cr_comment" class="form-control mb-3"></textarea>
