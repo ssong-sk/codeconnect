@@ -794,7 +794,7 @@ div.footerdiv{
 										<button class="dowunbtn">
 											<i class="bi bi-download"></i>
 										</button>
-										<a target="_blank" href="/resumehome/form">
+										<a target="_blank" href="/resumehome/updateForm?pe_num=${ir.pe_num}">
 											<i class="bi bi-pencil-square"></i>
 										</a>
 									</div>
