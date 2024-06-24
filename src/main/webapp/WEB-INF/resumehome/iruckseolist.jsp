@@ -256,47 +256,45 @@
 <!-- 인정사항 폼 -------------------------------------------------------------------------------------------------------------------------->
                 <div class="personal">
                         <div class="form-caption">
-                            <h5><b>인적사항</b></h5>
+                            <h5><b>인적사항</b></h5>&nbsp;&nbsp;&nbsp;
                         </div>
                         <hr style="width: 100%;">
                         <table class="" style="width: 100%;">
                           <tr>
-		                      <td class="form-group">
-		                          <span>${rdto.r_name }</span>&nbsp;&nbsp;
-		                          <span style="width: 120px;" name="pe_category">${pedto.pe_category}</span>
-		                      </td>
-		                      
-		                      <td rowspan="4">
-		                        <input type="file" name="myphoto" id="myphoto" style="display: none;" multiple="multiple">
-		                              <div style="position: relative;  display: inline-block;" id="photo_img">
-		                                <img id="showimg" src="../iruckseoimage/${pedto.pe_image}">
-		                              </div>
-		                              
-		                      </td>
-		                    </tr>
-		                    
-		                    <tr>
-		                      <td class="form-group">
-		                        <span>성별 (${rdto.r_gender })</span>&nbsp;&nbsp;&nbsp;
-		                        <span>${rdto.r_birthday}</span>
-		                      </td>
-		                    </tr>
-		                    
-		                    <tr>
-		                      <td class="form-group">
-		                        <span><i class="bi bi-envelope"></i>${rdto.r_email}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		                        <span><i class="bi bi-telephone"></i>${rdto.r_hp}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		                        <span><i class="bi bi-phone"></i>${rdto.r_hp}</span>
-		                      </td>
-		                    </tr>
-		                    
-		                    <tr>
-		                      <td class="form-group">
-		                        <span><i class="bi bi-house"></i>${rdto.r_addr}${rdto.r_addr_detail}</span>
-		                      </td>
-		                    </tr>
+                      <td class="form-group">
+                          <span>${rdto.r_name }</span>&nbsp;&nbsp;
+                          <span style="width: 120px;" name="pe_category">${pedto.pe_category}</span>
+                      </td>
+                      
+                      <td rowspan="4">
+                          <div style="position: relative;  display: inline-block;" id="photo_img">
+                            <img id="showimg" src="../iruckseoimage/${pedto.pe_image}">
+                          </div>
+                      </td>
+                    </tr>
                     
-                        </table>
+                    <tr>
+                      <td class="form-group">
+                        <span>성별 (${rdto.r_gender })</span>&nbsp;&nbsp;&nbsp;
+                        <span>${rdto.r_birthday}</span>
+                      </td>
+                    </tr>
+                    
+                    <tr>
+                      <td class="form-group">
+                        <span><i class="bi bi-envelope"></i>${rdto.r_email}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <span><i class="bi bi-telephone"></i>${rdto.r_hp}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <span><i class="bi bi-phone"></i>${rdto.r_hp}</span>
+                      </td>
+                    </tr>
+                    
+                    <tr>
+                      <td class="form-group">
+                        <span><i class="bi bi-house"></i>${rdto.r_addr}${rdto.r_addr_detail}</span>
+                      </td>
+                    </tr>
+                    
+                  </table>
                    
                 </div>
            </form>              
@@ -334,17 +332,15 @@
                               	</table>
                     </c:forEach>
                     </c:if>
-                    
                     </div>
-                 </div>
-
+               </div>
 <!-- 경력 ------------------------------------------------------------------------------------------------------------------------>
             <div class="career">
                     <div class="form-caption">
                         <h5><b>경력</b></h5>&nbsp;&nbsp;&nbsp;
                     </div>
                     <hr style="width: 100%;">
-                    <div id="careerList">
+                    <div id="careerList"></div>
                     <!-- 리스트 출력 -->
 
                     <c:if test="${fn:length(calist) != 0}" >
@@ -365,10 +361,9 @@
                   	   </table>
                     </c:forEach>
                     </c:if>
-                   </div>
             </div>
             
-           
+                
 <!-- 경험, 활동, 교육 ----------------------------------------------------------------------------------------------------------->
                 <div class="activity">
                         <div class="form-caption">
@@ -392,6 +387,8 @@
                    		  </c:forEach>	
                    		  </c:if>
                    		  </div>
+                   		  
+                        <div id="activityform"></div>
                 </div>
                 
 <!-- 자격/어학/수상----------------------------------------------------------------------------------------------------------- -->
@@ -401,19 +398,13 @@
                     </div>
                     <hr style="width: 100%;">
                    <div id="qualificationList">
-                     <%-- <c:if test="${fn:length(splist) != 0}" >
+                     <c:if test="${fn:length(splist) != 0}" >
 				     <c:forEach items="${splist}" var="spdto">
 					    <table style="border-bottom: 0.5px solid #D9D9D9; width: 100%; margin-top: 1%;">
 					        <tr>
 					            <td class="form-group">
 					                <span style="font-size: 1.2em;"><b>${spdto.sp_name}</b></span>&nbsp;
 					                <span>${spdto.sp_passday}</span>&nbsp;&nbsp;&nbsp;&nbsp;
-					                <span style="cursor: pointer;">
-					                    <i class="bi bi-pencil spupdate" sp_num="${spdto.sp_num}"></i>
-					                </span>
-					                <span style="cursor: pointer;">
-					                    <i class="bi bi-trash3 spdelete" sp_num="${spdto.sp_num}"></i>
-					                </span>
 					            </td>
 					            
 					            <!-- 카테고리별 정보 출력 -->
@@ -437,14 +428,13 @@
 					                    </td>
 					                </c:when>
 					            </c:choose>
-					            
 					        </tr>
 					    </table>
 					</c:forEach>
-					</c:if> --%>
+					</c:if> 
 				   </div>
                 </div>
-
+                
 <!-------------- 포트폴리오/기타문서---------------------------------------------------------------------------------------------- -->
                 <div class="portfolio">
                     <div class="form-caption">
@@ -470,6 +460,7 @@
 					  </c:if>
                     </div>
               </div>
+            
 <!-- 자기소개서 ---------------------------------------------------------------------------------------------------------------->
                 <div class="self">
                         <div class="form-caption">
@@ -491,9 +482,17 @@
 							</c:forEach>
                         </div>
                 </div>
+                
  <!-- 희망근무조건 ---------------------------------------------------------------------------------------------------------------->
             <div class="hope">
-            <input type="hidden" name="ho_num" id="ho_num" value="">
+             <c:choose>
+             	<c:when test="${hodto != null}"> 	
+                	<input type="hidden" name="ho_num" id="ho_num" value="${hodto.ho_num }">
+                </c:when>
+                <c:otherwise> 
+                	<input type="hidden" name="ho_num" id="ho_num" />
+                </c:otherwise>
+             </c:choose>	
                     <div class="form-caption">
                         <h5><b>희망근무조건</b></h5>
                     </div>
@@ -504,15 +503,17 @@
                     <table id="hopeclick" style="width: 100%;">
                      <tr>
                        <td class="form-group">
-                         <select class="form-select" style="width: 300px;" name="ho_category">
-                          <option value="">고용형태</option>
-                          <option value="정규직">정규직</option>
-                          <option value="계약직">계약직</option>
-                          <option value="프리랜서">프리랜서</option>
-                          <option value="인턴직">인턴직</option>
-                      </select>
-                         <input type="text" class="form-control" style="width: 200px;" placeholder="희망연봉" name="ho_money" id="ho_money">만원이상 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                         <input type="checkbox" name="ho_check" id="ho_check">면접 후 결정
+                       <c:if test="${hodto != null}">
+                       	<span> ${hodto.ho_category} </span>
+                       	<c:choose>
+			            	<c:when test="${hodto.ho_money != ''}"> 	
+		                        <span> ${hodto.ho_money } </span>
+			                </c:when>
+			                <c:otherwise> 
+			                	<span>면접 후 결정</span>
+			                </c:otherwise>
+			             </c:choose>
+                       </c:if>
                        </td>
                      </tr>
                      
@@ -520,9 +521,6 @@
                       <tr>
                         <td class="form-group" style="margin-top: 2%;">
                             &nbsp;<span style="font-size: 0.8em; display: inline-block;">희망 근무지</span>&nbsp;&nbsp;&nbsp;
-                            <span style="font-size: 0.8em; display: inline-block;">*최대 3개 시도 안에서 자유롭게 선택 가능합니다</span>&nbsp;&nbsp;&nbsp;
-                            <span style="font-size: 0.8em; color: #4876EF; display: inline-block;">
-                            <a style="cursor: pointer;" id="areaPlus">+ 추가하기</a></span>
                         </td>
                       </tr>
                       
@@ -556,7 +554,6 @@
                                        <li value="제주특별자치도 전지역">제주특별자치도 전지역</li>
                                     </ul>
                                  </div>
-                                 <button type="button" id="areaCancle" style="float: right; margin-top:1%;" class="btn btn-outline-primary">닫기</button>
                               </div>
                            </td>
                       </tr>      
@@ -567,8 +564,6 @@
                         <tr>
                            <td class="form-group" style="margin-top: 2%;">
                             &nbsp;<span style="font-size: 0.8em; display: inline-block;">직무 키워드</span>&nbsp;&nbsp;&nbsp;
-                            <span style="font-size: 0.8em; color: #4876EF; display: inline-block;">
-                            <a style="cursor: pointer;" id="jobPlus">+ 추가하기</a></span>
                            </td>
                          </tr>
                          
@@ -606,19 +601,10 @@
                                        <li value="기술지원">기술지원</li>
                                  </ul>
                               </div>
-                              
-                              <button type="button" id="jobCancle" style="float: right; margin-top:1%;" class="btn btn-outline-primary">닫기</button>
                             </div>
                           </td>
                       </tr> 
 
-                        <!-- 저장 취소 버튼 -->
-                        <tr>
-                           <td colspan="2" align="right">
-                              <br>
-                              <button type="button" id="hopeOK"  class="btn btn-outline-primary">저장</button>
-                           </td>
-                        </tr>
                     </table>        
                 </div>
                 
@@ -627,250 +613,69 @@
                 <script type="text/javascript">
 
                 $(function () {
+                	var hoCategory = "${hodto.ho_category}"; // 고용형태
+                	var hoCheck    = "${hodto.ho_check}";    // 면접 후 결제 체크 여부
+                	var hoAddr     = "${hodto.ho_addr}";     // 희망 근무지           
+                	var hoKeyword  = "${hodto.ho_keyword}";  // 희망 키워드
                 	
-                	//희망조건 중 연봉 면접 후 결정 선택시 이벤트
-                	$("#ho_check").change(function(){
-			            if ($(this).is(":checked")) {
-			                // 체크박스가 체크된 경우
-			                $("#ho_money").prop("disabled", true); // 입력 필드를 비활성화
-			                $("#ho_money").val(''); // 입력 필드 비우기
-			            } else {
-			                // 체크박스가 체크 해제된 경우
-			                $("#ho_money").prop("disabled", false); // 입력 필드를 활성화
-			            }
-			        });
+                	if( hoCategory != ""){
+	                	$("select[name=ho_category]").val(hoCategory).prop("selected",true);
+                	}
                 	
-                	// 희망조건 insert 후 list 출력하기
-                    $(document).on("click", "#hopeOK", function () {
-                       
-                    	//console.log($("#areaform div"));
-                    	//console.log($("#areaform div").eq(0));
-                    	
-                    	//희망지역 담기
-                    	var selectedAreas = $("#areaform div").length;
-                    	var areasave = "";
-                    	for( var i = 0 ; i < selectedAreas ; i++){
-                    		if( i == (selectedAreas-1) ){
-                    			areasave +=  $("#areaform div").eq(i).attr("value");
-                    		}else{
-                    			areasave +=  $("#areaform div").eq(i).attr("value") + ",";
-                    		}
-                    	}
-                    	
-                    	//console.log($("#jobform div").eq(0));
-                    	//희망직무 담기
-                    	var selectedJob = $("#jobform div").length;
-                    	var jobsave = "";
-                    	for( var j = 0 ; j < selectedJob ; j++){
-                    		if( j == (selectedJob-1) ){
-                    			jobsave +=  $("#jobform div").eq(j).attr("value");
-                    		}else{
-                    			jobsave +=  $("#jobform div").eq(j).attr("value") + ",";
-                    		}
-                    	}
-
-                    	//희망조건 데이터 생성
-                    	
-                    	var hoCheck = $('input[name="ho_check"]').is(':checked');
-                        var hoMoney = hoCheck ? '' : $('input[name="ho_money"]').val();
-                    	
-                        var hoData = {
-                 			   
-                        		pe_num: $('#pe_num').val(), 
-                        		ho_num: $('#ho_num').val(), 
-                                ho_category: $('select[name="ho_category"]').val(),
-                                ho_money: hoMoney, // ho_check 값에 따라 설정된 ho_money
-                                ho_check: hoCheck ? '면접 후 결정' : '', // 체크 여부에 따라 값 설정
-                                ho_addr: areasave,  // 희망지역 저장
-                                ho_keyword: jobsave // 희망직무 저장
-                 	   }
-                       
-                       $.ajax ({
-                     	
-                     	      type : "post",
-							  url: "hopeinsert",
-	                    	  contentType: "application/json",
-	                          data: JSON.stringify(hoData),
-	                          dataType: "json",
-	                          success : function(res) {
-	                        	 $("#ho_num").val(res.hodto.ho_num); 
-	                        	 $("#hopeOK").html("수정"); 
-	                        	 $("#areaPlus").html("+수정하기");
-	                        	 $("#jobPlus").html("+수정하기");
-	                        	 $('#areaClick').css('display', 'none');
-	                        	 $('#jobClick').css('display', 'none');
-	                          }
-                 	   
-                       })	
-                        
-                    });
-                   
-                   
-                   ////지역/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                   //추가하기 클릭시 입력창 추가
-                    $("#areaPlus").click(function () {
-                       
-                       $('#areaClick').css('display', 'block');
-
-                    });
-                   
-                    // 취소 클릭시 입력창 삭제
-                    $(document).on("click", "#areaCancle", function () {
-                       
-                       $('#areaClick').css('display', 'none');
-                        
-                    });
-                   
-                   
-                    //희망근무지역 지역 추가 및 삭제하기
-                    $(document).on("click", ".areaSelect ul li", function () {
-                       
-                        var area = $(this).text();
-
-                        // 선택된 항목이 이미 추가되었는지 확인
-                        var areaChoice = $("#areaform div.areaStyle").filter(function () {
-                           
-                            return $(this).text().trim().startsWith(area);
-                        });
-
-                        // 이미 선택된 지역 수
-                        var selectedAreas = $("#areaform div").length;
-
-                        // 이미 선택된 항목이 3개 이상인 경우 알림창 표시 후 선택 중단
-                        if (selectedAreas >= 3 && !areaChoice.length) {
-                           
-                            alert("지역은 최대 3개까지만 선택할 수 있습니다");
-                            
-                            return;
-                            
-                        }
-
-                        // 이미 존재하는 항목이 있을 경우 제거
-                        if (areaChoice.length) {
-                           
-                            areaChoice.remove();
-                            
-                            // 지역이 다시 클릭되었을 때 아웃라인 초기화
-                            $(this).css({
-                               
-                                "outline": "",
-                                "border-radius": "",
-                                "padding": ""
+                	if( hoCheck != ""){
+                		$("#ho_check").prop('checked', true);
+                		$("#ho_money").prop("disabled", true); 
+                	}
+                	
+                	if( hoAddr != ""){
+                		
+                		hoAddr = hoAddr.split(","); // ',' 기준으로 나누기 -> hoAddr 이 배열 타입으로 변경됨ㄴ
+                		for( var i = 0; i < hoAddr.length; i++){ // hoAddr 배열 반복
+                			var area = hoAddr[i]; // 반복 횟수에 따른 값 추출
+                			// 지역명 li 정보 가져오기
+                			var val = $(".areaSelect ul li[value='"+area+"']"); 
+                			// 지역명 li 정보의 인덱스 가져오기
+                			var valIndex = $(".areaSelect ul li[value='"+area+"']").index(); 
+							
+                			// 지역명 표기 
+                			var total = '<div class="areaStyle" style="border: 1px solid #4876EF; border-radius: 12px; padding: 8px;" value="'+area+'">' + area + '</div>';
+                			$("#areaform").append(total);
+                            // 해당 지역 아웃라인컬러 변경
+                            val.css({
+                                 "outline": "1px solid #4876EF",
+                                 "border-radius": "12px",
+                                 "padding": "8px"
                             });
-                        } 
-                        // 존재하지 않는 경우 추가
-                        else {
-                           
-                           //li index 번호
-                           var a = $(this).index();  
-                            var total = '<div class="areaStyle" style="border: 1px solid #4876EF; border-radius: 12px; padding: 8px;" value="'+area+'">' + area + '&nbsp;&nbsp;&nbsp;&nbsp;<i class="bi bi-x-lg areaDelete" value='+a+'></i></div>';
+                		}
+                	}
+                	
+					if( hoKeyword != ""){
+						hoKeyword = hoKeyword.split(","); // ',' 기준으로 나누기 -> hoKeyword 이 배열 타입으로 변경됨
+                		for( var i = 0; i < hoKeyword.length; i++){ // hoAddr 배열 반복
+                			
+                			var job = hoKeyword[i]; // 반복 횟수에 따른 값 추출
+                			
+                			// 직무 li 정보 가져오기
+                			var val = $(".jobSelect ul li[value='"+job+"']"); 
+                			// 직무 li 정보의 인덱스 가져오기
+                			var valIndex = $(".jobSelect ul li[value='"+job+"']").index(); 
                             
-                            $("#areaform").append(total);
-                            
-                            // 지역이 클릭되었을 때 아웃라인컬러 변경
-                            $(this).css({
-                               
-                                "outline": "1px solid #4876EF",
-                                "border-radius": "12px",
-                                "padding": "8px"
-                            });
-                        }
-                    });
-
-                    // 동적으로 추가된 삭제 버튼 클릭 이벤트 처리
-                    $(document).on("click", ".areaDelete", function () {
-                       //console.log($(this).attr('value'));
-                       var index = $(this).attr('value');
-                       $(".areaSelect ul li:eq("+index+")").css({
-                           
-                            "outline": "",
-                            "border-radius": "",
-                            "padding": ""
-                        });
-                       
-                        $(this).parent().remove();
-                       
-                    });
-                    
-                    
-                    ////직무///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                   //추가하기 클릭시 입력창 추가
-                    $("#jobPlus").click(function () {
-                       
-                       $('#jobClick').css('display', 'block');
-
-                    });
-                   
-                    // 취소 클릭시 입력창 삭제
-                    $(document).on("click", "#jobCancle", function () {
-                       
-                       $('#jobClick').css('display', 'none');
-                       
-                    });
-                   
-                   
-                    //희망근무지역 지역 추가 및 삭제하기
-                    $(document).on("click", ".jobSelect ul li", function () {
-                       
-                        var job = $(this).text();
-
-                        // 선택된 항목이 이미 추가되었는지 확인
-                        var jobChoice = $("#jobform div.jobStyle").filter(function () {
-                           
-                            return $(this).text().trim().startsWith(job);
-                        });
-
-
-                        // 이미 존재하는 항목이 있을 경우 제거
-                        if (jobChoice.length) {
-                           
-                           jobChoice.remove();
-                            
-                            // 지역이 다시 클릭되었을 때 아웃라인 초기화
-                            $(this).css({
-                               
-                                "outline": "",
-                                "border-radius": "",
-                                "padding": ""
-                            });
-                        } 
-                        // 존재하지 않는 경우 추가
-                        else {
-                           
-                           //li index 번호
-                           var j = $(this).index(); 
-                            var total = '<div class="jobStyle" style="border: 1px solid #4876EF; border-radius: 12px; padding: 8px;" value="'+job+'">' + job + '&nbsp;&nbsp;&nbsp;&nbsp;<i class="bi bi-x-lg jobDelete"  value='+j+'></i></div>';
-                            
+ 							var total = '<div class="jobStyle" style="border: 1px solid #4876EF; border-radius: 12px; padding: 8px;" value="'+job+'">' + job + '</div>';
                             $("#jobform").append(total);
                             
-                            // 지역이 클릭되었을 때 아웃라인컬러 변경
-                            $(this).css({
-                               
+                            // 직무 아웃라인컬러 변경
+                            val.css({
                                 "outline": "1px solid #4876EF",
                                 "border-radius": "12px",
                                 "padding": "8px"
                             });
-                        }
-                    });
-
-                    // 동적으로 추가된 삭제 버튼 클릭 이벤트 처리
-                    $(document).on("click", ".jobDelete", function () {
-                       
-                       var index = $(this).attr('value');
-                       $(".jobSelect ul li:eq("+index+")").css({
-                           
-                            "outline": "",
-                            "border-radius": "",
-                            "padding": ""
-                        });
-                       
-                        $(this).parent().remove();
-                    });
+                            
+                		}
+                	}
                     
                 });
                 </script>
                 
-
 <!-- 최종 저장 및 미리보기 --------------------------------------------------------------------------------------------------------->
                   
                   <div class="fixed_final">
@@ -879,9 +684,6 @@
                       <button type="button" id="allDataUpdate" onclick="location.href='updateForm?pe_num=${pedto.pe_num}'" 
                       style="width: 180px;" class="btn btn-primary">수정하기</button>
                   </div>
-                  
-                  
-          
-    
+
 </body>
 </html>

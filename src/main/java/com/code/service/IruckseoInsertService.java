@@ -337,9 +337,15 @@ public class IruckseoInsertService implements IruckseoInsertServiceInter {
 	}
 
 	//희망조건 pe_num 조회
-	public List<IruckseoHopeDto> Hopelist(int pe_num) {
+	public IruckseoHopeDto Hopelist(int pe_num) {
 		// TODO Auto-generated method stub
 		return irmapper.Hopelist(pe_num);
+	}
+    
+	//이력서 홈 이미지
+	public IruckseoInsertDto getImage(int r_num) {
+		// TODO Auto-generated method stub
+		return irmapper.getImage(r_num);
 	}
 
 }

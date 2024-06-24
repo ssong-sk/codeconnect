@@ -61,6 +61,16 @@
      delete from personal where pe_num = #{pe_num}
    </delete>
    
+   <!-- 이력서홈 이미지 -->
+   <select id="getImage" parameterType="int" resultType="IruckseoInsertDto">
+     select A.pe_num , A.pe_image
+	   FROM personal A  
+		   ,(SELECT MAX(pe_num) AS pe_num 
+		      FROM personal B where r_num = #{r_num}
+		     ) C
+		where A.pe_num = C.pe_num     
+   </select>
+   
    <!-- school 학력 단건 list 출력 -->
    <select id="OnePersonalDatas" parameterType="IruckseoInsertDto"    resultType="IruckseoInsertDto">
      select * from personal where pe_num = #{pe_num} order by pe_num asc

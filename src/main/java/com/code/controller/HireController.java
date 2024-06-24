@@ -132,8 +132,8 @@ public class HireController {
    @GetMapping("/hire/detail")
    public ModelAndView detail(int h_num, HttpSession session) {
       
-	  String r_num = (String) session.getAttribute("r_num");
-	  
+     String r_num = (String) session.getAttribute("r_num");
+     
       ModelAndView mview = new ModelAndView();
       
       HireDto hdto = hservice.getHireData(h_num);
@@ -167,7 +167,7 @@ public class HireController {
    @ResponseBody
    @PostMapping("/hire/scrap")
    public void scrapInsert(@ModelAttribute("hdto") HireDto hdto, HttpSession session) {
-       int r_num = (int) session.getAttribute("r_num");
+	   int r_num =  Integer.parseInt((String)session.getAttribute("r_num"));
        hdto.setR_num(r_num);
        hservice.scrapInsert(hdto);
    }
