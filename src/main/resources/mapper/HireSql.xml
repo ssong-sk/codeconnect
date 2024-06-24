@@ -56,7 +56,7 @@
 </delete>
 
 <select id="getUserScraps" parameterType="int" resultType="hdto">
-    SELECT r_num, h_num FROM scrap WHERE r_num = #{r_num}
+    SELECT h_num FROM scrap WHERE r_num = #{r_num}
 </select>
 
 <select id="getRnumById" parameterType="String" resultType="int">

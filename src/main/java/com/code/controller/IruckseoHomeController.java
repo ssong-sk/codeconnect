@@ -74,6 +74,10 @@ public class IruckseoHomeController {
 		
 		mview.setViewName("/resumehome/iruckseohome");
 		
+		//스크랩
+        List<HireDto> userScraps = hservice.getUserScraps(r_num);
+        mview.addObject("userScraps", userScraps);
+		
 		return mview;
 	}
 	
