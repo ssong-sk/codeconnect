@@ -59,9 +59,6 @@
 	select r_num from register where r_id=#{r_id}
 </select>
 
-<select id="getScrap" parameterType="map" resultType="boolean">
-	select exists(select 1 from scrap where r_num = #{r_num} and h_num = #{h_num})as result
-</select>
 
 <!-- 채용공고 지원하기 창 -->
 <select id="selectIruckseo" parameterType="int" resultType="IruckseoInsertDto">

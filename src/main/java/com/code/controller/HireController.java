@@ -1,6 +1,9 @@
 package com.code.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -63,12 +66,6 @@ public class HireController {
 
       if (r_num == null) {
           r_num = 0; // 기본값 설정
-      }
-      
-      // 스크랩 여부 확인
-      for (HireDto h : hlist) {
-          boolean scraped = hservice.getScrap(r_num, h.getH_num());
-          h.setScraped(scraped);
       }
 
       model.addAttribute("hlist", hlist);
@@ -165,21 +162,44 @@ public class HireController {
    //스크랩
    @ResponseBody
    @PostMapping("/hire/scrap")
-   public String scrapinsert(@ModelAttribute("hdto") HireDto hdto) {
+   public void scrapinsert(@ModelAttribute("hdto") HireDto hdto, HttpSession session) {
+       // 스크랩을 데이터베이스에 삽입
+       hservice.scrapInsert(hdto);
 
-      hservice.scrapInsert(hdto);
+       // 로그인한 사용자의 ID를 가져옵니다. (여기서는 세션에서 "userId"로 가정)
+       String myid = (String) session.getAttribute("myid");
 
-      return "success";
+       // 사용자별 스크랩 리스트를 세션에서 가져옵니다.
+       Map<String, List<HireDto>> userScrapedMap = (Map<String, List<HireDto>>) session.getAttribute("userScrapedMap");
+       if (userScrapedMap == null) {
+           userScrapedMap = new HashMap<>();
+       }
+
+       List<HireDto> scraped = userScrapedMap.getOrDefault(myid, new ArrayList<>());
+       scraped.add(hdto);
+       userScrapedMap.put(myid, scraped);
+       session.setAttribute("userScrapedMap", userScrapedMap);
    }
    
    @ResponseBody
    @PostMapping("/hire/scrapdelete")
-   public String scrapdelete(@RequestParam int r_num, @RequestParam int h_num) {
+   public void scrapdelete(@RequestParam int r_num, @RequestParam int h_num, HttpSession session) {
+       // 데이터베이스에서 스크랩 항목을 삭제
+       hservice.scrapDelete(r_num, h_num);
 
-      hservice.scrapDelete(r_num, h_num);
+       // 로그인한 사용자의 ID를 가져옵니다. (여기서는 세션에서 "userId"로 가정)
+       String myid = (String) session.getAttribute("myid");
 
-      return "success";
+       // 사용자별 스크랩 리스트를 세션에서 가져옵니다.
+       Map<String, List<HireDto>> userScrapedMap = (Map<String, List<HireDto>>) session.getAttribute("userScrapedMap");
+       if (userScrapedMap != null) {
+           List<HireDto> scraped = userScrapedMap.get(myid);
+           if (scraped != null) {
+               scraped.removeIf(hdto -> hdto.getR_num() == r_num && hdto.getH_num() == h_num);
+               userScrapedMap.put(myid, scraped);
+               session.setAttribute("userScrapedMap", userScrapedMap);
+           }
+       }
    }
-   
 
 }
