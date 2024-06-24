@@ -68,10 +68,6 @@ public class IruckseoHomeController {
 		
 		mview.addObject("rdto", rdto);
 		
-		//pe 이력서 정보 조회 및 추가
-  		//IruckseoInsertDto pedto = irservice.Personallist(pe_num);
-  		//mview.addObject("pedto", pedto);
-		
 		//채용공고 정보 조회 및 추가
 		List<HireDto> hlist = hservice.getHireList();
 	    mview.addObject("hlist", hlist);

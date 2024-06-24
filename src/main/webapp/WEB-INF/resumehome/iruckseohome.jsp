@@ -72,29 +72,6 @@
       margin-top: 5%;
   }
   
-  .circle-list {
-    list-style-type: none; /* 리스트 기호 제거 */
-    padding: 0;
-  }
-	
-  .circle-list li {
-    display: flex;
-    align-items: center; /* 수직 가운데 정렬 */
-  }
-	
-  .circle-list li a {
-    display: inline-block;
-    padding: 8px 16px; /* 텍스트 주변의 여백 설정 */
-    border-radius: 20px; /* 동그라미 모양으로 설정 */
-    background-color: lightgray; /* 배경색 설정 */
-    text-decoration: none; /* 링크 텍스트에 밑줄 제거 */
-    color: black; /* 텍스트 색상 설정 */
-  }
-
-	.circle-list li a span {
-	    margin-left: 5px; /* 텍스트와 아이콘 사이의 여백 설정 */
-	}
-	  
   /* 추천 공고 섹션 스타일 */
   .mylist-chu {
       margin-top: 5%; /* 상단 여백 */
@@ -119,7 +96,7 @@
     flex: 1 0 21%; /* 기본 크기: 21% (4개씩 배치), 필요 시 축소 */
     box-sizing: border-box; /* 패딩과 보더 포함 */
     margin-bottom: 24px; /* 아래 여백 */
-    display: flex; /* 내부 요소를 flex로 변경 */
+    display: flex; /* 내부 요소를 flex로 변경 */ 
     flex-direction: column; /* 내부 요소를 세로로 배치 */
   }
   
@@ -205,31 +182,35 @@
 	                <div>
 	                  <ul class="circle-list">
 	                    <li>이력서 현황 
-	                    <a><span>${totalCount}</span></a></li>
+	                    <a href="/resumehome/conditionform"><span>${totalCount}</span></a></li>
 	                  </ul>
 	                </div>
 	                
 	                <div>
 	                  <ul>
-	                    <li><a>지원 완료</a></li>
+	                    <li>지원 완료
+	                    <a href="#"><span>${totalCount}</span></a></li>
 	                  </ul>
 	                </div>
 	                
 	                <div>
 	                  <ul>
-	                    <li><a>이력서 열람</a></li>
+	                    <li>이력서 열람
+	                    <a href="#"></a><span>${totalCount}</span></li>
 	                  </ul>
 	                </div>
 	                
 	                <div>
 	                  <ul>
-	                    <li><a>스크랩 공고</a></li>
+	                    <li>스크랩 공고
+	                    <a href="#"><span>${totalCount}</span></a></li>
 	                  </ul>
 	                </div>
 	                
 	                <div>
 	                  <ul>
-	                    <li><a>관심기업 공고</a></li>
+	                    <li>관심기업 공고
+	                    <a href="#"><span>${totalCount}</span></a></li>
 	                  </ul>
 	                </div>
 	              </div>    
