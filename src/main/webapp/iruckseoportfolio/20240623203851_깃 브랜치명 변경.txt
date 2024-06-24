@@ -1,0 +1,30 @@
+git branch
+
+git branch (이름명)
+
+git branch --이름 확인
+
+git checkout (이름명)  -- 해당 이름으로 바꿔줌
+
+git add .
+
+git commit -m "명칭"
+
+git push origin (이름명)
+
+
+------------------------------------------------
+브랜치 끼리 합쳐서 가져오는 방법
+
+git checkout (현 브랜치명으로 파일 가져올 이름으로 변경)
+
+git merge 이름명(가져올 브랜치명 입력)
+
+git push origin (이름명)
+
+
+
+-------------------------------------------------
+브랜치명 지우기
+
+git branch (지울 브랜치명) -d

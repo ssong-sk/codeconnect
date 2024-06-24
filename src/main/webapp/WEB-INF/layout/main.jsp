@@ -29,17 +29,9 @@
 <script type="text/javascript" src="slick/slick.min.js"></script>
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="/css/main.css">
-<style type="text/css">
-* {
-	box-sizing: border-box
-}
 
-/* Slideshow container */
-.slideshow-container {
-	width: 1060px;
-	margin: 0 auto;
-	position: relative;
-}
+<style type="text/css">
+
 
 /* Hide the images by default */
 .mySlides {

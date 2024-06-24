@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -15,11 +16,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.code.dto.CompanyDto;
 import com.code.dto.CompanyIntroDto;
+import com.code.dto.CompanyReviewDto;
 import com.code.mapper.CompanyIntroMapperInter;
 import com.code.service.CompanyIntroService;
+import com.code.service.CompanyReviewService;
 import com.code.service.CompanyService;
 
 @Controller
@@ -33,6 +37,10 @@ public class CompanyIntroController {
 
 	@Autowired
 	CompanyIntroMapperInter cmapper;
+	 
+	@Autowired
+	CompanyReviewService crservice;
+	
 
 	// 기업 소개 메인페이지로 가기
 	@GetMapping("/company/intromain")
@@ -188,15 +196,42 @@ public class CompanyIntroController {
 		return "/companyintro/companyintroshow"; // 파라미터를 모델로 전달하고 JSP로 이동
 
 	}
+	
+	//임시생성 : 기업 마이페이지에서 =>기업소개리스트(임시)로 이동
+	//임시생성 : 마이페이지에서만 이어갈 수 있는 기업들 소개리스트
+	@GetMapping("/company/gotoshowimsiList")		
+	public String showimsiList(Model model) {
+   
 
+        //int totalCount = cservice.getTotalCount();
+        List<CompanyDto> list = cservice.getAllCompanys();
 
-	//아직없어.
+        //mview.addObject("totalCount", totalCount);
+        model.addAttribute("list", list);
+
+        return "/companyintro/companyintroList";
+    }
+	
+
+	//임시: 임시 기업 리스트에서 해당 기업 소개글(detail view)로 이동하기
 	//companyintro 소개글 완성본 보기
-	@GetMapping("/company/introshow")
-	public String introshow(@RequestParam String c_num,Model model, HttpSession session) {
-
-
-
-		return "/companyintro/companyintroshow";
+	@GetMapping("/company/showimsiCom")
+	public String introshow(@RequestParam String c_num, Model model) {
+	    // Fetch company details by c_num
+	    CompanyIntroDto dto = ciservice.getDataByNum(c_num);
+	    CompanyDto cdto = cservice.getDataByNum(c_num);
+	    int review_count = crservice.getTotalCountCompanyReview(c_num);
+	    List<CompanyReviewDto> rlist = crservice.CompanyReviewList(c_num);
+	    
+	    
+	    // Add data to the model
+	    model.addAttribute("dto", dto);
+	    model.addAttribute("cdto", cdto);
+	    model.addAttribute("rlist", rlist);
+	  
+	    
+	    // Return the view name
+	    return "/companyintro/companyintroshow2";
 	}
+
 }

@@ -107,7 +107,7 @@ public class RegisterController {
       }
       
       
-
+      //탈퇴
       @GetMapping("/member/deleteme")
       @ResponseBody
       public void deleteme(String num,HttpSession session)
@@ -126,7 +126,7 @@ public class RegisterController {
       return "/member/mypage";
    }
    
-   @GetMapping("/member/apply")
+ @GetMapping("/member/apply")
    public String apply() {
 	   return "/member/apply";
    }
@@ -146,14 +146,14 @@ public class RegisterController {
       return "/member/memberform";
    }
    
+   @GetMapping("/member/memberform")
+   public String memberform() {
+      return "/member/memberform";
+   }
+   
    @GetMapping("/member/register2")
    public String position() {
       return "/member/register2";
-   }
-   
-   @GetMapping("/layout/slick")
-   public String slick() {
-	   return "/layout/slick";
    }
    
     @PostMapping("/checkDuplicateId")

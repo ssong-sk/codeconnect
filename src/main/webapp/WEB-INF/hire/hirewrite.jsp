@@ -934,7 +934,7 @@ input:disabled {
 							<li><button type="button" class="techoption-btn">Python</button></li>
 							<li><button type="button" class="techoption-btn">Django</button></li>
 							<li><button type="button" class="techoption-btn">PHP</button></li>
-							<li><button type="button" class="techoption-btn">C</button></li>
+							<li><button type="button" class="techoption-btn">C언어</button></li>
 							<li><button type="button" class="techoption-btn">C++</button></li>
 							<li><button type="button" class="techoption-btn">C#</button></li>
 							<li><button type="button" class="techoption-btn">AWS</button></li>
@@ -963,8 +963,8 @@ input:disabled {
 							<li><button type="button" class="techoption-btn">NoSQL</button></li>
 							<li><button type="button" class="techoption-btn">MariaDB</button></li>
 							<li><button type="button" class="techoption-btn">MongoDB</button></li>
-							<li><button type="button" class="techoption-btn">SQL</button></li>
-							<li><button type="button" class="techoption-btn">R</button></li>
+							<li><button type="button" class="techoption-btn">#SQL</button></li>
+							<li><button type="button" class="techoption-btn">R언어</button></li>
 							<li><button type="button" class="techoption-btn">Hadoop</button></li>
 							<li><button type="button" class="techoption-btn">Spark</button></li>
 							<li><button type="button" class="techoption-btn">Kafka</button></li>

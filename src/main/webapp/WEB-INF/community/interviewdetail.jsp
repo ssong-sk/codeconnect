@@ -13,6 +13,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-   <h2>이번주 전체 인기글</h2>
+   <h4>${dto.com_title }</h4>
 </body>
 </html>
