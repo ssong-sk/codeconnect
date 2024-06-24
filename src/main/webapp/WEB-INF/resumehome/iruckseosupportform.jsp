@@ -143,7 +143,7 @@
 				    
 				    <li>
 				      <div class="menu-item">
-				        <a href="/resumehome/form">입사지원 현황</a>
+				        <a href="/resumehome/supportform">입사지원 현황</a>
 				      </div>
 				    </li>
 				    
@@ -155,22 +155,21 @@
 				    
 				    <li>
 				      <div class="menu-item">
-				        <a href="/resumehome/form">스크랩공고</a>
+				        <a href="/resumehome/scrapform">스크랩공고</a>
 				      </div>
 				    </li>
 				    
 				    <li>
 				      <div class="menu-item">
-				        <a href="/resumehome/form">관심기업</a>
+				        <a href="/resumehome/interestform">관심기업</a>
 				      </div>
 				    </li>
 				  </ul>
               </div>
-
 <!-- 오른쪽 레이아웃 작업----------------------------------------------------------------------------------------------- -->
 	              <div class="condition-area" style="width: 80%;">
 	              
-	                <span style="font-size: 1.2em;"><b>이력서 현황</b></span>
+	                <span style="font-size: 1.2em;"><b>입사지원 현황</b></span>
 	                
 	                <div class="condition-total">
 	                  <span>총 ${totalCount }건</span>

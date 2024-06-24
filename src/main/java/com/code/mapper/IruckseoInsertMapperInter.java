@@ -16,7 +16,7 @@ import com.code.dto.IruckseoSpecDto;
 @Mapper
 public interface IruckseoInsertMapperInter {
 	
-	//personal insert _ pe_num 등록
+	//personal insert _ pe_num 등록 -> 등록누르면 바로 insert
 	public void insertPersonal(IruckseoInsertDto irdto);
 	
 	//이력서 update
@@ -25,8 +25,20 @@ public interface IruckseoInsertMapperInter {
 	//이력서 단건 list 출력
 	public List<IruckseoInsertDto> OnePersonalDatas(IruckseoInsertDto pedto);
 	
-	//이력서 list 출력
-	public List<IruckseoInsertDto> allPersonalDatas(IruckseoInsertDto pedto);
+	//이력서 타이틀 list 출력
+	public List<IruckseoInsertDto> allPersonalDatas(int r_num);
+	
+	//이력서 인적사항 list
+	public List<IruckseoInsertDto> allPersonallist(IruckseoInsertDto pedto);
+	
+	//이력서 pe_num으로 조회
+	public IruckseoInsertDto Personallist(int pe_num);
+	
+	//이력서 갯수출력
+	public int getPersonalCount(int r_num);
+
+	//이력서 전체삭제
+	public void deletePersonal(int pe_num);
 	
 	//school insert
 	public void insertSchool(IruckseoSchoolDto scdto);
@@ -37,6 +49,9 @@ public interface IruckseoInsertMapperInter {
 	//school 단건 list 출력
 	public List<IruckseoSchoolDto> OneSchoolDatas(IruckseoSchoolDto scdto);
 
+	//학력 pe_num 조회
+	public List<IruckseoSchoolDto> Schoollist(int pe_num);
+	
 	//학력 school 삭제 
 	public void deleteSchool(int sc_num);
 
@@ -54,6 +69,9 @@ public interface IruckseoInsertMapperInter {
 
 	//경력 수정폼 띄우기
 	public IruckseoCareerDto selectNumCareer(int ca_num);
+	
+	//경력 pe_num 조회
+	public List<IruckseoCareerDto> Careerlist(int pe_num);
 
 	//경력 수정하기
 	public void updateCareer(IruckseoCareerDto cadto);
@@ -69,6 +87,9 @@ public interface IruckseoInsertMapperInter {
 
 	//경험활동 단건 list 출력
 	public List<IruckseoActibityDto> OneActibityDatas(IruckseoActibityDto acdto);
+	
+	//경험활동 pe_num 조회
+	public List<IruckseoActibityDto> Actibitylist(int pe_num);
 
 	//경험활동 수정폼 띄우기
 	public IruckseoActibityDto selectNumActibity(int ac_num);
@@ -87,6 +108,9 @@ public interface IruckseoInsertMapperInter {
 
 	//스펙 단건 list 출력
 	public List<IruckseoSpecDto> OneSpecDatas(IruckseoSpecDto spdto);
+	
+	//스펙 pe_num 조회
+	public List<IruckseoSpecDto> Speclist(int pe_num);
 
 	//스펙 수정폼 띄우기
 	public IruckseoSpecDto selectNumSpec(int sp_num);
@@ -106,6 +130,9 @@ public interface IruckseoInsertMapperInter {
 	//포트폴리오 insert 후 list
 	public List<IruckseoPortfolioDto> OnePortfolioDatas(IruckseoPortfolioDto podto);
 	
+	//포트폴리오 pe_num 조회
+	public List<IruckseoPortfolioDto> Portfoliolist(int pe_num);
+	
 	//포트폴리오 삭제
 	public void deletePortfolio(int po_num);
 
@@ -120,6 +147,9 @@ public interface IruckseoInsertMapperInter {
 
 	//자기소개서 수정하기
 	public void updateSelf(IruckseoSelfDto sedto);
+	
+	//자기소개서 pe_num 조회
+	public List<IruckseoSelfDto> Selflist(int pe_num);
 
 	//자기소개서 수정하고 list 출력
 	public List<IruckseoSelfDto> allSelfDatas(IruckseoSelfDto sedto);
@@ -135,5 +165,11 @@ public interface IruckseoInsertMapperInter {
 
 	//희망조건 update
 	public void updateHope(IruckseoHopeDto hodto);
-	
+
+	//희망조건 조회
+	public List<IruckseoHopeDto> allHopeDatas();
+
+	//희망조건 pe_num 조회
+	public List<IruckseoHopeDto> Hopelist(int pe_num);
+
 }

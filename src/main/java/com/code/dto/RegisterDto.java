@@ -11,7 +11,7 @@ import lombok.Data;
 @Alias("RDto")
 public class RegisterDto {
 	
-	private int r_num;
+	private String r_num;
 	private String r_id; 
 	private String r_pass; 
 	private String r_name;

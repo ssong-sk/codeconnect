@@ -72,6 +72,29 @@
       margin-top: 5%;
   }
   
+  .circle-list {
+    list-style-type: none; /* 리스트 기호 제거 */
+    padding: 0;
+  }
+	
+  .circle-list li {
+    display: flex;
+    align-items: center; /* 수직 가운데 정렬 */
+  }
+	
+  .circle-list li a {
+    display: inline-block;
+    padding: 8px 16px; /* 텍스트 주변의 여백 설정 */
+    border-radius: 20px; /* 동그라미 모양으로 설정 */
+    background-color: lightgray; /* 배경색 설정 */
+    text-decoration: none; /* 링크 텍스트에 밑줄 제거 */
+    color: black; /* 텍스트 색상 설정 */
+  }
+
+	.circle-list li a span {
+	    margin-left: 5px; /* 텍스트와 아이콘 사이의 여백 설정 */
+	}
+	  
   /* 추천 공고 섹션 스타일 */
   .mylist-chu {
       margin-top: 5%; /* 상단 여백 */
@@ -79,14 +102,30 @@
   }
   
   .chu-img {
-    width: 200px;
-    height: 230px;
-    border: 0.5px solid gray;
-    border-radius: 10px;
+    width: 100%; /* 이미지를 부모의 폭에 맞춤 */
+    height: 100px;; /* 비율을 유지하며 높이 조절 */
+    border-radius: 8px; /* 모서리 둥글게 */
+    object-fit: cover; /* 이미지가 박스에 맞게 조정 */
   }
   
   .mylist-chuimg {
-    margin-top: 1%;
+    display: flex;
+    flex-wrap: wrap; /* 줄바꿈 허용 */
+    gap: 16px; /* 항목 간의 간격 */
+    justify-content: space-between; /* 항목을 균등하게 분배 */
+  }
+  
+  .chu-item {
+    flex: 1 0 21%; /* 기본 크기: 21% (4개씩 배치), 필요 시 축소 */
+    box-sizing: border-box; /* 패딩과 보더 포함 */
+    margin-bottom: 24px; /* 아래 여백 */
+    display: flex; /* 내부 요소를 flex로 변경 */
+    flex-direction: column; /* 내부 요소를 세로로 배치 */
+  }
+  
+  .chu-info {
+    margin-top: 8px; /* 이미지와 텍스트 사이의 여백 */
+    flex-grow: 1; /* 내부 요소가 가능한한 같은 공간을 차지하도록 */
   }
 
 </style>
@@ -131,7 +170,7 @@
 				    
 				    <li>
 				      <div class="menu-item">
-				        <a href="/resumehome/form">입사지원 현황</a>
+				        <a href="/resumehome/supportform">입사지원 현황</a>
 				      </div>
 				    </li>
 				    
@@ -143,13 +182,13 @@
 				    
 				    <li>
 				      <div class="menu-item">
-				        <a href="/resumehome/form">스크랩공고</a>
+				        <a href="/resumehome/scrapform">스크랩공고</a>
 				      </div>
 				    </li>
 				    
 				    <li>
 				      <div class="menu-item">
-				        <a href="/resumehome/form">관심기업</a>
+				        <a href="/resumehome/interestform">관심기업</a>
 				      </div>
 				    </li>
 				  </ul>
@@ -159,13 +198,14 @@
               <div class="mylist-area" style="width: 80%;">
                 <div style="margin-left: 4%;">
 	                <img class="mylist-img" src="">
-	                <span style="margin-left: 3%;"><b>000님</b></span>
+	                <span style="margin-left: 3%;"><b>${rdto.r_name } 님</b></span>
                 </div>
                 
                 <div class="mylist-state">
 	                <div>
-	                  <ul>
-	                    <li><a>나의 알림</a></li>
+	                  <ul class="circle-list">
+	                    <li>이력서 현황 
+	                    <a><span>${totalCount}</span></a></li>
 	                  </ul>
 	                </div>
 	                
@@ -204,13 +244,28 @@
 	              <!-- 추천공고 -->
 	              <div class="mylist-chu">
 	                <span style="font-size: 1.2em;"><b>추천공고</b></span>
-	                <span style="font-size: 0.9em; float: right; color: gray; margin-top: 1%;"><a>더보기 ></a></span>
+	                <span style="font-size: 0.9em; float: right; color: gray; margin-top: 1%;"><a href="/hire/main">더보기 ></a></span>
 	                <hr>
 	              </div>   
 	              
 	              <div class="mylist-chuimg">
-	                <img alt="" src="" class="chu-img">
-	              </div>
+					    <c:forEach items="${hlist}" var="hdto" varStatus="loop">
+					      <c:if test="${loop.index < 24 }">
+					        <div class="chu-item">
+					            <a href="#"><img alt="" src="../companyintro_uploads/${hdto.ci_image}" class="chu-img"></a>
+					            <div class="chu-info">
+					                <span class="chu-title"><a href="#">${hdto.c_name}</a></span>
+					                <i class="bi bi-heart"></i><br><br>
+					                <span class="chu-company"><a href="#"><b>${hdto.h_title}</b></a></span><br><br>
+					                <span style="font-size: 0.8em; color: gray;">${hdto.h_job }</span><br>
+					                <span style="font-size: 0.8em; color: gray;">${hdto.h_tech }</span><br>
+					                <span style="font-size: 0.8em; color: gray;">${hdto.h_deadline }</span><br>
+					                <span style="font-size: 0.8em; color: gray;">${hdto.h_location }</span><br>
+					            </div>
+					        </div>
+					      </c:if> 
+					    </c:forEach>
+				   </div>
               </div>            
               
               </div>
