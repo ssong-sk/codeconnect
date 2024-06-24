@@ -178,33 +178,52 @@ body {
 
 /* 스타일 추가 */
 .rating {
-	direction: rtl;
-	unicode-bidi: bidi-override;
-	text-align: center;
-	font-size: 2em; /* Increase the font size to make the stars bigger */
-	color: #f39c12; /* Yellow color for the stars */
+    direction: rtl;
+    unicode-bidi: bidi-override;
+    text-align: left; /* Change to left to ensure proper alignment */
+    font-size: 2em; /* Increase the font size to make the stars bigger */
+    color: #f39c12; /* Yellow color for the stars */
+    display: inline-flex; /* Align stars inline */
+    align-items: center; /* Center align stars vertically */
 }
 
-.rating>label {
-	display: inline-block;
-	position: relative;
-	width: 1.1em;
+.rating > label {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    position: relative;
 }
 
-.rating>label::before {
-	content: "\2605";
-	position: absolute;
-	opacity: 0.5;
+.rating > label::before {
+    content: "\2605";
+    position: absolute;
+    width: 1em;
+    height: 1em;
+    opacity: 0.5;
 }
 
-.rating>input:checked ~ label::before, .rating>label:hover ~ label::before,
-	.rating>label:hover::before {
-	opacity: 1;
+.rating > input:checked ~ label::before,
+.rating > label:hover ~ label::before,
+.rating > label:hover::before {
+    opacity: 1;
 }
 
-.rating>input {
-	display: none;
+.rating > input {
+    display: none;
 }
+
+/* Ensure the label and rating align horizontally */
+.form-group {
+    display: flex;
+    align-items: center;
+}
+
+.form-group label {
+    margin-right: 10px; /* Adjust the spacing between the label and stars */
+
+}
+
+
 </style>
 <title>Company Profile</title>
 </head>
@@ -382,7 +401,7 @@ body {
 						<!-- 기업 넘버 -->
 						<input type="hidden" name="c_num" value="${dto.c_num}">
 
-						<div>
+						<div class="form-group">
 							<!-- 복지 및 급여 -->
 							<label for="cr_happy">복지 및 급여:</label>
 							<div class="rating">
@@ -399,7 +418,7 @@ body {
 							</div>
 						</div>
 
-						<div>
+						<div class="form-group">
 							<!-- 근무환경 -->
 							<label for="cr_environment">근무환경:</label>
 							<div class="rating">
@@ -416,7 +435,7 @@ body {
 							</div>
 						</div>
 
-						<div>
+						<div class="form-group">
 							<!-- 사내문화 -->
 							<label for="cr_culture">사내문화:</label>
 							<div class="rating">
@@ -433,7 +452,7 @@ body {
 							</div>
 						</div>
 
-						<div>
+						<div class="form-group">
 							<!-- 승진 기회 및 가능성 -->
 							<label for="cr_possibility">승진 기회 및 가능성:</label>
 							<div class="rating">
@@ -450,7 +469,7 @@ body {
 							</div>
 						</div>
 
-						<div>
+						<div class="form-group">
 							<!-- 경영진 -->
 							<label for="cr_heads">경영진:</label>
 							<div class="rating">
