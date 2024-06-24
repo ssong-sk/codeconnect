@@ -141,14 +141,12 @@ body {
 }
 
 .ratings .stars {
-    display: flex;
-    align-items: center;
+    color: #f39c12;
 }
 
-.stars i {
-    font-size: 24px;
-    color: #f39c12;
-    margin-right: 2px;
+.ratings .stars i {
+    font-size: 24px; /* Increase this value to make the stars bigger */
+    margin-right: 5px; /* Adjust spacing between stars if needed */
 }
 
 .ratings-list {
@@ -173,6 +171,43 @@ body {
     color: #6c757d;
 }
 
+/* 스타일 추가 */
+.rating {
+    direction: rtl;
+    unicode-bidi: bidi-override;
+    text-align: left; /* Change to left to ensure proper alignment */
+    font-size: 2em; /* Increase the font size to make the stars bigger */
+    color: #f39c12; /* Yellow color for the stars */
+    display: inline-flex; /* Align stars inline */
+    align-items: center; /* Center align stars vertically */
+    margin-left: auto; /* Add this to move the rating to the right */
+}
+
+.rating > label {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    position: relative;
+}
+
+.rating > label::before {
+    content: "\2605";
+    position: absolute;
+    width: 1em;
+    height: 1em;
+    opacity: 0.5;
+}
+
+.rating > input:checked ~ label::before,
+.rating > label:hover ~ label::before,
+.rating > label:hover::before {
+    opacity: 1;
+}
+
+.rating > input {
+    display: none;
+}
+
 /* Ensure the label and rating align horizontally */
 .form-group {
     display: flex;
@@ -182,6 +217,7 @@ body {
 .form-group label {
     margin-right: 10px; /* Adjust the spacing between the label and stars */
 }
+
 </style>
 <title>Company Profile</title>
 </head>
@@ -237,12 +273,8 @@ body {
                     <h2 class="section-title">전체 리뷰 및 통계</h2>
                     <div class="ratings">
                         <div class="score"><%= String.format("%.1f", request.getAttribute("avgAll")) %></div>
-                        <div class="stars" data-avg-all="<%= request.getAttribute("avgAll") %>">
-                            <i class="bi bi-star"></i>
-                            <i class="bi bi-star"></i>
-                            <i class="bi bi-star"></i>
-                            <i class="bi bi-star"></i>
-                            <i class="bi bi-star"></i>
+                        <div class="stars">
+                            <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-half"></i> <i class="bi bi-star"></i>
                         </div>
                     </div>
                     <ul class="ratings-list">
@@ -451,7 +483,6 @@ body {
 
     <!-- 모달 끝 -->
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3c2a4c379a7f83fd166976b93258be7f&libraries=services"></script>
     <script>
 var mapContainer = document.getElementById('map'), 
@@ -498,20 +529,6 @@ $(document).ready(function() {
                 alert("리뷰 저장에 실패했습니다: " + error);
             }
         });
-    });
-
-    // JavaScript to dynamically fill stars based on avgAll
-    var avgAll = parseFloat(document.querySelector('.stars').dataset.avgAll);
-    var stars = document.querySelectorAll('.stars i');
-    stars.forEach(function(star, index) {
-        var starValue = avgAll - index;
-        if (starValue >= 0.75) {
-            star.className = 'bi bi-star-fill';
-        } else if (starValue >= 0.35) {
-            star.className = 'bi bi-star-half';
-        } else {
-            star.className = 'bi bi-star';
-        }
     });
 });
 </script>
