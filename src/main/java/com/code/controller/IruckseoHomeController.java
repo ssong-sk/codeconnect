@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.code.dto.HireDto;
 import com.code.dto.IruckseoActibityDto;
 import com.code.dto.IruckseoCareerDto;
 import com.code.dto.IruckseoHopeDto;
@@ -22,6 +23,8 @@ import com.code.dto.IruckseoSchoolDto;
 import com.code.dto.IruckseoSelfDto;
 import com.code.dto.IruckseoSpecDto;
 import com.code.dto.RegisterDto;
+import com.code.service.CompanyService;
+import com.code.service.HireService;
 import com.code.service.IruckseoInsertService;
 import com.code.service.RegisterService;
 
@@ -36,22 +39,42 @@ public class IruckseoHomeController {
 	@Autowired
 	RegisterService reservice;
 	
+	//기업 service
+	@Autowired
+	CompanyService com_service;
+	
+	//공고 service
+	@Autowired
+	HireService hservice;
+	
 	//이력서 메인홈 띄우기
 	@GetMapping("/resumehome/home")
 	public ModelAndView hform(HttpSession session) {
 		
 		ModelAndView mview = new ModelAndView();
 		
+		//세션 가지고 오기
 		RegisterDto rdto = new RegisterDto();
-		IruckseoInsertDto irdto = new IruckseoInsertDto();
 		int r_num =  Integer.parseInt((String)session.getAttribute("r_num"));
-		
-		irdto.setR_num(r_num);
-		
-		// 회원정보 조회
 		rdto =reservice.getDataByNum((String)session.getAttribute("r_num"));
 		
+		//이력서현황 갯수
+		int totalCount = irservice.getPersonalCount(r_num);
+		mview.addObject("totalCount", totalCount);
+		
+		// 회원정보 조회
+		IruckseoInsertDto irdto = new IruckseoInsertDto();
+		irdto.setR_num(r_num);
+		
 		mview.addObject("rdto", rdto);
+		
+		//pe 이력서 정보 조회 및 추가
+  		//IruckseoInsertDto pedto = irservice.Personallist(pe_num);
+  		//mview.addObject("pedto", pedto);
+		
+		//채용공고 정보 조회 및 추가
+		List<HireDto> hlist = hservice.getHireList();
+	    mview.addObject("hlist", hlist);
 		
 		mview.setViewName("/resumehome/iruckseohome");
 		

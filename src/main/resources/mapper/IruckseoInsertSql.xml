@@ -291,25 +291,21 @@
    <!-- 스펙 pe_num으로 조회 -->
    <select id="Speclist" parameterType="int" resultType="IruckseoSpecDto">
       SELECT 
-	    sp_category,
-	    CASE sp_category
-	        WHEN '자격증·면허증' THEN sp_ce_name
-	        WHEN '어학시험' THEN sp_la_name
-	        WHEN '수상내역·공모전' THEN sp_aw_name
-	        ELSE ''
-	    END AS sp_name,
-	    CASE sp_category
-	        WHEN '자격증·면허증' THEN sp_ce_passday
-	        WHEN '어학시험' THEN sp_la_passday
-	        WHEN '수상내역·공모전' THEN sp_aw_sangday
-	        ELSE ''
-	    END AS sp_passday,
-	    sp_ce_organization,
-	    sp_ce_pass,
-	    sp_la_grade,
-	    sp_aw_organization
-	FROM spec 
-	WHERE pe_num = #{pe_num};
+		sp_category,
+		 case when sp_category = '자격증·면허증' then sp_ce_name
+			  when sp_category ='어학시험' then sp_la_name
+			  else sp_aw_name
+		 end as sp_name,
+		 case when sp_category = '자격증·면허증' then sp_ce_passday
+			  when sp_category = '어학시험' then sp_la_passday
+			  else sp_aw_sangday
+		 end as sp_passday,
+			   sp_ce_organization,
+			    sp_ce_pass,
+			    sp_la_grade,
+			    sp_aw_organization
+	from spec 
+	where pe_num = #{pe_num};
    </select>
    
    <!-- 스펙 num 값 넘기기 -->

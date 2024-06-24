@@ -1577,7 +1577,7 @@
                     </div>
                     <hr style="width: 100%;">
                    <div id="qualificationList">
-                     <%-- <c:if test="${fn:length(splist) != 0}" >
+                     <c:if test="${fn:length(splist) != 0}" >
 				     <c:forEach items="${splist}" var="spdto">
 					    <table style="border-bottom: 0.5px solid #D9D9D9; width: 100%; margin-top: 1%;">
 					        <tr>
@@ -1617,7 +1617,7 @@
 					        </tr>
 					    </table>
 					</c:forEach>
-					</c:if> --%>
+					</c:if>
 				   </div>
                     
                     <div id="qualificationform"></div>

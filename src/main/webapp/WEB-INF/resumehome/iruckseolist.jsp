@@ -256,52 +256,45 @@
 <!-- 인정사항 폼 -------------------------------------------------------------------------------------------------------------------------->
                 <div class="personal">
                         <div class="form-caption">
-                            <h5><b>인적사항</b></h5>&nbsp;&nbsp;&nbsp;
-                            <span style="font-size: 0.8em;">자동입력(사진 및 경력 제외)</span>
+                            <h5><b>인적사항</b></h5>
                         </div>
                         <hr style="width: 100%;">
                         <table class="" style="width: 100%;">
                           <tr>
-                      <td class="form-group">
-                          <span>${rdto.r_name }</span>&nbsp;&nbsp;
-                          <select class="form-select" style="width: 120px;" name="pe_category" itemprop="" >
-                              <option value="신입/경력">신입/경력</option>
-                              <option value="신입">신입</option>
-                              <option value="경력">경력</option>
-                          </select>
-                      </td>
-                      
-                      <td rowspan="4">
-                        <input type="file" name="myphoto" id="myphoto" style="display: none;" multiple="multiple">
-                              <div style="position: relative;  display: inline-block;" id="photo_img">
-                                <img id="showimg" src="../iruckseoimage/${pedto.pe_image}">
-                               <span id="plusphoto" name="pe_image" style="position: absolute; top: 85%; left: 50%; 
-                               transform: translate(-50%, -50%); cursor: pointer; font-size: 0.8em;">사진추가</span>
-                              </div>
-                              
-                      </td>
-                    </tr>
-                    
-                    <tr>
-                      <td class="form-group">
-                        <span>성별 (${rdto.r_gender })</span>&nbsp;&nbsp;&nbsp;
-                        <span>${rdto.r_birthday}</span>
-                      </td>
-                    </tr>
-                    
-                    <tr>
-                      <td class="form-group">
-                        <span><i class="bi bi-envelope"></i>${rdto.r_email}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <span><i class="bi bi-telephone"></i>${rdto.r_hp}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <span><i class="bi bi-phone"></i>${rdto.r_hp}</span>
-                      </td>
-                    </tr>
-                    
-                    <tr>
-                      <td class="form-group">
-                        <span><i class="bi bi-house"></i>${rdto.r_addr}${rdto.r_addr_detail}</span>
-                      </td>
-                    </tr>
+		                      <td class="form-group">
+		                          <span>${rdto.r_name }</span>&nbsp;&nbsp;
+		                          <span style="width: 120px;" name="pe_category">${pedto.pe_category}</span>
+		                      </td>
+		                      
+		                      <td rowspan="4">
+		                        <input type="file" name="myphoto" id="myphoto" style="display: none;" multiple="multiple">
+		                              <div style="position: relative;  display: inline-block;" id="photo_img">
+		                                <img id="showimg" src="../iruckseoimage/${pedto.pe_image}">
+		                              </div>
+		                              
+		                      </td>
+		                    </tr>
+		                    
+		                    <tr>
+		                      <td class="form-group">
+		                        <span>성별 (${rdto.r_gender })</span>&nbsp;&nbsp;&nbsp;
+		                        <span>${rdto.r_birthday}</span>
+		                      </td>
+		                    </tr>
+		                    
+		                    <tr>
+		                      <td class="form-group">
+		                        <span><i class="bi bi-envelope"></i>${rdto.r_email}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		                        <span><i class="bi bi-telephone"></i>${rdto.r_hp}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		                        <span><i class="bi bi-phone"></i>${rdto.r_hp}</span>
+		                      </td>
+		                    </tr>
+		                    
+		                    <tr>
+		                      <td class="form-group">
+		                        <span><i class="bi bi-house"></i>${rdto.r_addr}${rdto.r_addr_detail}</span>
+		                      </td>
+		                    </tr>
                     
                         </table>
                    
