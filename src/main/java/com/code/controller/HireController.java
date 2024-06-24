@@ -67,6 +67,9 @@ public class HireController {
       if (r_num == null) {
           r_num = 0; // 기본값 설정
       }
+      
+      List<HireDto> userScraps = hservice.getUserScraps(r_num);
+      model.addAttribute("userScraps", userScraps);
 
       model.addAttribute("hlist", hlist);
       model.addAttribute("r_num", r_num);
@@ -129,8 +132,8 @@ public class HireController {
    @GetMapping("/hire/detail")
    public ModelAndView detail(int h_num, HttpSession session) {
       
-	  String r_num = (String) session.getAttribute("r_num");
-	  
+     String r_num = (String) session.getAttribute("r_num");
+     
       ModelAndView mview = new ModelAndView();
       
       HireDto hdto = hservice.getHireData(h_num);
@@ -162,32 +165,17 @@ public class HireController {
    
    //스크랩
    @ResponseBody
-   @PostMapping("/scrap")
-   public void scrapinsert(@ModelAttribute("hdto") HireDto hdto, HttpSession session) {
-       // 로그인한 사용자의 r_num을 가져옵니다.
+   @PostMapping("/hire/scrap")
+   public void scrapInsert(@ModelAttribute("hdto") HireDto hdto, HttpSession session) {
 	   int r_num =  Integer.parseInt((String)session.getAttribute("r_num"));
        hdto.setR_num(r_num);
-
-       // 스크랩을 데이터베이스에 삽입
        hservice.scrapInsert(hdto);
-
-       // 세션 갱신
-       updateUserScrapedMap(session, r_num);
    }
 
    @ResponseBody
-   @PostMapping("/scrapdelete")
-   public void scrapdelete(@RequestParam int r_num, @RequestParam int h_num, HttpSession session) {
-       // 데이터베이스에서 스크랩 항목을 삭제
+   @PostMapping("/hire/scrapdelete")
+   public void scrapDelete(@RequestParam int r_num, @RequestParam int h_num) {
        hservice.scrapDelete(r_num, h_num);
-
-       // 세션 갱신
-       updateUserScrapedMap(session, r_num);
-   }
-
-   private void updateUserScrapedMap(HttpSession session, int r_num) {
-       List<HireDto> userScraps = hservice.getUserScraps(r_num);
-       session.setAttribute("userScrapedMap", userScraps);
    }
 
 }

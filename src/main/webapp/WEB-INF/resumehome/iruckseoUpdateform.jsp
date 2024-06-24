@@ -1577,7 +1577,7 @@
                     </div>
                     <hr style="width: 100%;">
                    <div id="qualificationList">
-                     <%-- <c:if test="${fn:length(splist) != 0}" >
+                     <c:if test="${fn:length(splist) != 0}" >
 				     <c:forEach items="${splist}" var="spdto">
 					    <table style="border-bottom: 0.5px solid #D9D9D9; width: 100%; margin-top: 1%;">
 					        <tr>
@@ -1617,7 +1617,7 @@
 					        </tr>
 					    </table>
 					</c:forEach>
-					</c:if> --%>
+					</c:if> 
 				   </div>
                     
                     <div id="qualificationform"></div>
@@ -2543,7 +2543,14 @@
                 
  <!-- 희망근무조건 ---------------------------------------------------------------------------------------------------------------->
             <div class="hope">
-            <input type="hidden" name="ho_num" id="ho_num" value="">
+             <c:choose>
+             	<c:when test="${hodto != null}"> 	
+                	<input type="hidden" name="ho_num" id="ho_num" value="${hodto.ho_num }">
+                </c:when>
+                <c:otherwise> 
+                	<input type="hidden" name="ho_num" id="ho_num" />
+                </c:otherwise>
+             </c:choose>	
                     <div class="form-caption">
                         <h5><b>희망근무조건</b></h5>
                     </div>
@@ -2554,14 +2561,24 @@
                     <table id="hopeclick" style="width: 100%;">
                      <tr>
                        <td class="form-group">
-                         <select class="form-select" style="width: 300px;" name="ho_category">
+                       
+	                	<select class="form-select" style="width: 300px;" name="ho_category">
                           <option value="">고용형태</option>
                           <option value="정규직">정규직</option>
                           <option value="계약직">계약직</option>
                           <option value="프리랜서">프리랜서</option>
                           <option value="인턴직">인턴직</option>
                       </select>
-                         <input type="text" class="form-control" style="width: 200px;" placeholder="희망연봉" name="ho_money" id="ho_money">만원이상 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                      
+                      <c:choose>
+			             	<c:when test="${hodto != null}"> 	
+		                         <input type="text" class="form-control" style="width: 200px;" placeholder="희망연봉" name="ho_money" id="ho_money" value="${hodto.ho_money }" >만원이상 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+			                </c:when>
+			                <c:otherwise> 
+		                         <input type="text" class="form-control" style="width: 200px;" placeholder="희망연봉" name="ho_money" id="ho_money" >만원이상 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+			                </c:otherwise>
+			             </c:choose>
+                      
                          <input type="checkbox" name="ho_check" id="ho_check">면접 후 결정
                        </td>
                      </tr>
@@ -2666,7 +2683,7 @@
                         <tr>
                            <td colspan="2" align="right">
                               <br>
-                              <button type="button" id="hopeOK"  class="btn btn-outline-primary">저장</button>
+                              <button type="button" id="hopeOK"  class="btn btn-outline-primary">수정</button>
                            </td>
                         </tr>
                     </table>        
@@ -2677,6 +2694,66 @@
                 <script type="text/javascript">
 
                 $(function () {
+                	var hoCategory = "${hodto.ho_category}"; // 고용형태
+                	var hoCheck    = "${hodto.ho_check}";    // 면접 후 결제 체크 여부
+                	var hoAddr     = "${hodto.ho_addr}";     // 희망 근무지           
+                	var hoKeyword  = "${hodto.ho_keyword}";  // 희망 키워드
+                	
+                	if( hoCategory != ""){
+	                	$("select[name=ho_category]").val(hoCategory).prop("selected",true);
+                	}
+                	
+                	if( hoCheck != ""){
+                		$("#ho_check").prop('checked', true);
+                		$("#ho_money").prop("disabled", true); 
+                	}
+                	
+                	if( hoAddr != ""){
+                		
+                		hoAddr = hoAddr.split(","); // ',' 기준으로 나누기 -> hoAddr 이 배열 타입으로 변경됨ㄴ
+                		for( var i = 0; i < hoAddr.length; i++){ // hoAddr 배열 반복
+                			var area = hoAddr[i]; // 반복 횟수에 따른 값 추출
+                			// 지역명 li 정보 가져오기
+                			var val = $(".areaSelect ul li[value='"+area+"']"); 
+                			// 지역명 li 정보의 인덱스 가져오기
+                			var valIndex = $(".areaSelect ul li[value='"+area+"']").index(); 
+							
+                			// 지역명 표기 
+                			var total = '<div class="areaStyle" style="border: 1px solid #4876EF; border-radius: 12px; padding: 8px;" value="'+area+'">' + area + '&nbsp;&nbsp;&nbsp;&nbsp;<i class="bi bi-x-lg areaDelete" value='+valIndex+'></i></div>';
+                			$("#areaform").append(total);
+                            // 해당 지역 아웃라인컬러 변경
+                            val.css({
+                                 "outline": "1px solid #4876EF",
+                                 "border-radius": "12px",
+                                 "padding": "8px"
+                            });
+                		}
+                	}
+                	
+					if( hoKeyword != ""){
+						hoKeyword = hoKeyword.split(","); // ',' 기준으로 나누기 -> hoKeyword 이 배열 타입으로 변경됨
+                		for( var i = 0; i < hoKeyword.length; i++){ // hoAddr 배열 반복
+                			
+                			var job = hoKeyword[i]; // 반복 횟수에 따른 값 추출
+                			
+                			// 직무 li 정보 가져오기
+                			var val = $(".jobSelect ul li[value='"+job+"']"); 
+                			// 직무 li 정보의 인덱스 가져오기
+                			var valIndex = $(".jobSelect ul li[value='"+job+"']").index(); 
+                            
+ 							var total = '<div class="jobStyle" style="border: 1px solid #4876EF; border-radius: 12px; padding: 8px;" value="'+job+'">' + job + '&nbsp;&nbsp;&nbsp;&nbsp;<i class="bi bi-x-lg jobDelete"  value='+valIndex+'></i></div>';
+                            $("#jobform").append(total);
+                            
+                            // 직무 아웃라인컬러 변경
+                            val.css({
+                                "outline": "1px solid #4876EF",
+                                "border-radius": "12px",
+                                "padding": "8px"
+                            });
+                            
+                		}
+                	}
+                	
                 	
                 	//희망조건 중 연봉 면접 후 결정 선택시 이벤트
                 	$("#ho_check").change(function(){

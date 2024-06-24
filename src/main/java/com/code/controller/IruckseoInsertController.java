@@ -483,7 +483,7 @@ public class IruckseoInsertController {
   		List<IruckseoSelfDto> selist = irservice.Selflist(pe_num);
   		
   		//희망근무
-  		List<IruckseoHopeDto> holist = irservice.Hopelist(pe_num);
+  		IruckseoHopeDto hodto = irservice.Hopelist(pe_num);
   		
   		mview.addObject("pedto", pedto);
   		mview.addObject("rdto", rdto);
@@ -493,7 +493,7 @@ public class IruckseoInsertController {
   		mview.addObject("splist", splist);
   		mview.addObject("polist", polist);
   		mview.addObject("selist", selist);
-  		mview.addObject("holist", holist);
+  		mview.addObject("hodto", hodto);
   		
   		//포워드
   		mview.setViewName("/resumehome/iruckseoUpdateform");

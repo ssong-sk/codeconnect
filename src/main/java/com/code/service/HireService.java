@@ -74,6 +74,14 @@ public class HireService implements HireServiceInter {
 		return mapper.countIruckseo(r_num);
 	}
 
+	//스크랩 갯수구하기
+	public int getScrapCount(int r_num) {
+		// TODO Auto-generated method stub
+		return mapper.getScrapCount(r_num);
+	}
+
+
+
 	
 
 }
