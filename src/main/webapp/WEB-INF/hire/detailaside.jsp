@@ -690,8 +690,8 @@ div.footerdiv{
 					<div>
 						<dt>홈페이지</dt>
 						<dd>
-							<a target="_blank" href="https://hourplace.co.kr/"> 
-								<strong><span>https://hourplace.co.kr/</span></strong>
+							<a target="_blank" href="${hdto.ci_link }"> 
+								<strong><span>${hdto.ci_link }</span></strong>
 								<i class="bi bi-box-arrow-up-right"></i>
 							</a>
 						</dd>
