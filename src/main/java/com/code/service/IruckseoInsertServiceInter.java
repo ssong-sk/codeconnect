@@ -132,4 +132,5 @@ public interface IruckseoInsertServiceInter {
 	
 	//희망조건 update
 	public void updateHope(IruckseoHopeDto hodto);
+	
 }

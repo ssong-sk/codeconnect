@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.code.dto.HireDto;
+import com.code.dto.IruckseoInsertDto;
 
 @Mapper
 public interface HireMapperInter {
@@ -18,5 +19,11 @@ public interface HireMapperInter {
 	public void scrapInsert(HireDto dto);
 	public int getRnumById(String r_id);
 	public void scrapDelete(int r_num, int h_num);
+	
+	//채용공고 지원하기 창
+	public List<IruckseoInsertDto> selectIruckseo(int r_num);
+	
+	//채용공고 이력서 갯수
+	public String countIruckseo(int r_num);
 }
 

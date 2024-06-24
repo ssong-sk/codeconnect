@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.code.dto.HireDto;
+import com.code.dto.IruckseoInsertDto;
 import com.code.mapper.HireMapperInter;
 
 @Service
@@ -54,6 +55,16 @@ public class HireService implements HireServiceInter {
 	    params.put("h_num", h_num);
 	    mapper.scrapDelete(r_num, h_num);
 		
+	}
+
+	@Override
+	public List<IruckseoInsertDto> selectIruckseo(int r_num) {
+		return mapper.selectIruckseo(r_num);
+	}
+
+	@Override
+	public String countIruckseo(int r_num) {
+		return mapper.countIruckseo(r_num);
 	}
 
 }
