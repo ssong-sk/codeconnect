@@ -58,12 +58,12 @@ public class HireService implements HireServiceInter {
 	}
 
 	@Override
-	public List<IruckseoInsertDto> selectIruckseo(int r_num) {
+	public List<IruckseoInsertDto> selectIruckseo(String r_num) {
 		return mapper.selectIruckseo(r_num);
 	}
 
 	@Override
-	public String countIruckseo(int r_num) {
+	public String countIruckseo(String r_num) {
 		return mapper.countIruckseo(r_num);
 	}
 
