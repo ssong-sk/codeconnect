@@ -140,11 +140,13 @@ body {
     margin-right: 10px;
 }
 
-.ratings .stars {
+.ratings .stars,
+.modal-stars {
     color: #f39c12;
 }
 
-.ratings .stars i {
+.ratings .stars i,
+.modal-stars i {
     font-size: 24px; /* Increase this value to make the stars bigger */
     margin-right: 5px; /* Adjust spacing between stars if needed */
 }
@@ -273,8 +275,12 @@ body {
                     <h2 class="section-title">전체 리뷰 및 통계</h2>
                     <div class="ratings">
                         <div class="score"><%= String.format("%.1f", request.getAttribute("avgAll")) %></div>
-                        <div class="stars">
-                            <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-half"></i> <i class="bi bi-star"></i>
+                        <div class="stars" data-avg-all="<%= request.getAttribute("avgAll") %>">
+                            <i class="bi bi-star"></i>
+                            <i class="bi bi-star"></i>
+                            <i class="bi bi-star"></i>
+                            <i class="bi bi-star"></i>
+                            <i class="bi bi-star"></i>
                         </div>
                     </div>
                     <ul class="ratings-list">
@@ -483,6 +489,7 @@ body {
 
     <!-- 모달 끝 -->
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3c2a4c379a7f83fd166976b93258be7f&libraries=services"></script>
     <script>
 var mapContainer = document.getElementById('map'), 
@@ -530,6 +537,25 @@ $(document).ready(function() {
             }
         });
     });
+
+    // JavaScript to dynamically fill stars based on avgAll
+    function fillStars(starContainer) {
+        var avgAll = parseFloat(starContainer.dataset.avgAll);
+        var stars = starContainer.querySelectorAll('i');
+        stars.forEach(function(star, index) {
+            var starValue = avgAll - index;
+            if (starValue >= 0.75) {
+                star.className = 'bi bi-star-fill';
+            } else if (starValue >= 0.35) {
+                star.className = 'bi bi-star-half';
+            } else {
+                star.className = 'bi bi-star';
+            }
+        });
+    }
+
+    document.querySelectorAll('.stars').forEach(fillStars);
+    document.querySelectorAll('.modal-stars').forEach(fillStars);
 });
 </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
