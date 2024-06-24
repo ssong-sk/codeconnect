@@ -379,6 +379,7 @@ a.write{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    pointer-events: none;
 }
 
 .write span{
@@ -424,6 +425,7 @@ li.applybox{
     padding: 16px;
     border: 1px solid rgb(228, 228, 228);
     border-radius: 8px;
+    cursor: pointer;
 }
 
 /* 이력서 클릭시 적용 */
@@ -774,20 +776,14 @@ div.footerdiv{
 					<ul class="smbox">
 						<li style="margin-bottom: 12px;">
 							<span class="title">이메일</span>
-							<a target="_blank" href="#" class="write">
+							<a href="#" class="write">
 								<span style="width: 280px;">${r_email }</span>
-								<span style="display: flex;align-items: center;">
-									<i class="bi bi-chevron-right" style="width: 16px;height: 16px;"></i>
-								</span>
 							</a>
 						</li>
 						<li>
 							<span class="title">연락처</span>
-							<a target="_blank" href="#" class="write">
+							<a href="#" class="write">
 								<span style="width: 280px;">${r_hp }</span>
-								<span style="display: flex;align-items: center;">
-									<i class="bi bi-chevron-right" style="width: 16px;height: 16px;"></i>
-								</span>
 							</a>
 						</li>
 					</ul>
@@ -795,6 +791,7 @@ div.footerdiv{
 				
 				<!-- 지원 이력서 -->
 				<section style="margin-top: 24px;">
+				<input type="hidden" name="h_num" id="h_num" value="${hdto.h_num }">
 					<div class="h2" style="display: flex; justify-content: space-between;margin-bottom: 0px;">
 						<h2>
 							지원 이력서
@@ -955,10 +952,63 @@ $('.xbtn').click(function() {
 
 <script type="text/javascript">
 /* 이력서 클릭시 */
-$(".form-check-input").change(function(){
+$(".applybox").click(function(){
+	// 선택된 applybox의 테두리 색상 변경
 	$(".applybox").css("border", "1px solid rgb(228, 228, 228)");
-	$(this).closest(".applybox").css("border", "2px solid #0d6efd"); // 선택된 radio 버튼의 부모 .applybox만 테두리 변경
+	$(this).css("border", "2px solid #0d6efd");
+	
+	// 선택된 라디오 버튼 체크
+	$(this).find(".form-check-input").prop("checked", true);
+	
+	// 지원 버튼의 배경색 변경
 	$(".footerbtn").css("background", "#0d6efd");
+});
+
+$(".form-check-input").change(function(){
+    $(".applybox").css("border", "1px solid rgb(228, 228, 228)"); // 모든 applybox의 테두리를 초기화
+    $(this).closest(".applybox").css("border", "2px solid #0d6efd"); // 선택된 radio 버튼의 부모 .applybox만 테두리 변경
+    $(".footerbtn").css("background", "#0d6efd"); // 지원 버튼의 배경색 변경
+});
+</script>
+
+<script type="text/javascript">
+function getSelectedPeNum() {
+    // 체크된 .form-check-input 요소 찾기
+    var selectedRadio = $(".form-check-input:checked");
+
+    if (selectedRadio.length > 0) {
+        // 체크된 라디오 버튼의 부모 .applybox 찾기
+        var applyBox = selectedRadio.closest(".applybox");
+
+        // .applybox 내부의 a 태그에서 pe_num 값 추출
+        var editLink = applyBox.find("a[target='_blank']").attr("href");
+        var peNum = new URLSearchParams(editLink.split('?')[1]).get('pe_num');
+
+        return peNum;
+    } else {
+        return null;
+    }
+}
+
+/* 지원하기 버튼 클릭 인서트 */
+$(".footerbtn").click(function(){
+	
+	var pe_num = getSelectedPeNum();
+	var h_num = $("#h_num").val();
+	
+    if (!pe_num) {
+        alert("이력서를 선택해주세요.");
+	}
+     
+	$.ajax({
+		type: "post",
+		dataType: "html",
+		data: {"pe_num":pe_num, "h_num":h_num},
+		url: "/support/insert",
+		success:function(){
+			location.reload();
+		}
+	})
 })
 </script>
 
