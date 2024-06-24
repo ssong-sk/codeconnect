@@ -633,7 +633,7 @@ svg {
       <div id="wrap">
          <div class="center">
             <div class="category">
-				<input type="text" id="r_num" name="r_num" value="${r_num }">
+				<input type="hidden" id="r_num" name="r_num" value="${r_num }">
                <!-- 개발 직무 선택 -->
                <span class="title">개발 직무</span>
                <button class="job" type="button" data-bs-toggle="modal"
