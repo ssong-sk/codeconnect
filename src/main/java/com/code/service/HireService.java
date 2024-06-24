@@ -74,6 +74,8 @@ public class HireService implements HireServiceInter {
 		return mapper.countIruckseo(r_num);
 	}
 
+
+
 	
 
 }

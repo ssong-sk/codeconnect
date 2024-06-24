@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,6 +35,13 @@
       padding: 20px; /* 전체 여백 */
       margin: 0 auto; /* 가운데 정렬 */
       border: 0px solid #ddd; /* 외곽선 */
+  }
+  
+  button {
+	border: none;
+	border-radius: 0px;
+	background: none;
+	cursor: pointer;
   }
   
   /* 왼쪽 메뉴바 스타일 */
@@ -128,6 +136,186 @@
     flex-grow: 1; /* 내부 요소가 가능한한 같은 공간을 차지하도록 */
   }
 
+
+/* 리스트 표시 및 정렬 */
+.hirelist, .s_hirelist{
+   z-index: 2;
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: flex-start;
+   margin: 0px auto;
+   height: 100%;
+   left: 0px;
+}
+
+.hireinfo {
+   opacity: initial;
+   position: relative;
+   width: calc(25% - 20px);
+   flex: 1 1 22%;
+   box-sizing: border-box;
+   padding: 10px;
+   max-width: 230px;
+}
+
+a {
+   color: rgb(0, 0, 0);
+   text-decoration: none;
+}
+
+.hireinfo .img_box {
+   width: 100%;
+   height: 166px;
+   border-radius: 4px;
+   overflow: hidden;
+   border: 1px solid rgba(0, 0, 0, 0.1);
+   position: relative;
+}
+
+.hireinfo .img_box .img {
+   width: 250px;
+   height: 166px;
+   object-fit: cover;
+   transition: all 0.3s ease 0s;
+}
+
+.hireinfo-content {
+   padding: 12px 0px 36px;
+   width: calc(100% - 7px);
+}
+
+.content-company {
+   display: flex;
+   align-items: center;
+}
+
+.content-company span {
+   font-size: 14px;
+   line-height: 24px;
+   letter-spacing: -0.5px;
+   color: rgb(68, 68, 68);
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+}
+
+.hireinfo-content h2 {
+   margin-top: 6px;
+   font-size: 17px;
+   line-height: 1.4em;
+   letter-spacing: -0.5px;
+   font-weight: 600;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-line-clamp: 2;
+   -webkit-box-orient: vertical;
+}
+
+.content-techlist {
+   display: flex;
+   margin: 0px;
+   font-size: 13px;
+   line-height: 18px;
+   letter-spacing: -0.5px;
+   color: rgb(153, 153, 153);
+   height: 18px;
+   font-family: __Montserrat_08d7fe, __Montserrat_Fallback_08d7fe;
+   flex-wrap: wrap;
+   overflow: hidden;
+   padding: 0px;
+}
+
+.content-techlist li {
+   margin-right: 5px;
+}
+
+.content-area {
+   display: flex;
+   font-size: 13px;
+   line-height: 18px;
+   letter-spacing: -0.5px;
+   color: rgb(153, 153, 153);
+   margin-top: 7px;
+   padding: 0px;
+}
+
+.content-area li {
+   margin-right: 5px;
+}
+
+.hireinfo .img_box .counts {
+    position: absolute;
+    margin-left: auto;
+    color: rgb(255, 255, 255);
+    font-size: 13px;
+    z-index: 11;
+    right: 10px;
+    top: 10px;
+    width: 70px;
+    display: flex;
+    align-items: center;
+    display: none;
+}
+
+.hireinfo .img_box:hover .counts {
+    display: flex;
+}
+
+.hireinfo .counts .position_view_count {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.hireinfo .counts .position_view_count span {
+    margin-left: 4px;
+}
+
+.hireinfo .counts button {
+    padding: 0px;
+}
+
+.scrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hireinfo .img_filter {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 166px;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 10;
+}
+
+.hireinfo:hover .img {
+    transform: scale(1.1);
+}
+
+.hireinfo:hover .img_filter {
+    opacity: 0.8;
+}
+
+svg {
+    width: 18px;
+    height: 18px;
+}
+
+.position_view_count svg {
+    margin-bottom: 1px;
+}
+
+.position_view_count span {
+    font-size: 12pt;
+    font-family: IBM Plex Sans KR;
+    color: #fff;
+}
 </style>
 </head>
 <body>
@@ -246,26 +434,77 @@
 	                <span style="font-size: 1.2em;"><b>추천공고</b></span>
 	                <span style="font-size: 0.9em; float: right; color: gray; margin-top: 1%;"><a href="/hire/main">더보기 ></a></span>
 	                <hr>
-	              </div>   
+	                
 	              
-	              <div class="mylist-chuimg">
-					    <c:forEach items="${hlist}" var="hdto" varStatus="loop">
-					      <c:if test="${loop.index < 24 }">
-					        <div class="chu-item">
-					            <a href="#"><img alt="" src="../companyintro_uploads/${hdto.ci_image}" class="chu-img"></a>
-					            <div class="chu-info">
-					                <span class="chu-title"><a href="#">${hdto.c_name}</a></span>
-					                <i class="bi bi-heart"></i><br><br>
-					                <span class="chu-company"><a href="#"><b>${hdto.h_title}</b></a></span><br><br>
-					                <span style="font-size: 0.8em; color: gray;">${hdto.h_job }</span><br>
-					                <span style="font-size: 0.8em; color: gray;">${hdto.h_tech }</span><br>
-					                <span style="font-size: 0.8em; color: gray;">${hdto.h_deadline }</span><br>
-					                <span style="font-size: 0.8em; color: gray;">${hdto.h_location }</span><br>
-					            </div>
-					        </div>
-					      </c:if> 
-					    </c:forEach>
-				   </div>
+	              <!-- 채용공고 리스트 -->
+			<section class="hirelist">
+			    <c:forEach var="h" items="${hlist}">
+			        <div class="hireinfo">
+			            <a target="_self" title="${h.h_title}" href="/hire/detail?h_num=${h.h_num }">
+			                <div class="img_box">
+			                    <div class="img_filter"></div>
+			                    <img alt="${h.c_name}" class="img" src="../../companyintro_uploads/${h.ci_image}">
+			                    <div class="bKGmxJ"></div>
+			                    <div class="counts">
+			                        <div class="position_view_count">
+			                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20">
+			                                <g fill="none" fill-rule="evenodd">
+			                                    <path d="M0 0h16v16H0z"></path>
+			                                    <g stroke="#FFF" stroke-linecap="round">
+			                                        <path
+			                                            d="M8 10c.86 0 1.556-.672 1.556-1.5S8.859 7 8 7c-.86 0-1.556.672-1.556 1.5S7.141 10 8 10z">
+			                                        </path>
+			                                        <path
+			                                            d="M15 8.5c-1.469 2.243-4.108 4.5-7 4.5-2.892 0-5.531-2.257-7-4.5C2.788 6.369 4.882 4 8 4s5.212 2.369 7 4.5z">
+			                                        </path>
+			                                    </g>
+			                                </g>
+			                            </svg>
+			                            <span>87</span>
+			                        </div>
+			                        </a>
+									<c:set var="isScraped" value="${fn:contains(userScraps, h.h_num)}" />
+			                        <c:choose>
+			                            <c:when test="${isScraped}">
+			                                <input type="hidden" id="r_num" name="r_num" value="${sessionScope.r_num}">
+			                                <input type="hidden" id="h_num" name="h_num" value="${h.h_num}">
+			                                <button aria-pressed="true" type="button" class="scrap" value="${h.h_num}" onclick="deleteScrap(${sessionScope.r_num}, ${h.h_num})">
+			                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+			                                        <path fill="#fff" fill-rule="evenodd"
+			                                              d="M6.403 20.825a1 1 0 0 1-1.653-.757V5a2 2 0 0 1 2-2h10.5a2 2 0 0 1 2 2v15.068a1 1 0 0 1-1.653.757L12 16l-5.597 4.825Z"
+			                                              clip-rule="evenodd"></path>
+			                                    </svg>
+			                                </button>
+			                            </c:when>
+			                            <c:otherwise>
+			                                <input type="hidden" id="r_num" name="r_num" value="${sessionScope.r_num}">
+			                                <input type="hidden" id="h_num" name="h_num" value="${h.h_num}">
+			                                <button aria-pressed="false" type="button" class="scrap" value="${h.h_num}" onclick="addScrap(${sessionScope.r_num}, ${h.h_num})">
+			                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+			                                        <path fill="#fff" fill-rule="evenodd"
+			                                              d="M10.725 14.71a2 2 0 0 1 2.55 0l3.975 3.289V5H6.75v12.999l3.975-3.29ZM4.75 20.123V5a2 2 0 0 1 2-2h10.5a2 2 0 0 1 2 2v15.124a1 1 0 0 1-1.638.77L12 16.25l-5.612 4.645a1 1 0 0 1-1.638-.77Z"
+			                                              clip-rule="evenodd"></path>
+			                                    </svg>
+			                                </button>
+			                            </c:otherwise>
+			                        </c:choose>
+								</div>
+			                </div>
+			            <a target="_self" title="${h.h_title}" href="/hire/detail?h_num=${h.h_num }">
+			                <div class="hireinfo-content">
+			                    <div class="content-company">
+			                        <span>${h.c_name}</span>
+			                    </div>
+			                    <h2 class="position_card_info_title">${h.h_title}</h2>
+			                    <ul class="content-area">
+			                        <li><c:out value="${h.h_location.length() > 7 ? h.h_location.substring(0, 7) : h.h_location}" /></li>
+			                    </ul>
+			                </div>
+			            </a>
+			        </div>
+			    </c:forEach>
+			</section>
+			</div> 
               </div>            
               
               </div>
@@ -273,4 +512,71 @@
         </div>
     </div>    
 </body>
+<script type="text/javascript">
+/* 스크랩 기능 */
+scrapPress();
+
+function scrapPress() {
+	$("button.scrap").click(function() {
+		var scrappressed = $(this);
+		var isPressed = scrappressed.attr('aria-pressed') === 'true';
+		var r_num = $("#r_num").val();
+		var h_num = scrappressed.val();
+		var isLoggedIn = r_num != 0 ? true : false;
+
+		if(isLoggedIn){
+		    if (isPressed) {
+		    	$.ajax({
+		            type: "post",
+		            url: "/hire/scrapdelete",
+		            dataType: "html",
+		            data: {
+		                "r_num": r_num,
+		                "h_num": h_num,
+		            },
+		            success: function() {
+				        // aria-pressed가 true인 경우 -> false로 변경
+				        scrappressed.attr('aria-pressed', 'false');
+				        scrappressed.html(`
+				            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+				                <path fill="#fff" fill-rule="evenodd" 
+				                      d="M10.725 14.71a2 2 0 0 1 2.55 0l3.975 3.289V5H6.75v12.999l3.975-3.29ZM4.75 20.123V5a2 2 0 0 1 2-2h10.5a2 2 0 0 1 2 2v15.124a1 1 0 0 1-1.638.77L12 16.25l-5.612 4.645a1 1 0 0 1-1.638-.77Z" 
+				                      clip-rule="evenodd"></path>
+				            </svg>
+				        `);
+		            }
+		    	});
+		    } else {		  
+		        $.ajax({
+		            type: "post",
+		            url: "/hire/scrap",
+		            dataType: "html",
+		            data: {
+		                "r_num": r_num,
+		                "h_num": h_num,
+		            },
+		            success: function() {
+		            	// aria-pressed가 false인 경우 -> true로 변경
+				        scrappressed.attr('aria-pressed', 'true');
+				        scrappressed.html(`
+				            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+				                <path fill="#fff" fill-rule="evenodd" 
+				                      d="M6.403 20.825a1 1 0 0 1-1.653-.757V5a2 2 0 0 1 2-2h10.5a2 2 0 0 1 2 2v15.068a1 1 0 0 1-1.653.757L12 16l-5.597 4.825Z" 
+				                      clip-rule="evenodd"></path>
+				            </svg>
+				        `);
+		            }
+		        });
+		    }
+		}else{
+			var confirmLogin = confirm("로그인이 필요합니다.\n로그인 페이지로 이동하시겠습니까?");
+	        if (confirmLogin) {
+	            window.location.href = "/login/main";
+	        }
+		}
+
+	});
+
+}
+</script>
 </html>

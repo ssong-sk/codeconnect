@@ -43,12 +43,5 @@ public class HireDto {
 	private int r_num;
 	private String r_id;
 	private boolean scraped;
-	public boolean isScraped() {
-	    return scraped;
-	}
-	
-	public void setScraped(boolean scraped) {
-	    this.scraped = scraped;
-	}
 
 }
