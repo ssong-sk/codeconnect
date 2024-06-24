@@ -234,7 +234,7 @@ $(function(){
                     <div class="icon">
                         <i class="bi bi-key-fill"></i>
                     </div>
-                    <h2>비밀번호 변경</h2>
+                    <h2 style="color: #0d6efd; font-weight: bold;">비밀번호 변경</h2>
                     <p>아래 정보를 입력하여 비밀번호를 변경하세요.</p>
                     <form id="changepassform">
                         <!-- 기존 비밀번호 확인 -->
