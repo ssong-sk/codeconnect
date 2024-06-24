@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.code.mapper.SupportMapperInter">
+<!-- 이력서 지원하기 -->
+<insert id="insertSupport" parameterType="sdto">
+	insert into support value(null, #{r_num}, #{pe_num}, #{h_num}, #{c_num}, 
+	#{st_1}, #{st_2}, #{st_3}, #{st_4}, #{st_open}, now())
+</insert>
+
+</mapper>
