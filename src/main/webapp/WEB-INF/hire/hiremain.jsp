@@ -1367,13 +1367,14 @@ svg {
 			                            <span>87</span>
 			                        </div>
 			                        </a>
-									<c:set var="myid" value="${sessionScope.myid}" />
+			                        <%-- 로그인한 사용자의 ID를 가져옵니다. --%>
+									<c:set var="r_num" value="${sessionScope.r_num}" />
 									
-									<%-- 사용자별 스크랩 리스트 --%>
+									<%-- 사용자별 스크랩 리스트를 가져옵니다. --%>
 									<c:set var="userScrapedMap" value="${sessionScope.userScrapedMap}" />
-									<c:set var="scraped" value="${userScrapedMap[myid]}" />
+									<c:set var="scraped" value="${userScrapedMap[r_num]}" />
 									
-									<%-- 임시 변수로 스크랩 여부 저장 --%>
+									<%-- 임시 변수로 스크랩 여부를 저장 --%>
 									<c:set var="isScraped" value="false" />
 									
 									<%-- scraped 리스트를 순회하면서 현재 h_num이 있는지 확인 --%>
@@ -1382,6 +1383,8 @@ svg {
 									        <c:set var="isScraped" value="true" />
 									    </c:if>
 									</c:forEach>
+									
+									<%-- 스크랩 여부에 따라 버튼을 표시 --%>
 									<c:choose>
 									    <c:when test="${isScraped}">
 									        <input type="hidden" id="r_num" name="r_num" value="${r_num}">

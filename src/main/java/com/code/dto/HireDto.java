@@ -41,6 +41,7 @@ public class HireDto {
 	//스크랩
 	private int s_num;
 	private int r_num;
+	private String r_id;
 	private boolean scraped;
 	public boolean isScraped() {
 	    return scraped;
