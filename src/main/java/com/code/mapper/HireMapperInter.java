@@ -19,6 +19,7 @@ public interface HireMapperInter {
 	public void scrapInsert(HireDto dto);
 	public int getRnumById(String r_id);
 	public void scrapDelete(int r_num, int h_num);
+	public List<HireDto> getUserScraps(int r_num);
 	
 	//채용공고 지원하기 창
 	public List<IruckseoInsertDto> selectIruckseo(String r_num);
