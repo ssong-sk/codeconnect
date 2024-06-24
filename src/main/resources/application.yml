@@ -12,7 +12,7 @@ spring:
   devtools:
     livereload:
       enabled: true
-      
+
 #mysql
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -25,7 +25,3 @@ mybatis:
   type-aliases-package: com.code.*
   mapper-locations:
   - /mapper/**/*.xml
-  
-  
-  
-  

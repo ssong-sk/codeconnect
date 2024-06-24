@@ -32,7 +32,7 @@
 						alt="codeconnect Logo" class="logo"></a>
 				</div>
 				<ul class="Menu_MenuNav__EOf3X" style="margin-bottom: 0px;">
-					<li class="Menu_MenuItem__wI1yA"><a href="#"
+					<li class="Menu_MenuItem__wI1yA"><a href="/hire/main"
 						class="Menu_jobListLink__GYHAI"><span>채용</span></a></li>
 					<li class="Menu_MenuItem__wI1yA"><a href="#"><span>커리어</span></a></li>
 					<li class="Menu_MenuItem__wI1yA"><a href="#"><span>소셜</span></a></li>
@@ -58,8 +58,10 @@
 
 							</form>
 						</div>
-						<li class="Aside_signUpButtonContainer___0wTS"><c:if
-								test="${sessionScope.loginok==null }">
+						<li class="Aside_signUpButtonContainer___0wTS">
+						
+						<c:if
+								test="${sessionScope.loginok==null and sessionScope.c_loginok==null}">
 								<button
 									class="Button_Button__root__V1ie3 Button_Button__outlined__H2mkd Button_Button__outlinedAssistive__mBcQK Button_Button__outlinedSizeSmall__JJmOo Aside_signUpButton__pY721"
 									type="button" onclick="location.href='/login/main'">
@@ -68,15 +70,39 @@
 											회원가입/로그인 </span>
 									</span> <span class="Button_Button__interaction__kkYaa"></span>
 								</button>
-							</c:if> <c:if test="${sessionScope.loginok!=null }">
+							</c:if> 
+						
+							
+							<c:if test="${sessionScope.loginok!=null }">
 								<button
 									class="Button_Button__root__V1ie3 Button_Button__outlined__H2mkd Button_Button__outlinedAssistive__mBcQK Button_Button__outlinedSizeSmall__JJmOo Aside_signUpButton__pY721"
-									type="button" onclick="location.href='/member/mypage'">
+									type="button" onclick="location.href='/member/mypage?page=profile'">
 									<span class="Button_Button__label__1Kk0v"> <span
 										class="Typography_Typography__root__xYuMs Typography_Typography__label2__BRssq Typography_Typography__weightBold__e15ql">
 											${sessionScope.myid}님</span>
-									</span> <span class="Button_Button__interaction__kkYaa"></span></button>
-							</c:if></li>
+									</span> 
+									
+									
+						
+									<span class="Button_Button__interaction__kkYaa"></span></button>
+							</c:if>
+							<c:if test="${sessionScope.c_loginok!=null }">
+								<button
+									class="Button_Button__root__V1ie3 Button_Button__outlined__H2mkd Button_Button__outlinedAssistive__mBcQK Button_Button__outlinedSizeSmall__JJmOo Aside_signUpButton__pY721"
+									type="button" onclick="location.href='/company/main'">
+									<span class="Button_Button__label__1Kk0v"> <span
+										class="Typography_Typography__root__xYuMs Typography_Typography__label2__BRssq Typography_Typography__weightBold__e15ql">
+											${sessionScope.c_loginname}님</span>
+									</span> 
+									
+									
+						
+									<span class="Button_Button__interaction__kkYaa"></span></button>
+							</c:if>
+							
+							
+							
+							</li>
 						<li><a
 							class="Button_Button__root__V1ie3 Button_Button__outlined__H2mkd Button_Button__outlinedAssistive__mBcQK Button_Button__outlinedSizeSmall__JJmOo Aside_dashboardButton__WUch3"
 							type="button" href="/company/main" data-attribute-id="gnb"

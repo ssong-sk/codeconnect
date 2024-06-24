@@ -269,7 +269,7 @@
                     type: "get",
                     dataType: "html",
                     url: "${pageContext.request.contextPath}/community/adelete",
-                    data: { cc_idx: cc_idx },
+                    data: { cc_idx: cc_idx, cc_num: ${dto.com_num} },
                     success: function() {
                         //alert("삭제 완료!");
                         listComments();
@@ -283,7 +283,7 @@
         listComments();
     });
     
-
+	//댓글 목록
     function listComments() {
         var cc_num = ${dto.com_num};
         $.ajax({
@@ -384,8 +384,16 @@
 <div class="comment-section" style="width: 900px;">
     <h5>댓글</h5>
     <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="댓글을 입력하세요" id="content" aria-describedby="button-addon2">
-        <button class="btn btn-outline-primary" type="button" id="btnCommentAdd">등록</button>
+        <c:choose>
+        <c:when test="${sessionScope.loginok == 'yes'}">
+            <input type="text" class="form-control" placeholder="댓글을 입력하세요" id="content" aria-describedby="button-addon2">
+            <button class="btn btn-outline-primary" type="button" id="btnCommentAdd">등록</button>
+        </c:when>
+        <c:otherwise>
+            <input type="text" class="form-control" placeholder="회원만 작성 가능합니다." id="content" aria-describedby="button-addon2" disabled>
+            <button class="btn btn-outline-primary" type="button" id="btnCommentAdd" disabled>등록</button>
+        </c:otherwise>
+    </c:choose>
     </div>
     <!-- 댓글 리스트 -->
     <div class="comment-list"></div>
@@ -461,9 +469,8 @@
   </div>
 </div>
 
-<div class="homelistgo">
+<div class="homelistgo" style="margin-bottom: 30px;">
     <a href="${pageContext.request.contextPath}/community/homelist"><span>목록<i class="bi bi-chevron-right"></i></span></a>
 </div>
 </body>
 </html>
-

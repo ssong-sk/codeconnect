@@ -25,4 +25,14 @@ public interface CompanyMapperInter {
 	
 	//채용공고에서 사용
 	public int selectC_num(String c_id);
+	
+	//기업 회원 비밀번호 변경
+    public void updateCompanyPass(CompanyDto dto);
+    
+   //기업 회원 기업명 변경
+    public void updateCompanyName(CompanyDto dto);
+    
+    //기업 사업자등록번호 변경
+    public void updateCompanyRegiNum(CompanyDto dto);
+    
 }

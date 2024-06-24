@@ -63,63 +63,109 @@
         }
     }
 </style>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/smarteditor2/js/service/HuskyEZCreator.js" charset="utf-8"></script>
 </head>
 <body>
-<div style="margin: 50px 100px; width: 500px;">
-<form action="insert" method="post" enctype="multipart/form-data">
+<div style="margin: 50px 100px; width: 700px;">
+<form action="/community/interviewinsert" method="post" enctype="multipart/form-data">
   <table class="table table-bordered">
      <tr>
-       <th class="table-light">카테고리</th>
+       <th class="table-light">직무</th>
          <td>
            <select>
-           		<option>서버/백엔드 개발자</option>
-           		<option>프론트엔드 개발자</option>
-           		<option>웹 풀스택 개발자</option>
-           		<option>안드로이드 개발자</option>
-           		<option>IOS 개발자</option>
-           		<option>크로스플랫폼 앱 개발자</option>
-           		<option>게임 클라이언트 개발자</option>
-           		<option>게임 서버 개발자</option>
-           		<option>DBA</option>
-           		<option>빅데이터 엔지니어</option>
-           		<option>인공지능/머신러닝</option>
-           		<option>devops/시스템 엔지니어</option>
-           		<option>정보보안 담당자</option>
-           		<option>QA 엔지니어</option>
-           		<option>개발 PM</option>
-           		<option>HW/임베디드</option>
-           		<option>SW/솔루션</option>
-           		<option>웹퍼플리셔</option>
-           		<option>VR/AR/3D</option>
-           		<option>블록체인</option>
-           		<option>기술지원</option>
+               <option>서버/백엔드 개발자</option>
+               <option>프론트엔드 개발자</option>
+               <option>웹 풀스택 개발자</option>
+               <option>안드로이드 개발자</option>
+               <option>IOS 개발자</option>
+               <option>크로스플랫폼 앱 개발자</option>
+               <option>게임 클라이언트 개발자</option>
+               <option>게임 서버 개발자</option>
+               <option>DBA</option>
+               <option>빅데이터 엔지니어</option>
+               <option>인공지능/머신러닝</option>
+               <option>devops/시스템 엔지니어</option>
+               <option>정보보안 담당자</option>
+               <option>QA 엔지니어</option>
+               <option>개발 PM</option>
+               <option>HW/임베디드</option>
+               <option>SW/솔루션</option>
+               <option>웹퍼블리셔</option>
+               <option>VR/AR/3D</option>
+               <option>블록체인</option>
+               <option>기술지원</option>
            </select>
          </td>
      </tr>
      <tr>
-       <th class="table-light">상품가격</th>
+       <th class="table-light">회사명</th>
          <td>
-           <input type="text" name="price" class="form-control"
-           style="width: 200px;" required="required">
+           <input type="text" name="companyname" class="form-control">
          </td>
      </tr>
      <tr>
-       <th class="table-light">상품이미지</th>
+       <th class="table-light">이름</th>
          <td>
-           <input type="file" name="upload" class="form-control"
-           style="width: 200px;" multiple="multiple">
+           <input type="text" name="username" class="form-control" value="${name}" readonly="readonly">
          </td>
      </tr>
-     
+     <tr>
+       <th class="table-light">제목</th>
+         <td>
+           <input type="text" name="title" class="form-control" required="required">
+         </td>
+     </tr>
+     <tr>
+       <th class="table-light">내용</th>
+         <td>
+           <textarea name="content" id="content" rows="10" class="form-control" required="required"></textarea>
+         </td>
+     </tr>
+     <tr>
+       <th class="table-light">이미지</th>
+         <td>
+           <input type="file" id="upload" name="upload" class="form-control" multiple="multiple">
+         </td>
+     </tr>
      <tr>
        <td colspan="2" align="center">
-         <button type="submit" class="btn btn-success">저장</button>
-         <button type="button" class="btn btn-success"
-         onclick="location.href='list'">목록</button>
+         <button type="submit" class="btn btn-success" onclick="submitContents(this);">저장</button>
+         <button type="button" class="btn btn-success" onclick="location.href='list'">목록</button>
        </td>
      </tr>
   </table>
 </form>
 </div>
+
+<script type="text/javascript">
+var oEditors = [];
+
+nhn.husky.EZCreator.createInIFrame({
+    oAppRef: oEditors,
+    elPlaceHolder: "content",
+    sSkinURI: "${pageContext.request.contextPath}/resources/smarteditor2/SmartEditor2Skin.html",
+    fCreator: "createSEditor2"
+}); 
+
+function submitContents(elClickedObj) {
+    oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);
+    try {
+        elClickedObj.form.submit();
+    } catch(e) {}
+}
+
+$(document).ready(function() {
+    $('#upload').change(function(event) {
+        var files = event.target.files;
+        for (var i = 0; i < files.length; i++) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                oEditors.getById["content"].exec("PASTE_HTML", [ "<img src='" + e.target.result + "'/>" ]);
+            }
+            reader.readAsDataURL(files[i]);
+        }
+    });
+});
+</script>
 </body>
 </html>

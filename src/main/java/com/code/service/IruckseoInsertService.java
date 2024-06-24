@@ -330,7 +330,7 @@ public class IruckseoInsertService implements IruckseoInsertServiceInter {
 		irmapper.updateHope(hodto);
 	}
 
-	//희망조건 list 불러오기
+//희망조건 list 불러오기
 	public List<IruckseoHopeDto> allHopeDatas() {
 		// TODO Auto-generated method stub
 		return irmapper.allHopeDatas();
@@ -343,3 +343,4 @@ public class IruckseoInsertService implements IruckseoInsertServiceInter {
 	}
 
 }
+

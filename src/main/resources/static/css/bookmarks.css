@@ -1,0 +1,217 @@
+@charset "UTF-8";
+
+@supports (-webkit-line-clamp:2) and (-webkit-box-orient:vertical) {
+    .Card_className__BQveA .body .job-card-position {
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
+}
+
+ol, ul {
+    list-style: none;
+}
+
+.Container_Profile__1N5jZ {
+	position: relative;
+	max-width: 1060px;
+	width: 90%;
+	padding-bottom: 100px;
+	margin: 0 auto;
+}
+
+.Nav_Nav__xLwgq {
+    position: relative;
+    line-height: normal;
+}
+
+.Nav_Nav_title__tJm9D>p {
+    font-size: 20px;
+    font-weight: 700;
+    color: #333;
+    padding: 50px 0 20px;
+}
+
+.Nav_Nav_button__PjBi5 {
+    width: 100%;
+    display: none;
+    position: relative;
+    border-top: 1px solid rgba(0, 0, 0, .1);
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+    cursor: pointer;
+}
+
+.List_List_container__yHC_n>ul {
+    margin: -10px;
+    padding: 0;
+}
+
+.List_List_container__yHC_n>ul li {
+    width: 24%;
+    padding: 10px;
+    list-style: none;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.List_List__tslVL .List_sensor__VHAf2 {
+    display: block;
+    width: 100%;
+    padding: 0;
+}
+
+.List_List_container__yHC_n>ul:after {
+    display: block;
+    content: "";
+    clear: both;
+}
+
+.Container_Profile__1N5jZ:after {
+    display: block;
+    content: "";
+    clear: both;
+}
+
+.Card_className__BQveA>a {
+    display: block;
+}
+
+.Card_className__BQveA header {
+    padding-bottom: 75%;
+    position: relative;
+    background-size: cover;
+    background-position: 50%;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .1);
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .1);
+}
+
+.Card_className__BQveA header .bookmarkBtn {
+    background: none;
+    padding: 8px 6px;
+    width: 42px;
+    height: 42px;
+    top: 0;
+    right: 0;
+    flex-direction: row;
+    z-index: 1;
+    justify-content: center;
+    align-items: center;
+}
+
+.Card_className__BQveA header button {
+    width: 60px;
+    height: 30px;
+    border-radius: 3px;
+    position: absolute;
+    background: rgba(0, 0, 0, .3);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 400;
+    justify-content: center;
+    align-items: center;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.IconButton_IconButton__normal__Twwsf {
+    border: none;
+}
+
+.IconButton_IconButton__disableGutters__F_K1l {
+    padding: 8px;
+}
+
+.IconButton_IconButton__root__IJlt6 {
+    position: relative;
+    display: inline-flex;
+    padding: 8px;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.Card_className__BQveA header .bookmarkBtn>span {
+    font-size: 24px;
+}
+
+.IconButton_IconButton__label__o4AtY {
+    width: 100%;
+    font-size: inherit;
+    font-weight: inherit;
+    display: inherit;
+    align-items: inherit;
+    justify-content: inherit;
+    color: inherit;
+}
+
+.SvgIcon_SvgIcon__root__OHiSO {
+    display: flex;
+    align-items: inherit;
+    justify-content: inherit;
+}
+
+.SvgIcon_SvgIcon__root__svg__ohdSc {
+    -webkit-user-select: none;
+    user-select: none;
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    fill: currentColor;
+    flex-shrink: 0;
+    font-size: inherit;
+}
+
+.Card_className__BQveA .body {
+    padding: 14px 0;
+}
+
+.Card_className__BQveA .body .job-card-position {
+    position: relative;
+    color: #333;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.2;
+    max-height: 2.4em;
+    overflow: hidden;
+    text-align: left;
+    word-break: break-word;
+}
+
+.Card_className__BQveA .body .job-card-company-name {
+    color: #333;
+    font-weight: 600;
+}
+
+.Card_className__BQveA .body .job-card-company-location, .Card_className__BQveA .body .job-card-company-name {
+    font-size: 14px;
+    line-height: normal;
+    text-align: left;
+    word-break: break-word;
+    width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.Card_className__BQveA .body .job-card-company-location {
+    font-weight: 400;
+    color: #999;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
