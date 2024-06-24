@@ -407,7 +407,7 @@ span.blind{
     content: "";
     width: 6px;
     height: 6px;
-    background-color: rgb(240, 68, 82);
+    background-color: #0d6efd;
     border-radius: 3px;
 }
 
@@ -476,7 +476,7 @@ ul.sebu li::after{
     width: 4px;
     height: 4px;
     border-radius: 4px;
-    background-color: rgb(240, 68, 82);
+    background-color: #0d6efd;
     box-sizing: border-box;
     content: "";
 }
@@ -536,7 +536,7 @@ ul.sebu li::after{
     height: 6px;
     background-color: unset;
     box-sizing: border-box;
-    border: 1px solid rgb(240, 68, 82);
+    border: 1px solid #0d6efd;
     border-radius: 3px;
 }
 
@@ -744,7 +744,7 @@ div.footerdiv{
 						<li style="margin-bottom: 12px;">
 							<span class="title">이메일</span>
 							<a target="_blank" href="#" class="write">
-								<span style="width: 280px;">이메일 불러오기</span>
+								<span style="width: 280px;">${r_email }</span>
 								<span style="display: flex;align-items: center;">
 									<i class="bi bi-chevron-right" style="width: 16px;height: 16px;"></i>
 								</span>
@@ -753,7 +753,7 @@ div.footerdiv{
 						<li>
 							<span class="title">연락처</span>
 							<a target="_blank" href="#" class="write">
-								<span style="width: 280px;">연락처 불러오기</span>
+								<span style="width: 280px;">${r_hp }</span>
 								<span style="display: flex;align-items: center;">
 									<i class="bi bi-chevron-right" style="width: 16px;height: 16px;"></i>
 								</span>
@@ -772,28 +772,29 @@ div.footerdiv{
 							</em>
 						</h2>
 						<span class="applysu">
-							이력서 총 <em style="color: #0d6efd;;">?</em>개
+							이력서 총 <em style="color: #0d6efd;;">${ir_count }</em>개
 						</span>
 					</div>
+				<c:forEach var="ir" items="${irlist }">
 					<ul style="display: flex; flex-direction: column; width: 100%;list-style: none;">
 						<li class="applybox">
 							<div style="display: flex;">
 								<input type="radio" class="form-check-input" value="true" name="selected">
 								<div class="appdiv" style="margin-left: 32px;">
-									<h3 class="appsub">이력서 제목</h3>
+									<h3 class="appsub">${ir.pe_title }</h3>
 									<ul class="sebu" style="display: flex;margin-bottom: 8px;">
 										<li>기본정보</li>
 										<li>기술스택</li>
 										<li>학력</li>
 									</ul>
 									<p>
-										<span>'등록날짜' 등록</span>
+										<span>${ir.pe_writeday }</span>
 									</p>
 									<div class="btns">
 										<button class="dowunbtn">
 											<i class="bi bi-download"></i>
 										</button>
-										<a target="_blank" href="#">
+										<a target="_blank" href="/resumehome/form">
 											<i class="bi bi-pencil-square"></i>
 										</a>
 									</div>
@@ -801,6 +802,7 @@ div.footerdiv{
 							</div>
 						</li>
 					</ul>
+				</c:forEach>
 				</section>
 				
 				<!-- 첨부 파일 -->
@@ -918,5 +920,14 @@ $(".supportbtn").click(function(){
 $('.xbtn').click(function() {
     $('.ipsa').hide(); // .ipsa 요소 숨기기
 });
+</script>
+
+<script type="text/javascript">
+/* 이력서 클릭시 */
+$(".form-check-input").change(function(){
+	$(".applybox").css("border", "1px solid rgb(228, 228, 228)");
+	$(this).closest(".applybox").css("border", "2px solid #0d6efd"); // 선택된 radio 버튼의 부모 .applybox만 테두리 변경
+	$(".footerbtn").css("background", "#0d6efd");
+})
 </script>
 </html>

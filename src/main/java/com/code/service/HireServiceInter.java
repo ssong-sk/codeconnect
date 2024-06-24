@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.code.dto.HireDto;
+import com.code.dto.IruckseoInsertDto;
 
 public interface HireServiceInter {
 	
@@ -16,4 +17,9 @@ public interface HireServiceInter {
 	public int getRnumById(String r_id);
 	public boolean getScrap(int r_num, int h_num);
 	public void scrapDelete(int r_num, int h_num);
+	
+	//채용공고 지원하기 창
+	public List<IruckseoInsertDto> selectIruckseo(int r_num);
+	//채용공고 이력서 갯수
+	public String countIruckseo(int r_num);
 }

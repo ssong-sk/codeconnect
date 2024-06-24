@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.code.dto.HireDto;
+import com.code.dto.IruckseoInsertDto;
 import com.code.service.CompanyService;
 import com.code.service.HireService;
+import com.code.service.IruckseoInsertService;
 
 @Controller
 public class HireController {
@@ -27,6 +29,9 @@ public class HireController {
 
    @Autowired
    HireService hservice;
+   
+   @Autowired
+   IruckseoInsertService ir_service;
    
    @PostMapping("/hire/insert")
    public String hireInsert(@ModelAttribute("hdto") HireDto hdto) {
@@ -125,11 +130,17 @@ public class HireController {
    }
    
    @GetMapping("/hire/detail")
-   public ModelAndView detail(int h_num) {
+   public ModelAndView detail(int h_num, HttpSession session) {
       
+	  int r_num = (int) session.getAttribute("r_num");
+	  
       ModelAndView mview = new ModelAndView();
       
       HireDto hdto = hservice.getHireData(h_num);
+      
+      List<IruckseoInsertDto> irlist = hservice.selectIruckseo(r_num);
+      
+      String ir_count = hservice.countIruckseo(r_num);
       
       String careerValue = hdto.getH_career();
       if (!"신입".equals(careerValue)) {
@@ -137,7 +148,15 @@ public class HireController {
          hdto.setH_career(formattedCareer);
       }
       
+      String r_hp=(String)session.getAttribute("r_hp");
+      String r_email=(String)session.getAttribute("r_email");
+      
+      
       mview.addObject("hdto", hdto);
+      mview.addObject("irlist", irlist);
+      mview.addObject("ir_count", ir_count);
+      mview.addObject("r_hp", r_hp);
+      mview.addObject("r_email", r_email);
       mview.setViewName("/hire/hiredetail");
       
       return mview;
