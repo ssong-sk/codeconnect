@@ -36,5 +36,18 @@ public class HireDto {
 	private String ci_image;
 	private String ci_soge;
 	private String ci_logo;
+	private String ci_link;
+	
+	//스크랩
+	private int s_num;
+	private int r_num;
+	private boolean scraped;
+	public boolean isScraped() {
+	    return scraped;
+	}
+	
+	public void setScraped(boolean scraped) {
+	    this.scraped = scraped;
+	}
 
 }

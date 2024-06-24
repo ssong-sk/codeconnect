@@ -2,6 +2,7 @@ package com.code.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -34,7 +37,7 @@ public class HireController {
    }
 
    @GetMapping("/hire/main")
-   public String hireMain(@ModelAttribute("hdto") HireDto dto, Model model) {
+   public String hireMain(@ModelAttribute("hdto") HireDto dto, Model model, HttpSession session) {
       List<HireDto> hlist = hservice.getHireList();
 
       for (HireDto h : hlist) {
@@ -45,8 +48,26 @@ public class HireController {
             h.setH_career(formattedCareer);
          }
       }
+      
+      String myid=(String)session.getAttribute("myid");
+      Integer r_num = null;
+      
+      if (myid != null) {
+          r_num = hservice.getRnumById(myid);
+      }
+
+      if (r_num == null) {
+          r_num = 0; // 기본값 설정
+      }
+      
+      // 스크랩 여부 확인
+      for (HireDto h : hlist) {
+          boolean scraped = hservice.getScrap(r_num, h.getH_num());
+          h.setScraped(scraped);
+      }
 
       model.addAttribute("hlist", hlist);
+      model.addAttribute("r_num", r_num);
       return "hire/hiremain";
    }
 
@@ -121,5 +142,25 @@ public class HireController {
       
       return mview;
    }
+   
+   //스크랩
+   @ResponseBody
+   @PostMapping("/hire/scrap")
+   public String scrapinsert(@ModelAttribute("hdto") HireDto hdto) {
+
+      hservice.scrapInsert(hdto);
+
+      return "success";
+   }
+   
+   @ResponseBody
+   @PostMapping("/hire/scrapdelete")
+   public String scrapdelete(@RequestParam int r_num, @RequestParam int h_num) {
+
+      hservice.scrapDelete(r_num, h_num);
+
+      return "success";
+   }
+   
 
 }

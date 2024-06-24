@@ -555,75 +555,76 @@ a {
 }
 
 .hireinfo .img_box .counts {
-	position: absolute;
-	margin-left: auto;
-	color: rgb(255, 255, 255);
-	font-size: 13px;
-	z-index: 11;
-	right: 10px;
-	top: 10px;
-	width: 70px;
-	display: flex;
-	align-items: center;
-	display: none;
+    position: absolute;
+    margin-left: auto;
+    color: rgb(255, 255, 255);
+    font-size: 13px;
+    z-index: 11;
+    right: 10px;
+    top: 10px;
+    width: 70px;
+    display: flex;
+    align-items: center;
+    display: none;
 }
 
-.hireinfo .img_box:hover  .counts {
-	display: flex;
+.hireinfo .img_box:hover .counts {
+    display: flex;
 }
 
 .hireinfo .counts .position_view_count {
-	display: flex;
-	align-items: center;
-	margin-right: 10px;
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
 }
 
 .hireinfo .counts .position_view_count span {
-	margin-left: 4px;
+    margin-left: 4px;
 }
 
 .hireinfo .counts button {
-	padding: 0px;
+    padding: 0px;
 }
 
 .scrap {
-	display: flex;
-	justify-content: center;
-	align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .hireinfo .img_filter {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 250px;
-	height: 166px;
-	background: rgba(0, 0, 0, 0.5);
-	opacity: 0;
-	transition: opacity 0.3s ease;
-	z-index: 10;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 166px;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 10;
 }
 
 .hireinfo:hover .img {
-	transform: scale(1.1);
+    transform: scale(1.1);
 }
 
 .hireinfo:hover .img_filter {
-	opacity: 0.8;
+    opacity: 0.8;
 }
 
-svg{
-	width: 18px;
-	height: 18px;
+svg {
+    width: 18px;
+    height: 18px;
 }
 
-.position_view_count svg{
-	margin-bottom: 1px;
+.position_view_count svg {
+    margin-bottom: 1px;
 }
 
-.position_view_count span{
-	font-size: 12pt;
-	font-family: IBM Plex Sans KR;
+.position_view_count span {
+    font-size: 12pt;
+    font-family: IBM Plex Sans KR;
+    color: #fff;
 }
 </style>
 </head>
@@ -632,7 +633,7 @@ svg{
       <div id="wrap">
          <div class="center">
             <div class="category">
-
+				<input type="hidden" id="r_num" name="r_num" value="${r_num }">
                <!-- 개발 직무 선택 -->
                <span class="title">개발 직무</span>
                <button class="job" type="button" data-bs-toggle="modal"
@@ -1365,17 +1366,32 @@ svg{
 			                            </svg>
 			                            <span>87</span>
 			                        </div>
-			                        <button aria-pressed="false" type="button" class="scrap"
-			                            onclick="location.href='hire/hirewrite'">
-			                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-			                                viewBox="0 0 24 24">
-			                                <path fill="#fff" fill-rule="evenodd"
-			                                    d="M10.725 14.71a2 2 0 0 1 2.55 0l3.975 3.289V5H6.75v12.999l3.975-3.29ZM4.75 20.123V5a2 2 0 0 1 2-2h10.5a2 2 0 0 1 2 2v15.124a1 1 0 0 1-1.638.77L12 16.25l-5.612 4.645a1 1 0 0 1-1.638-.77Z"
-			                                    clip-rule="evenodd"></path>
-			                            </svg>
-			                        </button>
+			                        </a>
+			                        <c:if test="${scraped}">
+									    <input type="hidden" id="r_num" name="r_num" value="${r_num}">
+									    <input type="hidden" id="h_num" name="h_num" value="${h.h_num}">
+									    <button aria-pressed="true" type="button" class="scrap" value="${h.h_num}">
+									        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+									            <path fill="#fff" fill-rule="evenodd"
+									                d="M6.403 20.825a1 1 0 0 1-1.653-.757V5a2 2 0 0 1 2-2h10.5a2 2 0 0 1 2 2v15.068a1 1 0 0 1-1.653.757L12 16l-5.597 4.825Z"
+									                clip-rule="evenodd"></path>
+									        </svg>
+									    </button>
+									</c:if>
+									<c:if test="${not scraped}">
+									    <input type="hidden" id="r_num" name="r_num" value="${r_num}">
+									    <input type="hidden" id="h_num" name="h_num" value="${h.h_num}">
+									    <button aria-pressed="false" type="button" class="scrap" value="${h.h_num}">
+									        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+									            <path fill="#fff" fill-rule="evenodd"
+									                d="M10.725 14.71a2 2 0 0 1 2.55 0l3.975 3.289V5H6.75v12.999l3.975-3.29ZM4.75 20.123V5a2 2 0 0 1 2-2h10.5a2 2 0 0 1 2 2v15.124a1 1 0 0 1-1.638.77L12 16.25l-5.612 4.645a1 1 0 0 1-1.638-.77Z"
+									                clip-rule="evenodd"></path>
+									        </svg>
+									    </button>
+									</c:if>
 			                    </div>
 			                </div>
+			            <a target="_self" title="${h.h_title}" href="detail?h_num=${h.h_num }">
 			                <div class="hireinfo-content">
 			                    <div class="content-company">
 			                        <span>${h.c_name}</span>
@@ -2083,8 +2099,11 @@ $(document).click(function(event) {
 });
 </script>
 
+
+
 <!-- 검색 기능 -->
 <script type="text/javascript">
+	
 	/* 직무,기술,지역 검색 */
     $(".apply-btn, .techapply-btn, .btnapply, .category2, .resetcareer").click(function() {
         var search_job = $("#search_job").val();
@@ -2106,6 +2125,7 @@ $(document).click(function(event) {
             },
             success: function(res) {
                 renderResults(res);
+                scrapPress();
             },
             error: function(xhr, status, error) {
                 console.error("검색 중 오류 발생: " + error);
@@ -2137,6 +2157,7 @@ $(document).click(function(event) {
             },
             success: function(res) {
                 renderResults(res);
+                scrapPress();
             },
             error: function(xhr, status, error) {
                 console.error("검색 중 오류 발생: " + error);
@@ -2147,69 +2168,139 @@ $(document).click(function(event) {
 
 
 	// 결과를 화면에 표시하는 함수
-    function renderResults(res) {
-        $('.hirelist').hide(); // 기존 리스트 삭제
+function renderResults(res) {
+    $('.hirelist').hide(); // 기존 리스트 삭제
 
-        if (res.length === 0) {
-            $('#hireListContainer').html('<p>검색 결과가 없습니다.</p>');
-            return;
-        }
-        var s = "<section class='s_hirelist'>";
-        $.each(res, function(index, h) {
-            s += "<div class='hireinfo'>";
-            s += "<a target='_self' title='" + h.h_title + "' href='#'>";
-            s += "<div class='img_box'>";
-            s += "<div class='img_filter'></div>";
-            s += "<img alt='" + h.c_name + "' class='img' src='../../companyintro_uploads/" + h.ci_image + "'>";
-            s += "<div class='bKGmxJ'></div>";
-            s += "<div class='counts'>";
-            s += "<div class='position_view_count'>";
-            s += "<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20'>";
-            s += "<g fill='none' fill-rule='evenodd'>";
-            s += "<path d='M0 0h16v16H0z'></path>";
-            s += "<g stroke='#FFF' stroke-linecap='round'>";
-            s += "<path d='M8 10c.86 0 1.556-.672 1.556-1.5S8.859 7 8 7c-.86 0-1.556.672-1.556 1.5S7.141 10 8 10z'></path>";
-            s += "<path d='M15 8.5c-1.469 2.243-4.108 4.5-7 4.5-2.892 0-5.531-2.257-7-4.5C2.788 6.369 4.882 4 8 4s5.212 2.369 7 4.5z'></path>";
-            s += "</g>";
-            s += "</g>";
-            s += "</svg>";
-            s += "<span>87</span>";
-            s += "</div>";
-            s += "<button aria-pressed='false' type='button' class='scrap' onclick='location.href=\"hire/hirewrite\"'>";
-            s += "<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' viewBox='0 0 24 24'>";
-            s += "<path fill='#fff' fill-rule='evenodd' d='M10.725 14.71a2 2 0 0 1 2.55 0l3.975 3.289V5H6.75v12.999l3.975-3.29ZM4.75 20.123V5a2 2 0 0 1 2-2h10.5a2 2 0 0 1 2 2v15.124a1 1 0 0 1-1.638.77L12 16.25l-5.612 4.645a1 1 0 0 1-1.638-.77Z' clip-rule='evenodd'></path>";
-            s += "</svg>";
-            s += "</button>";
-            s += "</div>";
-            s += "</div>";
-            s += "<div class='hireinfo-content'>";
-            s += "<div class='content-company'>";
-            s += "<span>" + h.c_name + "</span>";
-            s += "</div>";
-            s += "<h2 class='position_card_info_title'>" + h.h_title + "</h2>";
-            s += "<ul class='content-techlist'>";
-            $.each(h.h_tech.split(','), function(index, tech) {
-                s += "<li>" + tech.trim() + "</li>";
-            });
-            s += "</ul>";
-            s += "<ul class='content-area'>";
-            s += "<li>" + (h.h_location.length > 7 ? h.h_location.substring(0, 7) : h.h_location) + "</li>";
-            s += "<li>";
-            if (h.h_career == '신입') {
-                s += "·&nbsp;&nbsp;" + h.h_career;
-            } else {
-                s += "·&nbsp;&nbsp;경력 " + h.h_career + "년";
-            }
-            s += "</li>";
-            s += "</ul>";
-            s += "</div>";
-            s += "</a>";
-            s += "</div>";
-        });
-        s += "</section>";
-        $('#hireListContainer').html(s); // 업데이트할 요소의 ID를 지정
+    if (res.length === 0) {
+        $('#hireListContainer').html('<p>검색 결과가 없습니다.</p>');
+        return;
     }
+    var s = "<section class='s_hirelist'>";
+    $.each(res, function(index, h) {
+        s += "<div class='hireinfo'>";
+        s += "<a target='_self' title='" + h.h_title + "' href='detail?h_num="+h.h_num +"'>";
+        s += "<div class='img_box'>";
+        s += "<div class='img_filter'></div>";
+        s += "<img alt='" + h.c_name + "' class='img' src='../../companyintro_uploads/" + h.ci_image + "'>";
+        s += "<div class='bKGmxJ'></div>";
+        s += "<div class='counts'>";
+        s += "<div class='position_view_count'>";
+        s += "<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20'>";
+        s += "<g fill='none' fill-rule='evenodd'>";
+        s += "<path d='M0 0h16v16H0z'></path>";
+        s += "<g stroke='#FFF' stroke-linecap='round'>";
+        s += "<path d='M8 10c.86 0 1.556-.672 1.556-1.5S8.859 7 8 7c-.86 0-1.556.672-1.556 1.5S7.141 10 8 10z'></path>";
+        s += "<path d='M15 8.5c-1.469 2.243-4.108 4.5-7 4.5-2.892 0-5.531-2.257-7-4.5C2.788 6.369 4.882 4 8 4s5.212 2.369 7 4.5z'></path>";
+        s += "</g>";
+        s += "</g>";
+        s += "</svg>";
+        s += "<span>87</span>";
+        s += "</div>";
+        s += "</a>"; // a 닫기
+        s += "<button aria-pressed='false' type='button' class='scrap' value='"+h.h_num+"'>";
+        s += "<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' viewBox='0 0 24 24'>";
+        s += "<path fill='#fff' fill-rule='evenodd' d='M10.725 14.71a2 2 0 0 1 2.55 0l3.975 3.289V5H6.75v12.999l3.975-3.29ZM4.75 20.123V5a2 2 0 0 1 2-2h10.5a2 2 0 0 1 2 2v15.124a1 1 0 0 1-1.638.77L12 16.25l-5.612 4.645a1 1 0 0 1-1.638-.77Z' clip-rule='evenodd'></path>";
+        s += "</svg>";
+        s += "</button>";
+        s += "</div>"; // counts 닫기
+        s += "</div>"; // img_box 닫기
+        s += "<a target='_self' title='" + h.h_title + "' href='detail?h_num="+h.h_num +"'>";
+        s += "<div class='hireinfo-content'>";
+        s += "<div class='content-company'>";
+        s += "<span>" + h.c_name + "</span>";
+        s += "</div>";
+        s += "<h2 class='position_card_info_title'>" + h.h_title + "</h2>";
+        s += "<ul class='content-techlist'>";
+        $.each(h.h_tech.split(','), function(index, tech) {
+            s += "<li>" + tech.trim() + "</li>";
+        });
+        s += "</ul>";
+        s += "<ul class='content-area'>";
+        s += "<li>" + (h.h_location.length > 7 ? h.h_location.substring(0, 7) : h.h_location) + "</li>";
+        s += "<li>";
+        if (h.h_career == '신입') {
+            s += "·&nbsp;&nbsp;" + h.h_career;
+        } else {
+            s += "·&nbsp;&nbsp;경력 " + h.h_career + "년";
+        }
+        s += "</li>";
+        s += "</ul>";
+        s += "</div>"; // hireinfo-content 닫기
+        s += "</a>"; // a 닫기
+        s += "</div>"; // hireinfo 닫기
+    });
+    s += "</section>";
+    $('#hireListContainer').html(s); // 업데이트할 요소의 ID를 지정
+}
 
+</script>
+
+<script type="text/javascript">
+/* 스크랩 기능 */
+scrapPress();
+
+function scrapPress() {
+	$("button.scrap").click(function() {
+		var scrappressed = $(this);
+		var isPressed = scrappressed.attr('aria-pressed') === 'true';
+		var r_num = $("#r_num").val();
+		var h_num = scrappressed.val();
+		var isLoggedIn = r_num != 0 ? true : false;
+
+		if(isLoggedIn){
+		    if (isPressed) {
+		    	$.ajax({
+		            type: "post",
+		            url: "scrapdelete",
+		            dataType: "html",
+		            data: {
+		                "r_num": r_num,
+		                "h_num": h_num,
+		            },
+		            success: function() {
+				        // aria-pressed가 true인 경우 -> false로 변경
+				        scrappressed.attr('aria-pressed', 'false');
+				        scrappressed.html(`
+				            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+				                <path fill="#fff" fill-rule="evenodd" 
+				                      d="M10.725 14.71a2 2 0 0 1 2.55 0l3.975 3.289V5H6.75v12.999l3.975-3.29ZM4.75 20.123V5a2 2 0 0 1 2-2h10.5a2 2 0 0 1 2 2v15.124a1 1 0 0 1-1.638.77L12 16.25l-5.612 4.645a1 1 0 0 1-1.638-.77Z" 
+				                      clip-rule="evenodd"></path>
+				            </svg>
+				        `);
+		            }
+		    	});
+		    } else {		  
+		        $.ajax({
+		            type: "post",
+		            url: "scrap",
+		            dataType: "html",
+		            data: {
+		                "r_num": r_num,
+		                "h_num": h_num,
+		            },
+		            success: function() {
+		            	// aria-pressed가 false인 경우 -> true로 변경
+				        scrappressed.attr('aria-pressed', 'true');
+				        scrappressed.html(`
+				            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+				                <path fill="#fff" fill-rule="evenodd" 
+				                      d="M6.403 20.825a1 1 0 0 1-1.653-.757V5a2 2 0 0 1 2-2h10.5a2 2 0 0 1 2 2v15.068a1 1 0 0 1-1.653.757L12 16l-5.597 4.825Z" 
+				                      clip-rule="evenodd"></path>
+				            </svg>
+				        `);
+		            }
+		        });
+		    }
+		}else{
+			var confirmLogin = confirm("로그인이 필요합니다.\n로그인 페이지로 이동하시겠습니까?");
+	        if (confirmLogin) {
+	            window.location.href = "/login/main";
+	        }
+		}
+
+	});
+
+}
 </script>
 </body>
 </html>
