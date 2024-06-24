@@ -18,23 +18,113 @@
 <script
 	src="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+<script type="text/javascript"
+	src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script type="text/javascript"
+	src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript"
+	src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="slick/slick.min.js"></script>
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="/css/main.css">
+<style type="text/css">
+* {
+	box-sizing: border-box
+}
 
+/* Slideshow container */
+.slideshow-container {
+	width: 1060px;
+	margin: 0 auto;
+	position: relative;
+}
 
-<script type="text/javascript">
-	$(document).ready(function() {
-		$('.slick-slide').slick({
-			autoplay : true, // 자동 재생 설정
-			autoplaySpeed : 3000, // 재생 속도 (3초마다)
-			dots : true, // 페이지네이션(점) 사용 여부
-			arrows : true, // 이전/다음 버튼 사용 여부
-			infinite : true, // 무한 루프 여부
-			speed : 2000, // 슬라이드 전환 속도 (2초)
-			slidesToShow : 1, // 보여질 슬라이드 개수
-			slidesToScroll : 1 // 스크롤시 이동할 슬라이드 개수
-		});
-	});
-</script>
+/* Hide the images by default */
+.mySlides {
+	display: none;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+	cursor: pointer;
+	position: absolute;
+	top: 50%;
+	width: auto;
+	margin-top: -22px;
+	padding: 16px;
+	color: white;
+	font-weight: bold;
+	font-size: 18px;
+	transition: 0.6s ease;
+	border-radius: 0 3px 3px 0;
+	user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+	right: 0;
+	border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+	background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Caption text */
+.text {
+	color: #f2f2f2;
+	font-size: 15px;
+	padding: 8px 12px;
+	position: absolute;
+	bottom: 40px;
+	width: 100%;
+	text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+	color: #f2f2f2;
+	font-size: 12px;
+	padding: 8px 12px;
+	position: absolute;
+	top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+	cursor: pointer;
+	height: 15px;
+	width: 15px;
+	margin: 0 2px;
+	background-color: #bbb;
+	border-radius: 50%;
+	display: inline-block;
+	transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+	background-color: #717171;
+}
+
+/* Fading animation */
+.fada {
+	animation-name: fada;
+	animation-duration: 1.5s;
+}
+
+@
+keyframes fada {
+	from {opacity: .4
+}
+
+to {
+	opacity: 1
+}
+}
+</style>
 </head>
 <c:set var="root" value="<%=request.getContextPath()%>" />
 <body>
@@ -43,7 +133,10 @@
 			<c:if test="${sessionScope.loginok==null }">
 				<article class="MatchedBanner_MatchedBanner__jSUtn">
 					<div class="MatchedBanner_MatchedBanner__info__HEO_b">
-						<h6 class="Typography_Typography__root__RdAI1 Typography_Typography__headline2__vR7L_ Typography_Typography__weightBold__KkJEY MatchedBanner_MatchedBanner__info__title__ciAu_">내 이력서를 분석해<br>관심 있을 만한 포지션을 추천해 드려요.</h6>
+						<h6
+							class="Typography_Typography__root__RdAI1 Typography_Typography__headline2__vR7L_ Typography_Typography__weightBold__KkJEY MatchedBanner_MatchedBanner__info__title__ciAu_">
+							내 이력서를 분석해<br>관심 있을 만한 포지션을 추천해 드려요.
+						</h6>
 						<button type="button" onclick="location.href='/login/main'"
 							class="Button_Button__root__m1NGq Button_Button__contained__qyP2s Button_Button__containedPrimary__kCB60 Button_Button__containedSizeMedium__xBgIW MatchedBanner_MatchedBanner__btn__XNKYB"
 							data-attribute-id="jobs__signupLogin__click">
@@ -365,149 +458,124 @@
 					</div>
 				</article>
 			</c:if>
+
+
+			<div class="slideshow-container">
+				<!-- Full-width images with number and caption text -->
+				<div class="mySlides fada">
+					<div class="numbertext">1 / 3</div>
+					<a href="/layout/slick"> <img src="/image/img1.jpg"
+						style="width: 100%"></a>
+					<div class="text">Caption Text</div>
+				</div>
+
+				<div class="mySlides fada">
+					<div class="numbertext">2 / 3</div>
+					<img src="/image/img1.jpg" style="width: 100%">
+					<div class="text">Caption Two</div>
+				</div>
+
+				<div class="mySlides fada">
+					<div class="numbertext">3 / 3</div>
+					<img src="/image/img1.jpg" style="width: 100%">
+					<div class="text">Caption Three</div>
+				</div>
+
+				<!-- Next and previous buttons -->
+				<a class="prev" onclick="plusSlides(-1)">&#10094;</a> <a
+					class="next" onclick="plusSlides(1)">&#10095;</a>
+
+				<div style="text-align: center; margin-top: 12px;">
+					<span class="dot" onclick="currentSlide(1)"></span> <span
+						class="dot" onclick="currentSlide(2)"></span> <span class="dot"
+						onclick="currentSlide(3)"></span>
+				</div>
+			</div>
+			<!-- The dots/circles -->
+
+			<script type="text/javascript">
+				let slideIndex = 1;
+				showSlides(slideIndex);
+
+				// 이전/이후 버튼 
+				function plusSlides(n) {
+					showSlides(slideIndex += n);
+				}
+
+				// 버튼 누를 시 이미지 전환
+				function currentSlide(n) {
+					showSlides(slideIndex = n);
+				}
+
+				// 자동으로 넘어가지는 인터벌
+				let slideInterval;
+
+				function startSlideshow() {
+					slideInterval = setInterval(function() {
+						showSlides(slideIndex += 1);
+					}, 5000); // 이미지 바뀌는데 7초
+				}
+
+				function stopSlideshow() {
+					clearInterval(slideInterval);
+				}
+
+				function showSlides(n) {
+					let i;
+					let slides = document.getElementsByClassName("mySlides");
+					let dots = document.getElementsByClassName("dot");
+
+					// Wrap around if the index goes out of bounds
+					if (n > slides.length) {
+						slideIndex = 1;
+					}
+					if (n < 1) {
+						slideIndex = slides.length;
+					}
+
+					// Hide all slides
+					for (i = 0; i < slides.length; i++) {
+						slides[i].style.display = "none";
+					}
+
+					// Remove the "active" class from all dots
+					for (i = 0; i < dots.length; i++) {
+						dots[i].className = dots[i].className.replace(
+								" active", "");
+					}
+
+					// Show the current slide and set "active" to its corresponding dot
+					slides[slideIndex - 1].style.display = "block";
+					dots[slideIndex - 1].className += " active";
+				}
+
+				// Start slideshow automatically
+				startSlideshow();
+			</script>
+
+			<script type="text/javascript">
+				document
+						.querySelector('.bookmarkBtn')
+						.addEventListener(
+								'click',
+								function() {
+									// SVG 아이콘의 fill 속성 변경
+									let svgIcon = this
+											.querySelector('.SvgIcon_SvgIcon__root__svg__ohdSc');
+									svgIcon.style.fill = '#3366ff'; // 색상 변경
+
+									// data-kind 속성 값 변경
+									this.dataset.kind = 'remove'; // 값 변경
+								});
+			</script>
 			<article class="TopBannerArea_MainBannerArea__27LJX">
 				<div class="slick-slider slick-initialized" dir="ltr">
 					<div class="slick-list">
 						<div class="slick-track"
-							style="width: 24380px; opacity: 1; transform: translate3d(-4240px, 0px, 0px);">
+							style="width: 37100px; opacity: 1; transform: translate3d(-11660px, 0px, 0px);">
 							<div data-index="-1" tabindex="-1"
 								class="slick-slide slick-cloned" aria-hidden="true"
 								style="width: 1060px;">
-								<div>
-									<div class="BannerItem_BannerItem__NtVfT">
-										<div class="BannerItem_BannerItem__link__olAEK">
-											<a
-												href="https://www.bizplay.co.kr/vuch_te_01.act?infw=wanted_202405"
-												target="_blank" rel="noopener noreferrer"
-												data-landing-uri="https://www.bizplay.co.kr/vuch_te_01.act?infw=wanted_202405"
-												data-attribute-id="jobs__mainBanner__click"
-												data-link-kind="CUSTOM_URL"
-												data-content-title="올인원 bzp 출장관리"><img
-												src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fbanners%2F2371%2Fcb115077.jpg&amp;w=1060&amp;q=100"
-												fetchpriority="auto" alt="올인원 bzp 출장관리"
-												class="BannerItem_BannerItem__link__img__JHO6H">
-												<div class="BannerItem_BannerItem__overlay__zQ88O"
-													style="background: linear-gradient(270deg, rgba(38, 38, 33, 0), rgba(38, 38, 33, 0.43))"></div></a>
-										</div>
-										<div class="BannerItem_BannerItem__info__1QEVE">
-											<h3
-												class="Typography_Typography__root__RdAI1 Typography_Typography__title3__J1fCl Typography_Typography__title3__weightBold__xwZk7 Typography_Typography__weightBold__KkJEY BannerItem_BannerItem__info__title__todNv">올인원
-												bzp 출장관리</h3>
-											<p
-												class="Typography_Typography__root__RdAI1 Typography_Typography__body2__5Mmhi Typography_Typography__weightMedium__GXnOM BannerItem_BannerItem__info__desc__pNpL7">출장규정
-												자동화로 손쉬운 임직원 관리</p>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div data-index="0" class="slick-slide" tabindex="-1"
-								aria-hidden="true" style="outline: none; width: 1060px;">
-								<div>
-									<div class="BannerItem_BannerItem__NtVfT">
-										<div class="BannerItem_BannerItem__link__olAEK">
-											<a href="/company/370" data-landing-uri="/company/370"
-												data-attribute-id="jobs__mainBanner__click"
-												data-link-kind="COMPANY_DETAIL"
-												data-content-title="EA 개발 직군 선수 영입" data-content-id="370"><img
-												src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fbanners%2F2373%2F6f7e6f62.jpg&amp;w=1060&amp;q=100"
-												fetchpriority="auto" alt="EA 개발 직군 선수 영입"
-												class="BannerItem_BannerItem__link__img__JHO6H">
-												<div class="BannerItem_BannerItem__overlay__zQ88O"
-													style="background: linear-gradient(270deg, rgba(38, 38, 33, 0), rgba(38, 38, 33, 0.43))"></div></a>
-										</div>
-										<div class="BannerItem_BannerItem__info__1QEVE">
-											<h3
-												class="Typography_Typography__root__RdAI1 Typography_Typography__title3__J1fCl Typography_Typography__title3__weightBold__xwZk7 Typography_Typography__weightBold__KkJEY BannerItem_BannerItem__info__title__todNv">EA
-												개발 직군 선수 영입</h3>
-											<p
-												class="Typography_Typography__root__RdAI1 Typography_Typography__body2__5Mmhi Typography_Typography__weightMedium__GXnOM BannerItem_BannerItem__info__desc__pNpL7">자소서
-												없이 오늘 지원, 9월 입사!</p>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div data-index="1" class="slick-slide" tabindex="-1"
-								aria-hidden="true" style="outline: none; width: 1060px;">
-								<div>
-									<div class="BannerItem_BannerItem__NtVfT">
-										<div class="BannerItem_BannerItem__link__olAEK">
-											<a href="/company/403" data-landing-uri="/company/403"
-												data-attribute-id="jobs__mainBanner__click"
-												data-link-kind="COMPANY_DETAIL"
-												data-content-title="삼쩜삼 개발직군 대규모 채용" data-content-id="403"><img
-												src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fbanners%2F2367%2F2d2da733.jpg&amp;w=1060&amp;q=100"
-												fetchpriority="auto" alt="삼쩜삼 개발직군 대규모 채용"
-												class="BannerItem_BannerItem__link__img__JHO6H">
-												<div class="BannerItem_BannerItem__overlay__zQ88O"
-													style="background: linear-gradient(270deg, rgba(38, 38, 33, 0), rgba(38, 38, 33, 0.43))"></div></a>
-										</div>
-										<div class="BannerItem_BannerItem__info__1QEVE">
-											<h3
-												class="Typography_Typography__root__RdAI1 Typography_Typography__title3__J1fCl Typography_Typography__title3__weightBold__xwZk7 Typography_Typography__weightBold__KkJEY BannerItem_BannerItem__info__title__todNv">삼쩜삼
-												개발직군 대규모 채용</h3>
-											<p
-												class="Typography_Typography__root__RdAI1 Typography_Typography__body2__5Mmhi Typography_Typography__weightMedium__GXnOM BannerItem_BannerItem__info__desc__pNpL7">24.05.27.
-												- 24.06.16.</p>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div data-index="2" class="slick-slide" tabindex="-1"
-								aria-hidden="true" style="outline: none; width: 1060px;">
-								<div>
-									<div class="BannerItem_BannerItem__NtVfT">
-										<div class="BannerItem_BannerItem__link__olAEK">
-											<a href="/wd/223838" data-landing-uri="/wd/223838"
-												data-attribute-id="jobs__mainBanner__click"
-												data-link-kind="POSITION"
-												data-content-title="토스 PC 플랫폼 디자이너" data-content-id="223838"><img
-												src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fbanners%2F2374%2Fabe3e5db.jpg&amp;w=1060&amp;q=100"
-												fetchpriority="auto" alt="토스 PC 플랫폼 디자이너"
-												class="BannerItem_BannerItem__link__img__JHO6H">
-												<div class="BannerItem_BannerItem__overlay__zQ88O"
-													style="background: linear-gradient(270deg, rgba(38, 38, 33, 0), rgba(38, 38, 33, 0.43))"></div></a>
-										</div>
-										<div class="BannerItem_BannerItem__info__1QEVE">
-											<h3
-												class="Typography_Typography__root__RdAI1 Typography_Typography__title3__J1fCl Typography_Typography__title3__weightBold__xwZk7 Typography_Typography__weightBold__KkJEY BannerItem_BannerItem__info__title__todNv">토스
-												PC 플랫폼 디자이너</h3>
-											<p
-												class="Typography_Typography__root__RdAI1 Typography_Typography__body2__5Mmhi Typography_Typography__weightMedium__GXnOM BannerItem_BannerItem__info__desc__pNpL7">서류
-												패스의 기회, 놓치지 마세요!</p>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div data-index="3"
-								class="slick-slide slick-active slick-current" tabindex="-1"
-								aria-hidden="false" style="outline: none; width: 1060px;">
-								<div>
-									<div class="BannerItem_BannerItem__NtVfT">
-										<div class="BannerItem_BannerItem__link__olAEK">
-											<a href="/events/2024_job_festa"
-												data-landing-uri="/events/2024_job_festa"
-												data-attribute-id="jobs__mainBanner__click"
-												data-link-kind="EVENT_DETAIL"
-												data-content-title="2024 관광 일자리 페스타"><img
-												src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fbanners%2F2385%2F1203d6e1.jpg&amp;w=1060&amp;q=100"
-												fetchpriority="auto" alt="2024 관광 일자리 페스타"
-												class="BannerItem_BannerItem__link__img__JHO6H">
-												<div class="BannerItem_BannerItem__overlay__zQ88O"
-													style="background: linear-gradient(270deg, rgba(38, 38, 33, 0), rgba(38, 38, 33, 0.43))"></div></a>
-										</div>
-										<div class="BannerItem_BannerItem__info__1QEVE">
-											<h3
-												class="Typography_Typography__root__RdAI1 Typography_Typography__title3__J1fCl Typography_Typography__title3__weightBold__xwZk7 Typography_Typography__weightBold__KkJEY BannerItem_BannerItem__info__title__todNv">2024
-												관광 일자리 페스타</h3>
-											<p
-												class="Typography_Typography__root__RdAI1 Typography_Typography__body2__5Mmhi Typography_Typography__weightMedium__GXnOM BannerItem_BannerItem__info__desc__pNpL7">지역
-												관광기업들의 채용 정보가 한 곳에!</p>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div data-index="4" class="slick-slide" tabindex="-1"
-								aria-hidden="true" style="outline: none; width: 1060px;">
 								<div>
 									<div class="BannerItem_BannerItem__NtVfT">
 										<div class="BannerItem_BannerItem__link__olAEK">
@@ -519,7 +587,7 @@
 												src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fbanners%2F2365%2F8540675a.jpg&amp;w=1060&amp;q=100"
 												fetchpriority="auto" alt="WORK RECIPE"
 												class="BannerItem_BannerItem__link__img__JHO6H">
-												<div class="BannerItem_BannerItem__overlay__zQ88O"
+											<div class="BannerItem_BannerItem__overlay__zQ88O"
 													style="background: linear-gradient(270deg, rgba(84, 83, 20, 0), rgba(84, 83, 20, 0.43))"></div></a>
 										</div>
 										<div class="BannerItem_BannerItem__info__1QEVE">
@@ -533,7 +601,7 @@
 									</div>
 								</div>
 							</div>
-							<div data-index="5" class="slick-slide" tabindex="-1"
+							<div data-index="0" class="slick-slide" tabindex="-1"
 								aria-hidden="true" style="outline: none; width: 1060px;">
 								<div>
 									<div class="BannerItem_BannerItem__NtVfT">
@@ -545,7 +613,7 @@
 												src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fbanners%2F2078%2Fa78a154c.jpg&amp;w=1060&amp;q=100"
 												fetchpriority="auto" alt="이번 주 신규 포지션"
 												class="BannerItem_BannerItem__link__img__JHO6H">
-												<div class="BannerItem_BannerItem__overlay__zQ88O"
+											<div class="BannerItem_BannerItem__overlay__zQ88O"
 													style="background: linear-gradient(270deg, rgba(84, 84, 84, 0), rgba(84, 84, 84, 0.43))"></div></a>
 										</div>
 										<div class="BannerItem_BannerItem__info__1QEVE">
@@ -559,8 +627,261 @@
 									</div>
 								</div>
 							</div>
+							<div data-index="1" class="slick-slide" tabindex="-1"
+								aria-hidden="true" style="outline: none; width: 1060px;">
+								<div>
+									<div class="BannerItem_BannerItem__NtVfT">
+										<div class="BannerItem_BannerItem__link__olAEK">
+											<a href="/company/49342" data-landing-uri="/company/49342"
+												data-attribute-id="jobs__mainBanner__click"
+												data-link-kind="COMPANY_DETAIL"
+												data-content-title="개발 전 직군·CS·QA 채용 중"
+												data-content-id="49342"><img
+												src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fbanners%2F2402%2F961b2a29.jpg&amp;w=1060&amp;q=100"
+												fetchpriority="auto" alt="개발 전 직군·CS·QA 채용 중"
+												class="BannerItem_BannerItem__link__img__JHO6H">
+											<div class="BannerItem_BannerItem__overlay__zQ88O"
+													style="background: linear-gradient(270deg, rgba(33, 33, 33, 0), rgba(33, 33, 33, 0.43))"></div></a>
+										</div>
+										<div class="BannerItem_BannerItem__info__1QEVE">
+											<h3
+												class="Typography_Typography__root__RdAI1 Typography_Typography__title3__J1fCl Typography_Typography__title3__weightBold__xwZk7 Typography_Typography__weightBold__KkJEY BannerItem_BannerItem__info__title__todNv">개발
+												전 직군·CS·QA 채용 중</h3>
+											<p
+												class="Typography_Typography__root__RdAI1 Typography_Typography__body2__5Mmhi Typography_Typography__weightMedium__GXnOM BannerItem_BannerItem__info__desc__pNpL7">SEE
+												YOU IN THE DUNGEON!</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div data-index="2" class="slick-slide" tabindex="-1"
+								aria-hidden="true" style="outline: none; width: 1060px;">
+								<div>
+									<div class="BannerItem_BannerItem__NtVfT">
+										<div class="BannerItem_BannerItem__link__olAEK">
+											<a href="/company/9416" data-landing-uri="/company/9416"
+												data-attribute-id="jobs__mainBanner__click"
+												data-link-kind="COMPANY_DETAIL"
+												data-content-title="클라썸은 지금도 전 직군 채용 중!"
+												data-content-id="9416"><img
+												src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fbanners%2F2382%2Fe8da656c.jpg&amp;w=1060&amp;q=100"
+												fetchpriority="auto" alt="클라썸은 지금도 전 직군 채용 중!"
+												class="BannerItem_BannerItem__link__img__JHO6H">
+											<div class="BannerItem_BannerItem__overlay__zQ88O"
+													style="background: linear-gradient(270deg, rgba(38, 38, 33, 0), rgba(38, 38, 33, 0.43))"></div></a>
+										</div>
+										<div class="BannerItem_BannerItem__info__1QEVE">
+											<h3
+												class="Typography_Typography__root__RdAI1 Typography_Typography__title3__J1fCl Typography_Typography__title3__weightBold__xwZk7 Typography_Typography__weightBold__KkJEY BannerItem_BannerItem__info__title__todNv">클라썸은
+												지금도 전 직군 채용 중!</h3>
+											<p
+												class="Typography_Typography__root__RdAI1 Typography_Typography__body2__5Mmhi Typography_Typography__weightMedium__GXnOM BannerItem_BannerItem__info__desc__pNpL7">2024년
+												1분기 수주액 236% 증가</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div data-index="3" class="slick-slide" tabindex="-1"
+								aria-hidden="true" style="outline: none; width: 1060px;">
+								<div>
+									<div class="BannerItem_BannerItem__NtVfT">
+										<div class="BannerItem_BannerItem__link__olAEK">
+											<a href="https://www.wanted.co.kr/events/asiana_wanted_1"
+												target="_blank" rel="noopener noreferrer"
+												data-landing-uri="https://www.wanted.co.kr/events/asiana_wanted_1"
+												data-attribute-id="jobs__mainBanner__click"
+												data-link-kind="CUSTOM_URL"
+												data-content-title="합격 여행을 Wanted"><img
+												src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fbanners%2F2396%2F69f29a7a.jpg&amp;w=1060&amp;q=100"
+												fetchpriority="auto" alt="합격 여행을 Wanted"
+												class="BannerItem_BannerItem__link__img__JHO6H">
+											<div class="BannerItem_BannerItem__overlay__zQ88O"
+													style="background: linear-gradient(270deg, rgba(0, 122, 175, 0), rgba(0, 122, 175, 0.43))"></div></a>
+										</div>
+										<div class="BannerItem_BannerItem__info__1QEVE">
+											<h3
+												class="Typography_Typography__root__RdAI1 Typography_Typography__title3__J1fCl Typography_Typography__title3__weightBold__xwZk7 Typography_Typography__weightBold__KkJEY BannerItem_BannerItem__info__title__todNv">합격
+												여행을 Wanted</h3>
+											<p
+												class="Typography_Typography__root__RdAI1 Typography_Typography__body2__5Mmhi Typography_Typography__weightMedium__GXnOM BannerItem_BannerItem__info__desc__pNpL7">지금
+												합격하면 여행 티켓을 끊어드려요</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div data-index="4" class="slick-slide" tabindex="-1"
+								aria-hidden="true" style="outline: none; width: 1060px;">
+								<div>
+									<div class="BannerItem_BannerItem__NtVfT">
+										<div class="BannerItem_BannerItem__link__olAEK">
+											<a
+												href="https://code-challenge.elice.io/courses/95930/info?utm_source=vertical&amp;utm_medium=wanted&amp;utm_campaign=알고리즘&amp;utm_term=main banner&amp;utm_content=event"
+												target="_blank" rel="noopener noreferrer"
+												data-landing-uri="https://code-challenge.elice.io/courses/95930/info?utm_source=vertical&amp;utm_medium=wanted&amp;utm_campaign=알고리즘&amp;utm_term=main banner&amp;utm_content=event"
+												data-attribute-id="jobs__mainBanner__click"
+												data-link-kind="CUSTOM_URL"
+												data-content-title="1200만 원의 경품 드려요"><img
+												src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fbanners%2F2405%2Fd65c574a.jpg&amp;w=1060&amp;q=100"
+												fetchpriority="auto" alt="1200만 원의 경품 드려요"
+												class="BannerItem_BannerItem__link__img__JHO6H">
+											<div class="BannerItem_BannerItem__overlay__zQ88O"
+													style="background: linear-gradient(270deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.43))"></div></a>
+										</div>
+										<div class="BannerItem_BannerItem__info__1QEVE">
+											<h3
+												class="Typography_Typography__root__RdAI1 Typography_Typography__title3__J1fCl Typography_Typography__title3__weightBold__xwZk7 Typography_Typography__weightBold__KkJEY BannerItem_BannerItem__info__title__todNv">1200만
+												원의 경품 드려요</h3>
+											<p
+												class="Typography_Typography__root__RdAI1 Typography_Typography__body2__5Mmhi Typography_Typography__weightMedium__GXnOM BannerItem_BannerItem__info__desc__pNpL7">상위
+												랭커 서류 면제까지!</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div data-index="5" class="slick-slide" tabindex="-1"
+								aria-hidden="true" style="outline: none; width: 1060px;">
+								<div>
+									<div class="BannerItem_BannerItem__NtVfT">
+										<div class="BannerItem_BannerItem__link__olAEK">
+											<a
+												href="https://forms.workday.com/ko-kr/webinars/elevate-seoul-2024-on-demand/form.html/?camp=7014X000002s0XvQAI&amp;eid=kokr_pub_oohothr_oth_alp_wd_wbrep_24.6159&amp;utm_medium=pub&amp;utm_source=oohothr&amp;utm_campaign=24-05-RE-ko-ko-ele-alp-PX-Elevate_Korea_Ondemand-dsdi-oter&amp;productfocus=alp&amp;aud=wd&amp;assettype=wbrep&amp;ass"
+												target="_blank" rel="noopener noreferrer"
+												data-landing-uri="https://forms.workday.com/ko-kr/webinars/elevate-seoul-2024-on-demand/form.html/?camp=7014X000002s0XvQAI&amp;eid=kokr_pub_oohothr_oth_alp_wd_wbrep_24.6159&amp;utm_medium=pub&amp;utm_source=oohothr&amp;utm_campaign=24-05-RE-ko-ko-ele-alp-PX-Elevate_Korea_Ondemand-dsdi-oter&amp;productfocus=alp&amp;aud=wd&amp;assettype=wbrep&amp;ass"
+												data-attribute-id="jobs__mainBanner__click"
+												data-link-kind="CUSTOM_URL"
+												data-content-title="Elevate 서울 다시보기"><img
+												src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fbanners%2F2408%2F8dae26ea.jpg&amp;w=1060&amp;q=100"
+												fetchpriority="auto" alt="Elevate 서울 다시보기"
+												class="BannerItem_BannerItem__link__img__JHO6H">
+											<div class="BannerItem_BannerItem__overlay__zQ88O"
+													style="background: linear-gradient(270deg, rgba(38, 38, 33, 0), rgba(38, 38, 33, 0.43))"></div></a>
+										</div>
+										<div class="BannerItem_BannerItem__info__1QEVE">
+											<h3
+												class="Typography_Typography__root__RdAI1 Typography_Typography__title3__J1fCl Typography_Typography__title3__weightBold__xwZk7 Typography_Typography__weightBold__KkJEY BannerItem_BannerItem__info__title__todNv">Elevate
+												서울 다시보기</h3>
+											<p
+												class="Typography_Typography__root__RdAI1 Typography_Typography__body2__5Mmhi Typography_Typography__weightMedium__GXnOM BannerItem_BannerItem__info__desc__pNpL7">글로벌
+												HCM 리더 워크데이 컨퍼런스</p>
+										</div>
+									</div>
+								</div>
+							</div>
 							<div data-index="6" class="slick-slide" tabindex="-1"
 								aria-hidden="true" style="outline: none; width: 1060px;">
+								<div>
+									<div class="BannerItem_BannerItem__NtVfT">
+										<div class="BannerItem_BannerItem__link__olAEK">
+											<a href="/company/29905" data-landing-uri="/company/29905"
+												data-attribute-id="jobs__mainBanner__click"
+												data-link-kind="COMPANY_DETAIL"
+												data-content-title="트웰브랩스 전직군 채용" data-content-id="29905"><img
+												src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fbanners%2F2393%2F59d2ac96.jpg&amp;w=1060&amp;q=100"
+												fetchpriority="auto" alt="트웰브랩스 전직군 채용"
+												class="BannerItem_BannerItem__link__img__JHO6H">
+											<div class="BannerItem_BannerItem__overlay__zQ88O"
+													style="background: linear-gradient(270deg, rgba(38, 38, 33, 0), rgba(38, 38, 33, 0.43))"></div></a>
+										</div>
+										<div class="BannerItem_BannerItem__info__1QEVE">
+											<h3
+												class="Typography_Typography__root__RdAI1 Typography_Typography__title3__J1fCl Typography_Typography__title3__weightBold__xwZk7 Typography_Typography__weightBold__KkJEY BannerItem_BannerItem__info__title__todNv">트웰브랩스
+												전직군 채용</h3>
+											<p
+												class="Typography_Typography__root__RdAI1 Typography_Typography__body2__5Mmhi Typography_Typography__weightMedium__GXnOM BannerItem_BannerItem__info__desc__pNpL7">엔비디아가
+												투자한 영상이해 AI 스타트업</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div data-index="7" class="slick-slide" tabindex="-1"
+								aria-hidden="true" style="outline: none; width: 1060px;">
+								<div>
+									<div class="BannerItem_BannerItem__NtVfT">
+										<div class="BannerItem_BannerItem__link__olAEK">
+											<a href="http://link.overtax.co.kr/wanted_banner_2406"
+												target="_blank" rel="noopener noreferrer"
+												data-landing-uri="http://link.overtax.co.kr/wanted_banner_2406"
+												data-attribute-id="jobs__mainBanner__click"
+												data-link-kind="CUSTOM_URL"
+												data-content-title="혜움에서 휴가 보내드립니다"><img
+												src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fbanners%2F2399%2Fecc261c2.jpg&amp;w=1060&amp;q=100"
+												fetchpriority="auto" alt="혜움에서 휴가 보내드립니다"
+												class="BannerItem_BannerItem__link__img__JHO6H">
+											<div class="BannerItem_BannerItem__overlay__zQ88O"
+													style="background: linear-gradient(270deg, rgba(38, 38, 33, 0), rgba(38, 38, 33, 0.43))"></div></a>
+										</div>
+										<div class="BannerItem_BannerItem__info__1QEVE">
+											<h3
+												class="Typography_Typography__root__RdAI1 Typography_Typography__title3__J1fCl Typography_Typography__title3__weightBold__xwZk7 Typography_Typography__weightBold__KkJEY BannerItem_BannerItem__info__title__todNv">혜움에서
+												휴가 보내드립니다</h3>
+											<p
+												class="Typography_Typography__root__RdAI1 Typography_Typography__body2__5Mmhi Typography_Typography__weightMedium__GXnOM BannerItem_BannerItem__info__desc__pNpL7">법인
+												환급금 조회시 호텔 패키지 증정</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div data-index="8" class="slick-slide" tabindex="-1"
+								aria-hidden="true" style="outline: none; width: 1060px;">
+								<div>
+									<div class="BannerItem_BannerItem__NtVfT">
+										<div class="BannerItem_BannerItem__link__olAEK">
+											<a
+												href="https://www.wanted.co.kr/tags/10486?view=position&amp;start_year=0&amp;end_year=10&amp;job_group_id=518&amp;job_ids=1634&amp;job_ids=1025&amp;job_ids=655&amp;job_ids=1024"
+												target="_blank" rel="noopener noreferrer"
+												data-landing-uri="https://www.wanted.co.kr/tags/10486?view=position&amp;start_year=0&amp;end_year=10&amp;job_group_id=518&amp;job_ids=1634&amp;job_ids=1025&amp;job_ids=655&amp;job_ids=1024"
+												data-attribute-id="jobs__mainBanner__click"
+												data-link-kind="CUSTOM_URL"
+												data-content-title="인공지능(AI) 포지션"><img
+												src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fbanners%2F2398%2Fce7f687c.jpg&amp;w=1060&amp;q=100"
+												fetchpriority="auto" alt="인공지능(AI) 포지션"
+												class="BannerItem_BannerItem__link__img__JHO6H">
+											<div class="BannerItem_BannerItem__overlay__zQ88O"
+													style="background: linear-gradient(270deg, rgba(38, 38, 33, 0), rgba(38, 38, 33, 0.43))"></div></a>
+										</div>
+										<div class="BannerItem_BannerItem__info__1QEVE">
+											<h3
+												class="Typography_Typography__root__RdAI1 Typography_Typography__title3__J1fCl Typography_Typography__title3__weightBold__xwZk7 Typography_Typography__weightBold__KkJEY BannerItem_BannerItem__info__title__todNv">인공지능(AI)
+												포지션</h3>
+											<p
+												class="Typography_Typography__root__RdAI1 Typography_Typography__body2__5Mmhi Typography_Typography__weightMedium__GXnOM BannerItem_BannerItem__info__desc__pNpL7">눈여겨볼
+												인공지능(AI) 채용공고를 소개합니다.</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div data-index="9" class="slick-slide" tabindex="-1"
+								aria-hidden="true" style="outline: none; width: 1060px;">
+								<div>
+									<div class="BannerItem_BannerItem__NtVfT">
+										<div class="BannerItem_BannerItem__link__olAEK">
+											<a
+												href="https://kr.redrob.io/?utm_source=wanted&amp;utm_medium=banner&amp;utm_campaign=2406_highfive_sponsership_aitest"
+												target="_blank" rel="noopener noreferrer"
+												data-landing-uri="https://kr.redrob.io/?utm_source=wanted&amp;utm_medium=banner&amp;utm_campaign=2406_highfive_sponsership_aitest"
+												data-attribute-id="jobs__mainBanner__click"
+												data-link-kind="CUSTOM_URL"
+												data-content-title="인사채용, 쇼핑하듯 검증하라"><img
+												src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fbanners%2F2381%2F5caba691.jpg&amp;w=1060&amp;q=100"
+												fetchpriority="auto" alt="인사채용, 쇼핑하듯 검증하라"
+												class="BannerItem_BannerItem__link__img__JHO6H">
+											<div class="BannerItem_BannerItem__overlay__zQ88O"
+													style="background: linear-gradient(270deg, rgba(38, 38, 33, 0), rgba(38, 38, 33, 0.43))"></div></a>
+										</div>
+										<div class="BannerItem_BannerItem__info__1QEVE">
+											<h3
+												class="Typography_Typography__root__RdAI1 Typography_Typography__title3__J1fCl Typography_Typography__title3__weightBold__xwZk7 Typography_Typography__weightBold__KkJEY BannerItem_BannerItem__info__title__todNv">인사채용,
+												쇼핑하듯 검증하라</h3>
+											<p
+												class="Typography_Typography__root__RdAI1 Typography_Typography__body2__5Mmhi Typography_Typography__weightMedium__GXnOM BannerItem_BannerItem__info__desc__pNpL7">간편
+												채용시험 플랫폼, 레드롭</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div data-index="10"
+								class="slick-slide slick-active slick-current" tabindex="-1"
+								aria-hidden="false" style="outline: none; width: 1060px;">
 								<div>
 									<div class="BannerItem_BannerItem__NtVfT">
 										<div class="BannerItem_BannerItem__link__olAEK">
@@ -571,7 +892,7 @@
 												src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fbanners%2F2375%2Feb6da3f4.jpg&amp;w=1060&amp;q=100"
 												fetchpriority="auto" alt="그렙 프로그래머스 적극 채용"
 												class="BannerItem_BannerItem__link__img__JHO6H">
-												<div class="BannerItem_BannerItem__overlay__zQ88O"
+											<div class="BannerItem_BannerItem__overlay__zQ88O"
 													style="background: linear-gradient(270deg, rgba(38, 38, 33, 0), rgba(38, 38, 33, 0.43))"></div></a>
 										</div>
 										<div class="BannerItem_BannerItem__info__1QEVE">
@@ -585,20 +906,48 @@
 									</div>
 								</div>
 							</div>
-							<div data-index="7" class="slick-slide" tabindex="-1"
+							<div data-index="11" class="slick-slide" tabindex="-1"
 								aria-hidden="true" style="outline: none; width: 1060px;">
 								<div>
 									<div class="BannerItem_BannerItem__NtVfT">
 										<div class="BannerItem_BannerItem__link__olAEK">
-											<a href="/themes/investment"
-												data-landing-uri="/themes/investment"
+											<a href="/company/24000" data-landing-uri="/company/24000"
 												data-attribute-id="jobs__mainBanner__click"
-												data-link-kind="THEME"
+												data-link-kind="COMPANY_DETAIL"
+												data-content-title="지금, 토스뱅크에 합류하세요" data-content-id="24000"><img
+												src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fbanners%2F2383%2F223893a7.jpg&amp;w=1060&amp;q=100"
+												fetchpriority="auto" alt="지금, 토스뱅크에 합류하세요"
+												class="BannerItem_BannerItem__link__img__JHO6H">
+											<div class="BannerItem_BannerItem__overlay__zQ88O"
+													style="background: linear-gradient(270deg, rgba(38, 38, 33, 0), rgba(38, 38, 33, 0.43))"></div></a>
+										</div>
+										<div class="BannerItem_BannerItem__info__1QEVE">
+											<h3
+												class="Typography_Typography__root__RdAI1 Typography_Typography__title3__J1fCl Typography_Typography__title3__weightBold__xwZk7 Typography_Typography__weightBold__KkJEY BannerItem_BannerItem__info__title__todNv">지금,
+												토스뱅크에 합류하세요</h3>
+											<p
+												class="Typography_Typography__root__RdAI1 Typography_Typography__body2__5Mmhi Typography_Typography__weightMedium__GXnOM BannerItem_BannerItem__info__desc__pNpL7">Tech,
+												Data, IT 직군 적극 채용</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div data-index="12" class="slick-slide" tabindex="-1"
+								aria-hidden="true" style="outline: none; width: 1060px;">
+								<div>
+									<div class="BannerItem_BannerItem__NtVfT">
+										<div class="BannerItem_BannerItem__link__olAEK">
+											<a
+												href="https://www.wanted.co.kr/tags/10485?view=position&amp;start_year=0&amp;end_year=10"
+												target="_blank" rel="noopener noreferrer"
+												data-landing-uri="https://www.wanted.co.kr/tags/10485?view=position&amp;start_year=0&amp;end_year=10"
+												data-attribute-id="jobs__mainBanner__click"
+												data-link-kind="CUSTOM_URL"
 												data-content-title="최근 100억 이상 투자 받은 기업"><img
 												src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fbanners%2F1948%2F65930f6a.jpg&amp;w=1060&amp;q=100"
 												fetchpriority="auto" alt="최근 100억 이상 투자 받은 기업"
 												class="BannerItem_BannerItem__link__img__JHO6H">
-												<div class="BannerItem_BannerItem__overlay__zQ88O"
+											<div class="BannerItem_BannerItem__overlay__zQ88O"
 													style="background: linear-gradient(270deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.43))"></div></a>
 										</div>
 										<div class="BannerItem_BannerItem__info__1QEVE">
@@ -612,29 +961,598 @@
 									</div>
 								</div>
 							</div>
-							<div data-index="8" class="slick-slide" tabindex="-1"
+							<div data-index="13" class="slick-slide" tabindex="-1"
 								aria-hidden="true" style="outline: none; width: 1060px;">
 								<div>
 									<div class="BannerItem_BannerItem__NtVfT">
 										<div class="BannerItem_BannerItem__link__olAEK">
-											<a href="http://talenx.com/" target="_blank"
-												rel="noopener noreferrer"
-												data-landing-uri="http://talenx.com/"
+											<a
+												href="https://docs.google.com/forms/d/1MqAa5PRevHCQUUZI6dO9YzqanXsocw5VJeIkQJ1JWwI/edit"
+												target="_blank" rel="noopener noreferrer"
+												data-landing-uri="https://docs.google.com/forms/d/1MqAa5PRevHCQUUZI6dO9YzqanXsocw5VJeIkQJ1JWwI/edit"
 												data-attribute-id="jobs__mainBanner__click"
-												data-link-kind="CUSTOM_URL" data-content-title="인재관리의 모든 것"><img
-												src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fbanners%2F2372%2Fea23e64c.jpg&amp;w=1060&amp;q=100"
-												fetchpriority="auto" alt="인재관리의 모든 것"
+												data-link-kind="CUSTOM_URL"
+												data-content-title="옥외광고도 타겟팅이 됩니다"><img
+												src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fbanners%2F2406%2F10625bd6.jpg&amp;w=1060&amp;q=100"
+												fetchpriority="auto" alt="옥외광고도 타겟팅이 됩니다"
 												class="BannerItem_BannerItem__link__img__JHO6H">
-												<div class="BannerItem_BannerItem__overlay__zQ88O"
+											<div class="BannerItem_BannerItem__overlay__zQ88O"
+													style="background: linear-gradient(270deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.43))"></div></a>
+										</div>
+										<div class="BannerItem_BannerItem__info__1QEVE">
+											<h3
+												class="Typography_Typography__root__RdAI1 Typography_Typography__title3__J1fCl Typography_Typography__title3__weightBold__xwZk7 Typography_Typography__weightBold__KkJEY BannerItem_BannerItem__info__title__todNv">옥외광고도
+												타겟팅이 됩니다</h3>
+											<p
+												class="Typography_Typography__root__RdAI1 Typography_Typography__body2__5Mmhi Typography_Typography__weightMedium__GXnOM BannerItem_BannerItem__info__desc__pNpL7">옥외광고
+												컨설팅을 무료로 받아보세요</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div data-index="14" class="slick-slide" tabindex="-1"
+								aria-hidden="true" style="outline: none; width: 1060px;">
+								<div>
+									<div class="BannerItem_BannerItem__NtVfT">
+										<div class="BannerItem_BannerItem__link__olAEK">
+											<a href="/company/49206" data-landing-uri="/company/49206"
+												data-attribute-id="jobs__mainBanner__click"
+												data-link-kind="COMPANY_DETAIL"
+												data-content-title="셀바티코의 새로운 여정에 합류하세요."
+												data-content-id="49206"><img
+												src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fbanners%2F2403%2F9d87cb1b.jpg&amp;w=1060&amp;q=100"
+												fetchpriority="auto" alt="셀바티코의 새로운 여정에 합류하세요."
+												class="BannerItem_BannerItem__link__img__JHO6H">
+											<div class="BannerItem_BannerItem__overlay__zQ88O"
+													style="background: linear-gradient(270deg, rgba(33, 33, 33, 0), rgba(33, 33, 33, 0.43))"></div></a>
+										</div>
+										<div class="BannerItem_BannerItem__info__1QEVE">
+											<h3
+												class="Typography_Typography__root__RdAI1 Typography_Typography__title3__J1fCl Typography_Typography__title3__weightBold__xwZk7 Typography_Typography__weightBold__KkJEY BannerItem_BannerItem__info__title__todNv">셀바티코의
+												새로운 여정에 합류하세요.</h3>
+											<p
+												class="Typography_Typography__root__RdAI1 Typography_Typography__body2__5Mmhi Typography_Typography__weightMedium__GXnOM BannerItem_BannerItem__info__desc__pNpL7">프랑스
+												유수 기관 투자를 유치한 뷰티 스타트업</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div data-index="15" class="slick-slide" tabindex="-1"
+								aria-hidden="true" style="outline: none; width: 1060px;">
+								<div>
+									<div class="BannerItem_BannerItem__NtVfT">
+										<div class="BannerItem_BannerItem__link__olAEK">
+											<a href="/events/2024_job_festa"
+												data-landing-uri="/events/2024_job_festa"
+												data-attribute-id="jobs__mainBanner__click"
+												data-link-kind="EVENT_DETAIL"
+												data-content-title="2024 관광 일자리 페스타"><img
+												src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fbanners%2F2385%2F1203d6e1.jpg&amp;w=1060&amp;q=100"
+												fetchpriority="auto" alt="2024 관광 일자리 페스타"
+												class="BannerItem_BannerItem__link__img__JHO6H">
+											<div class="BannerItem_BannerItem__overlay__zQ88O"
 													style="background: linear-gradient(270deg, rgba(38, 38, 33, 0), rgba(38, 38, 33, 0.43))"></div></a>
 										</div>
 										<div class="BannerItem_BannerItem__info__1QEVE">
 											<h3
-												class="Typography_Typography__root__RdAI1 Typography_Typography__title3__J1fCl Typography_Typography__title3__weightBold__xwZk7 Typography_Typography__weightBold__KkJEY BannerItem_BannerItem__info__title__todNv">인재관리의
-												모든 것</h3>
+												class="Typography_Typography__root__RdAI1 Typography_Typography__title3__J1fCl Typography_Typography__title3__weightBold__xwZk7 Typography_Typography__weightBold__KkJEY BannerItem_BannerItem__info__title__todNv">2024
+												관광 일자리 페스타</h3>
 											<p
-												class="Typography_Typography__root__RdAI1 Typography_Typography__body2__5Mmhi Typography_Typography__weightMedium__GXnOM BannerItem_BannerItem__info__desc__pNpL7">깊이
-												있는 인재관리와 직원 경험 제공</p>
+												class="Typography_Typography__root__RdAI1 Typography_Typography__body2__5Mmhi Typography_Typography__weightMedium__GXnOM BannerItem_BannerItem__info__desc__pNpL7">지역
+												관광기업들의 채용 정보가 한 곳에!</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div data-index="16" class="slick-slide" tabindex="-1"
+								aria-hidden="true" style="outline: none; width: 1060px;">
+								<div>
+									<div class="BannerItem_BannerItem__NtVfT">
+										<div class="BannerItem_BannerItem__link__olAEK">
+											<a href="/events/work_recipe03"
+												data-landing-uri="/events/work_recipe03"
+												data-attribute-id="jobs__mainBanner__click"
+												data-link-kind="EVENT_DETAIL"
+												data-content-title="WORK RECIPE"><img
+												src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fbanners%2F2365%2F8540675a.jpg&amp;w=1060&amp;q=100"
+												fetchpriority="auto" alt="WORK RECIPE"
+												class="BannerItem_BannerItem__link__img__JHO6H">
+											<div class="BannerItem_BannerItem__overlay__zQ88O"
+													style="background: linear-gradient(270deg, rgba(84, 83, 20, 0), rgba(84, 83, 20, 0.43))"></div></a>
+										</div>
+										<div class="BannerItem_BannerItem__info__1QEVE">
+											<h3
+												class="Typography_Typography__root__RdAI1 Typography_Typography__title3__J1fCl Typography_Typography__title3__weightBold__xwZk7 Typography_Typography__weightBold__KkJEY BannerItem_BannerItem__info__title__todNv">WORK
+												RECIPE</h3>
+											<p
+												class="Typography_Typography__root__RdAI1 Typography_Typography__body2__5Mmhi Typography_Typography__weightMedium__GXnOM BannerItem_BannerItem__info__desc__pNpL7">일할
+												맛 나는 기업, 오비맥주</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div data-index="17" tabindex="-1"
+								class="slick-slide slick-cloned" aria-hidden="true"
+								style="width: 1060px;">
+								<div>
+									<div class="BannerItem_BannerItem__NtVfT">
+										<div class="BannerItem_BannerItem__link__olAEK">
+											<a href="/themes/newposition"
+												data-landing-uri="/themes/newposition"
+												data-attribute-id="jobs__mainBanner__click"
+												data-link-kind="THEME" data-content-title="이번 주 신규 포지션"><img
+												src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fbanners%2F2078%2Fa78a154c.jpg&amp;w=1060&amp;q=100"
+												fetchpriority="auto" alt="이번 주 신규 포지션"
+												class="BannerItem_BannerItem__link__img__JHO6H">
+											<div class="BannerItem_BannerItem__overlay__zQ88O"
+													style="background: linear-gradient(270deg, rgba(84, 84, 84, 0), rgba(84, 84, 84, 0.43))"></div></a>
+										</div>
+										<div class="BannerItem_BannerItem__info__1QEVE">
+											<h3
+												class="Typography_Typography__root__RdAI1 Typography_Typography__title3__J1fCl Typography_Typography__title3__weightBold__xwZk7 Typography_Typography__weightBold__KkJEY BannerItem_BannerItem__info__title__todNv">이번
+												주 신규 포지션</h3>
+											<p
+												class="Typography_Typography__root__RdAI1 Typography_Typography__body2__5Mmhi Typography_Typography__weightMedium__GXnOM BannerItem_BannerItem__info__desc__pNpL7">눈여겨볼
+												이번 주 채용공고를 소개합니다.</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div data-index="18" tabindex="-1"
+								class="slick-slide slick-cloned" aria-hidden="true"
+								style="width: 1060px;">
+								<div>
+									<div class="BannerItem_BannerItem__NtVfT">
+										<div class="BannerItem_BannerItem__link__olAEK">
+											<a href="/company/49342" data-landing-uri="/company/49342"
+												data-attribute-id="jobs__mainBanner__click"
+												data-link-kind="COMPANY_DETAIL"
+												data-content-title="개발 전 직군·CS·QA 채용 중"
+												data-content-id="49342"><img
+												src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fbanners%2F2402%2F961b2a29.jpg&amp;w=1060&amp;q=100"
+												fetchpriority="auto" alt="개발 전 직군·CS·QA 채용 중"
+												class="BannerItem_BannerItem__link__img__JHO6H">
+											<div class="BannerItem_BannerItem__overlay__zQ88O"
+													style="background: linear-gradient(270deg, rgba(33, 33, 33, 0), rgba(33, 33, 33, 0.43))"></div></a>
+										</div>
+										<div class="BannerItem_BannerItem__info__1QEVE">
+											<h3
+												class="Typography_Typography__root__RdAI1 Typography_Typography__title3__J1fCl Typography_Typography__title3__weightBold__xwZk7 Typography_Typography__weightBold__KkJEY BannerItem_BannerItem__info__title__todNv">개발
+												전 직군·CS·QA 채용 중</h3>
+											<p
+												class="Typography_Typography__root__RdAI1 Typography_Typography__body2__5Mmhi Typography_Typography__weightMedium__GXnOM BannerItem_BannerItem__info__desc__pNpL7">SEE
+												YOU IN THE DUNGEON!</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div data-index="19" tabindex="-1"
+								class="slick-slide slick-cloned" aria-hidden="true"
+								style="width: 1060px;">
+								<div>
+									<div class="BannerItem_BannerItem__NtVfT">
+										<div class="BannerItem_BannerItem__link__olAEK">
+											<a href="/company/9416" data-landing-uri="/company/9416"
+												data-attribute-id="jobs__mainBanner__click"
+												data-link-kind="COMPANY_DETAIL"
+												data-content-title="클라썸은 지금도 전 직군 채용 중!"
+												data-content-id="9416"><img
+												src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fbanners%2F2382%2Fe8da656c.jpg&amp;w=1060&amp;q=100"
+												fetchpriority="auto" alt="클라썸은 지금도 전 직군 채용 중!"
+												class="BannerItem_BannerItem__link__img__JHO6H">
+											<div class="BannerItem_BannerItem__overlay__zQ88O"
+													style="background: linear-gradient(270deg, rgba(38, 38, 33, 0), rgba(38, 38, 33, 0.43))"></div></a>
+										</div>
+										<div class="BannerItem_BannerItem__info__1QEVE">
+											<h3
+												class="Typography_Typography__root__RdAI1 Typography_Typography__title3__J1fCl Typography_Typography__title3__weightBold__xwZk7 Typography_Typography__weightBold__KkJEY BannerItem_BannerItem__info__title__todNv">클라썸은
+												지금도 전 직군 채용 중!</h3>
+											<p
+												class="Typography_Typography__root__RdAI1 Typography_Typography__body2__5Mmhi Typography_Typography__weightMedium__GXnOM BannerItem_BannerItem__info__desc__pNpL7">2024년
+												1분기 수주액 236% 증가</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div data-index="20" tabindex="-1"
+								class="slick-slide slick-cloned" aria-hidden="true"
+								style="width: 1060px;">
+								<div>
+									<div class="BannerItem_BannerItem__NtVfT">
+										<div class="BannerItem_BannerItem__link__olAEK">
+											<a href="https://www.wanted.co.kr/events/asiana_wanted_1"
+												target="_blank" rel="noopener noreferrer"
+												data-landing-uri="https://www.wanted.co.kr/events/asiana_wanted_1"
+												data-attribute-id="jobs__mainBanner__click"
+												data-link-kind="CUSTOM_URL"
+												data-content-title="합격 여행을 Wanted"><img
+												src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fbanners%2F2396%2F69f29a7a.jpg&amp;w=1060&amp;q=100"
+												fetchpriority="auto" alt="합격 여행을 Wanted"
+												class="BannerItem_BannerItem__link__img__JHO6H">
+											<div class="BannerItem_BannerItem__overlay__zQ88O"
+													style="background: linear-gradient(270deg, rgba(0, 122, 175, 0), rgba(0, 122, 175, 0.43))"></div></a>
+										</div>
+										<div class="BannerItem_BannerItem__info__1QEVE">
+											<h3
+												class="Typography_Typography__root__RdAI1 Typography_Typography__title3__J1fCl Typography_Typography__title3__weightBold__xwZk7 Typography_Typography__weightBold__KkJEY BannerItem_BannerItem__info__title__todNv">합격
+												여행을 Wanted</h3>
+											<p
+												class="Typography_Typography__root__RdAI1 Typography_Typography__body2__5Mmhi Typography_Typography__weightMedium__GXnOM BannerItem_BannerItem__info__desc__pNpL7">지금
+												합격하면 여행 티켓을 끊어드려요</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div data-index="21" tabindex="-1"
+								class="slick-slide slick-cloned" aria-hidden="true"
+								style="width: 1060px;">
+								<div>
+									<div class="BannerItem_BannerItem__NtVfT">
+										<div class="BannerItem_BannerItem__link__olAEK">
+											<a
+												href="https://code-challenge.elice.io/courses/95930/info?utm_source=vertical&amp;utm_medium=wanted&amp;utm_campaign=알고리즘&amp;utm_term=main banner&amp;utm_content=event"
+												target="_blank" rel="noopener noreferrer"
+												data-landing-uri="https://code-challenge.elice.io/courses/95930/info?utm_source=vertical&amp;utm_medium=wanted&amp;utm_campaign=알고리즘&amp;utm_term=main banner&amp;utm_content=event"
+												data-attribute-id="jobs__mainBanner__click"
+												data-link-kind="CUSTOM_URL"
+												data-content-title="1200만 원의 경품 드려요"><img
+												src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fbanners%2F2405%2Fd65c574a.jpg&amp;w=1060&amp;q=100"
+												fetchpriority="auto" alt="1200만 원의 경품 드려요"
+												class="BannerItem_BannerItem__link__img__JHO6H">
+											<div class="BannerItem_BannerItem__overlay__zQ88O"
+													style="background: linear-gradient(270deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.43))"></div></a>
+										</div>
+										<div class="BannerItem_BannerItem__info__1QEVE">
+											<h3
+												class="Typography_Typography__root__RdAI1 Typography_Typography__title3__J1fCl Typography_Typography__title3__weightBold__xwZk7 Typography_Typography__weightBold__KkJEY BannerItem_BannerItem__info__title__todNv">1200만
+												원의 경품 드려요</h3>
+											<p
+												class="Typography_Typography__root__RdAI1 Typography_Typography__body2__5Mmhi Typography_Typography__weightMedium__GXnOM BannerItem_BannerItem__info__desc__pNpL7">상위
+												랭커 서류 면제까지!</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div data-index="22" tabindex="-1"
+								class="slick-slide slick-cloned" aria-hidden="true"
+								style="width: 1060px;">
+								<div>
+									<div class="BannerItem_BannerItem__NtVfT">
+										<div class="BannerItem_BannerItem__link__olAEK">
+											<a
+												href="https://forms.workday.com/ko-kr/webinars/elevate-seoul-2024-on-demand/form.html/?camp=7014X000002s0XvQAI&amp;eid=kokr_pub_oohothr_oth_alp_wd_wbrep_24.6159&amp;utm_medium=pub&amp;utm_source=oohothr&amp;utm_campaign=24-05-RE-ko-ko-ele-alp-PX-Elevate_Korea_Ondemand-dsdi-oter&amp;productfocus=alp&amp;aud=wd&amp;assettype=wbrep&amp;ass"
+												target="_blank" rel="noopener noreferrer"
+												data-landing-uri="https://forms.workday.com/ko-kr/webinars/elevate-seoul-2024-on-demand/form.html/?camp=7014X000002s0XvQAI&amp;eid=kokr_pub_oohothr_oth_alp_wd_wbrep_24.6159&amp;utm_medium=pub&amp;utm_source=oohothr&amp;utm_campaign=24-05-RE-ko-ko-ele-alp-PX-Elevate_Korea_Ondemand-dsdi-oter&amp;productfocus=alp&amp;aud=wd&amp;assettype=wbrep&amp;ass"
+												data-attribute-id="jobs__mainBanner__click"
+												data-link-kind="CUSTOM_URL"
+												data-content-title="Elevate 서울 다시보기"><img
+												src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fbanners%2F2408%2F8dae26ea.jpg&amp;w=1060&amp;q=100"
+												fetchpriority="auto" alt="Elevate 서울 다시보기"
+												class="BannerItem_BannerItem__link__img__JHO6H">
+											<div class="BannerItem_BannerItem__overlay__zQ88O"
+													style="background: linear-gradient(270deg, rgba(38, 38, 33, 0), rgba(38, 38, 33, 0.43))"></div></a>
+										</div>
+										<div class="BannerItem_BannerItem__info__1QEVE">
+											<h3
+												class="Typography_Typography__root__RdAI1 Typography_Typography__title3__J1fCl Typography_Typography__title3__weightBold__xwZk7 Typography_Typography__weightBold__KkJEY BannerItem_BannerItem__info__title__todNv">Elevate
+												서울 다시보기</h3>
+											<p
+												class="Typography_Typography__root__RdAI1 Typography_Typography__body2__5Mmhi Typography_Typography__weightMedium__GXnOM BannerItem_BannerItem__info__desc__pNpL7">글로벌
+												HCM 리더 워크데이 컨퍼런스</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div data-index="23" tabindex="-1"
+								class="slick-slide slick-cloned" aria-hidden="true"
+								style="width: 1060px;">
+								<div>
+									<div class="BannerItem_BannerItem__NtVfT">
+										<div class="BannerItem_BannerItem__link__olAEK">
+											<a href="/company/29905" data-landing-uri="/company/29905"
+												data-attribute-id="jobs__mainBanner__click"
+												data-link-kind="COMPANY_DETAIL"
+												data-content-title="트웰브랩스 전직군 채용" data-content-id="29905"><img
+												src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fbanners%2F2393%2F59d2ac96.jpg&amp;w=1060&amp;q=100"
+												fetchpriority="auto" alt="트웰브랩스 전직군 채용"
+												class="BannerItem_BannerItem__link__img__JHO6H">
+											<div class="BannerItem_BannerItem__overlay__zQ88O"
+													style="background: linear-gradient(270deg, rgba(38, 38, 33, 0), rgba(38, 38, 33, 0.43))"></div></a>
+										</div>
+										<div class="BannerItem_BannerItem__info__1QEVE">
+											<h3
+												class="Typography_Typography__root__RdAI1 Typography_Typography__title3__J1fCl Typography_Typography__title3__weightBold__xwZk7 Typography_Typography__weightBold__KkJEY BannerItem_BannerItem__info__title__todNv">트웰브랩스
+												전직군 채용</h3>
+											<p
+												class="Typography_Typography__root__RdAI1 Typography_Typography__body2__5Mmhi Typography_Typography__weightMedium__GXnOM BannerItem_BannerItem__info__desc__pNpL7">엔비디아가
+												투자한 영상이해 AI 스타트업</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div data-index="24" tabindex="-1"
+								class="slick-slide slick-cloned" aria-hidden="true"
+								style="width: 1060px;">
+								<div>
+									<div class="BannerItem_BannerItem__NtVfT">
+										<div class="BannerItem_BannerItem__link__olAEK">
+											<a href="http://link.overtax.co.kr/wanted_banner_2406"
+												target="_blank" rel="noopener noreferrer"
+												data-landing-uri="http://link.overtax.co.kr/wanted_banner_2406"
+												data-attribute-id="jobs__mainBanner__click"
+												data-link-kind="CUSTOM_URL"
+												data-content-title="혜움에서 휴가 보내드립니다"><img
+												src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fbanners%2F2399%2Fecc261c2.jpg&amp;w=1060&amp;q=100"
+												fetchpriority="auto" alt="혜움에서 휴가 보내드립니다"
+												class="BannerItem_BannerItem__link__img__JHO6H">
+											<div class="BannerItem_BannerItem__overlay__zQ88O"
+													style="background: linear-gradient(270deg, rgba(38, 38, 33, 0), rgba(38, 38, 33, 0.43))"></div></a>
+										</div>
+										<div class="BannerItem_BannerItem__info__1QEVE">
+											<h3
+												class="Typography_Typography__root__RdAI1 Typography_Typography__title3__J1fCl Typography_Typography__title3__weightBold__xwZk7 Typography_Typography__weightBold__KkJEY BannerItem_BannerItem__info__title__todNv">혜움에서
+												휴가 보내드립니다</h3>
+											<p
+												class="Typography_Typography__root__RdAI1 Typography_Typography__body2__5Mmhi Typography_Typography__weightMedium__GXnOM BannerItem_BannerItem__info__desc__pNpL7">법인
+												환급금 조회시 호텔 패키지 증정</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div data-index="25" tabindex="-1"
+								class="slick-slide slick-cloned" aria-hidden="true"
+								style="width: 1060px;">
+								<div>
+									<div class="BannerItem_BannerItem__NtVfT">
+										<div class="BannerItem_BannerItem__link__olAEK">
+											<a
+												href="https://www.wanted.co.kr/tags/10486?view=position&amp;start_year=0&amp;end_year=10&amp;job_group_id=518&amp;job_ids=1634&amp;job_ids=1025&amp;job_ids=655&amp;job_ids=1024"
+												target="_blank" rel="noopener noreferrer"
+												data-landing-uri="https://www.wanted.co.kr/tags/10486?view=position&amp;start_year=0&amp;end_year=10&amp;job_group_id=518&amp;job_ids=1634&amp;job_ids=1025&amp;job_ids=655&amp;job_ids=1024"
+												data-attribute-id="jobs__mainBanner__click"
+												data-link-kind="CUSTOM_URL"
+												data-content-title="인공지능(AI) 포지션"><img
+												src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fbanners%2F2398%2Fce7f687c.jpg&amp;w=1060&amp;q=100"
+												fetchpriority="auto" alt="인공지능(AI) 포지션"
+												class="BannerItem_BannerItem__link__img__JHO6H">
+											<div class="BannerItem_BannerItem__overlay__zQ88O"
+													style="background: linear-gradient(270deg, rgba(38, 38, 33, 0), rgba(38, 38, 33, 0.43))"></div></a>
+										</div>
+										<div class="BannerItem_BannerItem__info__1QEVE">
+											<h3
+												class="Typography_Typography__root__RdAI1 Typography_Typography__title3__J1fCl Typography_Typography__title3__weightBold__xwZk7 Typography_Typography__weightBold__KkJEY BannerItem_BannerItem__info__title__todNv">인공지능(AI)
+												포지션</h3>
+											<p
+												class="Typography_Typography__root__RdAI1 Typography_Typography__body2__5Mmhi Typography_Typography__weightMedium__GXnOM BannerItem_BannerItem__info__desc__pNpL7">눈여겨볼
+												인공지능(AI) 채용공고를 소개합니다.</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div data-index="26" tabindex="-1"
+								class="slick-slide slick-cloned" aria-hidden="true"
+								style="width: 1060px;">
+								<div>
+									<div class="BannerItem_BannerItem__NtVfT">
+										<div class="BannerItem_BannerItem__link__olAEK">
+											<a
+												href="https://kr.redrob.io/?utm_source=wanted&amp;utm_medium=banner&amp;utm_campaign=2406_highfive_sponsership_aitest"
+												target="_blank" rel="noopener noreferrer"
+												data-landing-uri="https://kr.redrob.io/?utm_source=wanted&amp;utm_medium=banner&amp;utm_campaign=2406_highfive_sponsership_aitest"
+												data-attribute-id="jobs__mainBanner__click"
+												data-link-kind="CUSTOM_URL"
+												data-content-title="인사채용, 쇼핑하듯 검증하라"><img
+												src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fbanners%2F2381%2F5caba691.jpg&amp;w=1060&amp;q=100"
+												fetchpriority="auto" alt="인사채용, 쇼핑하듯 검증하라"
+												class="BannerItem_BannerItem__link__img__JHO6H">
+											<div class="BannerItem_BannerItem__overlay__zQ88O"
+													style="background: linear-gradient(270deg, rgba(38, 38, 33, 0), rgba(38, 38, 33, 0.43))"></div></a>
+										</div>
+										<div class="BannerItem_BannerItem__info__1QEVE">
+											<h3
+												class="Typography_Typography__root__RdAI1 Typography_Typography__title3__J1fCl Typography_Typography__title3__weightBold__xwZk7 Typography_Typography__weightBold__KkJEY BannerItem_BannerItem__info__title__todNv">인사채용,
+												쇼핑하듯 검증하라</h3>
+											<p
+												class="Typography_Typography__root__RdAI1 Typography_Typography__body2__5Mmhi Typography_Typography__weightMedium__GXnOM BannerItem_BannerItem__info__desc__pNpL7">간편
+												채용시험 플랫폼, 레드롭</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div data-index="27" tabindex="-1"
+								class="slick-slide slick-cloned" aria-hidden="true"
+								style="width: 1060px;">
+								<div>
+									<div class="BannerItem_BannerItem__NtVfT">
+										<div class="BannerItem_BannerItem__link__olAEK">
+											<a href="/company/1797" data-landing-uri="/company/1797"
+												data-attribute-id="jobs__mainBanner__click"
+												data-link-kind="COMPANY_DETAIL"
+												data-content-title="그렙 프로그래머스 적극 채용" data-content-id="1797"><img
+												src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fbanners%2F2375%2Feb6da3f4.jpg&amp;w=1060&amp;q=100"
+												fetchpriority="auto" alt="그렙 프로그래머스 적극 채용"
+												class="BannerItem_BannerItem__link__img__JHO6H">
+											<div class="BannerItem_BannerItem__overlay__zQ88O"
+													style="background: linear-gradient(270deg, rgba(38, 38, 33, 0), rgba(38, 38, 33, 0.43))"></div></a>
+										</div>
+										<div class="BannerItem_BannerItem__info__1QEVE">
+											<h3
+												class="Typography_Typography__root__RdAI1 Typography_Typography__title3__J1fCl Typography_Typography__title3__weightBold__xwZk7 Typography_Typography__weightBold__KkJEY BannerItem_BannerItem__info__title__todNv">그렙
+												프로그래머스 적극 채용</h3>
+											<p
+												class="Typography_Typography__root__RdAI1 Typography_Typography__body2__5Mmhi Typography_Typography__weightMedium__GXnOM BannerItem_BannerItem__info__desc__pNpL7">개발
+												기획 교육 마케팅 영업 채용 중</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div data-index="28" tabindex="-1"
+								class="slick-slide slick-cloned" aria-hidden="true"
+								style="width: 1060px;">
+								<div>
+									<div class="BannerItem_BannerItem__NtVfT">
+										<div class="BannerItem_BannerItem__link__olAEK">
+											<a href="/company/24000" data-landing-uri="/company/24000"
+												data-attribute-id="jobs__mainBanner__click"
+												data-link-kind="COMPANY_DETAIL"
+												data-content-title="지금, 토스뱅크에 합류하세요" data-content-id="24000"><img
+												src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fbanners%2F2383%2F223893a7.jpg&amp;w=1060&amp;q=100"
+												fetchpriority="auto" alt="지금, 토스뱅크에 합류하세요"
+												class="BannerItem_BannerItem__link__img__JHO6H">
+											<div class="BannerItem_BannerItem__overlay__zQ88O"
+													style="background: linear-gradient(270deg, rgba(38, 38, 33, 0), rgba(38, 38, 33, 0.43))"></div></a>
+										</div>
+										<div class="BannerItem_BannerItem__info__1QEVE">
+											<h3
+												class="Typography_Typography__root__RdAI1 Typography_Typography__title3__J1fCl Typography_Typography__title3__weightBold__xwZk7 Typography_Typography__weightBold__KkJEY BannerItem_BannerItem__info__title__todNv">지금,
+												토스뱅크에 합류하세요</h3>
+											<p
+												class="Typography_Typography__root__RdAI1 Typography_Typography__body2__5Mmhi Typography_Typography__weightMedium__GXnOM BannerItem_BannerItem__info__desc__pNpL7">Tech,
+												Data, IT 직군 적극 채용</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div data-index="29" tabindex="-1"
+								class="slick-slide slick-cloned" aria-hidden="true"
+								style="width: 1060px;">
+								<div>
+									<div class="BannerItem_BannerItem__NtVfT">
+										<div class="BannerItem_BannerItem__link__olAEK">
+											<a
+												href="https://www.wanted.co.kr/tags/10485?view=position&amp;start_year=0&amp;end_year=10"
+												target="_blank" rel="noopener noreferrer"
+												data-landing-uri="https://www.wanted.co.kr/tags/10485?view=position&amp;start_year=0&amp;end_year=10"
+												data-attribute-id="jobs__mainBanner__click"
+												data-link-kind="CUSTOM_URL"
+												data-content-title="최근 100억 이상 투자 받은 기업"><img
+												src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fbanners%2F1948%2F65930f6a.jpg&amp;w=1060&amp;q=100"
+												fetchpriority="auto" alt="최근 100억 이상 투자 받은 기업"
+												class="BannerItem_BannerItem__link__img__JHO6H">
+											<div class="BannerItem_BannerItem__overlay__zQ88O"
+													style="background: linear-gradient(270deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.43))"></div></a>
+										</div>
+										<div class="BannerItem_BannerItem__info__1QEVE">
+											<h3
+												class="Typography_Typography__root__RdAI1 Typography_Typography__title3__J1fCl Typography_Typography__title3__weightBold__xwZk7 Typography_Typography__weightBold__KkJEY BannerItem_BannerItem__info__title__todNv">최근
+												100억 이상 투자 받은 기업</h3>
+											<p
+												class="Typography_Typography__root__RdAI1 Typography_Typography__body2__5Mmhi Typography_Typography__weightMedium__GXnOM BannerItem_BannerItem__info__desc__pNpL7">채용
+												중 포지션 확인하기</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div data-index="30" tabindex="-1"
+								class="slick-slide slick-cloned" aria-hidden="true"
+								style="width: 1060px;">
+								<div>
+									<div class="BannerItem_BannerItem__NtVfT">
+										<div class="BannerItem_BannerItem__link__olAEK">
+											<a
+												href="https://docs.google.com/forms/d/1MqAa5PRevHCQUUZI6dO9YzqanXsocw5VJeIkQJ1JWwI/edit"
+												target="_blank" rel="noopener noreferrer"
+												data-landing-uri="https://docs.google.com/forms/d/1MqAa5PRevHCQUUZI6dO9YzqanXsocw5VJeIkQJ1JWwI/edit"
+												data-attribute-id="jobs__mainBanner__click"
+												data-link-kind="CUSTOM_URL"
+												data-content-title="옥외광고도 타겟팅이 됩니다"><img
+												src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fbanners%2F2406%2F10625bd6.jpg&amp;w=1060&amp;q=100"
+												fetchpriority="auto" alt="옥외광고도 타겟팅이 됩니다"
+												class="BannerItem_BannerItem__link__img__JHO6H">
+											<div class="BannerItem_BannerItem__overlay__zQ88O"
+													style="background: linear-gradient(270deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.43))"></div></a>
+										</div>
+										<div class="BannerItem_BannerItem__info__1QEVE">
+											<h3
+												class="Typography_Typography__root__RdAI1 Typography_Typography__title3__J1fCl Typography_Typography__title3__weightBold__xwZk7 Typography_Typography__weightBold__KkJEY BannerItem_BannerItem__info__title__todNv">옥외광고도
+												타겟팅이 됩니다</h3>
+											<p
+												class="Typography_Typography__root__RdAI1 Typography_Typography__body2__5Mmhi Typography_Typography__weightMedium__GXnOM BannerItem_BannerItem__info__desc__pNpL7">옥외광고
+												컨설팅을 무료로 받아보세요</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div data-index="31" tabindex="-1"
+								class="slick-slide slick-cloned" aria-hidden="true"
+								style="width: 1060px;">
+								<div>
+									<div class="BannerItem_BannerItem__NtVfT">
+										<div class="BannerItem_BannerItem__link__olAEK">
+											<a href="/company/49206" data-landing-uri="/company/49206"
+												data-attribute-id="jobs__mainBanner__click"
+												data-link-kind="COMPANY_DETAIL"
+												data-content-title="셀바티코의 새로운 여정에 합류하세요."
+												data-content-id="49206"><img
+												src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fbanners%2F2403%2F9d87cb1b.jpg&amp;w=1060&amp;q=100"
+												fetchpriority="auto" alt="셀바티코의 새로운 여정에 합류하세요."
+												class="BannerItem_BannerItem__link__img__JHO6H">
+											<div class="BannerItem_BannerItem__overlay__zQ88O"
+													style="background: linear-gradient(270deg, rgba(33, 33, 33, 0), rgba(33, 33, 33, 0.43))"></div></a>
+										</div>
+										<div class="BannerItem_BannerItem__info__1QEVE">
+											<h3
+												class="Typography_Typography__root__RdAI1 Typography_Typography__title3__J1fCl Typography_Typography__title3__weightBold__xwZk7 Typography_Typography__weightBold__KkJEY BannerItem_BannerItem__info__title__todNv">셀바티코의
+												새로운 여정에 합류하세요.</h3>
+											<p
+												class="Typography_Typography__root__RdAI1 Typography_Typography__body2__5Mmhi Typography_Typography__weightMedium__GXnOM BannerItem_BannerItem__info__desc__pNpL7">프랑스
+												유수 기관 투자를 유치한 뷰티 스타트업</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div data-index="32" tabindex="-1"
+								class="slick-slide slick-cloned" aria-hidden="true"
+								style="width: 1060px;">
+								<div>
+									<div class="BannerItem_BannerItem__NtVfT">
+										<div class="BannerItem_BannerItem__link__olAEK">
+											<a href="/events/2024_job_festa"
+												data-landing-uri="/events/2024_job_festa"
+												data-attribute-id="jobs__mainBanner__click"
+												data-link-kind="EVENT_DETAIL"
+												data-content-title="2024 관광 일자리 페스타"><img
+												src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fbanners%2F2385%2F1203d6e1.jpg&amp;w=1060&amp;q=100"
+												fetchpriority="auto" alt="2024 관광 일자리 페스타"
+												class="BannerItem_BannerItem__link__img__JHO6H">
+											<div class="BannerItem_BannerItem__overlay__zQ88O"
+													style="background: linear-gradient(270deg, rgba(38, 38, 33, 0), rgba(38, 38, 33, 0.43))"></div></a>
+										</div>
+										<div class="BannerItem_BannerItem__info__1QEVE">
+											<h3
+												class="Typography_Typography__root__RdAI1 Typography_Typography__title3__J1fCl Typography_Typography__title3__weightBold__xwZk7 Typography_Typography__weightBold__KkJEY BannerItem_BannerItem__info__title__todNv">2024
+												관광 일자리 페스타</h3>
+											<p
+												class="Typography_Typography__root__RdAI1 Typography_Typography__body2__5Mmhi Typography_Typography__weightMedium__GXnOM BannerItem_BannerItem__info__desc__pNpL7">지역
+												관광기업들의 채용 정보가 한 곳에!</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div data-index="33" tabindex="-1"
+								class="slick-slide slick-cloned" aria-hidden="true"
+								style="width: 1060px;">
+								<div>
+									<div class="BannerItem_BannerItem__NtVfT">
+										<div class="BannerItem_BannerItem__link__olAEK">
+											<a href="/events/work_recipe03"
+												data-landing-uri="/events/work_recipe03"
+												data-attribute-id="jobs__mainBanner__click"
+												data-link-kind="EVENT_DETAIL"
+												data-content-title="WORK RECIPE"><img
+												src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fbanners%2F2365%2F8540675a.jpg&amp;w=1060&amp;q=100"
+												fetchpriority="auto" alt="WORK RECIPE"
+												class="BannerItem_BannerItem__link__img__JHO6H">
+											<div class="BannerItem_BannerItem__overlay__zQ88O"
+													style="background: linear-gradient(270deg, rgba(84, 83, 20, 0), rgba(84, 83, 20, 0.43))"></div></a>
+										</div>
+										<div class="BannerItem_BannerItem__info__1QEVE">
+											<h3
+												class="Typography_Typography__root__RdAI1 Typography_Typography__title3__J1fCl Typography_Typography__title3__weightBold__xwZk7 Typography_Typography__weightBold__KkJEY BannerItem_BannerItem__info__title__todNv">WORK
+												RECIPE</h3>
+											<p
+												class="Typography_Typography__root__RdAI1 Typography_Typography__body2__5Mmhi Typography_Typography__weightMedium__GXnOM BannerItem_BannerItem__info__desc__pNpL7">일할
+												맛 나는 기업, 오비맥주</p>
 										</div>
 									</div>
 								</div>
@@ -646,14 +1564,20 @@
 						<li class=""><button>1</button></li>
 						<li class=""><button>2</button></li>
 						<li class=""><button>3</button></li>
-						<li class="slick-active"><button>4</button></li>
+						<li class=""><button>4</button></li>
 						<li class=""><button>5</button></li>
 						<li class=""><button>6</button></li>
 						<li class=""><button>7</button></li>
 						<li class=""><button>8</button></li>
 						<li class=""><button>9</button></li>
 						<li class=""><button>10</button></li>
-						<li class=""><button>11</button></li>
+						<li class="slick-active"><button>11</button></li>
+						<li class=""><button>12</button></li>
+						<li class=""><button>13</button></li>
+						<li class=""><button>14</button></li>
+						<li class=""><button>15</button></li>
+						<li class=""><button>16</button></li>
+						<li class=""><button>17</button></li>
 					</ul>
 				</div>
 			</article>
@@ -1856,7 +2780,40 @@
 				</div>
 			</article>
 		</section>
-
+		<script type="text/javascript">
+			$('.responsive').slick({
+				dots : true,
+				infinite : false,
+				speed : 300,
+				slidesToShow : 4,
+				slidesToScroll : 4,
+				responsive : [ {
+					breakpoint : 1024,
+					settings : {
+						slidesToShow : 3,
+						slidesToScroll : 3,
+						infinite : true,
+						dots : true
+					}
+				}, {
+					breakpoint : 600,
+					settings : {
+						slidesToShow : 2,
+						slidesToScroll : 2
+					}
+				}, {
+					breakpoint : 480,
+					settings : {
+						slidesToShow : 1,
+						slidesToScroll : 1
+					}
+				}
+				// You can unslick at a given breakpoint now by adding:
+				// settings: "unslick"
+				// instead of a settings object
+				]
+			});
+		</script>
 	</main>
 </body>
 </html>

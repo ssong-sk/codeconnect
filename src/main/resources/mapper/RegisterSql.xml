@@ -21,7 +21,7 @@
    <select id="getDataById" parameterType="String" resultType="RDto">
       select * from register where r_id=#{r_id}
    </select>
-   <select id="getDataByNum" parameterType="int" resultType="RDto">
+   <select id="getDataByNum" parameterType="String" resultType="RDto">
       select * from register where r_num=#{r_num}
    </select>
     <select id="countById" resultType="int">
