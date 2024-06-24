@@ -143,6 +143,36 @@
         font-size: 0.875em;
         color: #6c757d;
     }
+
+    /* 스타일 추가 */
+    .rating {
+        direction: rtl;
+        unicode-bidi: bidi-override;
+        text-align: center;
+    }
+
+    .rating > label {
+        display: inline-block;
+        position: relative;
+        width: 1.1em;
+    }
+
+    .rating > label::before {
+        content: "\2605";
+        position: absolute;
+        opacity: 0.5;
+    }
+
+    .rating > input:checked ~ label::before,
+    .rating > label:hover ~ label::before,
+    .rating > label:hover::before {
+        opacity: 1;
+    }
+
+    .rating > input {
+        display: none;
+    }
+
 </style>
 <title>Company Profile</title>
 </head>
@@ -308,58 +338,105 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <!-- 전체 리뷰 및 통계 Modal -->
-<div class="modal fade" id="reviewModal" tabindex="-1"
-    aria-labelledby="reviewModalLabel" aria-hidden="true">
+<div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="reviewModalLabel">전체 리뷰 및 통계</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                    aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
             <div class="modal-body">
-                <form id="reviewForm" action="companyreviewSave" method="post">
+                <form id="reviewForm">
                     <!-- 평균점수 별점 계산 라인 -->
 
                     <!-- 로그인한 해당 회원이 해당 기업의 리뷰 작성+저장 -->
                     <!-- 기업 넘버 -->
                     <input type="hidden" name="c_num" value="${dto.c_num}">
-                    
-                    <!--  
-                    기업넘버 : ${dto.c_num}
-                    내 아이디 : ${myid }
-                    로그인여부: ${loginok }
-                    -->
 
                     <!-- 복지 및 급여 -->
-                    <label for="cr_happy">복지 및 급여 (1-10):</label> 
-                    <input type="number" id="cr_happy" name="cr_happy" min="1" max="10" class="form-control mb-3">
-                    
+                    <label for="cr_happy">복지 및 급여:</label>
+                    <div class="rating">
+                        <input type="radio" id="cr_happy10" name="cr_happy" value="10"><label for="cr_happy10" title="10 stars"></label>
+                        <input type="radio" id="cr_happy9" name="cr_happy" value="9"><label for="cr_happy9" title="9 stars"></label>
+                        <input type="radio" id="cr_happy8" name="cr_happy" value="8"><label for="cr_happy8" title="8 stars"></label>
+                        <input type="radio" id="cr_happy7" name="cr_happy" value="7"><label for="cr_happy7" title="7 stars"></label>
+                        <input type="radio" id="cr_happy6" name="cr_happy" value="6"><label for="cr_happy6" title="6 stars"></label>
+                        <input type="radio" id="cr_happy5" name="cr_happy" value="5"><label for="cr_happy5" title="5 stars"></label>
+                        <input type="radio" id="cr_happy4" name="cr_happy" value="4"><label for="cr_happy4" title="4 stars"></label>
+                        <input type="radio" id="cr_happy3" name="cr_happy" value="3"><label for="cr_happy3" title="3 stars"></label>
+                        <input type="radio" id="cr_happy2" name="cr_happy" value="2"><label for="cr_happy2" title="2 stars"></label>
+                        <input type="radio" id="cr_happy1" name="cr_happy" value="1"><label for="cr_happy1" title="1 star"></label>
+                    </div>
+
                     <!-- 근무환경 -->
-                    <label for="cr_environment">근무환경 (1-10):</label> 
-                    <input type="number" id="cr_environment" name="cr_environment" min="1" max="10" class="form-control mb-3">
-                    
+                    <label for="cr_environment">근무환경:</label>
+                    <div class="rating">
+                        <input type="radio" id="cr_environment10" name="cr_environment" value="10"><label for="cr_environment10" title="10 stars"></label>
+                        <input type="radio" id="cr_environment9" name="cr_environment" value="9"><label for="cr_environment9" title="9 stars"></label>
+                        <input type="radio" id="cr_environment8" name="cr_environment" value="8"><label for="cr_environment8" title="8 stars"></label>
+                        <input type="radio" id="cr_environment7" name="cr_environment" value="7"><label for="cr_environment7" title="7 stars"></label>
+                        <input type="radio" id="cr_environment6" name="cr_environment" value="6"><label for="cr_environment6" title="6 stars"></label>
+                        <input type="radio" id="cr_environment5" name="cr_environment" value="5"><label for="cr_environment5" title="5 stars"></label>
+                        <input type="radio" id="cr_environment4" name="cr_environment" value="4"><label for="cr_environment4" title="4 stars"></label>
+                        <input type="radio" id="cr_environment3" name="cr_environment" value="3"><label for="cr_environment3" title="3 stars"></label>
+                        <input type="radio" id="cr_environment2" name="cr_environment" value="2"><label for="cr_environment2" title="2 stars"></label>
+                        <input type="radio" id="cr_environment1" name="cr_environment" value="1"><label for="cr_environment1" title="1 star"></label>
+                    </div>
+
                     <!-- 사내문화 -->
-                    <label for="cr_culture">사내문화 (1-10):</label> 
-                    <input type="number" id="cr_culture" name="cr_culture" min="1" max="10" class="form-control mb-3">
-                    
+                    <label for="cr_culture">사내문화:</label>
+                    <div class="rating">
+                        <input type="radio" id="cr_culture10" name="cr_culture" value="10"><label for="cr_culture10" title="10 stars"></label>
+                        <input type="radio" id="cr_culture9" name="cr_culture" value="9"><label for="cr_culture9" title="9 stars"></label>
+                        <input type="radio" id="cr_culture8" name="cr_culture" value="8"><label for="cr_culture8" title="8 stars"></label>
+                        <input type="radio" id="cr_culture7" name="cr_culture" value="7"><label for="cr_culture7" title="7 stars"></label>
+                        <input type="radio" id="cr_culture6" name="cr_culture" value="6"><label for="cr_culture6" title="6 stars"></label>
+                        <input type="radio" id="cr_culture5" name="cr_culture" value="5"><label for="cr_culture5" title="5 stars"></label>
+                        <input type="radio" id="cr_culture4" name="cr_culture" value="4"><label for="cr_culture4" title="4 stars"></label>
+                        <input type="radio" id="cr_culture3" name="cr_culture" value="3"><label for="cr_culture3" title="3 stars"></label>
+                        <input type="radio" id="cr_culture2" name="cr_culture" value="2"><label for="cr_culture2" title="2 stars"></label>
+                        <input type="radio" id="cr_culture1" name="cr_culture" value="1"><label for="cr_culture1" title="1 star"></label>
+                    </div>
+
                     <!-- 승진 기회 및 가능성 -->
-                    <label for="cr_possibility">승진 기회 및 가능성 (1-10):</label> 
-                    <input type="number" id="cr_possibility" name="cr_possibility" min="1" max="10" class="form-control mb-3">
-                    
+                    <label for="cr_possibility">승진 기회 및 가능성:</label>
+                    <div class="rating">
+                        <input type="radio" id="cr_possibility10" name="cr_possibility" value="10"><label for="cr_possibility10" title="10 stars"></label>
+                        <input type="radio" id="cr_possibility9" name="cr_possibility" value="9"><label for="cr_possibility9" title="9 stars"></label>
+                        <input type="radio" id="cr_possibility8" name="cr_possibility" value="8"><label for="cr_possibility8" title="8 stars"></label>
+                        <input type="radio" id="cr_possibility7" name="cr_possibility" value="7"><label for="cr_possibility7" title="7 stars"></label>
+                        <input type="radio" id="cr_possibility6" name="cr_possibility" value="6"><label for="cr_possibility6" title="6 stars"></label>
+                        <input type="radio" id="cr_possibility5" name="cr_possibility" value="5"><label for="cr_possibility5" title="5 stars"></label>
+                        <input type="radio" id="cr_possibility4" name="cr_possibility" value="4"><label for="cr_possibility4" title="4 stars"></label>
+                        <input type="radio" id="cr_possibility3" name="cr_possibility" value="3"><label for="cr_possibility3" title="3 stars"></label>
+                        <input type="radio" id="cr_possibility2" name="cr_possibility" value="2"><label for="cr_possibility2" title="2 stars"></label>
+                        <input type="radio" id="cr_possibility1" name="cr_possibility" value="1"><label for="cr_possibility1" title="1 star"></label>
+                    </div>
+
                     <!-- 경영진 -->
-                    <label for="cr_heads">경영진 (1-10):</label> 
-                    <input type="number" id="cr_heads" name="cr_heads" min="1" max="10" class="form-control mb-3">
-                    
+                    <label for="cr_heads">경영진:</label>
+                    <div class="rating">
+                        <input type="radio" id="cr_heads10" name="cr_heads" value="10"><label for="cr_heads10" title="10 stars"></label>
+                        <input type="radio" id="cr_heads9" name="cr_heads" value="9"><label for="cr_heads9" title="9 stars"></label>
+                        <input type="radio" id="cr_heads8" name="cr_heads" value="8"><label for="cr_heads8" title="8 stars"></label>
+                        <input type="radio" id="cr_heads7" name="cr_heads" value="7"><label for="cr_heads7" title="7 stars"></label>
+                        <input type="radio" id="cr_heads6" name="cr_heads" value="6"><label for="cr_heads6" title="6 stars"></label>
+                        <input type="radio" id="cr_heads5" name="cr_heads" value="5"><label for="cr_heads5" title="5 stars"></label>
+                        <input type="radio" id="cr_heads4" name="cr_heads" value="4"><label for="cr_heads4" title="4 stars"></label>
+                        <input type="radio" id="cr_heads3" name="cr_heads" value="3"><label for="cr_heads3" title="3 stars"></label>
+                        <input type="radio" id="cr_heads2" name="cr_heads" value="2"><label for="cr_heads2" title="2 stars"></label>
+                        <input type="radio" id="cr_heads1" name="cr_heads" value="1"><label for="cr_heads1" title="1 star"></label>
+                    </div>
+
                     <!-- 코멘트 -->
-                    <label for="cr_comment">코멘트:</label> 
+                    <label for="cr_comment">코멘트:</label>
                     <textarea id="cr_comment" name="cr_comment" class="form-control mb-3"></textarea>
 
-                    <button type="submit" class="btn btn-primary w-100">저장하기</button>
-                    
+                    <button type="button" class="btn btn-primary w-100" id="saveReviewButton">저장하기</button>
+
                     <hr>
-                    
+
                     <!-- 기존의 리뷰 보여주기 : rlist -->
                     <div class="reviews-container">
                         <c:forEach var="a" items="${rlist}">
@@ -420,6 +497,24 @@ geocoder.addressSearch('${cdto.c_addr}', function(result, status) {
             window.open('https://map.kakao.com/link/map/' + encodeURIComponent('${cdto.c_name}') + ',' + result[0].y + ',' + result[0].x);
         });
     } 
+});
+
+$(document).ready(function() {
+    $("#saveReviewButton").click(function() {
+        var formData = $("#reviewForm").serialize();
+        $.ajax({
+            type: "POST",
+            url: "companyreviewSave",
+            data: formData,
+            success: function(response) {
+                alert("리뷰가 성공적으로 저장되었습니다.");
+                location.reload(); // 페이지를 새로고침하여 업데이트된 리뷰를 반영합니다.
+            },
+            error: function(xhr, status, error) {
+                alert("리뷰 저장에 실패했습니다: " + error);
+            }
+        });
+    });
 });
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
