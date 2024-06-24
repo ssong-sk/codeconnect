@@ -126,10 +126,24 @@ public class RegisterController {
       return "/member/mypage";
    }
    
-   @GetMapping("/member/mypage2")
-   public String mypage2()
-   {
-      return "/member/mypage2";
+ @GetMapping("/member/apply")
+   public String apply() {
+	   return "/member/apply";
+   }
+   
+   @GetMapping("/member/bookmarks")
+   	public String bookmarks() {
+	   return "/member/bookmarks";
+   }
+   
+   @GetMapping("/member/companies")
+   public String companies() {
+	   return "/member/companies";
+   }
+   
+   @GetMapping("/member/memberform")
+   public String memberform() {
+      return "/member/memberform";
    }
    
    @GetMapping("/member/memberform")

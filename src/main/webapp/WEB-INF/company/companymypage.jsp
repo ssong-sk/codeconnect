@@ -116,6 +116,10 @@
             기업 마이페이지 입니다.
             <b>${sessionScope.c_myid}님 로그인중</b><br><br><br>
             <button type="button" class="btn btn-danger" style="width: 100px;" onclick="location.href='logoutprocess'">로그아웃</button>
+        	
+        	<br>
+        	<button class="btn btn-outline-warning"   style="width: 100px;" onclick="location.href='gotoshowimsiList'">기업소개 리스트</button>
+        
         </div>
     </div>
 </div>

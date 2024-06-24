@@ -16,7 +16,19 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <link rel="stylesheet" type="text/css" href="/css/mypage.css">
-<title>Insert title here</title>
+
+<style type="text/css">
+
+.MainLayout_MainLayout__space__vN0G7 {
+	display: block;
+}
+
+.Grid_Grid__grid__md__1__Wzfhp {
+	flex-basis: 8.3333333333%;
+	max-width: 8.3333333333%;
+}
+
+</style><title>Insert title here</title>
 </head>
 <body>
 	<c:set var="root" value="<%=request.getContextPath()%>" />
@@ -26,10 +38,11 @@
 
 				<div
 					class="Grid_Grid__item__FUkSS Grid_Grid__align-items_flex-start__PA0JE Grid_Grid__grid__xs__12__rVqKh Grid_Grid__grid__md__4__YPyIl MainLayout_MainLayout__sidebar__G8teL"
-					style="padding-top: 59px; padding-left: 50px;">
+					style="padding-top: 59px; padding-left: 50px; height: 465px; width: 355px;">
 					<div
 						class="Grid_Grid__container__J9CcC Grid_Grid__direction_column__jR3AZ Grid_Grid__align-items_flex-start__PA0JE LnbDesktop_LnbDesktop__root__yg5QP MainLayout_MainLayout__pcLnb___mU9a">
-						<ul class="LnbDesktop_LnbDesktop__menus____3yL">
+						<ul class="LnbDesktop_LnbDesktop__menus____3yL"
+							style="width: 304px;">
 							<li class="LnbDesktop_LnbDesktop__item__sZEI4"><a
 								class="Button_Button__root__V1ie3 Button_Button__text__GCOTx Button_Button__textAssistive__Dx57x Button_Button__textSizeMedium__KekFB Button_Button__fullWidth__RU4tf LnbDesktop_LnbDesktop__text__2eGDD"
 								data-attribute-id="myActivity__snb" data-snb-kind="profile"
@@ -68,6 +81,8 @@
 						</ul>
 					</div>
 				</div>
+				<div
+					class="Grid_Grid__item__4GoIZ Grid_Grid__align-items_flex-start__nEOiH Grid_Grid__grid__md__1__Wzfhp MainLayout_MainLayout__space__vN0G7"></div>
 
 				<div>
 					<c:choose>
@@ -79,9 +94,6 @@
 						</c:when>
 						<c:when test="${param.page == 'settings'}">
 							<jsp:include page="settings.jsp" />
-						</c:when>
-						<c:when test="${param.page == 'updateform' }">
-							<jsp:include page="updateform.jsp"/>
 						</c:when>
 					</c:choose>
 				</div>

@@ -79,11 +79,6 @@ cLogin-save {
     padding: 1px 0 7px 0;
 }
 
-input[type="checkbox"] {
-    position: absolute;
-    left: -9999px;
-}
-
 .cLogin-save label {
     display: inline-block;
     position: relative;
@@ -92,7 +87,7 @@ input[type="checkbox"] {
     line-height: 24px;
     color: #666666;
     letter-spacing: -0.7pt;
-    padding: 0 8px 0 27px;
+    padding: 0 10px 0 8px;
 }
 
 .cLogin-input-idpw li .cError {
