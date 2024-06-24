@@ -182,7 +182,7 @@
 			              <c:if test="${totalCount==0 }">
 			                <tr>
 			                  <td colspan="4" align="center"></td>
-			                  <p><b>등록된 이력서가 없습니다</b></p>
+			                  <p><b>등록된 스크랩 공고가 없습니다</b></p>
 			                </tr>
 			              </c:if>
 			              
@@ -216,17 +216,6 @@
 							</tr>
 							
 							<tr><td><br></td></tr>
-							
-							<tr>
-							    <!-- 세 번째 열: 버튼 열 -->
-							    <td colspan="2" style="text-align: right;"> 
-							        <button id="btnUpdate" class="btn btn-outline-primary" onclick="location.href='updateForm?pe_num=${pe.pe_num}'"  style="width: 100px;">수정</button>
-							        <button id="btnDelete" pe_num="${pe.pe_num}" 
-							        class="btn btn-outline-primary" style="width: 100px;">삭제</button>
-							    </td>
-							</tr>
-			                  
-			                  <tr><td><br></td></tr>
 			                  
 		                      <tr>
 			                    <td colspan="4"><hr></td> <!-- 각 섹션 사이에 구분선 추가 -->
@@ -251,39 +240,5 @@
         </div>
     </div>    
     
-    
-    <script type="text/javascript">
-    
-      $(function () {
-    	   
-    	 //이력서 삭제
-          $(document).on("click", "#btnDelete", function() {
-          	
-          	var pe_num = $(this).attr("pe_num");
-
-          	var pe_confirm = confirm("해당 내역을 삭제하시겠습니까?");
-          	
-          	if(pe_confirm) {
-          		
-          		$.ajax({
-          			
-          			type : "get",
-          			dataType : "html",
-          			url : "personaldelete",
-          			data : {"pe_num":pe_num},
-          			success : function() {
-          				
-          				alert("삭제되었습니다");
-          				location.reload();
-          			}
-          		})
-          	}
-          });
-    	 
-    	 
-    	 //이력서 수정폼
-    	  
-      })
-    </script>
 </body>
 </html>

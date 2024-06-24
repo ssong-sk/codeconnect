@@ -146,11 +146,6 @@ public class RegisterController {
       return "/member/memberform";
    }
    
-   @GetMapping("/member/memberform")
-   public String memberform() {
-      return "/member/memberform";
-   }
-   
    @GetMapping("/member/register2")
    public String position() {
       return "/member/register2";
