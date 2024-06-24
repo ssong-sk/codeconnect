@@ -161,7 +161,7 @@ public interface IruckseoInsertServiceInter {
 	//희망조건 update
 	public void updateHope(IruckseoHopeDto hodto);
 
-	//희망조건 pe_num 조회
+  	//희망조건 pe_num 조회
 	public List<IruckseoHopeDto> Hopelist(int pe_num);
 	
 	//희망조건 띄우기

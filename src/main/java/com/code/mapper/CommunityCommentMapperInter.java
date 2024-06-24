@@ -3,6 +3,7 @@ package com.code.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 
 import com.code.dto.CommunityCommentDto;
 
@@ -14,4 +15,6 @@ public interface CommunityCommentMapperInter {
     CommunityCommentDto getComment(int cc_idx);
     void updateComment(CommunityCommentDto dto);
     void deleteComment(int cc_idx);
+
 }
+

@@ -69,5 +69,7 @@
     <select id="selectCi_num" parameterType="int" resultType="int">
     	select ci_num from company_intro where c_num = #{c_num}
     </select>
+    
+
 </mapper>
 

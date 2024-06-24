@@ -19,5 +19,7 @@
 
 </script>
 <b>비번이나 아이디가 잘못되었습니다!!</b>
+<button onclick="location.href='/login/main'">다시 로그인하기</button>
+<button onclick="location.href='#'">아이디/비밀번호찾기</button>
 </body>
 </html>
