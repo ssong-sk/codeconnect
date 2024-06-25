@@ -48,11 +48,13 @@ public class LoginController {
 	{
 		
 		int check=service.loginIdPassCheck(r_id, r_pass);
-			
+
 		if(check==1) {
-			
+
 			RegisterDto mdto = service.getDataById(r_id);
-			
+			if ("manager".equals(r_id)) {
+				return "redirect:/manager/main";
+		    }
 			session.setMaxInactiveInterval(60*60*8); //8시간
 			
 			session.setAttribute("myid", r_id);

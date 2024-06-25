@@ -19,7 +19,6 @@ public class HireDto {
 	private String h_grade;
 	private String h_location;
 	private String h_title;
-	private String h_subject;
 	private String h_major;
 	private String h_require;
 	private String h_preference;
@@ -31,6 +30,7 @@ public class HireDto {
 	private String h_writeday;
 	private int h_count;
 	
+	private int c_num;
 	private String c_name;
 	private String c_birthyear;
 	private String ci_image;
