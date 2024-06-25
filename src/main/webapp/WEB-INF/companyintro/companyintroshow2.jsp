@@ -140,15 +140,15 @@ body {
     margin-right: 10px;
 }
 
-.ratings .stars {
-    display: flex;
-    align-items: center;
+.ratings .stars,
+.modal-stars {
+    color: #f39c12;
 }
 
-.stars i {
-    font-size: 24px;
-    color: #f39c12;
-    margin-right: 2px;
+.ratings .stars i,
+.modal-stars i {
+    font-size: 24px; /* Increase this value to make the stars bigger */
+    margin-right: 5px; /* Adjust spacing between stars if needed */
 }
 
 .ratings-list {
@@ -173,6 +173,43 @@ body {
     color: #6c757d;
 }
 
+/* 스타일 추가 */
+.rating {
+    direction: rtl;
+    unicode-bidi: bidi-override;
+    text-align: left; /* Change to left to ensure proper alignment */
+    font-size: 2em; /* Increase the font size to make the stars bigger */
+    color: #f39c12; /* Yellow color for the stars */
+    display: inline-flex; /* Align stars inline */
+    align-items: center; /* Center align stars vertically */
+    margin-left: auto; /* Add this to move the rating to the right */
+}
+
+.rating > label {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    position: relative;
+}
+
+.rating > label::before {
+    content: "\2605";
+    position: absolute;
+    width: 1em;
+    height: 1em;
+    opacity: 0.5;
+}
+
+.rating > input:checked ~ label::before,
+.rating > label:hover ~ label::before,
+.rating > label:hover::before {
+    opacity: 1;
+}
+
+.rating > input {
+    display: none;
+}
+
 /* Ensure the label and rating align horizontally */
 .form-group {
     display: flex;
@@ -182,6 +219,7 @@ body {
 .form-group label {
     margin-right: 10px; /* Adjust the spacing between the label and stars */
 }
+
 </style>
 <title>Company Profile</title>
 </head>
@@ -501,18 +539,23 @@ $(document).ready(function() {
     });
 
     // JavaScript to dynamically fill stars based on avgAll
-    var avgAll = parseFloat(document.querySelector('.stars').dataset.avgAll);
-    var stars = document.querySelectorAll('.stars i');
-    stars.forEach(function(star, index) {
-        var starValue = avgAll - index;
-        if (starValue >= 0.75) {
-            star.className = 'bi bi-star-fill';
-        } else if (starValue >= 0.35) {
-            star.className = 'bi bi-star-half';
-        } else {
-            star.className = 'bi bi-star';
-        }
-    });
+    function fillStars(starContainer) {
+        var avgAll = parseFloat(starContainer.dataset.avgAll);
+        var stars = starContainer.querySelectorAll('i');
+        stars.forEach(function(star, index) {
+            var starValue = avgAll - index;
+            if (starValue >= 0.75) {
+                star.className = 'bi bi-star-fill';
+            } else if (starValue >= 0.35) {
+                star.className = 'bi bi-star-half';
+            } else {
+                star.className = 'bi bi-star';
+            }
+        });
+    }
+
+    document.querySelectorAll('.stars').forEach(fillStars);
+    document.querySelectorAll('.modal-stars').forEach(fillStars);
 });
 </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
