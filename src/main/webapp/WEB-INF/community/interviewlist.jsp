@@ -1,7 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -66,6 +65,10 @@
     .wrap_category_type ul li a {
         text-decoration: none;
         color: black;
+    }
+    .wrap_category_type ul li a.active {
+        color: blue;
+        font-weight: bold;
     }
     .input-group {
         margin-top: 30px;
@@ -133,139 +136,128 @@
     .details_list {
         margin-left: 20px;
     }
+    
+    /* 페이징 스타일 */
+    .pagination {
+        display: flex;
+        justify-content: center;
+        margin-top: 40px;
+        margin-bottom: 50px;
+    }
+
+    .pagination a {
+        padding: 10px 15px;
+        margin: 0 5px;
+        color: gray;
+        text-decoration: none;
+        transition: background-color 0.3s;
+        border-radius: 5px;
+        border: none;
+    }
+
+    .pagination a:hover {
+        background-color: #e9ecef;
+    }
+
+    .pagination a.active {
+        border: 1px solid #dee2e6;
+        background-color: white;
+        color: blue;
+        pointer-events: none;
+        box-shadow: none;
+    }
 </style>
 </head>
 <body>
 <nav class="nav">
     <ul>
-        <a class="nav-link" href="${root }/community/homelist">홈</a>
-        <a class="nav-link" href="${root }/community/interviewlist">현직자 인터뷰</a>
+        <a class="nav-link" href="${root}/community/homelist">홈</a>
+        <a class="nav-link" href="${root}/community/interviewlist?category=전체">현직자 인터뷰</a>
     </ul>
 </nav>
 <div class="container" style="margin-top: 50px;">
     <h3>현직자 인터뷰</h3>
     <div class="wrap_category_type" style="margin-top: 30px;">
         <ul class="list_category">
-            <li><a href="#">전체</a></li>
-            <li><a href="#">서버/백엔드 개발자</a></li>
-            <li><a href="#">프론트엔드 개발자</a></li>
-            <li><a href="#">웹 풀스택 개발자</a></li>
-            <li><a href="#">안드로이드 개발자</a></li>
-            <li><a href="#">IOS 개발자</a></li>
-            <li><a href="#">크로스플랫폼 앱 개발자</a></li>
-            <li><a href="#">게임 클라이언트 개발자</a></li>
-            <li><a href="#">게임 서버 개발자</a></li>
-            <li><a href="#">DBA</a></li>
-            <li><a href="#">빅데이터 엔지니어</a></li>
-            <li><a href="#">인공지능/머신러닝</a></li>
-            <li><a href="#">devops/시스템 엔지니어</a></li>
-            <li><a href="#">정보보안 담당자</a></li>
-            <li><a href="#">QA 엔지니어</a></li>
-            <li><a href="#">개발 PM</a></li>
-            <li><a href="#">HW/임베디드</a></li>
-            <li><a href="#">SW/솔루션</a></li>
-            <li><a href="#">웹퍼블리셔</a></li>
-            <li><a href="#">VR/AR/3D</a></li>
-            <li><a href="#">블록체인</a></li>
-            <li><a href="#">기술지원</a></li>
-        </ul>
+		    <li><a href="${root}/community/interviewlist?category=전체" class="${category == '전체' ? 'active' : ''}">전체</a></li>
+		    <li><a href="${root}/community/interviewlist?category=서버/백엔드 개발자" class="${category == '서버/백엔드 개발자' ? 'active' : ''}">서버/백엔드 개발자 (${categoryCountMap['서버/백엔드 개발자']})</a></li>
+		    <li><a href="${root}/community/interviewlist?category=프론트엔드 개발자" class="${category == '프론트엔드 개발자' ? 'active' : ''}">프론트엔드 개발자 (${categoryCountMap['프론트엔드 개발자']})</a></li>
+		    <li><a href="${root}/community/interviewlist?category=웹 풀스택 개발자" class="${category == '웹 풀스택 개발자' ? 'active' : ''}">웹 풀스택 개발자 (${categoryCountMap['웹 풀스택 개발자']})</a></li>
+		    <li><a href="${root}/community/interviewlist?category=안드로이드 개발자" class="${category == '안드로이드 개발자' ? 'active' : ''}">안드로이드 개발자 (${categoryCountMap['안드로이드 개발자']})</a></li>
+		    <li><a href="${root}/community/interviewlist?category=IOS 개발자" class="${category == 'IOS 개발자' ? 'active' : ''}">IOS 개발자 (${categoryCountMap['IOS 개발자']})</a></li>
+		    <li><a href="${root}/community/interviewlist?category=크로스플랫폼 앱 개발자" class="${category == '크로스플랫폼 앱 개발자' ? 'active' : ''}">크로스플랫폼 앱 개발자 (${categoryCountMap['크로스플랫폼 앱 개발자']})</a></li>
+		    <li><a href="${root}/community/interviewlist?category=게임 클라이언트 개발자" class="${category == '게임 클라이언트 개발자' ? 'active' : ''}">게임 클라이언트 개발자 (${categoryCountMap['게임 클라이언트 개발자']})</a></li>
+		    <li><a href="${root}/community/interviewlist?category=게임 서버 개발자" class="${category == '게임 서버 개발자' ? 'active' : ''}">게임 서버 개발자 (${categoryCountMap['게임 서버 개발자']})</a></li>
+		    <li><a href="${root}/community/interviewlist?category=DBA" class="${category == 'DBA' ? 'active' : ''}">DBA (${categoryCountMap['DBA']})</a></li>
+		    <li><a href="${root}/community/interviewlist?category=빅데이터 엔지니어" class="${category == '빅데이터 엔지니어' ? 'active' : ''}">빅데이터 엔지니어 (${categoryCountMap['빅데이터 엔지니어']})</a></li>
+		    <li><a href="${root}/community/interviewlist?category=인공지능/머신러닝" class="${category == '인공지능/머신러닝' ? 'active' : ''}">인공지능/머신러닝 (${categoryCountMap['인공지능/머신러닝']})</a></li>
+		    <li><a href="${root}/community/interviewlist?category=devops/시스템 엔지니어" class="${category == 'devops/시스템 엔지니어' ? 'active' : ''}">devops/시스템 엔지니어 (${categoryCountMap['devops/시스템 엔지니어']})</a></li>
+		    <li><a href="${root}/community/interviewlist?category=정보보안 담당자" class="${category == '정보보안 담당자' ? 'active' : ''}">정보보안 담당자 (${categoryCountMap['정보보안 담당자']})</a></li>
+		    <li><a href="${root}/community/interviewlist?category=QA 엔지니어" class="${category == 'QA 엔지니어' ? 'active' : ''}">QA 엔지니어 (${categoryCountMap['QA 엔지니어']})</a></li>
+		    <li><a href="${root}/community/interviewlist?category=개발 PM" class="${category == '개발 PM' ? 'active' : ''}">개발 PM (${categoryCountMap['개발 PM']})</a></li>
+		    <li><a href="${root}/community/interviewlist?category=HW/임베디드" class="${category == 'HW/임베디드' ? 'active' : ''}">HW/임베디드 (${categoryCountMap['HW/임베디드']})</a></li>
+		    <li><a href="${root}/community/interviewlist?category=SW/솔루션" class="${category == 'SW/솔루션' ? 'active' : ''}">SW/솔루션 (${categoryCountMap['SW/솔루션']})</a></li>
+		    <li><a href="${root}/community/interviewlist?category=웹퍼블리셔" class="${category == '웹퍼블리셔' ? 'active' : ''}">웹퍼블리셔 (${categoryCountMap['웹퍼블리셔']})</a></li>
+		    <li><a href="${root}/community/interviewlist?category=VR/AR/3D" class="${category == 'VR/AR/3D' ? 'active' : ''}">VR/AR/3D (${categoryCountMap['VR/AR/3D']})</a></li>
+		    <li><a href="${root}/community/interviewlist?category=블록체인" class="${category == '블록체인' ? 'active' : ''}">블록체인 (${categoryCountMap['블록체인']})</a></li>
+		    <li><a href="${root}/community/interviewlist?category=기술지원" class="${category == '기술지원' ? 'active' : ''}">기술지원 (${categoryCountMap['기술지원']})</a></li>
+		</ul>
     </div>
     <div class="input-group" style="margin-top: 50px; display: flex; justify-content: space-between;">
         <div style="font-size: 20px;">
-            <b>총 <span>${totalCount }</span>건</b>
+            <b>총 <span>${totalCount}</span>건</b>
         </div>
         <div style="display: flex; gap: 10px; height: 40px;">
             <input type="text" class="form-control" placeholder="직무 또는 기업명을 입력하세요">
             <button class="btn btn-primary" type="button" style="width: 75px;">검색</button>
         </div>
     </div>
-    <!--
+    
     <div class="interview-list">
-	    <c:forEach var="dto" items="${list}" varStatus="status">
-	        <c:if test="${status.index < 9}">
-	            <div class="interview-item">
-	                <b style="color: blue; margin-left: 15px;">${dto.com_category}</b>
-	                <br><br>
-	                <h5 style="margin-left: 15px;">${dto.com_title}</h5><br><br><br>
-	                <div class="details">
-	                    <div class="details_list">
-	                        <p>${dto.com_companyname}</p>
-	                        <p>${dto.com_name}</p>
-	                        <div>
-	                            <p><fmt:formatDate value="${dto.com_writetime}" pattern="yyyy-MM-dd"/></p>&nbsp;&nbsp;&nbsp;&nbsp;
-	                            <p><i class="bi bi-eye"></i>&nbsp;&nbsp;${dto.com_readcount}</p>
-	                        </div>
-	                    </div>
-	                    <div class="iphoto" style="margin-right: -50px;">
-	                        <img alt="" src="<c:url value='/communityimage/${dto.com_photo}'/>">
-	                    </div>
-	                </div>
-	            </div>
-	        </c:if>
-	    </c:forEach>
-	</div>
-	  -->
-	  
-	<div class="interview-list">
-	    <c:forEach var="dto" items="${list}" varStatus="status">
-	        <c:if test="${status.index < 9}">
-	            <a href="${pageContext.request.contextPath}/community/interviewdetail?com_num=${dto.com_num}" class="interview-item" style="text-decoration: none; color: inherit;">
-	                <b style="color: blue; margin-left: 15px;">${dto.com_category}</b>
-	                <br><br>
-	                <h5 style="margin-left: 15px;">${dto.com_title}</h5><br><br><br>
-	                <div class="details">
-	                    <div class="details_list">
-	                        <p>${dto.com_companyname}</p>
-	                        <p>${dto.com_name}</p>
-	                        <div>
-	                            <p><fmt:formatDate value="${dto.com_writetime}" pattern="yyyy-MM-dd"/></p>&nbsp;&nbsp;&nbsp;&nbsp;
-	                            <p><i class="bi bi-eye"></i>&nbsp;&nbsp;${dto.com_readcount}</p>
-	                        </div>
-	                    </div>
-	                    <div class="iphoto" style="margin-right: -50px;">
-	                        <img alt="" src="<c:url value='/communityimage/${dto.com_photo}'/>">
-	                    </div>
-	                </div>
-	            </a>
-	        </c:if>
-	    </c:forEach>
-	</div>
-	  
+        <c:forEach var="dto" items="${list}" varStatus="status">
+            <c:if test="${dto.com_post_type == 'interview'}">
+                <c:if test="${status.index < 9}">
+                    <a href="${pageContext.request.contextPath}/community/interviewdetail?com_num=${dto.com_num}" class="interview-item" style="text-decoration: none; color: inherit;">
+                        <b style="color: blue; margin-left: 15px;">${dto.com_category}</b>
+                        <br><br>
+                        <h5 style="margin-left: 15px;">${dto.com_title}</h5><br><br><br>
+                        <div class="details">
+                            <div class="details_list">
+                                <p>${dto.com_companyname}</p>
+                                <p>${dto.com_name}</p>
+                                <div>
+                                    <p><fmt:formatDate value="${dto.com_writetime}" pattern="yyyy-MM-dd"/></p>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <p><i class="bi bi-eye"></i>&nbsp;&nbsp;${dto.com_readcount}</p>
+                                </div>
+                            </div>
+                            <div class="iphoto" style="margin-right: -50px;">
+                                <img alt="" src="<c:url value='/communityimage/${dto.com_photo}'/>">
+                            </div>
+                        </div>
+                    </a>
+                </c:if>
+            </c:if>
+        </c:forEach>
+    </div>
 
     <div class="writebtn" style="margin-top: 20px;">
-        <c:if test="${sessionScope.loginok!=null }">
+        <c:if test="${sessionScope.loginok!=null}">
             <button type="button" class="btn btn-outline-primary" style="margin-left: 1100px;"
             onclick="location.href='${pageContext.request.contextPath}/community/interviewform'">글쓰기</button>
         </c:if>
     </div>
 
-    <nav aria-label="Page navigation example" style="margin-top: 40px;">
-        <ul class="pagination justify-content-center">
-            <c:if test="${startPage>1}">
-                <li class="page-item">
-                    <a class="page-link" href="list?currentPage=${startPage-1}">이전</a>
-                </li>
-            </c:if>
-            <c:forEach var="pageNum" begin="${startPage}" end="${endPage}">
-                <c:if test="${currentPage == pageNum}">
-                    <li class="page-item active">
-                        <a class="page-link" href="#">${pageNum}</a>
-                    </li>
-                </c:if>
-                <c:if test="${currentPage != pageNum}">
-                    <li class="page-item">
-                        <a class="page-link" href="list?currentPage=${pageNum}">${pageNum}</a>
-                    </li>
-                </c:if>
-            </c:forEach>
-            <c:if test="${endPage < totalPage}">
-                <li class="page-item">
-                    <a class="page-link" href="list?currentPage=${endPage+1}">다음</a>
-                </li>
-            </c:if>
-        </ul>
-    </nav>
+	<div class="pagination">
+	    <c:if test="${startPage > 1}">
+	        <a href="?category=${category}&pageNum=${startPage - 1}" class="page-link"><i class="bi bi-chevron-left"></i>이전</a>
+	    </c:if>
+	    <c:forEach begin="${startPage}" end="${endPage}" var="i">
+	        <a href="?category=${category}&pageNum=${i}" class="page-link ${currentPage == i ? 'active' : ''}">${i}</a>
+	    </c:forEach>
+	    <c:if test="${endPage < totalPage}">
+	        <a href="?category=${category}&pageNum=${endPage + 1}" class="page-link">다음<i class="bi bi-chevron-right"></i></a>
+	    </c:if>
+	</div>
 </div>
-
 </body>
 </html>

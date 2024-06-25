@@ -2,29 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.code.mapper.CommunityMapperInter">
 
-	<!-- 전체 게시글 수 조회 -->
+    <!-- 전체 게시글 수 조회 -->
     <select id="getTotalCount" resultType="int">
         select count(*) from community
     </select>
     
-    <!-- 커뮤니티 글  삽입 -->
-    <!-- <insert id="insertCommunity" parameterType="CommunityDto">
-        insert into community (com_user_id, com_nickname, com_title, com_content, com_photo, com_category, com_writetime, com_updatetime, com_post_type,
-        com_name, com_companyname) 
-        values (#{com_user_id}, #{com_nickname}, #{com_title}, #{com_content}, #{com_photo}, #{com_category}, now(), now(), #{com_post_type},
-        #{com_name}, #{com_companyname})
-    </insert> -->
-    <!-- <insert id="insertCommunity" parameterType="CommunityDto">
-	    insert into community (com_user_id, com_nickname, com_title, com_content, com_photo, com_category, com_writetime, com_updatetime, com_post_type,
-	    com_name, com_companyname) 
-	    values (#{com_user_id}, #{com_nickname}, #{com_title}, #{com_content}, #{com_photo}, #{com_category}, now(), now(), #{com_post_type},
-	    #{com_name}, #{com_companyname})
-	</insert> -->
-	<insert id="insertCommunity" parameterType="CommunityDto">
-	    insert into community (com_user_id, com_nickname, com_title, com_content, com_photo, com_main_photo, com_category, com_writetime, com_updatetime, com_post_type, com_name, com_companyname) 
-	    values (#{com_user_id}, #{com_nickname}, #{com_title}, #{com_content}, #{com_photo}, #{com_main_photo}, #{com_category}, now(), now(), #{com_post_type}, #{com_name}, #{com_companyname})
-	</insert>
-	
+    <!-- 커뮤니티 글 삽입 -->
+    <insert id="insertCommunity" parameterType="CommunityDto">
+        insert into community (com_user_id, com_nickname, com_title, com_content, com_photo, com_main_photo, com_category, com_writetime, com_updatetime, com_post_type, com_name, com_companyname) 
+        values (#{com_user_id}, #{com_nickname}, #{com_title}, #{com_content}, #{com_photo}, #{com_main_photo}, #{com_category}, now(), now(), #{com_post_type}, #{com_name}, #{com_companyname})
+    </insert>
     
     <!-- 모든 데이터 조회 -->
     <select id="getAllDatas" resultType="CommunityDto">
@@ -39,8 +26,8 @@
     <!-- 커뮤니티 글 업데이트 -->
     <update id="updateCommunity" parameterType="CommunityDto">
         update community set 
-        	com_photo = #{com_photo}, com_title = #{com_title}, com_content = #{com_content},
-            com_category = #{com_category}, com_post_type = #{com_post_type}, com_updatetime = now()
+            com_photo = #{com_photo}, com_title = #{com_title}, com_content = #{com_content},
+            com_category = #{com_category}, com_companyname = #{com_companyname}, com_main_photo = #{com_main_photo}, com_post_type = #{com_post_type}, com_updatetime = now()
         where com_num = #{com_num}
     </update>
     
@@ -51,7 +38,7 @@
     
     <!-- interview 목록을 가져오는 쿼리 추가 -->
     <select id="getInterviews" resultType="CommunityDto">
-    	select * from community where com_post_type = 'interview'
+        select * from community where com_post_type = 'interview'
     </select>
     
     <!-- post_type에 따른 전체 게시글 수 조회 -->
@@ -66,23 +53,23 @@
     
     <!-- 카테고리별 데이터 조회 쿼리 추가 -->
     <select id="getAllDatasByCategory" parameterType="String" resultType="CommunityDto">
-    	select * from community where com_category = #{category} order by com_num desc
+        select * from community where com_category = #{category} order by com_num desc
     </select>
     
     <!-- 조회수 증가 -->
     <update id="increaseReadCount" parameterType="int">
-    	update community set com_readcount = com_readcount+1
-    	where com_num = #{com_num}
+        update community set com_readcount = com_readcount+1
+        where com_num = #{com_num}
     </update>
     
     <!-- homedetail 좋아요 수 증가, 감소 -->
     <update id="updateLikeCount" parameterType="int">
-    	update community set com_likes = com_likes+1
-    	where com_num = #{com_num}
+        update community set com_likes = com_likes+1
+        where com_num = #{com_num}
     </update>
-    <update id="decreaseLikeCount">
-    	update community set com_likes = com_likes-1
-    	where com_num = #{com_num}
+    <update id="decreaseLikeCount" parameterType="int">
+        update community set com_likes = com_likes-1
+        where com_num = #{com_num}
     </update>
     
     <!-- 댓글 수 증가, 감소 -->
@@ -91,45 +78,44 @@
         where com_num = #{com_num}
     </update>
     <update id="decrementCommentCount" parameterType="int">
-        <!-- update community set com_commentcount = com_commentcount-1 
-        where com_num = #{com_num} and com_commentcount>0 -->
         update community set com_commentcount = CASE WHEN com_commentcount > 0 THEN com_commentcount-1 ELSE 0 END
-    	where com_num = #{com_num}
+        where com_num = #{com_num}
     </update>
     
     <!-- 페이징 처리 -->
     <select id="getAllDatasByTypePaged" parameterType="map" resultType="CommunityDto">
-	    select * from community where com_post_type = #{postType}
-	    order by com_num desc
-	    limit #{startNum}, #{perPage}
-	</select>
-	<select id="getAllDatasByCategoryPaged" parameterType="map" resultType="CommunityDto">
-	    select * from community where com_post_type = #{postType}
-	    <if test="category != null and category != ''">
-	        and com_category = #{category}
-	    </if>
-	    order by com_num desc
-	    limit #{startNum}, #{perPage}
-	</select>
+        select * from community where com_post_type = #{postType}
+        order by com_num desc
+        limit #{startNum}, #{perPage}
+    </select>
+    <select id="getAllDatasByCategoryPaged" parameterType="map" resultType="CommunityDto">
+        select * from community where com_post_type = #{postType}
+        <if test="category != null and category != ''">
+            and com_category = #{category}
+        </if>
+        order by com_num desc
+        limit #{startNum}, #{perPage}
+    </select>
     <select id="getTotalCountByCategory" parameterType="map" resultType="int">
-	    select count(*) from community where com_post_type = #{postType} 
-	    <if test="category != null and category != ''">
-	        and com_category = #{category}
-	    </if>
-	</select>
+        select count(*) from community where com_post_type = #{postType} 
+        <if test="category != null and category != ''">
+            and com_category = #{category}
+        </if>
+    </select>
 
-	<!-- 이번 주 인기게시글 조회 (homelist에서 5개 출력)-->
-	<select id="getWeeklyPopularPosts" parameterType="map" resultType="CommunityDto">
-		select * from community where com_writetime between #{startDate} and #{endDate}
-    	order by com_readcount desc limit 5
-	</select>
-	<!-- 이번 주 인기게시글 조회 (homepopularlist에서 20개 출력)-->
-	<select id="getWeeklyPopularPostsAll" parameterType="map" resultType="CommunityDto">
-		select * from community where com_writetime between #{startDate} and #{endDate}
-    	order by com_readcount desc limit 20
-	</select>
-	
-	<!-- 카테고리별 조회수가 가장 많은 게시글 조회 -->
+    <!-- 이번 주 인기게시글 조회 (homelist에서 5개 출력) -->
+    <select id="getWeeklyPopularPosts" parameterType="map" resultType="CommunityDto">
+        select * from community 
+        where com_post_type = 'home' and com_writetime between #{startDate} and #{endDate}
+        order by com_readcount desc limit 5
+    </select>
+    <!-- 이번 주 인기게시글 조회 (homepopularlist에서 20개 출력) -->
+    <select id="getWeeklyPopularPostsAll" parameterType="map" resultType="CommunityDto">
+        select * from community where com_post_type = 'home' and com_writetime between #{startDate} and #{endDate}
+        order by com_readcount desc limit 20
+    </select>
+    
+    <!-- 카테고리별 조회수가 가장 많은 게시글 조회 -->
     <select id="getTopPostByCategory" parameterType="map" resultType="CommunityDto">
         select * from community where com_post_type = #{postType} 
         and com_category = #{category} order by com_readcount desc limit 1
@@ -148,53 +134,52 @@
         order by com_num desc 
         limit #{startNum}, #{perPage}
     </select>
-	
-	<!-- 전체글도 동일하게 -->
-	<select id="getTopPostByType" parameterType="map" resultType="CommunityDto">
-	    select * from community where com_post_type = #{postType} 
-	    order by com_readcount desc limit 1
-	</select>
-	
-	<select id="getOtherPostsByType" parameterType="map" resultType="CommunityDto">
-	    select * from community where com_post_type = #{postType} 
-	    and com_num != (
-	        select com_num from community where com_post_type = #{postType} 
-	        order by com_readcount desc limit 1
-	    )
-	    order by com_num desc 
-	    limit #{startNum}, #{perPage}
-	</select>
-	
-	<select id="getInsertId" resultType="int">
-	    select last_insert_id()
-	</select>
-	
-	<!-- checkbox -->
-	<select id="getPostsByTypeAndSort" resultType="CommunityDto">
-	    select * from community 
-	    where com_post_type = #{type}
-	    order by 
-	        <choose>
-	            <when test="sortBy == 'popular'">com_readcount desc</when>
-	            <when test="sortBy == 'maxlike'">com_likes desc</when>
-	            <when test="sortBy == 'maxcomment'">com_commentcount desc</when>
-	            <otherwise>com_writetime desc</otherwise>
-	        </choose>
-	    limit #{offset}, #{limit}
-	</select>
-	
-	<select id="getPostsByCategoryAndSort" resultType="CommunityDto">
-	    select * from community 
-	    where com_post_type = #{type} and com_category = #{category}
-	    order by 
-	        <choose>
-	            <when test="sortBy == 'popular'">com_readcount desc</when>
-	            <when test="sortBy == 'maxlike'">com_likes desc</when>
-	            <when test="sortBy == 'maxcomment'">com_commentcount desc</when>
-	            <otherwise>com_writetime desc</otherwise>
-	        </choose>
-	    limit #{offset}, #{limit}
-	</select>
-	
-	
+    
+    <!-- 전체글도 동일하게 -->
+    <select id="getTopPostByType" parameterType="map" resultType="CommunityDto">
+        select * from community where com_post_type = #{postType} 
+        order by com_readcount desc limit 1
+    </select>
+    
+    <select id="getOtherPostsByType" parameterType="map" resultType="CommunityDto">
+        select * from community where com_post_type = #{postType} 
+        and com_num != (
+            select com_num from community where com_post_type = #{postType} 
+            order by com_readcount desc limit 1
+        )
+        order by com_num desc 
+        limit #{startNum}, #{perPage}
+    </select>
+    
+    <select id="getInsertId" resultType="int">
+        select last_insert_id()
+    </select>
+    
+    <!-- checkbox -->
+    <select id="getPostsByTypeAndSort" resultType="CommunityDto">
+        select * from community 
+        where com_post_type = #{type}
+        order by 
+            <choose>
+                <when test="sortBy == 'popular'">com_readcount desc</when>
+                <when test="sortBy == 'maxlike'">com_likes desc</when>
+                <when test="sortBy == 'maxcomment'">com_commentcount desc</when>
+                <otherwise>com_writetime desc</otherwise>
+            </choose>
+        limit #{offset}, #{limit}
+    </select>
+    
+    <select id="getPostsByCategoryAndSort" resultType="CommunityDto">
+        select * from community 
+        where com_post_type = #{type} and com_category = #{category}
+        order by 
+            <choose>
+                <when test="sortBy == 'popular'">com_readcount desc</when>
+                <when test="sortBy == 'maxlike'">com_likes desc</when>
+                <when test="sortBy == 'maxcomment'">com_commentcount desc</when>
+                <otherwise>com_writetime desc</otherwise>
+            </choose>
+        limit #{offset}, #{limit}
+    </select>
+    
 </mapper>

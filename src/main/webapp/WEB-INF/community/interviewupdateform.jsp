@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +11,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-<title>인터뷰 작성</title>
+<title>인터뷰 수정</title>
 <style>
     body {
         display: flex;
@@ -80,122 +82,172 @@
 </head>
 <body>
 <div style="margin: 50px 100px; width: 700px;">
-<form action="/community/interviewupdate" method="post" enctype="multipart/form-data">
-  <input type="hidden" name="com_user_id" value="${sessionScope.myid}">
-  <input type="hidden" name="com_nickname" value="${userNickname}">
-  <input type="hidden" name="com_main_photo" id="com_main_photo">
-	<table class="table table-bordered">
+<form action="${pageContext.request.contextPath}/community/interviewupdate" method="post" enctype="multipart/form-data">
+  <input type="hidden" name="com_num" value="${dto.com_num}">
+  <input type="hidden" name="com_user_id" value="${dto.com_user_id}">
+  <input type="hidden" name="com_nickname" value="${dto.com_nickname}">
+  <input type="hidden" name="com_main_photo" id="com_main_photo" value="${dto.com_main_photo}">
+    <table class="table table-bordered">
      <tr>
        <th class="table-light">직무</th>
          <td>
            <select name="com_category">
-               <option>서버/백엔드 개발자</option>
-               <option>프론트엔드 개발자</option>
-               <option>웹 풀스택 개발자</option>
-               <option>안드로이드 개발자</option>
-               <option>IOS 개발자</option>
-               <option>크로스플랫폼 앱 개발자</option>
-               <option>게임 클라이언트 개발자</option>
-               <option>게임 서버 개발자</option>
-               <option>DBA</option>
-               <option>빅데이터 엔지니어</option>
-               <option>인공지능/머신러닝</option>
-               <option>devops/시스템 엔지니어</option>
-               <option>정보보안 담당자</option>
-               <option>QA 엔지니어</option>
-               <option>개발 PM</option>
-               <option>HW/임베디드</option>
-               <option>SW/솔루션</option>
-               <option>웹퍼블리셔</option>
-               <option>VR/AR/3D</option>
-               <option>블록체인</option>
-               <option>기술지원</option>
+               <c:forEach var="category" items="${['서버/백엔드 개발자', '프론트엔드 개발자', '웹 풀스택 개발자', '안드로이드 개발자', 'IOS 개발자', '크로스플랫폼 앱 개발자', '게임 클라이언트 개발자', '게임 서버 개발자', 'DBA', '빅데이터 엔지니어', '인공지능/머신러닝', 'devops/시스템 엔지니어', '정보보안 담당자', 'QA 엔지니어', '개발 PM', 'HW/임베디드', 'SW/솔루션', '웹퍼블리셔', 'VR/AR/3D', '블록체인', '기술지원']}">
+                   <option value="${category}" ${category == dto.com_category ? 'selected' : ''}>${category}</option>
+               </c:forEach>
            </select>
          </td>
      </tr>
      <tr>
        <th class="table-light">회사명</th>
          <td>
-         	<input type="text" name="com_companyname" class="form-control">
+             <input type="text" name="com_companyname" class="form-control" value="${dto.com_companyname}">
          </td>
      </tr>
      <tr>
        <th class="table-light">이름</th>
          <td>
-           <input type="text" name="com_name" class="form-control" value="${username}" readonly="readonly">
+             <input type="text" name="com_name" class="form-control" value="${dto.com_name}" readonly="readonly">
          </td>
      </tr>
      <tr>
        <th class="table-light">제목</th>
          <td>
-           <input type="text" name="com_title" class="form-control" required="required">
+             <input type="text" name="com_title" class="form-control" value="${dto.com_title}" required="required">
          </td>
      </tr>
      <tr>
        <th class="table-light">내용</th>
          <td>
-           <textarea name="com_content" id="content" rows="10" class="form-control" required="required"></textarea>
+             <textarea name="com_content" id="content" rows="10" class="form-control" required="required">${dto.com_content}</textarea>
          </td>
      </tr>
      <tr>
        <th class="table-light">이미지</th>
          <td>
-           <input type="file" id="upload" name="upload" class="form-control" multiple="multiple">
-           <div class="image-preview" id="image-preview"></div>
+             <input type="file" id="upload" name="upload" class="form-control" multiple="multiple">
+             <div class="image-preview" id="image-preview">
+             	<!--  
+                 <c:forEach var="photo" items="${fn:split(dto.com_photo, ',')}">
+                     <img src="${pageContext.request.contextPath}/communityimage/${photo}" class="${photo == dto.com_main_photo ? 'selected' : ''}" onclick="selectMainPhoto('${photo}')">
+                 </c:forEach>
+                 -->
+                 <c:forEach var="photo" items="${fn:split(dto.com_photo, ',')}">
+				    <img src="${pageContext.request.contextPath}/communityimage/${photo}" 
+				         class="${photo == dto.com_main_photo ? 'selected' : ''}" 
+				         onclick="selectMainPhoto('${photo}')">
+				</c:forEach>
+                 
+             </div>
          </td>
      </tr>
      <tr>
        <td colspan="2" align="center">
          <button type="submit" class="btn btn-success" onclick="submitContents(this);">저장</button>
-         <button type="button" class="btn btn-success" onclick="location.href='/community/interviewlist'">목록</button>
+         <button type="button" class="btn btn-success" onclick="location.href='${pageContext.request.contextPath}/community/interviewlist'">목록</button>
        </td>
      </tr>
   </table>
 </form>
 </div>
 
-<script type="text/javascript">
-var oEditors = [];
-
-nhn.husky.EZCreator.createInIFrame({
-    oAppRef: oEditors,
-    elPlaceHolder: "content",
-    sSkinURI: "${pageContext.request.contextPath}/resources/smarteditor2/SmartEditor2Skin.html",
-    fCreator: "createSEditor2"
-}); 
-
-function submitContents(elClickedObj) {
-    oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);
-    try {
-        elClickedObj.form.submit();
-    } catch(e) {}
-}
-
+<script type="text/javascript"> 
+/*
 $(document).ready(function() {
+    // SmartEditor2 초기화
+    var oEditors = [];
+    nhn.husky.EZCreator.createInIFrame({
+        oAppRef: oEditors,
+        elPlaceHolder: "content",
+        sSkinURI: "${pageContext.request.contextPath}/resources/smarteditor2/SmartEditor2Skin.html",
+        fCreator: "createSEditor2"
+    });
+
+    // 폼 제출 시 내용 업데이트
+    function submitContents(elClickedObj) {
+        oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD", []); // 에디터 내용 업데이트
+        elClickedObj.form.submit();
+    }
+
+    // 이미지 선택 시 메인 사진 설정
+    function selectMainPhoto(photo) {
+        $('#image-preview img').removeClass('selected'); // 기존 선택된 이미지 해제
+        $('img[src="' + photo + '"]').addClass('selected'); // 선택된 이미지 표시
+        $('#com_main_photo').val(photo); // 메인 사진 값 설정
+    }
+
+    // 파일 업로드 시 이미지 미리보기 생성 및 클릭 이벤트 추가
     $('#upload').change(function(event) {
         var files = event.target.files;
         var previewContainer = $('#image-preview');
-        previewContainer.empty();
-        
-        for (var i = 0; i < files.length; i++) {
+        previewContainer.empty(); // 기존 미리보기 초기화
+
+        $.each(files, function(i, file) {
             var reader = new FileReader();
             reader.onload = function(e) {
                 var img = $('<img>').attr('src', e.target.result).click(function() {
-                    $('#image-preview img').removeClass('selected');
-                    $(this).addClass('selected');
-                    $('#com_main_photo').val($(this).attr('src'));
+                    selectMainPhoto(e.target.result);
                 });
-                if (i == 0) {
-                    img.addClass('selected');
-                    $('#com_main_photo').val(e.target.result);
-                }
-                previewContainer.append(img);
-                oEditors.getById["content"].exec("PASTE_HTML", [ "<img src='" + e.target.result + "'/>" ]);
+                previewContainer.append(img); // 미리보기 컨테이너에 이미지 추가
+                oEditors.getById["content"].exec("PASTE_HTML", ["<img src='" + e.target.result + "'/>"]); // 에디터에 이미지 삽입
             }
-            reader.readAsDataURL(files[i]);
-        }
+            reader.readAsDataURL(file);
+        });
     });
+
+    // 전역 함수로 설정
+    window.submitContents = submitContents;
 });
+  */
+  
+  $(document).ready(function() {
+	    // SmartEditor2 초기화
+	    var oEditors = [];
+	    nhn.husky.EZCreator.createInIFrame({
+	        oAppRef: oEditors,
+	        elPlaceHolder: "content",
+	        sSkinURI: "${pageContext.request.contextPath}/resources/smarteditor2/SmartEditor2Skin.html",
+	        fCreator: "createSEditor2"
+	    });
+
+	    // 폼 제출 시 내용 업데이트
+	    function submitContents(elClickedObj) {
+	        oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD", []); // 에디터 내용 업데이트
+	        elClickedObj.form.submit();
+	    }
+
+	    // 이미지 선택 시 메인 사진 설정
+	    function selectMainPhoto(photo) {
+	        $('#image-preview img').removeClass('selected'); // 기존 선택된 이미지 해제
+	        $('img[src="' + photo + '"]').addClass('selected'); // 선택된 이미지 표시
+	        $('#com_main_photo').val(photo); // 메인 사진 값 설정
+	    }
+
+	    // 파일 업로드 시 이미지 미리보기 생성 및 클릭 이벤트 추가
+	    $('#upload').change(function(event) {
+	        var files = event.target.files;
+	        var previewContainer = $('#image-preview');
+	        previewContainer.empty(); // 기존 미리보기 초기화
+
+	        $.each(files, function(i, file) {
+	            var reader = new FileReader();
+	            reader.onload = function(e) {
+	                var img = $('<img>').attr('src', e.target.result).click(function() {
+	                    selectMainPhoto(e.target.result);
+	                });
+	                previewContainer.append(img); // 미리보기 컨테이너에 이미지 추가
+	                oEditors.getById["content"].exec("PASTE_HTML", ["<img src='" + e.target.result + "'/>"]); // 에디터에 이미지 삽입
+	            }
+	            reader.readAsDataURL(file);
+	        });
+	    });
+
+	    // 전역 함수로 설정
+	    window.submitContents = submitContents;
+	    window.selectMainPhoto = selectMainPhoto; // selectMainPhoto 함수를 전역 함수로 설정
+	});
+
+
 </script>
 </body>
 </html>

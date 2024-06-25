@@ -8,7 +8,10 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpSession;
 
@@ -37,6 +40,7 @@ public class CommunityController {
     @Autowired
     RegisterMapperInter mapperinter;
 
+    /*
     @GetMapping("/community/homelist")
     public ModelAndView list() {
         ModelAndView mview = new ModelAndView();
@@ -72,6 +76,184 @@ public class CommunityController {
         mview.setViewName("community/homelist"); // "community/homelist.jsp"로 매핑
         return mview;
     }
+    */
+    
+    /*
+    @GetMapping("/community/homelist")
+    public ModelAndView list() {
+    	ModelAndView mview = new ModelAndView();
+
+        int totalCount = service.getTotalCountByType("home");
+        List<CommunityDto> list = service.getAllDatasByType("home");
+        List<CommunityDto> newcomerList=service.getAllDatasByCategory("신입");
+        List<CommunityDto> prepareList=service.getAllDatasByCategory("취준");
+        List<CommunityDto> letterList=service.getAllDatasByCategory("자소서");
+        List<CommunityDto> interviewList=service.getAllDatasByCategory("면접");
+        List<CommunityDto> qaList=service.getAllDatasByCategory("Q&A");
+
+        // 이번 주 월요일과 일요일 날짜를 계산
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+        Date startDate = new Date(cal.getTimeInMillis());
+        cal.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+        cal.add(Calendar.WEEK_OF_YEAR, 1);
+        Date endDate = new Date(cal.getTimeInMillis());
+
+        // 이번 주 인기 게시글 조회 (homelist에서는 5개만 보이게)
+        List<CommunityDto> popularPosts = service.getWeeklyPopularPosts(startDate, endDate);
+        
+        // com_post_type이 home인 글들만 필터링
+        List<CommunityDto> filteredPopularPosts = popularPosts.stream()
+            .filter(post -> "home".equals(post.getCom_post_type()))
+            .collect(Collectors.toList());
+
+        mview.addObject("totalCount", totalCount);
+        mview.addObject("list", list);
+        mview.addObject("newcomerList", newcomerList);
+        mview.addObject("prepareList", prepareList);
+        mview.addObject("letterList", letterList);
+        mview.addObject("interviewList", interviewList);
+        mview.addObject("qaList", qaList);
+        mview.addObject("popularPosts", filteredPopularPosts); // 최근 한 주 인기 게시글 추가
+
+        mview.setViewName("community/homelist"); // "community/homelist.jsp"로 매핑
+        return mview;
+    }
+    */
+    
+    /*
+    @GetMapping("/community/homelist")
+    public ModelAndView list() {
+        ModelAndView mview = new ModelAndView();
+
+        int totalCount = service.getTotalCountByType("home");
+        List<CommunityDto> list = service.getAllDatasByType("home");
+        List<CommunityDto> newcomerList = service.getAllDatasByCategory("신입");
+        List<CommunityDto> prepareList = service.getAllDatasByCategory("취준");
+        List<CommunityDto> letterList = service.getAllDatasByCategory("자소서");
+        List<CommunityDto> interviewList = service.getAllDatasByCategory("면접");
+        List<CommunityDto> qaList = service.getAllDatasByCategory("Q&A");
+
+        // 이번 주 월요일과 일요일 날짜를 계산
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+        Date startDate = new Date(cal.getTimeInMillis());
+        cal.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+        cal.add(Calendar.WEEK_OF_YEAR, 1);
+        Date endDate = new Date(cal.getTimeInMillis());
+
+        // 이번 주 인기 게시글 조회 (homelist에서는 5개만 보이게)
+        List<CommunityDto> popularPosts = service.getWeeklyPopularPosts(startDate, endDate);
+        
+        // com_post_type이 home인 글들만 필터링
+        List<CommunityDto> filteredPopularPosts = popularPosts.stream()
+            .filter(post -> "home".equals(post.getCom_post_type()))
+            .limit(5)
+            .collect(Collectors.toList());
+
+        mview.addObject("totalCount", totalCount);
+        mview.addObject("list", list);
+        mview.addObject("newcomerList", newcomerList);
+        mview.addObject("prepareList", prepareList);
+        mview.addObject("letterList", letterList);
+        mview.addObject("interviewList", interviewList);
+        mview.addObject("qaList", qaList);
+        mview.addObject("popularPosts", filteredPopularPosts); // 최근 한 주 인기 게시글 추가
+
+        mview.setViewName("community/homelist"); // "community/homelist.jsp"로 매핑
+        return mview;
+    }
+    */
+    
+    /*
+    @GetMapping("/community/homelist")
+    public ModelAndView list() {
+        ModelAndView mview = new ModelAndView();
+
+        int totalCount = service.getTotalCountByType("home");
+        List<CommunityDto> list = service.getAllDatasByType("home");
+        List<CommunityDto> newcomerList = service.getAllDatasByCategory("신입");
+        List<CommunityDto> prepareList = service.getAllDatasByCategory("취준");
+        List<CommunityDto> letterList = service.getAllDatasByCategory("자소서");
+        List<CommunityDto> interviewList = service.getAllDatasByCategory("면접");
+        List<CommunityDto> qaList = service.getAllDatasByCategory("Q&A");
+
+        // 이번 주 월요일과 일요일 날짜를 계산
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+        Date startDate = new Date(cal.getTimeInMillis());
+        cal.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+        cal.add(Calendar.WEEK_OF_YEAR, 1);
+        Date endDate = new Date(cal.getTimeInMillis());
+
+        // 이번 주 인기 게시글 조회 (homelist에서는 5개만 보이게)
+        List<CommunityDto> popularPosts = service.getWeeklyPopularPosts(startDate, endDate);
+        
+        // com_post_type이 home인 글들만 필터링
+        List<CommunityDto> filteredPopularPosts = popularPosts.stream()
+            .filter(post -> "home".equals(post.getCom_post_type()))
+            .limit(5)
+            .collect(Collectors.toList());
+
+        mview.addObject("totalCount", totalCount);
+        mview.addObject("list", list);
+        mview.addObject("newcomerList", newcomerList);
+        mview.addObject("prepareList", prepareList);
+        mview.addObject("letterList", letterList);
+        mview.addObject("interviewList", interviewList);
+        mview.addObject("qaList", qaList);
+        mview.addObject("popularPosts", filteredPopularPosts); // 최근 한 주 인기 게시글 추가
+
+        mview.setViewName("community/homelist"); // "community/homelist.jsp"로 매핑
+        return mview;
+    }
+    */
+
+    @GetMapping("/community/homelist")
+    public ModelAndView list() {
+        ModelAndView mview = new ModelAndView();
+
+        int totalCount = service.getTotalCountByType("home");
+        List<CommunityDto> list = service.getAllDatasByType("home");
+        List<CommunityDto> newcomerList = service.getAllDatasByCategory("신입");
+        List<CommunityDto> prepareList = service.getAllDatasByCategory("취준");
+        List<CommunityDto> letterList = service.getAllDatasByCategory("자소서");
+        List<CommunityDto> interviewList = service.getAllDatasByCategory("면접");
+        List<CommunityDto> qaList = service.getAllDatasByCategory("Q&A");
+
+        // 이번 주 월요일과 일요일 날짜를 계산
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+        Date startDate = new Date(cal.getTimeInMillis());
+        cal.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+        cal.add(Calendar.WEEK_OF_YEAR, 1);
+        Date endDate = new Date(cal.getTimeInMillis());
+
+        // 이번 주 인기 게시글 조회 (homelist에서는 5개만 보이게)
+        List<CommunityDto> popularPosts = service.getWeeklyPopularPosts(startDate, endDate);
+        
+        // com_post_type이 home인 글들만 필터링
+        List<CommunityDto> filteredPopularPosts = popularPosts.stream()
+            .filter(post -> "home".equals(post.getCom_post_type()))
+            .limit(5)
+            .collect(Collectors.toList());
+
+
+        mview.addObject("totalCount", totalCount);
+        mview.addObject("list", list);
+        mview.addObject("newcomerList", newcomerList);
+        mview.addObject("prepareList", prepareList);
+        mview.addObject("letterList", letterList);
+        mview.addObject("interviewList", interviewList);
+        mview.addObject("qaList", qaList);
+        mview.addObject("popularPosts", filteredPopularPosts); // 최근 한 주 인기 게시글 추가
+
+        mview.setViewName("community/homelist"); // "community/homelist.jsp"로 매핑
+        return mview;
+    }
+
+
+
 
     @PostMapping("/community/homeinsert")
     public String insert(@ModelAttribute CommunityDto dto,
@@ -385,6 +567,7 @@ public class CommunityController {
         return "community/hometotalpost";
     }
     
+    /*
     @GetMapping("/community/homepopularlist")
     public String homepopularlist(Model model) {
         // 이번 주 월요일과 일요일 날짜를 계산
@@ -402,10 +585,36 @@ public class CommunityController {
 
         return "community/homepopularlist";
     }
+    */
+    
+    @GetMapping("/community/homepopularlist")
+    public String homepopularlist(Model model) {
+        // 이번 주 월요일과 일요일 날짜를 계산
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+        Date startDate = new Date(cal.getTimeInMillis());
+        cal.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+        cal.add(Calendar.WEEK_OF_YEAR, 1);
+        Date endDate = new Date(cal.getTimeInMillis());
+
+        // 이번 주 인기 게시글 조회 (homepopularlist에서는 20개 보이게)
+        List<CommunityDto> popularPosts = service.getWeeklyPopularPosts(startDate, endDate);
+
+        // com_post_type이 home인 글들만 필터링
+        List<CommunityDto> filteredPopularPosts = popularPosts.stream()
+            .filter(post -> "home".equals(post.getCom_post_type()))
+            .limit(20)
+            .collect(Collectors.toList());
+
+        model.addAttribute("popularPosts", filteredPopularPosts);
+
+        return "community/homepopularlist"; // "community/homepopularlist.jsp"로 매핑
+    }
     
     
     ///////////////////////////////////////////////////////////////////////여기부터 interview
     
+    /*
     @GetMapping("/community/interviewlist")
     public ModelAndView interviewList() {
         ModelAndView mview = new ModelAndView();
@@ -417,6 +626,212 @@ public class CommunityController {
         mview.setViewName("community/interviewlist");
         return mview;
     }
+    */
+    
+    /*
+    @GetMapping("/community/interviewlist")
+    public ModelAndView interviewList(
+        @RequestParam(value = "pageNum", defaultValue = "1") int currentPage) {
+        ModelAndView mview = new ModelAndView();
+        int totalCount = service.getTotalCountByType("interview");
+        int perPage = 9; // 한 페이지당 게시글 수
+        int perBlock = 10; // 한 블록당 보여줄 페이지 수
+
+        List<CommunityDto> list = service.getAllDatasByTypePaged("interview", (currentPage - 1) * perPage, perPage);
+
+        int totalPage = (int) Math.ceil((double) totalCount / perPage);
+        int startPage = (currentPage - 1) / perBlock * perBlock + 1;
+        int endPage = startPage + perBlock - 1;
+        if (endPage > totalPage) {
+            endPage = totalPage;
+        }
+
+        mview.addObject("list", list);
+        mview.addObject("totalCount", totalCount);
+        mview.addObject("currentPage", currentPage);
+        mview.addObject("totalPage", totalPage);
+        mview.addObject("startPage", startPage);
+        mview.addObject("endPage", endPage);
+        mview.addObject("category", category); // 추가된 부분
+        mview.setViewName("community/interviewlist");
+        return mview;
+    }
+    */
+    
+    /*
+    @GetMapping("/community/interviewlist")
+    public ModelAndView interviewList(
+        @RequestParam(value = "category", required = false) String category,
+        @RequestParam(value = "pageNum", defaultValue = "1") int currentPage) {
+        
+        ModelAndView mview = new ModelAndView();
+        int totalCount;
+        int perPage = 9; // 한 페이지당 게시글 수
+        int perBlock = 10; // 한 블록당 보여줄 페이지 수
+
+        if (category == null || category.isEmpty() || category.equals("전체글")) {
+            totalCount = service.getTotalCountByType("interview");
+            category = "전체글";
+        } else {
+            totalCount = service.getTotalCountByCategory("interview", category);
+        }
+
+        List<CommunityDto> list = service.getAllDatasByCategoryPaged("interview", category, (currentPage - 1) * perPage, perPage);
+
+        int totalPage = (int) Math.ceil((double) totalCount / perPage);
+        int startPage = (currentPage - 1) / perBlock * perBlock + 1;
+        int endPage = startPage + perBlock - 1;
+        if (endPage > totalPage) {
+            endPage = totalPage;
+        }
+
+        mview.addObject("list", list);
+        mview.addObject("totalCount", totalCount);
+        mview.addObject("currentPage", currentPage);
+        mview.addObject("totalPage", totalPage);
+        mview.addObject("startPage", startPage);
+        mview.addObject("endPage", endPage);
+        mview.addObject("category", category);
+        mview.setViewName("community/interviewlist");
+        return mview;
+    }
+	*/
+    /*
+    @GetMapping("/community/interviewlist")
+    public ModelAndView interviewList(
+        @RequestParam(value = "category", required = false) String category,
+        @RequestParam(value = "pageNum", defaultValue = "1") int currentPage) {
+        ModelAndView mview = new ModelAndView();
+        int totalCount;
+        List<CommunityDto> list;
+        int perPage = 9; // 한 페이지당 게시글 수
+        int perBlock = 10; // 한 블록당 보여줄 페이지 수
+
+        if (category == null || category.isEmpty() || category.equals("전체")) {
+            totalCount = service.getTotalCountByType("interview");
+            list = service.getAllDatasByTypePaged("interview", (currentPage - 1) * perPage, perPage);
+        } else {
+            totalCount = service.getTotalCountByCategory("interview", category);
+            list = service.getAllDatasByCategoryPaged("interview", category, (currentPage - 1) * perPage, perPage);
+        }
+
+        int totalPage = (int) Math.ceil((double) totalCount / perPage);
+        int startPage = (currentPage - 1) / perBlock * perBlock + 1;
+        int endPage = startPage + perBlock - 1;
+        if (endPage > totalPage) {
+            endPage = totalPage;
+        }
+
+        mview.addObject("list", list);
+        mview.addObject("totalCount", totalCount);
+        mview.addObject("currentPage", currentPage);
+        mview.addObject("totalPage", totalPage);
+        mview.addObject("startPage", startPage);
+        mview.addObject("endPage", endPage);
+        mview.addObject("category", category); // 추가된 부분
+        mview.setViewName("community/interviewlist");
+        return mview;
+    }
+    */
+    /*
+    @GetMapping("/community/interviewlist")
+    public ModelAndView interviewList(
+        @RequestParam(value = "category", required = false, defaultValue = "전체") String category,
+        @RequestParam(value = "pageNum", defaultValue = "1") int currentPage) {
+        ModelAndView mview = new ModelAndView();
+        int totalCount;
+        List<CommunityDto> list;
+        int perPage = 9; // 한 페이지당 게시글 수
+        int perBlock = 10; // 한 블록당 보여줄 페이지 수
+
+        if (category.equals("전체")) {
+            totalCount = service.getTotalCountByType("interview");
+            list = service.getAllDatasByTypePaged("interview", (currentPage - 1) * perPage, perPage);
+        } else {
+            totalCount = service.getTotalCountByCategory("interview", category);
+            list = service.getAllDatasByCategoryPaged("interview", category, (currentPage - 1) * perPage, perPage);
+        }
+
+        int totalPage = (int) Math.ceil((double) totalCount / perPage);
+        int startPage = (currentPage - 1) / perBlock * perBlock + 1;
+        int endPage = startPage + perBlock - 1;
+        if (endPage > totalPage) {
+            endPage = totalPage;
+        }
+
+        mview.addObject("list", list);
+        mview.addObject("totalCount", totalCount);
+        mview.addObject("currentPage", currentPage);
+        mview.addObject("totalPage", totalPage);
+        mview.addObject("startPage", startPage);
+        mview.addObject("endPage", endPage);
+        mview.addObject("category", category); // 추가된 부분
+        mview.setViewName("community/interviewlist");
+        return mview;
+    }
+	*/
+    
+    @GetMapping("/community/interviewlist")
+    public ModelAndView interviewList(
+        @RequestParam(value = "category", required = false, defaultValue = "전체") String category,
+        @RequestParam(value = "pageNum", defaultValue = "1") int currentPage) {
+
+        ModelAndView mview = new ModelAndView();
+        int totalCount;
+        List<CommunityDto> list;
+        int perPage = 9; // 한 페이지당 게시글 수
+        int perBlock = 10; // 한 블록당 보여줄 페이지 수
+
+        Map<String, Integer> categoryCountMap = new HashMap<>();
+        categoryCountMap.put("서버/백엔드 개발자", service.getTotalCountByCategory("interview", "서버/백엔드 개발자"));
+        categoryCountMap.put("프론트엔드 개발자", service.getTotalCountByCategory("interview", "프론트엔드 개발자"));
+        categoryCountMap.put("웹 풀스택 개발자", service.getTotalCountByCategory("interview", "웹 풀스택 개발자"));
+        categoryCountMap.put("안드로이드 개발자", service.getTotalCountByCategory("interview", "안드로이드 개발자"));
+        categoryCountMap.put("IOS 개발자", service.getTotalCountByCategory("interview", "IOS 개발자"));
+        categoryCountMap.put("크로스플랫폼 앱 개발자", service.getTotalCountByCategory("interview", "크로스플랫폼 앱 개발자"));
+        categoryCountMap.put("게임 클라이언트 개발자", service.getTotalCountByCategory("interview", "게임 클라이언트 개발자"));
+        categoryCountMap.put("게임 서버 개발자", service.getTotalCountByCategory("interview", "게임 서버 개발자"));
+        categoryCountMap.put("DBA", service.getTotalCountByCategory("interview", "DBA"));
+        categoryCountMap.put("빅데이터 엔지니어", service.getTotalCountByCategory("interview", "빅데이터 엔지니어"));
+        categoryCountMap.put("인공지능/머신러닝", service.getTotalCountByCategory("interview", "인공지능/머신러닝"));
+        categoryCountMap.put("devops/시스템 엔지니어", service.getTotalCountByCategory("interview", "devops/시스템 엔지니어"));
+        categoryCountMap.put("정보보안 담당자", service.getTotalCountByCategory("interview", "정보보안 담당자"));
+        categoryCountMap.put("QA 엔지니어", service.getTotalCountByCategory("interview", "QA 엔지니어"));
+        categoryCountMap.put("개발 PM", service.getTotalCountByCategory("interview", "개발 PM"));
+        categoryCountMap.put("HW/임베디드", service.getTotalCountByCategory("interview", "HW/임베디드"));
+        categoryCountMap.put("SW/솔루션", service.getTotalCountByCategory("interview", "SW/솔루션"));
+        categoryCountMap.put("웹퍼블리셔", service.getTotalCountByCategory("interview", "웹퍼블리셔"));
+        categoryCountMap.put("VR/AR/3D", service.getTotalCountByCategory("interview", "VR/AR/3D"));
+        categoryCountMap.put("블록체인", service.getTotalCountByCategory("interview", "블록체인"));
+        categoryCountMap.put("기술지원", service.getTotalCountByCategory("interview", "기술지원"));
+
+        if (category.equals("전체")) {
+            totalCount = service.getTotalCountByType("interview");
+            list = service.getAllDatasByTypePaged("interview", (currentPage - 1) * perPage, perPage);
+        } else {
+            totalCount = service.getTotalCountByCategory("interview", category);
+            list = service.getAllDatasByCategoryPaged("interview", category, (currentPage - 1) * perPage, perPage);
+        }
+
+        int totalPage = (int) Math.ceil((double) totalCount / perPage);
+        int startPage = (currentPage - 1) / perBlock * perBlock + 1;
+        int endPage = startPage + perBlock - 1;
+        if (endPage > totalPage) {
+            endPage = totalPage;
+        }
+
+        mview.addObject("list", list);
+        mview.addObject("totalCount", totalCount);
+        mview.addObject("currentPage", currentPage);
+        mview.addObject("totalPage", totalPage);
+        mview.addObject("startPage", startPage);
+        mview.addObject("endPage", endPage);
+        mview.addObject("category", category);
+        mview.addObject("categoryCountMap", categoryCountMap); // 카테고리별 글 개수 추가
+        mview.setViewName("community/interviewlist");
+        return mview;
+    }
+
 
     @GetMapping("/community/interviewform")
     public String interviewForm(HttpSession session, Model model) {
@@ -586,6 +1001,10 @@ public class CommunityController {
 
     @GetMapping("/community/interviewdetail")
     public String interviewDetail(@RequestParam int com_num, Model model) {
+    	
+    	// 조회수 증가 로직 추가
+        service.increaseReadCount(com_num);
+    	
         CommunityDto dto = service.getData(com_num);
         model.addAttribute("dto", dto);
         return "community/interviewdetail";
@@ -597,5 +1016,138 @@ public class CommunityController {
         return "redirect:/community/interviewlist";
     }
 
+    
+    /*
+    @PostMapping("/community/interviewupdate")
+    public String updateInterview(@ModelAttribute CommunityDto dto,
+                         @RequestParam ArrayList<MultipartFile> upload,
+                         @RequestParam("existingPhoto") String existingPhoto,
+                         HttpSession session) {
+        String path = session.getServletContext().getRealPath("/communityimage");
+        // 이미지를 새로 업로드하지 않을 경우 기존 이미지를 유지하는 로직 추가(existingPhoto 파라미터 받아와서 사용)
+        String uploadName = existingPhoto; // 기존 이미지 파일명을 가져옴
+
+        if (!upload.isEmpty() && !upload.get(0).getOriginalFilename().equals("")) {
+            // 새로운 이미지를 업로드할 경우
+            uploadName = ""; 
+            for (MultipartFile f : upload) {
+                String fName = f.getOriginalFilename();
+                uploadName += fName + ",";
+                try {
+                    f.transferTo(new File(path + "\\" + fName));
+                } catch (IllegalStateException | IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            uploadName = uploadName.substring(0, uploadName.length() - 1); // 마지막 쉼표 제거
+        }
+
+        dto.setCom_photo(uploadName);
+        dto.setCom_post_type("interview"); // com_post_type을 'interview'으로 설정
+
+        service.updateCommunity(dto);
+        return "redirect:/community/interviewdetail?com_num=" + dto.getCom_num();
+    }
+    */
+    
+    /*
+    @GetMapping("/community/interviewupdateform")
+    public String interviewUpdateForm(@RequestParam("com_num") int comNum, Model model) {
+        CommunityDto dto = service.getData(comNum);
+        model.addAttribute("dto", dto);
+        return "community/interviewupdateform";
+    }
+    */
+
+    @GetMapping("/community/interviewupdateform")
+    public String interviewUpdateForm(@RequestParam("com_num") int comNum, Model model) {
+        CommunityDto dto = service.getData(comNum);
+        model.addAttribute("dto", dto);
+        return "community/interviewupdateform";
+    }
+
+    /*
+    @PostMapping("/community/interviewupdate")
+    public String updateInterview(@ModelAttribute CommunityDto dto,
+                                  @RequestParam ArrayList<MultipartFile> upload,
+                                  HttpSession session) {
+        String path = session.getServletContext().getRealPath("/communityimage");
+        StringBuilder uploadNames = new StringBuilder();
+        String mainPhoto = dto.getCom_main_photo(); // 기존 메인 사진 유지
+
+        if (!upload.isEmpty()) {
+            for (int i = 0; i < upload.size(); i++) {
+                MultipartFile file = upload.get(i);
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+                String fileName = sdf.format(new java.util.Date()) + "_" + file.getOriginalFilename();
+                uploadNames.append(fileName).append(",");
+                if (i == 0) {
+                    mainPhoto = fileName; // 첫 번째 이미지를 대표 이미지로 설정
+                }
+                try {
+                    file.transferTo(new File(path + "/" + fileName));
+                } catch (IllegalStateException | IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        if (uploadNames.length() > 0) {
+            uploadNames.setLength(uploadNames.length() - 1); // 마지막 쉼표 제거
+        } else {
+            uploadNames.append(dto.getCom_photo()); // 기존 이미지 유지
+        }
+
+        dto.setCom_main_photo(mainPhoto);
+        dto.setCom_photo(uploadNames.toString());
+        service.updateCommunity(dto);
+        return "redirect:/community/interviewdetail?com_num=" + dto.getCom_num();
+    }
+
+	*/
+    
+    @PostMapping("/community/interviewupdate")
+    public String updateInterview(@ModelAttribute CommunityDto dto,
+                                  @RequestParam ArrayList<MultipartFile> upload,
+                                  HttpSession session) {
+        String path = session.getServletContext().getRealPath("/communityimage");
+        StringBuilder uploadNames = new StringBuilder();
+        String mainPhoto = dto.getCom_main_photo(); // 기존 메인 사진 유지
+
+        if (!upload.isEmpty() && !upload.get(0).getOriginalFilename().equals("")) {
+            for (int i = 0; i < upload.size(); i++) {
+                MultipartFile file = upload.get(i);
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+                String fileName = sdf.format(new java.util.Date()) + "_" + file.getOriginalFilename();
+                uploadNames.append(fileName).append(",");
+                if (i == 0) {
+                    mainPhoto = fileName; // 첫 번째 이미지를 대표 이미지로 설정
+                }
+                try {
+                    file.transferTo(new File(path + "/" + fileName));
+                } catch (IllegalStateException | IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        } else {
+            uploadNames.append(dto.getCom_photo()); // 기존 이미지 유지
+        }
+
+        dto.setCom_main_photo(mainPhoto);
+        dto.setCom_photo(uploadNames.toString());
+        
+        //디버깅 로그 추가
+        System.out.println("Updating Community: " + dto);
+        
+        service.updateCommunity(dto);
+        
+        //업데이트 후 데이터 확인
+        CommunityDto updatedDto = service.getData(dto.getCom_num());
+        System.out.println("Updated Community: " + updatedDto);
+        
+        return "redirect:/community/interviewdetail?com_num=" + dto.getCom_num();
+    }
+
+   
 
 }
