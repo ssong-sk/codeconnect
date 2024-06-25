@@ -332,18 +332,18 @@
             var scrappressed = $(this);
             var isPressed = scrappressed.attr('aria-pressed') === 'true';
             var r_num = $("#r_num").val();
-            var h_num = scrappressed.val();
+            var c_num = scrappressed.val();
             var isLoggedIn = r_num != 0 ? true : false;
       
             if(isLoggedIn){
                 if (isPressed) {
                    $.ajax({
                         type: "post",
-                        url: "/hire/scrapdelete",
+                        url: "/company/scrapdelete",
                         dataType: "html",
                         data: {
                             "r_num": r_num,
-                            "h_num": h_num,
+                            "c_num": c_num,
                         },
                         success: function() {
                           // aria-pressed가 true인 경우 -> false로 변경
@@ -360,11 +360,11 @@
                 } else {        
                     $.ajax({
                         type: "post",
-                        url: "/hire/scrap",
+                        url: "/company/scrap",
                         dataType: "html",
                         data: {
                             "r_num": r_num,
-                            "h_num": h_num,
+                            "c_num": c_num,
                         },
                         success: function() {
                            // aria-pressed가 false인 경우 -> true로 변경

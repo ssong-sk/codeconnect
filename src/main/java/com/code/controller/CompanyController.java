@@ -37,6 +37,8 @@ public class CompanyController {
 	//채용공고에서 사용
 	@Autowired
 	CompanyIntroService ciservice;
+	
+	//
 
 	//기업 로그인로그아웃관련 임시 통합페이지
 	@GetMapping("/company")
@@ -352,5 +354,25 @@ public class CompanyController {
 
 	    return response;
 	}
+	
+	
+	   
+	   //스크랩
+	   @ResponseBody
+	   @PostMapping("/company/scrap")
+	   public void scrapInsert(@ModelAttribute("cdto") CompanyDto cdto, HttpSession session) {
+
+	       int r_num =  Integer.parseInt((String) session.getAttribute("r_num"));
+
+	       cdto.setR_num(r_num);
+	       cservice.scrapCompanyInsert(cdto);
+	   }
+
+	   @ResponseBody
+	   @PostMapping("/company/scrapdelete")
+	   public void scrapDelete(@RequestParam int r_num, @RequestParam int c_num) {
+		   cservice.scrapCompanyDelete(r_num, c_num);
+	   }
+
 
 }
