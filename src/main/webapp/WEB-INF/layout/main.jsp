@@ -20,7 +20,6 @@
 
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="/css/main.css">
-<<<<<<< HEAD
 <link rel="stylesheet" type="text/css" href="/css/slick.css">
 <link rel="stylesheet" type="text/css" href="/css/slick-theme.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -28,7 +27,6 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 <script type="text/javascript" src="/css/slick.js"></script>
 
-=======
 
 <style type="text/css">
 
@@ -117,7 +115,6 @@ to {
 }
 }
 </style>
->>>>>>> 904e8a670c8d666d46b55e097153c337a71350ea
 </head>
 <c:set var="root" value="<%=request.getContextPath()%>" />
 <body>
