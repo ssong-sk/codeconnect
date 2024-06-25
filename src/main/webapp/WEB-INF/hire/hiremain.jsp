@@ -1572,7 +1572,7 @@ $(document).ready(function() {
 
 	$('.techapply-btn').click(function() {
 		updateToggleText();
-		alert($("#search_tech").val());
+		//alert($("#search_tech").val());
 	});
 
 	$('.resettech').click(function() {
@@ -1752,7 +1752,7 @@ $(".category2").click(function() {
         search_cate = search_cate.replace(regex, "").replace(/^\|/, '').replace(/\|$/, '');
         $("#search_cate").val(search_cate);
     }
-    alert($("#search_cate").val()); // 현재 search_cate 값을 알림으로 표시
+    //alert($("#search_cate").val()); // 현재 search_cate 값을 알림으로 표시
 });
  
 
