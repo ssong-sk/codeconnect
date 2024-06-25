@@ -131,6 +131,14 @@
                
            }
            
+           /* h_grade(학력) 값 구하기 */
+           var grade = $(".toggle-btn4 span").text();
+           if(grade=='학력 선택'){
+        	   $('input.grade').val(null);
+           }else{
+				$('input.grade').val(grade);  
+           }
+           
            /* h_location(근무지) 값 구하기 */
            var location1 = $("#address1").val();
            var location2 = $("#address2").val();

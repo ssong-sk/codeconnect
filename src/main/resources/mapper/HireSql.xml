@@ -4,14 +4,14 @@
 
 <insert id="hireInsert" parameterType="hdto">
 	insert into hire value(null, #{h_c_num}, #{h_ci_num}, #{h_category}, #{h_job}, #{h_tech}, 
-	#{h_career}, #{h_grade}, #{h_location}, #{h_title}, #{h_subject}, #{h_major}, #{h_require}, 
+	#{h_career}, #{h_grade}, #{h_location}, #{h_title}, #{h_major}, #{h_require}, 
 	#{h_preference}, #{h_benefit}, #{h_process}, #{h_salary}, #{h_c_id}, #{h_deadline},now(),0)
 </insert>
 
 <select id="getHireList" resultType="hdto">
    SELECT h.*, c.c_name, ci.ci_image FROM hire h
    JOIN company c ON h.h_c_num = c.c_num 
-   JOIN company_intro ci ON h.h_ci_num = ci.ci_num
+   JOIN company_intro ci ON h.h_ci_num = ci.ci_num order by h.h_num desc 
 </select>
 
 <select id="searchHire" parameterType="map" resultType="hdto">
@@ -46,9 +46,14 @@
 	where h.h_num = #{h_num}
 </select>
 
+<!-- 채용공고 조회수 -->
+<update id="hireReadCount" parameterType="int">
+	update hire set h_count = h_count+1 where h_num = #{h_num}
+</update>
+
 <!-- 스크랩 -->
 <insert id="scrapInsert" parameterType="hdto">
-	insert into scrap (h_num, r_num, c_num) values(#{h_num}, #{r_num}, #{c_num})
+	insert into scrap (h_num, r_num) values(#{h_num}, #{r_num})
 </insert>
 
 <delete id="scrapDelete" parameterType="map">
