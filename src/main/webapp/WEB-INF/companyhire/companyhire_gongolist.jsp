@@ -215,7 +215,7 @@
             <div class="menu-item" onclick="location.href='companyupdate'">기업 정보 수정</div>
             <div class="menu-item" onclick="location.href='intromain'">기업 소개 하기</div>
             <div class="menu-item" onclick="location.href='showimsi'">내 기업 소개 페이지로 이동</div>
-            <div class="menu-item" onclick="location.href='#'">계정 관리</div>
+            <div class="menu-item" onclick="location.href='account'">계정 관리</div>
         </div>
         
         <div class="main-content-wrapper">

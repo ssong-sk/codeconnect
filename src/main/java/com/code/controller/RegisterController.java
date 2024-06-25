@@ -103,6 +103,7 @@ public class RegisterController {
          service.updateName(dto);
       }
       
+<<<<<<< HEAD
       //전화번호 수정
       @PostMapping("/member/updateHp")
       @ResponseBody
@@ -111,6 +112,21 @@ public class RegisterController {
     	  service.updateHp(dto);
       }
 
+=======
+      
+      //탈퇴
+      @GetMapping("/member/deleteme")
+      @ResponseBody
+      public void deleteme(String num,HttpSession session)
+      {
+         service.deleteme(num);
+         
+         session.removeAttribute("loginok");
+         session.removeAttribute("myid");
+         
+      }
+   
+>>>>>>> 904e8a670c8d666d46b55e097153c337a71350ea
    
    @GetMapping("/member/mypage")
    public String mypage()
@@ -118,7 +134,7 @@ public class RegisterController {
       return "/member/mypage";
    }
    
-   @GetMapping("/member/apply")
+ @GetMapping("/member/apply")
    public String apply() {
 	   return "/member/apply";
    }
@@ -138,14 +154,14 @@ public class RegisterController {
       return "/member/memberform";
    }
    
+   @GetMapping("/member/memberform")
+   public String memberform() {
+      return "/member/memberform";
+   }
+   
    @GetMapping("/member/register2")
    public String position() {
       return "/member/register2";
-   }
-   
-   @GetMapping("/layout/slick")
-   public String slick() {
-	   return "/layout/slick";
    }
    
     @PostMapping("/checkDuplicateId")

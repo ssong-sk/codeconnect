@@ -96,8 +96,9 @@
   
   .condition-notice {
     width: 100%;
-    height: 200px;
+    height: 130px;
     background-color: #F4F6FA;
+    font-size: 0.8em;
   }
 
 </style>
@@ -168,20 +169,80 @@
 
 <!-- 오른쪽 레이아웃 작업----------------------------------------------------------------------------------------------- -->
 	              <div class="condition-area" style="width: 80%;">
+	              
 	                <span style="font-size: 1.2em;"><b>이력서 현황</b></span>
 	                
 	                <div class="condition-total">
-	                  <span>이력서</span>
+	                  <span>총 ${totalCount }건</span>
 	                  <hr>
 		            </div>  
 		            
-		            <div></div>
-		            
+		            <div>
+		              <table style="width: 100%;">
+			              <c:if test="${totalCount==0 }">
+			                <tr>
+			                  <td colspan="4" align="center"></td>
+			                  <p><b>등록된 이력서가 없습니다</b></p>
+			                </tr>
+			              </c:if>
+			              
+			              <tr><td><br></td></tr>
+			              
+			              <c:if test="${totalCount>0 }">
+			                <c:forEach var="pe" items="${pelist }">
+			                <tr>
+			                  <td><h5><b><a href="iruckseolist?pe_num=${pe.pe_num }">${pe.pe_title}</a></b></h5></td>
+			                </tr>
+			                  
+			                <tr>
+			                  <td style="color: gray; font-size: 0.9em;">
+					            <fmt:formatDate value="${pe.pe_writeday }" pattern="yyyy-MM-dd HH:mm"/></td> 
+			                </tr>
+			                
+			                <tr><td><br></td></tr>
+			                
+			                <tr>
+							    <!-- 첫 번째 열: 총 경력과 희망직무 -->
+							    <td style="font-size: 0.8em; width: 30%;">총 경력: ${pe.ca_resign}개월</td>
+							    <td style="font-size: 0.8em;">희망직무: ${pe.ho_keyword}</td>
+							</tr>
+							
+							<tr><td><br></td></tr>
+							
+							<tr>
+							    <!-- 두 번째 열: 희망연봉과 희망지역 -->
+							    <td style="font-size: 0.8em;"><i class="bi bi-coin"></i> 희망연봉: ${pe.ho_check}</td>
+							    <td style="font-size: 0.8em;"><i class="bi bi-geo-alt"></i> 희망지역: ${pe.ho_addr}</td>
+							</tr>
+							
+							<tr><td><br></td></tr>
+							
+							<tr>
+							    <!-- 세 번째 열: 버튼 열 -->
+							    <td colspan="2" style="text-align: right;"> 
+							        <button id="btnUpdate" class="btn btn-outline-primary" onclick="location.href='updateForm?pe_num=${pe.pe_num}'"  style="width: 100px;">수정</button>
+							        <button id="btnDelete" pe_num="${pe.pe_num}" 
+							        class="btn btn-outline-primary" style="width: 100px;">삭제</button>
+							    </td>
+							</tr>
+			                  
+			                  <tr><td><br></td></tr>
+			                  
+		                      <tr>
+			                    <td colspan="4"><hr></td> <!-- 각 섹션 사이에 구분선 추가 -->
+			                  </tr>
+			                </c:forEach>
+			              </c:if>
+		              </table>
+		            </div>
+
 		            <div class="condition-notice">
-		              <span><i class="bi bi-exclamation-circle"></i>&nbsp;&nbsp;<b>유의사항</b></span>
-		              <p>·이력서는 최대 10개까지 등록 가능합니다.</p>
-		              <p>·'입사지원 내역'건수는 최근 1년간 내역에 대해 확인 가능합니다.</p>
-		              <p>·수정, 삭제 기능은 이력서 우측 버튼을 누르면 확인하실 수 있습니다.(이력서는 부분 삭제 불가)</p>
+		              <div style="margin: 30px 30px;">
+			              <span><i class="bi bi-exclamation-circle"></i>&nbsp;&nbsp;<b>유의사항</b></span><br>
+			              <p>- 이력서는 최대 10개까지 등록 가능합니다.</p>
+			              <p>- '입사지원 내역'건수는 최근 1년간 내역에 대해 확인 가능합니다.</p>
+			              <p>- 수정, 삭제 기능은 이력서 우측 버튼을 누르면 확인하실 수 있습니다.(이력서는 부분 삭제 불가)</p>
+		              </div>
 		            </div>
 		            
 	              </div>   
@@ -189,5 +250,40 @@
             </div>
         </div>
     </div>    
+    
+    
+    <script type="text/javascript">
+    
+      $(function () {
+    	   
+    	 //이력서 삭제
+          $(document).on("click", "#btnDelete", function() {
+          	
+          	var pe_num = $(this).attr("pe_num");
+
+          	var pe_confirm = confirm("해당 내역을 삭제하시겠습니까?");
+          	
+          	if(pe_confirm) {
+          		
+          		$.ajax({
+          			
+          			type : "get",
+          			dataType : "html",
+          			url : "personaldelete",
+          			data : {"pe_num":pe_num},
+          			success : function() {
+          				
+          				alert("삭제되었습니다");
+          				location.reload();
+          			}
+          		})
+          	}
+          });
+    	 
+    	 
+    	 //이력서 수정폼
+    	  
+      })
+    </script>
 </body>
 </html>

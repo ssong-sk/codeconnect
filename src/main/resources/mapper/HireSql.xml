@@ -14,23 +14,59 @@
    JOIN company_intro ci ON h.h_ci_num = ci.ci_num
 </select>
 
-<select id="searchHire" parameterType="String" resultType="hdto">
+<select id="searchHire" parameterType="map" resultType="hdto">
     SELECT h.*, c.c_name, ci.ci_image 
     FROM hire h
     JOIN company c ON h.h_c_num = c.c_num 
     JOIN company_intro ci ON h.h_ci_num = ci.ci_num 
-    WHERE
-    <choose>
-        <when test="search_job != null and search_tech == null">
-            h_job REGEXP #{search_job}
-        </when>
-        <when test="search_job == null and search_tech != null">
-            h_tech REGEXP #{search_tech}
-        </when>
-        <when test="search_job != null and search_tech != null">
-            h_job REGEXP #{search_job} and h_tech REGEXP #{search_tech}
-        </when>
-    </choose>
+    <where>
+        <if test="search_job != null and search_job != ''">
+            AND h.h_job REGEXP #{search_job}
+        </if>
+        <if test="search_tech != null and search_tech != ''">
+            AND h.h_tech REGEXP #{search_tech}
+        </if>
+        <if test="search_region != null and search_region != ''">
+            AND h.h_location REGEXP #{search_region}
+        </if>
+        <if test="search_career != null and search_career != '' and search_career != '전체'">
+            AND h.h_career REGEXP #{search_career}
+        </if>
+        <if test="search_cate != null and search_cate != ''">
+            AND h.h_category REGEXP #{search_cate}
+        </if>
+    </where>
 </select>
 
+<select id="getHireData" parameterType="int" resultType="hdto">
+	SELECT h.*, c.*, ci.* 
+	FROM hire h
+	JOIN company c ON h.h_c_num = c.c_num 
+	JOIN company_intro ci ON h.h_ci_num = ci.ci_num
+	where h.h_num = #{h_num}
+</select>
+
+<!-- 스크랩 -->
+<insert id="scrapInsert" parameterType="hdto">
+	insert into scrap values(null, #{h_num}, #{r_num})
+</insert>
+
+<delete id="scrapDelete" parameterType="map">
+	delete from scrap where r_num = #{r_num} and h_num = #{h_num}
+</delete>
+
+<select id="getRnumById" parameterType="String" resultType="int">
+	select r_num from register where r_id=#{r_id}
+</select>
+
+
+<!-- 채용공고 지원하기 창 -->
+<select id="selectIruckseo" parameterType="String" resultType="IruckseoInsertDto">
+	select * from personal where r_num=#{r_num}
+</select>
+
+<!-- 채용공고 이력서 갯수 -->
+<select id="countIruckseo" parameterType="String">
+	select count(*) from personal where r_num=#{r_num}
+</select>
 </mapper>

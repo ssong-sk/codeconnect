@@ -1,20 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.code.mapper.CommunityCommentMapperInter">
+
+	<!-- 댓글 삽입 -->
    <insert id="insertComment" parameterType="CommunityCommentDto">
      insert into community_comment (cc_num, cc_user_id, cc_nickname, cc_content, cc_writetime, cc_updatetime)
     values (#{cc_num}, #{cc_user_id}, #{cc_nickname}, #{cc_content}, now(), now())
    </insert>
+   
+   <!-- 모든 댓글 조회 -->
    <select id="getAllComment" parameterType="int" resultType="CommunityCommentDto">
      select * from community_comment where cc_num = #{cc_num} order by cc_writetime desc
    </select>
+   
+   <!-- 특정 댓글 조회 -->
    <select id="getComment" parameterType="int" resultType="CommunityCommentDto">
       select * from community_comment where cc_idx = #{cc_idx}
    </select>
+   
+   <!-- 댓글 업데이트 -->
    <update id="updateComment" parameterType="CommunityCommentDto">
       update community_comment set cc_content=#{cc_content}, cc_updatetime=now() where cc_idx = #{cc_idx}
    </update>
+   
+   <!-- 댓글 삭제 -->
    <delete id="deleteComment" parameterType="int">
      delete from community_comment where cc_idx = #{cc_idx}
    </delete>
+   
 </mapper>

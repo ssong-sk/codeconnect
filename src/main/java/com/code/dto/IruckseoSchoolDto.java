@@ -27,4 +27,12 @@ public class IruckseoSchoolDto {
 	private String sc_uni_grade;
 	private String sc_uni_sum;
 
+	private String sc_name;
+	private String sc_transfer;
+	private String sc_check;
+	private String sc_iphack;
+	private String sc_jolup;
+	private String sc_major;
+	
+
 }
