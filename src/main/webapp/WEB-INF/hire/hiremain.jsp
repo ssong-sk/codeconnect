@@ -1364,7 +1364,7 @@ svg {
 			                                    </g>
 			                                </g>
 			                            </svg>
-			                            <span>87</span>
+			                            <span>${h.h_count }</span>
 			                        </div>
 			                        </a>
 									<c:set var="isScraped" value="${fn:contains(userScraps, h.h_num)}" />
@@ -2197,7 +2197,7 @@ function renderResults(res) {
         s += "</g>";
         s += "</g>";
         s += "</svg>";
-        s += "<span>87</span>";
+        s += "<span>"+h.h_count+"</span>";
         s += "</div>";
         s += "</a>"; // a 닫기
         s += "<button aria-pressed='false' type='button' class='scrap' value='"+h.h_num+"'>";

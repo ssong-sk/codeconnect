@@ -15,7 +15,7 @@
 <title>Insert title here</title>
 <style type="text/css">
 .detailaside {
-    width: 340px;
+    width: 370px;
     height: calc(100% - 100px);
     position: absolute;
     top: 60px;
@@ -25,6 +25,7 @@
 .detailaside .wrap {
     position: fixed;
     top: 160px;
+    width: 370px;
 }
 
 /* 배너?느낌 */
