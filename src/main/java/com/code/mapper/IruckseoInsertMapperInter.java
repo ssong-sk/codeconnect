@@ -170,6 +170,9 @@ public interface IruckseoInsertMapperInter {
 	public List<IruckseoHopeDto> allHopeDatas();
 
 	//희망조건 pe_num 조회
-	public List<IruckseoHopeDto> Hopelist(int pe_num);
+	public IruckseoHopeDto Hopelist(int pe_num);
+
+	//이력서홈 이미지
+	public IruckseoInsertDto getImage(int r_num);
 
 }

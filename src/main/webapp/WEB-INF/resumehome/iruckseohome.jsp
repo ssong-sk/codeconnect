@@ -38,10 +38,10 @@
   }
   
   button {
-	border: none;
-	border-radius: 0px;
-	background: none;
-	cursor: pointer;
+   border: none;
+   border-radius: 0px;
+   background: none;
+   cursor: pointer;
   }
   
   /* 왼쪽 메뉴바 스타일 */
@@ -85,34 +85,6 @@
       margin-top: 5%; /* 상단 여백 */
       padding: 10px 0; /* 상하 여백 */
   }
-  
-  .chu-img {
-    width: 100%; /* 이미지를 부모의 폭에 맞춤 */
-    height: 100px;; /* 비율을 유지하며 높이 조절 */
-    border-radius: 8px; /* 모서리 둥글게 */
-    object-fit: cover; /* 이미지가 박스에 맞게 조정 */
-  }
-  
-  .mylist-chuimg {
-    display: flex;
-    flex-wrap: wrap; /* 줄바꿈 허용 */
-    gap: 16px; /* 항목 간의 간격 */
-    justify-content: space-between; /* 항목을 균등하게 분배 */
-  }
-  
-  .chu-item {
-    flex: 1 0 21%; /* 기본 크기: 21% (4개씩 배치), 필요 시 축소 */
-    box-sizing: border-box; /* 패딩과 보더 포함 */
-    margin-bottom: 24px; /* 아래 여백 */
-    display: flex; /* 내부 요소를 flex로 변경 */ 
-    flex-direction: column; /* 내부 요소를 세로로 배치 */
-  }
-  
-  .chu-info {
-    margin-top: 8px; /* 이미지와 텍스트 사이의 여백 */
-    flex-grow: 1; /* 내부 요소가 가능한한 같은 공간을 차지하도록 */
-  }
-
 
 /* 리스트 표시 및 정렬 */
 .hirelist, .s_hirelist{
@@ -303,261 +275,266 @@ svg {
 <!-- 왼쪽 메뉴바------------------------------------------------------------------------------------------------------- -->
               <div class="leftmenubar" style="width: 20%;">
                   <ul class="leftmenu">
-				    <li>
-				      <div class="menu-home">
-				        <a href="/resumehome/home"><b>My Home</b></a>
-				      </div>
-				    </li>
-				    
-				    <li class="title-section">
-				      <div class="menu-section">
-				        <span><b>이력서 관리</b></span>
-				      </div>
-				    </li>
-				    
-				    <li>
-				      <div class="menu-item">
-				        <a href="/resumehome/form">이력서 등록</a>
-				      </div>
-				    </li>
-				    
-				    <li>
-				      <div class="menu-item">
-				        <a href="/resumehome/conditionform">이력서 현황</a>
-				      </div>
-				    </li>
-				    
-				    <li class="title-section">
-				      <div class="menu-section">
-				        <span><b>입사지원 관리</b></span>
-				      </div>
-				    </li>
-				    
-				    <li>
-				      <div class="menu-item">
-				        <a href="/resumehome/supportform">입사지원 현황</a>
-				      </div>
-				    </li>
-				    
-				    <li class="title-section">
-				      <div class="menu-section">
-				        <span><b>스크랩/관심기업</b></span>
-				      </div>
-				    </li>
-				    
-				    <li>
-				      <div class="menu-item">
-				        <a href="/resumehome/scrapform">스크랩공고</a>
-				      </div>
-				    </li>
-				    
-				    <li>
-				      <div class="menu-item">
-				        <a href="/resumehome/interestform">관심기업</a>
-				      </div>
-				    </li>
-				  </ul>
+                <li>
+                  <div class="menu-home">
+                    <a href="/resumehome/home"><b>My Home</b></a>
+                  </div>
+                </li>
+                
+                <li class="title-section">
+                  <div class="menu-section">
+                    <span><b>이력서 관리</b></span>
+                  </div>
+                </li>
+                
+                <li>
+                  <div class="menu-item">
+                    <a href="/resumehome/form">이력서 등록</a>
+                  </div>
+                </li>
+                
+                <li>
+                  <div class="menu-item">
+                    <a href="/resumehome/conditionform">이력서 현황</a>
+                  </div>
+                </li>
+                
+                <li class="title-section">
+                  <div class="menu-section">
+                    <span><b>입사지원 관리</b></span>
+                  </div>
+                </li>
+                
+                <li>
+                  <div class="menu-item">
+                    <a href="/resumehome/supportform">입사지원 현황</a>
+                  </div>
+                </li>
+                
+                <li class="title-section">
+                  <div class="menu-section">
+                    <span><b>스크랩/관심기업</b></span>
+                  </div>
+                </li>
+                
+                <li>
+                  <div class="menu-item">
+                    <a href="/resumehome/scrapform">스크랩공고</a>
+                  </div>
+                </li>
+                
+                <li>
+                  <div class="menu-item">
+                    <a href="/resumehome/interestform">관심기업</a>
+                  </div>
+                </li>
+              </ul>
               </div>
 
 <!-- 오른쪽 레이아웃 작업----------------------------------------------------------------------------------------------- -->
               <div class="mylist-area" style="width: 80%;">
                 <div style="margin-left: 4%;">
-	                <img class="mylist-img" src="">
-	                <span style="margin-left: 3%;"><b>${rdto.r_name } 님</b></span>
+                   <img class="mylist-img" src="../iruckseoimage/${irdto.pe_image}">
+                   <span style="margin-left: 3%;"><b>${rdto.r_name } 님</b></span>
                 </div>
                 
                 <div class="mylist-state">
-	                <div>
-	                  <ul class="circle-list">
-	                    <li>이력서 현황 
-	                    <a href="/resumehome/conditionform"><span>${totalCount}</span></a></li>
-	                  </ul>
-	                </div>
-	                
-	                <div>
-	                  <ul>
-	                    <li>지원 완료
-	                    <a href="#"><span>${totalCount}</span></a></li>
-	                  </ul>
-	                </div>
-	                
-	                <div>
-	                  <ul>
-	                    <li>이력서 열람
-	                    <a href="#"></a><span>${totalCount}</span></li>
-	                  </ul>
-	                </div>
-	                
-	                <div>
-	                  <ul>
-	                    <li>스크랩 공고
-	                    <a href="#"><span>${totalCount}</span></a></li>
-	                  </ul>
-	                </div>
-	                
-	                <div>
-	                  <ul>
-	                    <li>관심기업 공고
-	                    <a href="#"><span>${totalCount}</span></a></li>
-	                  </ul>
-	                </div>
-	              </div>    
-	              
-	              <hr>
-	              <!-- 배너----------------------------------------------------------------------- -->
-	              <div>
-	                <img alt="" src="../iruckseobanner.JPG" style="width: 100%; margin-top: 2%;">
-	              </div>  
-	              
-	              
-	              <!-- 추천공고 -->
-	              <div class="mylist-chu">
-	                <span style="font-size: 1.2em;"><b>추천공고</b></span>
-	                <span style="font-size: 0.9em; float: right; color: gray; margin-top: 1%;"><a href="/hire/main">더보기 ></a></span>
-	                <hr>
-	                
-	              
-	              <!-- 채용공고 리스트 -->
-			<section class="hirelist">
-			    <c:forEach var="h" items="${hlist}">
-			        <div class="hireinfo">
-			            <a target="_self" title="${h.h_title}" href="/hire/detail?h_num=${h.h_num }">
-			                <div class="img_box">
-			                    <div class="img_filter"></div>
-			                    <img alt="${h.c_name}" class="img" src="../../companyintro_uploads/${h.ci_image}">
-			                    <div class="bKGmxJ"></div>
-			                    <div class="counts">
-			                        <div class="position_view_count">
-			                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20">
-			                                <g fill="none" fill-rule="evenodd">
-			                                    <path d="M0 0h16v16H0z"></path>
-			                                    <g stroke="#FFF" stroke-linecap="round">
-			                                        <path
-			                                            d="M8 10c.86 0 1.556-.672 1.556-1.5S8.859 7 8 7c-.86 0-1.556.672-1.556 1.5S7.141 10 8 10z">
-			                                        </path>
-			                                        <path
-			                                            d="M15 8.5c-1.469 2.243-4.108 4.5-7 4.5-2.892 0-5.531-2.257-7-4.5C2.788 6.369 4.882 4 8 4s5.212 2.369 7 4.5z">
-			                                        </path>
-			                                    </g>
-			                                </g>
-			                            </svg>
-			                            <span>87</span>
+                   <div>
+                     <ul class="circle-list">
+                       <li>이력서 현황 
+                       <a href="/resumehome/conditionform"><span>${totalCount}</span></a></li>
+                     </ul>
+                   </div>
+                   
+                   <div>
+                     <ul>
+                       <li>지원 완료
+                       <a href="#"><span>${totalCount}</span></a></li>
+                     </ul>
+                   </div>
+                   
+                   <div>
+                     <ul>
+                       <li>이력서 열람
+                       <a href="#"></a><span>${totalCount}</span></li>
+                     </ul>
+                   </div>
+                   
+                   <div>
+                     <ul>
+                       <li>스크랩 공고
+                       <a href="#"><span>${totalCount}</span></a></li>
+                     </ul>
+                   </div>
+                   
+                   <div>
+                     <ul>
+                       <li>관심기업 공고
+                       <a href="#"><span>${totalCount}</span></a></li>
+                     </ul>
+                   </div>
+                 </div>    
+                 
+                 <hr>
+                 <!-- 배너----------------------------------------------------------------------- -->
+                 <div>
+                   <img alt="" src="../iruckseobanner.JPG" style="width: 100%; margin-top: 2%;">
+                 </div>  
+                 
+                 
+                 <!-- 추천공고 -->
+                 <div class="mylist-chu">
+                   <span style="font-size: 1.2em;"><b>추천공고</b></span>
+                   <span style="font-size: 0.9em; float: right; color: gray; margin-top: 1%;"><a href="/hire/main">더보기 ></a></span>
+                   <hr>
+                   
+                 
+                     <!-- 채용공고 리스트 -->
+			         <section class="hirelist">
+			             <c:forEach var="h" items="${hlist}">
+			                 <div class="hireinfo">
+			                     <a target="_self" title="${h.h_title}" href="/hire/detail?h_num=${h.h_num }">
+			                         <div class="img_box">
+			                             <div class="img_filter"></div>
+			                             <img alt="${h.c_name}" class="img" src="../../companyintro_uploads/${h.ci_image}">
+			                             <div class="bKGmxJ"></div>
+			                             <div class="counts">
+			                                 <div class="position_view_count">
+			                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20">
+			                                         <g fill="none" fill-rule="evenodd">
+			                                             <path d="M0 0h16v16H0z"></path>
+			                                             <g stroke="#FFF" stroke-linecap="round">
+			                                                 <path
+			                                                     d="M8 10c.86 0 1.556-.672 1.556-1.5S8.859 7 8 7c-.86 0-1.556.672-1.556 1.5S7.141 10 8 10z">
+			                                                 </path>
+			                                                 <path
+			                                                     d="M15 8.5c-1.469 2.243-4.108 4.5-7 4.5-2.892 0-5.531-2.257-7-4.5C2.788 6.369 4.882 4 8 4s5.212 2.369 7 4.5z">
+			                                                 </path>
+			                                             </g>
+			                                         </g>
+			                                     </svg>
+			                                     <span>87</span>
+			                                 </div>
+			                                 </a>
+			                           <c:set var="isScraped" value="${fn:contains(userScraps, h.h_num)}" />
+			                                 <c:choose>
+			                                     <c:when test="${isScraped}">
+			                                         <input type="hidden" id="r_num" name="r_num" value="${sessionScope.r_num}">
+			                                         <input type="hidden" id="h_num" name="h_num" value="${h.h_num}">
+			                                         <button aria-pressed="true" type="button" class="scrap" value="${h.h_num}" onclick="deleteScrap(${sessionScope.r_num}, ${h.h_num})">
+			                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+			                                                 <path fill="#fff" fill-rule="evenodd"
+			                                                       d="M6.403 20.825a1 1 0 0 1-1.653-.757V5a2 2 0 0 1 2-2h10.5a2 2 0 0 1 2 2v15.068a1 1 0 0 1-1.653.757L12 16l-5.597 4.825Z"
+			                                                       clip-rule="evenodd"></path>
+			                                             </svg>
+			                                         </button>
+			                                     </c:when>
+			                                     <c:otherwise>
+			                                         <input type="hidden" id="r_num" name="r_num" value="${sessionScope.r_num}">
+			                                         <input type="hidden" id="h_num" name="h_num" value="${h.h_num}">
+			                                         <button aria-pressed="false" type="button" class="scrap" value="${h.h_num}" onclick="addScrap(${sessionScope.r_num}, ${h.h_num})">
+			                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+			                                                 <path fill="#fff" fill-rule="evenodd"
+			                                                       d="M10.725 14.71a2 2 0 0 1 2.55 0l3.975 3.289V5H6.75v12.999l3.975-3.29ZM4.75 20.123V5a2 2 0 0 1 2-2h10.5a2 2 0 0 1 2 2v15.124a1 1 0 0 1-1.638.77L12 16.25l-5.612 4.645a1 1 0 0 1-1.638-.77Z"
+			                                                       clip-rule="evenodd"></path>
+			                                             </svg>
+			                                         </button>
+			                                     </c:otherwise>
+			                                 </c:choose>
 			                        </div>
-			                        </a>
-									<c:set var="isScraped" value="${fn:contains(userScraps, h.h_num)}" />
-			                        <c:choose>
-			                            <c:when test="${isScraped}">
-			                                <input type="hidden" id="r_num" name="r_num" value="${sessionScope.r_num}">
-			                                <input type="hidden" id="h_num" name="h_num" value="${h.h_num}">
-			                                <button aria-pressed="true" type="button" class="scrap" value="${h.h_num}" onclick="deleteScrap(${sessionScope.r_num}, ${h.h_num})">
-			                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-			                                        <path fill="#fff" fill-rule="evenodd"
-			                                              d="M6.403 20.825a1 1 0 0 1-1.653-.757V5a2 2 0 0 1 2-2h10.5a2 2 0 0 1 2 2v15.068a1 1 0 0 1-1.653.757L12 16l-5.597 4.825Z"
-			                                              clip-rule="evenodd"></path>
-			                                    </svg>
-			                                </button>
-			                            </c:when>
-			                            <c:otherwise>
-			                                <input type="hidden" id="r_num" name="r_num" value="${sessionScope.r_num}">
-			                                <input type="hidden" id="h_num" name="h_num" value="${h.h_num}">
-			                                <button aria-pressed="false" type="button" class="scrap" value="${h.h_num}" onclick="addScrap(${sessionScope.r_num}, ${h.h_num})">
-			                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-			                                        <path fill="#fff" fill-rule="evenodd"
-			                                              d="M10.725 14.71a2 2 0 0 1 2.55 0l3.975 3.289V5H6.75v12.999l3.975-3.29ZM4.75 20.123V5a2 2 0 0 1 2-2h10.5a2 2 0 0 1 2 2v15.124a1 1 0 0 1-1.638.77L12 16.25l-5.612 4.645a1 1 0 0 1-1.638-.77Z"
-			                                              clip-rule="evenodd"></path>
-			                                    </svg>
-			                                </button>
-			                            </c:otherwise>
-			                        </c:choose>
-								</div>
-			                </div>
-			            <a target="_self" title="${h.h_title}" href="/hire/detail?h_num=${h.h_num }">
-			                <div class="hireinfo-content">
-			                    <div class="content-company">
-			                        <span>${h.c_name}</span>
-			                    </div>
-			                    <h2 class="position_card_info_title">${h.h_title}</h2>
-			                    <ul class="content-area">
-			                        <li><c:out value="${h.h_location.length() > 7 ? h.h_location.substring(0, 7) : h.h_location}" /></li>
-			                    </ul>
-			                </div>
-			            </a>
-			        </div>
-			    </c:forEach>
-			</section>
-			</div> 
+			                         </div>
+			                     
+			                         <div class="hireinfo-content">
+			                             <div class="content-company">
+			                             <a target="" title="${h.c_name}" href="#"><span>${h.c_name}</span></a>
+			                             <i class="bi bi-bookmark" id="companytagbtn"></i>
+			                             </div>
+			                             <a target="_self" title="${h.h_title}" href="/hire/detail?h_num=${h.h_num }">
+			                             <h2 class="position_card_info_title">${h.h_title}</h2>
+			                             </a>
+			                             <ul class="content-area">
+			                                 <li><c:out value="${h.h_location.length() > 7 ? h.h_location.substring(0, 7) : h.h_location}" /></li>
+			                             </ul>
+			                         </div>
+			                     
+			                 </div>
+			             </c:forEach>
+			         </section>
+			       </div> 
               </div>            
               
               </div>
             </div>
         </div>
     </div>    
-</body>
-<script type="text/javascript">
-/* 스크랩 기능 */
-scrapPress();
 
-function scrapPress() {
-	$("button.scrap").click(function() {
-		var scrappressed = $(this);
-		var isPressed = scrappressed.attr('aria-pressed') === 'true';
-		var r_num = $("#r_num").val();
-		var h_num = scrappressed.val();
-		var isLoggedIn = r_num != 0 ? true : false;
-
-		if(isLoggedIn){
-		    if (isPressed) {
-		    	$.ajax({
-		            type: "post",
-		            url: "/hire/scrapdelete",
-		            dataType: "html",
-		            data: {
-		                "r_num": r_num,
-		                "h_num": h_num,
-		            },
-		            success: function() {
-				        // aria-pressed가 true인 경우 -> false로 변경
-				        scrappressed.attr('aria-pressed', 'false');
-				        scrappressed.html(`
-				            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-				                <path fill="#fff" fill-rule="evenodd" 
-				                      d="M10.725 14.71a2 2 0 0 1 2.55 0l3.975 3.289V5H6.75v12.999l3.975-3.29ZM4.75 20.123V5a2 2 0 0 1 2-2h10.5a2 2 0 0 1 2 2v15.124a1 1 0 0 1-1.638.77L12 16.25l-5.612 4.645a1 1 0 0 1-1.638-.77Z" 
-				                      clip-rule="evenodd"></path>
-				            </svg>
-				        `);
-		            }
-		    	});
-		    } else {		  
-		        $.ajax({
-		            type: "post",
-		            url: "/hire/scrap",
-		            dataType: "html",
-		            data: {
-		                "r_num": r_num,
-		                "h_num": h_num,
-		            },
-		            success: function() {
-		            	// aria-pressed가 false인 경우 -> true로 변경
-				        scrappressed.attr('aria-pressed', 'true');
-				        scrappressed.html(`
-				            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-				                <path fill="#fff" fill-rule="evenodd" 
-				                      d="M6.403 20.825a1 1 0 0 1-1.653-.757V5a2 2 0 0 1 2-2h10.5a2 2 0 0 1 2 2v15.068a1 1 0 0 1-1.653.757L12 16l-5.597 4.825Z" 
-				                      clip-rule="evenodd"></path>
-				            </svg>
-				        `);
-		            }
-		        });
-		    }
-		}else{
-			var confirmLogin = confirm("로그인이 필요합니다.\n로그인 페이지로 이동하시겠습니까?");
-	        if (confirmLogin) {
-	            window.location.href = "/login/main";
-	        }
+		<script type="text/javascript">
+		/* 스크랩 기능 */
+		scrapPress();
+		
+		function scrapPress() {
+		   $("button.scrap").click(function() {
+		      var scrappressed = $(this);
+		      var isPressed = scrappressed.attr('aria-pressed') === 'true';
+		      var r_num = $("#r_num").val();
+		      var h_num = scrappressed.val();
+		      var isLoggedIn = r_num != 0 ? true : false;
+		
+		      if(isLoggedIn){
+		          if (isPressed) {
+		             $.ajax({
+		                  type: "post",
+		                  url: "/hire/scrapdelete",
+		                  dataType: "html",
+		                  data: {
+		                      "r_num": r_num,
+		                      "h_num": h_num,
+		                  },
+		                  success: function() {
+		                    // aria-pressed가 true인 경우 -> false로 변경
+		                    scrappressed.attr('aria-pressed', 'false');
+		                    scrappressed.html(`
+		                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+		                            <path fill="#fff" fill-rule="evenodd" 
+		                                  d="M10.725 14.71a2 2 0 0 1 2.55 0l3.975 3.289V5H6.75v12.999l3.975-3.29ZM4.75 20.123V5a2 2 0 0 1 2-2h10.5a2 2 0 0 1 2 2v15.124a1 1 0 0 1-1.638.77L12 16.25l-5.612 4.645a1 1 0 0 1-1.638-.77Z" 
+		                                  clip-rule="evenodd"></path>
+		                        </svg>
+		                    `);
+		                  }
+		             });
+		          } else {        
+		              $.ajax({
+		                  type: "post",
+		                  url: "/hire/scrap",
+		                  dataType: "html",
+		                  data: {
+		                      "r_num": r_num,
+		                      "h_num": h_num,
+		                  },
+		                  success: function() {
+		                     // aria-pressed가 false인 경우 -> true로 변경
+		                    scrappressed.attr('aria-pressed', 'true');
+		                    scrappressed.html(`
+		                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+		                            <path fill="#fff" fill-rule="evenodd" 
+		                                  d="M6.403 20.825a1 1 0 0 1-1.653-.757V5a2 2 0 0 1 2-2h10.5a2 2 0 0 1 2 2v15.068a1 1 0 0 1-1.653.757L12 16l-5.597 4.825Z" 
+		                                  clip-rule="evenodd"></path>
+		                        </svg>
+		                    `);
+		                  }
+		              });
+		          }
+		      }else{
+		         var confirmLogin = confirm("로그인이 필요합니다.\n로그인 페이지로 이동하시겠습니까?");
+		           if (confirmLogin) {
+		               window.location.href = "/login/main";
+		           }
+		      }
+		
+		   });
+		
 		}
-
-	});
-
-}
-</script>
+		</script>
+		
+</body>		
 </html>

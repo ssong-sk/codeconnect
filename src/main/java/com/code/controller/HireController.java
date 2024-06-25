@@ -173,7 +173,9 @@ public class HireController {
    @ResponseBody
    @PostMapping("/hire/scrap")
    public void scrapInsert(@ModelAttribute("hdto") HireDto hdto, HttpSession session) {
+
        int r_num =  Integer.parseInt((String) session.getAttribute("r_num"));
+
        hdto.setR_num(r_num);
        hservice.scrapInsert(hdto);
    }
