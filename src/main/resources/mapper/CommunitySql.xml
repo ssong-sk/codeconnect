@@ -8,12 +8,23 @@
     </select>
     
     <!-- 커뮤니티 글  삽입 -->
-    <insert id="insertCommunity" parameterType="CommunityDto">
+    <!-- <insert id="insertCommunity" parameterType="CommunityDto">
         insert into community (com_user_id, com_nickname, com_title, com_content, com_photo, com_category, com_writetime, com_updatetime, com_post_type,
         com_name, com_companyname) 
         values (#{com_user_id}, #{com_nickname}, #{com_title}, #{com_content}, #{com_photo}, #{com_category}, now(), now(), #{com_post_type},
         #{com_name}, #{com_companyname})
-    </insert>
+    </insert> -->
+    <!-- <insert id="insertCommunity" parameterType="CommunityDto">
+	    insert into community (com_user_id, com_nickname, com_title, com_content, com_photo, com_category, com_writetime, com_updatetime, com_post_type,
+	    com_name, com_companyname) 
+	    values (#{com_user_id}, #{com_nickname}, #{com_title}, #{com_content}, #{com_photo}, #{com_category}, now(), now(), #{com_post_type},
+	    #{com_name}, #{com_companyname})
+	</insert> -->
+	<insert id="insertCommunity" parameterType="CommunityDto">
+	    insert into community (com_user_id, com_nickname, com_title, com_content, com_photo, com_main_photo, com_category, com_writetime, com_updatetime, com_post_type, com_name, com_companyname) 
+	    values (#{com_user_id}, #{com_nickname}, #{com_title}, #{com_content}, #{com_photo}, #{com_main_photo}, #{com_category}, now(), now(), #{com_post_type}, #{com_name}, #{com_companyname})
+	</insert>
+	
     
     <!-- 모든 데이터 조회 -->
     <select id="getAllDatas" resultType="CommunityDto">

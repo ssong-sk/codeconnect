@@ -406,69 +406,195 @@ public class CommunityController {
     
     ///////////////////////////////////////////////////////////////////////여기부터 interview
     
+    @GetMapping("/community/interviewlist")
+    public ModelAndView interviewList() {
+        ModelAndView mview = new ModelAndView();
+        List<CommunityDto> list = service.getAllDatasByType("interview");
+        int totalCount = service.getTotalCountByType("interview");
+
+        mview.addObject("list", list);
+        mview.addObject("totalCount", totalCount);
+        mview.setViewName("community/interviewlist");
+        return mview;
+    }
+
+    @GetMapping("/community/interviewform")
+    public String interviewForm(HttpSession session, Model model) {
+        // 회원 정보를 가져와서 모델에 추가
+        String userId = (String) session.getAttribute("myid");
+        if (userId != null) {
+            RegisterDto userDto = mapperinter.getDataById(userId);
+            if (userDto != null) {
+                model.addAttribute("username", userDto.getR_name());
+                model.addAttribute("userNickname", userDto.getR_nickname()); // 닉네임 추가
+            }
+        }
+        return "community/interviewform";
+    }
+
+    /*
+    @PostMapping("/community/interviewinsert")
+    public String interviewInsert(@ModelAttribute CommunityDto dto,
+                                  @RequestParam MultipartFile upload,
+                                  HttpSession session) {
+        String path = session.getServletContext().getRealPath("/communityimage");
+        String uploadName = "no";
+
+        if (!upload.isEmpty()) {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+            String fName = sdf.format(new java.util.Date()) + "_" + upload.getOriginalFilename();
+            uploadName = fName;
+            try {
+                upload.transferTo(new File(path + "/" + fName));
+            } catch (IllegalStateException | IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        dto.setCom_photo(uploadName);
+        dto.setCom_post_type("interview");
+        service.insertCommunity(dto);
+        return "redirect:/community/interviewdetail?com_num=" + service.getInsertId();
+    }
+    */
+    
+    //대표이미지 추가 후
+    /*
     @PostMapping("/community/interviewinsert")
     public String interviewInsert(@ModelAttribute CommunityDto dto,
                                   @RequestParam ArrayList<MultipartFile> upload,
                                   HttpSession session) {
         String path = session.getServletContext().getRealPath("/communityimage");
         String uploadName = "";
+        String mainPhoto = "";
 
-        if (upload.get(0).getOriginalFilename().equals(""))
-            uploadName = "no";
-        else {
-            for (MultipartFile f : upload) {
+        if (!upload.isEmpty() && !upload.get(0).getOriginalFilename().equals("")) {
+            for (int i = 0; i < upload.size(); i++) {
+                MultipartFile file = upload.get(i);
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
-                String fName = sdf.format(new java.util.Date()) + "_" + f.getOriginalFilename();
+                String fName = sdf.format(new java.util.Date()) + "_" + file.getOriginalFilename();
                 uploadName += fName + ",";
+                if (i == 0) {
+                    mainPhoto = fName; // 첫 번째 이미지를 대표 이미지로 설정
+                }
                 try {
-                    f.transferTo(new File(path + "\\" + fName));
+                    file.transferTo(new File(path + "\\" + fName));
                 } catch (IllegalStateException | IOException e) {
                     e.printStackTrace();
                 }
             }
-            uploadName = uploadName.substring(0, uploadName.length() - 1);
+            uploadName = uploadName.substring(0, uploadName.length() - 1); // 마지막 쉼표 제거
+        } else {
+            uploadName = "no";
+            mainPhoto = "no";
         }
 
         dto.setCom_photo(uploadName);
-        dto.setCom_post_type("interview"); // com_post_type을 'interview'로 설정
+        dto.setCom_main_photo(mainPhoto); // 대표 이미지 설정
+        dto.setCom_post_type("interview");
 
         service.insertCommunity(dto);
-        int insertedComNum = service.getInsertId();
-
-        return "redirect:/community/interviewdetail?com_num=" + insertedComNum;
+        return "redirect:/community/interviewdetail?com_num=" + service.getInsertId();
     }
-
+    */
     
-    @GetMapping("/community/interviewlist")
-    public ModelAndView interviewList() {
-        ModelAndView mview = new ModelAndView();
+    /*
+    @PostMapping("/community/interviewinsert")
+    public String interviewInsert(@ModelAttribute CommunityDto dto,
+                                  @RequestParam ArrayList<MultipartFile> upload,
+                                  HttpSession session) {
+        String path = session.getServletContext().getRealPath("/communityimage");
+        StringBuilder uploadNames = new StringBuilder();
+        String mainPhoto = "no";
 
-        int totalCount = service.getTotalCountByType("interview");
-        List<CommunityDto> list = service.getAllDatasByType("interview");
-
-        mview.addObject("totalCount", totalCount);
-        mview.addObject("list", list);
-
-        mview.setViewName("community/interviewlist"); // "community/interviewlist.jsp"로 매핑
-        return mview;
-    }
-    
-    @GetMapping("/community/interviewform")
-    public String interviewForm(HttpSession session, Model model) {
-        if (session.getAttribute("loginok") == null) {
-            return "redirect:/login"; // 로그인 안되면 로그인 페이지로 리다이렉트
+        if (!upload.isEmpty()) {
+            for (int i = 0; i < upload.size(); i++) {
+                MultipartFile file = upload.get(i);
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+                String fileName = sdf.format(new java.util.Date()) + "_" + file.getOriginalFilename();
+                uploadNames.append(fileName).append(",");
+                if (i == 0) {
+                    mainPhoto = fileName; // 첫 번째 이미지를 대표 이미지로 설정
+                }
+                try {
+                    file.transferTo(new File(path + "/" + fileName));
+                } catch (IllegalStateException | IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
 
-        String id = (String) session.getAttribute("myid");
-        RegisterDto dto = mapperinter.getDataById(id);
-        String nickname = dto.getR_nickname();
-        String name = dto.getR_name(); // 사용자 이름 가져오기
-        String userid = dto.getR_id();
+        if (uploadNames.length() > 0) {
+            uploadNames.setLength(uploadNames.length() - 1); // Remove last comma
+        } else {
+            uploadNames.append("no");
+        }
 
-        model.addAttribute("userNickname", nickname);
-        model.addAttribute("name", name); // 모델에 사용자 이름 추가
-        model.addAttribute("userid", userid);
-        return "community/interviewform"; // "community/interviewform.jsp"로 매핑
+        // 세션에서 닉네임을 가져와 DTO에 설정
+        String nickname = (String) session.getAttribute("userNickname");
+        dto.setCom_nickname(nickname);
+        dto.setCom_main_photo(mainPhoto);
+        dto.setCom_photo(uploadNames.toString());
+        dto.setCom_post_type("interview");
+        service.insertCommunity(dto);
+        return "redirect:/community/interviewdetail?com_num=" + service.getInsertId();
+    }
+    */
+    
+    @PostMapping("/community/interviewinsert")
+    public String interviewInsert(@ModelAttribute CommunityDto dto,
+                                  @RequestParam ArrayList<MultipartFile> upload,
+                                  HttpSession session) {
+        String path = session.getServletContext().getRealPath("/communityimage");
+        StringBuilder uploadNames = new StringBuilder();
+        String mainPhoto = "no";
+
+        if (!upload.isEmpty()) {
+            for (int i = 0; i < upload.size(); i++) {
+                MultipartFile file = upload.get(i);
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+                String fileName = sdf.format(new java.util.Date()) + "_" + file.getOriginalFilename();
+                uploadNames.append(fileName).append(",");
+                if (i == 0) {
+                    mainPhoto = fileName; // 첫 번째 이미지를 대표 이미지로 설정
+                }
+                try {
+                    file.transferTo(new File(path + "/" + fileName));
+                } catch (IllegalStateException | IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        if (uploadNames.length() > 0) {
+            uploadNames.setLength(uploadNames.length() - 1); // 마지막 쉼표 제거
+        } else {
+            uploadNames.append("no");
+        }
+
+        // 세션에서 닉네임을 가져와 DTO에 설정
+        String nickname = (String) session.getAttribute("userNickname");
+        dto.setCom_nickname(nickname); // 닉네임 설정
+        dto.setCom_main_photo(mainPhoto);
+        dto.setCom_photo(uploadNames.toString());
+        dto.setCom_post_type("interview");
+        service.insertCommunity(dto);
+        return "redirect:/community/interviewdetail?com_num=" + service.getInsertId();
+    }
+
+
+
+    @GetMapping("/community/interviewdetail")
+    public String interviewDetail(@RequestParam int com_num, Model model) {
+        CommunityDto dto = service.getData(com_num);
+        model.addAttribute("dto", dto);
+        return "community/interviewdetail";
+    }
+
+    @GetMapping("/community/interviewdelete")
+    public String interviewDelete(@RequestParam String com_num) {
+        service.deleteInterview(com_num);
+        return "redirect:/community/interviewlist";
     }
 
 
