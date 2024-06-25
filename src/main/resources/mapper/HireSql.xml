@@ -65,12 +65,12 @@
 
 
 <!-- 채용공고 지원하기 창 -->
-<select id="selectIruckseo" parameterType="String" resultType="IruckseoInsertDto">
+<select id="selectIruckseo" parameterType="int" resultType="IruckseoInsertDto">
 	select * from personal where r_num=#{r_num}
 </select>
 
 <!-- 채용공고 이력서 갯수 -->
-<select id="countIruckseo" parameterType="String">
+<select id="countIruckseo" parameterType="int">
 	select count(*) from personal where r_num=#{r_num}
 </select>
 </mapper>

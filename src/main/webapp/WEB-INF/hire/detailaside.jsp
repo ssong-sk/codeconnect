@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -243,7 +244,7 @@
 
 .bannerchg1 img {
     width: 370px;
-    height: 72px;
+    height: 78px;
     margin-top: 0px;
     cursor: pointer;
     border-radius: 4px;
@@ -251,7 +252,7 @@
 
 .bannerchg2 img {
     width: 370px;
-    height: 72px;
+    height: 78px;
     margin-top: 0px;
     cursor: pointer;
     border-radius: 4px;
@@ -699,37 +700,22 @@ div.footerdiv{
 				</dl>
 				<div class="support">
 					<button type="button" class="supportbtn">지원하기</button>
-					<c:if test="${sessionScope.loginok == 'yes'}">
 					<ul class="bottom">
-					<c:set var="myid" value="${sessionScope.myid}" />
-								
-					<%-- 사용자별 스크랩 리스트 --%>
-					<c:set var="userScrapedMap" value="${sessionScope.userScrapedMap}" />
-					<c:set var="scraped" value="${userScrapedMap[myid]}" />
-					
-					<%-- 임시 변수로 스크랩 여부 저장 --%>
-					<c:set var="isScraped" value="false" />
-					
-					<%-- scraped 리스트를 순회하면서 현재 h_num이 있는지 확인 --%>
-					<c:forEach var="scrap" items="${scraped}">
-					    <c:if test="${scrap.h_num == h.h_num}">
-					        <c:set var="isScraped" value="true" />
-					    </c:if>
-					</c:forEach>
+					<c:set var="isScraped" value="${fn:contains(userScraps, hdto.h_num)}" />
 					<c:choose>
 					    <c:when test="${isScraped}">
-						<li class="bottomtag" id="scrap">
+						<li class="bottomtag" id="scrap" aria-pressed="true">
 							<input type="hidden" id="r_num" name="r_num" value="${r_num}">
 							<input type="hidden" id="h_num" name="h_num" value="${hdto.h_num}">
-							<i aria-pressed="false" class="bi bi-bookmark scrap"></i>
+							<i class="bi bi-bookmark-fill scrap" style="color: #0176ED"></i>
 			                <span>스크랩</span>
 			            </li>
 			            </c:when>
 						<c:otherwise>
-						<li class="bottomtag" id="scrap">
+						<li class="bottomtag" id="scrap" aria-pressed="false">
 							<input type="hidden" id="r_num" name="r_num" value="${r_num}">
 							<input type="hidden" id="h_num" name="h_num" value="${hdto.h_num}">
-							<i aria-pressed="true" class="bi bi-bookmark-fill scrap" style="color: #0176ED"></i>
+							<i aria-pressed="false" class="bi bi-bookmark scrap"></i>
 			                <span>스크랩</span>
 			            </li>
 			            </c:otherwise>
@@ -740,7 +726,6 @@ div.footerdiv{
 							<span>공유</span>
 						</li>
 					</ul>
-					</c:if>
 				</div>
 			</div>
 			<div class="banner">
@@ -971,12 +956,10 @@ function scrapPress() {
 		var scrappressed = $(this);
 		var isPressed = scrappressed.attr('aria-pressed') === 'true';
 		var r_num = $("#r_num").val();
-		var h_num = scrappressed.val();
+		var h_num = $("#h_num").val();
 		var isLoggedIn = r_num != 0 ? true : false;
-		
-		alert(scrappressed);
 
-		/* if(isLoggedIn){
+		if(isLoggedIn){
 		    if (isPressed) {
 		    	$.ajax({
 		            type: "post",
@@ -987,14 +970,10 @@ function scrapPress() {
 		                "h_num": h_num,
 		            },
 		            success: function() {
-				        // aria-pressed가 true인 경우 -> false로 변경
-				        scrappressed.attr('aria-pressed', 'false');
+		            	scrappressed.attr('aria-pressed', 'false');
 				        scrappressed.html(`
-				            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-				                <path fill="#fff" fill-rule="evenodd" 
-				                      d="M10.725 14.71a2 2 0 0 1 2.55 0l3.975 3.289V5H6.75v12.999l3.975-3.29ZM4.75 20.123V5a2 2 0 0 1 2-2h10.5a2 2 0 0 1 2 2v15.124a1 1 0 0 1-1.638.77L12 16.25l-5.612 4.645a1 1 0 0 1-1.638-.77Z" 
-				                      clip-rule="evenodd"></path>
-				            </svg>
+				        		<i class="bi bi-bookmark scrap"></i>
+				                <span>스크랩</span>
 				        `);
 		            }
 		    	});
@@ -1008,14 +987,10 @@ function scrapPress() {
 		                "h_num": h_num,
 		            },
 		            success: function() {
-		            	// aria-pressed가 false인 경우 -> true로 변경
-				        scrappressed.attr('aria-pressed', 'true');
+		            	scrappressed.attr('aria-pressed', 'true');
 				        scrappressed.html(`
-				            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-				                <path fill="#fff" fill-rule="evenodd" 
-				                      d="M6.403 20.825a1 1 0 0 1-1.653-.757V5a2 2 0 0 1 2-2h10.5a2 2 0 0 1 2 2v15.068a1 1 0 0 1-1.653.757L12 16l-5.597 4.825Z" 
-				                      clip-rule="evenodd"></path>
-				            </svg>
+				        		<i class="bi bi-bookmark-fill scrap" style="color: #0176ED"></i>
+				                <span>스크랩</span>
 				        `);
 		            }
 		        });
@@ -1027,7 +1002,7 @@ function scrapPress() {
 	        }
 		}
 
-	}); */
+	});
 
 }
 </script>
