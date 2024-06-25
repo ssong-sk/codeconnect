@@ -35,4 +35,9 @@ public interface CompanyMapperInter {
     //기업 사업자등록번호 변경
     public void updateCompanyRegiNum(CompanyDto dto);
     
+	//스크랩(기업)
+	public void scrapCompanyInsert(CompanyDto dto);
+	public int getCompanyRnumById(String r_id);
+	public void scrapCompanyDelete(int r_num, int c_num);
+	public List<CompanyDto> getCompanyUserScraps(int r_num);
 }

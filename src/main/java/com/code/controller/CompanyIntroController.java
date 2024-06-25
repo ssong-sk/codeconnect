@@ -190,19 +190,22 @@ public class CompanyIntroController {
 
     }
 
-    //임시생성 : 기업 마이페이지에서 =>기업소개리스트(임시)로 이동
-    //임시생성 : 마이페이지에서만 이어갈 수 있는 기업들 소개리스트
+    //이제 임시 아님! 매우 중요!!!
+    //기업 마이페이지에서 =>기업소개리스트(임시)로 이동
+    //마이페이지에서만 이어갈 수 있는 기업들 소개리스트
     @GetMapping("/company/gotoshowimsiList")
     public String showimsiList(Model model) {
 
-        List<CompanyDto> list = cservice.getAllCompanys();
+        //List<CompanyDto> list = cservice.getAllCompanys();
+        List<CompanyIntroDto> clist = ciservice.getAllCompanyIntros();
 
-        model.addAttribute("list", list);
+        //model.addAttribute("list", list);
+        model.addAttribute("clist", clist);
 
         return "/companyintro/companyintroList";
     }
 
-    //임시: 임시 기업 리스트에서 해당 기업 소개글(detail view)로 이동하기
+    //중요!!: 기업 리스트에서 해당 기업 소개글(detail view)로 이동하기
     //companyintro 소개글 완성본 보기
     @GetMapping("/company/showimsiCom")
     public String introshow(@RequestParam String c_num, Model model) {
