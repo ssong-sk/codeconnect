@@ -2902,6 +2902,41 @@
                   //이력서 최종 저장하기 (update)	
                   $(document).on("click", "#allDataUpdate", function() {
                 	  
+                	  //추가버튼 추가폼이 저장이 안된채로 있을경우 
+                	  var schoolclick = $("#schoolclick").length;
+                	  var schoolclick = $("#careeclick").length;
+                	  var schoolclick = $("#activityclick").length;
+                	  var schoolclick = $("#qualificationclick").length;
+                	  var schoolclick = $("#portfolioclick").length;
+                	  var schoolclick = $("#selfclick").length;
+                      
+                      if (schoolclick != 0) {
+                    	  alert("학력 작성을 저장해주세요");
+                    	  return;
+                      }
+                      if (careeclick != 0) {
+                    	  alert("경력 작성을 저장해주세요");
+                    	  return;
+                      }
+                      if (activityclick != 0) {
+                    	  alert("경험, 활동, 교육 작성을 저장해주세요");
+                    	  return;
+                      }
+                      if (qualificationclick != 0) {
+                    	  alert("자격, 어학, 수상 작성을 저장해주세요");
+                    	  return; 
+                      }
+                      if (portfolioclick != 0) {
+                    	  alert("포트폴리오 작성을 저장해주세요");
+                    	  return; 
+                      }
+                      if (selfclick == 0) {
+                    	  alert("자기소개서 작성을 저장해주세요");
+                    	  return;
+                      }
+                      
+                	  
+                      //이력서 제목 저장
                 	  $("#pe_title").val($("#pe_title_temp").val());
 					  $("#pe_form").submit();
                   });

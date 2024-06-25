@@ -21,5 +21,7 @@ public class IruckseoSpecDto {
 	private String sp_aw_name;
 	private String sp_aw_organization;
 	private String sp_aw_sangday;
+	private String sp_name;
+	private String sp_passday;
 
 }

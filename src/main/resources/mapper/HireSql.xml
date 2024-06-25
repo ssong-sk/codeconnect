@@ -48,12 +48,16 @@
 
 <!-- 스크랩 -->
 <insert id="scrapInsert" parameterType="hdto">
-	insert into scrap values(null, #{h_num}, #{r_num}, null)
+	insert into scrap (h_num, r_num, c_num) values(#{h_num}, #{r_num}, #{c_num})
 </insert>
 
 <delete id="scrapDelete" parameterType="map">
     DELETE FROM scrap WHERE r_num = #{r_num} AND h_num = #{h_num}
 </delete>
+
+<select id="scrapSelect" resultType="hdto">
+    select * from scrap where s_num = #{s_num}
+</select>
 
 <select id="getUserScraps" parameterType="int" resultType="hdto">
     SELECT h_num FROM scrap WHERE r_num = #{r_num}
@@ -63,14 +67,18 @@
 	select r_num from register where r_id=#{r_id}
 </select>
 
+<select id="getScrapCount" parameterType="int" resultType="int">
+     select count(*) from scrap where r_num = ${r_num}
+</select>
+
 
 <!-- 채용공고 지원하기 창 -->
-<select id="selectIruckseo" parameterType="String" resultType="IruckseoInsertDto">
+<select id="selectIruckseo" parameterType="int" resultType="IruckseoInsertDto">
 	select * from personal where r_num=#{r_num}
 </select>
 
 <!-- 채용공고 이력서 갯수 -->
-<select id="countIruckseo" parameterType="String">
+<select id="countIruckseo" parameterType="int">
 	select count(*) from personal where r_num=#{r_num}
 </select>
 

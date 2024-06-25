@@ -173,12 +173,15 @@
 	                <span style="font-size: 1.2em;"><b>스크랩 공고</b></span>
 	                
 	                <div class="condition-total">
-	                  <span>총 ${totalCount }건</span>
-	                  <hr>
-		            </div>  
-		            
-		            <div>
-		              <table style="width: 100%;">
+	                  <table style="width: 100%;">
+		                  <tr>
+		                    <td>
+		                      <input type="checkbox"><span style="font-size: 0.8em;">&nbsp;전체선택</span>
+		                      <hr>
+		                    </td>
+		                  </tr>
+		                  
+                          <!-- 스크랩 공고가 없는 경우 -->
 			              <c:if test="${totalCount==0 }">
 			                <tr>
 			                  <td colspan="4" align="center"></td>
@@ -186,40 +189,16 @@
 			                </tr>
 			              </c:if>
 			              
-			              <tr><td><br></td></tr>
-			              
+			              <!-- 스크랩 공고가 있는 경우 -->
 			              <c:if test="${totalCount>0 }">
-			                <c:forEach var="pe" items="${pelist }">
-			                <tr>
-			                  <td><h5><b><a href="iruckseolist?pe_num=${pe.pe_num }">${pe.pe_title}</a></b></h5></td>
-			                </tr>
-			                  
-			                <tr>
-			                  <td style="color: gray; font-size: 0.9em;">
-					            <fmt:formatDate value="${pe.pe_writeday }" pattern="yyyy-MM-dd HH:mm"/></td> 
-			                </tr>
-			                
-			                <tr><td><br></td></tr>
-			                
-			                <tr>
-							    <!-- 첫 번째 열: 총 경력과 희망직무 -->
-							    <td style="font-size: 0.8em; width: 30%;">총 경력: ${pe.ca_resign}개월</td>
-							    <td style="font-size: 0.8em;">희망직무: ${pe.ho_keyword}</td>
-							</tr>
-							
-							<tr><td><br></td></tr>
-							
-							<tr>
-							    <!-- 두 번째 열: 희망연봉과 희망지역 -->
-							    <td style="font-size: 0.8em;"><i class="bi bi-coin"></i> 희망연봉: ${pe.ho_check}</td>
-							    <td style="font-size: 0.8em;"><i class="bi bi-geo-alt"></i> 희망지역: ${pe.ho_addr}</td>
-							</tr>
-							
-							<tr><td><br></td></tr>
-			                  
-		                      <tr>
-			                    <td colspan="4"><hr></td> <!-- 각 섹션 사이에 구분선 추가 -->
-			                  </tr>
+			                <c:forEach var="hi" items="${hilist }">
+			                   <tr>
+			                     <td>
+			                       <input type="checkbox">
+			                     </td>
+			                     <td>회사명</td>
+			                     <td>진행중 공고</td>
+			                   </tr>
 			                </c:forEach>
 			              </c:if>
 		              </table>

@@ -132,7 +132,11 @@ public class HireController {
    @GetMapping("/hire/detail")
    public ModelAndView detail(int h_num, HttpSession session) {
       
-	  String r_num = (String) session.getAttribute("r_num");
+	  Integer r_num =  Integer.parseInt((String)session.getAttribute("r_num"));
+	  
+	  if (r_num == null) {
+          r_num = 0; // 기본값 설정
+      }
 	  
       ModelAndView mview = new ModelAndView();
       
@@ -151,6 +155,8 @@ public class HireController {
       String r_hp=(String)session.getAttribute("r_hp");
       String r_email=(String)session.getAttribute("r_email");
       
+      List<HireDto> userScraps = hservice.getUserScraps(r_num);
+      mview.addObject("userScraps", userScraps);      
       
       mview.addObject("hdto", hdto);
       mview.addObject("irlist", irlist);
@@ -167,7 +173,9 @@ public class HireController {
    @ResponseBody
    @PostMapping("/hire/scrap")
    public void scrapInsert(@ModelAttribute("hdto") HireDto hdto, HttpSession session) {
-       int r_num = (int) session.getAttribute("r_num");
+
+       int r_num =  Integer.parseInt((String) session.getAttribute("r_num"));
+
        hdto.setR_num(r_num);
        hservice.scrapInsert(hdto);
    }

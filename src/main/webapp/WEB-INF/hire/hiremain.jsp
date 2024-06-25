@@ -633,7 +633,7 @@ svg {
       <div id="wrap">
          <div class="center">
             <div class="category">
-				<input type="text" id="r_num" name="r_num" value="${r_num }">
+				<input type="hidden" id="r_num" name="r_num" value="${r_num }">
                <!-- 개발 직무 선택 -->
                <span class="title">개발 직무</span>
                <button class="job" type="button" data-bs-toggle="modal"
@@ -1558,7 +1558,7 @@ $(document).ready(function() {
 
 	$('.techapply-btn').click(function() {
 		updateToggleText();
-		alert($("#search_tech").val());
+		//alert($("#search_tech").val());
 	});
 
 	$('.resettech').click(function() {
@@ -1738,7 +1738,7 @@ $(".category2").click(function() {
         search_cate = search_cate.replace(regex, "").replace(/^\|/, '').replace(/\|$/, '');
         $("#search_cate").val(search_cate);
     }
-    alert($("#search_cate").val()); // 현재 search_cate 값을 알림으로 표시
+    //alert($("#search_cate").val()); // 현재 search_cate 값을 알림으로 표시
 });
  
 
