@@ -237,5 +237,9 @@ $(".search_tab").click(function() {
    $(this).attr('aria-selected', 'true');
 })
 </script>
+
+<script type="text/javascript">
+$()
+</script>
 </body>
 </html>
