@@ -983,6 +983,7 @@ $(".footerbtn").click(function(){
 	
     if (!pe_num) {
         alert("이력서를 선택해주세요.");
+        return;
 	}
      
 	$.ajax({
