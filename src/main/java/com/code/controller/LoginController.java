@@ -73,7 +73,7 @@ public class LoginController {
 			session.setAttribute("r_sogae", mdto.getR_sogae());
 			session.setAttribute("r_exp", mdto.getR_exp());
 			
-			return "/layout/main";
+			return "redirect:/";
 			
 		}else {
 			return "/member/passfail";

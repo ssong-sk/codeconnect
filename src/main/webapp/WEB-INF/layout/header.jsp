@@ -76,7 +76,7 @@
 									onclick="location.href='/member/mypage?page=profile'">
 									<span class="Button_Button__label__1Kk0v"> <span
 										class="Typography_Typography__root__xYuMs Typography_Typography__label2__BRssq Typography_Typography__weightBold__e15ql">
-											${sessionScope.myid}님</span>
+											${r_name}님</span>
 									</span> <span class="Button_Button__interaction__kkYaa"></span>
 								</button>
 							</c:if></li>
