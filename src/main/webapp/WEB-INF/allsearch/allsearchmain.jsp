@@ -86,6 +86,13 @@ div.searchTabmenu{
     line-height: 150%;
     transition: color .2s ease;
 }
+
+.searchcontent{
+	width: 90%;
+    margin: 0 auto;
+    padding-bottom: 80px;
+    max-width: 1080px;
+}
 </style>
 </head>
 <body>
@@ -106,6 +113,10 @@ div.searchTabmenu{
 				<span class="searchtabmenu_text">회사(갯수)</span>
 			</a>
 		</div>
+	</div>
+	
+	<div class="searchcontent">
+	
 	</div>
 </div>
 </body>
