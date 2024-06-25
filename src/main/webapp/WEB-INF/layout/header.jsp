@@ -50,7 +50,7 @@
 						<div class="SearchInput_SearchInputContainer__wGe1Q">
 							<form role="presentation" action=".">
 								<input class="SearchInput_SearchInput__gySrv" type="search"
-									autocomplete="off" value=""><span
+									autocomplete="off" value="" name="searchword" id="searchword"><span
 									class="SvgIcon_SvgIcon__root__8vwon SearchInput_SearchIcon__zlAMa"><svg
 										class="SvgIcon_SvgIcon__root__svg__DKYBi" viewBox="0 0 24 24">
 										<path fill-rule="evenodd" clip-rule="evenodd"
