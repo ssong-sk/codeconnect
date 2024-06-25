@@ -336,6 +336,8 @@
             var r_num = $("#r_num").val();
             var c_num = scrappressed.val();
             var isLoggedIn = r_num != 0 ? true : false;
+
+            console.log("isPressed:", isPressed, "r_num:", r_num, "c_num:", c_num);
       
             if(isLoggedIn){
                 if (isPressed) {
@@ -351,6 +353,9 @@
                           // aria-pressed가 true인 경우 -> false로 변경
                           scrappressed.attr('aria-pressed', 'false');
                           scrappressed.find('i').removeClass('bi-heart-fill').addClass('bi-heart');
+                        },
+                        error: function(request, status, error) {
+                            console.log("Error:", error);
                         }
                    });
                 } else {        
@@ -366,6 +371,9 @@
                            // aria-pressed가 false인 경우 -> true로 변경
                           scrappressed.attr('aria-pressed', 'true');
                           scrappressed.find('i').removeClass('bi-heart').addClass('bi-heart-fill');
+                        },
+                        error: function(request, status, error) {
+                            console.log("Error:", error);
                         }
                     });
                 }

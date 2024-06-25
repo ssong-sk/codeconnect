@@ -103,36 +103,36 @@ public class CompanyService implements CompanyServiceInter{
 		// TODO Auto-generated method stub
 		cmapperInter.updateCompanyRegiNum(dto);
 	}
-	
+
 	//스크랩
-		@Override
-		public void scrapCompanyInsert(CompanyDto dto) {
-			cmapperInter.scrapCompanyInsert(dto);
-		}
+	@Override
+	public void scrapCompanyInsert(CompanyDto dto) {
+		cmapperInter.scrapCompanyInsert(dto);
+	}
 
-@Override
-public int getCompanyRnumById(String r_id) {
-	// TODO Auto-generated method stub
-	return cmapperInter.getCompanyRnumById(r_id);
-}
+	@Override
+	public int getCompanyRnumById(String r_id) {
+		// TODO Auto-generated method stub
+		return cmapperInter.getCompanyRnumById(r_id);
+	}
 
-		@Override
-		public void scrapCompanyDelete(int r_num, int c_num) {
-			Map<String, Object> params = new HashMap<>();
-		    params.put("r_num", r_num);
-		    params.put("c_num", c_num);
-		    cmapperInter.scrapCompanyDelete(r_num, c_num);
-			
-		}
-		
-		@Override
-		public List<CompanyDto> getCompanyUserScraps(int r_num) {
-			return cmapperInter.getCompanyUserScraps(r_num);
-		}
-	
-		@Override
-		public int getScrapCount(int r_num) {
-			// TODO Auto-generated method stub
-			return cmapperInter.getScrapCount(r_num);
-		}
+	@Override
+	public void scrapCompanyDelete(int r_num, int c_num) {
+		Map<String, Object> params = new HashMap<>();
+		params.put("r_num", r_num);
+		params.put("c_num", c_num);
+		cmapperInter.scrapCompanyDelete(r_num, c_num);
+
+	}
+
+	@Override
+	public List<CompanyDto> getCompanyUserScraps(int r_num) {
+		return cmapperInter.getCompanyUserScraps(r_num);
+	}
+
+	@Override
+	public int getScrapCount(int r_num) {
+		// TODO Auto-generated method stub
+		return cmapperInter.getScrapCount(r_num);
+	}
 }

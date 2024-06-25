@@ -370,7 +370,8 @@ public class CompanyController {
 
 	   @ResponseBody
 	   @PostMapping("/company/scrapdelete")
-	   public void scrapDelete(@RequestParam int r_num, @RequestParam int c_num) {
+	   public void scrapDelete(@RequestParam int c_num, HttpSession session) {
+		   int r_num =  Integer.parseInt((String) session.getAttribute("r_num"));
 		   cservice.scrapCompanyDelete(r_num, c_num);
 	   }
 
