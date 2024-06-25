@@ -80,6 +80,12 @@ public class HireService implements HireServiceInter {
 		return mapper.getScrapCount(r_num);
 	}
 
+	//조회수
+	@Override
+	public void hireReadCount(int h_num) {
+		mapper.hireReadCount(h_num);
+	}
+
 
 
 	
