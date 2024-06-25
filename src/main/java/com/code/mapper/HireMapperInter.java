@@ -25,9 +25,9 @@ public interface HireMapperInter {
  
 	
 	//채용공고 지원하기 창
-	public List<IruckseoInsertDto> selectIruckseo(String r_num);
+	public List<IruckseoInsertDto> selectIruckseo(int r_num);
 	
 	//채용공고 이력서 갯수
-	public String countIruckseo(String r_num);
+	public String countIruckseo(int r_num);
 }
 
