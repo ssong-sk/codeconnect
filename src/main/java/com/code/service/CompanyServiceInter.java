@@ -38,7 +38,7 @@ public interface CompanyServiceInter {
 	public int getCompanyRnumById(String r_id);
 	public void scrapCompanyDelete(int r_num, int c_num);
 	public List<CompanyDto> getCompanyUserScraps(int r_num);
+	public int getScrapCount(int r_num);
 	
 }
-
 

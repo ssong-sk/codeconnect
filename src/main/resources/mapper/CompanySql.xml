@@ -108,7 +108,7 @@
 	</select>
 
 	<select id="getCompanyUserScraps" parameterType="int"
-		resultType="hdto">
+		resultType="CompanyDto">
 		SELECT c_num FROM scrap WHERE r_num = #{r_num}
 	</select>
 
@@ -120,6 +120,5 @@
 	<select id="getScrapCount" parameterType="int" resultType="int">
 		select count(*) from scrap where r_num = ${r_num}
 	</select>
-
 
 </mapper>

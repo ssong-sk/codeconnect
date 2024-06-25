@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpSession;
 
@@ -20,10 +21,12 @@ import org.springframework.web.multipart.MultipartFile;
 import com.code.dto.CompanyDto;
 import com.code.dto.CompanyIntroDto;
 import com.code.dto.CompanyReviewDto;
+import com.code.dto.RegisterDto;
 import com.code.mapper.CompanyIntroMapperInter;
 import com.code.service.CompanyIntroService;
 import com.code.service.CompanyReviewService;
 import com.code.service.CompanyService;
+import com.code.service.RegisterService;
 
 @Controller
 public class CompanyIntroController {
@@ -39,6 +42,9 @@ public class CompanyIntroController {
 
     @Autowired
     CompanyReviewService crservice;
+    
+    @Autowired
+    RegisterService rservice;
 
     // 기업 소개 메인페이지로 가기
     @GetMapping("/company/intromain")
@@ -194,14 +200,21 @@ public class CompanyIntroController {
     //기업 마이페이지에서 =>기업소개리스트(임시)로 이동
     //마이페이지에서만 이어갈 수 있는 기업들 소개리스트
     @GetMapping("/company/gotoshowimsiList")
-    public String showimsiList(Model model) {
-
-        //List<CompanyDto> list = cservice.getAllCompanys();
+    public String showimsiList(Model model, HttpSession session) {
         List<CompanyIntroDto> clist = ciservice.getAllCompanyIntros();
+        String r_num_str = (String) session.getAttribute("r_num");
+        int r_num = r_num_str != null ? Integer.parseInt(r_num_str) : 0;
+        model.addAttribute("r_num", r_num);
 
-        //model.addAttribute("list", list);
+        // 사용자 스크랩 여부 확인
+        if (r_num != 0) {
+            List<CompanyDto> scrapList = cservice.getCompanyUserScraps(r_num);
+            List<String> scrapIds = scrapList.stream()
+                                              .map(CompanyDto::getC_num)
+                                              .collect(Collectors.toList());
+            model.addAttribute("scrapList", scrapIds);
+        }
         model.addAttribute("clist", clist);
-
         return "/companyintro/companyintroList";
     }
 

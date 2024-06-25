@@ -110,10 +110,11 @@ public class CompanyService implements CompanyServiceInter{
 			cmapperInter.scrapCompanyInsert(dto);
 		}
 
-		@Override
-		public int getCompanyRnumById(String r_id) {
-			return cmapperInter.getCompanyRnumById(r_id);
-		}
+@Override
+public int getCompanyRnumById(String r_id) {
+	// TODO Auto-generated method stub
+	return cmapperInter.getCompanyRnumById(r_id);
+}
 
 		@Override
 		public void scrapCompanyDelete(int r_num, int c_num) {
@@ -129,7 +130,9 @@ public class CompanyService implements CompanyServiceInter{
 			return cmapperInter.getCompanyUserScraps(r_num);
 		}
 	
+		@Override
+		public int getScrapCount(int r_num) {
+			// TODO Auto-generated method stub
+			return cmapperInter.getScrapCount(r_num);
+		}
 }
-
-
-

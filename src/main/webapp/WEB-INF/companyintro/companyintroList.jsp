@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -301,18 +300,21 @@
                                           </div>
                                       </div>
                                   </div>
-                                  <div class="hireinfo-content">
-                                      <div class="content-company">
-                                      <a target="" title="${a.c_name}" href="#"><span>${a.c_name}</span></a>
-                                      &nbsp;<i class="bi bi-heart"></i>
-                                      </div>
-                                      <a target="_self" title="${a.c_name}" href="/company/showimsiCom?c_num=${a.c_num}">
-                                      <h2 class="position_card_info_title">${a.c_name}</h2>
-                                      </a>
-                                      <ul class="content-area">
-                                          <li><c:out value="${a.c_addr.length() > 7 ? a.c_addr.substring(0, 7) : a.c_addr}" /></li>
-                                      </ul>
+                              </a>
+                              <div class="hireinfo-content">
+                                  <div class="content-company">
+                                  <a target="" title="${a.c_name}" href="#"><span>${a.c_name}</span></a>
+                                  &nbsp;<button class="scrap" value="${a.c_num}" aria-pressed="${fn:contains(scrapList, a.c_num) ? 'true' : 'false'}">
+                                    <i class="bi ${fn:contains(scrapList, a.c_num) ? 'bi-heart-fill' : 'bi-heart'}"></i>
+                                  </button>
                                   </div>
+                                  <a target="_self" title="${a.c_name}" href="/company/showimsiCom?c_num=${a.c_num}">
+                                  <h2 class="position_card_info_title">${a.c_name}</h2>
+                                  </a>
+                                  <ul class="content-area">
+                                      <li><c:out value="${a.c_addr.length() > 7 ? a.c_addr.substring(0, 7) : a.c_addr}" /></li>
+                                  </ul>
+                              </div>
                           </div>
                       </c:forEach>
                       
@@ -348,13 +350,7 @@
                         success: function() {
                           // aria-pressed가 true인 경우 -> false로 변경
                           scrappressed.attr('aria-pressed', 'false');
-                          scrappressed.html(`
-                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                  <path fill="#fff" fill-rule="evenodd" 
-                                        d="M10.725 14.71a2 2 0 0 1 2.55 0l3.975 3.289V5H6.75v12.999l3.975-3.29ZM4.75 20.123V5a2 2 0 0 1 2-2h10.5a2 2 0 0 1 2 2v15.124a1 1 0 0 1-1.638.77L12 16l-5.612 4.645a1 1 0 0 1-1.638-.77Z" 
-                                        clip-rule="evenodd"></path>
-                              </svg>
-                          `);
+                          scrappressed.find('i').removeClass('bi-heart-fill').addClass('bi-heart');
                         }
                    });
                 } else {        
@@ -369,13 +365,7 @@
                         success: function() {
                            // aria-pressed가 false인 경우 -> true로 변경
                           scrappressed.attr('aria-pressed', 'true');
-                          scrappressed.html(`
-                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                  <path fill="#fff" fill-rule="evenodd" 
-                                        d="M6.403 20.825a1 1 0 0 1-1.653-.757V5a2 2 0 0 1 2-2h10.5a2 2 0 0 1 2 2v15.068a1 1 0 0 1-1.653.757L12 16l-5.597 4.825Z" 
-                                        clip-rule="evenodd"></path>
-                              </svg>
-                          `);
+                          scrappressed.find('i').removeClass('bi-heart').addClass('bi-heart-fill');
                         }
                     });
                 }
