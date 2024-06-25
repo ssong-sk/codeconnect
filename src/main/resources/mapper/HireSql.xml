@@ -48,7 +48,7 @@
 
 <!-- 스크랩 -->
 <insert id="scrapInsert" parameterType="hdto">
-	insert into scrap (h_num, r_num, c_num) values(#{h_num}, #{r_num}, #{c_num})
+	insert into scrap (h_num, r_num) values(#{h_num}, #{r_num})
 </insert>
 
 <delete id="scrapDelete" parameterType="map">

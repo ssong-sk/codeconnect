@@ -168,70 +168,42 @@
               </div>
 <!-- 오른쪽 레이아웃 작업----------------------------------------------------------------------------------------------- -->
 	              <div class="condition-area" style="width: 80%;">
+	              <span style="font-size: 1.2em;"><b>입사지원 현황</b></span>
 	              
-	                <span style="font-size: 1.2em;"><b>입사지원 현황</b></span>
-	                
-	                <div class="condition-total">
-	                  <span>총 ${totalCount }건</span>
-	                  <hr>
-		            </div>  
-		            
-		            <div>
-		              <table style="width: 100%;">
+	                <div class="condition-total" style="margin-top: 5%;">
+	                  <table style="width: 100%;">
+                          <div>
+                             <input type="checkbox" id="allselect"><span style="font-size: 0.8em;">&nbsp;전체선택</span>
+                          </div>
+		                  <hr>
+
+                          <!-- 스크랩 공고가 없는 경우 -->
 			              <c:if test="${totalCount==0 }">
 			                <tr>
 			                  <td colspan="4" align="center"></td>
-			                  <p><b>등록된 이력서가 없습니다</b></p>
+			                  <p><b>등록된 스크랩 공고가 없습니다</b></p>
 			                </tr>
 			              </c:if>
 			              
-			              <tr><td><br></td></tr>
-			              
-			              <c:if test="${totalCount>0 }">
-			                <c:forEach var="pe" items="${pelist }">
-			                <tr>
-			                  <td><h5><b><a href="iruckseolist?pe_num=${pe.pe_num }">${pe.pe_title}</a></b></h5></td>
-			                </tr>
-			                  
-			                <tr>
-			                  <td style="color: gray; font-size: 0.9em;">
-					            <fmt:formatDate value="${pe.pe_writeday }" pattern="yyyy-MM-dd HH:mm"/></td> 
-			                </tr>
-			                
-			                <tr><td><br></td></tr>
-			                
-			                <tr>
-							    <!-- 첫 번째 열: 총 경력과 희망직무 -->
-							    <td style="font-size: 0.8em; width: 30%;">총 경력: ${pe.ca_resign}개월</td>
-							    <td style="font-size: 0.8em;">희망직무: ${pe.ho_keyword}</td>
-							</tr>
-							
-							<tr><td><br></td></tr>
-							
-							<tr>
-							    <!-- 두 번째 열: 희망연봉과 희망지역 -->
-							    <td style="font-size: 0.8em;"><i class="bi bi-coin"></i> 희망연봉: ${pe.ho_check}</td>
-							    <td style="font-size: 0.8em;"><i class="bi bi-geo-alt"></i> 희망지역: ${pe.ho_addr}</td>
-							</tr>
-							
-							<tr><td><br></td></tr>
-							
-							<tr>
-							    <!-- 세 번째 열: 버튼 열 -->
-							    <td colspan="2" style="text-align: right;"> 
-							        <button id="btnUpdate" class="btn btn-outline-primary" onclick="location.href='updateForm?pe_num=${pe.pe_num}'"  style="width: 100px;">수정</button>
-							        <button id="btnDelete" pe_num="${pe.pe_num}" 
-							        class="btn btn-outline-primary" style="width: 100px;">삭제</button>
-							    </td>
-							</tr>
-			                  
-			                  <tr><td><br></td></tr>
-			                  
-		                      <tr>
-			                    <td colspan="4"><hr></td> <!-- 각 섹션 사이에 구분선 추가 -->
-			                  </tr>
-			                </c:forEach>
-			              </c:if>
+			              <!-- 스크랩 공고가 있는 경우 -->
+			          
+			                <c:forEach var="su" items="${sulist}">
+							  <div class="list-item">
+							    <div class="left-section">
+							      <input type="hidden" name = "r_num" value="${su.r_num }" id="r_num">
+							      <input type="hidden" name = "h_num" value="${su.h_num }">
+							      <div><input type="checkbox" class="oneselect"  value="${su.r_num}"></div>
+							      <div>
+							        <div><a href="#">${su.c_name }&nbsp;</a></div><br>
+							        <div class="title"><a href="/hire/detail?h_num=${su.h_num }"><b>[${su.c_name }]&nbsp;&nbsp;&nbsp;${su.h_title }</b></a></div>
+							      </div>
+							    </div>
+							    <div class="right-section">
+							     <div></div>
+							    </div>
+							  </div>
+							  <hr>
+							</c:forEach>
 		              </table>
 		            </div>
 
@@ -251,38 +223,6 @@
     </div>    
     
     
-    <script type="text/javascript">
     
-      $(function () {
-    	   
-    	 //이력서 삭제
-          $(document).on("click", "#btnDelete", function() {
-          	
-          	var pe_num = $(this).attr("pe_num");
-
-          	var pe_confirm = confirm("해당 내역을 삭제하시겠습니까?");
-          	
-          	if(pe_confirm) {
-          		
-          		$.ajax({
-          			
-          			type : "get",
-          			dataType : "html",
-          			url : "personaldelete",
-          			data : {"pe_num":pe_num},
-          			success : function() {
-          				
-          				alert("삭제되었습니다");
-          				location.reload();
-          			}
-          		})
-          	}
-          });
-    	 
-    	 
-    	 //이력서 수정폼
-    	  
-      })
-    </script>
 </body>
 </html>
