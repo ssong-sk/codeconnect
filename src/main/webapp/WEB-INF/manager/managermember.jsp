@@ -157,10 +157,10 @@ a, a:active, a:hover, a:visited {
 			        <a class="" href="#"><h1 style="font-weight: 600;">관리자 페이지</h1></a>
 			        <div class="menu_container">
 			        	<div role="tablist" class="menu_menu" aria-label="검색 분류">
-			        		<a href="#" role="tab" id="home" tabindex="-1" class="menu_item" aria-selected="true" aria-controls="home">
+			        		<a href="main" role="tab" id="home" tabindex="-1" class="menu_item" aria-selected="false" aria-controls="home">
 			        		<span class="menu_text">HOME</span>
 			        		</a>
-			        		<a href="member" role="tab" id="member" tabindex="-1" class="menu_item" aria-selected="false" aria-controls="member">
+			        		<a href="member" role="tab" id="member" tabindex="-1" class="menu_item" aria-selected="true" aria-controls="member">
 			        		<span class="menu_text">MEMBER</span>
 			        		</a>
 			        		<a href="company" role="tab" id="company" tabindex="-1" class="menu_item" aria-selected="false" aria-controls="company">

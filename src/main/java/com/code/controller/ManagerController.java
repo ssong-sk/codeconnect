@@ -10,5 +10,10 @@ public class ManagerController {
 	public String main() {
 		return "/manager/managermain";
 	}
+	
+	@GetMapping("/manager/member")
+	public String member() {
+		return "/manager/managermember";
+	}
 
 }
