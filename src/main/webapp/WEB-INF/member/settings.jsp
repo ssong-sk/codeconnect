@@ -6,14 +6,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link
-	href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gowun+Dodum&family=IBM+Plex+Sans+KR&display=swap"
-	rel="stylesheet">
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-	rel="stylesheet">
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gowun+Dodum&family=IBM+Plex+Sans+KR&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="/css/mypage.css">
@@ -584,7 +580,7 @@ button[data-testid="Button"]:not(:disabled):hover {
 
 
 			<!-- 				회원 탈퇴 모달  -->
-			<div id="myModal" class="modal" style="display: none;">
+			<div id="deleteModal" class="modal" style="display: none;">
 				<div class="modal-content" style="width: 542px; height: 362px;">
 					<form action="deleteform" class="css-zs70mi"
 						style="margin-top: 0px; margin-bottom: 0px; height: 800px;">
@@ -642,7 +638,38 @@ button[data-testid="Button"]:not(:disabled):hover {
 					</form>
 				</div>
 			</div>
+		
+		<script type="text/javascript">
+		
+		// 회원 탈퇴 모달
+		document.querySelector('.css-15hfbq1').onclick = function() {
+			document.getElementById('deleteModal').style.display = "block";
+		}
 
+		// Modal 닫기 버튼을 클릭했을 때
+		document.getElementsByClassName('close')[0].onclick = function() {
+			document.getElementById('deleteModal').style.display = "none";
+		}
+
+		// Modal 외부를 클릭했을 때 닫기
+		window.onclick = function(event) {
+			if (event.target == document.getElementById('myModal')) {
+				document.getElementById('deleteModal').style.display = "none";
+			}
+		}
+
+		// 확인 버튼을 클릭했을 때
+		document.getElementById('confirmBtn').onclick = function() {
+			alert('회원 탈퇴가 완료되었습니다.');
+			document.getElementById('deleteModal').style.display = "none";
+		}
+
+		// 취소 버튼을 클릭했을 때
+		document.getElementById('cancelBtn').onclick = function() {
+			document.getElementById('deleteModal').style.display = "none";
+		}
+		
+		</script>
 
 
 
@@ -666,216 +693,161 @@ button[data-testid="Button"]:not(:disabled):hover {
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary"
-								data-bs-dismiss="modal">취소</button>
-							<button type="button" class="btn btn-primary">저장</button>
+								id="NamecloseBtn" data-bs-dismiss="modal">취소</button>
+							<button type="button" id="NameSaveBtn" class="btn btn-primary">저장</button>
 						</div>
 					</div>
 				</div>
 			</div>
 <script type="text/javascript">
+	document.getElementById("nameChangeBtn").addEventListener("click",
+			function() {
+				// 모달을 보이도록 설정
+				document.getElementById("nameModal").style.display = "block";
+			});
 
-$('#nameModal').on('show.bs.modal', function (event) {
-    // 모달이 표시될 때 기존 입력값 초기화
-    $('#nameInput').val('');
-});
+	// 모달 닫기 버튼 이벤트 리스너 추가
+	document.querySelector(".close").addEventListener("click", function() {
+		// 모달을 숨기도록 설정
+		document.getElementById("nameModal").style.display = "none";
+	});
 
-// 저장 버튼 클릭 시
-$('#nameModal').on('click', '.btn-primary', function() {
-    // 입력된 이름 가져오기
-    var newName = $('#nameInput').val();
-    
-    // Ajax를 사용하여 서버에 데이터 전송
-    $.ajax({
-        url: '/member/updateform', // 저장을 처리할 서버 스크립트 경로
-        type: 'POST',
-        data: {
-            name: newName
-        },
-        success: function(response) {
-            // 성공적으로 저장되면 모달 닫기
-            $('#nameModal').modal('hide');
-            // 추가적인 작업을 수행할 수 있습니다 (예: 페이지 새로고침)
-            window.location.reload(); // 예시: 페이지 새로고침
-        },
-        error: function(xhr, status, error) {
-            // 오류 처리
-            console.error('Error saving name:', error);
-            // 사용자에게 오류 메시지 표시 등 추가적인 처리 가능
-        }
-    });
-});
-// 취소 버튼 클릭 시 모달 닫기
-$('#nameModal').on('click', '.btn-secondary', function() {
-    $('#nameModal').modal('hide');
-});
+	// 저장 버튼 클릭 시 이벤트 리스너 추가
+	document.getElementById("saveBtn").addEventListener("click", function() {
+		// 새로운 이름을 가져오기
+		var newName = document.getElementById("newNameInput").value;
 
+		// 현재 이름 업데이트
+		document.getElementById("currentName").textContent = newName;
 
+		// 모달 닫기
+		document.getElementById("nameModal").style.display = "none";
+	});
+
+	$('#nameModal').on('show.bs.modal', function(event) {
+		// 모달이 표시될 때 기존 입력값 초기화
+		$('#nameInput').val('');
+	});
+
+	// 저장 버튼 클릭 시
+	$('#nameModal').on('click', 'NameSaveBtn', function() {
+		// 입력된 이름 가져오기
+		var newName = $('#nameInput').val();
+
+		// Ajax를 사용하여 서버에 데이터 전송
+		$.ajax({
+			url : '/member/updateform', // 저장을 처리할 서버 스크립트 경로
+			type : 'POST',
+			data : {
+				name : newName
+			},
+			success : function(response) {
+				// 성공적으로 저장되면 모달 닫기
+				$('#nameModal').modal('hide');
+				// 추가적인 작업을 수행할 수 있습니다 (예: 페이지 새로고침)
+				window.location.reload(); // 예시: 페이지 새로고침
+			},
+			error : function(xhr, status, error) {
+				// 오류 처리
+				console.error('Error saving name:', error);
+				// 사용자에게 오류 메시지 표시 등 추가적인 처리 가능
+			}
+		});
+	});
+	//취소 버튼을 클릭했을 때
+	document.getElementById('NamecloseBtn').onclick = function() {
+		document.getElementById('nameModal').style.display = "none";
+	}
 </script>
 
 
-
 			<!-- 			휴대폰 번호 변경 모달 -->
-			<div id="hpModal" class="modal">
-				<div class="modal-content">
-					<div data-testid="Modal" class="css-1vw00ct">
-						<div class="css-igfsh2">
-							<div class="css-1nm9gyu">
-								<div class="css-oan6e"></div>
-								<div class="css-1iooy02">
-									<p data-testid="Typography" color="#000000" class="css-14qpgc6">
-									<p data-testid="Typography" color="#000000" class="css-1nhn4wl">휴대폰
-										번호</p>
-									</p>
-								</div>
-								<div class="css-1jxi7lq">
-									<button type="button" class="css-1krggrv" id="closeModalBtn">
-										<span class="css-1ihsymv"> <svg viewBox="0 0 24 24"
-												color="#000000" class="css-t07f4u">
-                                        <path fill-rule="evenodd"
-													clip-rule="evenodd" fill="#000000"
-													d="M4.61321 4.6137C4.96469 4.26223 5.53453 4.26223 5.88601 4.6137L11.9996 10.7273L18.1132 4.6137C18.4647 4.26223 19.0345 4.26223 19.386 4.6137C19.7375 4.96517 19.7375 5.53502 19.386 5.88649L13.2724 12.0001L19.386 18.1137C19.7375 18.4652 19.7375 19.035 19.386 19.3865C19.0345 19.738 18.4647 19.738 18.1132 19.3865L11.9996 13.2729L5.88601 19.3865C5.53453 19.738 4.96469 19.738 4.61321 19.3865C4.26174 19.035 4.26174 18.4652 4.61321 18.1137L10.7268 12.0001L4.61321 5.88649C4.26174 5.53502 4.26174 4.96517 4.61321 4.6137Z">
-                                        </path>
-                                    </svg>
-										</span>
-									</button>
-								</div>
-							</div>
+			<div id="HpModal" class="modal" tabindex="-1">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title">휴대번호 변경</h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal"
+								aria-label="Close"></button>
 						</div>
-						<div class="css-1bgr1f2">
-							<form action="updateform">
-								<div class="css-1o7ygxq">
-									<div class="css-14o8ny9">
-										<div class="css-2w308u">
-											<select class="css-14pvjnj">
-												<!-- Options omitted for brevity -->
-												<option value="KR">South Korea +82</option>
-												<option value="JP">Japan +81</option>
-												<!-- Other options -->
-											</select>
-											<div class="css-1px7y17">
-												<span class="css-1ihsymv"> <svg viewBox="0 0 24 24"
-														class="css-1h47l4s">
-                                                <path
-															fill="rgba(55, 56, 60, 0.61)"
-															d="M3.08071 7.58071C3.58839 7.07303 4.41151 7.07303 4.91919 7.58071L12 14.6615L19.0807 7.58071C19.5884 7.07303 20.4115 7.07303 20.9192 7.58071C21.4269 8.08839 21.4269 8.91151 20.9192 9.41919L12.9192 17.4192C12.4115 17.9269 11.5884 17.9269 11.0807 17.4192L3.08071 9.41919C2.57303 8.91151 2.57303 8.08839 3.08071 7.58071Z">
-                                                </path>
-                                            </svg>
-												</span>
-											</div>
-										</div>
-										<div class="css-gjm025">
-											<input type="number" pattern="[0-9]*"
-												placeholder="(예시) 01013245768" name="mobile"
-												data-testid="Input_mobile" autocomplete="on"
-												class="css-1sbrczv" value="" readonly="">
-											<button type="button" data-testid="Button" class="css-3nuf1p">
-												<span data-testid="Typography" color="#000000"
-													class="css-kfktv3">번호 변경</span>
-											</button>
-										</div>
-									</div>
-								</div>
-								<div class="css-xuwcvx">
-									<button type="button" data-testid="Button" id="cancelHp"
-										class="css-1gfeuwe">
-										<span data-testid="Typography" color="#000000"
-											class="css-kfktv3">취소</span>
-									</button>
-									<button type="submit" data-testid="Button" class="css-1n6wxjg">
-										<span data-testid="Typography" color="#000000"
-											class="css-kfktv3">저장</span>
-									</button>
+						<div class="modal-body">
+							<form>
+								<div class="mb-3">
+									<label for="hpInput" class="form-label">새로운 휴대전화</label> <input
+										type="text" class="form-control" id="hpInput"
+										value="${r_hp }">
 								</div>
 							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary"
+								id="HpcloseBtn" data-bs-dismiss="modal">취소</button>
+							<button type="button" id="HpSaveBtn" class="btn btn-primary">저장</button>
 						</div>
 					</div>
 				</div>
 			</div>
 			<script type="text/javascript">
-				// 회원 탈퇴 모달
-				document.querySelector('.css-15hfbq1').onclick = function() {
-					document.getElementById('myModal').style.display = "block";
-				}
 
-				// Modal 닫기 버튼을 클릭했을 때
-				document.getElementsByClassName('close')[0].onclick = function() {
-					document.getElementById('myModal').style.display = "none";
-				}
+			document.getElementById("HpChangeButton").addEventListener("click",
+					function() {
+						// 모달을 보이도록 설정
+						document.getElementById("hpModal").style.display = "block";
+					});
 
-				// Modal 외부를 클릭했을 때 닫기
-				window.onclick = function(event) {
-					if (event.target == document.getElementById('myModal')) {
-						document.getElementById('myModal').style.display = "none";
+			// 모달 닫기 버튼 이벤트 리스너 추가
+			document.querySelector(".close").addEventListener("click", function() {
+				// 모달을 숨기도록 설정
+				document.getElementById("hpModal").style.display = "none";
+			});
+
+			// 저장 버튼 클릭 시 이벤트 리스너 추가
+			document.getElementById("HpSaveBtn").addEventListener("click", function() {
+				// 새로운 이름을 가져오기
+				var newHp = document.getElementById("newHpInput").value;
+
+				// 현재 이름 업데이트
+				document.getElementById("currentHp").textContent = newHp;
+
+				// 모달 닫기
+				document.getElementById("hpModal").style.display = "none";
+			});
+
+			$('#hpModal').on('show.bs.modal', function(event) {
+				// 모달이 표시될 때 기존 입력값 초기화
+				$('#hpInput').val('');
+			});
+
+			// 저장 버튼 클릭 시
+			$('#hpModal').on('click', 'HpSaveBtn', function() {
+				// 입력된 이름 가져오기
+				var newhp = $('#hpInput').val();
+
+				// Ajax를 사용하여 서버에 데이터 전송
+				$.ajax({
+					url : '/updateHp', // 저장을 처리할 서버 스크립트 경로
+					type : 'POST',
+					data : {
+						hp : newhp
+					},
+					success : function(response) {
+						// 성공적으로 저장되면 모달 닫기
+						$('#hpModal').modal('hide');
+						// 추가적인 작업을 수행할 수 있습니다 (예: 페이지 새로고침)
+						window.location.reload(); // 예시: 페이지 새로고침
+					},
+					error : function(xhr, status, error) {
+						// 오류 처리
+						console.error('Error saving name:', error);
+						// 사용자에게 오류 메시지 표시 등 추가적인 처리 가능
 					}
-				}
+				});
+			});
+			//취소 버튼을 클릭했을 때
+			document.getElementById('HpcloseBtn').onclick = function() {
+				document.getElementById('hpModal').style.display = "none";
+			}
 
-				// 확인 버튼을 클릭했을 때
-				document.getElementById('confirmBtn').onclick = function() {
-					alert('회원 탈퇴가 완료되었습니다.');
-					document.getElementById('myModal').style.display = "none";
-				}
-
-				// 취소 버튼을 클릭했을 때
-				document.getElementById('cancelBtn').onclick = function() {
-					alert('취소');
-					document.getElementById('myModal').style.display = "none";
-				}
-
-				// 이름 변경 버튼 클릭 시 이벤트 리스너 추가
-				document
-						.getElementById("nameChangeBtn")
-						.addEventListener(
-								"click",
-								function() {
-									// 모달을 보이도록 설정
-									document.getElementById("nameModal").style.display = "block";
-								});
-
-				// 모달 닫기 버튼 이벤트 리스너 추가
-				document
-						.querySelector(".close")
-						.addEventListener(
-								"click",
-								function() {
-									// 모달을 숨기도록 설정
-									document.getElementById("nameModal").style.display = "none";
-								});
-
-				// 저장 버튼 클릭 시 이벤트 리스너 추가
-				document
-						.getElementById("saveBtn")
-						.addEventListener(
-								"click",
-								function() {
-									// 새로운 이름을 가져오기
-									var newName = document
-											.getElementById("newNameInput").value;
-
-									// 현재 이름 업데이트
-									document.getElementById("currentName").textContent = newName;
-
-									// 모달 닫기
-									document.getElementById("nameModal").style.display = "none";
-								});
-
-				// 취소 버튼을 클릭했을 때
-				document.getElementById('cancelName').onclick = function() {
-					alert('취소');
-					document.getElementById('hpModal').style.display = "none";
-				}
-
-				css - xr5rwo
-
-				// 휴대폰 번호 변경 모달
-				document.querySelector('HpChangeButton').onclick = function() {
-					document.getElementById('myModal').style.display = "block";
-				}
-
-				// 취소 버튼을 클릭했을 때
-				document.getElementById('cancelHp').onclick = function() {
-					alert('취소');
-					document.getElementById('myModal').style.display = "none";
-				}
 			</script>
 		</article>
 

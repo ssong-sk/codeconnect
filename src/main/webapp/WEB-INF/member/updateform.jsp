@@ -193,23 +193,16 @@ button {
 
 				<section
 					class="Grid_Grid__item__4GoIZ Grid_Grid__align-items_flex-start__nEOiH">
-					<form id="descriptionForm">
-						<span
-							class="Typography_Typography__root__RdAI1 Typography_Typography__label2__svmAA Typography_Typography__weightMedium__GXnOM Typography_Typography__displayBlock__A3AK8 ListItem_ListItem__label__0m2Cd">한
-							줄 소개</span>
-						<button
-							class="ListItem_ListItem__root__4HTKO ListItem_ListItem__divider__KWrpp ListItem_ListItem__button__cVygs ProfileEditDescription_ProfileEditDescription__listItem__VoPor"
-							id="editDescriptionBtn">
-							<div class="ListItemText_ListItemText__root__j76to">
-								<p
-									class="Typography_Typography__root__RdAI1 Typography_Typography__body1__q3AOP Typography_Typography__weightMedium__GXnOM Typography_Typography__displayBlock__A3AK8 ProfileEditDescription_ProfileEditDescription__placeholder__MTsgA">한
-									줄 소개를 입력해 주세요.</p>
-							</div>
-							<div class="ListItemIcon_ListItemIcon__root__XbBcy">
-								<span class="SvgIcon_SvgIcon__root__OHiSO"></span>
-							</div>
-						</button>
-					</form>
+					<span
+						class="Typography_Typography__root__RdAI1 Typography_Typography__label2__svmAA Typography_Typography__weightMedium__GXnOM Typography_Typography__displayBlock__A3AK8 ListItem_ListItem__label__0m2Cd">한줄 소개글</span>
+					<button
+						class="ListItem_ListItem__root__4HTKO ListItem_ListItem__divider__KWrpp ListItem_ListItem__button__cVygs ProfileEditJobCategory_ProfileEditJobCategory__listItem__V9f5Q"
+						data-attribute-id="profileEdit__jobCategory__click">
+						<div class="ListItemText_ListItemText__root__j76to">
+							<p
+								class="Typography_Typography__root__RdAI1 Typography_Typography__body1__q3AOP Typography_Typography__weightMedium__GXnOM Typography_Typography__displayBlock__A3AK8 ProfileEditJobCategory_ProfileEditJobCategory__title__hNeVc">${r_sogae }</p>
+						</div>
+					</button>
 				</section>
 
 
@@ -223,8 +216,8 @@ button {
 						data-attribute-id="profileEdit__jobRole__click">
 						<div class="ListItemText_ListItemText__root__j76to">
 							<p
-								class="Typography_Typography__root__RdAI1 Typography_Typography__body1__q3AOP Typography_Typography__weightMedium__GXnOM Typography_Typography__displayBlock__A3AK8 ProfileEditJobCategory_ProfileEditJobCategory__title__hNeVc">.NET
-								개발자</p>
+								class="Typography_Typography__root__RdAI1 Typography_Typography__body1__q3AOP Typography_Typography__weightMedium__GXnOM Typography_Typography__displayBlock__A3AK8 ProfileEditJobCategory_ProfileEditJobCategory__title__hNeVc">
+								${r_job}</p>
 						</div>
 						<div class="ListItemIcon_ListItemIcon__root__XbBcy">
 							<span class="SvgIcon_SvgIcon__root__OHiSO"> </span>
@@ -241,7 +234,7 @@ button {
 						data-attribute-id="profileEdit__annual__click">
 						<div class="ListItemText_ListItemText__root__j76to">
 							<p
-								class="Typography_Typography__root__RdAI1 Typography_Typography__body1__q3AOP Typography_Typography__weightMedium__GXnOM Typography_Typography__displayBlock__A3AK8 ProfileEditAnnual_ProfileEditAnnual__title__TBaFG">신입</p>
+								class="Typography_Typography__root__RdAI1 Typography_Typography__body1__q3AOP Typography_Typography__weightMedium__GXnOM Typography_Typography__displayBlock__A3AK8 ProfileEditAnnual_ProfileEditAnnual__title__TBaFG">${r_exp }</p>
 						</div>
 						<div class="ListItemIcon_ListItemIcon__root__XbBcy">
 							<span class="SvgIcon_SvgIcon__root__OHiSO"></span>
@@ -335,14 +328,30 @@ button {
 		</div>
 	</div>
 
-	<div id="descriptionModal" class="modal">
-		<div class="modal-content">
-			<span id="closeModalBtn" class="close">&times;</span>
-			<textarea
-				class="TextField_TextField__root__rI5Mb TextField_TextField__multiline__Y4PHB TextField_TextField__fullWidth__i7XDO"
-				placeholder="한 줄 소개를 입력해 주세요." maxlength="150" rows="5"
-				name="description" id="descriptionTextarea"></textarea>
-			<button id="saveDescriptionBtn" class="save-button">저장</button>
+
+	<div class="modal" id="descriptionModal" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">한줄 소개 작성</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="mb-3">
+							<textarea class="form-control" id="message-text" maxlength="150"
+								row="5" placeholder="한 줄 소개를 입력해 주세요."></textarea>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-bs-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary">Send message</button>
+				</div>
+			</div>
 		</div>
 	</div>
 
@@ -362,8 +371,9 @@ document.getElementById('saveBtn').addEventListener('click', function() {
   const checkboxes = document.querySelectorAll('#jobCategoryModal .job-list input[type="checkbox"]:checked');
   const selectedJobs = Array.from(checkboxes).map(checkbox => checkbox.parentNode.textContent.trim());
   console.log('선택된 직무:', selectedJobs);
-  // 여기에 저장 로직을 추가하세요 
-  document.getElementById('jobCategoryModal').style.display = 'none'; // 저장 후 모달 닫기 예시
+
+  	
+  document.getElementById('jobCategoryModal').style.display = 'none';
 });
 
 // Modal 열기
@@ -376,6 +386,11 @@ document.querySelector('#careerModal .close').addEventListener('click', function
   document.getElementById('careerModal').style.display = 'none';
 });
 
+
+
+
+
+
 // 저장 버튼 클릭 시 동작 (선택한 경력 저장)
 document.getElementById('saveCareerBtn').addEventListener('click', function() {
   const checkboxes = document.querySelectorAll('#careerModal .job-list input[type="checkbox"]:checked');
@@ -387,38 +402,7 @@ document.getElementById('saveCareerBtn').addEventListener('click', function() {
 
 
 
-document.addEventListener('DOMContentLoaded', () => {
-    const modal = document.getElementById('descriptionModal');
-    const openModalBtn = document.getElementById('editDescriptionBtn');
-    const closeModalBtn = document.getElementById('closeModalBtn');
-    const saveDescriptionBtn = document.getElementById('saveDescriptionBtn');
-    const descriptionTextarea = document.getElementById('descriptionTextarea');
-    const descriptionDisplay = document.querySelector('.ProfileEditDescription_ProfileEditDescription__placeholder__MTsgA');
 
-    openModalBtn.addEventListener('click', () => {
-        modal.style.display = 'block';
-    });
-
-    closeModalBtn.addEventListener('click', () => {
-        modal.style.display = 'none';
-    });
-
-    window.addEventListener('click', (event) => {
-        if (event.target == modal) {
-            modal.style.display = 'none';
-        }
-    });
-
-    saveDescriptionBtn.addEventListener('click', () => {
-        const description = descriptionTextarea.value.trim();
-        if (description.length > 0) {
-            descriptionDisplay.textContent = description;
-        } else {
-            descriptionDisplay.textContent = '한 줄 소개를 입력해 주세요.';
-        }
-        modal.style.display = 'none';
-    });
-});
 </script>
 
 

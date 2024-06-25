@@ -1,6 +1,5 @@
 package com.code.controller;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -14,9 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.code.dto.RegisterDto;
 import com.code.service.RegisterService;
@@ -85,7 +82,7 @@ public class RegisterController {
       //회원목록 삭제
       @GetMapping("/member/delete")
       @ResponseBody
-      public void deleteMember(int r_num)
+      public void deleteRegister(String r_num)
       {
          service.deleteRegister(r_num);
       }
@@ -98,27 +95,22 @@ public class RegisterController {
          return service.getDataByNum(r_num);
       }
       
-      //수정
-      @PostMapping("/member/update")
+      //이름 수정
+      @PostMapping("/member/updateName")
       @ResponseBody
-      public void update(RegisterDto dto)
+      public void updateName(RegisterDto dto)
       {
-         service.updateRegister(dto);
+         service.updateName(dto);
       }
       
-      
+      //전화번호 수정
+      @PostMapping("/member/updateHp")
+      @ResponseBody
+      public void updateHp(RegisterDto dto)
+      {
+    	  service.updateHp(dto);
+      }
 
-      @GetMapping("/member/deleteme")
-      @ResponseBody
-      public void deleteme(String num,HttpSession session)
-      {
-         service.deleteme(num);
-         
-         session.removeAttribute("loginok");
-         session.removeAttribute("myid");
-         
-      }
-   
    
    @GetMapping("/member/mypage")
    public String mypage()
@@ -176,6 +168,13 @@ public class RegisterController {
        } else {
           return ResponseEntity.ok("duplicate");
        }
-       
     }
+    
+    
+    
+    
+    
+    
+    
+    
 }

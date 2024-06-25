@@ -27,7 +27,7 @@ public class LoginRestController {
       
       if(result==1)
       {
-         session.setMaxInactiveInterval(60*60*4);
+         session.setMaxInactiveInterval(30*30*2);
          
          //로그인한 아이디로 정보얻어 세션에 저장
          RegisterDto mdto=service.getDataById(r_id);

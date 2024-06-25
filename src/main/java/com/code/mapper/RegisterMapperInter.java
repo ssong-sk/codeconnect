@@ -20,5 +20,10 @@ public interface RegisterMapperInter {
 	public RegisterDto getDataByNum(String r_num);
 	public int countById(String r_id);
 	public int countByNickname(String r_nickname);
-
+	public void deleteRegister(String r_num);
+	public String getSearchName(String r_num);
+	public String getSearchHp(String r_num);
+	public void getUpdateHp(RegisterDto dto);
+	public void getUpdateName(RegisterDto dto);
+	
 }

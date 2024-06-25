@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.code.mapper.RegisterMapperInter">
    <insert id="insertRegister" parameterType="RDto">
-     insert into register (r_id,r_pass,r_name,r_nickname,r_birthday,r_hp,r_zipcode,r_addr,r_addr_detail,r_email,r_gender,r_gaipday) 
-     values (#{r_id },#{r_pass },#{r_name },#{r_nickname }#{r_birthday },#{r_hp },#{r_zipcode },#{r_addr },#{r_addr_detail },
-     #{r_email },#{r_gender },now())
+     insert into register (r_id,r_pass,r_name,r_nickname,r_birthday,r_hp,r_zipcode,r_addr,r_addr_detail,r_email,r_gender,r_gaipday,r_job,r_exp,r_sogae) 
+     values (#{r_id },#{r_pass },#{r_name },#{r_nickname },#{r_birthday },#{r_hp },#{r_zipcode },#{r_addr },#{r_addr_detail },
+     #{r_email },#{r_gender },now(),#{r_job },#{r_exp },#{r_sogae })
    </insert>
    <select id="getAllRegister" resultType="RDto">
       select * from register order by r_id
@@ -30,4 +30,23 @@
     <select id="countByNickname" parameterType="String" resultType="int">
     	select count(*) from register where r_nickname = #{r_nickname}
     </select>
+    
+    
+    
+    
+    <select id="getSearchName" parameterType="String" resultType="RDto">
+    	select r_name from register where r_id = #{r_id}
+    </select>
+    <select id="getSearchHp" parameterType="String" resultType="RDto">
+    	select r_hp from register where r_hp = #{r_hp}
+    </select>
+    <update id="updateName" parameterType="String">
+    	update register set r_name = #{r_name} where r_num =${r_num}
+    </update>
+    <update id="updateHp" parameterType="String">
+    	update register set r_hp = #{r_hp} where r_hp = ${r_hp}
+    </update>
+    <delete id="deleteRegister" parameterType="String">
+    	delete from register where r_num = #{r_num }
+    </delete>
 </mapper>
