@@ -87,4 +87,5 @@
 	select count(*) from personal where r_num=#{r_num}
 </select>
 
+
 </mapper>

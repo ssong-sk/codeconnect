@@ -26,7 +26,7 @@
     }
     .sidebar {
         width: 250px;
-        height:540px;
+        height: 540px;
         border: 1px solid #E0E0E0;
         padding: 20px;
         background-color: #fff;
@@ -83,7 +83,6 @@
         flex-direction: column;
         flex-grow: 1;
         background-color: #fff;
-        
         border-radius: 10px;
         padding: 20px;
         overflow-y: auto;
@@ -123,8 +122,8 @@
         color: #fff;
     }
     .tabs button.active {
-    	background-color: #f0f4ff; /* Light sky blue */
-    	color: #007bff;
+        background-color: #f0f4ff; /* Light sky blue */
+        color: #007bff;
         border-bottom: 2px solid #0d6efd;
         font-weight: bold;
     }
@@ -143,18 +142,22 @@
         width: 10%;
     }
     th:nth-child(2), td:nth-child(2) {
-        width: 30%;
+        width: 25%;
     }
     th:nth-child(3), td:nth-child(3) {
         width: 20%;
     }
     th:nth-child(4), td:nth-child(4) {
-        width: 25%;
-    }
-    th:nth-child(5), td:nth-child(5) {
         width: 15%;
     }
+    th:nth-child(5), td:nth-child(5) {
+        width: 20%;
+    }
+    th:nth-child(6), td:nth-child(6) {
+        width: 10%;
+    }
 </style>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function() {
         function filterTable(tabType) {
@@ -162,11 +165,11 @@
             $('tbody tr').each(function() {
                 let status = $(this).find('td:last').text();
                 $(this).show();
-                if (tabType === '지원접수' && status !== '지원접수') {
+                if (tabType === '지원 접수' && status !== '지원 접수') {
                     $(this).hide();
-                } else if (tabType === '서류합격' && status !== '서류합격') {
+                } else if (tabType === '서류 합격' && status !== '서류 합격') {
                     $(this).hide();
-                } else if (tabType === '최종합격' && status !== '최종합격') {
+                } else if (tabType === '최종 합격' && status !== '최종 합격') {
                     $(this).hide();
                 } else if (tabType === '불합격' && status !== '불합격') {
                     $(this).hide();
@@ -183,7 +186,7 @@
             filterTable($(this).text());
         });
 
-        filterTable('지원접수');
+        filterTable('지원 접수');
     });
 </script>
 </head>
@@ -193,14 +196,14 @@
         <div class="sidebar">
             <h5 onclick="location.href='main'">코드커넥트 채용 솔루션</h5>
             <button class="btn" onclick="location.href='/hire/hirewrite'">+  공고 등록하기</button>
-            <button class="btn" >🔍 인재풀 탐색하기</button>
+            <button class="btn">🔍 인재풀 탐색하기</button>
             <div class="menu-divider"></div>
-            <div class="menu-item"  style="font-weight: bold;" onclick="location.href='jiwon'">전체 지원자 관리</div>
-            <div class="menu-item" onclick="location.href='companyhire'" >
+            <div class="menu-item" style="font-weight: bold;" onclick="location.href='jiwon'">전체 지원자 관리</div>
+            <div class="menu-item" onclick="location.href='companyhire'">
                 <span>채용공고 관리</span>
                 <span>+</span>
             </div>
-            <div class="menu-item"  onclick="location.href='injae'">제안 보낸 인재풀 관리</div>
+            <div class="menu-item" onclick="location.href='injae'">제안 보낸 인재풀 관리</div>
             <div class="menu-divider"></div>
             <div class="menu-item" onclick="location.href='companyupdate'">기업 정보 수정</div>
             <div class="menu-item" onclick="location.href='intromain'">기업 소개 하기</div>
@@ -217,9 +220,9 @@
                 </div>
             </div>
             <div class="tabs">
-                <button class="active btn btn-light">지원접수</button>
-                <button class="btn btn-light">서류합격</button>
-                <button class="btn btn-light">최종합격</button>
+                <button class="active btn btn-light">지원 접수</button>
+                <button class="btn btn-light">서류 합격</button>
+                <button class="btn btn-light">최종 합격</button>
                 <button class="btn btn-light">불합격</button>
             </div>
             <div class="table-responsive">
@@ -229,37 +232,46 @@
                             <th>번호</th>
                             <th>공고명</th>
                             <th>지원자</th>
+                            <th>이력서</th>
                             <th>지원일자</th>
                             <th>합불여부</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td></td>
-                            <td>웹디자이너</td>
-                            <td>홍길동</td>
-                            <td>2024-05-01</td>
-                            <td>최종합격</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>백엔드 전문가</td>
-                            <td>김철수</td>
-                            <td>2024-06-18</td>
-                            <td>지원접수</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>백엔드 전문가</td>
-                            <td>이길수</td>
-                            <td>2024-05-18</td>
-                            <td>불합격</td>
-                        </tr>
+                        <c:forEach var="a" items="${slist}">
+                            <tr>
+                                <td></td>
+                                <td>${a.h_title}</td>
+                                <td>${a.r_num}</td> <!-- 지원자 이름을 나타내는 필드로 수정 -->
+                                <td><a href="#">${a.pe_num}</a></td>
+                                <td>${a.st_write}</td>
+                                <td>${a.st_result}</td>
+                            </tr>
+                        </c:forEach>
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    var uniqueRows = {};
+
+    $('table tr').each(function() {
+        var rowData = $(this).children('td').map(function() {
+            return $(this).text();
+        }).get().join('');
+
+        if (uniqueRows[rowData]) {
+            $(this).remove(); // 이미 존재하는 행이면 제거
+        } else {
+            uniqueRows[rowData] = true; // 행 데이터를 기록
+        }
+    });
+});
+
+</script>
 </body>
 </html>
