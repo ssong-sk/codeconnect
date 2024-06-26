@@ -47,15 +47,6 @@ public class IruckseoInsertController {
 	@Autowired
 	RegisterService reservice;
 	
-	
-	@GetMapping("/resumehome/list")
-	public ModelAndView list() {
-		
-		ModelAndView mview = new ModelAndView();
-		
-		return mview;
-	}
-	
 	//이력서 등록 폼
 	@GetMapping("/resumehome/form")
 	public ModelAndView form(HttpSession session ) {
@@ -106,31 +97,12 @@ public class IruckseoInsertController {
 			}
     		
     	}
-		        // 최종 insert
+		 // 최종 insert
         irservice.updatePersonal(pedto);
 		
         return "redirect:conditionform";
-    }
+    }	     
 	
-	//이력서 미리보기 list 출력하기
-	@GetMapping("/resumehome/personallist")
-	public String personallist(Model model, @ModelAttribute("pedto") IruckseoInsertDto pedto,
-			                                @ModelAttribute("scdto") IruckseoSchoolDto scdto,
-			                                @ModelAttribute("cadto") IruckseoCareerDto cadto) {
-		
-		List<IruckseoInsertDto> peDto = irservice.allPersonalDatas(pedto);
-		List<IruckseoSchoolDto> scDto = irservice.allSchoolDatas(scdto);
-		List<IruckseoCareerDto> caDto = irservice.allCareerDatas(cadto);
-		
-
-		model.addAttribute("peDto", peDto);
-		model.addAttribute("scDto", scDto);
-		model.addAttribute("caDto", caDto);
-		
-		return "personallist";
-	}
-
-			                                        
 	
 	//학력 school insert 하기
 	@PostMapping("/resumehome/schoolinsert")
@@ -477,6 +449,58 @@ public class IruckseoInsertController {
     	
     	return homap;
     }
+    
+    //이력서 전체 수정폼 띄우기
+  	@GetMapping("/resumehome/updateForm")
+  	public ModelAndView updateForm(@RequestParam int pe_num ,  HttpSession session ) {
+  		
+  		ModelAndView mview = new ModelAndView();
+  		IruckseoInsertDto irdto = new IruckseoInsertDto();
+  		int r_num =  Integer.parseInt((String)session.getAttribute("r_num"));
+  		
+  		// 회원정보 조회
+  		RegisterDto rdto =reservice.getDataByNum((String)session.getAttribute("r_num"));
+  		 
+  		//인적사항
+  		IruckseoInsertDto pedto = irservice.Personallist(pe_num);
+  		
+  		//학력
+  		List<IruckseoSchoolDto> sclist = irservice.Schoollist(pe_num);
+  		
+  		//경력
+  		List<IruckseoCareerDto> calist = irservice.Careerlist(pe_num);
+  		
+  		//경험/활동/교육
+  		List<IruckseoActibityDto> aclist = irservice.Actibitylist(pe_num);
+  		
+  		//자격/어학/수상
+  		List<IruckseoSpecDto> splist = irservice.Speclist(pe_num);
+  		
+  		//포트폴리오
+  		List<IruckseoPortfolioDto> polist = irservice.Portfoliolist(pe_num);
+  		
+  		//자기소개서
+  		List<IruckseoSelfDto> selist = irservice.Selflist(pe_num);
+  		
+  		//희망근무
+  		IruckseoHopeDto hodto = irservice.Hopelist(pe_num);
+  		
+  		mview.addObject("pedto", pedto);
+  		mview.addObject("rdto", rdto);
+  		mview.addObject("sclist", sclist);
+  		mview.addObject("calist", calist);
+  		mview.addObject("aclist", aclist);
+  		mview.addObject("splist", splist);
+  		mview.addObject("polist", polist);
+  		mview.addObject("selist", selist);
+  		mview.addObject("hodto", hodto);
+  		
+  		//포워드
+  		mview.setViewName("/resumehome/iruckseoUpdateform");
+  		
+  		return mview;
+  	}
+ 
  
  }
 

@@ -1,58 +1,124 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.code.mapper.CompanyMapperInter">
-    <insert id="insertCompany" parameterType="CompanyDto">
-        insert into company
-        (c_id, c_pass, c_name, c_reginum, c_local, c_category, c_peoplesu, c_insa_email, c_insa_phone, c_addr, c_money, c_birthyear, c_regi_file, c_salary, c_phone, c_gaipday)
-        values
-        (#{c_id}, #{c_pass}, #{c_name}, #{c_reginum}, #{c_local}, #{c_category}, #{c_peoplesu}, #{c_insa_email}, #{c_insa_phone}, #{c_addr}, #{c_money}, #{c_birthyear}, #{c_regi_file}, #{c_salary}, #{c_phone}, now())
-    </insert>
-    <select id="getAllCompanys" resultType="CompanyDto">
-        select * from company order by c_id
-    </select>
-    <select id="getSearchId" parameterType="String" resultType="int">
-        select count(*) from company where c_id=#{c_id}
-    </select>
-    <select id="getCompanyName" parameterType="String" resultType="String">
-        select name from company where c_id=#{c_id}
-    </select>
-    <select id="loginIdPassCheck" parameterType="Map" resultType="int">
-        select count(*) from company where c_id=#{c_id} and c_pass=#{c_pass}
-    </select>
-    <select id="getDataById" parameterType="String" resultType="CompanyDto">
-        select * from company where c_id=#{c_id}
-    </select>
-    <delete id="deleteCompany" parameterType="String">
-        delete from company where c_num=#{c_num}
-    </delete>
-    <select id="getDataByNum" parameterType="String" resultType="CompanyDto">
-        select * from company where c_num=#{c_num}
-    </select>
-    <update id="updateCompany" parameterType="CompanyDto">
-        update company set
+	<insert id="insertCompany" parameterType="CompanyDto">
+		insert into company
+		(c_id, c_pass, c_name, c_reginum, c_local, c_category, c_peoplesu,
+		c_insa_email, c_insa_phone, c_addr, c_money, c_birthyear, c_regi_file,
+		c_salary, c_phone, c_gaipday)
+		values
+		(#{c_id}, #{c_pass}, #{c_name},
+		#{c_reginum}, #{c_local}, #{c_category},
+		#{c_peoplesu},
+		#{c_insa_email}, #{c_insa_phone}, #{c_addr},
+		#{c_money},
+		#{c_birthyear}, #{c_regi_file}, #{c_salary}, #{c_phone},
+		now())
+	</insert>
+	<select id="getAllCompanys" resultType="CompanyDto">
+		select * from company
+		order by c_id
+	</select>
+	<select id="getSearchId" parameterType="String" resultType="int">
+		select count(*) from company where c_id=#{c_id}
+	</select>
+	<select id="getCompanyName" parameterType="String"
+		resultType="String">
+		select name from company where c_id=#{c_id}
+	</select>
+	<select id="loginIdPassCheck" parameterType="Map"
+		resultType="int">
+		select count(*) from company where c_id=#{c_id} and
+		c_pass=#{c_pass}
+	</select>
+	<select id="getDataById" parameterType="String"
+		resultType="CompanyDto">
+		select * from company where c_id=#{c_id}
+	</select>
+	<delete id="deleteCompany" parameterType="String">
+		delete from company
+		where c_num=#{c_num}
+	</delete>
+	<select id="getDataByNum" parameterType="String"
+		resultType="CompanyDto">
+		select * from company where c_num=#{c_num}
+	</select>
+	<update id="updateCompany" parameterType="CompanyDto">
+		update company set
 
-        c_local=#{c_local},
-        c_category=#{c_category},
-        c_peoplesu=#{c_peoplesu},
-        c_insa_email=#{c_insa_email},
-        c_insa_phone=#{c_insa_phone},
-        c_addr=#{c_addr},
-        c_postnum=#{c_postnum},
-        c_addrdetail=#{c_addrdetail},
-        c_money=#{c_money},
-        c_birthyear=#{c_birthyear},
-        c_salary=#{c_salary},
-        c_phone=#{c_phone},
-        c_regi_file=#{c_regi_file},
-        c_size=#{c_size},
-        c_updateday=now()
-        where c_num=#{c_num}
-    </update>
-    
-    
-    <!-- 채용공고에서 사용 -->
-    <select id="selectC_num" parameterType="String" resultType="int">
-    	select c_num from company where c_id = #{c_id}
-    </select>
-    
+		c_local=#{c_local},
+		c_category=#{c_category},
+		c_peoplesu=#{c_peoplesu},
+		c_insa_email=#{c_insa_email},
+		c_insa_phone=#{c_insa_phone},
+		c_addr=#{c_addr},
+		c_postnum=#{c_postnum},
+		c_addrdetail=#{c_addrdetail},
+		c_money=#{c_money},
+		c_birthyear=#{c_birthyear},
+		c_salary=#{c_salary},
+		c_phone=#{c_phone},
+		c_regi_file=#{c_regi_file},
+		c_size=#{c_size},
+		c_updateday=now()
+		where c_num=#{c_num}
+	</update>
+
+
+	<!-- 채용공고에서 사용 -->
+	<select id="selectC_num" parameterType="String" resultType="int">
+		select c_num from company where c_id = #{c_id}
+	</select>
+
+	<!-- 기업 비밀번호 바꾸기 -->
+	<update id="updateCompanyPass" parameterType="CompanyDto">
+		UPDATE company
+		SET
+		c_pass = #{c_pass}
+		WHERE c_num = #{c_num}
+	</update>
+
+	<!-- 기업명 바꾸기 -->
+	<update id="updateCompanyName" parameterType="CompanyDto">
+		UPDATE company
+		SET
+		c_name = #{c_name}
+		WHERE c_num = #{c_num}
+	</update>
+
+	<!-- 사업자등록번호 변경 -->
+	<update id="updateCompanyRegiNum" parameterType="CompanyDto">
+		UPDATE company
+		SET c_reginum = #{c_reginum}, c_regi_file=#{c_regi_file}
+		WHERE c_num =
+		#{c_num}
+	</update>
+
+	<!-- 기업 스크랩 -->
+	<insert id="scrapCompanyInsert" parameterType="CompanyDto">
+		insert into scrap ( r_num, c_num) values( #{r_num}, #{c_num})
+	</insert>
+
+	<delete id="scrapCompanyDelete" parameterType="map">
+		DELETE FROM scrap WHERE r_num = #{r_num} AND c_num = #{c_num}
+	</delete>
+
+	<select id="scrapCompanySelect" resultType="CompanyDto">
+		select * from scrap where s_num = #{s_num}
+	</select>
+
+	<select id="getCompanyUserScraps" parameterType="int"
+		resultType="CompanyDto">
+		SELECT c_num FROM scrap WHERE r_num = #{r_num}
+	</select>
+
+	<select id="getCompanyRnumById" parameterType="String"
+		resultType="int">
+		select r_num from register where r_id=#{r_id}
+	</select>
+
+	<select id="getScrapCount" parameterType="int" resultType="int">
+		select count(*) from scrap where r_num = ${r_num}
+	</select>
+
 </mapper>

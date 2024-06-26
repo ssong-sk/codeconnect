@@ -297,7 +297,7 @@ th:nth-child(5), td:nth-child(5) {
 					소개 하기</div>
 				<div class="menu-item" onclick="location.href='showimsi'">내 기업
 					소개 페이지로 이동</div>
-				<div class="menu-item" onclick="location.href='#'">계정 관리</div>
+				<div class="menu-item" onclick="location.href='account'">계정 관리</div>
 			</div>
 
 			<div class="main-content-wrapper">
@@ -317,7 +317,7 @@ th:nth-child(5), td:nth-child(5) {
 								1080 x 790 이상<br>1장 필수
 							</p>
 							<input type="file" class="form-control" name="ci_image_upload"
-								id="ci_image_upload" style="width: 200px;" multiple="multiple">
+								id="ci_image_upload" style="width: 200px;" multiple="multiple" required="required">
                             <span class="file-name"></span>
 						</div>
 					</div>
@@ -329,7 +329,7 @@ th:nth-child(5), td:nth-child(5) {
 								정방형 300 x 300 이상<br>로고는 정중앙에 배치 필요
 							</p>
 							<input type="file" name="ci_logo_upload" id="ci_logo_upload"
-								class="form-control" style="width: 200px;" multiple="multiple">
+								class="form-control" style="width: 200px;" multiple="multiple" required="required">
                             <span class="file-name"></span>
 						</div>
 					</div>
@@ -341,17 +341,25 @@ th:nth-child(5), td:nth-child(5) {
 					<div class="mb-3">
 						<label for="ci_soge" class="form-label">기업/서비스 소개</label>
 						<textarea class="form-control" id="ci_soge" name="ci_soge"
-							rows="5" placeholder="기업 및 기업 서비스를 300자 내외로 입력하세요"></textarea>
+							rows="5" placeholder="기업 및 기업 서비스를 300자 내외로 입력하세요" required="required"></textarea>
 					</div>
 					<div class="mb-3">
 						<label for="ci_link" class="form-label">기업사이트 주소</label> <input
 							type="text" class="form-control" id="ci_link" name="ci_link">
 					</div>
-					<button type="submit" class="btn btn-outline-primary" >저장</button>
+					<button type="submit" class="btn btn-outline-primary"  onclick="saveFormWithAlert()"
+					>저장</button>
 				</form>
 			</div>
 		</div>
 	</div>
 
+<script type="text/javascript">
+function saveFormWithAlert() {
+    alert('저장되었습니다!');
+    document.getElementById('companyForm').submit();
+}
+
+</script>
 </body>
 </html>

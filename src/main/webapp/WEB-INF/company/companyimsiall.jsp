@@ -26,23 +26,7 @@
 
 <h4>CODECONNECT 기업 관련 임시 통합페이지</h4>
 
-<!-- 기업 로그인 안된 상태에서만 회원가입/로그인가능 -->
-<c:if test="${sessionScope.c_loginok == null }">
-<button class="btn btn-info" onclick="location.href='/company/form'" > 기업회원가입</button>
-
-<button class="btn btn-info" onclick="location.href='/company/imsiloginpage'" > 기업로그인</button>
-</c:if>
-<br>
-
-	<c:if test="${sessionScope.c_loginok!=null }">
-	<br>
-			<b>${sessionScope.c_loginname }님이 로그인중</b>
-			
-			<br>
-			<button type="button" class="btn btn-danger"
-				onclick="location.href='/company/logoutprocess'" id="btnlogout">기업 로그아웃</button>
-		</c:if>
-
+ 	<button class="btn btn-outline-warning"   style="width: 100px;" onclick="location.href='/company/gotoshowimsiList'">기업소개 리스트</button>
 
 
 </body>
