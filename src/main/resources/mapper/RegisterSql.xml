@@ -40,12 +40,23 @@
     <select id="getSearchHp" parameterType="String" resultType="RDto">
     	select r_hp from register where r_hp = #{r_hp}
     </select>
-    <update id="updateName" parameterType="String">
-    	update register set r_name = #{r_name} where r_num =${r_num}
+    
+    <update id="getUpdateName" parameterType="String">
+    	update register set r_name = #{r_name} where r_num = #{r_num}
     </update>
-    <update id="updateHp" parameterType="String">
-    	update register set r_hp = #{r_hp} where r_hp = ${r_hp}
+    <update id="getUpdateHp" parameterType="String">
+    	update register set r_hp = #{r_hp} where r_num = #{r_num}
     </update>
+    <update id="getUpdateExp" parameterType="String">
+    	update register set r_exp = #{r_exp} where r_num = #{r_num}
+    </update>
+    <update id="getUpdateJob" parameterType="String">
+    	update register set r_job = #{r_job} where r_num = #{r_num}
+    </update>
+    <update id="getUpdateDescription" parameterType="String">
+    	update register set r_sogae = #{r_sogae} where r_num = #{r_num}
+    </update>
+    
     <delete id="deleteRegister" parameterType="String">
     	delete from register where r_num = #{r_num }
     </delete>

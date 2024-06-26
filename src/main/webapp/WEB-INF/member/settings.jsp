@@ -6,8 +6,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gowun+Dodum&family=IBM+Plex+Sans+KR&display=swap" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gowun+Dodum&family=IBM+Plex+Sans+KR&display=swap"
+	rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
@@ -515,7 +517,6 @@ button[data-testid="Button"]:not(:disabled):hover {
 <body>
 	<section class="css-1e20gl8">
 		<article class="css-nhgqg9">
-
 			<p data-testid="Typography" color="#000000" class="css-8nybna">${r_name}님,
 				환영해요.</p>
 		</article>
@@ -530,8 +531,7 @@ button[data-testid="Button"]:not(:disabled):hover {
 				<li data-list-type="EMAIL_CHANGE" tabindex="0" class="css-1f5onls"><p
 						data-testid="Typography" color="#000000" class="css-9dug5j">이메일</p>
 					<p data-testid="Typography" color="#171719" class="css-j2itip">${r_email }</p></li>
-				<li data-list-type="NAME_CHANGE" tabindex="0" class="css-15hfbq8"
-					id="nameChangeBtn">
+				<li id="NameChangeBtn" data-list-type="NAME_CHANGE" tabindex="0" class="css-15hfbq8">
 					<p data-testid="Typography" color="#000000" class="css-9dug5j">이름</p>
 					<p data-testid="Typography" color="#171719" class="css-j2itip"
 						id="currentName">${r_name}</p> <span class="css-1ihsymv"> <svg
@@ -582,8 +582,8 @@ button[data-testid="Button"]:not(:disabled):hover {
 			<!-- 				회원 탈퇴 모달  -->
 			<div id="deleteModal" class="modal" style="display: none;">
 				<div class="modal-content" style="width: 542px; height: 362px;">
-					<form action="deleteform" class="css-zs70mi"
-						style="margin-top: 0px; margin-bottom: 0px; height: 800px;">
+					<form class="css-zs70mi" style="margin-top: 0px; margin-bottom: 0px; height: 800px;">
+					<input type="hidden" name="r_num" id="r_num" value="${r_num}" >
 						<fieldset>
 							<legend class="css-ab001d">
 								<h1 data-testid="Typography" color="#000000" class="css-32bob6">회원
@@ -613,6 +613,7 @@ button[data-testid="Button"]:not(:disabled):hover {
 							</ul>
 							<hr class="css-6cy68w">
 							<div class="css-4ipaya">
+									
 								<h2 data-testid="Typography" color="#000000" class="css-1nhn4wl">탈퇴하려는
 									계정</h2>
 								<div class="css-1a6geu">
@@ -638,216 +639,212 @@ button[data-testid="Button"]:not(:disabled):hover {
 					</form>
 				</div>
 			</div>
-		
-		<script type="text/javascript">
-		
-		// 회원 탈퇴 모달
-		document.querySelector('.css-15hfbq1').onclick = function() {
-			document.getElementById('deleteModal').style.display = "block";
-		}
 
-		// Modal 닫기 버튼을 클릭했을 때
-		document.getElementsByClassName('close')[0].onclick = function() {
-			document.getElementById('deleteModal').style.display = "none";
-		}
+			<script type="text/javascript">
+				// 회원탈퇴 모달
+				document.querySelector('.css-15hfbq1').onclick = function() {
+					document.getElementById('deleteModal').style.display = "block";
+				}
 
-		// Modal 외부를 클릭했을 때 닫기
-		window.onclick = function(event) {
-			if (event.target == document.getElementById('myModal')) {
-				document.getElementById('deleteModal').style.display = "none";
-			}
-		}
+				// Modal 닫기 버튼을 클릭했을 때
+				document.getElementsByClassName('close')[0].onclick = function() {
+					document.getElementById('deleteModal').style.display = "none";
+				}
+				
+				// Modal 외부를 클릭했을 때 닫기
+				window.onclick = function(event) {
+					if (event.target == document.getElementById('myModal')) {
+						document.getElementById('deleteModal').style.display = "none";
+					}
+				}
+				
+				//회원탈퇴 버튼을 클릭 했을 시
+				document.getElementById('confirmBtn').onclick = function() {
+					var r_num = document.getElementById('r_num').value;
 
-		// 확인 버튼을 클릭했을 때
-		document.getElementById('confirmBtn').onclick = function() {
-			alert('회원 탈퇴가 완료되었습니다.');
-			document.getElementById('deleteModal').style.display = "none";
-		}
+					$.ajax({
+				        url: '/deleteRegister',
+				        type: 'GET',
+				        data: { r_num: r_num },
+				        success: function(response) {
+				            alert('회원 탈퇴가 완료되었습니다.');
+				            document.getElementById('deleteModal').style.display = "none";
 
-		// 취소 버튼을 클릭했을 때
-		document.getElementById('cancelBtn').onclick = function() {
-			document.getElementById('deleteModal').style.display = "none";
-		}
-		
-		</script>
+				            // 로그아웃 요청
+				            $.ajax({
+				                url: '/login/logoutprocess',
+				                type: 'GET',
+				                success: function() {
+				                   location.href='/';
+				                },
+				            });
+				        },
+				        error: function(xhr, status, error) {
+				            console.error('Error deleting member:', error);
+				            alert('회원 탈퇴 중 오류가 발생했습니다.');
+				        }
+				    });
+					
+			
+				}
+				
+				// 취소 버튼을 클릭했을 때
+				document.getElementById('cancelBtn').onclick = function() {
+					document.getElementById('deleteModal').style.display = "none";
+				}
+			</script>
 
 
 
-			<!-- 			이름 변경 모달 -->
-			<div id="nameModal" class="modal" tabindex="-1">
+					<!--이름 변경 모달 -->
+			<div id="nameModal" class="modal">
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<div class="modal-header">
 							<h5 class="modal-title">이름 변경</h5>
-							<button type="button" class="btn-close" data-bs-dismiss="modal"
-								aria-label="Close"></button>
 						</div>
 						<div class="modal-body">
 							<form>
+							<input type="hidden" name="r_name" id="r_name" value="${r_name }">
 								<div class="mb-3">
 									<label for="nameInput" class="form-label">새로운 이름</label> <input
-										type="text" class="form-control" id="nameInput"
-										value="${r_name }">
+										type="text" class="form-control" id="nameInput" value="${r_name }">
 								</div>
 							</form>
 						</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary"
-								id="NamecloseBtn" data-bs-dismiss="modal">취소</button>
+							<button type="button" class="btn btn-secondary" id="NamecloseBtn"
+								data-bs-dismiss="modal">취소</button>
 							<button type="button" id="NameSaveBtn" class="btn btn-primary">저장</button>
 						</div>
 					</div>
 				</div>
 			</div>
-<script type="text/javascript">
-	document.getElementById("nameChangeBtn").addEventListener("click",
-			function() {
-				// 모달을 보이도록 설정
-				document.getElementById("nameModal").style.display = "block";
-			});
 
-	// 모달 닫기 버튼 이벤트 리스너 추가
-	document.querySelector(".close").addEventListener("click", function() {
-		// 모달을 숨기도록 설정
-		document.getElementById("nameModal").style.display = "none";
-	});
+				
+			<script type="text/javascript">
+				document.getElementById("NameChangeBtn").addEventListener(
+								"click",
+								function() {
+									document.getElementById("nameModal").style.display = "block";
+								});
+				
+				// 저장 버튼 클릭 시
+				    $("#NameSaveBtn").click(function() {
+				    	var r_num = document.getElementById('r_num').value;
+				        var newName = $("#nameInput").val();
+				        
+				        var data = "r_num="+r_num+"&r_name="+newName;
+				        
+				        
+				        $.ajax({
+				        	type: 'POST',
+				        	dataType:"html",
+					        url: '/updateName',
+					        data: data,
+					        success: function(response) {
+					            alert('수정완료');
+					            location.reload();
+					           
 
-	// 저장 버튼 클릭 시 이벤트 리스너 추가
-	document.getElementById("saveBtn").addEventListener("click", function() {
-		// 새로운 이름을 가져오기
-		var newName = document.getElementById("newNameInput").value;
+					        },
+					        error: function(xhr, status, error) {
+					            console.error('Error deleting member:', error);
+					            alert('수정중 오류발생');
+					        }
+					    });
+				        
+				    });
 
-		// 현재 이름 업데이트
-		document.getElementById("currentName").textContent = newName;
+				
+				//취소 버튼을 클릭했을 때
+				document.getElementById('NamecloseBtn').onclick = function() {
+					document.getElementById('nameModal').style.display = "none";
+				}
+			</script>
 
-		// 모달 닫기
-		document.getElementById("nameModal").style.display = "none";
-	});
+	
 
-	$('#nameModal').on('show.bs.modal', function(event) {
-		// 모달이 표시될 때 기존 입력값 초기화
-		$('#nameInput').val('');
-	});
-
-	// 저장 버튼 클릭 시
-	$('#nameModal').on('click', 'NameSaveBtn', function() {
-		// 입력된 이름 가져오기
-		var newName = $('#nameInput').val();
-
-		// Ajax를 사용하여 서버에 데이터 전송
-		$.ajax({
-			url : '/member/updateform', // 저장을 처리할 서버 스크립트 경로
-			type : 'POST',
-			data : {
-				name : newName
-			},
-			success : function(response) {
-				// 성공적으로 저장되면 모달 닫기
-				$('#nameModal').modal('hide');
-				// 추가적인 작업을 수행할 수 있습니다 (예: 페이지 새로고침)
-				window.location.reload(); // 예시: 페이지 새로고침
-			},
-			error : function(xhr, status, error) {
-				// 오류 처리
-				console.error('Error saving name:', error);
-				// 사용자에게 오류 메시지 표시 등 추가적인 처리 가능
-			}
-		});
-	});
-	//취소 버튼을 클릭했을 때
-	document.getElementById('NamecloseBtn').onclick = function() {
-		document.getElementById('nameModal').style.display = "none";
-	}
-</script>
 
 
 			<!-- 			휴대폰 번호 변경 모달 -->
-			<div id="HpModal" class="modal" tabindex="-1">
+			<div id="hpModal" class="modal">
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<div class="modal-header">
 							<h5 class="modal-title">휴대번호 변경</h5>
-							<button type="button" class="btn-close" data-bs-dismiss="modal"
-								aria-label="Close"></button>
 						</div>
 						<div class="modal-body">
 							<form>
+								<input type="hidden" name="r_hp" id="r_hp" value="${r_hp }">
 								<div class="mb-3">
 									<label for="hpInput" class="form-label">새로운 휴대전화</label> <input
-										type="text" class="form-control" id="hpInput"
-										value="${r_hp }">
+										type="text" class="form-control" id="hpInput" value="${r_hp }">
 								</div>
 							</form>
 						</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary"
-								id="HpcloseBtn" data-bs-dismiss="modal">취소</button>
+							<button type="button" class="btn btn-secondary" id="HpcloseBtn"
+								data-bs-dismiss="modal">취소</button>
 							<button type="button" id="HpSaveBtn" class="btn btn-primary">저장</button>
 						</div>
 					</div>
 				</div>
 			</div>
 			<script type="text/javascript">
+				document
+						.getElementById("HpChangeButton")
+						.addEventListener(
+								"click",
+								function() {
+									document.getElementById("hpModal").style.display = "block";
+								});
 
-			document.getElementById("HpChangeButton").addEventListener("click",
-					function() {
-						// 모달을 보이도록 설정
-						document.getElementById("hpModal").style.display = "block";
-					});
+				// 저장 버튼 클릭 시 이벤트 리스너 추가
+				document
+						.getElementById("HpSaveBtn")
+						.addEventListener(
+								"click",
+								function() {
+									// 새로운 이름을 가져오기
+									var newHp = document
+											.getElementById("newHpInput").value;
 
-			// 모달 닫기 버튼 이벤트 리스너 추가
-			document.querySelector(".close").addEventListener("click", function() {
-				// 모달을 숨기도록 설정
-				document.getElementById("hpModal").style.display = "none";
-			});
+									// 현재 이름 업데이트
+									document.getElementById("currentHp").textContent = newHp;
 
-			// 저장 버튼 클릭 시 이벤트 리스너 추가
-			document.getElementById("HpSaveBtn").addEventListener("click", function() {
-				// 새로운 이름을 가져오기
-				var newHp = document.getElementById("newHpInput").value;
+									// 모달 닫기
+									document.getElementById("hpModal").style.display = "none";
+								});
+				
+				// 저장 버튼 클릭 시
+				$('#hpModal').on('click', '#HpSaveBtn', function() {
+					var r_num = document.getElementById('r_num').value;
+					var newHp = $('#hpInput').val();
+					
+					var data = "r_num="+r_num+"&r_hp="+newHp;
+					
+					 $.ajax({
+				        	type: 'POST',
+				        	dataType:"html",
+					        url: '/updateHp',
+					        data: data,
+					        success: function(response) {
+					            alert('수정완료');
+					            location.reload();
+					           
 
-				// 현재 이름 업데이트
-				document.getElementById("currentHp").textContent = newHp;
-
-				// 모달 닫기
-				document.getElementById("hpModal").style.display = "none";
-			});
-
-			$('#hpModal').on('show.bs.modal', function(event) {
-				// 모달이 표시될 때 기존 입력값 초기화
-				$('#hpInput').val('');
-			});
-
-			// 저장 버튼 클릭 시
-			$('#hpModal').on('click', 'HpSaveBtn', function() {
-				// 입력된 이름 가져오기
-				var newhp = $('#hpInput').val();
-
-				// Ajax를 사용하여 서버에 데이터 전송
-				$.ajax({
-					url : '/updateHp', // 저장을 처리할 서버 스크립트 경로
-					type : 'POST',
-					data : {
-						hp : newhp
-					},
-					success : function(response) {
-						// 성공적으로 저장되면 모달 닫기
-						$('#hpModal').modal('hide');
-						// 추가적인 작업을 수행할 수 있습니다 (예: 페이지 새로고침)
-						window.location.reload(); // 예시: 페이지 새로고침
-					},
-					error : function(xhr, status, error) {
-						// 오류 처리
-						console.error('Error saving name:', error);
-						// 사용자에게 오류 메시지 표시 등 추가적인 처리 가능
-					}
+					        },
+					        error: function(xhr, status, error) {
+					            console.error('Error deleting member:', error);
+					            alert('수정중 오류 발생');
+					        }
+					    });
 				});
-			});
-			//취소 버튼을 클릭했을 때
-			document.getElementById('HpcloseBtn').onclick = function() {
-				document.getElementById('hpModal').style.display = "none";
-			}
-
+				//취소 버튼을 클릭했을 때
+				document.getElementById('HpcloseBtn').onclick = function() {
+					document.getElementById('hpModal').style.display = "none";
+				}
 			</script>
 		</article>
 

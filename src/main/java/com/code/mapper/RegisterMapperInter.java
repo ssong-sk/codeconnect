@@ -25,5 +25,8 @@ public interface RegisterMapperInter {
 	public String getSearchHp(String r_num);
 	public void getUpdateHp(RegisterDto dto);
 	public void getUpdateName(RegisterDto dto);
+	public void getUpdateExp(RegisterDto dto);
+	public void getUpdateJob(RegisterDto dto);
+	public void getUpdateDescription(RegisterDto dto);
 	
 }

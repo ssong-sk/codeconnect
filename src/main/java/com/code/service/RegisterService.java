@@ -89,6 +89,7 @@ public class RegisterService implements RegisterServiceInter {
 		return mapperInter.getSearchHp(r_num);
 	}
 
+	
 	public void updateHp(RegisterDto dto) {
 		mapperInter.getUpdateHp(dto);
 		
@@ -96,6 +97,20 @@ public class RegisterService implements RegisterServiceInter {
 	
 	public void updateName(RegisterDto dto) {
 		mapperInter.getUpdateName(dto);
+		
+	}
+
+	public void updateExp(RegisterDto dto) {
+		mapperInter.getUpdateExp(dto);
+		
+	}
+	
+	public void updateJob(RegisterDto dto) {
+		mapperInter.getUpdateJob(dto);
+	}
+
+	public void updateDescription(RegisterDto dto) {
+		mapperInter.getUpdateDescription(dto);
 		
 	}
 

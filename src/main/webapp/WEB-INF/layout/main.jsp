@@ -44,7 +44,8 @@
 			<c:if test="${sessionScope.loginok==null }">
 				<article class="MatchedBanner_MatchedBanner__jSUtn">
 					<div class="MatchedBanner_MatchedBanner__info__HEO_b">
-						<h6 class="Typography_Typography__root__RdAI1 Typography_Typography__headline2__vR7L_ Typography_Typography__weightBold__KkJEY MatchedBanner_MatchedBanner__info__title__ciAu_">내 이력서를 분석해<br>관심 있을 만한 포지션을 추천해 드려요.</h6>
+						<h6 class="Typography_Typography__root__RdAI1 Typography_Typography__headline2__vR7L_ Typography_Typography__weightBold__KkJEY MatchedBanner_MatchedBanner__info__title__ciAu_">내 이력서를 분석해<br>관심 있을 만한 포지션을 추천해 드려요.
+						</h6>
 						<button type="button" onclick="location.href='/login/main'"
 							class="Button_Button__root__m1NGq Button_Button__contained__qyP2s Button_Button__containedPrimary__kCB60 Button_Button__containedSizeMedium__xBgIW MatchedBanner_MatchedBanner__btn__XNKYB"
 							data-attribute-id="jobs__signupLogin__click">
@@ -104,56 +105,62 @@
 											<div>
 												<div
 													class="CarouselContainer_CarouselContainer__slider__item__5wY5G"
-													tabindex="-1" style="width: 270px; display: inline-block;">
+													tabindex="-1" style="width: 100%; display: inline-block;">
 													<div data-cy="job-card" class="JobCard_JobCard__Tb7pI">
 														<a data-attribute-id="position__click"
 															data-job-category-id="518" data-job-category="IT"
-															data-company-id="13425" data-company-name="라온피플"
-															data-position-id="227577" data-position-name="알고리즘 개발자"
-															data-response-rate="67.93" data-ai-score=""
+															data-company-id="7148" data-company-name="모라이(MORAI)"
+															data-position-id="225191"
+															data-position-name="[전문연구요원 가능] SW Engineer(Virtual Sensor팀)"
+															data-response-rate="92.59" data-ai-score=""
 															data-ai-score-status="fail"
 															data-recommend-model-status="notBase"
 															data-domain="recommendPosition" data-position-index="0"
-															href="/wd/227577"><div
-																class="JobCard_JobCard__thumb__WU1ax">
+															href="#">
+															<div class="JobCard_JobCard__thumb__WU1ax">
 																<div class="JobCard_JobCard__thumb__reward__6_Xx_">
 																	<span
-																		class="Typography_Typography__root__RdAI1 Typography_Typography__label1__hNiv5 Typography_Typography__weightBold__KkJEY JobCard_JobCard__thumb__reward__text__i15UM">
-																	</span>
+																		class="Typography_Typography__root__RdAI1 Typography_Typography__label1__hNiv5 Typography_Typography__weightBold__KkJEY JobCard_JobCard__thumb__reward__text__i15UM">합격보상금
+																		100만원</span>
 																</div>
 																<img
-																	src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fcompany%2F13425%2Fd0ppi6ltfnnkaxjy__400_400.png&amp;w=400&amp;q=75"
-																	fetchpriority="high" alt="알고리즘 개발자" decoding="sync"
-																	loading="eager">
+																	src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fcompany%2F7148%2Fmg31wmprzboz6wgc__400_400.jpg&amp;w=400&amp;q=75"
+																	fetchpriority="high"
+																	alt="[전문연구요원 가능] SW Engineer(Virtual Sensor팀)"
+																	decoding="sync" loading="eager">
 																<button
 																	class="IconButton_IconButton__root__IJlt6 IconButton_IconButton__normal__Twwsf IconButton_IconButton__disableGutters__F_K1l bookmarkBtn"
 																	aria-label="bookmark button"
 																	data-attribute-id="position__bookmark__click"
 																	data-job-category-id="518" data-job-category="IT"
-																	data-company-id="13425" data-company-name="라온피플"
-																	data-position-id="227577" data-position-name="알고리즘 개발자"
-																	data-response-rate="67.93" data-ai-score=""
+																	data-company-id="7148" data-company-name="모라이(MORAI)"
+																	data-position-id="225191"
+																	data-position-name="[전문연구요원 가능] SW Engineer(Virtual Sensor팀)"
+																	data-response-rate="92.59" data-ai-score=""
 																	data-ai-score-status="fail"
 																	data-recommend-model-status="notBase"
 																	data-domain="recommendPosition" data-position-index="0"
-																	data-kind="add" style="font-size: 22px;">
+																	data-kind="add" style="font-size: 22px;" tabindex="1">
 																	<span class="IconButton_IconButton__label__o4AtY"><span
 																		class="SvgIcon_SvgIcon__root__OHiSO"><svg
 																				class="SvgIcon_SvgIcon__root__svg__ohdSc"
 																				viewBox="0 0 24 24">
-																					<path fill-rule="evenodd" clip-rule="evenodd"
+                                        <path fill-rule="evenodd"
+																					clip-rule="evenodd"
 																					d="M8.16445 2.59985H15.8353C16.3651 2.59984 16.8163 2.59983 17.1867 2.63009C17.5759 2.66189 17.9545 2.73152 18.3164 2.91594C18.8621 3.19397 19.3057 3.63761 19.5838 4.18328C19.7682 4.54522 19.8378 4.92381 19.8696 5.31297C19.8999 5.6834 19.8999 6.13458 19.8999 6.66445V21.4999C19.8999 21.8249 19.7245 22.1248 19.4412 22.2842C19.1579 22.4436 18.8107 22.4379 18.5328 22.2692L11.9999 18.3028L5.46694 22.2692C5.18906 22.4379 4.84179 22.4436 4.55848 22.2842C4.27517 22.1248 4.09985 21.8249 4.09985 21.4999V6.66445C4.09984 6.13461 4.09983 5.68339 4.13009 5.31297C4.16189 4.92381 4.23152 4.54522 4.41594 4.18328C4.69397 3.63761 5.13761 3.19397 5.68328 2.91594C6.04522 2.73152 6.42381 2.66189 6.81297 2.63009C7.18338 2.59983 7.63462 2.59984 8.16445 2.59985ZM7.79989 4.39992C6.98533 4.39992 6.79149 4.41103 6.65997 4.45376C6.32509 4.56257 6.06254 4.82512 5.95373 5.16001C5.91099 5.29153 5.89989 5.48536 5.89989 6.29992V19.9006L11.5328 16.4806C11.8198 16.3064 12.18 16.3064 12.467 16.4806L18.0999 19.9006V6.29992C18.0999 5.48536 18.0888 5.29153 18.0461 5.16001C17.9372 4.82512 17.6747 4.56257 17.3398 4.45376C17.2083 4.41103 17.0145 4.39992 16.1999 4.39992H7.79989Z"
-																					fill="#ffffff"></path></svg></span></span>
+																					fill="#ffffff"></path>
+                                    </svg></span></span>
 																</button>
 															</div>
 															<div>
 																<p
-																	class="Typography_Typography__root__RdAI1 Typography_Typography__body1__q3AOP Typography_Typography__weightBold__KkJEY JobCard_JobCard__body__position__CyaGY">알고리즘
-																	개발자</p>
+																	class="Typography_Typography__root__RdAI1 Typography_Typography__body1__q3AOP Typography_Typography__weightBold__KkJEY JobCard_JobCard__body__position__CyaGY">[전문연구요원
+																	가능] SW Engineer(Virtual Sensor팀)</p>
 																<span
-																	class="Typography_Typography__root__RdAI1 Typography_Typography__label2__svmAA Typography_Typography__weightMedium__GXnOM JobCard_JobCard__body__company__AUj_B">라온피플</span>
+																	class="Typography_Typography__root__RdAI1 Typography_Typography__label2__svmAA Typography_Typography__weightMedium__GXnOM JobCard_JobCard__body__company__AUj_B">모라이(MORAI)</span>
 																<div class="JobCard_JobCard__body__badge__atLen"></div>
-															</div></a>
+															</div>
+														</a>
 													</div>
 												</div>
 											</div>
@@ -834,9 +841,9 @@
 
 									</div>
 								</div>
-								</div>
 							</div>
 						</div>
+					</div>
 
 				</article>
 			</c:if>
@@ -845,8 +852,7 @@
 				$('.post-wrapper').slick({
 					slidesToShow : 4,
 					slidesToScroll : 4,
-					autoplay : true,
-					autoplaySpeed : 2000,
+					draggable : true,
 					variableWidth : true
 				});
 			</script>
@@ -1051,7 +1057,7 @@
 				});
 			</script>
 
-
+			<c:if test="${sessionScope.loginok!=null }">
 			<article class="UserActionArea_UserActionArea__sjZgi">
 				<div class="CarouselContainer_CarouselContainer__jvm3u">
 					<aside class="CarouselHeader_CarouselHeader__5VBaX">
@@ -1113,8 +1119,8 @@
 													class="JobCard_JobCard__thumb__WU1ax">
 													<div class="JobCard_JobCard__thumb__reward__6_Xx_">
 														<span
-															class="Typography_Typography__root__RdAI1 Typography_Typography__label1__hNiv5 Typography_Typography__weightBold__KkJEY JobCard_JobCard__thumb__reward__text__i15UM">합격보상금
-															100만원</span>
+															class="Typography_Typography__root__RdAI1 Typography_Typography__label1__hNiv5 Typography_Typography__weightBold__KkJEY JobCard_JobCard__thumb__reward__text__i15UM">
+														</span>
 													</div>
 													<img
 														src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fcompany%2F15531%2Fsmlyrzch9rh43moy__400_400.jpg&amp;w=400&amp;q=75"
@@ -1179,8 +1185,8 @@
 													class="JobCard_JobCard__thumb__WU1ax">
 													<div class="JobCard_JobCard__thumb__reward__6_Xx_">
 														<span
-															class="Typography_Typography__root__RdAI1 Typography_Typography__label1__hNiv5 Typography_Typography__weightBold__KkJEY JobCard_JobCard__thumb__reward__text__i15UM">합격보상금
-															100만원</span>
+															class="Typography_Typography__root__RdAI1 Typography_Typography__label1__hNiv5 Typography_Typography__weightBold__KkJEY JobCard_JobCard__thumb__reward__text__i15UM">
+														</span>
 													</div>
 													<img
 														src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fcompany%2F890%2Fe1cvyooejhfjp3wf__400_400.jpg&amp;w=400&amp;q=75"
@@ -1246,8 +1252,8 @@
 													class="JobCard_JobCard__thumb__WU1ax">
 													<div class="JobCard_JobCard__thumb__reward__6_Xx_">
 														<span
-															class="Typography_Typography__root__RdAI1 Typography_Typography__label1__hNiv5 Typography_Typography__weightBold__KkJEY JobCard_JobCard__thumb__reward__text__i15UM">합격보상금
-															100만원</span>
+															class="Typography_Typography__root__RdAI1 Typography_Typography__label1__hNiv5 Typography_Typography__weightBold__KkJEY JobCard_JobCard__thumb__reward__text__i15UM">
+														</span>
 													</div>
 													<img
 														src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fcompany%2F3260%2F7jpvju6etisrw6ue__400_400.jpg&amp;w=400&amp;q=75"
@@ -1312,8 +1318,8 @@
 													class="JobCard_JobCard__thumb__WU1ax">
 													<div class="JobCard_JobCard__thumb__reward__6_Xx_">
 														<span
-															class="Typography_Typography__root__RdAI1 Typography_Typography__label1__hNiv5 Typography_Typography__weightBold__KkJEY JobCard_JobCard__thumb__reward__text__i15UM">합격보상금
-															100만원</span>
+															class="Typography_Typography__root__RdAI1 Typography_Typography__label1__hNiv5 Typography_Typography__weightBold__KkJEY JobCard_JobCard__thumb__reward__text__i15UM">
+														</span>
 													</div>
 													<img
 														src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fcompany%2F22646%2Fjhk6iry9ejxrp4uq__400_400.jpg&amp;w=400&amp;q=75"
@@ -1377,8 +1383,8 @@
 													class="JobCard_JobCard__thumb__WU1ax">
 													<div class="JobCard_JobCard__thumb__reward__6_Xx_">
 														<span
-															class="Typography_Typography__root__RdAI1 Typography_Typography__label1__hNiv5 Typography_Typography__weightBold__KkJEY JobCard_JobCard__thumb__reward__text__i15UM">합격보상금
-															100만원</span>
+															class="Typography_Typography__root__RdAI1 Typography_Typography__label1__hNiv5 Typography_Typography__weightBold__KkJEY JobCard_JobCard__thumb__reward__text__i15UM">
+														</span>
 													</div>
 													<img
 														src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fcompany%2F117%2Fh7bnmucwmannqhae__400_400.jpg&amp;w=400&amp;q=75"
@@ -1445,8 +1451,8 @@
 													class="JobCard_JobCard__thumb__WU1ax">
 													<div class="JobCard_JobCard__thumb__reward__6_Xx_">
 														<span
-															class="Typography_Typography__root__RdAI1 Typography_Typography__label1__hNiv5 Typography_Typography__weightBold__KkJEY JobCard_JobCard__thumb__reward__text__i15UM">합격보상금
-															100만원</span>
+															class="Typography_Typography__root__RdAI1 Typography_Typography__label1__hNiv5 Typography_Typography__weightBold__KkJEY JobCard_JobCard__thumb__reward__text__i15UM">
+														</span>
 													</div>
 													<img
 														src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fcompany%2F1422%2Fzkducslwrktzyjll__400_400.jpg&amp;w=400&amp;q=75"
@@ -1510,8 +1516,8 @@
 													class="JobCard_JobCard__thumb__WU1ax">
 													<div class="JobCard_JobCard__thumb__reward__6_Xx_">
 														<span
-															class="Typography_Typography__root__RdAI1 Typography_Typography__label1__hNiv5 Typography_Typography__weightBold__KkJEY JobCard_JobCard__thumb__reward__text__i15UM">합격보상금
-															100만원</span>
+															class="Typography_Typography__root__RdAI1 Typography_Typography__label1__hNiv5 Typography_Typography__weightBold__KkJEY JobCard_JobCard__thumb__reward__text__i15UM">
+														</span>
 													</div>
 													<img
 														src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fcompany%2F9072%2Fb3wso1ulcwvot3qn__400_400.jpg&amp;w=400&amp;q=75"
@@ -1574,8 +1580,8 @@
 													class="JobCard_JobCard__thumb__WU1ax">
 													<div class="JobCard_JobCard__thumb__reward__6_Xx_">
 														<span
-															class="Typography_Typography__root__RdAI1 Typography_Typography__label1__hNiv5 Typography_Typography__weightBold__KkJEY JobCard_JobCard__thumb__reward__text__i15UM">합격보상금
-															100만원</span>
+															class="Typography_Typography__root__RdAI1 Typography_Typography__label1__hNiv5 Typography_Typography__weightBold__KkJEY JobCard_JobCard__thumb__reward__text__i15UM">
+														</span>
 													</div>
 													<img
 														src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fcompany%2F411%2Fmxlg58ghnria8pve__400_400.png&amp;w=400&amp;q=75"
@@ -1632,6 +1638,7 @@
 					});
 				</script>
 			</article>
+			</c:if>
 
 			<section class="TagArea_TagArea__cardType__K3ZVy">
 				<div class="CarouselContainer_CarouselContainer__jvm3u">
@@ -2015,7 +2022,9 @@
 					<script type="text/javascript">
 						$('.triple-items').slick({
 							slidesToShow : 3,
-							slidesToScroll : 3,
+							slidesToScroll : 1,
+							autoplay : true,
+							autoplaySpeed : 3000,
 							draggable : true,
 							variableWidth : true
 						});
@@ -2922,8 +2931,7 @@
 															class="JobCard_JobCard__thumb__WU1ax">
 															<div class="JobCard_JobCard__thumb__reward__6_Xx_">
 																<span
-																	class="Typography_Typography__root__RdAI1 Typography_Typography__label1__hNiv5 Typography_Typography__weightBold__KkJEY JobCard_JobCard__thumb__reward__text__i15UM">합격보상금
-																	100만원</span>
+																	class="Typography_Typography__root__RdAI1 Typography_Typography__label1__hNiv5 Typography_Typography__weightBold__KkJEY JobCard_JobCard__thumb__reward__text__i15UM"></span>
 															</div>
 															<img
 																src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fcompany%2F7148%2Fmg31wmprzboz6wgc__400_400.jpg&amp;w=400&amp;q=75"
@@ -2985,8 +2993,8 @@
 															class="JobCard_JobCard__thumb__WU1ax">
 															<div class="JobCard_JobCard__thumb__reward__6_Xx_">
 																<span
-																	class="Typography_Typography__root__RdAI1 Typography_Typography__label1__hNiv5 Typography_Typography__weightBold__KkJEY JobCard_JobCard__thumb__reward__text__i15UM">합격보상금
-																	100만원</span>
+																	class="Typography_Typography__root__RdAI1 Typography_Typography__label1__hNiv5 Typography_Typography__weightBold__KkJEY JobCard_JobCard__thumb__reward__text__i15UM">
+																</span>
 															</div>
 															<img
 																src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fcompany%2F3809%2Fe9gp9xctbz63j6zs__400_400.jpg&amp;w=400&amp;q=75"
@@ -3047,8 +3055,8 @@
 															class="JobCard_JobCard__thumb__WU1ax">
 															<div class="JobCard_JobCard__thumb__reward__6_Xx_">
 																<span
-																	class="Typography_Typography__root__RdAI1 Typography_Typography__label1__hNiv5 Typography_Typography__weightBold__KkJEY JobCard_JobCard__thumb__reward__text__i15UM">합격보상금
-																	100만원</span>
+																	class="Typography_Typography__root__RdAI1 Typography_Typography__label1__hNiv5 Typography_Typography__weightBold__KkJEY JobCard_JobCard__thumb__reward__text__i15UM">
+																</span>
 															</div>
 															<img
 																src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fcompany%2F12274%2Fglldyz1m6d6ps3dd__400_400.jpg&amp;w=400&amp;q=75"
@@ -3109,8 +3117,8 @@
 															class="JobCard_JobCard__thumb__WU1ax">
 															<div class="JobCard_JobCard__thumb__reward__6_Xx_">
 																<span
-																	class="Typography_Typography__root__RdAI1 Typography_Typography__label1__hNiv5 Typography_Typography__weightBold__KkJEY JobCard_JobCard__thumb__reward__text__i15UM">합격보상금
-																	100만원</span>
+																	class="Typography_Typography__root__RdAI1 Typography_Typography__label1__hNiv5 Typography_Typography__weightBold__KkJEY JobCard_JobCard__thumb__reward__text__i15UM">
+																</span>
 															</div>
 															<img
 																src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fcompany%2F34190%2F6i7qrbhia0ifprlm__400_400.jpg&amp;w=400&amp;q=75"
@@ -3156,8 +3164,23 @@
 				</div>
 			</article>
 		</section>
+		<script type="text/javascript">
+			document.querySelector('.bookmarkBtn').addEventListener(
+					'click',
+					function() {
+						const bookmarkPath = document
+								.querySelector('#bookmark-path');
+						const currentFill = bookmarkPath.getAttribute('fill');
+						bookmarkPath.setAttribute('fill',
+								currentFill === '#ffffff' ? '#3366ff'
+										: '#ffffff');
 
-
+						const currentDataKind = this.getAttribute('data-kind');
+						this.setAttribute('data-kind',
+								currentDataKind === 'add' ? 'remove' : 'add');
+					});
+		</script>
+		</script>
 
 	</main>
 </body>

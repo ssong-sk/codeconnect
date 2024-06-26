@@ -59,6 +59,7 @@ public class LoginController {
 			session.setAttribute("loginok", "yes");
 			session.setAttribute("saveok", cbsave);
 			
+			session.setAttribute("r_num", mdto.getR_num());
 			session.setAttribute("r_name",mdto.getR_name());
 			session.setAttribute("r_nickname", mdto.getR_nickname());
 			session.setAttribute("r_birthday", mdto.getR_birthday());
@@ -87,7 +88,7 @@ public class LoginController {
 	{
 		session.removeAttribute("loginok");
 		session.removeAttribute("userNickname"); //
-		return "redirect:main";
+		return "redirect:/";
 	}
 	
 	

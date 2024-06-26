@@ -1155,6 +1155,11 @@ Button_Button__outlined__0HnEd {
     transform: scale(1.025);
 }
 
+.JobCard_JobCard__thumb__WU1ax:hover>img {
+    -webkit-transform: scale(1.025);
+    transform: scale(1.025);
+}
+
 .Card_TagCard__Thumbnail__8I2Qn {
     position: absolute;
     top: 0;

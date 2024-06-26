@@ -80,7 +80,7 @@ public class RegisterController {
       }
       
       //회원목록 삭제
-      @GetMapping("/member/delete")
+      @GetMapping("/deleteRegister")
       @ResponseBody
       public void deleteRegister(String r_num)
       {
@@ -96,22 +96,42 @@ public class RegisterController {
       }
       
       //이름 수정
-      @PostMapping("/member/updateName")
+      @PostMapping("/updateName")
       @ResponseBody
       public void updateName(RegisterDto dto)
       {
          service.updateName(dto);
       }
       
-
       //전화번호 수정
-      @PostMapping("/member/updateHp")
+      @PostMapping("/updateHp")
       @ResponseBody
       public void updateHp(RegisterDto dto)
       {
     	  service.updateHp(dto);
       }
+      
+      //프로필 경력 수정
+      @PostMapping("/updateExp")
+      @ResponseBody
+      public void updateExp(RegisterDto dto)
+      {
+    	  service.updateExp(dto);
+      }
+      
+      @PostMapping("/updateJob")
+      @ResponseBody
+      public void updateJob(RegisterDto dto) {
+    	  service.updateJob(dto);
+      }
+      
+      @PostMapping("/updateDescription")
+      @ResponseBody
+      public void upateDescription(RegisterDto dto) {
+    	  service.updateDescription(dto);
+      }
 
+      
    @GetMapping("/member/mypage")
    public String mypage()
    {

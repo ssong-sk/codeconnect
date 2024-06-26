@@ -195,7 +195,7 @@ button {
 					class="Grid_Grid__item__4GoIZ Grid_Grid__align-items_flex-start__nEOiH">
 					<span
 						class="Typography_Typography__root__RdAI1 Typography_Typography__label2__svmAA Typography_Typography__weightMedium__GXnOM Typography_Typography__displayBlock__A3AK8 ListItem_ListItem__label__0m2Cd">한줄 소개글</span>
-					<button
+					<button id="openDesModal"
 						class="ListItem_ListItem__root__4HTKO ListItem_ListItem__divider__KWrpp ListItem_ListItem__button__cVygs ProfileEditJobCategory_ProfileEditJobCategory__listItem__V9f5Q"
 						data-attribute-id="profileEdit__jobCategory__click">
 						<div class="ListItemText_ListItemText__root__j76to">
@@ -253,71 +253,116 @@ button {
 	<div id="jobCategoryModal" class="modal">
 		<div class="modal-content"
 			style="padding: 0; width: 342px; height: 450px;">
+			<input type="hidden" name="r_num" id="r_num" value="${r_num }">
 			<div class="modal-header">
 				<h6>직무 선택</h6>
 				<button class="close">&times;</button>
 			</div>
 			<div class="modal-body">
 				<div class="job-list">
-					<label>웹 개발자 <input type="checkbox" value="600"></label> <label>서버
-						개발자 <input type="checkbox" value="601">
-					</label> <label>프론트엔드 개발자 <input type="checkbox" value="602"></label>
-					<label>백엔드 개발자 <input type="checkbox" value="603"></label>
-					<label>시스템 개발자 <input type="checkbox" value="604"></label>
-					<label>데이터 엔지니어 <input type="checkbox" value="605"></label>
-					<label>머신러닝 엔지니어 <input type="checkbox" value="606"></label>
-					<label>데브옵스 엔지니어 <input type="checkbox" value="607"></label>
-					<label>풀스택 개발자 <input type="checkbox" value="608"></label>
-					<label>시스템 아키텍트 <input type="checkbox" value="609"></label>
-					<label>네트워크 엔지니어 <input type="checkbox" value="610"></label>
+					<label>웹 개발자 <input type="checkbox" name="job" value="웹 개발자"></label> 
+					<label>서버 개발자 <input type="checkbox" name="job" value="서버 개발자"> </label> 
+					<label>프론트엔드 개발자 <input type="checkbox" name="job" value="프론트엔드 개발자"></label>
+					<label>백엔드 개발자 <input type="checkbox" name="job" value="백엔드 개발자"></label>
+					<label>시스템 개발자 <input type="checkbox" name="job" value="시스템 개발자 "></label>
+					<label>데이터 엔지니어 <input type="checkbox" name="job" value="데이터 엔지니어"></label>
+					<label>머신러닝 엔지니어 <input type="checkbox" name="job" value="머신러닝 엔지니어"></label>
+					<label>데브옵스 엔지니어 <input type="checkbox" name="job" value="데브옵스 엔지니어"></label>
+					<label>풀스택 개발자 <input type="checkbox" name="job" value="풀스택 개발자"></label>
+					<label>시스템 아키텍트 <input type="checkbox" name="job" value="시스템 아키텍트"></label>
+					<label>네트워크 엔지니어 <input type="checkbox" name="job" value="네트워크 엔지니어"></label>
 				</div>
 			</div>
 			<div class="modal-actions">
-				<button id="saveBtn">저장</button>
+				<button id="saveJobBtn">저장</button>
 			</div>
 		</div>
 	</div>
 
+	<script type="text/javascript">
+	
+	
+	// Modal 열기
+	document.getElementById('openModalBtn').addEventListener('click', function() {
+	  document.getElementById('jobCategoryModal').style.display = 'block';
+	});
+
+	// Modal 닫기
+	document.querySelector('#jobCategoryModal .close').addEventListener('click', function() {
+	  document.getElementById('jobCategoryModal').style.display = 'none';
+	});
+	
+	
+	 $("#saveJobBtn").click(function() {
+		 
+		 var selectedJobs = [];
+	        $("input[name='job']:checked").each(function() {
+	            selectedJobs.push($(this).val());
+	        });
+	        var r_num = $('#r_num').val();
+	        
+	        var data = "r_num="+r_num+"&r_job="+selectedJobs;
+	        
+        $.ajax({
+            url: '/updateJob', 
+            type: 'POST',
+            dataType: 'json',
+            data : data,
+            success: function(res) {
+                location.reload();
+
+            },
+            error: function(xhr, status, error) {
+                console.error('경력 업데이트 중 오류가 발생했습니다:', error);
+				history.back();
+            }
+        });
+
+    });
+	 </script>
+
+
 	<div id="careerModal" class="modal">
 		<div class="modal-content"
 			style="padding: 0; width: 342px; height: 450px;">
+			<input type="hidden" name="r_num" id="r_num" value="${r_num }">
 			<div class="modal-header">
 				<h6>경력 선택</h6>
 				<button class="close">&times;</button>
 			</div>
 			<div class="modal-body">
 				<div class="job-list">
-					<label> <input type="radio" name="career" value="850">
+					<label> <input type="radio" name="career" value="신입">
 						신입
-					</label> <label> <input type="radio" name="career" value="851">
+					</label> <label> <input type="radio" name="career" value="1년">
 						1년
-					</label> <label> <input type="radio" name="career" value="852">
+					</label> <label> <input type="radio" name="career" value="2년">
 						2년
-					</label> <label> <input type="radio" name="career" value="853">
+					</label> <label> <input type="radio" name="career" value="3년">
 						3년
-					</label> <label> <input type="radio" name="career" value="854">
+					</label> <label> <input type="radio" name="career" value="4년">
 						4년
-					</label> <label> <input type="radio" name="career" value="855">
+					</label> <label> <input type="radio" name="career" value="5년">
 						5년
-					</label> <label> <input type="radio" name="career" value="856">
+					</label> <label> <input type="radio" name="career" value="6년">
 						6년
-					</label> <label> <input type="radio" name="career" value="857">
+					</label> <label> <input type="radio" name="career" value="7년">
 						7년
-					</label> <label> <input type="radio" name="career" value="858">
+					</label> <label> <input type="radio" name="career" value="8년">
 						8년
-					</label> <label> <input type="radio" name="career" value="859">
+					</label> <label> <input type="radio" name="career" value="9년">
 						9년
-					</label> <label> <input type="radio" name="career" value="860">
+					</label> <label> <input type="radio" name="career" value="10년">
 						10년
-					</label> <label> <input type="radio" name="career" value="861">
+					</label> <label> <input type="radio" name="career" value="11년">
 						11년
-					</label> <label> <input type="radio" name="career" value="862">
+					</label> <label> <input type="radio" name="career" value="12년">
 						12년
-					</label> <label> <input type="radio" name="career" value="863">
+					</label> <label> <input type="radio" name="career" value="13년">
 						13년
-					</label> <label> <input type="radio" name="career" value="864">
+					</label> <label> <input type="radio" name="career" value="14년">
 						14년
-					</label> <label> <input type="radio" name="career" value="865">
+					</label> <label> <input type="radio" name="career" value="15년">
 						15년
 					</label>
 				</div>
@@ -327,7 +372,45 @@ button {
 			</div>
 		</div>
 	</div>
+		
+		<script type="text/javascript">
+		
+		// Modal 열기
+		document.getElementById('opencareerModal').addEventListener('click', function() {
+		  document.getElementById('careerModal').style.display = 'block';
+		});
 
+		// Modal 닫기
+		document.querySelector('#careerModal .close').addEventListener('click', function() {
+		  document.getElementById('careerModal').style.display = 'none';
+		});
+		
+	 $("#saveCareerBtn").click(function() {
+		 
+        var Career = $("input[name='career']:checked").val();
+        var r_num = document.getElementById('r_num').value;
+        
+        var data = "r_num="+r_num+"&r_exp="+Career;
+        
+        $.ajax({
+            url: '/updateExp', 
+            type: 'POST',
+            dataType: 'json',
+            data : data,
+            success: function(res) {
+                alert("수정완료");
+                location.reload();
+
+            },
+            error: function(xhr, status, error) {
+                console.error('경력 업데이트 중 오류가 발생했습니다:', error);
+				history.back();
+            }
+        });
+        
+    });
+	 </script>
+	 
 
 	<div class="modal" id="descriptionModal" tabindex="-1"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -355,55 +438,46 @@ button {
 		</div>
 	</div>
 
-	<script>
-// Modal 열기
-document.getElementById('openModalBtn').addEventListener('click', function() {
-  document.getElementById('jobCategoryModal').style.display = 'block';
-});
+	<script type="text/javascript">
+		
+	// Modal 열기
+	document.getElementById('openDesModal').addEventListener('click', function() {
+	  document.getElementById('descriptionModal').style.display = 'block';
+	});
 
-// Modal 닫기
-document.querySelector('#jobCategoryModal .close').addEventListener('click', function() {
-  document.getElementById('jobCategoryModal').style.display = 'none';
-});
+	// Modal 닫기
+	document.querySelector('#descriptionModal .close').addEventListener('click', function() {
+	  document.getElementById('descriptionModal').style.display = 'none';
+	});
+	
+	
+		$("#sendMessageBtn").click(function() {
+			 var r_num = document.getElementById('r_num').value;
+			var description = $("#message-text").val();
+			
+			var data = "r_num="+r_num+"&r_sogae="+description;
 
-// 저장 버튼 클릭 시 동작 (선택한 직무 저장)
-document.getElementById('saveBtn').addEventListener('click', function() {
-  const checkboxes = document.querySelectorAll('#jobCategoryModal .job-list input[type="checkbox"]:checked');
-  const selectedJobs = Array.from(checkboxes).map(checkbox => checkbox.parentNode.textContent.trim());
-  console.log('선택된 직무:', selectedJobs);
+			if (description.length > 150) {
+				alert("한 줄 소개는 최대 150자까지 작성할 수 있습니다.");
+				return;
+			}
 
-  	
-  document.getElementById('jobCategoryModal').style.display = 'none';
-});
-
-// Modal 열기
-document.getElementById('opencareerModal').addEventListener('click', function() {
-  document.getElementById('careerModal').style.display = 'block';
-});
-
-// Modal 닫기
-document.querySelector('#careerModal .close').addEventListener('click', function() {
-  document.getElementById('careerModal').style.display = 'none';
-});
-
-
-
-
-
-
-// 저장 버튼 클릭 시 동작 (선택한 경력 저장)
-document.getElementById('saveCareerBtn').addEventListener('click', function() {
-  const checkboxes = document.querySelectorAll('#careerModal .job-list input[type="checkbox"]:checked');
-  const selectedCareers = Array.from(checkboxes).map(checkbox => checkbox.parentNode.textContent.trim());
-  console.log('선택된 경력:', selectedCareers);
-  // 여기에 저장 로직을 추가하세요
-  document.getElementById('careerModal').style.display = 'none'; // 저장 후 모달 닫기 예시
-});
-
-
-
-
-</script>
+			$.ajax({
+				url : '/updateDescription',
+				type : 'POST',
+				dataType : 'json',
+				data : data,
+				success : function(res) {
+					alert("업데이트 완료");
+					$('#descriptionModal').modal('hide');
+				},
+				error : function(xhr, status, error) {
+					console.error('업데이트 중 오류발생', error);
+					alert('업데이트 중 오류발생');
+				}
+			});
+		});
+	</script>
 
 
 

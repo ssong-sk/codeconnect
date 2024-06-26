@@ -32,7 +32,7 @@
 						alt="codeconnect Logo" class="logo"></a>
 				</div>
 				<ul class="Menu_MenuNav__EOf3X" style="margin-bottom: 0px;">
-					<li class="Menu_MenuItem__wI1yA"><a href="#"
+					<li class="Menu_MenuItem__wI1yA"><a href="/hire/hiremain"
 						class="Menu_jobListLink__GYHAI"><span>채용</span></a></li>
 					<li class="Menu_MenuItem__wI1yA"><a href="#"><span>커리어</span></a></li>
 					<li class="Menu_MenuItem__wI1yA"><a href="#"><span>소셜</span></a></li>
