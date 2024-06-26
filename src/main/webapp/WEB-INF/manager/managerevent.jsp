@@ -30,6 +30,14 @@
 	margin-bottom: 100px;
 }
 
+.dashboard {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
 .menu_container:before {
     width: 90%;
 }
@@ -40,7 +48,7 @@
     bottom: 0;
     left: 50%;
     width: 100%;
-    max-width: 1060px;
+    max-width: 1080px;
     height: 1px;
     margin: 0 auto;
     background-color: rgba(0, 0, 0, .05);
@@ -114,14 +122,6 @@
 a, a:active, a:hover, a:visited {
     color: inherit;
 }
-
-.dashboard {
-    padding: 20px;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    margin-top: 20px;
-}
 </style>
 </head>
 <body>
@@ -133,7 +133,7 @@ a, a:active, a:hover, a:visited {
 			        <a class="" href="#"><h1 style="font-weight: 600;">관리자 페이지</h1></a>
 			        <div class="menu_container">
 			        	<div role="tablist" class="menu_menu" aria-label="검색 분류">
-			        		<a href="#" role="tab" id="home" tabindex="-1" class="menu_item" aria-selected="true" aria-controls="home">
+			        		<a href="main" role="tab" id="home" tabindex="-1" class="menu_item" aria-selected="false" aria-controls="home">
 			        		<span class="menu_text">HOME</span>
 			        		</a>
 			        		<a href="member" role="tab" id="member" tabindex="-1" class="menu_item" aria-selected="false" aria-controls="member">
@@ -145,7 +145,7 @@ a, a:active, a:hover, a:visited {
 			        		<a href="info" role="tab" id="info" tabindex="-1" class="menu_item" aria-selected="false" aria-controls="info">
 			        		<span class="menu_text">INFO</span>
 			        		</a>
-			        		<a href="event" role="tab" id="event" tabindex="-1" class="menu_item" aria-selected="false" aria-controls="event">
+			        		<a href="event" role="tab" id="event" tabindex="-1" class="menu_item" aria-selected="true" aria-controls="event">
 			        		<span class="menu_text">EVENT</span>
 			        		</a>
 			        		<a href="edit" role="tab" id="edit" tabindex="0" class="menu_item" aria-selected="false" aria-controls="edit">
@@ -169,7 +169,6 @@ a, a:active, a:hover, a:visited {
 	</div>
 </div>
 </body>
-<!-- 메뉴바 변경 스크립트 -->
 <script type="text/javascript">
 	$("a.menu_item").click(function() {
 		$("a.menu_item").attr('aria-selected', 'false');
