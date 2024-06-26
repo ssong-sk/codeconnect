@@ -221,6 +221,11 @@ a, a:active, a:hover, a:visited {
 	margin-top: 20px;
 }
 
+/* 초기에는 처음 8개의 listdiv만 보이게 함 */
+.listdiv:nth-child(n + 9) {
+	display: none;
+}
+
 .image-container {
     position: relative;
     width: 100%;
@@ -306,12 +311,12 @@ a{
 	text-decoration: none;
 }
 
-.hirealllistshow{
+.hirealllistshow, .cialllistshow{
 	text-align: center;
     margin-top: 40px;
 }
 
-.hirebtn{
+.hirebtn, .cibtn{
 	padding: 0 28px;
     min-width: 84px;
     height: 48px;
@@ -334,7 +339,7 @@ a{
     white-space: nowrap;
 }
 
-.hirebtnspan {
+.hirebtnspan, .cibtnspan{
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -367,7 +372,7 @@ i.bi-chevron-right {
 }
 
 /* 회사 리스트 */
-.companylist{
+.companylist, .s-companylist{
 	position: relative;
 	list-style: none;
 	margin: 0;
@@ -536,7 +541,7 @@ span.followtext{
     line-height: 22px;
 	margin: 0;
 }
-</style>
+</style> 
 </head>
 <body>
 	<div style="background: #fff;">
@@ -552,10 +557,12 @@ span.followtext{
 				<a href="#" class="search_tab" tabindex="0" aria-selected="true"
 					aria-controls="search_tabpanel_all"> <span
 					class="searchtabmenu_text">전체</span>
-				</a> <a href="#" class="search_tab" tabindex="-1" aria-selected="false"
+				</a>
+				<a href="#" class="search_tab" tabindex="-1" aria-selected="false"
 					aria-controls="search_tabpanel_hire"> <span
 					class="searchtabmenu_text">채용공고(<span class="htotalcount">${htotalcount }</span>)</span>
-				</a> <a href="#" class="search_tab" tabindex="-1" aria-selected="false"
+				</a>
+				<a href="#" class="search_tab" tabindex="-1" aria-selected="false"
 					aria-controls="search_tabpanel_company"> <span
 					class="searchtabmenu_text">회사(<span class="citotalcount">${citotalcount }</span>)</span>
 				</a>
@@ -568,7 +575,7 @@ span.followtext{
 				<div>
 					<div class="searchtitle">
 						<h2 class="searchtitle_text">
-							채용공고<span class="searchtitle_text_span">${htotalcount }</span>
+							채용공고<span class="searchtitle_text_span_hire">${htotalcount }</span>
 						</h2>
 					</div>
 					<div id="hireListContainer">
@@ -609,10 +616,10 @@ span.followtext{
 					</div>
 				</div>
 				<!-- 회사 리스트 -->
-				<div style="margin-top: 80px;">
+				<div class="companydiv" style="margin-top: 80px;">
 					<div class="searchtitle">
 						<h2 class="searchtitle_text">
-							회사<span class="searchtitle_text_span">${citotalcount }</span>
+							회사<span class="searchtitle_text_span_com">${citotalcount }</span>
 						</h2>
 					</div>
 					<div id="ciListContainer">
@@ -651,6 +658,18 @@ span.followtext{
 							</ul>
 						</div>
 					</div>
+					<div class="cialllistshow">
+					    <button type="button" class="cibtn">
+					        <span class="cibtnspan">
+					            회사 전체보기
+					            <span class="icon1">
+					                <span class="icon2">
+					                    <i class="bi bi-chevron-right"></i>
+                					</span>
+					            </span>
+					        </span>
+					    </button>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -663,7 +682,7 @@ $(".search_tab").click(function() {
 })
 </script>
 
-<!-- 검색 엔터 -->
+<!-- 검색 엔터 채용공고 -->
 <script type="text/javascript">
 $('.searchinput').on('keypress', function(e) {
 	if (e.which == 13) { // 엔터 키를 눌렀을 때
@@ -678,21 +697,38 @@ $('.searchinput').on('keypress', function(e) {
 			},
 			success : function(res) {
 				hsearch(res);
-				$(".searchtitle_text_span").text(res.length);
+				cisearch(res);
+				$(".searchtitle_text_span_hire").text(res.length);
 				$(".htotalcount").text(res.length);
+			}
+		});
+		
+		<!-- 검색 엔터 회사 -->
+		$.ajax({
+			type : "GET",
+			url : "cintrosearch", // 실제 검색을 처리하는 서버의 URL로 변경해야 합니다.
+			dataType : "json",
+			data : {
+				"searchword" : searchword
+			},
+			success : function(res) {
+				cisearch(res);
+				$(".searchtitle_text_span_com").text(res.length);
+				$(".citotalcount").text(res.length);
 			}
 		})
 	}
 });
 
+
 /* 채용공고 리스트 함수 */
 function hsearch(res) {
-	$(".searchlist").hide();
+	$(".cilist").hide();
 
 	if (res.length === 0) {
 		$(".s-searchlist").hide();
-		$(".searchlist").show();
-		$('.searchlist').html('<p>검색 결과가 없습니다.</p>');
+		$(".cilist").show();
+		$('.cilist').html('<p>검색 결과가 없습니다.</p>');
 		return;
 	}
 	var s = "<div class='s-searchlist'>";
@@ -722,9 +758,96 @@ function hsearch(res) {
 
 /* 회사 리스트 함수 */
 function cisearch(res){
-	
+	$(".cilist").hide();
+
+	if (res.length === 0) {
+		$(".s-cilist").hide();
+		$(".cilist").show();
+		$('.cilist').html('<p>검색 결과가 없습니다.</p>');
+		return;
+	}
+	var s = "<div class='s-cilist' style='margin: -10px;'><ul class='s-companylist' style='position: relative;'>";
+	$.each(res, function(index, ci) {
+	    s += "<li class='comli'>";
+	    s += "<a href='#' class='com_a'>";
+	    s += "<div class='comsubject'>";
+	    s += "<div class='comsubject2'>";
+	    s += "<div class='comlogo'>";
+	    s += "<img src='../../companyintro_uploads/" + ci.ci_logo + "'>";
+	    s += "</div>";
+	    s += "<div class='comname'>";
+	    s += "<h5 class='cname'>" + ci.c_name + "</h5>";
+	    s += "<h6 class='ccate'>" + ci.c_category + "</h6>";
+	    s += "</div>";
+	    s += "</div>";
+	    s += "<button type='button' class='cbtn'>";
+	    s += "<span class='followtext'>팔로우</span>";
+	    s += "<span class='followbox'></span>";
+	    s += "</button>";
+	    s += "</div>";
+	    s += "<div class='comcontent'>";
+	    s += "<p class='content_p'>" + ci.ci_soge + "</p>";
+	    s += "</div>";
+	    s += "<div style='margin-top: 8px;'>";
+	    s += "<p class='bottom_p'>팔로우하고 실시간 채용 알림을 받아보세요.</p>";
+	    s += "</div>";
+	    s += "</a>";
+	    s += "</li>";
+	});
+	s += "</ul></div>";
+	// s를 HTML에 추가
+	$('#ciListContainer').html(s); // 업데이트할 요소의 ID를 지정
 }
 
+/* 채용공고 전체보기 */
+// 초기에는 처음 8개의 listdiv만 보이게 함
+$('.listdiv:gt(7)').hide();
+
+// 채용공고 전체보기 버튼 클릭 이벤트 처리
+$('.hirebtn').click(function() {
+    // 모든 listdiv 요소를 보이도록 설정
+    $('.listdiv').show();
+
+    // 버튼을 숨김 처리
+    $(this).hide();
+
+    // '채용공고' 탭을 클릭 상태로 변경
+    $('.search_tab').attr('aria-selected', 'false');
+    $('[aria-controls="search_tabpanel_hire"]').attr('aria-selected', 'true');
+    
+    $('.companydiv').hide();
+});
+
+//'채용공고' 탭을 클릭했을 때 처리
+$('.search_tab[aria-controls="search_tabpanel_hire"]').click(function(e) {
+    e.preventDefault();
+    
+    // 모든 listdiv 요소를 보이도록 설정
+    $('.listdiv').show();
+
+    // 채용공고 탭을 활성화 상태로 변경
+    $('.search_tab').attr('aria-selected', 'false');
+    $(this).attr('aria-selected', 'true');
+
+    // '채용공고 전체보기' 버튼 숨김 처리
+    $('.hirebtn').hide();
+    
+    $('.companydiv').hide();
+});
+
+//'전체' 탭을 클릭했을 때 처리
+$('.search_tab[aria-controls="search_tabpanel_all"]').click(function(e) {
+    e.preventDefault();
+
+    // 처음 8개의 listdiv만 보이게 함
+    $('.listdiv:gt(7)').hide();
+
+    // '채용공고 전체보기' 버튼 보이게 함
+    $('.hirebtn').show();
+    
+    // 회사 테이블 보이게
+    $('.companydiv').show();
+});
 </script>
 </body>
 </html>
