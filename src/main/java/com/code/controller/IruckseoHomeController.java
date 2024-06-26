@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -23,10 +24,12 @@ import com.code.dto.IruckseoSchoolDto;
 import com.code.dto.IruckseoSelfDto;
 import com.code.dto.IruckseoSpecDto;
 import com.code.dto.RegisterDto;
+import com.code.dto.SupportDto;
 import com.code.service.CompanyService;
 import com.code.service.HireService;
 import com.code.service.IruckseoInsertService;
 import com.code.service.RegisterService;
+import com.code.service.SupportService;
 
 @Controller
 public class IruckseoHomeController {
@@ -46,6 +49,10 @@ public class IruckseoHomeController {
    //공고 service
    @Autowired
    HireService hservice;
+   
+   //지원하기 service
+   @Autowired
+	SupportService sservice;
    
    //이력서 메인홈 띄우기
    @GetMapping("/resumehome/home")
@@ -95,13 +102,8 @@ public class IruckseoHomeController {
       //이력서 전체리스트
       List<IruckseoInsertDto> pelist = irservice.allPersonalDatas(r_num);
       
-      //희망근무조건 전체리스트 
-      //List<IruckseoHopeDto> holist = irservice.allHopeDatas();
-      
       model.addAttribute("totalCount", totalCount);
       model.addAttribute("pelist", pelist);
-      //mview.addObject("holist", holist);
-      
       
       return "/resumehome/iruckseoconditionform";
    }
@@ -174,16 +176,14 @@ public class IruckseoHomeController {
         
         int r_num =  Integer.parseInt((String)session.getAttribute("r_num"));
         //갯수
-        int totalCount = irservice.getPersonalCount(r_num);
+        int totalCount = irservice.getSupportCount(r_num);
         
         //이력서 전체리스트
-        List<IruckseoInsertDto> pelist = irservice.allPersonalDatas(r_num);
+        List<SupportDto> sulist = irservice.getSupportList(r_num);
 
         
         model.addAttribute("totalCount", totalCount);
-        model.addAttribute("pelist", pelist);
-        //mview.addObject("holist", holist);
-        
+        model.addAttribute("sulist", sulist);
         
         return "/resumehome/iruckseosupportform";
      }
@@ -193,19 +193,23 @@ public class IruckseoHomeController {
      public String scrapform(@ModelAttribute("pedto") IruckseoInsertDto pedto, Model model, HttpSession session) {
         
         int r_num =  Integer.parseInt((String)session.getAttribute("r_num"));
+        
         //갯수
-        int totalCount = irservice.getPersonalCount(r_num);
-        
-        //이력서 전체리스트
-        List<IruckseoInsertDto> pelist = irservice.allPersonalDatas(r_num);
-
-        
+        int totalCount = irservice.getScrapCount(r_num);
         model.addAttribute("totalCount", totalCount);
-        model.addAttribute("pelist", pelist);
-        //mview.addObject("holist", holist);
         
-        
+        //스크랩 가져오기
+        List<HireDto> shlist = irservice.getScrapHireList(r_num);
+        model.addAttribute("shlist", shlist);
+
         return "/resumehome/iruckseoscrapform";
+     }
+     
+     //스크랩공고 삭제하기
+     @ResponseBody
+     @PostMapping("/resumehome/scrapdelete")
+     public void scrapDelete(@RequestParam int r_num, @RequestParam int h_num) {
+         hservice.scrapDelete(r_num, h_num);
      }
      
       //관심기업 스크랩 띄우기
@@ -215,15 +219,12 @@ public class IruckseoHomeController {
         int r_num =  Integer.parseInt((String)session.getAttribute("r_num"));
         //갯수
         int totalCount = hservice.getScrapCount(r_num);
+        model.addAttribute("totalCount", totalCount);
         
         //이력서 전체리스트
         List<HireDto> hilist = hservice.getUserScraps(r_num);
-
-        
-        model.addAttribute("totalCount", totalCount);
         model.addAttribute("hilist", hilist);
-        
-        
+
         return "/resumehome/iruckseointerestform";
      }
 

@@ -16,6 +16,7 @@ public class CommunityDto {
 	private String com_title;
 	private String com_content;
 	private String com_photo;
+	private String com_main_photo;
 	private String com_category;
 	private Timestamp com_writetime;
 	private Timestamp com_updatetime;

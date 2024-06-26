@@ -13,7 +13,8 @@ public interface CommunityServiceInter {
     List<CommunityDto> getAllDatas();
     CommunityDto getData(int com_num); //int로 변경
     void updateCommunity(CommunityDto dto);
-    void deleteCommunity(String com_num);
+    void deleteCommunity(String com_num); //home 커뮤니티 글 삭제
+    void deleteInterview(String com_num); //interview 커뮤니티 글 삭제
     
     //post_type interview 로직
     int getTotalCountByType(String type);

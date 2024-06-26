@@ -18,4 +18,28 @@ public class CompanyIntroDto {
 	private String ci_link;
 	private Timestamp ci_writeday;
 	
+	//CompanyDto join
+	private String c_id;
+	private String c_pass;
+	private String c_name;
+	private String c_reginum;
+	private String c_phone;
+	private String c_local;
+	private String c_category;
+	private String c_peoplesu;
+	private String c_insa_email;
+	private String c_insa_phone;
+	private String c_addr;
+	private int c_money;
+	private String c_birthyear;
+	private String c_regi_file;
+	private int c_salary;
+	private Timestamp c_gaipday;
+	private Timestamp c_updateday;
+	
+	private String c_addrdetail;
+	private String c_postnum;
+	
+	private String c_size;//기업의 규모:대/중견/중소/공기업 추가
+	
 }

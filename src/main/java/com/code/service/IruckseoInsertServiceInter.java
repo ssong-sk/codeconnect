@@ -2,6 +2,7 @@ package com.code.service;
 
 import java.util.List;
 
+import com.code.dto.HireDto;
 import com.code.dto.IruckseoActibityDto;
 import com.code.dto.IruckseoCareerDto;
 import com.code.dto.IruckseoHopeDto;
@@ -10,6 +11,7 @@ import com.code.dto.IruckseoPortfolioDto;
 import com.code.dto.IruckseoSchoolDto;
 import com.code.dto.IruckseoSelfDto;
 import com.code.dto.IruckseoSpecDto;
+import com.code.dto.SupportDto;
 
 public interface IruckseoInsertServiceInter {
 
@@ -169,4 +171,16 @@ public interface IruckseoInsertServiceInter {
 	
 	//이력서홈 이미지
 	public IruckseoInsertDto getImage(int r_num);
+	
+	//스크랩 채용공고 리스트띄우기
+	public List<HireDto> getScrapHireList(int r_num);
+	
+	//스크랩 채용공고 갯수
+	public int getScrapCount(int r_num);
+	
+	//입사지원현황 리스트
+	public List<SupportDto> getSupportList(int r_num);
+	
+	//입사지원현황 갯수
+	public int getSupportCount(int r_num);
 }

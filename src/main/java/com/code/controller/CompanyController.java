@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpSession;
 
@@ -24,8 +25,10 @@ import org.springframework.web.servlet.ModelAndView;
 import com.code.dto.CompanyDto;
 import com.code.dto.CompanyIntroDto;
 import com.code.dto.HireDto;
+import com.code.dto.SupportDto;
 import com.code.service.CompanyIntroService;
 import com.code.service.CompanyService;
+import com.code.service.SupportService;
 
 
 @Controller
@@ -37,6 +40,10 @@ public class CompanyController {
 	//채용공고에서 사용
 	@Autowired
 	CompanyIntroService ciservice;
+
+	@Autowired
+	SupportService stservice;
+
 
 	//기업 로그인로그아웃관련 임시 통합페이지
 	@GetMapping("/company")
@@ -307,50 +314,140 @@ public class CompanyController {
 	@PostMapping("/company/updateRegiNum")
 	@ResponseBody
 	public Map<String, String> updateRegiNum(MultipartFile new_regifile, HttpSession session, @RequestParam String input_pass, @RequestParam String new_reginum) {
-	    Map<String, String> response = new HashMap<>();
-	    String c_myid = (String) session.getAttribute("c_myid");
-	    CompanyDto dto = cservice.getDataById(c_myid);
-	    String c_pass = dto.getC_pass();
+		Map<String, String> response = new HashMap<>();
+		String c_myid = (String) session.getAttribute("c_myid");
+		CompanyDto dto = cservice.getDataById(c_myid);
+		String c_pass = dto.getC_pass();
 
-	    String path = session.getServletContext().getRealPath("/company_regi_files");
+		String path = session.getServletContext().getRealPath("/company_regi_files");
 
-	    // 비밀번호 체크하고 일치하면 사업자등록번호 변경, 아니면 불가
-	    if (input_pass.equals(c_pass)) { // 기존 비밀번호 일치
+		// 비밀번호 체크하고 일치하면 사업자등록번호 변경, 아니면 불가
+		if (input_pass.equals(c_pass)) { // 기존 비밀번호 일치
 
-	        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
-	        String fName = sdf.format(new Date()) + "_" + new_regifile.getOriginalFilename();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+			String fName = sdf.format(new Date()) + "_" + new_regifile.getOriginalFilename();
 
-	        try {
-	            // Delete the existing file if it exists
-	            if (dto.getC_regi_file() != null) {
-	                File existingFile = new File(path + "\\" + dto.getC_regi_file());
-	                if (existingFile.exists()) {
-	                    existingFile.delete();
-	                }
-	            }
+			try {
+				// Delete the existing file if it exists
+				if (dto.getC_regi_file() != null) {
+					File existingFile = new File(path + "\\" + dto.getC_regi_file());
+					if (existingFile.exists()) {
+						existingFile.delete();
+					}
+				}
 
-	            new_regifile.transferTo(new File(path + "\\" + fName));
+				new_regifile.transferTo(new File(path + "\\" + fName));
 
-	            dto.setC_reginum(new_reginum); // 새로운 사업자등록번호 설정
-	            dto.setC_regi_file(fName); // 새로운 사업자등록번호 파일명 설정
+				dto.setC_reginum(new_reginum); // 새로운 사업자등록번호 설정
+				dto.setC_regi_file(fName); // 새로운 사업자등록번호 파일명 설정
 
-	            cservice.updateCompanyRegiNum(dto); // 데이터베이스에 변경 사항 반영
+				cservice.updateCompanyRegiNum(dto); // 데이터베이스에 변경 사항 반영
 
-	            response.put("message", "사업자등록번호가 변경되었습니다.");
-	            response.put("status", "success");
+				response.put("message", "사업자등록번호가 변경되었습니다.");
+				response.put("status", "success");
 
-	        } catch (IllegalStateException | IOException e) {
-	            e.printStackTrace();
-	            response.put("status", "error");
-	            response.put("message", "파일 업로드 중 오류가 발생했습니다.");
-	        }
+			} catch (IllegalStateException | IOException e) {
+				e.printStackTrace();
+				response.put("status", "error");
+				response.put("message", "파일 업로드 중 오류가 발생했습니다.");
+			}
 
-	    } else {
-	        response.put("status", "error");
-	        response.put("message", "비밀번호가 다릅니다.");
-	    }
+		} else {
+			response.put("status", "error");
+			response.put("message", "비밀번호가 다릅니다.");
+		}
 
-	    return response;
+		return response;
 	}
+
+
+
+	//기업 스크랩
+	//스크랩 insert
+	@ResponseBody
+	@PostMapping("/company/scrap")
+	public void scrapInsert(@ModelAttribute("cdto") CompanyDto cdto, HttpSession session) {
+
+		int r_num =  Integer.parseInt((String) session.getAttribute("r_num"));
+
+		cdto.setR_num(r_num);
+		cservice.scrapCompanyInsert(cdto);
+	}
+
+	//스크랩 delete
+	@ResponseBody
+	@PostMapping("/company/scrapdelete")
+	public void scrapDelete(@RequestParam int c_num, HttpSession session) {
+		int r_num =  Integer.parseInt((String) session.getAttribute("r_num"));
+		cservice.scrapCompanyDelete(r_num, c_num);
+	}
+
+
+	//CompanyHire작동오류로 임시로 옮김.
+	// 잠깐 연습용 기업 마이페이지 => 채용공고 리스트 클릭
+	@GetMapping("/company/companyhire")
+	public String comhire(HttpSession session, Model model) {
+		try {
+			String c_myid = (String) session.getAttribute("c_myid");
+			String c_loginok = (String) session.getAttribute("c_loginok");
+
+			// 로그 추가
+			System.out.println("Session c_myid: " + c_myid);
+			System.out.println("Session c_loginok: " + c_loginok);
+
+			// c_myid를 통해 CompanyDto를 가져오기
+			CompanyDto cdto = cservice.getDataById(c_myid);
+
+			// c_num을 가져오기
+			String c_num = cdto.getC_num();
+
+			// c_num을 통해 hire 테이블의 리스트를 가져오기
+			List<SupportDto> hlist = stservice.selectSupportByCnum(c_num);
+
+			// 모델에 hlist를 추가
+			model.addAttribute("hlist", hlist);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return "/companyhire/companyhire_gongolist"; 
+	}
+
+	// 잠깐 연습용 기업 마이페이지 => 전체 지원자 관리 클릭
+	@GetMapping("/company/jiwon")
+	public String comjiwon(HttpSession session, Model model) {
+
+		String c_myid = (String) session.getAttribute("c_myid");
+		String c_loginok = (String) session.getAttribute("c_loginok");
+
+
+		// c_myid를 통해 CompanyDto를 가져오기
+		CompanyDto dto = cservice.getDataById(c_myid);
+
+		// 로그인한 회사(c_myid)의 회사넘버(c_num) 가져오기.
+		String c_num = dto.getC_num();
+
+		// 위에서 얻은 c_num을 넣어서 support 테이블 List로 가져오기
+		List<SupportDto> slist = stservice.selectSupportByCnum(c_num);
+
+
+		// 모델에 리스트와 변환된 날짜 리스트를 추가
+		model.addAttribute("slist", slist);
+
+
+
+
+		return "/companyhire/companyhire_jiwon"; 
+	}
+
+
+
+
+	// 잠깐 연습용 기업 마이페이지 => 제안 보낸 인재풀 관리
+	@GetMapping("/company/injae")
+	public String cominjae() {
+		return "/companyhire/companyhire_injae"; 
+	}
+
 
 }
