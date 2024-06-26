@@ -205,6 +205,10 @@
         box-shadow: none;
     }
 
+	/* 선택된 li a 효과 */
+	.list_category a.active {
+        color: blue;
+    }
 </style>
 <script type="text/javascript">
     $(document).ready(function(){
@@ -291,12 +295,20 @@
         </div>
         <div class="category" style="margin-top: -13px;">
             <ul class="list_category js-category">
+            	<!--  
                 <li><a href="${root}/community/hometotalpost?category=<%= java.net.URLEncoder.encode("전체글", "UTF-8") %>">전체글</a></li>
                 <li><a href="${root}/community/hometotalpost?category=<%= java.net.URLEncoder.encode("신입", "UTF-8") %>">신입</a></li>
                 <li><a href="${root}/community/hometotalpost?category=<%= java.net.URLEncoder.encode("취준", "UTF-8") %>">취준</a></li>
                 <li><a href="${root}/community/hometotalpost?category=<%= java.net.URLEncoder.encode("자소서", "UTF-8") %>">자소서</a></li>
                 <li><a href="${root}/community/hometotalpost?category=<%= java.net.URLEncoder.encode("면접", "UTF-8") %>">면접</a></li>
                 <li><a href="${root}/community/hometotalpost?category=<%= java.net.URLEncoder.encode("Q&A", "UTF-8") %>">Q&A</a></li>
+                -->
+                <li><a href="${root}/community/hometotalpost?category=<%= java.net.URLEncoder.encode("전체글", "UTF-8") %>" class="${category == '전체글' ? 'active' : ''}">전체글</a></li>
+			    <li><a href="${root}/community/hometotalpost?category=<%= java.net.URLEncoder.encode("신입", "UTF-8") %>" class="${category == '신입' ? 'active' : ''}">신입</a></li>
+			    <li><a href="${root}/community/hometotalpost?category=<%= java.net.URLEncoder.encode("취준", "UTF-8") %>" class="${category == '취준' ? 'active' : ''}">취준</a></li>
+			    <li><a href="${root}/community/hometotalpost?category=<%= java.net.URLEncoder.encode("자소서", "UTF-8") %>" class="${category == '자소서' ? 'active' : ''}">자소서</a></li>
+			    <li><a href="${root}/community/hometotalpost?category=<%= java.net.URLEncoder.encode("면접", "UTF-8") %>" class="${category == '면접' ? 'active' : ''}">면접</a></li>
+			    <li><a href="${root}/community/hometotalpost?category=<%= java.net.URLEncoder.encode("Q&A", "UTF-8") %>" class="${category == 'Q&A' ? 'active' : ''}">Q&A</a></li>
             </ul>
         </div>
     </div>

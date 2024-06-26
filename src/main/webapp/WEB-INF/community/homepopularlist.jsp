@@ -194,26 +194,40 @@
 
 <div class="list_qna" style="max-width: 1200px; margin: 70px auto;">
     <ul class="qna-list">
-        <c:forEach var="dto" items="${popularPosts}">
-            <li style="border-top: 1px solid #eaeaea;">
-                <div class="qna-item">
-                    <div class="post_list">
-                        <a href="${root}/community/homedetail?com_num=${dto.com_num}">
-                        	<span class="hot" style="color: blue; font-weight: bold; font-size: 18px;">HOT</span><span>&nbsp;&nbsp;<b style="font-size: 20px;">${dto.com_title}</b></span><br>
-                            <span class="content_text">${dto.com_content}</span>
-                            <div>
-                                &nbsp;<span><i class="bi bi-hand-thumbs-up"></i>&nbsp;${dto.com_likes}</span>&nbsp;&nbsp;&nbsp;
-                                <span><i class="bi bi-chat-left"></i>&nbsp;${dto.com_commentcount}</span>&nbsp;&nbsp;
-                                <span><i class="bi bi-eye"></i>&nbsp;${dto.com_readcount}</span>&nbsp;&nbsp;&nbsp;&nbsp;
-                                <br>
-                                <span>'${dto.com_nickname}'님&nbsp;&nbsp;<fmt:formatDate value="${dto.com_writetime}" pattern="yyyy-MM-dd HH:mm" />&nbsp;작성</span>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </li>
-        </c:forEach>
-    </ul>
+	    <c:choose>
+	        <c:when test="${not empty popularPosts}">
+	            <c:forEach var="dto" items="${popularPosts}">
+	                <c:if test="${dto.com_post_type == 'home'}">
+	                    <li style="border-top: 1px solid #eaeaea;">
+	                        <div class="qna-item">
+	                            <div class="post_list">
+	                                <a href="${root}/community/homedetail?com_num=${dto.com_num}">
+	                                    <span class="hot" style="color: blue; font-weight: bold; font-size: 18px;">HOT</span>
+	                                    <span>&nbsp;&nbsp;<b style="font-size: 20px;">${dto.com_title}</b></span><br>
+	                                    <span class="content_text">${dto.com_content}</span>
+	                                    <div>
+	                                        &nbsp;<span><i class="bi bi-hand-thumbs-up"></i>&nbsp;${dto.com_likes}</span>&nbsp;&nbsp;&nbsp;
+	                                        <span><i class="bi bi-chat-left"></i>&nbsp;${dto.com_commentcount}</span>&nbsp;&nbsp;
+	                                        <span><i class="bi bi-eye"></i>&nbsp;${dto.com_readcount}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+	                                        <br>
+	                                        <span>'${dto.com_nickname}'님&nbsp;&nbsp;<fmt:formatDate value="${dto.com_writetime}" pattern="yyyy-MM-dd HH:mm" />&nbsp;작성</span>
+	                                    </div>
+	                                </a>
+	                            </div>
+	                        </div>
+	                    </li>
+	                </c:if>
+	            </c:forEach>
+	        </c:when>
+	        <c:otherwise>
+	            <li style="border-top: 1px solid #eaeaea;">
+	                <div class="qna-item">
+	                    이번 주 인기 글이 없습니다.
+	                </div>
+	            </li>
+	        </c:otherwise>
+	    </c:choose>
+	</ul>
 </div>
 </body>
 </html>
