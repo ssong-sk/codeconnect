@@ -373,6 +373,8 @@ i.bi-chevron-right {
 	margin: 0;
     padding: 0;	
     border: 0;
+    display: flex; /* 이 부분을 추가하세요 */
+    flex-wrap: wrap; /* 이 부분을 추가하세요 */
 }
 
 .comli{
@@ -405,7 +407,7 @@ i.bi-chevron-right {
     align-items: center;
 }
 
-.comlogo{
+div.comlogo{
 	position: relative;
     width: 56px;
     height: 56px;
@@ -413,6 +415,14 @@ i.bi-chevron-right {
     background-size: 100%;
     background-position: 50%;
     background-repeat: no-repeat;
+    overflow: hidden; /* 이 부분을 추가하세요 */
+}
+
+div.comlogo img {
+    width: 100%; /* 이 부분을 추가하세요 */
+    height: 100%; /* 이 부분을 추가하세요 */
+    object-fit: cover; /* 이 부분을 추가하세요 */
+    border-radius: 8px; /* 이 부분을 추가하세요 */
 }
 
 .comname{
@@ -509,10 +519,14 @@ span.followtext{
 
 .content_p{
 	font-weight: 400;
-	font-size: 15px;
-    letter-spacing: .0096em;
+    font-size: 15px;
     line-height: 22px;
-	margin: 0;
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* 최대 2줄까지 표시 */
+    -webkit-box-orient: vertical;
 }
 
 .bottom_p{
@@ -543,7 +557,7 @@ span.followtext{
 					class="searchtabmenu_text">채용공고(<span class="htotalcount">${htotalcount }</span>)</span>
 				</a> <a href="#" class="search_tab" tabindex="-1" aria-selected="false"
 					aria-controls="search_tabpanel_company"> <span
-					class="searchtabmenu_text">회사(갯수)</span>
+					class="searchtabmenu_text">회사(<span class="citotalcount">${citotalcount }</span>)</span>
 				</a>
 			</div>
 		</div>
@@ -598,40 +612,44 @@ span.followtext{
 				<div style="margin-top: 80px;">
 					<div class="searchtitle">
 						<h2 class="searchtitle_text">
-							회사<span class="searchtitle_text_span">${htotalcount }</span>
+							회사<span class="searchtitle_text_span">${citotalcount }</span>
 						</h2>
 					</div>
-					<div style="margin: -10px;">
-						<ul class="companylist" style="position: relative;">
-							<li class="comli">
-								<a href="#" class="com_a">
-									<!-- 제목부분 -->
-									<div class="comsubject">
-										<div class="comsubject2">
-											<div class="comlogo">
-												<img src="../../companyintro_uploads/">
+					<div id="ciListContainer">
+						<div class="cilist" style="margin: -10px;">
+							<ul class="companylist" style="position: relative;">
+							<c:forEach var="ci" items="${cilist}">
+								<li class="comli">
+									<a href="#" class="com_a">
+										<!-- 제목부분 -->
+										<div class="comsubject">
+											<div class="comsubject2">
+												<div class="comlogo">
+													<img src="../../companyintro_uploads/${ci.ci_logo }">
+												</div>
+												<div class="comname">
+													<h5 class="cname">${ci.c_name }</h5>
+													<h6 class="ccate">${ci.c_category }</h6>
+												</div>
 											</div>
-											<div class="comname">
-												<h5 class="cname">회사이름</h5>
-												<h6 class="ccate">회사분류</h6>
-											</div>
+											<button type="button" class="cbtn">
+												<span class="followtext">팔로우</span>
+												<span class="followbox"></span>
+											</button>
 										</div>
-										<button type="button" class="cbtn">
-											<span class="followtext">팔로우</span>
-											<span class="followbox"></span>
-										</button>
-									</div>
-									<!-- 내용부분 -->
-									<div class="comcontent">
-										<p class="content_p">회사소개</p>
-									</div>
-									<!-- 실시간 채용 알림 -->
-									<div style="margin-top: 8px;">
-										<p class="bottom_p">팔로우하고 실시간 채용 알림을 받아보세요.</p>
-									</div>
-								</a>
-							</li>
-						</ul>
+										<!-- 내용부분 -->
+										<div class="comcontent">
+											<p class="content_p">${ci.ci_soge }</p>
+										</div>
+										<!-- 실시간 채용 알림 -->
+										<div style="margin-top: 8px;">
+											<p class="bottom_p">팔로우하고 실시간 채용 알림을 받아보세요.</p>
+										</div>
+									</a>
+								</li>
+							</c:forEach>
+							</ul>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -645,6 +663,7 @@ $(".search_tab").click(function() {
 })
 </script>
 
+<!-- 검색 엔터 -->
 <script type="text/javascript">
 $('.searchinput').on('keypress', function(e) {
 	if (e.which == 13) { // 엔터 키를 눌렀을 때
@@ -658,7 +677,7 @@ $('.searchinput').on('keypress', function(e) {
 				"searchword" : searchword
 			},
 			success : function(res) {
-				search(res);
+				hsearch(res);
 				$(".searchtitle_text_span").text(res.length);
 				$(".htotalcount").text(res.length);
 			}
@@ -666,7 +685,8 @@ $('.searchinput').on('keypress', function(e) {
 	}
 });
 
-function search(res) {
+/* 채용공고 리스트 함수 */
+function hsearch(res) {
 	$(".searchlist").hide();
 
 	if (res.length === 0) {
@@ -699,6 +719,12 @@ function search(res) {
 	s += "</div>"; // searchlist 닫기
 	$('#hireListContainer').html(s); // 업데이트할 요소의 ID를 지정
 }
+
+/* 회사 리스트 함수 */
+function cisearch(res){
+	
+}
+
 </script>
 </body>
 </html>

@@ -34,10 +34,13 @@ public class AllSearchController {
 		List<HireDto> hlist = hservice.getHireList();
 		int htotalcount = aservice.counthireAllSearch(searchword);
 		
-		List<CompanyIntroDto> cilist = ciservice.getAllCompanyIntros();
+		List<CompanyIntroDto> cilist = aservice.cintroList();
+		int citotalcount = aservice.countcintroAllSearch(searchword);
 		
 		model.addAttribute("hlist", hlist);
+		model.addAttribute("cilist", cilist);
 		model.addAttribute("htotalcount", htotalcount);
+		model.addAttribute("citotalcount", citotalcount);
 		model.addAttribute("searchword", searchword); // 검색어도 모델에 추가
 		
 		return "allsearch/allsearchmain";
