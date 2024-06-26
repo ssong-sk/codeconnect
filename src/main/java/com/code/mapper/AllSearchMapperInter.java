@@ -14,4 +14,7 @@ public interface AllSearchMapperInter {
 
 	public List<HireDto> hireAllSearch(String searchword);
 	public List<CompanyIntroDto> cintroAllSearch(String searchword);
+	public int counthireAllSearch(String searchword);
+	public int countcintroAllSearch(String searchword);
+	public List<CompanyIntroDto> cintroList();
 }

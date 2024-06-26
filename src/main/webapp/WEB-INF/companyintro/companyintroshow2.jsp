@@ -294,7 +294,7 @@ body {
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reviewModal">자세히 보기</button>
                     </c:if>
                     <c:if test="${sessionScope.loginok == null}">
-                        <button type="button" class="btn btn-primary" onclick="alert('로그인이 필요합니다.');">자세히 보기</button>
+                        <button type="button" class="btn btn-primary" onclick="alert('개인회원 로그인이 필요합니다.');">자세히 보기</button>
                     </c:if>
                 </div>
             </div>

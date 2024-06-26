@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.code.dto.CompanyIntroDto;
 import com.code.dto.HireDto;
 import com.code.service.AllSearchService;
+import com.code.service.CompanyIntroService;
+import com.code.service.HireService;
 
 @Controller
 public class AllSearchController {
@@ -21,14 +23,31 @@ public class AllSearchController {
 	@Autowired
 	AllSearchService aservice;
 	
+	@Autowired
+	HireService hservice;
+	
+	@Autowired
+	CompanyIntroService ciservice;
+	
 	@GetMapping("/allsearch/main")
-	public String allsearchmain(Model model, HttpSession session) {
-
+	public String allsearchmain(String searchword, Model model, HttpSession session) {
+		List<HireDto> hlist = hservice.getHireList();
+		int htotalcount = aservice.counthireAllSearch(searchword);
+		
+		List<CompanyIntroDto> cilist = aservice.cintroList();
+		int citotalcount = aservice.countcintroAllSearch(searchword);
+		
+		model.addAttribute("hlist", hlist);
+		model.addAttribute("cilist", cilist);
+		model.addAttribute("htotalcount", htotalcount);
+		model.addAttribute("citotalcount", citotalcount);
+		model.addAttribute("searchword", searchword); // 검색어도 모델에 추가
+		
 		return "allsearch/allsearchmain";
 	}
 	
 	@ResponseBody
-	@GetMapping("/allsearch/hire")
+	@GetMapping("/allsearch/hiresearch")
 	public List<HireDto> hireAllSearch(String searchword) {
       
 		List<HireDto> hlist=aservice.hireAllSearch(searchword);
@@ -37,7 +56,7 @@ public class AllSearchController {
 	}
 	
 	@ResponseBody
-	@GetMapping("/allsearch/cintro")
+	@GetMapping("/allsearch/cintrosearch")
 	public List<CompanyIntroDto> cintroAllSearch(String searchword) {
       
 		List<CompanyIntroDto> cilist=aservice.cintroAllSearch(searchword);
