@@ -13,6 +13,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-   
+   <h1>글쓰기 폼</h1>
 </body>
 </html>
