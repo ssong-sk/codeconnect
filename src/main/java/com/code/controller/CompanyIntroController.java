@@ -249,6 +249,10 @@ public class CompanyIntroController {
             model.addAttribute("scrapList", scrapIds);
         }
         model.addAttribute("clist", clist);
+
+        // 로그 추가
+        System.out.println("Company Intro List: " + clist);
+
         return "/companyintro/companyintroList";
     }
 
