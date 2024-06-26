@@ -33,7 +33,6 @@ public class SupportDto {
 	private String h_career;
 	private String h_grade;
 	private String h_location;
-	private String h_title;
 	private String h_major;
 	private String h_require;
 	private String h_preference;
