@@ -54,52 +54,58 @@
   }
   
   /*오른쪽 스타일*/
-  .
-  .mylist-area {
-      margin-left: 15%;/* 메뉴바와의 간격 */
-  }
+   .condition-area {
+       width: 80%;
+       margin: auto;
+   }
+
+   .condition-area .condition-total {
+       margin-top: 5%;
+   }
+
+   .list-item {
+       display: flex;
+       justify-content: space-between;
+       align-items: center;
+       padding: 10px 0;
+   }
+
+   .left-section {
+       display: flex;
+       gap: 25px; /* 요소들 간의 간격 조정 */
+   }
+
+   .left-section .company-details {
+       display: flex;
+       flex-direction: column; /* 회사명과 제목을 수직으로 정렬 */
+       gap: 5px; /* 요소들 간의 간격 조정 */
+   }
+
+   .right-section {
+       display: flex;
+       flex-direction: column;
+       justify-content: center;
+       text-align: right;
+       margin-right: 25px;
+   }
+
+   .right-section div {
+       margin: 5px 0;
+   }
+
+   .btn-outline-primary {
+       border: 1px solid #007bff;
+       color: #007bff;
+       background-color: transparent;
+       padding: 5px 10px;
+       cursor: pointer;
+   }
+
+   .btn-outline-primary:hover {
+       background-color: #007bff;
+       color: #fff;
+   }
   
-  .mylist-img {
-    border: 0.5px solid gray;
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-  }
-  
-  .mylist-state {
-     display: flex; /* Flexbox 적용 */
-      justify-content: space-around; /* 항목들을 균등하게 분배 */
-      margin-top: 5%;
-  }
-  
-  /* 추천 공고 섹션 스타일 */
-  .mylist-chu {
-      margin-top: 5%; /* 상단 여백 */
-      padding: 10px 0; /* 상하 여백 */
-  }
-  
-  .chu-img {
-    width: 200px;
-    height: 230px;
-    border: 0.5px solid gray;
-    border-radius: 10px;
-  }
-  
-  .mylist-chuimg {
-    margin-top: 1%;
-  }
-  
-  /*이력서 현황*/
-  .condition-total {
-    margin-top: 4%;
-  }
-  
-  .condition-notice {
-    width: 100%;
-    height: 130px;
-    background-color: #F4F6FA;
-    font-size: 0.8em;
-  }
 
 </style>
 </head>
@@ -172,14 +178,11 @@
 	              
 	                <div class="condition-total" style="margin-top: 5%;">
 	                  <table style="width: 100%;">
-                          <div>
-                             <input type="checkbox" id="allselect"><span style="font-size: 0.8em;">&nbsp;전체선택</span>
-                          </div>
-		                  <hr>
 
                           <!-- 스크랩 공고가 없는 경우 -->
 			              <c:if test="${totalCount==0 }">
 			                <tr>
+			                  <hr>
 			                  <td colspan="4" align="center"></td>
 			                  <p><b>등록된 스크랩 공고가 없습니다</b></p>
 			                </tr>
@@ -188,35 +191,30 @@
 			              <!-- 스크랩 공고가 있는 경우 -->
 			          
 			                <c:forEach var="su" items="${sulist}">
+			                   <hr>
 							  <div class="list-item">
 							    <div class="left-section">
-							      <input type="hidden" name = "r_num" value="${su.r_num }" id="r_num">
-							      <input type="hidden" name = "h_num" value="${su.h_num }">
-							      <div><input type="checkbox" class="oneselect"  value="${su.r_num}"></div>
-							      <div>
-							        <div><a href="#">${su.c_name }&nbsp;</a></div><br>
-							        <div class="title"><a href="/hire/detail?h_num=${su.h_num }"><b>[${su.c_name }]&nbsp;&nbsp;&nbsp;${su.h_title }</b></a></div>
+							      <div><input type="checkbox" class="oneselect"></div>
+   						          <div>${su.st_write}</div>
+							      <div class="company-details">
+							        <div style="font-size: 1.2em;"><a href="#"><b>${su.c_name }&nbsp;</b></a></div><br>
+							        <div class="title"><a href="/hire/detail?h_num=${su.h_num }">[${su.c_name }]&nbsp;&nbsp;&nbsp;${su.h_title }</a></div>
 							      </div>
 							    </div>
 							    <div class="right-section">
-							     <div></div>
+							     <div style="font-size: 1.2em;"><b>${su.st_support }</b></div>
+							     <div>${su.st_open }</div>
 							    </div>
 							  </div>
-							  <hr>
 							</c:forEach>
+							<hr>
+							<div>
+							  <button class="btn btn-outline-primary">지원취소</button>
+							</div>
 		              </table>
 		            </div>
-
-		            <div class="condition-notice">
-		              <div style="margin: 30px 30px;">
-			              <span><i class="bi bi-exclamation-circle"></i>&nbsp;&nbsp;<b>유의사항</b></span><br>
-			              <p>- 이력서는 최대 10개까지 등록 가능합니다.</p>
-			              <p>- '입사지원 내역'건수는 최근 1년간 내역에 대해 확인 가능합니다.</p>
-			              <p>- 수정, 삭제 기능은 이력서 우측 버튼을 누르면 확인하실 수 있습니다.(이력서는 부분 삭제 불가)</p>
-		              </div>
-		            </div>
-		            
 	              </div>   
+	              
               </div>
             </div>
         </div>

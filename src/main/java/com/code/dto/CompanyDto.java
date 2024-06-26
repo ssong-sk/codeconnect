@@ -33,4 +33,13 @@ public class CompanyDto {
 	private String c_postnum;
 	
 	private String c_size;//기업의 규모:대/중견/중소/공기업 추가
+	
+	
+	//스크랩
+	private int s_num;
+	private int r_num;
+	private String r_id;
+	private boolean scraped;
+	
+	
 }
