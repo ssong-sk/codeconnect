@@ -55,11 +55,17 @@ button, div, h1, h2, h3, h4, h5, h6, input, p, select, span, textarea {
 						href="https://ad.wantedlab.com/" class="" target="_blank"
 						rel="noopener noreferrer" data-attribute-id="fnb"
 						data-fnb-kind="AD"><p
-							class="Typography_Typography__root__RdAI1 Typography_Typography__body1-reading__3pEGb Typography_Typography__weightMedium__GXnOM">광고문의</p></a><a
-						href="https://help.wanted.co.kr/hc/ko/" class="" target="_blank"
+							class="Typography_Typography__root__RdAI1 Typography_Typography__body1-reading__3pEGb Typography_Typography__weightMedium__GXnOM">광고문의</p></a>
+							
+						<!-- 고객센터 링크 수정(효영) -->	
+							<a
+						href="/customer/noticelist" class="" target="_blank"
 						rel="noopener noreferrer" data-attribute-id="fnb"
 						data-fnb-kind="FAQ"><p
-							class="Typography_Typography__root__RdAI1 Typography_Typography__body1-reading__3pEGb Typography_Typography__weightMedium__GXnOM">고객센터</p></a><a
+							class="Typography_Typography__root__RdAI1 Typography_Typography__body1-reading__3pEGb Typography_Typography__weightMedium__GXnOM">고객센터</p></a>
+							
+							
+							<a
 						href="https://www.wanted.co.kr/terms" class="" target="_blank"
 						rel="noopener noreferrer" data-attribute-id="fnb"
 						data-fnb-kind="termsOfUse"><p
@@ -78,7 +84,7 @@ button, div, h1, h2, h3, h4, h5, h6, input, p, select, span, textarea {
 			</div>
 			<div class="Footer_footerText__WK_1o kr">
 				<p>
-					<span>(주)원티드랩</span><span>대표이사 이복기</span>
+					<span>(주)코드커넥트</span><span></span>
 				</p>
 				<p>
 					<span>서울특별시 송파구 올림픽로 300, 롯데월드타워 35층</span><span>전화번호:
@@ -94,7 +100,7 @@ button, div, h1, h2, h3, h4, h5, h6, input, p, select, span, textarea {
 			<div class="Footer_socialClass__LNZhe">
 				<span
 					class="Typography_Typography__root__RdAI1 Typography_Typography__label2__svmAA Typography_Typography__weightMedium__GXnOM">©
-					2024 Wanted Lab, Inc.</span>
+					2024 Code connect, Inc.</span>
 			</div>
 		</div>
 	</footer>
