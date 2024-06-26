@@ -9,14 +9,22 @@
     
     <!-- 커뮤니티 글 삽입 -->
     <insert id="insertCustomer" parameterType="CustomerDto">
-        insert into customer (cus_user_id, cus_category, cus_title, cus_content, cus_photo, cus_writetime, cus_answer) 
-        values (#{cus_user_id}, #{cus_category}, #{cus_title}, #{cus_content}, #{cus_photo}, now(), #{cus_answer})
+        insert into customer (cus_user_id, cus_top_type, cus_category, cus_title, cus_content, cus_photo, cus_writetime, cus_answer) 
+        values (#{cus_user_id}, #{cus_top_type}, #{cus_category}, #{cus_title}, #{cus_content}, #{cus_photo}, now(), #{cus_answer})
     </insert>
     
     <!-- 모든 데이터 조회 -->
     <select id="getAllDatas" resultType="CustomerDto">
         select * from customer order by cus_num desc
     </select>
+    
+    <!-- 페이징 데이터 조회 -->
+    <!--  
+    <select id="getPagedDatas" parameterType="map" resultType="CustomerDto">
+    	select * from customer order by cus_num desc
+        limit #{startRow}, #{pageSize}
+    </select>
+    -->
     
     <!-- 특정 게시글 데이터 조회 -->
     <select id="getData" parameterType="int" resultType="CustomerDto">
@@ -26,11 +34,25 @@
     <update id="updateCustomer" parameterType="CustomerDto">
         update customer set 
             cus_category = #{cus_category}, cus_title = #{cus_title}, cus_content = #{cus_content},
-            cus_photo = #{cus_photo}, cus_answer = #{cus_answer}, cus_writetime = now()
+            cus_photo = #{cus_photo}, cus_answer = #{cus_answer}, cus_writetime = now(), cus_top_type = #{cus_top_type}
         where cus_num = #{cus_num}
     </update>
     
     <delete id="deleteCustomer" parameterType="String">
         delete from customer where cus_num = #{cus_num}
     </delete>
+    
+    <!-- cus_top_type 분류 쿼리 -->
+    <select id="getDatasByType" parameterType="String" resultType="CustomerDto">
+        select * from customer where cus_top_type = #{cus_top_type} order by cus_num desc
+    </select>
+    
+    <select id="getCountByType" parameterType="String" resultType="int">
+        select count(*) from customer where cus_top_type = #{cus_top_type}
+    </select>
+    
+    <!-- 페이징 쿼리 -->
+    <select id="getPagedDatasByType" parameterType="map" resultType="CustomerDto">
+        select * from customer where cus_top_type = #{cus_top_type} order by cus_num desc limit #{startRow}, #{pageSize}
+    </select>
 </mapper>
