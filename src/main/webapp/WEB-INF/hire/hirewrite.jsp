@@ -629,6 +629,7 @@ input:disabled {
 				<input type="hidden" name="h_c_num" value="${c_num }" id="h_c_num">
 				<input type="hidden" name="h_ci_num" value="${ci_num }" id="h_ci_num">
 				<input type="hidden" class="job" value="job" name="h_job">
+				<input type="hidden" class="grade" value="grade" name="h_grade">
 				<input type="hidden" class="career" value="career" name="h_career">
 				<input type="hidden" class="location" value="location" name="h_location">
 				<input type="hidden" class="tech" value="tech" name="h_tech">
@@ -742,7 +743,7 @@ input:disabled {
 
 				<!-- 경력 -->
 				<div class="title_div">
-				   <span class="title">경력</span><span><i class="bi bi-asterisk imstar"></i></span>
+				   <span class="title">경력</span>&nbsp;<span><i class="bi bi-asterisk imstar"></i></span>
 				</div>
 				<p class="info">| 인턴 공고: 등록 불가 | 계약직 공고: 계약 기간 1년 이상 등록 가능</p>
 				<div class="d-inline-flex">
@@ -763,6 +764,17 @@ input:disabled {
 										<li><button type="button" class="careeroption-btn">7</button></li>
 										<li><button type="button" class="careeroption-btn">8</button></li>
 										<li><button type="button" class="careeroption-btn">9</button></li>
+										<li><button type="button" class="careeroption-btn">10</button></li>
+										<li><button type="button" class="careeroption-btn">11</button></li>
+										<li><button type="button" class="careeroption-btn">12</button></li>
+										<li><button type="button" class="careeroption-btn">13</button></li>
+										<li><button type="button" class="careeroption-btn">14</button></li>
+										<li><button type="button" class="careeroption-btn">15</button></li>
+										<li><button type="button" class="careeroption-btn">16</button></li>
+										<li><button type="button" class="careeroption-btn">17</button></li>
+										<li><button type="button" class="careeroption-btn">18</button></li>
+										<li><button type="button" class="careeroption-btn">19</button></li>
+										<li><button type="button" class="careeroption-btn">20</button></li>
 									</ul>
 								</section>
 							</section>
@@ -782,6 +794,17 @@ input:disabled {
 										<li><button type="button" class="careeroption-btn2">7</button></li>
 										<li><button type="button" class="careeroption-btn2">8</button></li>
 										<li><button type="button" class="careeroption-btn2">9</button></li>
+										<li><button type="button" class="careeroption-btn">10</button></li>
+										<li><button type="button" class="careeroption-btn">11</button></li>
+										<li><button type="button" class="careeroption-btn">12</button></li>
+										<li><button type="button" class="careeroption-btn">13</button></li>
+										<li><button type="button" class="careeroption-btn">14</button></li>
+										<li><button type="button" class="careeroption-btn">15</button></li>
+										<li><button type="button" class="careeroption-btn">16</button></li>
+										<li><button type="button" class="careeroption-btn">17</button></li>
+										<li><button type="button" class="careeroption-btn">18</button></li>
+										<li><button type="button" class="careeroption-btn">19</button></li>
+										<li><button type="button" class="careeroption-btn">20</button></li>
 									</ul>
 							</section>
                         </section>
@@ -821,15 +844,16 @@ input:disabled {
 			</div>
 			<section class="select-wrapper4" data-role="selectbox">
 			   <section class="selectbox4">
-			      <button type="button" class="toggle-btn4">
-			         <span name='h_grade'>학력 선택</span> <i class="bi bi-caret-down-fill"
+			      <button type="button" class="toggle-btn4" name='h_grade'>
+			         <span>학력 선택</span> <i class="bi bi-caret-down-fill"
 			            style="color: gray;"></i>
 			      </button>
 			      <ul class="selectbox-option4 hide4">
-			         <li><button type="button" class="option-btn4">대학교졸업(4년) 이상</button></li>
-			         <li><button type="button" class="option-btn4">대학졸업(2,3년) 이상</button></li>
-			         <li><button type="button" class="option-btn4">고등학교졸업 이상</button></li>
-			         <li><button type="button" class="option-btn4">무관</button></li>
+					<li><button type="button" class="option-btn4">석사졸업 이상</button></li>
+					<li><button type="button" class="option-btn4">대학교졸업(4년) 이상</button></li>
+					<li><button type="button" class="option-btn4">대학졸업(2,3년) 이상</button></li>
+					<li><button type="button" class="option-btn4">고등학교졸업 이상</button></li>
+					<li><button type="button" class="option-btn4">무관</button></li>
 			      </ul>
 			   </section>
 			</section>
@@ -859,15 +883,6 @@ input:disabled {
 				   <span><i class="bi bi-asterisk imstar"></i></span>
 				   <br>
 				   <div><textarea class="textarea" name="h_title" placeholder="직무명만 기재 가능하며 그 외 텍스트는 수정/삭제 후 승인될 수 있습니다." required="required"></textarea></div>
-				</div>
-                     
-				<br><br>
-				<!-- 공고ㆍ서론 -->
-				<div class="title_div">
-				   <span class="title">공고ㆍ서론</span>
-				   <span><i class="bi bi-asterisk imstar"></i></span>
-				   <br>
-				   <div><pre style="font-family: IBM Plex Sans KR; overflow-x: hidden; font-size: 12pt;"><textarea required="required" name="h_subject" class="textarea" placeholder="텍스트만 입력 가능합니다.(홈페이지 url, 이모티콘, 이미지 등록불가)"></textarea></pre></div>
 				</div>
                      
 				<br><br>
@@ -934,7 +949,7 @@ input:disabled {
 							<li><button type="button" class="techoption-btn">Python</button></li>
 							<li><button type="button" class="techoption-btn">Django</button></li>
 							<li><button type="button" class="techoption-btn">PHP</button></li>
-							<li><button type="button" class="techoption-btn">C</button></li>
+							<li><button type="button" class="techoption-btn">C언어</button></li>
 							<li><button type="button" class="techoption-btn">C++</button></li>
 							<li><button type="button" class="techoption-btn">C#</button></li>
 							<li><button type="button" class="techoption-btn">AWS</button></li>
@@ -963,8 +978,8 @@ input:disabled {
 							<li><button type="button" class="techoption-btn">NoSQL</button></li>
 							<li><button type="button" class="techoption-btn">MariaDB</button></li>
 							<li><button type="button" class="techoption-btn">MongoDB</button></li>
-							<li><button type="button" class="techoption-btn">SQL</button></li>
-							<li><button type="button" class="techoption-btn">R</button></li>
+							<li><button type="button" class="techoption-btn">#SQL</button></li>
+							<li><button type="button" class="techoption-btn">R언어</button></li>
 							<li><button type="button" class="techoption-btn">Hadoop</button></li>
 							<li><button type="button" class="techoption-btn">Spark</button></li>
 							<li><button type="button" class="techoption-btn">Kafka</button></li>

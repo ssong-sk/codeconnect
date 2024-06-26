@@ -7,9 +7,14 @@
         values
         (#{c_num}, #{ci_logo}, #{ci_image}, #{ci_link}, #{ci_soge},now())
     </insert>
+    
+    <!-- 기업 회원 정보 + 기업 소개문 전부 가져오기 : join -->
     <select id="getAllCompanyIntros" resultType="CompanyIntroDto">
-        select * from company_intro order by ci_num
-    </select>
+    SELECT ci.*, c.*
+    FROM company_intro ci
+    JOIN company c ON ci.c_num = c.c_num
+    ORDER BY ci.ci_num
+</select>
 
    
     <select id="getDataByNum" parameterType="String" resultType="CompanyIntroDto">
@@ -69,5 +74,7 @@
     <select id="selectCi_num" parameterType="int" resultType="int">
     	select ci_num from company_intro where c_num = #{c_num}
     </select>
+    
+
 </mapper>
 

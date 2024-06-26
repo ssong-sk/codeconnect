@@ -22,14 +22,29 @@ public interface IruckseoInsertServiceInter {
 	//이력서 단건 list 출력
 	public List<IruckseoInsertDto> OnePersonalDatas(IruckseoInsertDto pedto);
 	
-	//이력서 list 출력
-	public List<IruckseoInsertDto> allPersonalDatas(IruckseoInsertDto pedto);
+	//이력서 타이틀 list 출력
+	public List<IruckseoInsertDto> allPersonalDatas(int r_num);
+	
+	//이력서 인적사항 list
+	public List<IruckseoInsertDto> allPersonallist(IruckseoInsertDto pedto);
+	
+	//이력서 pe_num으로 조회
+	public IruckseoInsertDto Personallist(int pe_num);
+	
+	//이력서 갯수출력
+	public int getPersonalCount(int r_num);
+	
+	//이력서 전체삭제
+	public void deletePersonal(int pe_num);
 	
 	//insert school
 	public void insertSchool (IruckseoSchoolDto scdto);
 	
 	//학력 전체리스트 출력
 	public List<IruckseoSchoolDto> allSchoolDatas(IruckseoSchoolDto scdto);
+	
+	//학력 pe_num 조회
+	public List<IruckseoSchoolDto> Schoollist(int pe_num);
 	
 	//school 단건 list 출력
 	public List<IruckseoSchoolDto> OneSchoolDatas(IruckseoSchoolDto scdto);
@@ -48,6 +63,9 @@ public interface IruckseoInsertServiceInter {
   	
     //경력 단건 list 출력
   	public List<IruckseoCareerDto> OneCareerDatas(IruckseoCareerDto cadto);
+  	
+	//경력 pe_num 조회
+	public List<IruckseoCareerDto> Careerlist(int pe_num);
    	
     //경력 수정폼 띄우기
   	public IruckseoCareerDto selectNumCareer(int ca_num);
@@ -70,6 +88,9 @@ public interface IruckseoInsertServiceInter {
     //경험활동 수정폼 띄우기
   	public IruckseoActibityDto selectNumActibity(int ac_num);
   	
+	//경험활동 pe_num 조회
+	public List<IruckseoActibityDto> Actibitylist(int pe_num);
+  	
     //경험활동 수정하기
     public void updateActibity(IruckseoActibityDto acdto);
     
@@ -84,6 +105,9 @@ public interface IruckseoInsertServiceInter {
   	
     //스펙 단건 list 출력
   	public List<IruckseoSpecDto> OneSpecDatas(IruckseoSpecDto spdto);
+  	
+	//스펙 pe_num 조회
+	public List<IruckseoSpecDto> Speclist(int pe_num);
   	
     //스펙 수정폼 띄우기
   	public IruckseoSpecDto selectNumSpec(int sp_num);
@@ -103,6 +127,9 @@ public interface IruckseoInsertServiceInter {
 	//포트폴리오 insert 후 list
 	public List<IruckseoPortfolioDto> OnePortfolioDatas(IruckseoPortfolioDto podto);
 	
+	//포트폴리오 pe_num 조회
+	public List<IruckseoPortfolioDto> Portfoliolist(int pe_num);
+	
 	//포트폴리오 삭제
 	public void deletePortfolio(int po_num);
   	
@@ -115,11 +142,12 @@ public interface IruckseoInsertServiceInter {
 	//자기소개서 수정폼 띄우기
 	public IruckseoSelfDto selectNumSelf(int se_num);
 	
+	//자기소개서 pe_num 조회
+	public List<IruckseoSelfDto> Selflist(int pe_num);
+	
 	//자기소개서 수정하기
 	public void updateSelf(IruckseoSelfDto sedto);
-	
-	//자기소개서 수정하고 list 출력
-	public List<IruckseoSelfDto> allSelfDatas(IruckseoSelfDto sedto);
+
 	
 	//자기소개서 삭제하기
 	public void deleteSelf(int se_num);
@@ -132,4 +160,13 @@ public interface IruckseoInsertServiceInter {
 	
 	//희망조건 update
 	public void updateHope(IruckseoHopeDto hodto);
+
+  	//희망조건 pe_num 조회
+	public IruckseoHopeDto Hopelist(int pe_num);
+	
+	//희망조건 띄우기
+	public List<IruckseoHopeDto> allHopeDatas();
+	
+	//이력서홈 이미지
+	public IruckseoInsertDto getImage(int r_num);
 }

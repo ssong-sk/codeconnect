@@ -54,8 +54,14 @@
     height: 160px;
     border: 0px solid gray;
     
+  }
+  #modal_showImg{
+    margin: 10px 10px;
+    width: 130px;
+    height: 160px;
+    border: 0px solid gray;
+    
   }  
-  
   /*학력*/
   .school {
     margin-top: 8%;
@@ -239,12 +245,12 @@
 </style>
 </head>
 <body>
-  <form action="personalupdate" id="pe_form" method="post" enctype="multipart/form-data" >
-   <input type="hidden"   name="pe_title" id="pe_title" />
-    <input type="hidden" name="pe_num" id="pe_num" value="${irdto.pe_num }">
     <div class="all">
         <div id="wrap">
             <div class="center">
+  <form action="personalupdate" id="pe_form" method="post" enctype="multipart/form-data" >
+    <input type="hidden"   name="pe_title" id="pe_title">
+    <input type="hidden" name="pe_num" id="pe_num" value="${irdto.pe_num }">
                 
 <!-- 인정사항 폼 -------------------------------------------------------------------------------------------------------------------------->
                 <div class="personal">
@@ -266,7 +272,7 @@
                       
                       <td rowspan="4">
                         <input type="file" name="myphoto" id="myphoto" style="display: none;" multiple="multiple">
-                              <div style="position: relative; display: inline-block;">
+                              <div style="position: relative;  display: inline-block;" id="photo_img">
                                 <img id="showimg">
                                <span id="plusphoto" name="pe_image" style="position: absolute; top: 85%; left: 50%; 
                                transform: translate(-50%, -50%); cursor: pointer; font-size: 0.8em;">사진추가</span>
@@ -1497,7 +1503,7 @@
                     <hr style="width: 100%;">
                     <div id="qualificationList"></div>
                     <div id="qualificationform"></div>
-            </div>
+               </div>
             
             <script type="text/javascript">
 		    //추가하기 누르면 폼 나타나게 하기
@@ -2882,58 +2888,94 @@
                   
                   <div class="fixed_final">
                       <input type="text" class="form-control"   id="pe_title_temp" style="height: 40px; 
-                      width: 49%;" placeholder="이력서 제목을 입력해주세요" required="required">&nbsp;&nbsp;&nbsp;&nbsp;
+                      width: 43%;" placeholder="이력서 제목을 입력해주세요" required="required">&nbsp;&nbsp;&nbsp;&nbsp;
                       <button type="button" id="allDataSelect" class="btn btn-outline-primary" 
                       data-bs-target="#ListSelect" data-bs-toggle="modal">미리보기</button>&nbsp;
                       <button type="button" id="allDataUpdate" class="btn btn-primary">작성완료</button>
                   </div>
                   
                   
-                  <!--미리보기  The Modal -->
-				<div class="modal" id="ListSelect">
-				  <div class="modal-dialog modal-dialog-scrollable modal-fullsize1">
-				    <div class="modal-content">
-				
-				      <!-- Modal Header -->
-				      <div class="modal-header">
-				        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-				      </div>
-				
-				      <!-- 이력서 출력문 -->
-				      <div class="modal-body">
-				      
-				        <!-- 학력 -->
-				        <div>
-				        <h5><b>학력</b></h5>	       
-				        <hr>
-				        
-				        <c:forEach items="${scDto}" var="school">
-	                        <span>${school.school_Name }</span>
-	                        <br>
-                        </c:forEach>
-				        
-				        
-				        
-				        
-				        </div>
-                      </div>  
-
-				
-				    </div>
-				  </div>
-				</div>
-                  
-                  
+                 
                 <script type="text/javascript">
-                  
-               
                 $(function () {
                 
                   //이력서 최종 저장하기 (update)	
                   $(document).on("click", "#allDataUpdate", function() {
                 	  
+                	  //추가버튼 추가폼이 저장이 안된채로 있을경우 
+                	  var schoolclick = $("#schoolclick").length;
+                	  var schoolclick = $("#careeclick").length;
+                	  var schoolclick = $("#activityclick").length;
+                	  var schoolclick = $("#qualificationclick").length;
+                	  var schoolclick = $("#portfolioclick").length;
+                	  var schoolclick = $("#selfclick").length;
+                      
+                      if (schoolclick != 0) {
+                    	  alert("학력 작성을 저장해주세요");
+                    	  return;
+                      }
+                      if (careeclick != 0) {
+                    	  alert("경력 작성을 저장해주세요");
+                    	  return;
+                      }
+                      if (activityclick != 0) {
+                    	  alert("경험, 활동, 교육 작성을 저장해주세요");
+                    	  return;
+                      }
+                      if (qualificationclick != 0) {
+                    	  alert("자격, 어학, 수상 작성을 저장해주세요");
+                    	  return; 
+                      }
+                      if (portfolioclick != 0) {
+                    	  alert("포트폴리오 작성을 저장해주세요");
+                    	  return; 
+                      }
+                      if (selfclick == 0) {
+                    	  alert("자기소개서 작성을 저장해주세요");
+                    	  return;
+                      }
+                      
+                	  
+                      //이력서 제목 저장
                 	  $("#pe_title").val($("#pe_title_temp").val());
 					  $("#pe_form").submit();
+                  });
+                  
+                  
+                  //이력서 미리보기 띄우기
+                  $(document).on("click", "#allDataSelect", function() {
+                	  $("#modal_pe_category").html($("select[name=pe_category]").val()); // 인적사항 - 신입경력
+                	  $("#modal_showImg").attr("src",$("#photo_img > img").attr("src")); // 인적사항 - 사진
+                	  $("#modal_schoolList").html($("#schoolList").html()); // 학력정보
+                	  $("#modal_schoolList").find('i').remove(); // 학력정보 수정/삭제 제거
+                	  $("#modal_careerList").html($("#careerList").html()); // 경력 정보
+                	  $("#modal_careerList").find('i').remove(); // 경력정보 수정/삭제 제거
+                	  $("#modal_activityList").html($("#activityList").html()); // 경험,활동,교육 정보
+                	  $("#modal_activityList").find('i').remove(); // 경험,활동,교육 수정/삭제 제거
+                	  $("#modal_qualificationList").html($("#qualificationList").html()); // 자격,어학,수상 정보
+                	  $("#modal_qualificationList").find('i').remove(); // 자격,어학,수상 수정/삭제 제거
+                	  $("#modal_portfolioList").html($("#portfolioList").html()); // 포트폴리오 정보
+                	  $("#modal_portfolioList").find('i').remove(); // 포트폴리오 수정/삭제 제거
+                	  $("#modal_selfList").html($("#selfList").html()); // 자기소개서 정보
+                	  $("#modal_selfList").find('i').remove(); // 자기소개서 수정/삭제 제거
+                	  
+                	  $("#modal_ho_category").html($("select[name=ho_category]").val()); // 자기소개서 수정/삭제 제거
+                	  
+                	  
+                	  
+                	  var hoCheck = $('input[name="ho_check"]').is(':checked');
+                	  if(hoCheck){
+	                	  $("#modal_ho_money").html("면접 후 결정");
+                	  }else{
+	                	  $("#modal_ho_money").html($("#ho_money").val());
+                	  } 
+                	  
+                	  $("#modal_areaform").html($("#areaform").html());
+                	  $("#modal_areaform").find('i').remove(); // 자기소개서 수정/삭제 제거
+                	  $("#modal_jobform").html($("#jobform").html());
+                	  $("#modal_jobform").find('i').remove(); // 자기소개서 수정/삭제 제거
+
+                	  
                   });
                 });
                   
@@ -2942,6 +2984,172 @@
             </div>
         </div>
     </div>
-  
+    
+     <!--미리보기  The Modal -->
+	<div class="modal" id="ListSelect">
+		<div class="modal-dialog modal-dialog-scrollable modal-fullsize1">
+			<div class="modal-content">
+				<!-- Modal Header -->
+				<div class="modal-header">
+				    <h4 class="modal-title"><b>미리보기</b></h4>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+				</div>
+				<!-- 이력서 출력문 -->
+				<div class="modal-body">
+				    <!-- 인적사항 출력문 -->
+					<div class="">
+						<div class="form-caption">
+							<h5><b>인적사항</b></h5>
+						</div>
+						<hr style="width: 100%;">
+						<table class="" style="width: 100%;">
+							<tr>
+								<td class="form-group"><span>${rdto.r_name }</span>&nbsp;&nbsp;
+								    <span id="modal_pe_category"></span></td>
+								<td rowspan="4"> 
+									<div style="position: relative; display: inline-block;" id = "modal_photo_img">
+										<img id="modal_showImg">
+									</div></td>
+							</tr>
+
+							<tr>
+								<td class="form-group"><span>성별 (${rdto.r_gender })</span>&nbsp;&nbsp;&nbsp;
+									<span>${rdto.r_birthday}</span></td>
+							</tr>
+
+							<tr>
+								<td class="form-group"><span>
+								<i class="bi bi-envelope"></i>${rdto.r_email}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									<span><i class="bi bi-telephone"></i>${rdto.r_hp}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									<span><i class="bi bi-phone"></i>${rdto.r_hp}</span></td>
+							</tr>
+
+							<tr>
+								<td class="form-group"><span><i class="bi bi-house"></i>${rdto.r_addr}${rdto.r_addr_detail}</span>
+								</td>
+							</tr>
+						</table>
+					</div>
+
+					<!-- 학력 -->
+					<div class="school">
+						<div class="form-caption">
+							<h5>
+								<b>학력</b>
+							</h5>
+						</div>
+						<hr style="width: 100%;">
+						<div id="modal_schoolList"></div>
+					</div>
+					
+					<!-- 경력 -->
+					<div class="career">
+						<div class="form-caption">
+							<h5><b>경력</b></h5>
+						</div>
+						<hr style="width: 100%;">
+						<div id="modal_careerList"></div>
+					</div>
+					
+					<!-- 경험 활동 교육 -->
+					<div class="activity">
+						<div class="form-caption">
+							<h5>
+								<b>경험 / 활동 / 교육</b>
+							</h5>
+						</div>
+						<hr style="width: 100%;">
+						<div id="modal_activityList"></div>
+					</div>
+					
+					<!-- 자격 / 어학 / 수상 -->
+					<div class="qualification">
+						<div class="form-caption">
+							<h5>
+								<b>자격 / 어학 / 수상</b>
+							</h5>
+						</div>
+						<hr style="width: 100%;">
+						<div id="modal_qualificationList"></div>
+					</div>
+					
+					<!-- 포트폴리오 -->
+					<div class="portfolio">
+						<div class="form-caption">
+							<h5>
+								<b>포트폴리오 / 기타문서</b>
+							</h5>
+						</div>
+						<hr style="width: 100%;">
+						<div id="modal_portfolioList"></div>
+					</div>
+					
+					<!-- 자기소개서 -->
+					<div class="self">
+						<div class="form-caption">
+							<h5>
+								<b>자기소개서</b>
+							</h5>
+						</div>
+						<hr style="width: 100%;">
+						<div id="modal_selfList"></div>
+					</div>
+					
+					<!-- 희망근무조건 -->
+					<div class="hope">
+						<div class="form-caption">
+	                        <h5><b>희망근무조건</b></h5>
+	                    </div>
+	                    <hr style="width: 100%;">
+	                    <div id="hopeList"></div>
+	                    <div id="hopeform"></div>
+	                    
+	                    <table id="hopeclick" style="width: 100%;">
+	                     <tr>
+	                       <td class="form-group">
+	                         <span id="modal_ho_category"> </span>
+	                         <span id="modal_ho_money"> </span>
+	                       </td>
+	                     </tr>
+	                     
+	                     <!-- 희망근무지------------------------------------------------------------------------------------------------------------------ -->
+	                      <tr>
+	                        <td class="form-group" style="margin-top: 2%;">
+	                            &nbsp;<span style="font-size: 0.8em; display: inline-block;">희망 근무지</span>&nbsp;&nbsp;&nbsp;
+	                            <span style="font-size: 0.8em; color: #4876EF; display: inline-block;">
+	                        </td>
+	                      </tr>
+	                      
+	                      <tr>
+	                           <td class="form-group" style="margin-top: 1%;">
+	                             <div id="modal_areaform" ></div>
+	                           </td>
+	                      </tr>   
+	
+	                        <!-- 직무 --------------------------------------------------------------------------------------------------------->
+	                        <tr>
+	                           <td class="form-group" style="margin-top: 2%;">
+	                            &nbsp;<span style="font-size: 0.8em; display: inline-block;">직무 키워드</span>&nbsp;&nbsp;&nbsp;
+	                            <span style="font-size: 0.8em; color: #4876EF; display: inline-block;">
+	                           </td>
+	                         </tr>
+	                         
+	                       <tr>
+	                           <td class="form-group" style="margin-top: 1%;">
+	                             <div id="modal_jobform"></div>
+	                           </td>
+	                        </tr>   
+	                      
+	                       </table>
+					</div>
+					
+					
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
 </body>
 </html>

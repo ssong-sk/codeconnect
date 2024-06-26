@@ -16,7 +16,6 @@ import com.code.service.CompanyService;
 
 
 @Controller
-@RequestMapping("/company")
 public class CompanyLoginController {
 
 	
@@ -30,7 +29,7 @@ public class CompanyLoginController {
 	}
 
 	//아직 없어!
-	@GetMapping("/main")
+	@GetMapping("/company/main")
 	public String form(HttpSession session,Model model)
 	{
 		//폼의 아이디얻어줌
@@ -41,7 +40,7 @@ public class CompanyLoginController {
 		
 		//한번도 실행안하면 null
 		if(c_loginok==null)
-			return "/companylogin/companyloginform";
+			return "/login/loginform";
 		else {
 			
 			CompanyDto dto = cservice.getDataById(c_myid);
@@ -56,7 +55,7 @@ public class CompanyLoginController {
 	
 	
 	
-	@PostMapping("/loginprocess")
+	@PostMapping("/company/loginprocess")
 	public String loginprocess(@RequestParam String c_id,
 			@RequestParam String c_pass,
 			@RequestParam(required = false) String c_cbsave,
@@ -87,7 +86,7 @@ public class CompanyLoginController {
 	}
 	
 
-	@GetMapping("/logoutprocess")
+	@GetMapping("/company/logoutprocess")
 	public String logout(HttpSession session)
 	{
 		session.removeAttribute("c_loginok");

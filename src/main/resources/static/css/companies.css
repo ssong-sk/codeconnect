@@ -1,0 +1,235 @@
+@charset "UTF-8";
+
+.FollowingCompanyLayout_FollowingCompanyLayout__M_zpo {
+	background-color: #fff;
+	min-height: calc(100vh - 60px);
+}
+
+.FollowingCompanyLayout_FollowingCompanyLayout__root__IfCBd {
+	display: flex;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	margin: 0 auto;
+	position: relative;
+	max-width: 1060px;
+	width: 1060px;
+	padding: 0;
+	gap: 24px;
+}
+
+.FollowingCompanyLayout_FollowingCompanyLayout__title__ZhJ_D {
+	margin-top: 44px;
+}
+
+.Typography_Typography__weightBold__KkJEY {
+	font-weight: 600;
+}
+
+.Typography_Typography__heading2__U5p46 {
+	font-size: 20px;
+	letter-spacing: -.012em;
+	line-height: 28px;
+}
+
+.Typography_Typography__body1__q3AOP {
+    font-size: 16px;
+    letter-spacing: .0057em;
+    line-height: 24px;
+}
+
+.Typography_Typography__root__RdAI1 {
+	margin: 0;
+}
+
+.Typography_Typography__weightRegular__jzmck {
+    font-weight: 400;
+}
+
+.Typography_Typography__body2__5Mmhi {
+    font-size: 15px;
+    letter-spacing: .0096em;
+    line-height: 22px;
+}
+
+.Typography_Typography__root__RdAI1 {
+    margin: 0;
+}
+
+.FollowingCompanySection_FollowingCompanySection__H_nIa {
+	margin: 0 -12px 95px;
+}
+
+.SearchCompanyCard_container__HIPPs {
+	display: inline-block;
+	width: calc(50% - 20px);
+	margin: 9px;
+	align-items: center;
+	background: #fff;
+	border-radius: 16px;
+	border: 1px solid hsla(225, 5%, 46%, .16);
+	vertical-align: top;
+}
+
+.SearchCompanyCard_inner__kZD3m {
+    display: block;
+    padding: 20px;
+}
+
+.SearchCompanyCard_itemHead__rSGGm, .SearchCompanyCard_logoGroup__BDYnT {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.SearchCompanyCard_itemHead__rSGGm {
+    justify-content: space-between;
+}
+
+.SearchCompanyCard_logoGroup__BDYnT {
+    width: calc(100% - 110px);
+}
+
+.SearchCompanyCard_description__Ca4r2 {
+    color: rgba(55, 56, 60, .61);
+    margin-top: 8px;
+    height: 48px;
+    word-break: break-word;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.SearchCompanyCard_logoClassName__975MZ {
+    position: relative;
+    width: 56px;
+    height: 56px;
+    border-radius: 8px;
+    background-size: 100%;
+    background-position: 50%;
+    background-repeat: no-repeat;
+}
+
+.SearchCompanyCard_logoClassName__975MZ:before {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    border: 1px solid hsla(225, 5%, 46%, .08);
+    border-radius: 8px;
+    content: "";
+}
+
+.SearchCompanyCard_textClassName__ftyqF {
+    width: calc(100% - 78px);
+    height: 58px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 12px;
+}
+
+.SearchCompanyCard_textClassName__ftyqF h5 {
+    color: #171719;
+    margin-bottom: 4px;
+}
+
+.SearchCompanyCard_textClassName__ftyqF h5, .SearchCompanyCard_textClassName__ftyqF h6 {
+    margin: 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.SearchCompanyCard_textClassName__ftyqF h6 {
+    color: rgba(55, 56, 60, .61);
+}
+
+.SearchCompanyCard_followButton__isFollow__aM_WG {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    background-color: hsla(225, 5%, 46%, .16);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+}
+
+.SearchCompanyCard_confirmedPositionMessage__cbbTI {
+    margin-top: 8px;
+}
+
+.SearchCompanyCard_hasConfirmedPosition__Ywnjh {
+    color: #06f;
+}
+
+.Button_Button__containedSizeSmall__Dlwlt, .Button_Button__outlinedSizeSmall__PllaZ {
+    padding: 0 14px;
+    min-width: 48px;
+    height: 32px;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 8px;
+}
+
+.Button_Button__outlinedAssistive__JKDyz {
+    --button-color: #171719;
+    color: var(--button-color);
+    font-weight: 500;
+    -webkit-box-shadow: inset 0 0 0 1px hsla(225, 5%, 46%, .16);
+    box-shadow: inset 0 0 0 1px hsla(225, 5%, 46%, .16);
+}
+
+.Button_Button__outlinedPrimary__8mJWi, .Button_Button__outlined__0HnEd {
+    --button-color: #06f;
+    color: var(--button-color);
+    -webkit-box-shadow: 0 0 0 1px var(--button-color) inset;
+    box-shadow: 0 0 0 1px var(--button-color) inset;
+}
+
+.Button_Button__outlined__0HnEd {
+    background-color: #fff;
+}
+
+.Button_Button__root__m1NGq {
+    --button-color: #171719;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    line-height: normal;
+    border: none;
+    background-color: none;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.Button_Button__label__K0sBs {
+    width: 100%;
+    font-size: inherit;
+    font-weight: inherit;
+    display: inherit;
+    align-items: inherit;
+    justify-content: inherit;
+    color: inherit;
+}
+
+.Button_Button__interaction__1LUyr {
+    overflow: hidden;
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: inherit;
+    opacity: 0;
+    background-color: var(--button-color);
+    -webkit-transition: opacity .2s ease;
+    transition: opacity .2s ease;
+    will-change: opacity;
+}
