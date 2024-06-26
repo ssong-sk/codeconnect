@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.code.dto.HireDto;
 import com.code.dto.IruckseoActibityDto;
 import com.code.dto.IruckseoCareerDto;
 import com.code.dto.IruckseoHopeDto;
@@ -13,6 +14,7 @@ import com.code.dto.IruckseoPortfolioDto;
 import com.code.dto.IruckseoSchoolDto;
 import com.code.dto.IruckseoSelfDto;
 import com.code.dto.IruckseoSpecDto;
+import com.code.dto.SupportDto;
 import com.code.mapper.IruckseoInsertMapperInter;
 
 @Service
@@ -348,5 +350,28 @@ public class IruckseoInsertService implements IruckseoInsertServiceInter {
 		return irmapper.getImage(r_num);
 	}
 
+	//스크랩 채용공고 리스트 띄우기
+	public List<HireDto> getScrapHireList(int r_num) {
+		// TODO Auto-generated method stub
+		return irmapper.getScrapHireList(r_num);
+	}
+
+	//스크랩 갯수구하기
+	public int getScrapCount(int r_num) {
+		// TODO Auto-generated method stub
+		return irmapper.getScrapCount(r_num);
+	}
+
+	//입사지원 현황 리스트
+	public List<SupportDto> getSupportList(int r_num) {
+		// TODO Auto-generated method stub
+		return irmapper.getSupportList(r_num);
+	}
+
+	//입사지원 현황 갯수
+	public int getSupportCount(int r_num) {
+		// TODO Auto-generated method stub
+		return irmapper.getSupportCount(r_num);
+	}
 }
 

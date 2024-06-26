@@ -54,53 +54,50 @@
   }
   
   /*오른쪽 스타일*/
-  .
-  .mylist-area {
-      margin-left: 15%;/* 메뉴바와의 간격 */
-  }
-  
-  .mylist-img {
-    border: 0.5px solid gray;
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-  }
-  
-  .mylist-state {
-     display: flex; /* Flexbox 적용 */
-      justify-content: space-around; /* 항목들을 균등하게 분배 */
-      margin-top: 5%;
-  }
-  
-  /* 추천 공고 섹션 스타일 */
-  .mylist-chu {
-      margin-top: 5%; /* 상단 여백 */
-      padding: 10px 0; /* 상하 여백 */
-  }
-  
-  .chu-img {
-    width: 200px;
-    height: 230px;
-    border: 0.5px solid gray;
-    border-radius: 10px;
-  }
-  
-  .mylist-chuimg {
-    margin-top: 1%;
-  }
-  
-  /*이력서 현황*/
-  .condition-total {
-    margin-top: 4%;
-  }
-  
-  .condition-notice {
-    width: 100%;
-    height: 130px;
-    background-color: #F4F6FA;
-    font-size: 0.8em;
-  }
 
+  .list-item {
+  display: flex;
+  justify-content: space-between; /* 좌우 섹션을 공간에 따라 나눕니다. */
+  align-items: center; /* 좌우 섹션을 수직으로 가운데 정렬합니다. */
+  padding: 10px 0; /* 항목 간의 간격을 추가합니다. */
+}
+
+.left-section {
+  display: flex;
+  align-items: center; /* 수평 정렬에서 중앙에 배치합니다. */
+}
+
+.left-section > div {
+  margin-right: 45px; /* 요소 간의 간격을 추가합니다. */
+}
+
+.left-section .title {
+  font-size: 1.2em;
+}
+
+.right-section {
+  display: flex;
+  flex-direction: column; /* 버튼과 마감일을 수직으로 정렬합니다. */
+  align-items: center; /* 요소들을 수평 중앙에 정렬합니다. */
+  margin-right: 25px;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 버튼과 마감일을 수평 중앙에 정렬합니다. */
+}
+
+.button-container .btn {
+  width: 150px;
+}
+
+.button-container .deadline {
+  margin-top: 5px; /* 버튼과 마감일 사이에 간격을 추가합니다. */
+  font-size: 0.8em;
+  color: gray;
+  text-align: center; /* 마감일을 중앙 정렬합니다. */
+}
 </style>
 </head>
 <body>
@@ -172,15 +169,13 @@
 	              
 	                <span style="font-size: 1.2em;"><b>스크랩 공고</b></span>
 	                
-	                <div class="condition-total">
+	                <div class="condition-total" style="margin-top: 5%;">
 	                  <table style="width: 100%;">
-		                  <tr>
-		                    <td>
-		                      <input type="checkbox"><span style="font-size: 0.8em;">&nbsp;전체선택</span>
-		                      <hr>
-		                    </td>
-		                  </tr>
-		                  
+                          <div>
+                             <input type="checkbox" id="allselect"><span style="font-size: 0.8em;">&nbsp;전체선택</span>
+                          </div>
+		                  <hr>
+
                           <!-- 스크랩 공고가 없는 경우 -->
 			              <c:if test="${totalCount==0 }">
 			                <tr>
@@ -190,17 +185,36 @@
 			              </c:if>
 			              
 			              <!-- 스크랩 공고가 있는 경우 -->
-			              <c:if test="${totalCount>0 }">
-			                <c:forEach var="hi" items="${hilist }">
-			                   <tr>
-			                     <td>
-			                       <input type="checkbox">
-			                     </td>
-			                     <td>회사명</td>
-			                     <td>진행중 공고</td>
-			                   </tr>
-			                </c:forEach>
-			              </c:if>
+			          
+			                <c:forEach var="sh" items="${shlist}">
+							  <div class="list-item">
+							    <div class="left-section">
+							      <input type="hidden" name = "r_num" value="${sh.r_num }" id="r_num">
+							      <input type="hidden" name = "h_num" value="${sh.h_num }">
+							      <div><input type="checkbox" class="oneselect"  value="${sh.r_num}"></div>
+							      <div>
+							        <div><a href="#">${sh.c_name }&nbsp;</a><i class="bi bi-heart"></i></div><br>
+							        <div class="title"><a href="/hire/detail?h_num=${sh.h_num }"><b>[${sh.c_name }]&nbsp;&nbsp;&nbsp;${sh.h_title }</b></a></div>
+							        <div class="info" style="font-size: 0.8em; color: gray;">
+							          ${sh.h_grade}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							          <c:out value="${sh.h_location.length() > 7 ? sh.h_location.substring(0, 7) : sh.h_location}" />
+							        </div>
+							      </div>
+							    </div>
+							    <div class="right-section">
+							      <div class="button-container">
+							        <button class="btn btn-primary" style="width: 130px;"
+							        onclick="location.href='/hire/detail?h_num=${sh.h_num }'">지원하러 가기</button>
+							      </div>
+							      <div class="deadline" style="font-size: 0.8em; color: gray;">~${sh.h_deadline}</div>
+							    </div>
+							  </div>
+							  <hr>
+							</c:forEach>
+							
+							<div>
+							  <button id="deleteBtn" class="btn btn-outline-primary" style="width: 100px;" r_num="${sh.r_num}" h_num="${sh.h_num }">삭제</button>
+							</div>
 		              </table>
 		            </div>
 
@@ -218,6 +232,61 @@
             </div>
         </div>
     </div>    
+    
+    <script type="text/javascript">
+	    
+		$(document).ready(function() {
+			//체크박스 전체선택 체크 및 해제
+			$("#allselect").click(function() {
+				
+				var allcheck = $(this).is(":checked");
+	
+					$(".oneselect").prop('checked', allcheck);
+
+			});
+			
+			//삭제하기
+			$("#deleteBtn").click(function() {
+				//선택된 항목 내용 수집
+				var selectCheck = [];
+				$(".oneselect:checked").each(function (index, value) {
+					selectCheck.push(value);
+				});
+				
+				console.log(selectCheck);
+				
+				
+			   //선택되지 않았으면 경고 메세지
+			   if(selectCheck.length == 0) {
+				   alert("삭제할 항목을 선택해주세요");
+				   return;
+			   }
+			   
+			   //확인 창 띄우기
+			   var r_num = $(this).attr("r_num");
+			   var h_num = $(this).attr("h_num");
+			   
+			   var checkConfirm = confirm("정말 삭제하시겠습니까?");
+			   if(checkConfirm) {
+				   
+				   $.ajax ({
+					   
+					   type : "post",
+           		       dataType : "html",
+           			   url : "scrapdelete",
+           			   data : {"r_num":r_num, "h_num":h_num },
+           			   success : function () {
+						
+           				   alert("삭제가 완료되었습니다");
+           				   location.reload();
+					 }
+           			   
+				   })
+			   }
+			})
+		})
+    
+    </script>
     
 </body>
 </html>

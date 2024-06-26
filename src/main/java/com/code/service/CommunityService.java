@@ -199,5 +199,11 @@ public class CommunityService implements CommunityServiceInter {
         return mapper.getPostsByCategoryAndSort(type, category, sortBy, offset, limit);
     }
 
+	@Override
+	public void deleteInterview(String com_num) {
+		mapper.deleteInterview(com_num);
+		
+	}
+
 
 }

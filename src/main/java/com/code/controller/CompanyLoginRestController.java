@@ -51,6 +51,7 @@ public class CompanyLoginRestController {
 		//로그아웃시 제거할 세션
 		session.removeAttribute("c_loginok");
 		session.removeAttribute("c_myid");
+		session.removeAttribute("c_loginname");
 	}
 	
 

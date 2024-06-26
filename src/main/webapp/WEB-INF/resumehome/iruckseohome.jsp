@@ -447,7 +447,7 @@ svg {
 			                         <div class="hireinfo-content">
 			                             <div class="content-company">
 			                             <a target="" title="${h.c_name}" href="#"><span>${h.c_name}</span></a>
-			                             <i class="bi bi-bookmark" id="companytagbtn"></i>
+			                             &nbsp;<i class="bi bi-heart"></i>
 			                             </div>
 			                             <a target="_self" title="${h.h_title}" href="/hire/detail?h_num=${h.h_num }">
 			                             <h2 class="position_card_info_title">${h.h_title}</h2>
