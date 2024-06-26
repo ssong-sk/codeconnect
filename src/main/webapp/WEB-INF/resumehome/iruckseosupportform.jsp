@@ -179,22 +179,22 @@
 	                <div class="condition-total" style="margin-top: 5%;">
 	                  <table style="width: 100%;">
 
-                          <!-- 스크랩 공고가 없는 경우 -->
+                          <!--  입사지원이 없는 경우 -->
 			              <c:if test="${totalCount==0 }">
 			                <tr>
 			                  <hr>
 			                  <td colspan="4" align="center"></td>
-			                  <p><b>등록된 스크랩 공고가 없습니다</b></p>
+			                  <p><b>지원한 공고가 없습니다</b></p>
 			                </tr>
 			              </c:if>
 			              
-			              <!-- 스크랩 공고가 있는 경우 -->
+			              <!-- 입사지원이 있는 경우 -->
 			          
 			                <c:forEach var="su" items="${sulist}">
 			                   <hr>
 							  <div class="list-item">
 							    <div class="left-section">
-							      <div><input type="checkbox" class="oneselect"></div>
+							      <div><input type="checkbox" class="oneselect" name="oneselect" data-st-num="${su.st_num}"></div>
    						          <div>${su.st_write}</div>
 							      <div class="company-details">
 							        <div style="font-size: 1.2em;"><a href="#"><b>${su.c_name }&nbsp;</b></a></div><br>
@@ -209,7 +209,8 @@
 							</c:forEach>
 							<hr>
 							<div>
-							  <button class="btn btn-outline-primary">지원취소</button>
+							  <button class="btn btn-outline-primary deleteBtn" st_num="${su.st_num}"
+							  style="float: right;">지원취소</button>
 							</div>
 		              </table>
 		            </div>
@@ -220,6 +221,42 @@
         </div>
     </div>    
     
+    
+    <script type="text/javascript">
+    
+     //지원취소시 업데이트하기
+     $(document).ready(function () {
+        $(".deleteBtn").click(function () {
+        	
+        	var chbox = $("input[name='oneselect']:checked");
+        	 //console.log("선택된 체크박스 개수:", checkedBoxes.length);
+            
+            if (chbox.length === 0) {
+                alert("지원 취소할 항목을 선택해주세요.");
+                return;
+            }
+
+            var st_num_array = [];
+            chbox.each(function () {
+                st_num_array.push($(this).data("st-num"));
+            })
+            //console.log("전송할 st_num 배열:", st_num_array);
+
+            $.ajax({
+                type: "post",
+                url: "supportupdate",  // 실제 업데이트를 처리할 URL
+                traditional: true,  // 배열 형태의 데이터 전송을 위해 필요
+                data: { "st_num": st_num_array },  // 배열 형태로 데이터 전송
+                success: function (response) {
+                	
+                    alert("지원이 취소되었습니다.");
+                    // 여기에 추가적인 작업을 수행할 수 있습니다.
+                    location.reload();
+                }
+            });
+        });
+    });
+    </script>
     
     
 </body>
