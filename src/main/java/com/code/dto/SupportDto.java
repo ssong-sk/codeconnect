@@ -18,7 +18,12 @@ public class SupportDto {
 	private String st_result;
 	private String st_support;
 	private String st_open;
-	private Timestamp st_write;
+	private String st_write;
+	
+	
+	private String c_name;
+	private String h_title;
+
 	
 	//hire테이블과 join
 	private int h_ci_num;
@@ -39,4 +44,5 @@ public class SupportDto {
 	private String h_deadline;
 	private String h_writeday;
 	private int h_count;
+
 }

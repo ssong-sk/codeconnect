@@ -476,7 +476,7 @@
    
    <!-- 스크랩 공고 하기 -->
    <select id="getScrapHireList" parameterType="int" resultType="hdto">
-     SELECT h.*, c.c_name FROM hire h
+     SELECT * FROM hire h
 		JOIN company c ON h.h_c_num = c.c_num
 		JOIN scrap s ON h.h_num = s.h_num
 	 where s.r_num = #{r_num}
@@ -489,6 +489,11 @@
 		JOIN scrap s ON h.h_num = s.h_num
 	 where s.r_num = #{r_num}
    </select>
+   
+   <!-- 스크랩 공고 삭제하기 -->
+   <delete id="scrapDelete" parameterType="int">
+     delete from scrap where s_num = #{s_num}
+   </delete>
    
    <!-- 입사지원 공고  list 가져오기-->
    <select id="getSupportList" parameterType="int" resultType="sdto">
@@ -507,4 +512,11 @@
 		JOIN company c ON h.h_c_num = c.c_num
 	 WHERE s.r_num = #{r_num}
    </select>
+   
+   <!-- 입사지원 취소시 업데이트 되어 지원완료를 지원취소로 바꾸기 -->
+   <update id="updateSupportDelete" parameterType="int">
+     update support set st_support = '지원취소'
+     where st_num = #{st_num}
+   </update>
+
 </mapper>

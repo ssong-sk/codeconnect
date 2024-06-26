@@ -189,5 +189,10 @@ public interface IruckseoInsertMapperInter {
 	//입사지원현황 갯수
 	public int getSupportCount(int r_num);
 
+	//입사지원 지원취소 업데이트
+	public void updateSupportDelete(int st_num);
+
+	//스크랩 공고 삭제하기
+	public void scrapDelete(int s_num);
 
 }
