@@ -1,16 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gowun+Dodum&family=IBM+Plex+Sans+KR&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&display=swap" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-<title>Insert title here</title>
+<title>인터뷰 작성</title>
 <style>
     body {
         display: flex;
@@ -62,17 +61,34 @@
             padding: 20px;
         }
     }
+    .image-preview {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    .image-preview img {
+        max-width: 100px;
+        max-height: 100px;
+        cursor: pointer;
+        border: 2px solid transparent;
+    }
+    .image-preview img.selected {
+        border-color: #28a745;
+    }
 </style>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/smarteditor2/js/service/HuskyEZCreator.js" charset="utf-8"></script>
 </head>
 <body>
 <div style="margin: 50px 100px; width: 700px;">
 <form action="/community/interviewinsert" method="post" enctype="multipart/form-data">
-  <table class="table table-bordered">
+  <input type="hidden" name="com_user_id" value="${sessionScope.myid}">
+  <input type="hidden" name="com_nickname" value="${userNickname}">
+  <input type="hidden" name="com_main_photo" id="com_main_photo">
+	<table class="table table-bordered">
      <tr>
        <th class="table-light">직무</th>
          <td>
-           <select>
+           <select name="com_category">
                <option>서버/백엔드 개발자</option>
                <option>프론트엔드 개발자</option>
                <option>웹 풀스택 개발자</option>
@@ -100,37 +116,38 @@
      <tr>
        <th class="table-light">회사명</th>
          <td>
-           <input type="text" name="companyname" class="form-control">
+         	<input type="text" name="com_companyname" class="form-control">
          </td>
      </tr>
      <tr>
        <th class="table-light">이름</th>
          <td>
-           <input type="text" name="username" class="form-control" value="${name}" readonly="readonly">
+           <input type="text" name="com_name" class="form-control" value="${username}" readonly="readonly">
          </td>
      </tr>
      <tr>
        <th class="table-light">제목</th>
          <td>
-           <input type="text" name="title" class="form-control" required="required">
+           <input type="text" name="com_title" class="form-control" required="required">
          </td>
      </tr>
      <tr>
        <th class="table-light">내용</th>
          <td>
-           <textarea name="content" id="content" rows="10" class="form-control" required="required"></textarea>
+           <textarea name="com_content" id="content" rows="10" class="form-control" required="required"></textarea>
          </td>
      </tr>
      <tr>
        <th class="table-light">이미지</th>
          <td>
            <input type="file" id="upload" name="upload" class="form-control" multiple="multiple">
+           <div class="image-preview" id="image-preview"></div>
          </td>
      </tr>
      <tr>
        <td colspan="2" align="center">
          <button type="submit" class="btn btn-success" onclick="submitContents(this);">저장</button>
-         <button type="button" class="btn btn-success" onclick="location.href='list'">목록</button>
+         <button type="button" class="btn btn-success" onclick="location.href='/community/interviewlist'">목록</button>
        </td>
      </tr>
   </table>
@@ -157,9 +174,22 @@ function submitContents(elClickedObj) {
 $(document).ready(function() {
     $('#upload').change(function(event) {
         var files = event.target.files;
+        var previewContainer = $('#image-preview');
+        previewContainer.empty();
+        
         for (var i = 0; i < files.length; i++) {
             var reader = new FileReader();
             reader.onload = function(e) {
+                var img = $('<img>').attr('src', e.target.result).click(function() {
+                    $('#image-preview img').removeClass('selected');
+                    $(this).addClass('selected');
+                    $('#com_main_photo').val($(this).attr('src'));
+                });
+                if (i == 0) {
+                    img.addClass('selected');
+                    $('#com_main_photo').val(e.target.result);
+                }
+                previewContainer.append(img);
                 oEditors.getById["content"].exec("PASTE_HTML", [ "<img src='" + e.target.result + "'/>" ]);
             }
             reader.readAsDataURL(files[i]);

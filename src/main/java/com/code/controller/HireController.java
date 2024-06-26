@@ -134,6 +134,8 @@ public class HireController {
       
 	  Integer r_num =  Integer.parseInt((String)session.getAttribute("r_num"));
 	  
+	  hservice.hireReadCount(h_num);
+	  
 	  if (r_num == null) {
           r_num = 0; // 기본값 설정
       }

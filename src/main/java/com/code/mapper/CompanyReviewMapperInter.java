@@ -25,4 +25,7 @@ public interface CompanyReviewMapperInter {
 	
 	//리뷰 중복 없도록(한 회사에 한명이 여러개의 리뷰를 적지 않게 해야함) 개수 세기
 	public int countSameCnumRid(String c_num, String r_id);
+	
+	
+	
 }

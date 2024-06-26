@@ -12,6 +12,8 @@ public interface HireServiceInter {
 	public List<HireDto> getHireList();
 	public List<HireDto> searchHire(String search_job, String search_tech, String search_region, String search_career, String search_cate);
 	public HireDto getHireData(int h_num);
+	//조회수
+	public void hireReadCount(int h_num);
 	//스크랩
 	public void scrapInsert(HireDto dto);
 	public int getRnumById(String r_id);

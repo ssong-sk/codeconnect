@@ -3,7 +3,7 @@
 <mapper namespace="com.code.mapper.RegisterMapperInter">
    <insert id="insertRegister" parameterType="RDto">
      insert into register (r_id,r_pass,r_name,r_nickname,r_birthday,r_hp,r_zipcode,r_addr,r_addr_detail,r_email,r_gender,r_gaipday) 
-     values (#{r_id },#{r_pass },#{r_name },#{r_nickname }#{r_birthday },#{r_hp },#{r_zipcode },#{r_addr },#{r_addr_detail },
+     values (#{r_id },#{r_pass },#{r_name },#{r_nickname },#{r_birthday },#{r_hp },#{r_zipcode },#{r_addr },#{r_addr_detail },
      #{r_email },#{r_gender },now())
    </insert>
    <select id="getAllRegister" resultType="RDto">
