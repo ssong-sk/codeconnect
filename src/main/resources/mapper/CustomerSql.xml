@@ -55,4 +55,9 @@
     <select id="getPagedDatasByType" parameterType="map" resultType="CustomerDto">
         select * from customer where cus_top_type = #{cus_top_type} order by cus_num desc limit #{startRow}, #{pageSize}
     </select>
+    
+    <!-- noticeform에서 삽입된 게시글의 번호를 가져오는 메서드 -->
+    <select id="getLastInsertedId" resultType="int">
+        select LAST_INSERT_ID()
+    </select>
 </mapper>

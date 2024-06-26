@@ -16,7 +16,7 @@
     body {
         font-family: 'IBM Plex Sans KR', sans-serif;
     }
-    
+
     /* 최상단 카테고리 nav */
     .nav {
         margin-top: 50px;
@@ -41,7 +41,7 @@
         padding: 0 15px;
     }
     .nav ul .active {
-        color: blue;
+        color: #2d65f2;;
     }
     .top-section {
         display: flex;
@@ -51,21 +51,27 @@
         margin: 50px auto -30px auto;
         gap: 870px;
     }
-
     /* 테이블 스타일 */
     table {
         width: 80%;
-        margin: 50px auto;
+        margin: 30px auto;
         border-collapse: collapse;
+        border-top: 2px solid #000;
     }
     th, td {
-        border: 1px solid #ddd;
-        padding: 8px;
+        padding: 15px;
         text-align: left;
     }
     td.center {
         text-align: center;
     }
+    tr:not(:first-child) td {
+        border-top: 1px solid #ddd;
+    }
+    th {
+        border-bottom: 2px solid #000;
+    }
+
     /* 페이징 스타일 */
     .pagination {
         display: flex;
@@ -100,27 +106,27 @@
 <body>
 <nav class="nav">
     <ul>
-        <a class="nav-link ${fn:contains(pageContext.request.requestURI, '/customer/noticelist') ? 'active' : ''}" href="${root}/customer/noticelist">공지사항</a>
-        <a class="nav-link ${fn:contains(pageContext.request.requestURI, '/customer/eventlist') ? 'active' : ''}" href="${root}/customer/eventlist">이벤트</a>
-        <a class="nav-link ${fn:contains(pageContext.request.requestURI, '/customer/inquirylist') ? 'active' : ''}" href="${root}/customer/inquirylist">1:1문의</a>
+        <a class="nav-link ${fn:contains(pageContext.request.requestURI, '/customer/noticelist') ? 'active' : ''}" href="${pageContext.request.contextPath}/customer/noticelist">공지사항</a>
+        <a class="nav-link ${fn:contains(pageContext.request.requestURI, '/customer/eventlist') ? 'active' : ''}" href="${pageContext.request.contextPath}/customer/eventlist">이벤트</a>
+        <a class="nav-link ${fn:contains(pageContext.request.requestURI, '/customer/inquirylist') ? 'active' : ''}" href="${pageContext.request.contextPath}/customer/inquirylist">1:1문의</a>
     </ul>
 </nav>
 
 <div class="top-section">
-    <b>총 ${totalCount}건</b>
+    <span>총 &nbsp;${totalCount}&nbsp;건</span>
     <button type="button" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/customer/noticeform'">글쓰기</button>
 </div>
-<div class="" style="max-width: 1000px; margin: 50px auto; width: 80%;">
-    <table class="table table-group-divider">
+<div style="max-width: 1000px; margin: 50px auto; width: 80%;">
+    <table class="table" style="font-size: 15px;">
          <c:forEach var="notice" items="${list}">
-             <tr class="">
-                 <td class="center" width="70" style="color: #6387FD;">${notice.cus_category}</td>
-                 <td width="500">
-                    <a href="${root}/customer/notice/${notice.cus_num}" style="text-decoration: none; color: black;">
+             <tr style="height: 60px;">
+                 <td class="center" width="70" style="color: #2d65f2; font-weight: bold; vertical-align: middle;">${notice.cus_category}</td>
+                 <td width="500" style="vertical-align: middle;">
+                    <a href="${pageContext.request.contextPath}/customer/noticedetail/${notice.cus_num}" style="text-decoration: none; color: black;">
                         ${notice.cus_title}
                     </a>
                 </td>
-                 <td class="center" width="120"><fmt:formatDate value="${notice.cus_writetime}" pattern="yyyy.MM.dd" /></td>
+                 <td class="center" width="120" style="vertical-align: middle; color: gray;"><fmt:formatDate value="${notice.cus_writetime}" pattern="yyyy.MM.dd" /></td>
              </tr>
          </c:forEach>
     </table>
