@@ -60,4 +60,13 @@ public class CustomerService implements CustomerServiceInter {
     public List<CustomerDto> getPagedDatasByType(String cus_top_type, int startRow, int pageSize) {
         return mapper.getPagedDatasByType(cus_top_type, startRow, pageSize);
     }
+
+    //noticeform에서 삽입된 게시글의 번호를 가져오는 메서드
+    @Override
+	public int getLastInsertedId() {
+		// TODO Auto-generated method stub
+		return mapper.getLastInsertedId();
+	}
+
+	
 }

@@ -24,4 +24,7 @@ public interface CustomerMapperInter {
     List<CustomerDto> getDatasByType(@Param("cus_top_type") String cus_top_type);
     int getCountByType(@Param("cus_top_type") String cus_top_type);
     List<CustomerDto> getPagedDatasByType(@Param("cus_top_type") String cus_top_type, @Param("startRow") int startRow, @Param("pageSize") int pageSize);
+    
+    //noticeform에서 삽입된 게시글의 번호를 가져오는 메서드
+    public int getLastInsertedId();
 }
