@@ -35,4 +35,9 @@ public class AllSearchService implements AllSearchServiceInter {
 		return amapper.countcintroAllSearch(searchword);
 	}
 
+	@Override
+	public List<CompanyIntroDto> cintroList() {
+		return amapper.cintroList();
+	}
+
 }
