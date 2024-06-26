@@ -9,7 +9,7 @@ import org.apache.ibatis.annotations.Param;
 import com.code.dto.CommunityDto;
 
 @Mapper
-	public interface CommunityMapperInter {
+public interface CommunityMapperInter {
 	
 	public int getTotalCount(); //전체 게시글 수 조회
 	public void insertCommunity(CommunityDto dto); //커뮤니티 글 삽입
