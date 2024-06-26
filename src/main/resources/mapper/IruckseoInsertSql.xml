@@ -474,4 +474,37 @@
      ho_num = #{ho_num}
    </update>
    
+   <!-- 스크랩 공고 하기 -->
+   <select id="getScrapHireList" parameterType="int" resultType="hdto">
+     SELECT h.*, c.c_name FROM hire h
+		JOIN company c ON h.h_c_num = c.c_num
+		JOIN scrap s ON h.h_num = s.h_num
+	 where s.r_num = #{r_num}
+   </select>
+   
+   <!-- 스크랩 공고 갯수 구하기 -->
+   <select id="getScrapCount" parameterType="int" resultType="int">
+      SELECT count(*) FROM hire h
+		JOIN company c ON h.h_c_num = c.c_num
+		JOIN scrap s ON h.h_num = s.h_num
+	 where s.r_num = #{r_num}
+   </select>
+   
+   <!-- 입사지원 공고  list 가져오기-->
+   <select id="getSupportList" parameterType="int" resultType="sdto">
+     SELECT s.*, h.h_title, c.c_name
+		FROM support s
+		JOIN hire h ON s.h_num = h.h_num
+		JOIN company c ON h.h_c_num = c.c_num
+	 WHERE s.r_num = #{r_num}
+   </select>
+   
+   <!-- 입사지원 공고 갯수 가져오기-->
+   <select id="getSupportCount" parameterType="int" resultType="int">
+     SELECT count(*)
+		FROM support s
+		JOIN hire h ON s.h_num = h.h_num
+		JOIN company c ON h.h_c_num = c.c_num
+	 WHERE s.r_num = #{r_num}
+   </select>
 </mapper>
