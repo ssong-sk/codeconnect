@@ -145,16 +145,19 @@
         width: 25%;
     }
     th:nth-child(3), td:nth-child(3) {
-        width: 20%;
+        width: 10%;
     }
     th:nth-child(4), td:nth-child(4) {
-        width: 15%;
+        width: 10%;
     }
     th:nth-child(5), td:nth-child(5) {
         width: 20%;
     }
     th:nth-child(6), td:nth-child(6) {
         width: 10%;
+    }
+    th:nth-child(7), td:nth-child(7) {
+        width: 15%;
     }
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -163,7 +166,7 @@
         function filterTable(tabType) {
             let counter = 1;
             $('tbody tr').each(function() {
-                let status = $(this).find('td:last').text();
+                let status = $(this).find('td select').val();
                 $(this).show();
                 if (tabType === '지원 접수' && status !== '지원 접수') {
                     $(this).hide();
@@ -235,6 +238,7 @@
                             <th>이력서</th>
                             <th>지원일자</th>
                             <th>합불여부</th>
+                            <th>비고</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -242,10 +246,18 @@
                             <tr>
                                 <td></td>
                                 <td>${a.h_title}</td>
-                                <td>${a.r_num}</td> <!-- 지원자 이름을 나타내는 필드로 수정 -->
-                                <td><a href="#">${a.pe_num}</a></td>
+                                <td>${a.r_name}</td> <!-- 지원자 이름을 나타내는 필드로 수정 -->
+                                <td><a href="#">${a.pe_num}</td>
                                 <td>${a.st_write}</td>
                                 <td>${a.st_result}</td>
+                                <td>
+                                    <select>
+                                        <option value="지원 접수" ${a.st_result == '지원 접수' ? 'selected' : ''}>지원 접수</option>
+                                        <option value="서류 합격" ${a.st_result == '서류 합격' ? 'selected' : ''}>서류 합격</option>
+                                        <option value="최종 합격" ${a.st_result == '최종 합격' ? 'selected' : ''}>최종 합격</option>
+                                        <option value="불합격" ${a.st_result == '불합격' ? 'selected' : ''}>불합격</option>
+                                    </select>
+                                </td>
                             </tr>
                         </c:forEach>
                     </tbody>
@@ -255,23 +267,6 @@
     </div>
 </div>
 
-<script type="text/javascript">
-$(document).ready(function() {
-    var uniqueRows = {};
 
-    $('table tr').each(function() {
-        var rowData = $(this).children('td').map(function() {
-            return $(this).text();
-        }).get().join('');
-
-        if (uniqueRows[rowData]) {
-            $(this).remove(); // 이미 존재하는 행이면 제거
-        } else {
-            uniqueRows[rowData] = true; // 행 데이터를 기록
-        }
-    });
-});
-
-</script>
 </body>
 </html>

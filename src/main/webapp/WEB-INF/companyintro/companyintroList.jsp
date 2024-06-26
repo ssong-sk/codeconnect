@@ -309,7 +309,8 @@
                               <div class="hireinfo-content">
                                   <div class="content-company">
                                   <a target="" title="${a.c_name}" href="#"><span>${a.c_name}</span></a>
-                                  &nbsp;<button class="scrap" value="${a.c_num}" aria-pressed="${fn:contains(scrapList, a.c_num) ? 'true' : 'false'}">
+                                  &nbsp;
+                                  <button class="scrap" value="${a.c_num}" aria-pressed="${fn:contains(scrapList, a.c_num) ? 'true' : 'false'}">
                                     <i id="heart" class="bi ${fn:contains(scrapList, a.c_num) ? 'bi-heart-fill' : 'bi-heart'}"></i>
                                   </button>
                                   </div>
