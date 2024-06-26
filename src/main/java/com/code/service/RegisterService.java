@@ -72,26 +72,48 @@ public class RegisterService implements RegisterServiceInter {
 		int count = mapperInter.countByNickname(r_nickname);
 		return count == 0;
 	}
-
 	
-	
-	
-	
-	
-	
-	public void updateRegister(RegisterDto dto) {
-		// TODO Auto-generated method stub
+	@Override
+	public void deleteRegister(String r_num) {
+		mapperInter.deleteRegister(r_num);
 		
 	}
 
-	public void deleteRegister(int num) {
-		// TODO Auto-generated method stub
+	@Override
+	public String getSearchName(String r_num) {
+		return mapperInter.getSearchName(r_num);
+	}
+
+	@Override
+	public String getSearchHp(String r_num) {
+		return mapperInter.getSearchHp(r_num);
+	}
+
+	
+	public void updateHp(RegisterDto dto) {
+		mapperInter.getUpdateHp(dto);
+		
+	}
+	
+	public void updateName(RegisterDto dto) {
+		mapperInter.getUpdateName(dto);
 		
 	}
 
-	public void deleteme(String num) {
-		// TODO Auto-generated method stub
+	public void updateExp(RegisterDto dto) {
+		mapperInter.getUpdateExp(dto);
 		
 	}
+	
+	public void updateJob(RegisterDto dto) {
+		mapperInter.getUpdateJob(dto);
+	}
+
+	public void updateDescription(RegisterDto dto) {
+		mapperInter.getUpdateDescription(dto);
+		
+	}
+
+
 
 }
