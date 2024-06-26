@@ -56,15 +56,38 @@ public class HireService implements HireServiceInter {
 	    mapper.scrapDelete(r_num, h_num);
 		
 	}
-
+	
 	@Override
-	public List<IruckseoInsertDto> selectIruckseo(String r_num) {
+	public List<HireDto> getUserScraps(int r_num) {
+		return mapper.getUserScraps(r_num);
+	}
+	
+	
+	//지원
+	@Override
+	public List<IruckseoInsertDto> selectIruckseo(int r_num) {
 		return mapper.selectIruckseo(r_num);
 	}
 
 	@Override
-	public String countIruckseo(String r_num) {
+	public String countIruckseo(int r_num) {
 		return mapper.countIruckseo(r_num);
 	}
+
+	//스크랩 갯수구하기
+	public int getScrapCount(int r_num) {
+		// TODO Auto-generated method stub
+		return mapper.getScrapCount(r_num);
+	}
+
+	//조회수
+	@Override
+	public void hireReadCount(int h_num) {
+		mapper.hireReadCount(h_num);
+	}
+
+
+
+	
 
 }

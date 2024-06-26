@@ -48,16 +48,19 @@
 				<aside class="Aside_aside__f0SVC">
 					<ul class="Aside_asideList__3WNyu" style="margin-bottom: 0px;">
 						<div class="SearchInput_SearchInputContainer__wGe1Q">
-							<li><button type="button" onclick="location.href=''"
-									class="Aside_searchButton__rajGo Aside_isNotMobileDevice__hTNEe"
-									aria-label="검색" aria-haspopup="dialog" aria-expanded="false"
-									aria-controls="nav_searchbar" data-attribute-id="gnb"
-									data-gnb-kind="search">
-									<span class="SvgIcon_SvgIcon__root__OHiSO"><svg
-											class="SvgIcon_SvgIcon__root__svg__ohdSc" viewBox="0 0 24 24">
-											<path fill-rule="evenodd" clip-rule="evenodd"
-												d="M9.99949 2.1001C5.63644 2.1001 2.09949 5.63705 2.09949 10.0001C2.09949 14.3631 5.63644 17.9001 9.99949 17.9001C11.8568 17.9001 13.5644 17.2592 14.9132 16.1864L19.8632 21.1365C20.2147 21.4879 20.7846 21.4879 21.136 21.1365C21.4875 20.785 21.4875 20.2151 21.136 19.8637L16.186 14.9136C17.2586 13.5648 17.8995 11.8573 17.8995 10.0001C17.8995 5.63705 14.3625 2.1001 9.99949 2.1001ZM3.89949 10.0001C3.89949 6.63116 6.63055 3.9001 9.99949 3.9001C13.3684 3.9001 16.0995 6.63116 16.0995 10.0001C16.0995 13.369 13.3684 16.1001 9.99949 16.1001C6.63055 16.1001 3.89949 13.369 3.89949 10.0001Z"></path></svg></span>
-								</button></li>
+
+
+							<li><button type="button" onclick="location.href='allsearch/main'"
+							class="Aside_searchButton__rajGo Aside_isNotMobileDevice__hTNEe"
+							   aria-label="검색" aria-haspopup="dialog" aria-expanded="false"
+							   aria-controls="nav_searchbar" data-attribute-id="gnb"
+							   data-gnb-kind="search">
+							   <span class="SvgIcon_SvgIcon__root__OHiSO"><svg
+							         class="SvgIcon_SvgIcon__root__svg__ohdSc" viewBox="0 0 24 24">
+							         <path fill-rule="evenodd" clip-rule="evenodd"
+							            d="M9.99949 2.1001C5.63644 2.1001 2.09949 5.63705 2.09949 10.0001C2.09949 14.3631 5.63644 17.9001 9.99949 17.9001C11.8568 17.9001 13.5644 17.2592 14.9132 16.1864L19.8632 21.1365C20.2147 21.4879 20.7846 21.4879 21.136 21.1365C21.4875 20.785 21.4875 20.2151 21.136 19.8637L16.186 14.9136C17.2586 13.5648 17.8995 11.8573 17.8995 10.0001C17.8995 5.63705 14.3625 2.1001 9.99949 2.1001ZM3.89949 10.0001C3.89949 6.63116 6.63055 3.9001 9.99949 3.9001C13.3684 3.9001 16.0995 6.63116 16.0995 10.0001C16.0995 13.369 13.3684 16.1001 9.99949 16.1001C6.63055 16.1001 3.89949 13.369 3.89949 10.0001Z"></path></svg></span>
+							</button></li>
+
 						</div>
 						<li class="Aside_signUpButtonContainer___0wTS"><c:if
 								test="${sessionScope.loginok==null }">

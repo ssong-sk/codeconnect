@@ -51,5 +51,7 @@ public class LoginRestController {
       //로그아웃시 제거할 세션
       session.removeAttribute("loginok");
       session.removeAttribute("myid");
+      session.removeAttribute("r_num");
+      
    }
 }

@@ -9,14 +9,15 @@ import org.apache.ibatis.annotations.Param;
 import com.code.dto.CommunityDto;
 
 @Mapper
-	public interface CommunityMapperInter {
+public interface CommunityMapperInter {
 	
 	public int getTotalCount(); //전체 게시글 수 조회
 	public void insertCommunity(CommunityDto dto); //커뮤니티 글 삽입
     List<CommunityDto> getAllDatas(); //모든 데이터 조회
     public CommunityDto getData(int com_num); //특정 게시글 데이터 조회(int 타입으로 변경)
     public void updateCommunity(CommunityDto dto); //커뮤니티 글 업데이트
-    public void deleteCommunity(String com_num); //커뮤니티 글 삭제
+    public void deleteCommunity(String com_num); //home 커뮤니티 글 삭제
+    public void deleteInterview(String com_num); //interview 커뮤니티 글 삭제
     
     //인터뷰 목록을 가져오는 메소드 추가
     List<CommunityDto> getInterviews();
@@ -73,4 +74,5 @@ import com.code.dto.CommunityDto;
     List<CommunityDto> getPostsByTypeAndSort(@Param("type") String type, @Param("sortBy") String sortBy, @Param("offset") int offset, @Param("limit") int limit);
     List<CommunityDto> getPostsByCategoryAndSort(@Param("type") String type, @Param("category") String category, @Param("sortBy") String sortBy, @Param("offset") int offset, @Param("limit") int limit);
 
+    
 }

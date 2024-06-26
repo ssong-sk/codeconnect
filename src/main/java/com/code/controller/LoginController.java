@@ -48,12 +48,14 @@ public class LoginController {
 	{
 		
 		int check=service.loginIdPassCheck(r_id, r_pass);
-			
+
 		if(check==1) {
-			
+
 			RegisterDto mdto = service.getDataById(r_id);
+
 			
-//			session.setMaxInactiveInterval(30*30*1); //30분
+  		session.setMaxInactiveInterval(30*30*1); //30분
+
 			
 			session.setAttribute("myid", r_id);
 			session.setAttribute("loginok", "yes");
