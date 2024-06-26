@@ -15,7 +15,8 @@ public class SupportDto {
 	private int pe_num;
 	private int h_num;
 	private int c_num;
-	private int st_result;
-	private int st_open;
+	private String st_result;
+	private String st_support;
+	private String st_open;
 	private Timestamp st_write;
 }
