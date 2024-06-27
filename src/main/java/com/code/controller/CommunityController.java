@@ -81,7 +81,7 @@ public class CommunityController {
         mview.addObject("qaList", qaList);
         mview.addObject("popularPosts", filteredPopularPosts); // 최근 한 주 인기 게시글 추가
 
-        mview.setViewName("community/homelist"); // "community/homelist.jsp"로 매핑
+        mview.setViewName("/community/homelist"); // "community/homelist.jsp"로 매핑
         return mview;
     }
 
@@ -199,7 +199,7 @@ public class CommunityController {
         model.addAttribute("dto", dto);
         model.addAttribute("userNickname", userNickname);
 
-        return "community/homedetail"; // "community/homedetail.jsp"로 매핑
+        return "/community/homedetail"; // "community/homedetail.jsp"로 매핑
     }
     
     
@@ -302,7 +302,7 @@ public class CommunityController {
         model.addAttribute("startPage", startPage);
         model.addAttribute("endPage", endPage);
 
-        return "community/hometotalpost";
+        return "/community/hometotalpost";
     }
     
     
@@ -327,7 +327,7 @@ public class CommunityController {
 
         model.addAttribute("popularPosts", filteredPopularPosts);
 
-        return "community/homepopularlist"; // "community/homepopularlist.jsp"로 매핑
+        return "/community/homepopularlist"; // "community/homepopularlist.jsp"로 매핑
     }
     
     
@@ -390,7 +390,7 @@ public class CommunityController {
         mview.addObject("endPage", endPage);
         mview.addObject("category", category);
         mview.addObject("categoryCountMap", categoryCountMap); // 카테고리별 글 개수 추가
-        mview.setViewName("community/interviewlist");
+        mview.setViewName("/community/interviewlist");
         return mview;
     }
 
@@ -461,7 +461,7 @@ public class CommunityController {
     	
         CommunityDto dto = service.getData(com_num);
         model.addAttribute("dto", dto);
-        return "community/interviewdetail";
+        return "/community/interviewdetail";
     }
 
     @GetMapping("/community/interviewdelete")
