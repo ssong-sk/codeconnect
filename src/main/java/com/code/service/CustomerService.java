@@ -68,5 +68,11 @@ public class CustomerService implements CustomerServiceInter {
 		return mapper.getLastInsertedId();
 	}
 
+	@Override
+	public List<CustomerDto> getEventsByCategory(String category) {
+		// TODO Auto-generated method stub
+		return mapper.getEventsByCategory(category);
+	}
+
 	
 }
