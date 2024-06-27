@@ -12,6 +12,7 @@ public class CustomerDto {
 
 	private int cus_num;
 	private String cus_user_id;
+	private String cus_top_type;
 	private String cus_category;
 	private String cus_title;
 	private String cus_content;
