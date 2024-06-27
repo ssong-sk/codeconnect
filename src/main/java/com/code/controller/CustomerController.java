@@ -45,7 +45,7 @@ public class CustomerController {
         mview.addObject("startPage", startPage);
         mview.addObject("endPage", endPage);
 
-        mview.setViewName("customer/noticelist");
+        mview.setViewName("/customer/noticelist");
 
         return mview;
     }
@@ -105,7 +105,7 @@ public class CustomerController {
         }
 
         mview.addObject("dto", dto);
-        mview.setViewName("customer/noticedetail");
+        mview.setViewName("/customer/noticedetail");
         return mview;
     }
     
@@ -201,7 +201,7 @@ public class CustomerController {
         mview.addObject("closedEvents", closedEvents);
         mview.addObject("announcementEvents", announcementEvents);
 
-        mview.setViewName("customer/eventlist");
+        mview.setViewName("/customer/eventlist");
 
         return mview;
     }
@@ -344,7 +344,7 @@ public class CustomerController {
         mview.addObject("startPage", startPage);
         mview.addObject("endPage", endPage);
 
-        mview.setViewName("customer/inquirylist");
+        mview.setViewName("/customer/inquirylist");
 
         return mview;
     }
