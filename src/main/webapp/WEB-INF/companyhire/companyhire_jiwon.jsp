@@ -290,13 +290,14 @@ th:nth-child(7), td:nth-child(7) {
 									<td>${a.h_title}</td>
 									<td>${a.r_name}</td>
 									<td>
-    <form action="/company/handleClick" method="POST" target="_blank" style="display: inline;">
-        <input type="hidden" name="pe_num" value="${a.pe_num}">
-        <input type="hidden" name="r_num" value="${a.r_num}">
-        <input type="hidden" name="st_num" value="${a.st_num}">
-        <button type="submit" class="btn btn-outline-primary btn-sm">확인</button>
-    </form>
-</td>
+										<form action="/company/handleClick" method="POST"
+											target="_blank" style="display: inline;">
+											<input type="hidden" name="pe_num" value="${a.pe_num}">
+											<input type="hidden" name="r_num" value="${a.r_num}">
+											<input type="hidden" name="st_num" value="${a.st_num}">
+											<button type="submit" class="btn btn-outline-primary btn-sm">확인</button>
+										</form>
+									</td>
 
 
 									<td>${a.st_write}</td>
@@ -346,8 +347,6 @@ th:nth-child(7), td:nth-child(7) {
 				}
 			});
 		}
-
-		
 	</script>
 
 

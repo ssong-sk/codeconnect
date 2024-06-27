@@ -65,7 +65,7 @@ public class CompanyController {
 	//이력서 service
 	@Autowired
 	IruckseoInsertService irservice;
-	
+
 	//이력서 보여주기용 일반 회원 service가져오기
 	@Autowired
 	RegisterService reservice;
@@ -485,77 +485,75 @@ public class CompanyController {
 	// 기업의 '전체 지원자 관리' 페이지에서 사용할 용도의 update문 : st_open을 '열람'으로 update하기
 	@PostMapping("/company/updateSupportOpen")
 	public void updateSupportOpen(@RequestBody Map<String, String> requestData) {
-	    String st_num = requestData.get("st_num");
-	    stservice.updateSupportOpen(st_num);
+		String st_num = requestData.get("st_num");
+		stservice.updateSupportOpen(st_num);
 	}
-	
-	//임시
+
+	//지원자 이력서 확인할 때
 	@PostMapping("/company/handleClick")
 	public void handleClick(@RequestParam("pe_num") String pe_num,
-	                        @RequestParam("r_num") String r_num,
-	                        @RequestParam("st_num") String st_num,
-	                        HttpServletResponse response) throws IOException {
-	    // st_open 값을 '열람'으로 업데이트
-	    stservice.updateSupportOpen(st_num);
+			@RequestParam("r_num") String r_num,
+			@RequestParam("st_num") String st_num,
+			HttpServletResponse response) throws IOException {
+		// st_open 값을 '열람'으로 업데이트
+		stservice.updateSupportOpen(st_num);
 
-	    // 기존 a 태그의 기능 수행
-	    String url = "/resumehome/iruckseolist1?pe_num=" + pe_num + "&r_num=" + r_num;
-	    response.sendRedirect(url);
+		// 기존 a 태그의 기능 수행
+		String url = "/resumehome/iruckseolist1?pe_num=" + pe_num + "&r_num=" + r_num;
+		response.sendRedirect(url);
 	}
-
-
 
 
 	//이력서 전체 리스트 띄우기
-		@GetMapping("/resumehome/iruckseolist1")
-		public ModelAndView iruckseolist(@RequestParam int pe_num ,@RequestParam String r_num) {
+	@GetMapping("/resumehome/iruckseolist1")
+	public ModelAndView iruckseolist(@RequestParam int pe_num ,@RequestParam String r_num) {
 
-			ModelAndView mview = new ModelAndView();
-			//IruckseoInsertDto irdto = new IruckseoInsertDto();
-			//int r_num =  Integer.parseInt(r_num);
+		ModelAndView mview = new ModelAndView();
+		//IruckseoInsertDto irdto = new IruckseoInsertDto();
+		//int r_num =  Integer.parseInt(r_num);
 
-			// 회원정보 조회
-	        RegisterDto rdto =reservice.getDataByNum(r_num);
+		// 회원정보 조회
+		RegisterDto rdto =reservice.getDataByNum(r_num);
 
-			//인적사항
-			IruckseoInsertDto pedto = irservice.Personallist(pe_num);
+		//인적사항
+		IruckseoInsertDto pedto = irservice.Personallist(pe_num);
 
-			//학력
-			List<IruckseoSchoolDto> sclist = irservice.Schoollist(pe_num);
+		//학력
+		List<IruckseoSchoolDto> sclist = irservice.Schoollist(pe_num);
 
-			//경력
-			List<IruckseoCareerDto> calist = irservice.Careerlist(pe_num);
+		//경력
+		List<IruckseoCareerDto> calist = irservice.Careerlist(pe_num);
 
-			//경험/활동/교육
-			List<IruckseoActibityDto> aclist = irservice.Actibitylist(pe_num);
+		//경험/활동/교육
+		List<IruckseoActibityDto> aclist = irservice.Actibitylist(pe_num);
 
-			//자격/어학/수상
-			List<IruckseoSpecDto> splist = irservice.Speclist(pe_num);
+		//자격/어학/수상
+		List<IruckseoSpecDto> splist = irservice.Speclist(pe_num);
 
-			//포트폴리오
-			List<IruckseoPortfolioDto> polist = irservice.Portfoliolist(pe_num);
+		//포트폴리오
+		List<IruckseoPortfolioDto> polist = irservice.Portfoliolist(pe_num);
 
-			//자기소개서
-			List<IruckseoSelfDto> selist = irservice.Selflist(pe_num);
+		//자기소개서
+		List<IruckseoSelfDto> selist = irservice.Selflist(pe_num);
 
-			//희망근무
-			IruckseoHopeDto hodto = irservice.Hopelist(pe_num);
+		//희망근무
+		IruckseoHopeDto hodto = irservice.Hopelist(pe_num);
 
-			mview.addObject("pedto", pedto);
-			mview.addObject("rdto", rdto);
-			mview.addObject("sclist", sclist);
-			mview.addObject("calist", calist);
-			mview.addObject("aclist", aclist);
-			mview.addObject("splist", splist);
-			mview.addObject("polist", polist);
-			mview.addObject("selist", selist);
-			mview.addObject("hodto", hodto);
+		mview.addObject("pedto", pedto);
+		mview.addObject("rdto", rdto);
+		mview.addObject("sclist", sclist);
+		mview.addObject("calist", calist);
+		mview.addObject("aclist", aclist);
+		mview.addObject("splist", splist);
+		mview.addObject("polist", polist);
+		mview.addObject("selist", selist);
+		mview.addObject("hodto", hodto);
 
-			//포워드: 일부러 맨앞의 /빼고 함.
-			mview.setViewName("resumehome/iruckseolist");
+		//포워드: 일부러 맨앞의 /빼고 함.
+		mview.setViewName("resumehome/iruckseolist");
 
-			return mview;
-		}
+		return mview;
+	}
 
 
 

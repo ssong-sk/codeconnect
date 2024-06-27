@@ -30,7 +30,7 @@
     JOIN
         register r ON s.r_num = r.r_num
     WHERE
-        s.c_num = #{c_num};
+        s.c_num = #{c_num} and s.st_support="지원완료";
 </select>
 
 <!-- 기업의 '전체 지원자 관리'페이지에서 사용할 용도의 update문 : st_result를 update하기 -->
