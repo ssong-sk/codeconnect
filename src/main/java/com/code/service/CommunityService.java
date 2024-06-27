@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.code.dto.CommunityDto;
+import com.code.dto.CompanyIntroDto;
 import com.code.mapper.CommunityMapperInter;
 import org.springframework.context.annotation.Primary;
 
@@ -199,4 +200,9 @@ public class CommunityService implements CommunityServiceInter {
     public List<CommunityDto> getPostsByCategoryAndSort(String type, String category, String sortBy, int offset, int limit) {
         return mapper.getPostsByCategoryAndSort(type, category, sortBy, offset, limit);
     }
+
+	@Override
+	public List<CommunityDto> commuAllSearch(String searchword) {
+		return mapper.commuAllSearch(searchword);
+	}
 }
