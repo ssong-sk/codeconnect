@@ -225,7 +225,6 @@ public class CompanyIntroController {
         model.addAttribute("avgHeads", avgHeads);
         model.addAttribute("avgAll", avgAll);
         
-
         return "/companyintro/companyintroshow2"; // 파라미터를 모델로 전달하고 JSP로 이동
 
     }
@@ -251,7 +250,7 @@ public class CompanyIntroController {
         model.addAttribute("clist", clist);
 
         // 로그 추가
-        System.out.println("Company Intro List: " + clist);
+        //System.out.println("Company Intro List: " + clist);
 
         return "/companyintro/companyintroList";
     }

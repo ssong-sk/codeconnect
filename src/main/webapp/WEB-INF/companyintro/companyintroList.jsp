@@ -313,11 +313,17 @@ svg {
                                     <div class="content-company">
                                         <a target="" title="${a.c_name}" href="#"><span>${a.c_name}</span></a>
                                         &nbsp;
+                                        
+                                        <!-- 일반 회원 로그인 상태일 때만 스크랩 기능 보이도록 해야한다. -->
+                                        <c:if test="${sessionScope.loginok!=null }">
                                         <button class="scrap" value="${a.c_num}"
                                             aria-pressed="${fn:contains(scrapList, a.c_num) ? 'true' : 'false'}">
                                             <i id="heart"
                                                 class="bi ${fn:contains(scrapList, a.c_num) ? 'bi-heart-fill' : 'bi-heart'}"></i>
                                         </button>
+                                        </c:if>
+                                        
+                                        
                                     </div>
                                     <a target="_self" title="${a.c_name}"
                                         href="/company/showimsiCom?c_num=${a.c_num}">
