@@ -30,38 +30,6 @@
 	margin-bottom: 100px;
 }
 
-.main-cate {
-	margin-top: 35px;
-}
-
-.main-cate ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    display: flex; /* Flexbox 사용 */
-    gap: 20px; /* 항목 사이 간격 설정 */
-}
-.main-cate ul li {
-    display: inline-block; /* 필요한 경우 */
-}
-.main-cate ul li a {
-    text-decoration: none;
-    color: #000;
-    padding: 10px 15px;
-    background-color: #f2f2f2;
-    border-radius: 5px;
-}
-.main-cate ul li a:hover {
-    background-color: #ddd;
-}
-.dashboard {
-    padding: 20px;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    margin-top: 20px;
-}
-
 .menu_container:before {
     width: 90%;
 }
@@ -146,6 +114,14 @@
 a, a:active, a:hover, a:visited {
     color: inherit;
 }
+
+.dashboard {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-top: 20px;
+}
 </style>
 </head>
 <body>
@@ -193,6 +169,7 @@ a, a:active, a:hover, a:visited {
 	</div>
 </div>
 </body>
+<!-- 메뉴바 변경 스크립트 -->
 <script type="text/javascript">
 	$("a.menu_item").click(function() {
 		$("a.menu_item").attr('aria-selected', 'false');

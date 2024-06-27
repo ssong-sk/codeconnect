@@ -54,53 +54,50 @@
   }
   
   /*오른쪽 스타일*/
-  .
-  .mylist-area {
-      margin-left: 15%;/* 메뉴바와의 간격 */
-  }
-  
-  .mylist-img {
-    border: 0.5px solid gray;
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-  }
-  
-  .mylist-state {
-     display: flex; /* Flexbox 적용 */
-      justify-content: space-around; /* 항목들을 균등하게 분배 */
-      margin-top: 5%;
-  }
-  
-  /* 추천 공고 섹션 스타일 */
-  .mylist-chu {
-      margin-top: 5%; /* 상단 여백 */
-      padding: 10px 0; /* 상하 여백 */
-  }
-  
-  .chu-img {
-    width: 200px;
-    height: 230px;
-    border: 0.5px solid gray;
-    border-radius: 10px;
-  }
-  
-  .mylist-chuimg {
-    margin-top: 1%;
-  }
-  
-  /*이력서 현황*/
-  .condition-total {
-    margin-top: 4%;
-  }
-  
-  .condition-notice {
-    width: 100%;
-    height: 130px;
-    background-color: #F4F6FA;
-    font-size: 0.8em;
-  }
 
+  .list-item {
+  display: flex;
+  justify-content: space-between; /* 좌우 섹션을 공간에 따라 나눕니다. */
+  align-items: center; /* 좌우 섹션을 수직으로 가운데 정렬합니다. */
+  padding: 10px 0; /* 항목 간의 간격을 추가합니다. */
+}
+
+.left-section {
+  display: flex;
+  align-items: center; /* 수평 정렬에서 중앙에 배치합니다. */
+}
+
+.left-section > div {
+  margin-right: 45px; /* 요소 간의 간격을 추가합니다. */
+}
+
+.left-section .title {
+  font-size: 1.2em;
+}
+
+.right-section {
+  display: flex;
+  flex-direction: column; /* 버튼과 마감일을 수직으로 정렬합니다. */
+  align-items: center; /* 요소들을 수평 중앙에 정렬합니다. */
+  margin-top: 2%;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 버튼과 마감일을 수평 중앙에 정렬합니다. */
+}
+
+.button-container .btn {
+  width: 150px;
+}
+
+.button-container .deadline {
+  margin-top: 5px; /* 버튼과 마감일 사이에 간격을 추가합니다. */
+  font-size: 0.8em;
+  color: gray;
+  text-align: center; /* 마감일을 중앙 정렬합니다. */
+}
 </style>
 </head>
 <body>
@@ -109,7 +106,7 @@
             <div class="center">
               <div class="all-form">
 <!-- 왼쪽 메뉴바------------------------------------------------------------------------------------------------------- -->
-              <div class="leftmenubar" style="width: 20%;">
+              <div class="leftmenubar" style="width: 20%; margin-bottom: 10%;">
                   <ul class="leftmenu">
 				    <li>
 				      <div class="menu-home">
@@ -172,15 +169,13 @@
 	              
 	                <span style="font-size: 1.2em;"><b>스크랩 공고</b></span>
 	                
-	                <div class="condition-total">
+	                <div class="condition-total" style="margin-top: 5%;">
 	                  <table style="width: 100%;">
-		                  <tr>
-		                    <td>
-		                      <input type="checkbox"><span style="font-size: 0.8em;">&nbsp;전체선택</span>
-		                      <hr>
-		                    </td>
-		                  </tr>
-		                  
+                          <div>
+                             <input type="checkbox" id="allselect"><span style="font-size: 0.8em;">&nbsp;전체선택</span>
+                          </div>
+		                  <hr>
+
                           <!-- 스크랩 공고가 없는 경우 -->
 			              <c:if test="${totalCount==0 }">
 			                <tr>
@@ -190,34 +185,97 @@
 			              </c:if>
 			              
 			              <!-- 스크랩 공고가 있는 경우 -->
-			              <c:if test="${totalCount>0 }">
-			                <c:forEach var="hi" items="${hilist }">
-			                   <tr>
-			                     <td>
-			                       <input type="checkbox">
-			                     </td>
-			                     <td>회사명</td>
-			                     <td>진행중 공고</td>
-			                   </tr>
-			                </c:forEach>
-			              </c:if>
+			          
+			                <c:forEach var="sh" items="${shlist}">
+							  <div class="list-item">
+							    <div class="left-section">
+							      <div><input type="checkbox" class="oneselect" name="oneselect" data-s-num="${sh.s_num}"></div>
+							      <div>
+							        <div><a href="/company/showimsiCom?c_num=${sh.c_num }">${sh.c_name }&nbsp;</a><i class="bi bi-heart"></i></div><br>
+							        <div class="title"><a href="/hire/detail?h_num=${sh.h_num }"><b>[${sh.c_name }]&nbsp;&nbsp;&nbsp;${sh.h_title }</b></a></div>
+							        <div class="info" style="font-size: 0.8em; color: gray;">
+							          ${sh.h_grade}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							          <c:out value="${sh.h_location.length() > 7 ? sh.h_location.substring(0, 7) : sh.h_location}" />
+							        </div>
+							      </div>
+							    </div>
+							    <div class="right-section">
+							      <div class="button-container">
+							        <button class="btn btn-primary" style="width: 130px;"
+							        onclick="location.href='/hire/detail?h_num=${sh.h_num }'">지원하러 가기</button>
+							      </div>
+							      <div class="deadline" style="font-size: 0.8em; color: gray;">~${sh.h_deadline}</div>
+							    </div>
+							  </div>
+							  <hr>
+							</c:forEach>
+							
+							<div>
+							  <button id="deleteBtn" class="btn btn-outline-primary deleteBtn" style="width: 100px; float: right;" 
+							  s_num="${sh.s_num}">삭제</button>
+							</div>
 		              </table>
 		            </div>
 
-		            <div class="condition-notice">
-		              <div style="margin: 30px 30px;">
-			              <span><i class="bi bi-exclamation-circle"></i>&nbsp;&nbsp;<b>유의사항</b></span><br>
-			              <p>- 이력서는 최대 10개까지 등록 가능합니다.</p>
-			              <p>- '입사지원 내역'건수는 최근 1년간 내역에 대해 확인 가능합니다.</p>
-			              <p>- 수정, 삭제 기능은 이력서 우측 버튼을 누르면 확인하실 수 있습니다.(이력서는 부분 삭제 불가)</p>
-		              </div>
-		            </div>
+		           
 		            
 	              </div>   
               </div>
             </div>
         </div>
     </div>    
+    
+    <script type="text/javascript">
+	    
+		$(document).ready(function() {
+			//체크박스 전체선택 체크 및 해제
+			$("#allselect").click(function() {
+				
+				var allcheck = $(this).is(":checked");
+	
+					$(".oneselect").prop('checked', allcheck);
+
+			});
+			
+			//삭제하기
+			$("#deleteBtn").click(function() {
+				//선택된 항목 내용 수집
+				var chbox = $("input[name='oneselect']:checked");
+	        	 console.log("선택된 체크박스 개수:", chbox.length);
+	            
+	            if (chbox.length === 0) {
+	                alert("지원 취소할 항목을 선택해주세요.");
+	                return;
+	            }
+	
+	            var s_num_array = [];
+	            chbox.each(function () {
+	            	s_num_array.push($(this).data("s-num"));
+	            })
+	            console.log("전송할 s_num 배열:", s_num_array);
+			    //alert(s_num_array);
+			   //확인 창 띄우기
+			   var checkConfirm = confirm("정말 삭제하시겠습니까?");
+			   if(checkConfirm) {
+				   
+				   $.ajax ({
+					   
+					   type: "post",
+		               url: "scrapdelete",  // 실제 업데이트를 처리할 URL
+		               traditional: true,  // 배열 형태의 데이터 전송을 위해 필요
+		               data: { "s_num": s_num_array },  // 배열 형태로 데이터 전송
+           			   success : function (response) {
+						
+           				   alert("삭제가 완료되었습니다");
+           				   location.reload();
+					 }
+           			   
+				   })
+			   }
+			})
+		})
+    
+    </script>
     
 </body>
 </html>

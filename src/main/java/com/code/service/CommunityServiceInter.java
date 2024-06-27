@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.code.dto.CommunityDto;
+import com.code.dto.CompanyIntroDto;
 
 public interface CommunityServiceInter {
     int getTotalCount();
@@ -65,4 +66,6 @@ public interface CommunityServiceInter {
     List<CommunityDto> getPostsByTypeAndSort(String type, String sortBy, int offset, int limit);
     List<CommunityDto> getPostsByCategoryAndSort(String type, String category, String sortBy, int offset, int limit);
     
+    //검색기능
+	public List<CommunityDto> commuAllSearch(String searchword);
 }

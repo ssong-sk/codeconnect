@@ -28,6 +28,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.code.dto.CommunityDto;
+import com.code.dto.CompanyIntroDto;
 import com.code.dto.RegisterDto;
 import com.code.mapper.RegisterMapperInter;
 import com.code.service.CommunityServiceInter;
@@ -514,5 +515,14 @@ public class CommunityController {
         return "redirect:/community/interviewdetail?com_num=" + dto.getCom_num();
     }
 
+    //검색 기능
+    @ResponseBody
+	@GetMapping("/community/commuAllSearch")
+	public List<CommunityDto> commuAllSearch(String searchword) {
+      
+		List<CommunityDto> comlist = service.commuAllSearch(searchword);
+      
+		return comlist;
+	}
 
 }

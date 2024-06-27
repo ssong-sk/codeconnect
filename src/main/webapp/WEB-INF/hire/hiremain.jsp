@@ -27,7 +27,7 @@
 }
 
 #wrap {
-	margin-top: 100px; /* 헤더 들어갈 부분 */
+	margin-top: 45px; /* 헤더 들어갈 부분 */
 	font-family: IBM Plex Sans KR;
 }
 

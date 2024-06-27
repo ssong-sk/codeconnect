@@ -233,6 +233,7 @@
             </div>
             <div class="table-responsive">
                 <table class="table table-hover">
+                <c:forEach var="a" items="${clist}">
                     <thead>
                         <tr>
                             <th>번호</th>
@@ -258,6 +259,7 @@
                             <td>2024-06-09</td>
                         </tr>
                     </tbody>
+                    </c:forEach>
                 </table>
             </div>
         </div>

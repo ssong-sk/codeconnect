@@ -58,3 +58,4 @@
     	select * from customer where cus_category = #{category} and cus_top_type = 'event' 
     </select>
 </mapper>
+

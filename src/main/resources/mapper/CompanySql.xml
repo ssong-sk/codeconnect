@@ -109,7 +109,7 @@
 
 	<select id="getCompanyUserScraps" parameterType="int"
 		resultType="CompanyDto">
-		SELECT c_num FROM scrap WHERE r_num = #{r_num}
+		SELECT c_num FROM scrap WHERE r_num = #{r_num} AND c_num IS NOT NULL
 	</select>
 
 	<select id="getCompanyRnumById" parameterType="String"

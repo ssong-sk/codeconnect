@@ -1,10 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.code.mapper.SupportMapperInter">
-<!-- 이력서 지원하기 -->
-<insert id="insertSupport" parameterType="sdto">
-	insert into support value(null, #{r_num}, #{pe_num}, #{h_num}, #{c_num}, 
-	"지원 접수", "지원 완료", "미열람", now())
-</insert>
+	<!-- 이력서 지원하기 -->
+	<insert id="insertSupport" parameterType="sdto">
+		insert into support
+		value(null, #{r_num}, #{pe_num}, #{h_num}, #{c_num},
+		"지원 접수", "지원 완료",
+		"미열람", now())
+	</insert>
+
+	<!-- 기업의 '전체 지원자 관리'페이지에서 사용할 용도의 select문 c_num, 채용공고 테이블(hire)과 join -->
+	<select id="selectSupportByCnum" resultType="sdto" parameterType="String">
+    SELECT 
+        DISTINCT s.st_num, -- Assuming st_num is the unique identifier in the support table
+        s.r_num,
+        s.pe_num,
+        s.h_num,
+        s.c_num,
+        s.st_result,
+        s.st_support,
+        s.st_open,
+        s.st_write,
+        h.h_title,
+        r.r_name
+    FROM
+        support s
+    JOIN
+        hire h ON s.h_num = h.h_num
+    JOIN
+        register r ON s.r_num = r.r_num
+    WHERE
+        s.c_num = #{c_num};
+</select>
+
+<!-- 기업의 '전체 지원자 관리'페이지에서 사용할 용도의 update문 : st_result를 update하기 -->
+<update id="updateSupportResult">
+    update support set st_result=#{st_result} where st_num=#{st_num}
+</update>
+
+
 
 </mapper>

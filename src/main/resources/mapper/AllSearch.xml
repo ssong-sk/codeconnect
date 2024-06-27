@@ -20,7 +20,6 @@
         OR h.h_grade LIKE CONCAT('%', #{searchword}, '%')
         OR h.h_location LIKE CONCAT('%', #{searchword}, '%')
         OR h.h_title LIKE CONCAT('%', #{searchword}, '%')
-        OR h.h_subject LIKE CONCAT('%', #{searchword}, '%')
         OR h.h_major LIKE CONCAT('%', #{searchword}, '%')
         OR h.h_require LIKE CONCAT('%', #{searchword}, '%')
         OR h.h_preference LIKE CONCAT('%', #{searchword}, '%')
@@ -72,6 +71,86 @@
         OR c.c_postnum LIKE CONCAT('%', #{searchword}, '%')
         )
     </if>
+</select>
+
+<select id="counthireAllSearch" parameterType="map" resultType="int">
+    SELECT COUNT(*) AS total_count
+    FROM hire h
+    JOIN company c ON h.h_c_num = c.c_num 
+    JOIN company_intro ci ON h.h_ci_num = ci.ci_num  
+    <where>
+        <if test="searchword != null and searchword != ''">
+            AND (
+            h.h_num LIKE CONCAT('%', #{searchword}, '%')
+            OR h.h_c_num LIKE CONCAT('%', #{searchword}, '%')
+            OR h.h_ci_num LIKE CONCAT('%', #{searchword}, '%')
+            OR h.h_category LIKE CONCAT('%', #{searchword}, '%')
+            OR h.h_job LIKE CONCAT('%', #{searchword}, '%')
+            OR h.h_tech LIKE CONCAT('%', #{searchword}, '%')
+            OR h.h_career LIKE CONCAT('%', #{searchword}, '%')
+            OR h.h_grade LIKE CONCAT('%', #{searchword}, '%')
+            OR h.h_location LIKE CONCAT('%', #{searchword}, '%')
+            OR h.h_title LIKE CONCAT('%', #{searchword}, '%')
+            OR h.h_major LIKE CONCAT('%', #{searchword}, '%')
+            OR h.h_require LIKE CONCAT('%', #{searchword}, '%')
+            OR h.h_preference LIKE CONCAT('%', #{searchword}, '%')
+            OR h.h_benefit LIKE CONCAT('%', #{searchword}, '%')
+            OR h.h_process LIKE CONCAT('%', #{searchword}, '%')
+            OR h.h_salary LIKE CONCAT('%', #{searchword}, '%')
+            OR h.h_c_id LIKE CONCAT('%', #{searchword}, '%')
+            OR h.h_deadline LIKE CONCAT('%', #{searchword}, '%')
+            OR h.h_writeday LIKE CONCAT('%', #{searchword}, '%')
+            OR h.h_count LIKE CONCAT('%', #{searchword}, '%')
+            OR c.c_name LIKE CONCAT('%', #{searchword}, '%')
+            OR ci.ci_image LIKE CONCAT('%', #{searchword}, '%')
+            )
+        </if>
+    </where>
+</select>
+
+<select id="countcintroAllSearch" parameterType="map" resultType="int">
+	SELECT COUNT(*) AS total_count 
+	FROM company_intro ci
+	JOIN company c ON ci.c_num = c.c_num
+    <where> 
+	    <if test="searchword != null and searchword != ''">
+	        AND (
+	        ci.ci_num LIKE CONCAT('%', #{searchword}, '%')
+	        OR ci.c_num LIKE CONCAT('%', #{searchword}, '%')
+	        OR ci.ci_logo LIKE CONCAT('%', #{searchword}, '%')
+	        OR ci.ci_image LIKE CONCAT('%', #{searchword}, '%')
+	        OR ci.ci_soge LIKE CONCAT('%', #{searchword}, '%')
+	        OR ci.ci_link LIKE CONCAT('%', #{searchword}, '%')
+	        OR DATE_FORMAT(ci.ci_writeday, '%Y-%m-%d %H:%i:%s') LIKE CONCAT('%', #{searchword}, '%')
+	        OR c.c_id LIKE CONCAT('%', #{searchword}, '%')
+	        OR c.c_pass LIKE CONCAT('%', #{searchword}, '%')
+	        OR c.c_name LIKE CONCAT('%', #{searchword}, '%')
+	        OR c.c_reginum LIKE CONCAT('%', #{searchword}, '%')
+	        OR c.c_phone LIKE CONCAT('%', #{searchword}, '%')
+	        OR c.c_local LIKE CONCAT('%', #{searchword}, '%')
+	        OR c.c_category LIKE CONCAT('%', #{searchword}, '%')
+	        OR c.c_peoplesu LIKE CONCAT('%', #{searchword}, '%')
+	        OR c.c_insa_email LIKE CONCAT('%', #{searchword}, '%')
+	        OR c.c_insa_phone LIKE CONCAT('%', #{searchword}, '%')
+	        OR c.c_addr LIKE CONCAT('%', #{searchword}, '%')
+	        OR c.c_money LIKE CONCAT('%', #{searchword}, '%')
+	        OR c.c_birthyear LIKE CONCAT('%', #{searchword}, '%')
+	        OR c.c_regi_file LIKE CONCAT('%', #{searchword}, '%')
+	        OR c.c_salary LIKE CONCAT('%', #{searchword}, '%')
+	        OR DATE_FORMAT(c.c_gaipday, '%Y-%m-%d %H:%i:%s') LIKE CONCAT('%', #{searchword}, '%')
+	        OR DATE_FORMAT(c.c_updateday, '%Y-%m-%d %H:%i:%s') LIKE CONCAT('%', #{searchword}, '%')
+	        OR c.c_addrdetail LIKE CONCAT('%', #{searchword}, '%')
+	        OR c.c_postnum LIKE CONCAT('%', #{searchword}, '%')
+	        )
+	    </if>
+    </where>
+</select>
+
+<select id="cintroList" resultType="CompanyIntroDto">
+	select ci.*, c.*
+    from company_intro ci
+    join company c
+    on ci.c_num = c.c_num
 </select>
 
 </mapper>

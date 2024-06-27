@@ -191,8 +191,41 @@ public class CompanyIntroController {
         model.addAttribute("dto", dto);
 
         model.addAttribute("cdto", cdto);
+        
+        
+        List<CompanyReviewDto> rlist = crservice.CompanyReviewList(c_num);
+        
+        
+        //별점
+        // Calculate average ratings
+        double avgHappy = 0, avgEnvironment = 0, avgCulture = 0, avgPossibility = 0, avgHeads = 0, avgAll=0;
+        int totalReviews = rlist.size();
+        if (totalReviews > 0) {
+            for (CompanyReviewDto review : rlist) {
+                avgHappy += review.getCr_happy();
+                avgEnvironment += review.getCr_environment();
+                avgCulture += review.getCr_culture();
+                avgPossibility += review.getCr_possibility();
+                avgHeads += review.getCr_heads();
+               
+            }
+            avgHappy /= totalReviews;
+            avgEnvironment /= totalReviews;
+            avgCulture /= totalReviews;
+            avgPossibility /= totalReviews;
+            avgHeads /= totalReviews;
+            avgAll = (avgHappy + avgEnvironment + avgCulture + avgPossibility + avgHeads)/5.0;
+        }
 
-        return "/companyintro/companyintroshow"; // 파라미터를 모델로 전달하고 JSP로 이동
+        // Add average ratings to the model
+        model.addAttribute("avgHappy", avgHappy);
+        model.addAttribute("avgEnvironment", avgEnvironment);
+        model.addAttribute("avgCulture", avgCulture);
+        model.addAttribute("avgPossibility", avgPossibility);
+        model.addAttribute("avgHeads", avgHeads);
+        model.addAttribute("avgAll", avgAll);
+        
+        return "/companyintro/companyintroshow2"; // 파라미터를 모델로 전달하고 JSP로 이동
 
     }
 
@@ -215,6 +248,10 @@ public class CompanyIntroController {
             model.addAttribute("scrapList", scrapIds);
         }
         model.addAttribute("clist", clist);
+
+        // 로그 추가
+        //System.out.println("Company Intro List: " + clist);
+
         return "/companyintro/companyintroList";
     }
 
@@ -233,6 +270,7 @@ public class CompanyIntroController {
         model.addAttribute("cdto", cdto);
         model.addAttribute("rlist", rlist);
 
+        //별점
         // Calculate average ratings
         double avgHappy = 0, avgEnvironment = 0, avgCulture = 0, avgPossibility = 0, avgHeads = 0, avgAll=0;
         int totalReviews = rlist.size();

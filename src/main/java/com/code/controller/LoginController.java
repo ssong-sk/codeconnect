@@ -57,14 +57,16 @@ public class LoginController {
 			if ("manager".equals(r_id)) {
 				return "redirect:/manager/main";
 		    }
+
 			
-			
-			session.setMaxInactiveInterval(60*60*8); //8시간
+  		session.setMaxInactiveInterval(30*30*1); //30분
+
 			
 			session.setAttribute("myid", r_id);
 			session.setAttribute("loginok", "yes");
 			session.setAttribute("saveok", cbsave);
 			
+			session.setAttribute("r_num", mdto.getR_num());
 			session.setAttribute("r_name",mdto.getR_name());
 			session.setAttribute("r_nickname", mdto.getR_nickname());
 			session.setAttribute("r_birthday", mdto.getR_birthday());
@@ -75,8 +77,11 @@ public class LoginController {
 			session.setAttribute("r_email",mdto.getR_email());
 			session.setAttribute("r_gender", mdto.getR_gender());
 			session.setAttribute("r_num", mdto.getR_num());
+			session.setAttribute("r_job", mdto.getR_job());
+			session.setAttribute("r_sogae", mdto.getR_sogae());
+			session.setAttribute("r_exp", mdto.getR_exp());
 			
-			return "/layout/main";
+			return "redirect:/";
 			
 		}else {
 			return "/member/passfail";
@@ -90,7 +95,7 @@ public class LoginController {
 	{
 		session.removeAttribute("loginok");
 		session.removeAttribute("userNickname"); //
-		return "redirect:main";
+		return "redirect:/";
 	}
 	
 	

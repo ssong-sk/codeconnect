@@ -7,14 +7,36 @@
         values
         (#{c_num}, #{ci_logo}, #{ci_image}, #{ci_link}, #{ci_soge},now())
     </insert>
-    
-    <!-- 기업 회원 정보 + 기업 소개문 전부 가져오기 : join -->
     <select id="getAllCompanyIntros" resultType="CompanyIntroDto">
-    SELECT ci.*, c.*
-    FROM company_intro ci
-    JOIN company c ON ci.c_num = c.c_num
-    ORDER BY ci.ci_num
-</select>
+        select 
+            ci.*, 
+            c.c_id, 
+            c.c_pass, 
+            c.c_name, 
+            c.c_reginum, 
+            c.c_local, 
+            c.c_category, 
+            c.c_peoplesu, 
+            c.c_insa_email, 
+            c.c_insa_phone, 
+            c.c_addr, 
+            c.c_money, 
+            c.c_birthyear, 
+            c.c_regi_file, 
+            c.c_salary, 
+            c.c_gaipday, 
+            c.c_phone, 
+            c.c_updateday,
+            c.c_addrdetail,
+            c.c_postnum,
+            c.c_size
+        from 
+            company_intro ci
+        join 
+            company c
+        on 
+            ci.c_num = c.c_num
+    </select>
 
    
     <select id="getDataByNum" parameterType="String" resultType="CompanyIntroDto">
@@ -38,35 +60,38 @@
     </select>
     
     
-    <select id="showOneCompanyIntro">
-	    select 
-	        ci.*, 
-	        c.c_id, 
-	        c.c_pass, 
-	        c.c_name, 
-	        c.c_reginum, 
-	        c.c_local, 
-	        c.c_category, 
-	        c.c_peoplesu, 
-	        c.c_insa_email, 
-	        c.c_insa_phone, 
-	        c.c_addr, 
-	        c.c_money, 
-	        c.c_birthyear, 
-	        c.c_regi_file, 
-	        c.c_salary, 
-	        c.c_gaipday, 
-	        c.c_phone, 
-	        c.c_updateday
-	    from 
-	        company_intro ci
-	    join 
-	        company c
-	    on 
-	        ci.c_num = c.c_num
-	    where 
-	        ci.c_num = #{c_num}
-	</select>
+  <select id="showOneCompanyIntro" parameterType="String" resultType="CompanyIntroDto">
+        select 
+            ci.*, 
+            c.c_id, 
+            c.c_pass, 
+            c.c_name, 
+            c.c_reginum, 
+            c.c_local, 
+            c.c_category, 
+            c.c_peoplesu, 
+            c.c_insa_email, 
+            c.c_insa_phone, 
+            c.c_addr, 
+            c.c_money, 
+            c.c_birthyear, 
+            c.c_regi_file, 
+            c.c_salary, 
+            c.c_gaipday, 
+            c.c_phone, 
+            c.c_updateday,
+            c.c_addrdetail,
+            c.c_postnum,
+            c.c_size
+        from 
+            company_intro ci
+        join 
+            company c
+        on 
+            ci.c_num = c.c_num
+        where 
+            ci.c_num = #{c_num}
+    </select>
 
 
 
