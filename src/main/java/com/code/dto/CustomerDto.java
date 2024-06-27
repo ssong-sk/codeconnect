@@ -1,5 +1,7 @@
 package com.code.dto;
 
+import java.sql.Timestamp;
+
 import org.apache.ibatis.type.Alias;
 
 import lombok.Data;
@@ -8,5 +10,13 @@ import lombok.Data;
 @Alias("CustomerDto")
 public class CustomerDto {
 
-	
+	private int cus_num;
+	private String cus_user_id;
+	private String cus_top_type;
+	private String cus_category;
+	private String cus_title;
+	private String cus_content;
+	private String cus_photo;
+	private Timestamp cus_writetime;
+	private String cus_answer;
 }

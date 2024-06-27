@@ -54,53 +54,50 @@
   }
   
   /*오른쪽 스타일*/
-  .
-  .mylist-area {
-      margin-left: 15%;/* 메뉴바와의 간격 */
-  }
-  
-  .mylist-img {
-    border: 0.5px solid gray;
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-  }
-  
-  .mylist-state {
-     display: flex; /* Flexbox 적용 */
-      justify-content: space-around; /* 항목들을 균등하게 분배 */
-      margin-top: 5%;
-  }
-  
-  /* 추천 공고 섹션 스타일 */
-  .mylist-chu {
-      margin-top: 5%; /* 상단 여백 */
-      padding: 10px 0; /* 상하 여백 */
-  }
-  
-  .chu-img {
-    width: 200px;
-    height: 230px;
-    border: 0.5px solid gray;
-    border-radius: 10px;
-  }
-  
-  .mylist-chuimg {
-    margin-top: 1%;
-  }
-  
-  /*이력서 현황*/
-  .condition-total {
-    margin-top: 4%;
-  }
-  
-  .condition-notice {
-    width: 100%;
-    height: 130px;
-    background-color: #F4F6FA;
-    font-size: 0.8em;
-  }
 
+  .list-item {
+  display: flex;
+  justify-content: space-between; /* 좌우 섹션을 공간에 따라 나눕니다. */
+  align-items: center; /* 좌우 섹션을 수직으로 가운데 정렬합니다. */
+  padding: 10px 0; /* 항목 간의 간격을 추가합니다. */
+}
+
+.left-section {
+  display: flex;
+  align-items: center; /* 수평 정렬에서 중앙에 배치합니다. */
+}
+
+.left-section > div {
+  margin-right: 45px; /* 요소 간의 간격을 추가합니다. */
+}
+
+.left-section .title {
+  font-size: 1.2em;
+}
+
+.right-section {
+  display: flex;
+  flex-direction: column; /* 버튼과 마감일을 수직으로 정렬합니다. */
+  align-items: center; /* 요소들을 수평 중앙에 정렬합니다. */
+  margin-right: 25px;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 버튼과 마감일을 수평 중앙에 정렬합니다. */
+}
+
+.button-container .btn {
+  width: 150px;
+}
+
+.button-container .deadline {
+  margin-top: 5px; /* 버튼과 마감일 사이에 간격을 추가합니다. */
+  font-size: 0.8em;
+  color: gray;
+  text-align: center; /* 마감일을 중앙 정렬합니다. */
+}
 </style>
 </head>
 <body>
@@ -172,78 +169,56 @@
 	              
 	                <span style="font-size: 1.2em;"><b>관심기업</b></span>
 	                
-	                <div class="condition-total">
-	                  <span>총 ${totalCount }건</span>
-	                  <hr>
-		            </div>  
-		            
-		            <div>
-		              <table style="width: 100%;">
+	                <div class="condition-total" style="margin-top: 5%;">
+	                  <table style="width: 100%;">
+                          <div>
+                            <tr>
+                             <input type="checkbox" id="allselect"><span style="font-size: 0.8em;">&nbsp;전체선택</span>
+                            </tr>
+                            <hr>
+                            <tr>
+                            <th>회사명</th>
+                            <th>상세보기</th>
+                          </tr>
+                          </div>
+                        
+                          
+                          <!-- 스크랩 공고가 없는 경우 -->
 			              <c:if test="${totalCount==0 }">
 			                <tr>
 			                  <td colspan="4" align="center"></td>
-			                  <p><b>등록된 이력서가 없습니다</b></p>
+			                  <p><b>등록된 스크랩 공고가 없습니다</b></p>
 			                </tr>
 			              </c:if>
 			              
-			              <tr><td><br></td></tr>
-			              
-			              <c:if test="${totalCount>0 }">
-			                <c:forEach var="pe" items="${pelist }">
-			                <tr>
-			                  <td><h5><b><a href="iruckseolist?pe_num=${pe.pe_num }">${pe.pe_title}</a></b></h5></td>
-			                </tr>
-			                  
-			                <tr>
-			                  <td style="color: gray; font-size: 0.9em;">
-					            <fmt:formatDate value="${pe.pe_writeday }" pattern="yyyy-MM-dd HH:mm"/></td> 
-			                </tr>
-			                
-			                <tr><td><br></td></tr>
-			                
-			                <tr>
-							    <!-- 첫 번째 열: 총 경력과 희망직무 -->
-							    <td style="font-size: 0.8em; width: 30%;">총 경력: ${pe.ca_resign}개월</td>
-							    <td style="font-size: 0.8em;">희망직무: ${pe.ho_keyword}</td>
-							</tr>
+			              <!-- 스크랩 공고가 있는 경우 -->
+			          
+			                <c:forEach var="sh" items="${shlist}">
+							  <div class="list-item">
+							    <div class="left-section">
+							      <div><input type="checkbox" class="oneselect" name="oneselect" data-s-num="${sh.s_num}"></div>
+							      <div>
+							        <div><a href="#" style="font-size: 1.2em;"><b>${sh.c_name }</b></a></div>
+							      </div>
+							    </div>
+							    <div class="right-section">
+							      <div class="button-container">
+							        <button class="btn btn-primary" style="width: 130px;"
+							        onclick="location.href='#'">상세보기</button>
+							      </div>
+							    </div>
+							  </div>
+							  <hr>
+							</c:forEach>
 							
-							<tr><td><br></td></tr>
-							
-							<tr>
-							    <!-- 두 번째 열: 희망연봉과 희망지역 -->
-							    <td style="font-size: 0.8em;"><i class="bi bi-coin"></i> 희망연봉: ${pe.ho_check}</td>
-							    <td style="font-size: 0.8em;"><i class="bi bi-geo-alt"></i> 희망지역: ${pe.ho_addr}</td>
-							</tr>
-							
-							<tr><td><br></td></tr>
-							
-							<tr>
-							    <!-- 세 번째 열: 버튼 열 -->
-							    <td colspan="2" style="text-align: right;"> 
-							        <button id="btnUpdate" class="btn btn-outline-primary" onclick="location.href='updateForm?pe_num=${pe.pe_num}'"  style="width: 100px;">수정</button>
-							        <button id="btnDelete" pe_num="${pe.pe_num}" 
-							        class="btn btn-outline-primary" style="width: 100px;">삭제</button>
-							    </td>
-							</tr>
-			                  
-			                  <tr><td><br></td></tr>
-			                  
-		                      <tr>
-			                    <td colspan="4"><hr></td> <!-- 각 섹션 사이에 구분선 추가 -->
-			                  </tr>
-			                </c:forEach>
-			              </c:if>
+							<div>
+							  <button id="deleteBtn" class="btn btn-outline-primary deleteBtn" style="width: 100px; float: right;" 
+							  s_num="${sh.s_num}">삭제</button>
+							</div>
 		              </table>
 		            </div>
 
-		            <div class="condition-notice">
-		              <div style="margin: 30px 30px;">
-			              <span><i class="bi bi-exclamation-circle"></i>&nbsp;&nbsp;<b>유의사항</b></span><br>
-			              <p>- 이력서는 최대 10개까지 등록 가능합니다.</p>
-			              <p>- '입사지원 내역'건수는 최근 1년간 내역에 대해 확인 가능합니다.</p>
-			              <p>- 수정, 삭제 기능은 이력서 우측 버튼을 누르면 확인하실 수 있습니다.(이력서는 부분 삭제 불가)</p>
-		              </div>
-		            </div>
+		           
 		            
 	              </div>   
               </div>
@@ -251,39 +226,57 @@
         </div>
     </div>    
     
-    
     <script type="text/javascript">
-    
-      $(function () {
-    	   
-    	 //이력서 삭제
-          $(document).on("click", "#btnDelete", function() {
-          	
-          	var pe_num = $(this).attr("pe_num");
+	    
+		$(document).ready(function() {
+			//체크박스 전체선택 체크 및 해제
+			$("#allselect").click(function() {
+				
+				var allcheck = $(this).is(":checked");
+	
+					$(".oneselect").prop('checked', allcheck);
 
-          	var pe_confirm = confirm("해당 내역을 삭제하시겠습니까?");
-          	
-          	if(pe_confirm) {
-          		
-          		$.ajax({
-          			
-          			type : "get",
-          			dataType : "html",
-          			url : "personaldelete",
-          			data : {"pe_num":pe_num},
-          			success : function() {
-          				
-          				alert("삭제되었습니다");
-          				location.reload();
-          			}
-          		})
-          	}
-          });
-    	 
-    	 
-    	 //이력서 수정폼
-    	  
-      })
+			});
+			
+			//삭제하기
+			$("#deleteBtn").click(function() {
+				//선택된 항목 내용 수집
+				var chbox = $("input[name='oneselect']:checked");
+	        	 console.log("선택된 체크박스 개수:", chbox.length);
+	            
+	            if (chbox.length === 0) {
+	                alert("지원 취소할 항목을 선택해주세요.");
+	                return;
+	            }
+	
+	            var s_num_array = [];
+	            chbox.each(function () {
+	            	s_num_array.push($(this).data("s-num"));
+	            })
+	            console.log("전송할 s_num 배열:", s_num_array);
+			    //alert(s_num_array);
+			   //확인 창 띄우기
+			   var checkConfirm = confirm("정말 삭제하시겠습니까?");
+			   if(checkConfirm) {
+				   
+				   $.ajax ({
+					   
+					   type: "post",
+		               url: "scrapdelete",  // 실제 업데이트를 처리할 URL
+		               traditional: true,  // 배열 형태의 데이터 전송을 위해 필요
+		               data: { "s_num": s_num_array },  // 배열 형태로 데이터 전송
+           			   success : function (response) {
+						
+           				   alert("삭제가 완료되었습니다");
+           				   location.reload();
+					 }
+           			   
+				   })
+			   }
+			})
+		})
+    
     </script>
+    
 </body>
 </html>

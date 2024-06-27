@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -176,16 +177,25 @@ public class IruckseoHomeController {
         
         int r_num =  Integer.parseInt((String)session.getAttribute("r_num"));
         //갯수
-        int totalCount = irservice.getSupportCount(r_num);
+        //int totalCount = irservice.getSupportCount(r_num);
         
         //이력서 전체리스트
         List<SupportDto> sulist = irservice.getSupportList(r_num);
+        model.addAttribute("sulist", sulist);
 
         
-        model.addAttribute("totalCount", totalCount);
-        model.addAttribute("sulist", sulist);
+        //model.addAttribute("totalCount", totalCount);
         
         return "/resumehome/iruckseosupportform";
+     }
+     
+     //입사지원 지원취소 시 업데이트
+     @PostMapping("/resumehome/supportupdate")
+     @ResponseBody
+     public void supportupdate(@RequestParam int st_num) {
+    	 
+         //이력서 지원취소 누르면 지원취소하기로 업데이트
+         irservice.updateSupportDelete(st_num);
      }
      
      //스크랩공고 띄우기
@@ -206,24 +216,26 @@ public class IruckseoHomeController {
      }
      
      //스크랩공고 삭제하기
-     @ResponseBody
      @PostMapping("/resumehome/scrapdelete")
-     public void scrapDelete(@RequestParam int r_num, @RequestParam int h_num) {
-         hservice.scrapDelete(r_num, h_num);
+     @ResponseBody
+     public void scrapDelete(@RequestParam int s_num) {
+    	 
+         irservice.scrapDelete(s_num);
      }
      
       //관심기업 스크랩 띄우기
      @GetMapping("/resumehome/interestform")
      public String interestform(@ModelAttribute("pedto") HireDto hdto, Model model, HttpSession session) {
         
-        int r_num =  Integer.parseInt((String)session.getAttribute("r_num"));
-        //갯수
-        int totalCount = hservice.getScrapCount(r_num);
-        model.addAttribute("totalCount", totalCount);
-        
-        //이력서 전체리스트
-        List<HireDto> hilist = hservice.getUserScraps(r_num);
-        model.addAttribute("hilist", hilist);
+    	 int r_num =  Integer.parseInt((String)session.getAttribute("r_num"));
+         
+         //갯수
+         int totalCount = irservice.getScrapCount(r_num);
+         model.addAttribute("totalCount", totalCount);
+         
+         //스크랩 가져오기
+         List<HireDto> shlist = irservice.getScrapHireList(r_num);
+         model.addAttribute("shlist", shlist);
 
         return "/resumehome/iruckseointerestform";
      }

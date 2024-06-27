@@ -189,9 +189,7 @@
 			                <c:forEach var="sh" items="${shlist}">
 							  <div class="list-item">
 							    <div class="left-section">
-							      <input type="hidden" name = "r_num" value="${sh.r_num }" id="r_num">
-							      <input type="hidden" name = "h_num" value="${sh.h_num }">
-							      <div><input type="checkbox" class="oneselect"  value="${sh.r_num}"></div>
+							      <div><input type="checkbox" class="oneselect" name="oneselect" data-s-num="${sh.s_num}"></div>
 							      <div>
 							        <div><a href="#">${sh.c_name }&nbsp;</a><i class="bi bi-heart"></i></div><br>
 							        <div class="title"><a href="/hire/detail?h_num=${sh.h_num }"><b>[${sh.c_name }]&nbsp;&nbsp;&nbsp;${sh.h_title }</b></a></div>
@@ -213,19 +211,13 @@
 							</c:forEach>
 							
 							<div>
-							  <button id="deleteBtn" class="btn btn-outline-primary" style="width: 100px;" r_num="${sh.r_num}" h_num="${sh.h_num }">삭제</button>
+							  <button id="deleteBtn" class="btn btn-outline-primary deleteBtn" style="width: 100px; float: right;" 
+							  s_num="${sh.s_num}">삭제</button>
 							</div>
 		              </table>
 		            </div>
 
-		            <div class="condition-notice">
-		              <div style="margin: 30px 30px;">
-			              <span><i class="bi bi-exclamation-circle"></i>&nbsp;&nbsp;<b>유의사항</b></span><br>
-			              <p>- 이력서는 최대 10개까지 등록 가능합니다.</p>
-			              <p>- '입사지원 내역'건수는 최근 1년간 내역에 대해 확인 가능합니다.</p>
-			              <p>- 수정, 삭제 기능은 이력서 우측 버튼을 누르면 확인하실 수 있습니다.(이력서는 부분 삭제 불가)</p>
-		              </div>
-		            </div>
+		           
 		            
 	              </div>   
               </div>
@@ -248,34 +240,31 @@
 			//삭제하기
 			$("#deleteBtn").click(function() {
 				//선택된 항목 내용 수집
-				var selectCheck = [];
-				$(".oneselect:checked").each(function (index, value) {
-					selectCheck.push(value);
-				});
-				
-				console.log(selectCheck);
-				
-				
-			   //선택되지 않았으면 경고 메세지
-			   if(selectCheck.length == 0) {
-				   alert("삭제할 항목을 선택해주세요");
-				   return;
-			   }
-			   
+				var chbox = $("input[name='oneselect']:checked");
+	        	 console.log("선택된 체크박스 개수:", chbox.length);
+	            
+	            if (chbox.length === 0) {
+	                alert("지원 취소할 항목을 선택해주세요.");
+	                return;
+	            }
+	
+	            var s_num_array = [];
+	            chbox.each(function () {
+	            	s_num_array.push($(this).data("s-num"));
+	            })
+	            console.log("전송할 s_num 배열:", s_num_array);
+			    //alert(s_num_array);
 			   //확인 창 띄우기
-			   var r_num = $(this).attr("r_num");
-			   var h_num = $(this).attr("h_num");
-			   
 			   var checkConfirm = confirm("정말 삭제하시겠습니까?");
 			   if(checkConfirm) {
 				   
 				   $.ajax ({
 					   
-					   type : "post",
-           		       dataType : "html",
-           			   url : "scrapdelete",
-           			   data : {"r_num":r_num, "h_num":h_num },
-           			   success : function () {
+					   type: "post",
+		               url: "scrapdelete",  // 실제 업데이트를 처리할 URL
+		               traditional: true,  // 배열 형태의 데이터 전송을 위해 필요
+		               data: { "s_num": s_num_array },  // 배열 형태로 데이터 전송
+           			   success : function (response) {
 						
            				   alert("삭제가 완료되었습니다");
            				   location.reload();

@@ -13,7 +13,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-   
+<h2>1:1문의리스트</h2> 
 </body>
 </html>

@@ -172,6 +172,10 @@
 									</p>
 								</dd>
 							</dl>
+							<input type="hidden" name="r_job" id="r_job" value="null">
+							<input type="hidden" name="r_exp" id="r_exp" value="null">
+							<input type="hidden" name="r_sogae" id="r_sogae" value="null">
+							
 
 							<!-- 가입하기 버튼 -->
 							<dl>
