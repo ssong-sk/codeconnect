@@ -393,6 +393,10 @@ i.bi-chevron-right {
     vertical-align: top;
 }
 
+.comli.hidden {
+    display: none;
+}
+
 .com_a{
 	display: block;
     padding: 20px;
@@ -572,7 +576,7 @@ span.followtext{
 		<!-- 채용공고 리스트 -->
 		<div class="searchcontent">
 			<div class="searchcontent2">
-				<div>
+				<div class="hirediv">
 					<div class="searchtitle">
 						<h2 class="searchtitle_text">
 							채용공고<span class="searchtitle_text_span_hire">${htotalcount }</span>
@@ -697,7 +701,6 @@ $('.searchinput').on('keypress', function(e) {
 			},
 			success : function(res) {
 				hsearch(res);
-				cisearch(res);
 				$(".searchtitle_text_span_hire").text(res.length);
 				$(".htotalcount").text(res.length);
 			}
@@ -723,12 +726,12 @@ $('.searchinput').on('keypress', function(e) {
 
 /* 채용공고 리스트 함수 */
 function hsearch(res) {
-	$(".cilist").hide();
+	$(".searchlist").hide();
 
 	if (res.length === 0) {
 		$(".s-searchlist").hide();
-		$(".cilist").show();
-		$('.cilist').html('<p>검색 결과가 없습니다.</p>');
+		$(".searchlist").show();
+		$('.searchlist').html('<p>검색 결과가 없습니다.</p>');
 		return;
 	}
 	var s = "<div class='s-searchlist'>";
@@ -799,9 +802,11 @@ function cisearch(res){
 	$('#ciListContainer').html(s); // 업데이트할 요소의 ID를 지정
 }
 
-/* 채용공고 전체보기 */
+/* 전체보기 */
 // 초기에는 처음 8개의 listdiv만 보이게 함
 $('.listdiv:gt(7)').hide();
+// 초기에는 처음 4개의 comli만 보이게 함
+$('.comli:gt(3)').hide();
 
 // 채용공고 전체보기 버튼 클릭 이벤트 처리
 $('.hirebtn').click(function() {
@@ -815,7 +820,27 @@ $('.hirebtn').click(function() {
     $('.search_tab').attr('aria-selected', 'false');
     $('[aria-controls="search_tabpanel_hire"]').attr('aria-selected', 'true');
     
+    $('.hirediv').show();
     $('.companydiv').hide();
+});
+
+// 회사 전체보기 버튼 클릭 이벤트 처리
+$('.cibtn').click(function() {
+    // 모든 comli 요소를 보이도록 설정
+    $('.comli').show();
+
+    // 버튼을 숨김 처리
+    $(this).hide();
+
+    // '회사' 탭을 클릭 상태로 변경
+    $('.search_tab').attr('aria-selected', 'false');
+    $('[aria-controls="search_tabpanel_company"]').attr('aria-selected', 'true');
+    
+    // 다른 탭 내용 숨기기
+    $('.hirediv').hide();
+    
+ 	// margin-top을 32px로 변경
+    $('.companydiv').css('margin-top', '0px').show();
 });
 
 //'채용공고' 탭을 클릭했을 때 처리
@@ -832,21 +857,50 @@ $('.search_tab[aria-controls="search_tabpanel_hire"]').click(function(e) {
     // '채용공고 전체보기' 버튼 숨김 처리
     $('.hirebtn').hide();
     
+    $('.hirediv').show();
     $('.companydiv').hide();
+});
+
+//'회사' 탭을 클릭했을 때 처리
+$('.search_tab[aria-controls="search_tabpanel_company"]').click(function(e) {
+    e.preventDefault();
+	
+ 	// 모든 comli 요소를 보이도록 설정
+    $('.comli').show();
+ 	
+    // 회사 탭을 활성화 상태로 변경
+    $('.search_tab').attr('aria-selected', 'false');
+    $(this).attr('aria-selected', 'true');
+
+    // '회사 전체보기' 버튼 숨김 처리
+    $('.cibtn').hide();
+    
+    // 채용공고 테이블 숨김
+    $('.hirediv').hide();
+    
+ 	// margin-top을 32px로 변경
+    $('.companydiv').css('margin-top', '0px').show();
 });
 
 //'전체' 탭을 클릭했을 때 처리
 $('.search_tab[aria-controls="search_tabpanel_all"]').click(function(e) {
     e.preventDefault();
-
+	
+    $('.hirediv').show();
+    $('.companydiv').show();
+    
     // 처음 8개의 listdiv만 보이게 함
     $('.listdiv:gt(7)').hide();
+    $('.comli:gt(3)').hide();
 
     // '채용공고 전체보기' 버튼 보이게 함
     $('.hirebtn').show();
     
-    // 회사 테이블 보이게
-    $('.companydiv').show();
+    // 회사 전체보기 버튼 보이게
+    $('.cibtn').show();
+    
+    // margin-top을 80px로 변경
+    $('.companydiv').css('margin-top', '80px').show();
 });
 </script>
 </body>
