@@ -85,8 +85,6 @@ public class CommunityController {
     }
 
 
-
-
     @PostMapping("/community/homeinsert")
     public String insert(@ModelAttribute CommunityDto dto,
                          @RequestParam ArrayList<MultipartFile> upload,
@@ -248,7 +246,7 @@ public class CommunityController {
         model.addAttribute("userNickname", nickname);
         model.addAttribute("name", name);
         model.addAttribute("userid", userid);
-        return "community/homeform"; // "community/homeform.jsp"로 매핑
+        return "community/homeform"; //"community/homeform.jsp"로 매핑
     }
 
     
@@ -263,10 +261,10 @@ public class CommunityController {
             category = URLDecoder.decode(category, StandardCharsets.UTF_8);
         }
 
-        int perPage = 7; // 한 페이지당 게시글 수
-        int perBlock = 10; // 한 블록당 보여줄 페이지 수
+        int perPage = 7; //한 페이지당 게시글 수
+        int perBlock = 10; //한 블록당 보여줄 페이지 수
         int totalCount;
-        final CommunityDto topPost; // topPost를 final로 선언
+        final CommunityDto topPost; //topPost를 final로 선언
         List<CommunityDto> otherPosts;
 
         if (category == null || category.isEmpty() || category.equals("전체글")) {
@@ -478,91 +476,7 @@ public class CommunityController {
         return "community/interviewupdateform";
     }
 
-   /*
-    @PostMapping("/community/interviewupdate")
-    public String updateInterview(@ModelAttribute CommunityDto dto,
-                                  @RequestParam ArrayList<MultipartFile> upload,
-                                  @RequestParam("existingPhotos") String existingPhotos,
-                                  @RequestParam("existingMainPhoto") String existingMainPhoto,
-                                  HttpSession session) {
-        String path = session.getServletContext().getRealPath("/communityimage");
-        StringBuilder uploadNames = new StringBuilder(existingPhotos); // 기존 이미지를 유지
-        String mainPhoto = existingMainPhoto; // 기존 메인 사진 유지
 
-        if (!upload.isEmpty() && !upload.get(0).getOriginalFilename().equals("")) {
-            uploadNames = new StringBuilder(); // 새로운 이미지가 업로드되면 초기화
-            for (int i = 0; i < upload.size(); i++) {
-                MultipartFile file = upload.get(i);
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
-                String fileName = sdf.format(new java.util.Date()) + "_" + file.getOriginalFilename();
-                uploadNames.append(fileName).append(",");
-                if (i == 0) {
-                    mainPhoto = fileName; // 첫 번째 이미지를 대표 이미지로 설정
-                }
-                try {
-                    file.transferTo(new File(path + "/" + fileName));
-                } catch (IllegalStateException | IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
-        if (uploadNames.length() > 0 && uploadNames.charAt(uploadNames.length() - 1) == ',') {
-            uploadNames.setLength(uploadNames.length() - 1); // 마지막 쉼표 제거
-        }
-
-        dto.setCom_main_photo(mainPhoto);
-        dto.setCom_photo(uploadNames.toString());
-
-        service.updateCommunity(dto);
-
-        return "redirect:/community/interviewdetail?com_num=" + dto.getCom_num();
-    }
-	*/
-
-    /*
-    @PostMapping("/community/interviewupdate")
-    public String updateInterview(@ModelAttribute CommunityDto dto,
-                                  @RequestParam ArrayList<MultipartFile> upload,
-                                  @RequestParam("existingPhoto") String existingPhoto,
-                                  HttpSession session) {
-        String path = session.getServletContext().getRealPath("/communityimage");
-        StringBuilder uploadNames = new StringBuilder();
-        String mainPhoto = existingPhoto; // 기존 메인 사진 유지
-
-        // 기존 데이터를 불러옴
-        CommunityDto existingDto = service.getData(dto.getCom_num());
-
-        if (!upload.isEmpty() && !upload.get(0).getOriginalFilename().equals("")) {
-            for (int i = 0; i < upload.size(); i++) {
-                MultipartFile file = upload.get(i);
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
-                String fileName = sdf.format(new java.util.Date()) + "_" + file.getOriginalFilename();
-                uploadNames.append(fileName).append(",");
-                if (i == 0) {
-                    mainPhoto = fileName; // 첫 번째 이미지를 대표 이미지로 설정
-                }
-                try {
-                    file.transferTo(new File(path + "/" + fileName));
-                } catch (IllegalStateException | IOException e) {
-                    e.printStackTrace();
-                }
-            }
-            uploadNames.setLength(uploadNames.length() - 1); // 마지막 쉼표 제거
-        } else {
-            uploadNames.append(existingPhoto); // 기존 이미지 유지
-        }
-
-        // 기존 데이터를 업데이트
-        //dto.setCom_companyname(existingDto.getCom_companyname()); // 회사명 반복 문제 해결
-        dto.setCom_photo(uploadNames.toString());
-        dto.setCom_main_photo(mainPhoto);
-        service.updateCommunity(dto);
-
-        return "redirect:/community/interviewdetail?com_num=" + dto.getCom_num();
-    }
-	*/
-    
     @PostMapping("/community/interviewupdate")
     public String updateInterview(@ModelAttribute CommunityDto dto,
                                   @RequestParam("upload") List<MultipartFile> upload,
