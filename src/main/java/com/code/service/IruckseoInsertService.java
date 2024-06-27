@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.code.dto.CompanyDto;
 import com.code.dto.HireDto;
 import com.code.dto.IruckseoActibityDto;
 import com.code.dto.IruckseoCareerDto;
@@ -384,6 +385,18 @@ public class IruckseoInsertService implements IruckseoInsertServiceInter {
 	public void updateSupportDelete(int st_num) {
 		// TODO Auto-generated method stub
 		irmapper.updateSupportDelete(st_num);
+	}
+
+	//관심기업 리스트
+	public List<CompanyDto> getScrapCompanyList(int r_num) {
+		// TODO Auto-generated method stub
+		return irmapper.getScrapCompanyList(r_num);
+	}
+
+	//관심기업 갯수
+	public int getCompanyCount(int r_num) {
+		// TODO Auto-generated method stub
+		return irmapper.getCompanyCount(r_num);
 	}
 }
 

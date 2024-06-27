@@ -355,7 +355,7 @@ svg {
                    <div>
                      <ul>
                        <li>지원 완료
-                       <a href="#"><span>${totalCount}</span></a></li>
+                       <a href="/resumehome/supportform"><span>${supportCount}</span></a></li>
                      </ul>
                    </div>
                    
@@ -369,14 +369,14 @@ svg {
                    <div>
                      <ul>
                        <li>스크랩 공고
-                       <a href="#"><span>${totalCount}</span></a></li>
+                       <a href="/resumehome/scrapform"><span>${scrapCount}</span></a></li>
                      </ul>
                    </div>
                    
                    <div>
                      <ul>
-                       <li>관심기업 공고
-                       <a href="#"><span>${totalCount}</span></a></li>
+                       <li>관심기업
+                       <a href="/resumehome/interestform"><span>${companyCount}</span></a></li>
                      </ul>
                    </div>
                  </div>    

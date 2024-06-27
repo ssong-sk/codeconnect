@@ -189,22 +189,22 @@
 			              
 			              <!-- 스크랩 공고가 있는 경우 -->
 			          
-			                <c:forEach var="sh" items="${shlist}">
+			                <c:forEach var="c" items="${clist}">
 							  <div class="list-item">
 							    <div class="left-section">
-							      <div><input type="checkbox" class="oneselect" name="oneselect" data-s-num="${sh.s_num}"></div>
+							      <div><input type="checkbox" class="oneselect" name="oneselect" data-s-num="${c.s_num}"></div>
 							       <div class="company-info">
 						                <div style="display: flex; align-items: center;">
-						                    <a href="/company/showimsiCom?c_num=${sh.c_num }" style="font-size: 1.2em; margin-right: 10px;"><b>${sh.c_name}</b></a>
+						                    <a href="/company/showimsiCom?c_num=${c.c_num }" style="font-size: 1.2em; margin-right: 10px;"><b>${c.c_name}</b></a>
 						                    <span class="info" style="font-size: 0.8em; color: gray;">
-						                        <c:out value="${sh.h_location.length() > 7 ? sh.h_location.substring(0, 7) : sh.h_location}" />
+						                        <c:out value="${c.c_addr.length() > 7 ? c.c_addr.substring(0, 7) : c.c_addr}" />
 						                    </span>
 						                </div>
 						            </div>
 							     </div>
 							    <div class="right-section">
 							      <div class="button-container">
-							        <span style="font-size: 0.8em;"><a href="/company/showimsiCom?c_num=${sh.c_num }">상세보기 ></a></span>
+							        <span style="font-size: 0.8em;"><a href="/company/showimsiCom?c_num=${c.c_num }">상세보기 ></a></span>
 							      </div>
 							    </div>
 							  </div>
@@ -213,7 +213,7 @@
 							
 							<div>
 							  <span id="deleteBtn" class="btn btn-outline-primary deleteBtn" style="width: 100px; float: right;" 
-							  s_num="${sh.s_num}">삭제</button>
+							  s_num="${c.s_num}">삭제</button>
 							</div>
 		              </table>
 		            </div>
