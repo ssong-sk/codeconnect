@@ -289,8 +289,16 @@ th:nth-child(7), td:nth-child(7) {
 									<td></td>
 									<td>${a.h_title}</td>
 									<td>${a.r_name}</td>
-									<td><a href="/resumehome/iruckseolist1?pe_num=${a.pe_num}&r_num=${a.r_num}"
-										class="btn btn-outline-primary btn-sm" target="_blank">확인</a></td>
+									<td>
+    <form action="/company/handleClick" method="POST" target="_blank" style="display: inline;">
+        <input type="hidden" name="pe_num" value="${a.pe_num}">
+        <input type="hidden" name="r_num" value="${a.r_num}">
+        <input type="hidden" name="st_num" value="${a.st_num}">
+        <button type="submit" class="btn btn-outline-primary btn-sm">확인</button>
+    </form>
+</td>
+
+
 									<td>${a.st_write}</td>
 									<td id="statusCell_${a.st_num}">${a.st_result}</td>
 
@@ -313,29 +321,34 @@ th:nth-child(7), td:nth-child(7) {
 			</div>
 		</div>
 	</div>
-<script>
-    function updateStatus(st_num) {
-        var selectedStatus = $('#statusSelect_' + st_num).val();
+	<script>
+		function updateStatus(st_num) {
+			var selectedStatus = $('#statusSelect_' + st_num).val();
 
-        $.ajax({
-            type: 'POST',
-            url: '/company/updateStatus',
-            data: JSON.stringify({ st_num: st_num, st_result: selectedStatus }),
-            contentType: 'application/json; charset=utf-8',
-            success: function(response) {
-                // 상태가 성공적으로 업데이트된 후 테이블 셀의 내용을 변경합니다.
-                $('#statusCell_' + st_num).text(selectedStatus);
-                alert('상태가 성공적으로 업데이트되었습니다.');
-                
-                // 페이지 새로고침
-                location.reload();
-            },
-            error: function(error) {
-                alert('상태 업데이트 중 오류가 발생했습니다.');
-            }
-        });
-    }
-</script>
+			$.ajax({
+				type : 'POST',
+				url : '/company/updateStatus',
+				data : JSON.stringify({
+					st_num : st_num,
+					st_result : selectedStatus
+				}),
+				contentType : 'application/json; charset=utf-8',
+				success : function(response) {
+					// 상태가 성공적으로 업데이트된 후 테이블 셀의 내용을 변경합니다.
+					$('#statusCell_' + st_num).text(selectedStatus);
+					alert('상태가 성공적으로 업데이트되었습니다.');
+
+					// 페이지 새로고침
+					location.reload();
+				},
+				error : function(error) {
+					alert('상태 업데이트 중 오류가 발생했습니다.');
+				}
+			});
+		}
+
+		
+	</script>
 
 
 

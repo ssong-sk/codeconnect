@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -483,9 +484,26 @@ public class CompanyController {
 
 	// 기업의 '전체 지원자 관리' 페이지에서 사용할 용도의 update문 : st_open을 '열람'으로 update하기
 	@PostMapping("/company/updateSupportOpen")
-	public void updateSupportOpen(String st_num) {
-		stservice.updateSupportOpen(st_num);
+	public void updateSupportOpen(@RequestBody Map<String, String> requestData) {
+	    String st_num = requestData.get("st_num");
+	    stservice.updateSupportOpen(st_num);
 	}
+	
+	//임시
+	@PostMapping("/company/handleClick")
+	public void handleClick(@RequestParam("pe_num") String pe_num,
+	                        @RequestParam("r_num") String r_num,
+	                        @RequestParam("st_num") String st_num,
+	                        HttpServletResponse response) throws IOException {
+	    // st_open 값을 '열람'으로 업데이트
+	    stservice.updateSupportOpen(st_num);
+
+	    // 기존 a 태그의 기능 수행
+	    String url = "/resumehome/iruckseolist1?pe_num=" + pe_num + "&r_num=" + r_num;
+	    response.sendRedirect(url);
+	}
+
+
 
 
 	//이력서 전체 리스트 띄우기
