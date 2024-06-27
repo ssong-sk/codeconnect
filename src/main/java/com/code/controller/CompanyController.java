@@ -12,11 +12,14 @@ import java.util.stream.Collectors;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -384,7 +387,7 @@ public class CompanyController {
 
 
 	//CompanyHire작동오류로 임시로 옮김.
-	// 잠깐 연습용 기업 마이페이지 => 채용공고 리스트 클릭
+	//기업 마이페이지 => 채용공고 리스트 클릭
 	@GetMapping("/company/companyhire")
 	public String comhire(HttpSession session, Model model) {
 		try {
@@ -413,7 +416,7 @@ public class CompanyController {
 		return "/companyhire/companyhire_gongolist"; 
 	}
 
-	// 잠깐 연습용 기업 마이페이지 => 전체 지원자 관리 클릭
+	//기업 마이페이지 => 전체 지원자 관리 클릭
 	@GetMapping("/company/jiwon")
 	public String comjiwon(HttpSession session, Model model) {
 
@@ -433,12 +436,28 @@ public class CompanyController {
 
 		// 모델에 리스트와 변환된 날짜 리스트를 추가
 		model.addAttribute("slist", slist);
-
+		
 
 
 
 		return "/companyhire/companyhire_jiwon"; 
 	}
+
+	//기업 지원자 관리 상태 update
+	@PostMapping("/company/updateStatus")
+	@ResponseBody
+	public ResponseEntity<String> updateStatus(@RequestBody Map<String, String> payload) {
+	    String st_num = payload.get("st_num");
+	    String st_result = payload.get("st_result");
+	    
+	    try {
+	        stservice.updateSupportResult(st_num, st_result);
+	        return ResponseEntity.ok("상태가 성공적으로 업데이트되었습니다.");
+	    } catch (Exception e) {
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("상태 업데이트 중 오류가 발생했습니다.");
+	    }
+	}
+
 
 
 

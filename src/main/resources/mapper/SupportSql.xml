@@ -33,5 +33,11 @@
         s.c_num = #{c_num};
 </select>
 
+<!-- 기업의 '전체 지원자 관리'페이지에서 사용할 용도의 update문 : st_result를 update하기 -->
+<update id="updateSupportResult">
+    update support set st_result=#{st_result} where st_num=#{st_num}
+</update>
+
+
 
 </mapper>

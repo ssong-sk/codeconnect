@@ -17,6 +17,7 @@ public class CompanyService implements CompanyServiceInter{
 	@Autowired
 	CompanyMapperInter cmapperInter;
 
+
 	@Override
 	public void insertCompany(CompanyDto dto) {
 		// TODO Auto-generated method stub
@@ -135,4 +136,6 @@ public class CompanyService implements CompanyServiceInter{
 		// TODO Auto-generated method stub
 		return cmapperInter.getScrapCount(r_num);
 	}
+
+
 }
