@@ -48,7 +48,7 @@
 				<aside class="Aside_aside__f0SVC">
 					<ul class="Aside_asideList__3WNyu" style="margin-bottom: 0px;">
 						<div class="SearchInput_SearchInputContainer__wGe1Q">
-							<li><button type="button" onclick="location.href='allsearch/main'"
+							<li><button type="button" onclick="location.href='/allsearch/main'"
 							class="Aside_searchButton__rajGo Aside_isNotMobileDevice__hTNEe"
 							   aria-label="검색" aria-haspopup="dialog" aria-expanded="false"
 							   aria-controls="nav_searchbar" data-attribute-id="gnb"

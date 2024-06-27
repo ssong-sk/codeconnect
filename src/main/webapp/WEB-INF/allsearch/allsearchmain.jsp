@@ -586,7 +586,7 @@ span.followtext{
 						<div class="searchlist">
 							<c:forEach var="h" items="${hlist}">
 								<div class="listdiv">
-								    <a href="#">
+								    <a href="/hire/detail?h_num=${h.h_num}">
 								        <div class="image-container">
 								            <img src="../../companyintro_uploads/${h.ci_image}" alt="${h.c_name}" sizes="(max-width: 991px) 50vw, (max-width: 1178px) 25vw, 250px">
 								            <button aria-pressed='false' type='button' class='scrap' value='${h.h_num}'>
@@ -631,7 +631,7 @@ span.followtext{
 							<ul class="companylist" style="position: relative;">
 							<c:forEach var="ci" items="${cilist}">
 								<li class="comli">
-									<a href="#" class="com_a">
+									<a href="/company/showimsiCom?c_num=${ci.c_num }" class="com_a">
 										<!-- 제목부분 -->
 										<div class="comsubject">
 											<div class="comsubject2">
@@ -737,7 +737,7 @@ function hsearch(res) {
 	var s = "<div class='s-searchlist'>";
 	$.each(res,function(index, h) {
 		s += "<div class='listdiv'>";
-		s += "<a href='#'>";
+		s += "<a href='/hire/detail?h_num="+h.h_num+"'>";
 		s += "<div class='listimg'>";
 		s += "<img src='../../companyintro_uploads/"+ h.ci_image+ "' alt='"+ h.c_name+ "' sizes='(max-width: 991px) 50vw, (max-width: 1178px) 25vw, 250px'>";
 		s += "</div>";
@@ -772,7 +772,7 @@ function cisearch(res){
 	var s = "<div class='s-cilist' style='margin: -10px;'><ul class='s-companylist' style='position: relative;'>";
 	$.each(res, function(index, ci) {
 	    s += "<li class='comli'>";
-	    s += "<a href='#' class='com_a'>";
+	    s += "<a href='/company/showimsiCom?c_num="+ci.c_num+"' class='com_a'>";
 	    s += "<div class='comsubject'>";
 	    s += "<div class='comsubject2'>";
 	    s += "<div class='comlogo'>";
