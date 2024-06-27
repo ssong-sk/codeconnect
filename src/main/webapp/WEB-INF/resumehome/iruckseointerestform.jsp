@@ -106,7 +106,7 @@
             <div class="center">
               <div class="all-form">
 <!-- 왼쪽 메뉴바------------------------------------------------------------------------------------------------------- -->
-              <div class="leftmenubar" style="width: 20%;">
+              <div class="leftmenubar" style="width: 20%; margin-bottom: 10%;">
                   <ul class="leftmenu">
 				    <li>
 				      <div class="menu-home">
@@ -176,10 +176,6 @@
                              <input type="checkbox" id="allselect"><span style="font-size: 0.8em;">&nbsp;전체선택</span>
                             </tr>
                             <hr>
-                            <tr>
-                            <th>회사명</th>
-                            <th>상세보기</th>
-                          </tr>
                           </div>
                         
                           
@@ -197,14 +193,18 @@
 							  <div class="list-item">
 							    <div class="left-section">
 							      <div><input type="checkbox" class="oneselect" name="oneselect" data-s-num="${sh.s_num}"></div>
-							      <div>
-							        <div><a href="#" style="font-size: 1.2em;"><b>${sh.c_name }</b></a></div>
-							      </div>
-							    </div>
+							       <div class="company-info">
+						                <div style="display: flex; align-items: center;">
+						                    <a href="/company/showimsiCom?c_num=${sh.c_num }" style="font-size: 1.2em; margin-right: 10px;"><b>${sh.c_name}</b></a>
+						                    <span class="info" style="font-size: 0.8em; color: gray;">
+						                        <c:out value="${sh.h_location.length() > 7 ? sh.h_location.substring(0, 7) : sh.h_location}" />
+						                    </span>
+						                </div>
+						            </div>
+							     </div>
 							    <div class="right-section">
 							      <div class="button-container">
-							        <button class="btn btn-primary" style="width: 130px;"
-							        onclick="location.href='#'">상세보기</button>
+							        <span style="font-size: 0.8em;"><a href="/company/showimsiCom?c_num=${sh.c_num }">상세보기 ></a></span>
 							      </div>
 							    </div>
 							  </div>
@@ -212,7 +212,7 @@
 							</c:forEach>
 							
 							<div>
-							  <button id="deleteBtn" class="btn btn-outline-primary deleteBtn" style="width: 100px; float: right;" 
+							  <span id="deleteBtn" class="btn btn-outline-primary deleteBtn" style="width: 100px; float: right;" 
 							  s_num="${sh.s_num}">삭제</button>
 							</div>
 		              </table>
