@@ -115,7 +115,7 @@
             <div class="center">
               <div class="all-form">
 <!-- 왼쪽 메뉴바------------------------------------------------------------------------------------------------------- -->
-              <div class="leftmenubar" style="width: 20%;">
+              <div class="leftmenubar" style="width: 20%; margin-bottom: 10%;">
                   <ul class="leftmenu">
 				    <li>
 				      <div class="menu-home">
