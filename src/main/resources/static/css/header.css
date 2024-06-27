@@ -85,6 +85,7 @@ body {
 }
 
 button, div, h1, h2, h3, h4, h5, h6, input, p, select, span, textarea {
+	font-family: IBM Plex Sans KR;
 	font-size: 15px;
 	line-height: 22px;
 }
@@ -208,13 +209,18 @@ ol, ul {
 }
 
 .Menu_MenuItem__wI1yA>a, .Menu_MenuItem__wI1yA>button {
-	font-size: 15px;
-	font-weight: 600;
-	line-height: 22px;
-	letter-spacing: .0096em;
-	height: 100%;
-	display: flex;
-	align-items: center;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 22px;
+    letter-spacing: .0096em;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    font-family: IBM Plex Sans KR;
+}
+
+ol, ul {
+    padding-left: 0 !important;
 }
 
 .Menu_jobListLink__GYHAI>span {
@@ -456,12 +462,6 @@ ol, ul {
 	white-space: nowrap;
 	-webkit-appearance: none;
 	appearance: none;
-}
-
-button, div, h1, h2, h3, h4, h5, h6, input, p, select, span, textarea {
-	font-family: inherit;
-	font-size: inherit;
-	line-height: inherit;
 }
 
 input, input:focus, input[type=text], textarea {
