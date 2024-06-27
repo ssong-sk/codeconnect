@@ -18,6 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,9 +29,20 @@ import org.springframework.web.servlet.ModelAndView;
 import com.code.dto.CompanyDto;
 import com.code.dto.CompanyIntroDto;
 import com.code.dto.HireDto;
+import com.code.dto.IruckseoActibityDto;
+import com.code.dto.IruckseoCareerDto;
+import com.code.dto.IruckseoHopeDto;
+import com.code.dto.IruckseoInsertDto;
+import com.code.dto.IruckseoPortfolioDto;
+import com.code.dto.IruckseoSchoolDto;
+import com.code.dto.IruckseoSelfDto;
+import com.code.dto.IruckseoSpecDto;
+import com.code.dto.RegisterDto;
 import com.code.dto.SupportDto;
 import com.code.service.CompanyIntroService;
 import com.code.service.CompanyService;
+import com.code.service.IruckseoInsertService;
+import com.code.service.RegisterService;
 import com.code.service.SupportService;
 
 
@@ -44,8 +56,18 @@ public class CompanyController {
 	@Autowired
 	CompanyIntroService ciservice;
 
+	//지원자 관리 페이지용
 	@Autowired
 	SupportService stservice;
+
+
+	//이력서 service
+	@Autowired
+	IruckseoInsertService irservice;
+	
+	//이력서 보여주기용 일반 회원 service가져오기
+	@Autowired
+	RegisterService reservice;
 
 
 	//기업 로그인로그아웃관련 임시 통합페이지
@@ -436,7 +458,7 @@ public class CompanyController {
 
 		// 모델에 리스트와 변환된 날짜 리스트를 추가
 		model.addAttribute("slist", slist);
-		
+
 
 
 
@@ -447,17 +469,75 @@ public class CompanyController {
 	@PostMapping("/company/updateStatus")
 	@ResponseBody
 	public ResponseEntity<String> updateStatus(@RequestBody Map<String, String> payload) {
-	    String st_num = payload.get("st_num");
-	    String st_result = payload.get("st_result");
-	    
-	    try {
-	        stservice.updateSupportResult(st_num, st_result);
-	        return ResponseEntity.ok("상태가 성공적으로 업데이트되었습니다.");
-	    } catch (Exception e) {
-	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("상태 업데이트 중 오류가 발생했습니다.");
-	    }
+		String st_num = payload.get("st_num");
+		String st_result = payload.get("st_result");
+
+		try {
+			stservice.updateSupportResult(st_num, st_result);
+			return ResponseEntity.ok("상태가 성공적으로 업데이트되었습니다.");
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("상태 업데이트 중 오류가 발생했습니다.");
+		}
 	}
 
+
+	// 기업의 '전체 지원자 관리' 페이지에서 사용할 용도의 update문 : st_open을 '열람'으로 update하기
+	@PostMapping("/company/updateSupportOpen")
+	public void updateSupportOpen(String st_num) {
+		stservice.updateSupportOpen(st_num);
+	}
+
+
+	//이력서 전체 리스트 띄우기
+		@GetMapping("/resumehome/iruckseolist1")
+		public ModelAndView iruckseolist(@RequestParam int pe_num ,@RequestParam String r_num) {
+
+			ModelAndView mview = new ModelAndView();
+			//IruckseoInsertDto irdto = new IruckseoInsertDto();
+			//int r_num =  Integer.parseInt(r_num);
+
+			// 회원정보 조회
+	        RegisterDto rdto =reservice.getDataByNum(r_num);
+
+			//인적사항
+			IruckseoInsertDto pedto = irservice.Personallist(pe_num);
+
+			//학력
+			List<IruckseoSchoolDto> sclist = irservice.Schoollist(pe_num);
+
+			//경력
+			List<IruckseoCareerDto> calist = irservice.Careerlist(pe_num);
+
+			//경험/활동/교육
+			List<IruckseoActibityDto> aclist = irservice.Actibitylist(pe_num);
+
+			//자격/어학/수상
+			List<IruckseoSpecDto> splist = irservice.Speclist(pe_num);
+
+			//포트폴리오
+			List<IruckseoPortfolioDto> polist = irservice.Portfoliolist(pe_num);
+
+			//자기소개서
+			List<IruckseoSelfDto> selist = irservice.Selflist(pe_num);
+
+			//희망근무
+			IruckseoHopeDto hodto = irservice.Hopelist(pe_num);
+
+			mview.addObject("pedto", pedto);
+			mview.addObject("rdto", rdto);
+			mview.addObject("sclist", sclist);
+			mview.addObject("calist", calist);
+			mview.addObject("aclist", aclist);
+			mview.addObject("splist", splist);
+			mview.addObject("polist", polist);
+			mview.addObject("selist", selist);
+			mview.addObject("hodto", hodto);
+
+			//포워드: 일부러 맨앞의 /빼고 함.
+			mview.setViewName("resumehome/iruckseolist");
+
+			return mview;
+		}
 
 
 
