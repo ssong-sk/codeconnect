@@ -361,6 +361,12 @@ public class IruckseoInsertService implements IruckseoInsertServiceInter {
 		// TODO Auto-generated method stub
 		return irmapper.getScrapCount(r_num);
 	}
+	
+	//스크랩 공고 삭제하기
+	public void scrapDelete(int s_num) {
+		// TODO Auto-generated method stub
+		irmapper.scrapDelete(s_num);
+	}
 
 	//입사지원 현황 리스트
 	public List<SupportDto> getSupportList(int r_num) {
@@ -372,6 +378,12 @@ public class IruckseoInsertService implements IruckseoInsertServiceInter {
 	public int getSupportCount(int r_num) {
 		// TODO Auto-generated method stub
 		return irmapper.getSupportCount(r_num);
+	}
+
+	//입사지원 지원취소 업데이트
+	public void updateSupportDelete(int st_num) {
+		// TODO Auto-generated method stub
+		irmapper.updateSupportDelete(st_num);
 	}
 }
 

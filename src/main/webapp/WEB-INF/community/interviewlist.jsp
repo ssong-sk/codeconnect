@@ -230,7 +230,7 @@
                                     <p><i class="bi bi-eye"></i>&nbsp;&nbsp;${dto.com_readcount}</p>
                                 </div>
                             </div>
-                            <div class="iphoto" style="margin-right: -50px;">
+                            <div class="iphoto" style="margin-right: -20px;">
                                 <img alt="" src="<c:url value='/communityimage/${dto.com_photo}'/>">
                             </div>
                         </div>

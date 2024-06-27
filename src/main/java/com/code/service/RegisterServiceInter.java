@@ -15,5 +15,10 @@ public interface RegisterServiceInter {
 	public RegisterDto getDataByNum(String r_num);
 	public boolean isIdUnique(String r_id);
 	public boolean isNicknameUnique(String r_nickname);
+	public String getSearchName(String r_num);
+	public String getSearchHp(String r_num);
+	public void deleteRegister(String r_num);
+	public void updateName(RegisterDto dto);
+	public void updateHp(RegisterDto dto);
 
 }

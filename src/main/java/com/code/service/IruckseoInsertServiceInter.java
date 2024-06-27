@@ -178,9 +178,15 @@ public interface IruckseoInsertServiceInter {
 	//스크랩 채용공고 갯수
 	public int getScrapCount(int r_num);
 	
+	//스크랩 공고 삭제하기
+	public void scrapDelete(int s_num);
+	
 	//입사지원현황 리스트
 	public List<SupportDto> getSupportList(int r_num);
 	
 	//입사지원현황 갯수
 	public int getSupportCount(int r_num);
+	
+	//입사지원 지원취소 업데이트
+	public void updateSupportDelete(int st_num);
 }
