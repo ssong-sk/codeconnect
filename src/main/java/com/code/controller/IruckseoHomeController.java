@@ -77,13 +77,11 @@ public class IruckseoHomeController {
       int totalCount = irservice.getPersonalCount(r_num);
       mview.addObject("totalCount", totalCount);
       
-      
-      
       //채용공고 정보 조회 및 추가
       List<HireDto> hlist = hservice.getHireList();
       mview.addObject("hlist", hlist);
       
-      //스크랩
+      //스크랩 공고
       List<HireDto> userScraps = hservice.getUserScraps(r_num);
       mview.addObject("userScraps", userScraps);
       

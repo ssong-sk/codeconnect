@@ -476,10 +476,16 @@
    
    <!-- 스크랩 공고 하기 -->
    <select id="getScrapHireList" parameterType="int" resultType="hdto">
-     SELECT * FROM hire h
-		JOIN company c ON h.h_c_num = c.c_num
-		JOIN scrap s ON h.h_num = s.h_num
-	 where s.r_num = #{r_num}
+     SELECT h.*, c.*, s.*, ci.*
+	 FROM hire h
+     JOIN 
+     company c ON h.h_c_num = c.c_num
+     JOIN 
+     scrap s ON h.h_num = s.h_num
+     LEFT JOIN 
+     company_intro ci ON h.h_ci_num = ci.ci_num
+     WHERE 
+     s.r_num = #{r_num}
    </select>
    
    <!-- 스크랩 공고 갯수 구하기 -->

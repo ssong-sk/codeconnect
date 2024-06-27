@@ -19,7 +19,7 @@
 
     /* 최상단 카테고리 nav */
     .nav {
-        margin-top: 50px;
+        margin-top: 5px;
         margin-left: 150px;
     }
     .nav ul {
@@ -104,6 +104,9 @@
 </style>
 </head>
 <body>
+<div style="max-width: 1000px; margin-top: 70px; margin-left: 260px; width: 80%;">
+	<h4 style="color: gray; font-weight: bold;">고객센터</h4>
+</div>
 <nav class="nav">
     <ul>
         <a class="nav-link ${fn:contains(pageContext.request.requestURI, '/customer/noticelist') ? 'active' : ''}" href="${pageContext.request.contextPath}/customer/noticelist">공지사항</a>
@@ -112,11 +115,17 @@
     </ul>
 </nav>
 
+<!-- 관리자(manager) 로그인시에만 글쓰기 버튼 보이게 & span,button 간격 조정-->
 <div class="top-section">
     <span>총 &nbsp;${totalCount}&nbsp;건</span>
-    <button type="button" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/customer/noticeform'">글쓰기</button>
+    <c:if test="${sessionScope.myid == 'hyoyoung'}">
+        <button type="button" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/customer/noticeform'">글쓰기</button>
+    </c:if>
+    <c:if test="${sessionScope.myid != 'hyoyoung'}">
+        <button type="button" class="btn btn-outline-primary" style="visibility: hidden;">글쓰기</button>
+    </c:if>
 </div>
-<div style="max-width: 1000px; margin: 50px auto; width: 80%;">
+<div style="max-width: 1000px; margin: 40px auto; width: 80%;">
     <table class="table" style="font-size: 15px;">
          <c:forEach var="notice" items="${list}">
              <tr style="height: 60px;">
