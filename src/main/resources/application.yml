@@ -1,8 +1,8 @@
-#tomcat port
+# tomcat port
 server:
   port: 9001
- 
-#jsp (파일경로)
+
+# jsp (파일경로)
 spring:
   mvc:
     view:
@@ -12,16 +12,24 @@ spring:
   devtools:
     livereload:
       enabled: true
+  # 파일 업로드 크기 제한 설정
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
 
-#mysql
+# mysql
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url : jdbc:mysql://codeconnect.cb4c0ey4oou3.ap-northeast-2.rds.amazonaws.com:3306/codeconnect
+    url: jdbc:mysql://codeconnect.cb4c0ey4oou3.ap-northeast-2.rds.amazonaws.com:3306/codeconnect
     username: codeconnect
     password: 12345678
     
-#mybatis (dto를 주로 의미함 / 등록)
+# mybatis (dto를 주로 의미함 / 등록)
 mybatis:
   type-aliases-package: com.code.*
   mapper-locations:
   - /mapper/**/*.xml
+
+
+

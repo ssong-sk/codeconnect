@@ -79,7 +79,7 @@
   display: flex;
   flex-direction: column; /* 버튼과 마감일을 수직으로 정렬합니다. */
   align-items: center; /* 요소들을 수평 중앙에 정렬합니다. */
-  margin-right: 25px;
+  margin-top: 2%;
 }
 
 .button-container {
@@ -106,7 +106,7 @@
             <div class="center">
               <div class="all-form">
 <!-- 왼쪽 메뉴바------------------------------------------------------------------------------------------------------- -->
-              <div class="leftmenubar" style="width: 20%;">
+              <div class="leftmenubar" style="width: 20%; margin-bottom: 10%;">
                   <ul class="leftmenu">
 				    <li>
 				      <div class="menu-home">
@@ -191,7 +191,7 @@
 							    <div class="left-section">
 							      <div><input type="checkbox" class="oneselect" name="oneselect" data-s-num="${sh.s_num}"></div>
 							      <div>
-							        <div><a href="#">${sh.c_name }&nbsp;</a><i class="bi bi-heart"></i></div><br>
+							        <div><a href="/company/showimsiCom?c_num=${sh.c_num }">${sh.c_name }&nbsp;</a><i class="bi bi-heart"></i></div><br>
 							        <div class="title"><a href="/hire/detail?h_num=${sh.h_num }"><b>[${sh.c_name }]&nbsp;&nbsp;&nbsp;${sh.h_title }</b></a></div>
 							        <div class="info" style="font-size: 0.8em; color: gray;">
 							          ${sh.h_grade}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

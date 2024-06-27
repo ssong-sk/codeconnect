@@ -43,7 +43,7 @@ public class AllSearchController {
 		model.addAttribute("citotalcount", citotalcount);
 		model.addAttribute("searchword", searchword); // 검색어도 모델에 추가
 		
-		return "allsearch/allsearchmain";
+		return "/sub/allsearch/allsearchmain";
 	}
 	
 	@ResponseBody

@@ -265,6 +265,12 @@ svg {
     font-family: IBM Plex Sans KR;
     color: #fff;
 }
+
+  .bi-heart-fill{
+  color: red;
+  cursor: pointer;
+  
+  }
 </style>
 </head>
 <body>
@@ -446,9 +452,12 @@ svg {
 			                     
 			                         <div class="hireinfo-content">
 			                             <div class="content-company">
-			                             <a target="" title="${h.c_name}" href="#"><span>${h.c_name}</span></a>
-			                             &nbsp;<i class="bi bi-heart"></i>
-			                             </div>
+										    <a target="" title="${h.c_name}" href="#"><span>${h.c_name}</span></a>
+										    &nbsp;
+										    <span class="scrapConmPress" data-c_num="${h.c_num}" aria-pressed="${fn:contains(scrapList, h.c_num) ? 'true' : 'false'}">
+										    <i id="heart" class="bi ${fn:contains(scrapList, h.c_num) ? 'bi-heart-fill' : 'bi-heart'}"></i>
+										    </span>
+										</div>
 			                             <a target="_self" title="${h.h_title}" href="/hire/detail?h_num=${h.h_num }">
 			                             <h2 class="position_card_info_title">${h.h_title}</h2>
 			                             </a>
@@ -534,6 +543,69 @@ svg {
 		   });
 		
 		}
+		
+		
+		
+		/* 기업스크랩 기능 */
+	      scrapComPress();
+	      
+	      function scrapComPress() {
+	         $("span.scrap").click(function() {
+	            var scrappressed = $(this);
+	            var isPressed = scrappressed.attr('aria-pressed') === 'true';
+	            var r_num = $("#r_num").val();
+	            var c_num = scrappressed.val();
+	            var isLoggedIn = r_num != 0 ? true : false;
+
+	            console.log("isPressed:", isPressed, "r_num:", r_num, "c_num:", c_num);
+	      
+	            if(isLoggedIn){
+	                if (isPressed) {
+	                   $.ajax({
+	                        type: "post",
+	                        url: "/company/scrapdelete",
+	                        dataType: "html",
+	                        data: {
+	                            "r_num": r_num,
+	                            "c_num": c_num,
+	                        },
+	                        success: function() {
+	                          // aria-pressed가 true인 경우 -> false로 변경
+	                          scrappressed.attr('aria-pressed', 'false');
+	                          scrappressed.find('i').removeClass('bi-heart-fill').addClass('bi-heart');
+	                        },
+	                        error: function(request, status, error) {
+	                            console.log("Error:", error);
+	                        }
+	                   });
+	                } else {        
+	                    $.ajax({
+	                        type: "post",
+	                        url: "/company/scrap",
+	                        dataType: "html",
+	                        data: {
+	                            "r_num": r_num,
+	                            "c_num": c_num,
+	                        },
+	                        success: function() {
+	                           // aria-pressed가 false인 경우 -> true로 변경
+	                          scrappressed.attr('aria-pressed', 'true');
+	                          scrappressed.find('i').removeClass('bi-heart').addClass('bi-heart-fill');
+	                        },
+	                        error: function(request, status, error) {
+	                            console.log("Error:", error);
+	                        }
+	                    });
+	                }
+	            } else {
+	               var confirmLogin = confirm("로그인이 필요합니다.\n로그인 페이지로 이동하시겠습니까?");
+	                 if (confirmLogin) {
+	                     window.location.href = "/login/main";
+	                 }
+	            }
+	      
+	         });
+	      }
 		</script>
 		
 </body>		

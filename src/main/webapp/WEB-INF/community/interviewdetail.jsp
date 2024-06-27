@@ -45,7 +45,7 @@
         max-width: 1200px;
         margin: 0 auto;
         padding: 20px;
-        text-align: center; /* 중앙 정렬을 위해 추가 */
+        text-align: center;
     }
     .custom-img {
         width: 500px;
@@ -56,22 +56,22 @@
     }
     .detail {
         margin-bottom: 15px;
-        text-align: left; /* 텍스트를 왼쪽 정렬로 설정 */
+        text-align: left;
     }
     .btns {
         display: flex;
-        justify-content: center;
+        justify-content: flex-end; /* 버튼을 오른쪽으로 정렬 */
         gap: 10px;
-        margin-top: 20px;
+        margin-top: 30px;
     }
     .content-row {
         display: flex;
-        justify-content: center; /* 중앙 정렬을 위해 추가 */
+        justify-content: center;
         align-items: flex-start;
         gap: 30px;
     }
     .content {
-        text-align: center; /* 중앙 정렬을 위해 추가 */
+        text-align: center;
     }
 </style>
 <script>
@@ -104,9 +104,9 @@
 			    <img src="<c:url value='/communityimage/${dto.com_main_photo}'/>" alt="Interview Image" class="custom-img">
 			</c:if>
 			<c:if test="${dto.com_main_photo eq 'no'}">
-			    <p>이미지가 없습니다.</p>
+			    <img src="<c:url value='/path/to/default/image.png'/>" alt="No Image" class="custom-img">
 			</c:if>
-            
+
         </div>
         <div style="margin-top: 10px;">
             <div class="detail">
@@ -133,8 +133,7 @@
             <button type="button" class="btn btn-secondary" onclick="location.href='${pageContext.request.contextPath}/community/interviewform'">글쓰기</button>
         </c:if>
         <!-- 해당 글을 작성한 회원만 수정, 삭제 가능 -->
-        <c:if test="${sessionScope.myid eq dto.com_user_id}">
-            <%-- <button type="button" class="btn btn-secondary" onclick="location.href='interviewupdateform?com_num=${dto.com_num}&com_photo=${dto.com_photo}'">수정</button> --%>
+        <c:if test="${sessionScope.myid == dto.com_user_id}">
             <button type="button" class="btn btn-secondary" onclick="location.href='${pageContext.request.contextPath}/community/interviewupdateform?com_num=${dto.com_num}'">수정</button>
             <button type="button" class="btn btn-secondary" onclick="deleteInterview(${dto.com_num})">삭제</button>
         </c:if>

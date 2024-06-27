@@ -1,7 +1,5 @@
 package com.code.dto;
 
-import java.security.Timestamp;
-
 import org.apache.ibatis.type.Alias;
 
 import lombok.Data;
@@ -32,7 +30,6 @@ public class SupportDto {
 	private String h_career;
 	private String h_grade;
 	private String h_location;
-	private String h_title;
 	private String h_major;
 	private String h_require;
 	private String h_preference;
@@ -44,4 +41,8 @@ public class SupportDto {
 	private String h_writeday;
 	private int h_count;
 
+	
+	
+	//register 테이블과 join
+	private String r_name;
 }

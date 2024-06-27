@@ -32,25 +32,23 @@
 						alt="codeconnect Logo" class="logo"></a>
 				</div>
 				<ul class="Menu_MenuNav__EOf3X" style="margin-bottom: 0px;">
-					<li class="Menu_MenuItem__wI1yA"><a href="/hire/hiremain"
+					<li class="Menu_MenuItem__wI1yA"><a href="/hire/main"
 						class="Menu_jobListLink__GYHAI"><span>채용</span></a></li>
-					<li class="Menu_MenuItem__wI1yA"><a href="#"><span>커리어</span></a></li>
-					<li class="Menu_MenuItem__wI1yA"><a href="#"><span>소셜</span></a></li>
-
-
+					<li class="Menu_MenuItem__wI1yA"><a href="/company/gotoshowimsiList"><span>기업</span></a></li>
 					<li class="Menu_MenuItem__wI1yA" data-attribute-id="gnb"
 						data-gnb-kind="resume"><a href="/resumehome/home"><span>이력서</span></a></li>
-					<li class="Menu_MenuItem__wI1yA" data-attribute-id="gnb"
+	<li class="Menu_MenuItem__wI1yA" data-attribute-id="gnb"
 						data-gnb-kind="community"><a href="/community/homelist"><span>커뮤니티</span></a></li>
+
+					<li class="Menu_MenuItem__wI1yA" data-attribute-id="gnb"
+						data-gnb-kind="resume"><a href="#"><span>고객센터</span></a></li>
 
 				</ul>
 
 				<aside class="Aside_aside__f0SVC">
 					<ul class="Aside_asideList__3WNyu" style="margin-bottom: 0px;">
 						<div class="SearchInput_SearchInputContainer__wGe1Q">
-
-
-							<li><button type="button" onclick="location.href='allsearch/main'"
+							<li><button type="button" onclick="location.href='/allsearch/main'"
 							class="Aside_searchButton__rajGo Aside_isNotMobileDevice__hTNEe"
 							   aria-label="검색" aria-haspopup="dialog" aria-expanded="false"
 							   aria-controls="nav_searchbar" data-attribute-id="gnb"
@@ -63,7 +61,7 @@
 
 						</div>
 						<li class="Aside_signUpButtonContainer___0wTS"><c:if
-								test="${sessionScope.loginok==null }">
+								test="${sessionScope.loginok==null and sessionScope.c_loginok==null}">
 								<button
 									class="Button_Button__root__V1ie3 Button_Button__outlined__H2mkd Button_Button__outlinedAssistive__mBcQK Button_Button__outlinedSizeSmall__JJmOo Aside_signUpButton__pY721"
 									type="button" onclick="location.href='/login/main'">
@@ -72,7 +70,9 @@
 											회원가입/로그인 </span>
 									</span> <span class="Button_Button__interaction__kkYaa"></span>
 								</button>
-							</c:if> <c:if test="${sessionScope.loginok!=null }">
+							</c:if> 
+							
+							<c:if test="${sessionScope.loginok!=null }">
 								<button
 									class="Button_Button__root__V1ie3 Button_Button__outlined__H2mkd Button_Button__outlinedAssistive__mBcQK Button_Button__outlinedSizeSmall__JJmOo Aside_signUpButton__pY721"
 									type="button"
@@ -82,7 +82,22 @@
 											${r_name}님</span>
 									</span> <span class="Button_Button__interaction__kkYaa"></span>
 								</button>
-							</c:if></li>
+							</c:if>
+							
+							<c:if test="${sessionScope.c_loginok!=null }">
+								<button
+									class="Button_Button__root__V1ie3 Button_Button__outlined__H2mkd Button_Button__outlinedAssistive__mBcQK Button_Button__outlinedSizeSmall__JJmOo Aside_signUpButton__pY721"
+									type="button"
+									onclick="location.href='/company/myinfo'">
+									<span class="Button_Button__label__1Kk0v"> <span
+										class="Typography_Typography__root__xYuMs Typography_Typography__label2__BRssq Typography_Typography__weightBold__e15ql">
+											${c_loginname}님</span>
+									</span> <span class="Button_Button__interaction__kkYaa"></span>
+								</button>
+							</c:if>
+							
+							
+							</li>
 						<!-- 						<li><a -->
 						<!-- 							class="Button_Button__root__V1ie3 Button_Button__outlined__H2mkd Button_Button__outlinedAssistive__mBcQK Button_Button__outlinedSizeSmall__JJmOo Aside_dashboardButton__WUch3" -->
 						<!-- 							type="button" href="/company/main" data-attribute-id="gnb" -->
