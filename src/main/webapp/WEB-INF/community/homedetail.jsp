@@ -75,7 +75,7 @@
     }
     .totalpostgo a {
         margin-top: 20px;
-        margin-left: 560px;
+        margin-left: 536px;
         background-color: #ffffff;
         color: #5c667b;
         border: 1px solid #ddd;
@@ -469,7 +469,7 @@
   </div>
 </div>
 
-<div class="homelistgo" style="margin-bottom: 30px;">
+<div class="homelistgo" style="margin-bottom: 30px; margin-left: -20px;">
     <a href="${pageContext.request.contextPath}/community/homelist"><span>목록<i class="bi bi-chevron-right"></i></span></a>
 </div>
 </body>
