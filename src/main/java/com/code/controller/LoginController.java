@@ -94,7 +94,12 @@ public class LoginController {
 	public String logout(HttpSession session)
 	{
 		session.removeAttribute("loginok");
-		session.removeAttribute("userNickname"); //
+		session.removeAttribute("userNickname");
+		session.removeAttribute("r_num");//LoginRestController에 이미 있지만, 계속 로그아웃해도 왠지 r_num이 안 지워져서 추가함.
+		session.removeAttribute("myid");
+		session.removeAttribute("r_name");
+		session.removeAttribute("r_email");
+		session.removeAttribute("r_hp");
 		return "redirect:/";
 	}
 	

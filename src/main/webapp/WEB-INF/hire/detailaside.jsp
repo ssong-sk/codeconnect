@@ -24,7 +24,7 @@
 
 .detailaside .wrap {
     position: fixed;
-    top: 160px;
+    top: 125px;
     width: 370px;
 }
 

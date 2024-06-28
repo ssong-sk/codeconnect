@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.code.dto.CommunityDto;
+import com.code.dto.CompanyIntroDto;
 
 @Mapper
 public interface CommunityMapperInter {
@@ -78,5 +79,6 @@ public interface CommunityMapperInter {
     List<CommunityDto> getPostsByTypeAndSort(@Param("type") String type, @Param("sortBy") String sortBy, @Param("offset") int offset, @Param("limit") int limit);
     List<CommunityDto> getPostsByCategoryAndSort(@Param("type") String type, @Param("category") String category, @Param("sortBy") String sortBy, @Param("offset") int offset, @Param("limit") int limit);
 
-    
+    //검색기능
+	public List<CommunityDto> commuAllSearch(String searchword);
 }

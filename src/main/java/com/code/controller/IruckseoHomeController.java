@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.code.dto.CompanyDto;
+import com.code.dto.CompanyIntroDto;
 import com.code.dto.HireDto;
 import com.code.dto.IruckseoActibityDto;
 import com.code.dto.IruckseoCareerDto;
@@ -26,6 +28,7 @@ import com.code.dto.IruckseoSelfDto;
 import com.code.dto.IruckseoSpecDto;
 import com.code.dto.RegisterDto;
 import com.code.dto.SupportDto;
+import com.code.service.CompanyIntroService;
 import com.code.service.CompanyService;
 import com.code.service.HireService;
 import com.code.service.IruckseoInsertService;
@@ -43,10 +46,6 @@ public class IruckseoHomeController {
    @Autowired
    RegisterService reservice;
    
-   //기업 service
-   @Autowired
-   CompanyService com_service;
-   
    //공고 service
    @Autowired
    HireService hservice;
@@ -54,6 +53,10 @@ public class IruckseoHomeController {
    //지원하기 service
    @Autowired
 	SupportService sservice;
+   
+   //기업
+   @Autowired
+   CompanyService cservice;
    
    //이력서 메인홈 띄우기
    @GetMapping("/resumehome/home")
@@ -77,13 +80,23 @@ public class IruckseoHomeController {
       int totalCount = irservice.getPersonalCount(r_num);
       mview.addObject("totalCount", totalCount);
       
+      //지원완료 갯수
+      int supportCount = irservice.getSupportCount(r_num);
+      mview.addObject("supportCount", supportCount);
       
+      //스크랩공고 갯수
+      int scrapCount = irservice.getScrapCount(r_num);
+      mview.addObject("scrapCount", scrapCount);
+      
+      //관심기업 갯수
+      int companyCount = irservice.getCompanyCount(r_num);
+      mview.addObject("companyCount", companyCount);
       
       //채용공고 정보 조회 및 추가
       List<HireDto> hlist = hservice.getHireList();
       mview.addObject("hlist", hlist);
       
-      //스크랩
+      //스크랩 공고
       List<HireDto> userScraps = hservice.getUserScraps(r_num);
       mview.addObject("userScraps", userScraps);
       
@@ -176,15 +189,12 @@ public class IruckseoHomeController {
      public String sform(@ModelAttribute("pedto") IruckseoInsertDto pedto, Model model, HttpSession session) {
         
         int r_num =  Integer.parseInt((String)session.getAttribute("r_num"));
-        //갯수
-        //int totalCount = irservice.getSupportCount(r_num);
+
         
         //이력서 전체리스트
         List<SupportDto> sulist = irservice.getSupportList(r_num);
         model.addAttribute("sulist", sulist);
 
-        
-        //model.addAttribute("totalCount", totalCount);
         
         return "/resumehome/iruckseosupportform";
      }
@@ -203,11 +213,7 @@ public class IruckseoHomeController {
      public String scrapform(@ModelAttribute("pedto") IruckseoInsertDto pedto, Model model, HttpSession session) {
         
         int r_num =  Integer.parseInt((String)session.getAttribute("r_num"));
-        
-        //갯수
-        int totalCount = irservice.getScrapCount(r_num);
-        model.addAttribute("totalCount", totalCount);
-        
+
         //스크랩 가져오기
         List<HireDto> shlist = irservice.getScrapHireList(r_num);
         model.addAttribute("shlist", shlist);
@@ -234,8 +240,8 @@ public class IruckseoHomeController {
          model.addAttribute("totalCount", totalCount);
          
          //스크랩 가져오기
-         List<HireDto> shlist = irservice.getScrapHireList(r_num);
-         model.addAttribute("shlist", shlist);
+         List<CompanyDto> clist = irservice.getScrapCompanyList(r_num);
+         model.addAttribute("clist", clist);
 
         return "/resumehome/iruckseointerestform";
      }
