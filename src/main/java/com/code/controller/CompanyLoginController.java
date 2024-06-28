@@ -89,7 +89,10 @@ public class CompanyLoginController {
 	@GetMapping("/company/logoutprocess")
 	public String logout(HttpSession session)
 	{
+		//기업 로그아웃시 세션 제거용
 		session.removeAttribute("c_loginok");
+		session.removeAttribute("c_loginname");
+		session.removeAttribute("c_myid");
 		return "redirect:main";
 	}
 	

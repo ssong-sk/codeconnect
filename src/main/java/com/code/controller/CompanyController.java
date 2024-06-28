@@ -42,6 +42,7 @@ import com.code.dto.RegisterDto;
 import com.code.dto.SupportDto;
 import com.code.service.CompanyIntroService;
 import com.code.service.CompanyService;
+import com.code.service.HireService;
 import com.code.service.IruckseoInsertService;
 import com.code.service.RegisterService;
 import com.code.service.SupportService;
@@ -69,6 +70,10 @@ public class CompanyController {
 	//이력서 보여주기용 일반 회원 service가져오기
 	@Autowired
 	RegisterService reservice;
+	
+	//채용공고리스트에서 사용
+	@Autowired
+	HireService hservice;
 
 
 	//기업 로그인로그아웃관련 임시 통합페이지
@@ -417,18 +422,20 @@ public class CompanyController {
 			String c_myid = (String) session.getAttribute("c_myid");
 			String c_loginok = (String) session.getAttribute("c_loginok");
 
-			// 로그 추가
-			System.out.println("Session c_myid: " + c_myid);
-			System.out.println("Session c_loginok: " + c_loginok);
 
 			// c_myid를 통해 CompanyDto를 가져오기
 			CompanyDto cdto = cservice.getDataById(c_myid);
 
 			// c_num을 가져오기
-			String c_num = cdto.getC_num();
+			// c_num을 가져오기
+			String c_num_str = cdto.getC_num();  // c_num을 String으로 가져오기
+			int c_num = Integer.parseInt(c_num_str);  // String을 int로 변환
+
 
 			// c_num을 통해 hire 테이블의 리스트를 가져오기
-			List<SupportDto> hlist = stservice.selectSupportByCnum(c_num);
+			List<HireDto> hlist = hservice.getHireListByCnum(c_num);
+			System.out.println(c_num);
+
 
 			// 모델에 hlist를 추가
 			model.addAttribute("hlist", hlist);
@@ -550,13 +557,10 @@ public class CompanyController {
 		mview.addObject("hodto", hodto);
 
 		//포워드: 일부러 맨앞의 /빼고 함.
-		mview.setViewName("resumehome/iruckseolist");
+		mview.setViewName("resumehome/iruckseolist2");
 
 		return mview;
 	}
-
-
-
 
 	// 잠깐 연습용 기업 마이페이지 => 제안 보낸 인재풀 관리
 	@GetMapping("/company/injae")

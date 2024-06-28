@@ -132,13 +132,12 @@ public class HireController {
    @GetMapping("/hire/detail")
    public ModelAndView detail(int h_num, HttpSession session) {
       
-	  Integer r_num =  Integer.parseInt((String)session.getAttribute("r_num"));
+	  //Integer r_num =  Integer.parseInt((String)session.getAttribute("r_num"));
 	  
 	  hservice.hireReadCount(h_num);
 	  
-	  if (r_num == null) {
-          r_num = 0; // 기본값 설정
-      }
+	  String r_numStr = (String) session.getAttribute("r_num");
+      Integer r_num = (r_numStr != null) ? Integer.parseInt(r_numStr) : 0;
 	  
       ModelAndView mview = new ModelAndView();
       

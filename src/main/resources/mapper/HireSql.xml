@@ -87,5 +87,19 @@
 	select count(*) from personal where r_num=#{r_num}
 </select>
 
+<!-- 기업마이페이지 : 해당 기업 채용공고 리스트, support테이블과 join -->
+<select id="getHireListByCnum" resultType="hdto">
+   SELECT h.*, COALESCE(s.support_count, 0) AS support_count 
+   FROM hire h
+   LEFT JOIN (
+      SELECT h_num, COUNT(*) AS support_count 
+      FROM support 
+      GROUP BY h_num
+   ) s ON s.h_num = h.h_num 
+   WHERE h.h_c_num = #{c_num}
+   ORDER BY h.h_num DESC 
+</select>
+
+
 
 </mapper>
