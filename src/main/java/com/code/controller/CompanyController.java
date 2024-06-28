@@ -436,7 +436,6 @@ public class CompanyController {
 			List<HireDto> hlist = hservice.getHireListByCnum(c_num);
 			System.out.println(c_num);
 
-
 			// 모델에 hlist를 추가
 			model.addAttribute("hlist", hlist);
 		} catch (Exception e) {
@@ -466,9 +465,6 @@ public class CompanyController {
 
 		// 모델에 리스트와 변환된 날짜 리스트를 추가
 		model.addAttribute("slist", slist);
-
-
-
 
 		return "/companyhire/companyhire_jiwon"; 
 	}

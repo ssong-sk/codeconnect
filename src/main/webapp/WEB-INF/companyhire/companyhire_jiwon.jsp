@@ -287,7 +287,7 @@ th:nth-child(7), td:nth-child(7) {
 									<input type="hidden" name="st_num" value="${a.st_num }">
 									<input type="hidden" name="r_num" value="${a.r_num }">
 									<td></td>
-									<td>${a.h_title}</td>
+									<td><a target="_blank" href="/hire/detail?h_num=${a.h_num }">${a.h_title}</a></td>
 									<td>${a.r_name}</td>
 									<td>
 										<form action="/company/handleClick" method="POST"
