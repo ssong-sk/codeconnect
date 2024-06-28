@@ -38,4 +38,42 @@
 	select * from company where c_num = #{c_num}
 </select>
 
+<!-- 공지글 관리 -->
+<select id="countCustomer" resultType="int">
+    select count(*) from customer
+</select>
+
+<select id="getAllCustomer" parameterType="HashMap" resultType="CustomerDto">
+	select * from customer where cus_top_type = 'notice' order by cus_num desc limit #{start}, #{perpage}
+</select>
+
+<select id="getAllCustomerEvent" parameterType="HashMap" resultType="CustomerDto">
+	select * from customer where cus_top_type = 'event' order by cus_num desc limit #{start}, #{perpage}
+</select>
+
+<select id="getCustomer" parameterType="int" resultType="CustomerDto">
+    select * from customer where cus_num = #{cus_num}
+</select>
+
+<!-- 공지 등록 -->
+<insert id="insertCustomer" parameterType="CustomerDto">
+    insert into customer (cus_user_id, cus_top_type, cus_category, cus_title, cus_content, cus_photo, cus_writetime) 
+    values ('manager', 'notice', #{cus_category}, #{cus_title}, #{cus_content}, #{cus_photo}, now())
+</insert>
+
+<!-- 이벤트 등록 -->
+
+
+<update id="updateCustomer" parameterType="CustomerDto">
+    update customer set cus_category=#{cus_category}, cus_title=#{cus_title}, cus_content=#{cus_content}
+    <if test="cus_photo != null">
+        ,cus_photo=#{cus_photo}    
+    </if>
+    where cus_num=#{cus_num}
+</update>
+	
+<delete id="deleteCustomer" parameterType="int">
+	delete from customer where cus_num=#{cus_num}
+</delete>
+
 </mapper>
