@@ -113,6 +113,7 @@
 
 a, a:active, a:hover, a:visited {
     color: inherit;
+    text-decoration: none;
 }
 
 .dashboard {

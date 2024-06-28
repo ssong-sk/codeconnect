@@ -132,13 +132,11 @@ public class HireController {
    @GetMapping("/hire/detail")
    public ModelAndView detail(int h_num, HttpSession session) {
       
-	  Integer r_num =  Integer.parseInt((String)session.getAttribute("r_num"));
+	   String r_numStr = (String) session.getAttribute("r_num");
+	   Integer r_num = (r_numStr != null) ? Integer.parseInt(r_numStr) : 0;
 	  
 	  hservice.hireReadCount(h_num);
-	  
-	  if (r_num == null) {
-          r_num = 0; // 기본값 설정
-      }
+	 
 	  
       ModelAndView mview = new ModelAndView();
       
@@ -166,7 +164,7 @@ public class HireController {
       mview.addObject("r_hp", r_hp);
       mview.addObject("r_email", r_email);
       mview.addObject("r_num",r_num);
-      mview.setViewName("/hire/hiredetail");
+      mview.setViewName("hire/hiredetail");
       
       return mview;
    }
