@@ -36,6 +36,8 @@
             company c
         on 
             ci.c_num = c.c_num
+        order by 
+        	ci.c_num
     </select>
 
    

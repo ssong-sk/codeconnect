@@ -294,24 +294,29 @@ svg {
                                                     height="20">
                                                     <g fill="none" fill-rule="evenodd">
                                                         <path d="M0 0h16v16H0z"></path>
-                                                        <g stroke="#FFF" stroke-linecap="round">
+                                                        <!-- 읽은 횟수 기능 없으니까 눈모양 아이콘 삭제 -->
+                                                        <!--                                                         <g stroke="#FFF" stroke-linecap="round">
                                                             <path
                                                                 d="M8 10c.86 0 1.556-.672 1.556-1.5S8.859 7 8 7c-.86 0-1.556.672-1.556 1.5S7.141 10 8 10z">
                                                             </path>
                                                             <path
                                                                 d="M15 8.5c-1.469 2.243-4.108 4.5-7 4.5-2.892 0-5.531-2.257-7-4.5C2.788 6.369 4.882 4 8 4s5.212 2.369 7 4.5z">
                                                             </path>
+                                                           
                                                         </g>
+                                                         -->
                                                     </g>
                                                 </svg>
-                                                <span>87</span>
+                                                
+                                                <!-- 
+                                                <span>87</span>-->
                                             </div>
                                         </div>
                                     </div>
                                 </a>
                                 <div class="hireinfo-content">
                                     <div class="content-company">
-                                        <a target="" title="${a.c_name}" href="#"><span>${a.c_name}</span></a>
+                                        <a target="_self" href="/company/showimsiCom?c_num=${a.c_num}"><span>${a.c_category}</span></a>
                                         &nbsp;
                                         
                                         <!-- 일반 회원 로그인 상태일 때만 스크랩 기능 보이도록 해야한다. -->

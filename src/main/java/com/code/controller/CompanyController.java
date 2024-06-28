@@ -75,13 +75,6 @@ public class CompanyController {
 	@Autowired
 	HireService hservice;
 
-
-	//기업 로그인로그아웃관련 임시 통합페이지(폐지)
-	@GetMapping("/company")
-	public String imsicom() {
-		return "/company/companyimsiall"; //앞에 '/'넣은게 최신입니다.
-	}
-
 	//채용공고 작성 페이지로 이동하기
 	@GetMapping("/hire/hirewrite")
 	public String gohirewrite(HttpSession session, Model model) {

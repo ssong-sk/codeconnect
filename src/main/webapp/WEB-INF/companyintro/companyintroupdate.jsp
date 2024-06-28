@@ -119,6 +119,24 @@ body {
     font-size: 24px;
 }
 
+.header .btn-view-page {
+    background-color: #e9ecef;
+    color: #6c757d;
+    border: none;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.header .btn-view-page:hover {
+    background-color: #ced4da;
+}
+
+.header .btn-view-page i {
+    margin-right: 5px;
+}
+
 .search-bar {
     display: flex;
     align-items: center;
@@ -329,6 +347,9 @@ th:nth-child(5), td:nth-child(5) {
             <div class="main-content-wrapper">
                 <div class="header">
                     <h1>기업 소개문 수정</h1>
+                    <button type="button" class="btn btn-view-page" onclick="location.href='showimsi'">
+                        <i class="bi bi-arrow-right-circle"></i> 내 기업소개 페이지 보기
+                    </button>
                 </div>
                 <form action="updateintro" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="c_num" id="c_num" value="${dto.c_num}">
@@ -375,7 +396,6 @@ th:nth-child(5), td:nth-child(5) {
                         <input type="text" class="form-control" id="ci_link" name="ci_link" value="${dto.ci_link}">
                     </div>
                     <button type="submit" class="btn btn-outline-primary" onclick="saveFormWithAlert()">저장</button>
-                    <button type="button" class="btn btn-outline-primary" onclick="location.href='showimsi'">내 기업소개 페이지 보기</div>
                 </form>
             </div>
         </div>

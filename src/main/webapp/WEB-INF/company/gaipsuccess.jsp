@@ -17,12 +17,12 @@
 <body>
 
 <h3>회원가입을 축하합니다!</h3>
-
-<!-- 임시통합페이지는 이제 필요없음 -->
-<!-- 
-<button onclick="location.href='/company/'" >기업 임시 통합페이지로 가기</button>
--->
-<button onclick="location.href='main'" >로그인하러가기</button>
+<script type="text/javascript">
+    $(document).ready(function() {
+        alert("회원가입을 축하합니다!");
+        window.location.href = "/login/main";
+    });
+</script>
 
 </body>
 </html>

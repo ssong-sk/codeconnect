@@ -377,15 +377,17 @@ font-size: 0.8em;
 									<c:otherwise>―</c:otherwise>
 								</c:choose></td>
 						</tr>
+						<!-- 
 						<tr>
 							<th>고용보험 사업장 수</th>
 							<td>1개</td>
 						</tr>
+						-->
 						<tr>
 							<th>홈페이지</th>
 							<td><c:choose>
 									<c:when test="${not empty dto.ci_link}">
-										<a href="${dto.ci_link}">${dto.ci_link}</a>
+										<a href="${dto.ci_link}" target="_blank">${dto.ci_link}</a>
 									</c:when>
 									<c:otherwise>―</c:otherwise>
 								</c:choose></td>
