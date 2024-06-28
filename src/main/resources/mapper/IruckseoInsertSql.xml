@@ -510,7 +510,7 @@
 	 WHERE s.r_num = #{r_num}
    </select>
    
-   <!-- 입사지원 공고 갯수 가져오기-->
+   <!-- 입사지원 공고  갯수 가져오기-->
    <select id="getSupportCount" parameterType="int" resultType="int">
      SELECT count(*)
 		FROM support s
@@ -519,11 +519,45 @@
 	 WHERE s.r_num = #{r_num}
    </select>
    
+   <!-- 입사지원현황 페이징 처리 -->
+   <select id="getSupportPaging" parameterType="HashMap" resultType="sdto">
+	    SELECT s.*, h.h_title, c.c_name
+		    FROM support s
+		    JOIN hire h ON s.h_num = h.h_num
+		    JOIN company c ON h.h_c_num = c.c_num
+		    WHERE s.r_num = #{r_num}
+		    ORDER BY s.st_num DESC 
+	    LIMIT #{start}, #{perPage}
+	</select>
+	
+	<!-- 입사지원현황 삭제하기 -->
+   <delete id="SupportDelete" parameterType="int">
+     delete from support where st_num = #{st_num}
+   </delete>
+   
    <!-- 입사지원 취소시 업데이트 되어 지원완료를 지원취소로 바꾸기 -->
    <update id="updateSupportDelete" parameterType="int">
      update support set st_support = '지원취소'
      where st_num = #{st_num}
    </update>
+   
+   <!-- 지원완료 상태일때 갯수 조회 -->
+   <select id="getResultCount" parameterType="int" resultType="int">
+	  SELECT count(*)
+	    FROM support s
+	    JOIN hire h ON s.h_num = h.h_num
+	    JOIN company c ON h.h_c_num = c.c_num
+	  WHERE s.r_num = #{r_num}
+	    AND s.st_support = '지원완료'
+   </select>
+   
+   <!-- 지원완료 상태일때 갯수 조회 -->
+   <select id="getOpenCount" parameterType="int" resultType="int">
+	  SELECT COUNT(*)
+        FROM support
+        WHERE r_num = #{r_num}
+      AND st_open = '열람'
+   </select>
    
    <!-- 관심기업 스크랩 하기 -->
    <select id="getScrapCompanyList" parameterType="int" resultType="CompanyDto">

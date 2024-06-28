@@ -186,8 +186,6 @@
 			                </tr>
 			              </c:if>
 			              
-			              <tr><td><br></td></tr>
-			              
 			              <c:if test="${totalCount>0 }">
 			                <c:forEach var="pe" items="${pelist }">
 			                <tr>
@@ -226,7 +224,6 @@
 							    </td>
 							</tr>
 			                  
-			                  <tr><td><br></td></tr>
 			                  
 		                      <tr>
 			                    <td colspan="4"><hr></td> <!-- 각 섹션 사이에 구분선 추가 -->

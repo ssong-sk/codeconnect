@@ -1,6 +1,8 @@
 package com.code.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -375,12 +377,6 @@ public class IruckseoInsertService implements IruckseoInsertServiceInter {
 		return irmapper.getSupportList(r_num);
 	}
 
-	//입사지원 현황 갯수
-	public int getSupportCount(int r_num) {
-		// TODO Auto-generated method stub
-		return irmapper.getSupportCount(r_num);
-	}
-
 	//입사지원 지원취소 업데이트
 	public void updateSupportDelete(int st_num) {
 		// TODO Auto-generated method stub
@@ -398,5 +394,41 @@ public class IruckseoInsertService implements IruckseoInsertServiceInter {
 		// TODO Auto-generated method stub
 		return irmapper.getCompanyCount(r_num);
 	}
+
+	//지원완료 갯수
+	public int getResultCount(int r_num) {
+		// TODO Auto-generated method stub
+		return irmapper.getResultCount(r_num);
+	}
+
+	//이력서 열람 갯수
+	public int getOpenCount(int r_num) {
+		// TODO Auto-generated method stub
+		return irmapper.getOpenCount(r_num);
+	}
+
+	//이력서현황 갯수
+	public int getSupportCount(int r_num) {
+		// TODO Auto-generated method stub
+		return irmapper.getSupportCount(r_num);
+	}
+
+	//이력서현황 페이징 및 리스트
+	public List<SupportDto> getSupportPaging(int r_num, int start, int perPage) {
+	    Map<String, Object> map = new HashMap<>();
+	    
+	    map.put("r_num", r_num);
+	    map.put("start", start);
+	    map.put("perPage", perPage); // 수정: 키 이름을 SQL 쿼리와 일치하게 설정
+	    
+	    return irmapper.getSupportPaging(map);
+	}
+
+	//이력서 현황 삭제
+	public void SupportDelete(int st_num) {
+		// TODO Auto-generated method stub
+		irmapper.SupportDelete(st_num);
+	}
+
 }
 

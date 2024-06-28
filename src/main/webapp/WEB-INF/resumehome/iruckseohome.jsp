@@ -355,14 +355,14 @@ svg {
                    <div>
                      <ul>
                        <li>지원 완료
-                       <a href="/resumehome/supportform"><span>${supportCount}</span></a></li>
+                       <a href="/resumehome/supportform"><span>${resultCount}</span></a></li>
                      </ul>
                    </div>
                    
                    <div>
                      <ul>
                        <li>이력서 열람
-                       <a href="#"></a><span>${totalCount}</span></li>
+                       <a href="/resumehome/supportform"><span>${openCount}</a></span></li>
                      </ul>
                    </div>
                    

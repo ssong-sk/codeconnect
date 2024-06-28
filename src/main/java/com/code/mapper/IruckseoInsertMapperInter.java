@@ -1,6 +1,7 @@
 package com.code.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -187,9 +188,6 @@ public interface IruckseoInsertMapperInter {
 	//입사지원현황 리스트
 	public List<SupportDto> getSupportList(int r_num);
 
-	//입사지원현황 갯수
-	public int getSupportCount(int r_num);
-
 	//입사지원 지원취소 업데이트
 	public void updateSupportDelete(int st_num);
 
@@ -201,5 +199,20 @@ public interface IruckseoInsertMapperInter {
 
 	//관심기업 갯수
 	public int getCompanyCount(int r_num);
+
+	//지원완료 갯수
+	public int getResultCount(int r_num);
+
+	//이력서열람 갯수
+	public int getOpenCount(int r_num);
+
+	//이력서현황 갯수
+	public int getSupportCount(int r_num);
+
+	//이력서현황 페이징 및 리스트
+	public List<SupportDto> getSupportPaging(Map<String, Object> map);
+
+	//이력서현황 삭제
+	public void SupportDelete(int st_num);
 
 }

@@ -208,12 +208,50 @@
 							  </div>
 							</c:forEach>
 							<hr>
-							<div>
-							  <button class="btn btn-outline-primary deleteBtn" st_num="${su.st_num}"
-							  style="float: right;">지원취소</button>
+							<div style="float: right;">
+							  <button class="btn btn-outline-primary deleteBtn" st_num="${su.st_num}">삭제</button>
+							  <button class="btn btn-outline-primary updateBtn" st_num="${su.st_num}">지원취소</button>
 							</div>
 		              </table>
 		            </div>
+		            
+		            
+		            
+		            <!-- 페이징 -->
+				     <div style="width: 100%; margin-top: 7%; margin-bottom: 5%;">
+				       <ul class="pagination justify-content-center">
+				          <!--  이전-->
+				          <c:if test="${startPage>1 }">
+				             <li class="page-item ">
+				           <a class="page-link" href="supportform?currentPage=${startPage-1 }" style="color: black;">이전</a>
+				          </li>
+				          </c:if>
+				          
+				          <!--페이지번호  -->
+				          <c:forEach var="pp"  begin="${startPage }"  end="${endPage }">
+				            <c:if test="${currentPage==pp }">
+				                 <li class="page-item active">
+				               <a class="page-link" href="supportform?currentPage=${pp }">${pp }</a>
+				              </li>
+				            </c:if>
+				            
+				            <c:if test="${currentPage!=pp }">
+				               <li class="page-item">
+				               <a class="page-link" href="supportform?currentPage=${pp }">${pp }</a>
+				               </li>
+				            </c:if>
+				          </c:forEach>
+				          
+				          
+				          <!-- 다음 -->
+				          <c:if test="${endPage<totalPage }">
+				             <li class="page-item">
+				               <a  class="page-link" href="supportform?currentPage=${endPage+1 }"
+				               style="color: black;">다음</a>
+				            </li>
+				          </c:if>
+				       </ul>
+				     </div>
 	              </div>   
 	              
               </div>
@@ -226,7 +264,7 @@
     
      //지원취소시 업데이트하기
      $(document).ready(function () {
-        $(".deleteBtn").click(function () {
+        $(".updateBtn").click(function () {
         	
         	var chbox = $("input[name='oneselect']:checked");
         	 //console.log("선택된 체크박스 개수:", checkedBoxes.length);
@@ -255,9 +293,45 @@
                 }
             });
         });
+        
+        
+        //삭제하기
+        $(".deleteBtn").click(function () {
+        	
+        	var chbox = $("input[name='oneselect']:checked");
+        	 //console.log("선택된 체크박스 개수:", checkedBoxes.length);
+            
+            if (chbox.length === 0) {
+                alert("삭제 할 항목을 선택해주세요.");
+                return;
+            }
+
+            var st_num_array = [];
+            chbox.each(function () {
+                st_num_array.push($(this).data("st-num"));
+            })
+            //console.log("전송할 st_num 배열:", st_num_array);
+
+            $.ajax({
+                type: "post",
+                url: "Supportdelete",  // 실제 업데이트를 처리할 URL
+                traditional: true,  // 배열 형태의 데이터 전송을 위해 필요
+                data: { "st_num": st_num_array },  // 배열 형태로 데이터 전송
+                success: function (response) {
+                	
+                    alert("삭제가 완료되었습니다");
+                    // 여기에 추가적인 작업을 수행할 수 있습니다.
+                    location.reload();
+                }
+            });
+        });
     });
     </script>
     
+    
+    
+    
+
     
 </body>
 </html>
