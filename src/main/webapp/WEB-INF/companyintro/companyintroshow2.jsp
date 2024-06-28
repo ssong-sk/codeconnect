@@ -270,7 +270,7 @@ font-size: 0.8em;
 				</c:choose>
 			</p>
 			<!-- 기업 채용공고 리스트를 card형식으로 보여주기 -->
-			<br>
+			<br><br>
 			<h2 class="section-title">채용중인 포지션</h2>
 			<div class="row">
 				<c:forEach var="h" items="${hlist}">
@@ -279,13 +279,13 @@ font-size: 0.8em;
 							<div class="card-body">
 								<h6 class="card-title">
 									<a target="_blank" href="/hire/detail?h_num=${h.h_num}"
-										style="font-weight: bold;">[${h.h_title}]</a>
+										><p style="font-weight: bold;">[${h.h_title}]</p>
 								</h6>
 								<p class="card-text">
 									${h.h_job}<br> <span id="location-${h.h_num}">${h.h_location}</span>
 									· <span id="career-${h.h_num}">${h.h_career}</span> · <span
 										id="deadline-${h.h_num}">${h.h_deadline}</span><br>
-								</p>
+								</p></a>
 							</div>
 						</div>
 					</div>

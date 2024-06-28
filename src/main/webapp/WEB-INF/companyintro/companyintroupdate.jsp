@@ -38,7 +38,7 @@ body {
 
 .sidebar {
     width: 250px;
-    height: 540px;
+    height: 560px;
     border: 1px solid #E0E0E0;
     padding: 20px;
     background-color: #fff;
@@ -52,7 +52,6 @@ body {
     text-align: center;
     font-weight: bold;
     margin-bottom: 20px;
-    cursor: pointer;
 }
 
 .sidebar .btn {
@@ -310,7 +309,7 @@ th:nth-child(5), td:nth-child(5) {
     <div class="wrapper">
         <div class="container">
             <div class="sidebar">
-                <h5 onclick="location.href='main'">코드커넥트 채용 솔루션</h5>
+                <h5>코드커넥트 채용 솔루션</h5>
                 <button class="btn" onclick="location.href='/hire/hirewrite'">+ 공고 등록하기</button>
                 <button class="btn">🔍 인재풀 탐색하기</button>
                 <div class="menu-divider"></div>
@@ -322,8 +321,9 @@ th:nth-child(5), td:nth-child(5) {
                 <div class="menu-divider"></div>
                 <div class="menu-item" onclick="location.href='companyupdate'">기업 정보 수정</div>
                 <div class="menu-item" onclick="location.href='intromain'" style="font-weight: bold;">기업 소개 하기</div>
-                <div class="menu-item" onclick="location.href='showimsi'">내 기업 소개 페이지로 이동</div>
+                <div class="menu-divider"></div>
                 <div class="menu-item" onclick="location.href='account'">계정 관리</div>
+                <div class="menu-item" onclick="location.href='logoutprocess'">로그아웃</div>
             </div>
 
             <div class="main-content-wrapper">
@@ -375,6 +375,7 @@ th:nth-child(5), td:nth-child(5) {
                         <input type="text" class="form-control" id="ci_link" name="ci_link" value="${dto.ci_link}">
                     </div>
                     <button type="submit" class="btn btn-outline-primary" onclick="saveFormWithAlert()">저장</button>
+                    <button type="button" class="btn btn-outline-primary" onclick="location.href='showimsi'">내 기업소개 페이지 보기</div>
                 </form>
             </div>
         </div>
