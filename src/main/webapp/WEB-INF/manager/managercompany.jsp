@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gowun+Dodum&family=Noto+Sans+Korean&family=IBM+Plex+Sans+KR&display=swap" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -28,14 +29,6 @@
 	margin-top: 100px;
 	font-family: IBM Plex Sans KR;
 	margin-bottom: 100px;
-}
-
-.dashboard {
-    padding: 20px;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    margin-top: 20px;
 }
 
 .menu_container:before {
@@ -122,6 +115,21 @@
 a, a:active, a:hover, a:visited {
     color: inherit;
 }
+
+.dashboard {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+table.custom-table{
+	background-color: #f9f9f9;
+}
+
+.comlist{
+	cursor: pointer;
+}
 </style>
 </head>
 <body>
@@ -160,7 +168,89 @@ a, a:active, a:hover, a:visited {
 			    <div class="row">
 			        <main id="content" class="">
 			            <div class="dashboard">
-			                관리자 페이지 입니다.
+			                <table class="table table-hover custom-table">
+			                <thead>
+			                	<tr>
+			                		<td colspan="7">
+			                			<div style="border: 1px solid #ddd; border-radius: 5px; padding: 20px; margin-bottom: 15px;">
+			                				<h3><span style="color: #0176ED;">${c_count }</span> 개의 기업이 있습니다.</h3>
+			                			</div>
+			                		</td>
+			                	</tr>
+			                	<tr align="center">
+			                		<td>NO</td>
+			                		<td>NAME</td>
+			                		<td>CATE / SIZE</td>
+			                		<td>ADDR</td>
+			                		<td>EMAIL</td>
+			                		<td>DAY</td>
+			                		<td>BLOCK</td>
+			                	</tr>
+			                	</thead>
+			                	<tbody>
+								<c:if test="${c_count==0 }">
+								<tr height="50">
+								  <td colspan="5" align="center">
+								     <h5><b>등록된 기업이 없습니다</b></h5>
+								  </td>
+								</tr>
+								</c:if>
+			                	<c:if test="${c_count>0 }">
+			                	<c:forEach var="c" items="${clist }">
+								    <tr align="center" class="comlist" onclick="location.href='companyedit?c_num=${c.c_num}'">
+								       <td valign="middle">${no }</td><c:set var="no" value="${no-1 }"/>
+								       <td valign="middle">
+											<span style="color: #0176ED;">${c.c_name }</span>
+									   </td>
+								       <td valign="middle">${c.c_category } <br> ${c.c_size }</td>
+								       <td valign="middle">
+									       	${c.c_addr}
+								    	</td>
+								        <td valign="middle">${c.c_insa_email }</td>
+								        <td valign="middle"><fmt:formatDate value="${c.c_gaipday}" pattern="yyyy-MM-dd"/></td>
+								        <td valign="middle">
+								           <input type="checkbox" num="${c.c_num }" class="del">
+								        </td>
+								    </tr>
+								</c:forEach>
+								</c:if>
+								</tbody>
+			                </table>
+			                <!-- 페이징 -->
+							<div style="width: 1000px;">
+							  <ul class="pagination justify-content-center">
+							     <!--  이전-->
+							     <c:if test="${startPage>1 }">
+							        <li class="page-item ">
+								   <a class="page-link" href="company?currentPage=${startPage-1 }" style="color: black;">이전</a>
+								  </li>
+							     </c:if>
+							     
+							     <!--페이지번호  -->
+							     <c:forEach var="pp"  begin="${startPage }"  end="${endPage }">
+							       <c:if test="${currentPage==pp }">
+							       	  <li class="page-item active">
+							    		<a class="page-link" href="company?currentPage=${pp }">${pp }</a>
+							    	  </li>
+							       </c:if>
+							       
+							       <c:if test="${currentPage!=pp }">
+							          <li class="page-item">
+							    		<a class="page-link" href="company?currentPage=${pp }">${pp }</a>
+							    		</li>
+							       </c:if>
+							     </c:forEach>
+							     
+							     
+							     <!-- 다음 -->
+							     <c:if test="${endPage<totalPage }">
+							        <li class="page-item">
+							    		<a  class="page-link" href="company?currentPage=${endPage+1 }"
+							    		style="color: black;">다음</a>
+							    	</li>
+							     </c:if>
+							  </ul>
+							</div>
 			            </div>
 			        </main>
 			    </div>

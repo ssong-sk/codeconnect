@@ -476,10 +476,16 @@
    
    <!-- 스크랩 공고 하기 -->
    <select id="getScrapHireList" parameterType="int" resultType="hdto">
-     SELECT * FROM hire h
-		JOIN company c ON h.h_c_num = c.c_num
-		JOIN scrap s ON h.h_num = s.h_num
-	 where s.r_num = #{r_num}
+     SELECT h.*, c.*, s.*, ci.*
+	 FROM hire h
+     JOIN 
+     company c ON h.h_c_num = c.c_num
+     JOIN 
+     scrap s ON h.h_num = s.h_num
+     LEFT JOIN 
+     company_intro ci ON h.h_ci_num = ci.ci_num
+     WHERE 
+     s.r_num = #{r_num}
    </select>
    
    <!-- 스크랩 공고 갯수 구하기 -->
@@ -518,5 +524,30 @@
      update support set st_support = '지원취소'
      where st_num = #{st_num}
    </update>
+   
+   <!-- 관심기업 스크랩 하기 -->
+   <select id="getScrapCompanyList" parameterType="int" resultType="CompanyDto">
+    SELECT 
+        c.*, s.* 
+    FROM 
+        company c
+    JOIN 
+        scrap s ON c.c_num = s.c_num 
+    WHERE 
+		s.r_num = #{r_num} 
+        AND s.h_num IS NULL;
+   </select>
+   
+    <!-- 관심기업 갯수 하기 -->
+   <select id="getCompanyCount" parameterType="int" resultType="int">
+    SELECT count(*)
+    FROM 
+        company c
+    JOIN 
+        scrap s ON c.c_num = s.c_num 
+    WHERE 
+		s.r_num = #{r_num} 
+        AND s.h_num IS NULL;
+   </select>
 
 </mapper>

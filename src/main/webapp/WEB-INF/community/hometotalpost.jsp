@@ -88,11 +88,11 @@
         max-width: 1200px;
         margin: 30px auto;
     }
-    .qna-list {
+    .qna-list, .s-qna-list {
         list-style: none;
         padding: 0;
     }
-    .qna-list li {
+    .qna-list li, .s-qna-list li {
         padding: 20px 0;
         border-bottom: 1px solid #eaeaea;
     }
@@ -288,8 +288,8 @@
     <div class="container2">
         <div class="linkgo" style="width: 100%;">
             <div>
-                <h2><b>${category} 방</b></h2>
-                <span style="display: block; margin-top: 10px; color: #5c667b;">현재까지 등록된 ${category} 게시글입니다.</span>
+                <h2><b class="catename">${category} 방</b></h2>
+                <span style="display: block; margin-top: 10px; color: #5c667b;" class="catename2">현재까지 등록된 ${category} 게시글입니다.</span>
             </div>
             <img src="/communityimage/communitytwo.png" style="height: 250px;">
         </div>
@@ -303,7 +303,7 @@
                 <li><a href="${root}/community/hometotalpost?category=<%= java.net.URLEncoder.encode("면접", "UTF-8") %>">면접</a></li>
                 <li><a href="${root}/community/hometotalpost?category=<%= java.net.URLEncoder.encode("Q&A", "UTF-8") %>">Q&A</a></li>
                 -->
-                <li><a href="${root}/community/hometotalpost?category=<%= java.net.URLEncoder.encode("전체글", "UTF-8") %>" class="${category == '전체글' ? 'active' : ''}">전체글</a></li>
+                <li><a href="${root}/community/hometotalpost?category=<%= java.net.URLEncoder.encode("전체글", "UTF-8") %>" id="all" class="${category == '전체글' ? 'active' : ''}">전체글</a></li>
 			    <li><a href="${root}/community/hometotalpost?category=<%= java.net.URLEncoder.encode("신입", "UTF-8") %>" class="${category == '신입' ? 'active' : ''}">신입</a></li>
 			    <li><a href="${root}/community/hometotalpost?category=<%= java.net.URLEncoder.encode("취준", "UTF-8") %>" class="${category == '취준' ? 'active' : ''}">취준</a></li>
 			    <li><a href="${root}/community/hometotalpost?category=<%= java.net.URLEncoder.encode("자소서", "UTF-8") %>" class="${category == '자소서' ? 'active' : ''}">자소서</a></li>
@@ -320,13 +320,13 @@
         <div class="linkgo d-flex justify-content-between" style="width: 100%;">
             <a href="${root}/community/hometotalpost">
                 <h4>
-                    <span>전체 <b>${totalCount}</b>건</span>
+                    <span>전체 <b class="allcount">${totalCount}</b>건</span>
                 </h4>
             </a>
             <div class="d-flex search">
                 <input class="form-control me-2" type="search" placeholder="다른 사람들은 어떤 이야기를 할까?" aria-label="Search"
-                style="width: 350px;">
-                <button type="button" class="btn btn-outline-primary">
+                style="width: 350px;" name="searchword">
+                <button type="button" class="btn btn-outline-primary" id="btnsearch">
                     <span class="blind">검색</span>
                 </button>
             </div>
@@ -382,6 +382,7 @@
     </ul>
 </div> --%>
 <div class="list_qna" style="max-width: 1200px; margin: 30px auto;">
+	<div id="s-qna-list">
     <ul class="qna-list">
         <c:if test="${topPost != null}">
             <li style="border-top: 1px solid #eaeaea;">
@@ -422,8 +423,8 @@
             </li>
         </c:forEach>
     </ul>
+    </div>
 </div>
-
 
 
 <div class="pagination">
@@ -437,5 +438,83 @@
         <a href="?category=${category}&pageNum=${endPage + 1}" class="page-link">다음<i class="bi bi-chevron-right"></i></a>
     </c:if>
 </div>
+
+<script type="text/javascript">
+//엔터 키 눌렀을 때 검색 버튼 클릭 이벤트 처리
+$('.me-2').keypress(function(e) {
+    if (e.which == 13) { // 엔터 키를 눌렀을 때
+        $('#btnsearch').click(); // 검색 버튼 클릭
+    }
+});
+
+
+/* 검색 기능 */
+$('#btnsearch').click(function() {
+    var searchword = $('.me-2').val().trim(); // 입력 필드의 값 가져오기
+    $.ajax({
+        type: "GET",
+        url: "commuAllSearch", // 실제 검색을 처리하는 서버의 URL로 변경해야 합니다.
+        dataType: "json",
+        data: {
+            "searchword": searchword
+        },
+        success: function(res) {
+            comsearch(res);
+            $("b.allcount ").text(res.length);
+            
+         	// '전체글'을 활성화하고 다른 항목을 비활성화
+            $('ul li a').removeClass('active'); // 모든 링크에서 active 클래스 제거
+            $('#all').addClass('active'); // '전체글' 링크에 active 클래스 추가
+            
+            // '전체글 방'과 '현재까지 등록된 전체글 게시글입니다' 텍스트 변경
+            $('.catename').text('전체글 방');
+            $('.catename2').text('현재까지 등록된 전체글 게시글입니다.');
+            
+            $('.content_text').each(function(){
+                var maxLength = 96;
+                var text = $(this).text();
+                if (text.length > maxLength) {
+                    var cut = text.substring(0, maxLength) + '...';
+                    $(this).text(cut);
+                }
+            });
+        }
+    });
+});
+ 
+/* 리스트 출력 함수 */
+function comsearch(res) {
+	$(".qna-list").hide();
+
+	if (res.length === 0) {
+		$("ul.s-qna-list").hide();
+		$(".qna-list").show();
+		$('.qna-list').html('<p>검색 결과가 없습니다.</p>');
+		return;
+	}
+	var s = "<ul class='s-qna-list'>";
+    $.each(res, function(index, h) {
+        s += "<li style='border-top: 1px solid #eaeaea;'>";
+        s += "<div class='qna-item'>";
+        s += "<div class='post_list'>";
+        s += "<a href='/community/homedetail?com_num=" + h.com_num + "'>";
+        s += "<h5><b>" + h.com_title + "</b></h5>";
+        s += "<span class='content_text'>" + h.com_content + "</span>";
+        s += "<div>";
+        s += "&nbsp;<span><i class='bi bi-hand-thumbs-up'></i>&nbsp;" + h.com_likes + "</span>&nbsp;&nbsp;&nbsp;";
+        s += "<span><i class='bi bi-chat-left'></i>&nbsp;" + h.com_commentcount + "</span>&nbsp;&nbsp;";
+        s += "<span><i class='bi bi-eye'></i>&nbsp;" + h.com_readcount + "</span>&nbsp;&nbsp;&nbsp;&nbsp;<br>";
+        s += "<span>'" + h.com_nickname + "'님&nbsp;&nbsp;" + new Date(h.com_writetime).toLocaleString() + "&nbsp;작성</span>"; // 날짜 형식 변환
+        s += "</div>";
+        s += "</a>";
+        s += "</div>";
+        s += "</div>";
+        s += "</li>";
+    });
+	s += "</ul>";
+	
+	$('#s-qna-list').html(s); // 업데이트할 요소의 ID를 지정
+}
+</script>
 </body>
 </html>

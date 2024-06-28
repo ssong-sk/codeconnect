@@ -16,10 +16,9 @@
     body {
         font-family: 'IBM Plex Sans KR', sans-serif;
     }
-    
-    /* 최상단 카테고리 nav */
+
     .nav {
-        margin-top: 50px;
+        margin-top: 5px;
         margin-left: 150px;
     }
     .nav ul {
@@ -43,29 +42,77 @@
     .nav ul .active {
         color: blue;
     }
-    .top-section {
+
+    .tabs {
         display: flex;
         justify-content: center;
-        align-items: center;
-        width: 80%;
-        margin: 50px auto -30px auto; /* 아래쪽 간격을 10px로 줄임 */
-        gap: 870px;
+        margin-top: 20px;
+        border-bottom: 1px solid #ddd;
+    }
+    .tabs a {
+        padding: 10px 20px;
+        margin: 0 5px;
+        text-decoration: none;
+        color: #000;
+        border: 1px solid #ddd;
+        border-bottom: none;
+        background: #f8f9fa;
+        border-radius: 5px 5px 0 0;
+    }
+    .tabs a.active {
+        background: #fff;
+        color: #2D65F2;
+        font-weight: bold;
     }
 
-    /* 테이블 스타일 */
-    table {
-        width: 80%;
-        margin: 50px auto;
-        border-collapse: collapse;
-    }
-    th, td {
-        border: 1px solid #ddd;
-        padding: 8px;
-        text-align: left;
-    }
-    td.center {
-        text-align: center;
-    }
+    .events {
+	    display: flex;
+	    flex-wrap: wrap;
+	    justify-content: space-around;
+	    margin: 20px auto;
+	    width: 60%;
+	}
+	
+	.event-card {
+	    background: #fff;
+	    border: 1px solid #ddd;
+	    border-radius: 5px;
+	    width: calc(30% - 10px);
+	    margin-bottom: 20px;
+	    padding: 15px;
+	    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	}
+	
+	.event-card a {
+	    text-decoration: none;
+	    color: inherit;
+	    display: block;
+	}
+	
+	.event-card img {
+	    max-width: 100%;
+	    width: 300px;
+	    height: 150px;
+	    object-fit: cover;
+	    margin-bottom: 22px;
+	}
+	
+	.event-card b {
+	    font-size: 16px;
+	}
+	
+	.event-card p {
+	    margin: 5px 0;
+	    color: #555;
+	    font-size: 14px;
+	}
+	
+	.event-card p:last-child {
+	    margin-top: 10px;
+	    font-size: 13px;
+	    color: gray;
+	}
+
     /* 페이징 스타일 */
     .pagination {
         display: flex;
@@ -95,47 +142,153 @@
         pointer-events: none;
         box-shadow: none;
     }
+    
+    .top-section {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 80%;
+        margin: 50px auto -30px auto;
+        gap: 870px;
+    }
+    
 </style>
+<script>
+    $(document).ready(function(){
+        $(".tabs a").click(function(e){
+            e.preventDefault();
+            $(".tabs a").removeClass("active");
+            $(this).addClass("active");
+
+            var category = $(this).data("category");
+            $(".events").hide();
+            $("#" + category).show();
+        });
+    });
+</script>
 </head>
 <body>
+<div style="max-width: 1200px; margin-top: 70px; margin-left: 260px; width: 80%;">
+    <h4 style="color: gray; font-weight: bold;">고객센터</h4>
+</div>
 <nav class="nav">
     <ul>
-        <a class="nav-link" href="${root}/customer/noticelist">공지사항</a>
-        <a class="nav-link active" href="${root}/customer/eventlist">이벤트</a>
-        <a class="nav-link" href="${root}/customer/inquirylist">1:1문의</a>
+        <a class="nav-link ${fn:contains(pageContext.request.requestURI, '/customer/noticelist') ? 'active' : ''}" href="${pageContext.request.contextPath}/customer/noticelist">공지사항</a>
+        <a class="nav-link ${fn:contains(pageContext.request.requestURI, '/customer/eventlist') ? 'active' : ''}" href="${pageContext.request.contextPath}/customer/eventlist">이벤트</a>
+        <a class="nav-link ${fn:contains(pageContext.request.requestURI, '/customer/inquirylist') ? 'active' : ''}" href="${pageContext.request.contextPath}/customer/inquirylist">1:1문의</a>
     </ul>
 </nav>
 
-<div class="top-section">
-    <b>총 ${totalCount}건</b>
-    <button type="button" class="btn btn-outline-primary">글쓰기</button>
-</div>
-<div class="" style="max-width: 1000px; margin: 50px auto; width: 80%;">
-    <table class="table table-group-divider">
-         <c:forEach var="event" items="${list}">
-             <tr class="">
-                 <td class="center" width="70" style="color: #6387FD;">${event.cus_category}</td>
-                 <td width="500">
-                    <a href="${root}/customer/event/${event.cus_num}" style="text-decoration: none; color: black;">
-                        ${event.cus_title}
-                    </a>
-                </td>
-                 <td class="center" width="120"><fmt:formatDate value="${event.cus_writetime}" pattern="yyyy.MM.dd" /></td>
-             </tr>
-         </c:forEach>
-    </table>
+<div class="tabs" style="max-width: 1200px; margin: 50px auto; width: 80%">
+    <a href="#" class="active" data-category="ongoing">진행중 이벤트</a>
+    <a href="#" data-category="closed">마감된 이벤트</a>
+    <a href="#" data-category="announcement">당첨자 발표</a>
 </div>
 
-<div class="pagination">
-    <c:if test="${startPage > 1}">
-        <a href="?pageNum=${startPage - 1}" class="page-link"><i class="bi bi-chevron-left"></i>이전</a>
-    </c:if>
-    <c:forEach begin="${startPage}" end="${endPage}" var="i">
-        <a href="?pageNum=${i}" class="page-link ${currentPage == i ? 'active' : ''}">${i}</a>
+<div id="ongoing" class="events">
+    <c:forEach var="event" items="${ongoingEvents}">
+        <div class="event-card">
+            <a href="${pageContext.request.contextPath}/customer/eventdetail/${event.cus_num}" style="text-decoration: none; color: inherit;">
+                <img src="${pageContext.request.contextPath}/customerimage/${event.cus_photo}" alt="${event.cus_title}" style="margin-bottom: 22px;">
+                <b style="font-size: 16px;">${event.cus_title}</b>
+                <p style="font-size: 14px; margin-top: 10px;"><fmt:formatDate value="${event.cus_startday}" pattern="yyyy.MM.dd"/> - <fmt:formatDate value="${event.cus_endday}" pattern="yyyy.MM.dd"/></p>
+                <p style="margin-top: 10px; font-size: 13px; color: gray;">대상 : ${event.cus_target}</p>
+            </a>
+        </div>
     </c:forEach>
-    <c:if test="${endPage < totalPage}">
-        <a href="?pageNum=${endPage + 1}" class="page-link">다음<i class="bi bi-chevron-right"></i></a>
-    </c:if>
+    <div style="width: 100%; text-align: center; margin-top: 20px; margin-left: 1050px;">
+        <c:if test="${sessionScope.myid == 'hyoyoung'}">
+            <button type="button" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/customer/eventform'">글쓰기</button>
+        </c:if>
+        <c:if test="${sessionScope.myid != 'hyoyoung'}">
+            <button type="button" class="btn btn-outline-primary" style="visibility: hidden;">글쓰기</button>
+        </c:if>
+    </div>
 </div>
+
+
+<div id="closed" class="events" style="display: none; width: 80%">
+    <div class="top-section">
+        <span>총 &nbsp;${totalCountClosed}&nbsp;건</span>
+        <c:if test="${sessionScope.myid == 'hyoyoung'}">
+            <button type="button" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/customer/eventform'">글쓰기</button>
+        </c:if>
+        <c:if test="${sessionScope.myid != 'hyoyoung'}">
+            <button type="button" class="btn btn-outline-primary" style="visibility: hidden;">글쓰기</button>
+        </c:if>
+    </div>
+    <div class="mainlist" style="max-width: 1000px; margin: 40px auto; width: 80%;">
+        <table class="table" style="font-size: 15px;">
+             <c:forEach var="event" items="${closedEvents}">
+                 <tr style="height: 60px;">
+                     <td class="center" width="70" style="color: #2d65f2; font-weight: bold; vertical-align: middle;">${event.cus_target}</td>
+                     <td width="500" style="vertical-align: middle;">
+                        <a href="${pageContext.request.contextPath}/customer/eventdetail/${event.cus_num}" style="text-decoration: none; color: black;">
+                            ${event.cus_title}
+                        </a>
+                    </td>
+                     <td class="center" width="120" style="vertical-align: middle; color: gray;"><fmt:formatDate value="${event.cus_writetime}" pattern="yyyy.MM.dd" /></td>
+                 </tr>
+             </c:forEach>
+        </table>
+    </div>
+
+    <div style="max-width: 1200px; margin: 40px auto; width: 80%;">
+        <div class="pagination">
+            <c:if test="${startPage > 1}">
+                <a href="?pageNum=${startPage - 1}" class="page-link"><i class="bi bi-chevron-left"></i>이전</a>
+            </c:if>
+            <c:forEach begin="${startPage}" end="${endPage}" var="i">
+                <a href="?pageNum=${i}" class="page-link ${currentPage == i ? 'active' : ''}">${i}</a>
+            </c:forEach>
+            <c:if test="${endPage < totalPage}">
+                <a href="?pageNum=${endPage + 1}" class="page-link">다음<i class="bi bi-chevron-right"></i></a>
+            </c:if>
+        </div>
+    </div>
+</div>
+
+<div id="announcement" class="events" style="display: none; width: 80%">
+    <div class="top-section">
+        <span>총 &nbsp;${totalCountAnnouncement}&nbsp;건</span>
+        <c:if test="${sessionScope.myid == 'hyoyoung'}">
+            <button type="button" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/customer/eventform'">글쓰기</button>
+        </c:if>
+        <c:if test="${sessionScope.myid != 'hyoyoung'}">
+            <button type="button" class="btn btn-outline-primary" style="visibility: hidden;">글쓰기</button>
+        </c:if>
+    </div>
+    <div class="mainlist" style="max-width: 1000px; margin: 40px auto; width: 80%;">
+        <table class="table" style="font-size: 15px;">
+             <c:forEach var="event" items="${announcementEvents}">
+                 <tr style="height: 60px;">
+                     <td class="center" width="70" style="color: #2d65f2; font-weight: bold; vertical-align: middle;">${event.cus_target}</td>
+                     <td width="500" style="vertical-align: middle;">
+                        <a href="${pageContext.request.contextPath}/customer/eventdetail/${event.cus_num}" style="text-decoration: none; color: black;">
+                            ${event.cus_title}
+                        </a>
+                    </td>
+                     <td class="center" width="120" style="vertical-align: middle; color: gray;"><fmt:formatDate value="${event.cus_writetime}" pattern="yyyy.MM.dd" /></td>
+                 </tr>
+             </c:forEach>
+        </table>
+    </div>
+
+    <div style="max-width: 1200px; margin: 40px auto; width: 80%;">
+        <div class="pagination">
+            <c:if test="${startPage > 1}">
+                <a href="?pageNum=${startPage - 1}" class="page-link"><i class="bi bi-chevron-left"></i>이전</a>
+            </c:if>
+            <c:forEach begin="${startPage}" end="${endPage}" var="i">
+                <a href="?pageNum=${i}" class="page-link ${currentPage == i ? 'active' : ''}">${i}</a>
+            </c:forEach>
+            <c:if test="${endPage < totalPage}">
+                <a href="?pageNum=${endPage + 1}" class="page-link">다음<i class="bi bi-chevron-right"></i></a>
+            </c:if>
+        </div>
+    </div>
+</div>
+
+
 </body>
 </html>

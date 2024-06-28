@@ -109,7 +109,7 @@
             <div class="center">
               <div class="all-form">
 <!-- 왼쪽 메뉴바------------------------------------------------------------------------------------------------------- -->
-              <div class="leftmenubar" style="width: 20%;">
+              <div class="leftmenubar" style="width: 20%; margin-bottom: 10%;">
                   <ul class="leftmenu">
 				    <li>
 				      <div class="menu-home">
@@ -143,7 +143,7 @@
 				    
 				    <li>
 				      <div class="menu-item">
-				        <a href="/resumehome/form">입사지원 현황</a>
+				        <a href="/resumehome/supportform">입사지원 현황</a>
 				      </div>
 				    </li>
 				    
@@ -155,13 +155,13 @@
 				    
 				    <li>
 				      <div class="menu-item">
-				        <a href="/resumehome/form">스크랩공고</a>
+				        <a href="/resumehome/scrapform">스크랩공고</a>
 				      </div>
 				    </li>
 				    
 				    <li>
 				      <div class="menu-item">
-				        <a href="/resumehome/form">관심기업</a>
+				        <a href="/resumehome/interestform">관심기업</a>
 				      </div>
 				    </li>
 				  </ul>

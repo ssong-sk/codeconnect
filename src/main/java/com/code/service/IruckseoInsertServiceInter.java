@@ -2,6 +2,7 @@ package com.code.service;
 
 import java.util.List;
 
+import com.code.dto.CompanyDto;
 import com.code.dto.HireDto;
 import com.code.dto.IruckseoActibityDto;
 import com.code.dto.IruckseoCareerDto;
@@ -189,4 +190,10 @@ public interface IruckseoInsertServiceInter {
 	
 	//입사지원 지원취소 업데이트
 	public void updateSupportDelete(int st_num);
+	
+	//관심기업 리스트
+	public List<CompanyDto> getScrapCompanyList(int r_num);
+	
+	//관심기업 갯수
+	public int getCompanyCount(int r_num);
 }

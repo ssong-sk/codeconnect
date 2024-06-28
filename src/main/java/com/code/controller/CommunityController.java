@@ -28,6 +28,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.code.dto.CommunityDto;
+import com.code.dto.CompanyIntroDto;
 import com.code.dto.RegisterDto;
 import com.code.mapper.RegisterMapperInter;
 import com.code.service.CommunityServiceInter;
@@ -80,11 +81,9 @@ public class CommunityController {
         mview.addObject("qaList", qaList);
         mview.addObject("popularPosts", filteredPopularPosts); // 최근 한 주 인기 게시글 추가
 
-        mview.setViewName("community/homelist"); // "community/homelist.jsp"로 매핑
+        mview.setViewName("/community/homelist"); // "community/homelist.jsp"로 매핑
         return mview;
     }
-
-
 
 
     @PostMapping("/community/homeinsert")
@@ -198,7 +197,7 @@ public class CommunityController {
         model.addAttribute("dto", dto);
         model.addAttribute("userNickname", userNickname);
 
-        return "community/homedetail"; // "community/homedetail.jsp"로 매핑
+        return "/community/homedetail"; // "community/homedetail.jsp"로 매핑
     }
     
     
@@ -248,7 +247,7 @@ public class CommunityController {
         model.addAttribute("userNickname", nickname);
         model.addAttribute("name", name);
         model.addAttribute("userid", userid);
-        return "community/homeform"; // "community/homeform.jsp"로 매핑
+        return "community/homeform"; //"community/homeform.jsp"로 매핑
     }
 
     
@@ -263,10 +262,10 @@ public class CommunityController {
             category = URLDecoder.decode(category, StandardCharsets.UTF_8);
         }
 
-        int perPage = 7; // 한 페이지당 게시글 수
-        int perBlock = 10; // 한 블록당 보여줄 페이지 수
+        int perPage = 7; //한 페이지당 게시글 수
+        int perBlock = 10; //한 블록당 보여줄 페이지 수
         int totalCount;
-        final CommunityDto topPost; // topPost를 final로 선언
+        final CommunityDto topPost; //topPost를 final로 선언
         List<CommunityDto> otherPosts;
 
         if (category == null || category.isEmpty() || category.equals("전체글")) {
@@ -301,7 +300,7 @@ public class CommunityController {
         model.addAttribute("startPage", startPage);
         model.addAttribute("endPage", endPage);
 
-        return "community/hometotalpost";
+        return "/community/hometotalpost";
     }
     
     
@@ -326,7 +325,7 @@ public class CommunityController {
 
         model.addAttribute("popularPosts", filteredPopularPosts);
 
-        return "community/homepopularlist"; // "community/homepopularlist.jsp"로 매핑
+        return "/community/homepopularlist"; // "community/homepopularlist.jsp"로 매핑
     }
     
     
@@ -389,7 +388,7 @@ public class CommunityController {
         mview.addObject("endPage", endPage);
         mview.addObject("category", category);
         mview.addObject("categoryCountMap", categoryCountMap); // 카테고리별 글 개수 추가
-        mview.setViewName("community/interviewlist");
+        mview.setViewName("/community/interviewlist");
         return mview;
     }
 
@@ -460,7 +459,7 @@ public class CommunityController {
     	
         CommunityDto dto = service.getData(com_num);
         model.addAttribute("dto", dto);
-        return "community/interviewdetail";
+        return "/community/interviewdetail";
     }
 
     @GetMapping("/community/interviewdelete")
@@ -478,91 +477,7 @@ public class CommunityController {
         return "community/interviewupdateform";
     }
 
-   /*
-    @PostMapping("/community/interviewupdate")
-    public String updateInterview(@ModelAttribute CommunityDto dto,
-                                  @RequestParam ArrayList<MultipartFile> upload,
-                                  @RequestParam("existingPhotos") String existingPhotos,
-                                  @RequestParam("existingMainPhoto") String existingMainPhoto,
-                                  HttpSession session) {
-        String path = session.getServletContext().getRealPath("/communityimage");
-        StringBuilder uploadNames = new StringBuilder(existingPhotos); // 기존 이미지를 유지
-        String mainPhoto = existingMainPhoto; // 기존 메인 사진 유지
 
-        if (!upload.isEmpty() && !upload.get(0).getOriginalFilename().equals("")) {
-            uploadNames = new StringBuilder(); // 새로운 이미지가 업로드되면 초기화
-            for (int i = 0; i < upload.size(); i++) {
-                MultipartFile file = upload.get(i);
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
-                String fileName = sdf.format(new java.util.Date()) + "_" + file.getOriginalFilename();
-                uploadNames.append(fileName).append(",");
-                if (i == 0) {
-                    mainPhoto = fileName; // 첫 번째 이미지를 대표 이미지로 설정
-                }
-                try {
-                    file.transferTo(new File(path + "/" + fileName));
-                } catch (IllegalStateException | IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
-        if (uploadNames.length() > 0 && uploadNames.charAt(uploadNames.length() - 1) == ',') {
-            uploadNames.setLength(uploadNames.length() - 1); // 마지막 쉼표 제거
-        }
-
-        dto.setCom_main_photo(mainPhoto);
-        dto.setCom_photo(uploadNames.toString());
-
-        service.updateCommunity(dto);
-
-        return "redirect:/community/interviewdetail?com_num=" + dto.getCom_num();
-    }
-	*/
-
-    /*
-    @PostMapping("/community/interviewupdate")
-    public String updateInterview(@ModelAttribute CommunityDto dto,
-                                  @RequestParam ArrayList<MultipartFile> upload,
-                                  @RequestParam("existingPhoto") String existingPhoto,
-                                  HttpSession session) {
-        String path = session.getServletContext().getRealPath("/communityimage");
-        StringBuilder uploadNames = new StringBuilder();
-        String mainPhoto = existingPhoto; // 기존 메인 사진 유지
-
-        // 기존 데이터를 불러옴
-        CommunityDto existingDto = service.getData(dto.getCom_num());
-
-        if (!upload.isEmpty() && !upload.get(0).getOriginalFilename().equals("")) {
-            for (int i = 0; i < upload.size(); i++) {
-                MultipartFile file = upload.get(i);
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
-                String fileName = sdf.format(new java.util.Date()) + "_" + file.getOriginalFilename();
-                uploadNames.append(fileName).append(",");
-                if (i == 0) {
-                    mainPhoto = fileName; // 첫 번째 이미지를 대표 이미지로 설정
-                }
-                try {
-                    file.transferTo(new File(path + "/" + fileName));
-                } catch (IllegalStateException | IOException e) {
-                    e.printStackTrace();
-                }
-            }
-            uploadNames.setLength(uploadNames.length() - 1); // 마지막 쉼표 제거
-        } else {
-            uploadNames.append(existingPhoto); // 기존 이미지 유지
-        }
-
-        // 기존 데이터를 업데이트
-        //dto.setCom_companyname(existingDto.getCom_companyname()); // 회사명 반복 문제 해결
-        dto.setCom_photo(uploadNames.toString());
-        dto.setCom_main_photo(mainPhoto);
-        service.updateCommunity(dto);
-
-        return "redirect:/community/interviewdetail?com_num=" + dto.getCom_num();
-    }
-	*/
-    
     @PostMapping("/community/interviewupdate")
     public String updateInterview(@ModelAttribute CommunityDto dto,
                                   @RequestParam("upload") List<MultipartFile> upload,
@@ -600,5 +515,14 @@ public class CommunityController {
         return "redirect:/community/interviewdetail?com_num=" + dto.getCom_num();
     }
 
+    //검색 기능
+    @ResponseBody
+	@GetMapping("/community/commuAllSearch")
+	public List<CommunityDto> commuAllSearch(String searchword) {
+      
+		List<CommunityDto> comlist = service.commuAllSearch(searchword);
+      
+		return comlist;
+	}
 
 }

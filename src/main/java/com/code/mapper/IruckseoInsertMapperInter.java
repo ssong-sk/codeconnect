@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.code.dto.CompanyDto;
 import com.code.dto.HireDto;
 import com.code.dto.IruckseoActibityDto;
 import com.code.dto.IruckseoCareerDto;
@@ -194,5 +195,11 @@ public interface IruckseoInsertMapperInter {
 
 	//스크랩 공고 삭제하기
 	public void scrapDelete(int s_num);
+
+	//관심기업 리스트
+	public List<CompanyDto> getScrapCompanyList(int r_num);
+
+	//관심기업 갯수
+	public int getCompanyCount(int r_num);
 
 }

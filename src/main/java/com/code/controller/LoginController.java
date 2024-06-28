@@ -52,6 +52,11 @@ public class LoginController {
 		if(check==1) {
 
 			RegisterDto mdto = service.getDataById(r_id);
+			
+			//관리자로 로그인시 관리자 페이지로 리다이렉트 -> 삭제 금지
+			if ("manager".equals(r_id)) {
+				return "redirect:/manager/main";
+		    }
 
 			
   		session.setMaxInactiveInterval(30*30*1); //30분
