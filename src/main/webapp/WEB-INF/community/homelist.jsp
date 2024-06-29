@@ -241,7 +241,7 @@
             </ul>
             <div class="community_list">
                 <div class="section_inner" style="width: 48%;">
-                    <div class="wrap_title d-flex justify-content-between align-items-center">
+                    <div class="wrap_title d-flex justify-content-between align-items-center" style="margin-top: 10px;">
                         <a class="title" href="${root}/community/hometotalpost?category=<%= java.net.URLEncoder.encode("전체글", "UTF-8") %>"><b>전체글</b></a>
                         <a href="${root}/community/hometotalpost?category=<%= java.net.URLEncoder.encode("전체글", "UTF-8") %>" style="font-size: 1.1em;">더보기<i class="bi bi-chevron-right"></i></a>
                     </div>
@@ -249,7 +249,7 @@
                         <c:forEach var="dto" items="${list}" begin="0" end="3">
                             <c:if test="${dto.com_post_type == 'home'}">
                                 <li class="item d-flex justify-content-between align-items-center">
-                                    <a class="title_link" href="${root}/community/homedetail?com_num=${dto.com_num}">${dto.com_title}</a>
+                                    <a class="title_link" href="${root}/community/homedetail?com_num=${dto.com_num}" style="margin-left: 1px; margin-top: 5px;">${dto.com_title}</a>
                                     <span class="comment"><i class="bi bi-chat-left"></i>&nbsp;${dto.com_commentcount}</span>
                                 </li>
                             </c:if>
@@ -257,7 +257,7 @@
                     </ul>
                 </div>
                 <div class="section_inner" style="width: 48%;">
-                    <div class="wrap_title d-flex justify-content-between align-items-center">
+                    <div class="wrap_title d-flex justify-content-between align-items-center" style="margin-top: 10px;">
                         <a class="title" href="${root}/community/hometotalpost?category=<%= java.net.URLEncoder.encode("신입", "UTF-8") %>"><b>신입</b></a>
                         <a href="${root}/community/hometotalpost?category=<%= java.net.URLEncoder.encode("신입", "UTF-8") %>" style="font-size: 1.1em;">더보기<i class="bi bi-chevron-right"></i></a>
                     </div>
@@ -265,7 +265,7 @@
                         <c:forEach var="dto" items="${newcomerList}" begin="0" end="3">
                             <c:if test="${dto.com_post_type == 'home'}">
                                 <li class="item d-flex justify-content-between align-items-center">
-                                    <a class="title_link" href="${root}/community/homedetail?com_num=${dto.com_num}">${dto.com_title}</a>
+                                    <a class="title_link" href="${root}/community/homedetail?com_num=${dto.com_num}" style="margin-left: 1px; margin-top: 5px;">${dto.com_title}</a>
                                     <span class="comment"><i class="bi bi-chat-left"></i>&nbsp;${dto.com_commentcount}</span>
                                 </li>
                             </c:if>
@@ -273,7 +273,7 @@
                     </ul>
                 </div>
                 <div class="section_inner" style="width: 48%;">
-                    <div class="wrap_title d-flex justify-content-between align-items-center">
+                    <div class="wrap_title d-flex justify-content-between align-items-center" style="margin-top: 10px;">
                         <a class="title" href="${root}/community/hometotalpost?category=<%= java.net.URLEncoder.encode("취준", "UTF-8") %>"><b>취준</b></a>
                         <a href="${root}/community/hometotalpost?category=<%= java.net.URLEncoder.encode("취준", "UTF-8") %>" style="font-size: 1.1em;">더보기<i class="bi bi-chevron-right"></i></a>
                     </div>
@@ -281,7 +281,7 @@
                         <c:forEach var="dto" items="${prepareList}" begin="0" end="3">
                             <c:if test="${dto.com_post_type == 'home'}">
                                 <li class="item d-flex justify-content-between align-items-center">
-                                    <a class="title_link" href="${root}/community/homedetail?com_num=${dto.com_num}">${dto.com_title}</a>
+                                    <a class="title_link" href="${root}/community/homedetail?com_num=${dto.com_num}" style="margin-left: 1px; margin-top: 5px;">${dto.com_title}</a>
                                     <span class="comment"><i class="bi bi-chat-left"></i>&nbsp;${dto.com_commentcount}</span>
                                 </li>
                             </c:if>
@@ -289,7 +289,7 @@
                     </ul>
                 </div>
                 <div class="section_inner" style="width: 48%;">
-                    <div class="wrap_title d-flex justify-content-between align-items-center">
+                    <div class="wrap_title d-flex justify-content-between align-items-center" style="margin-top: 10px;">
                         <a class="title" href="${root}/community/hometotalpost?category=<%= java.net.URLEncoder.encode("자소서", "UTF-8") %>"><b>자소서</b></a>
                         <a href="${root}/community/hometotalpost?category=<%= java.net.URLEncoder.encode("자소서", "UTF-8") %>" style="font-size: 1.1em;">더보기<i class="bi bi-chevron-right"></i></a>
                     </div>
@@ -297,7 +297,7 @@
                         <c:forEach var="dto" items="${letterList}" begin="0" end="3">
                             <c:if test="${dto.com_post_type == 'home'}">
                                 <li class="item d-flex justify-content-between align-items-center">
-                                    <a class="title_link" href="${root}/community/homedetail?com_num=${dto.com_num}">${dto.com_title}</a>
+                                    <a class="title_link" href="${root}/community/homedetail?com_num=${dto.com_num}" style="margin-left: 1px; margin-top: 5px;">${dto.com_title}</a>
                                     <span class="comment"><i class="bi bi-chat-left"></i>&nbsp;${dto.com_commentcount}</span>
                                 </li>
                             </c:if>
@@ -305,7 +305,7 @@
                     </ul>
                 </div>
                 <div class="section_inner" style="width: 48%;">
-                    <div class="wrap_title d-flex justify-content-between align-items-center">
+                    <div class="wrap_title d-flex justify-content-between align-items-center" style="margin-top: 10px;">
                         <a class="title" href="${root}/community/hometotalpost?category=<%= java.net.URLEncoder.encode("면접", "UTF-8") %>"><b>면접</b></a>
                         <a href="${root}/community/hometotalpost?category=<%= java.net.URLEncoder.encode("면접", "UTF-8") %>" style="font-size: 1.1em;">더보기<i class="bi bi-chevron-right"></i></a>
                     </div>
@@ -313,7 +313,7 @@
                         <c:forEach var="dto" items="${interviewList}" begin="0" end="3">
                             <c:if test="${dto.com_post_type == 'home'}">
                                 <li class="item d-flex justify-content-between align-items-center">
-                                    <a class="title_link" href="${root}/community/homedetail?com_num=${dto.com_num}">${dto.com_title}</a>
+                                    <a class="title_link" href="${root}/community/homedetail?com_num=${dto.com_num}" style="margin-left: 1px; margin-top: 5px;">${dto.com_title}</a>
                                     <span class="comment"><i class="bi bi-chat-left"></i>&nbsp;${dto.com_commentcount}</span>
                                 </li>
                             </c:if>
@@ -321,7 +321,7 @@
                     </ul>
                 </div>
                 <div class="section_inner" style="width: 48%;">
-                    <div class="wrap_title d-flex justify-content-between align-items-center">
+                    <div class="wrap_title d-flex justify-content-between align-items-center" style="margin-top: 10px;">
                         <a class="title" href="${root}/community/hometotalpost?category=<%= java.net.URLEncoder.encode("Q&A", "UTF-8") %>"><b>Q&A</b></a>
                         <a href="${root}/community/hometotalpost?category=<%= java.net.URLEncoder.encode("Q&A", "UTF-8") %>" style="font-size: 1.1em;">더보기<i class="bi bi-chevron-right"></i></a>
                     </div>
@@ -329,7 +329,7 @@
                         <c:forEach var="dto" items="${qaList}" begin="0" end="3">
                             <c:if test="${dto.com_post_type == 'home'}">
                                 <li class="item d-flex justify-content-between align-items-center">
-                                    <a class="title_link" href="${root}/community/homedetail?com_num=${dto.com_num}">${dto.com_title}</a>
+                                    <a class="title_link" href="${root}/community/homedetail?com_num=${dto.com_num}" style="margin-left: 1px; margin-top: 5px;">${dto.com_title}</a>
                                     <span class="comment"><i class="bi bi-chat-left"></i>&nbsp;${dto.com_commentcount}</span>
                                 </li>
                             </c:if>

@@ -1,5 +1,6 @@
 package com.code.mapper;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -58,7 +59,6 @@ public interface CommunityMapperInter {
     List<CommunityDto> getWeeklyPopularPosts(Map<String, Object> params);
     //이번 주 인기 게시글 조회 (20개)
     List<CommunityDto> getWeeklyPopularPostsAll(Map<String, Object> params);
-    
     
     //카테고리별 조회수가 가장 많은 게시글 조회
     CommunityDto getTopPostByCategory(Map<String, Object> params);
