@@ -263,27 +263,6 @@
         <a class="nav-link" href="${root}/community/interviewlist">현직자 인터뷰</a>
     </ul>
 </nav>
-<%-- <div style="max-width: 1200px; margin: 0px auto;">
-    <div class="container2">
-        <div class="linkgo" style="width: 100%;">
-            <div>
-                <h2><b>${category} 방</b></h2>
-                <span style="display: block; margin-top: 10px; color: #5c667b;">현재까지 등록된 ${category} 게시글입니다.</span>
-            </div>
-            <img src="/communityimage/communitytwo.png" style="height: 250px;">
-        </div>
-        <div class="category" style="margin-top: -13px;">
-            <ul class="list_category js-category">
-                <li><a href="${root}/community/hometotalpost?category=<%= java.net.URLEncoder.encode("전체글", "UTF-8") %>">전체글</a></li>
-                <li><a href="${root}/community/hometotalpost?category=<%= java.net.URLEncoder.encode("신입", "UTF-8") %>">신입</a></li>
-                <li><a href="${root}/community/hometotalpost?category=<%= java.net.URLEncoder.encode("취준", "UTF-8") %>">취준</a></li>
-                <li><a href="${root}/community/hometotalpost?category=<%= java.net.URLEncoder.encode("자소서", "UTF-8") %>">자소서</a></li>
-                <li><a href="${root}/community/hometotalpost?category=<%= java.net.URLEncoder.encode("면접", "UTF-8") %>">면접</a></li>
-                <li><a href="${root}/community/hometotalpost?category=<%= java.net.URLEncoder.encode("Q&A", "UTF-8") %>">Q&A</a></li>
-            </ul>
-        </div>
-    </div>
-</div> --%>
 <div style="max-width: 1200px; margin: 0px auto;">
     <div class="container2">
         <div class="linkgo" style="width: 100%;">
@@ -295,14 +274,6 @@
         </div>
         <div class="category" style="margin-top: -13px;">
             <ul class="list_category js-category">
-            	<!--  
-                <li><a href="${root}/community/hometotalpost?category=<%= java.net.URLEncoder.encode("전체글", "UTF-8") %>">전체글</a></li>
-                <li><a href="${root}/community/hometotalpost?category=<%= java.net.URLEncoder.encode("신입", "UTF-8") %>">신입</a></li>
-                <li><a href="${root}/community/hometotalpost?category=<%= java.net.URLEncoder.encode("취준", "UTF-8") %>">취준</a></li>
-                <li><a href="${root}/community/hometotalpost?category=<%= java.net.URLEncoder.encode("자소서", "UTF-8") %>">자소서</a></li>
-                <li><a href="${root}/community/hometotalpost?category=<%= java.net.URLEncoder.encode("면접", "UTF-8") %>">면접</a></li>
-                <li><a href="${root}/community/hometotalpost?category=<%= java.net.URLEncoder.encode("Q&A", "UTF-8") %>">Q&A</a></li>
-                -->
                 <li><a href="${root}/community/hometotalpost?category=<%= java.net.URLEncoder.encode("전체글", "UTF-8") %>" id="all" class="${category == '전체글' ? 'active' : ''}">전체글</a></li>
 			    <li><a href="${root}/community/hometotalpost?category=<%= java.net.URLEncoder.encode("신입", "UTF-8") %>" class="${category == '신입' ? 'active' : ''}">신입</a></li>
 			    <li><a href="${root}/community/hometotalpost?category=<%= java.net.URLEncoder.encode("취준", "UTF-8") %>" class="${category == '취준' ? 'active' : ''}">취준</a></li>

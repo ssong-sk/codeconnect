@@ -41,7 +41,7 @@
 						data-gnb-kind="community"><a href="/community/homelist"><span>커뮤니티</span></a></li>
 
 					<li class="Menu_MenuItem__wI1yA" data-attribute-id="gnb"
-						data-gnb-kind="resume"><a href="#"><span>고객센터</span></a></li>
+						data-gnb-kind="customer"><a href="/customer/noticelist"><span>고객센터</span></a></li>
 
 				</ul>
 

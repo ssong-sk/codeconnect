@@ -38,7 +38,6 @@
     }
     .nav ul .active {
         color: blue;
-        border-bottom: 2px solid blue;
     }
     .container {
         max-width: 1200px;
@@ -167,12 +166,24 @@
         box-shadow: none;
     }
 </style>
+<script type="text/javascript">
+	$(document).ready(function() {
+	    var currentUrl = window.location.pathname;
+	    if (currentUrl.includes('/community/homelist')) {
+	        $('#homeLink').addClass('active');
+	    } else if (currentUrl.includes('/community/interviewlist')) {
+	        $('#interviewLink').addClass('active');
+	    }
+	});
+</script>
 </head>
 <body>
 <nav class="nav">
     <ul>
-        <a class="nav-link" href="${root}/community/homelist">홈</a>
-        <a class="nav-link" href="${root}/community/interviewlist?category=전체">현직자 인터뷰</a>
+        <%-- <a class="nav-link" href="${root}/community/homelist">홈</a>
+        <a class="nav-link" href="${root}/community/interviewlist?category=전체">현직자 인터뷰</a> --%>
+        <li><a class="nav-link" href="${root}/community/homelist" id="homeLink">홈</a></li>
+        <li><a class="nav-link" href="${root}/community/interviewlist?category=전체" id="interviewLink">현직자 인터뷰</a></li>
     </ul>
 </nav>
 <div class="container" style="margin-top: 50px;">

@@ -40,7 +40,6 @@
     }
     .nav ul .active {
         color: blue;
-        border-bottom: 2px solid blue;
     }
     .linkgo {
         display: flex;
@@ -164,13 +163,22 @@
             }
         });
     });
+    
+    $(document).ready(function() {
+        var currentUrl = window.location.pathname;
+        if (currentUrl.includes('/community/homelist')) {
+            $('#homeLink').addClass('active');
+        } else if (currentUrl.includes('/community/interviewlist')) {
+            $('#interviewLink').addClass('active');
+        }
+    });
 </script>
 </head>
 <body>
 <nav class="nav">
     <ul>
-        <a class="nav-link" href="${root }/community/homelist">홈</a>
-        <a class="nav-link" href="${root }/community/interviewlist">현직자 인터뷰</a>
+        <li><a class="nav-link" href="${root}/community/homelist" id="homeLink">홈</a></li>
+        <li><a class="nav-link" href="${root}/community/interviewlist" id="interviewLink">현직자 인터뷰</a></li>
     </ul>
 </nav>
 <div class="commutitle" style="max-width: 1200px; margin: 50px auto;">
@@ -181,13 +189,13 @@
                     <b>실시간 전체글 ${totalCount}개<i class="bi bi-chevron-right"></i></b>
                 </h2>
             </a>
-            <div class="d-flex search">
+            <!-- <div class="d-flex search">
                 <input class="form-control me-2" type="search" placeholder="다른 사람들은 어떤 이야기를 할까?" aria-label="Search"
                 style="width: 350px;">
                 <button type="button" class="btn btn-outline-primary">
                     <span class="blind">검색</span>
                 </button>
-            </div>
+            </div> -->
         </div>
     </div>
     <div class="section_inner">
@@ -204,7 +212,7 @@
 	                <c:forEach var="dto" items="${popularPosts}">
 	                    <c:if test="${dto.com_post_type == 'home'}">
 	                        <li class="item">
-	                            <a class="title_link" href="${root}/community/homedetail?com_num=${dto.com_num}">${dto.com_title}</a>
+	                            <a class="title_link" href="${root}/community/homedetail?com_num=${dto.com_num}" style="margin-left: 1px;">${dto.com_title}</a>
 	                            <div class="details" style="color: gray; font-size: 23px;">
 	                                <span class="comment"><i class="bi bi-chat-left"></i>&nbsp;${dto.com_commentcount}</span>
 	                                <span class="views"><i class="bi bi-eye"></i>&nbsp;${dto.com_readcount}</span>&nbsp;
