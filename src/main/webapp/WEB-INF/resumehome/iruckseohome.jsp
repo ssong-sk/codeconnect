@@ -283,7 +283,7 @@ svg {
                   <ul class="leftmenu">
                 <li>
                   <div class="menu-home">
-                    <a href="/resumehome/home"><b>My Home</b></a>
+                    <a href="/resumehome/home" style="color: #5494DB; background-color: rgba(84, 148, 219, 0.2);"><b>My Home</b></a>
                   </div>
                 </li>
                 

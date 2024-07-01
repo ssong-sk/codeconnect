@@ -40,7 +40,7 @@
    </select>
    
    <!-- 이력서 현황 리스트 출력 _ join -->
-   <select id="allPersonalDatas" parameterType="int" resultType="IruckseoInsertDto">
+   <select id="allPersonalDatas" parameterType="Hashmap" resultType="IruckseoInsertDto">
        select x.pe_num , x.pe_title , x.pe_writeday , x.ho_check ,  x.ho_addr , x.ho_keyword ,  PERIOD_DIFF( x.ca_resign ,   x.ca_ipsa ) as ca_resign
 	   from ( 
  	      select pe.pe_num , pe.pe_title , pe.pe_writeday  , ( case when  LENGTH(TRIM(ho.ho_money)) = 0 || ho.ho_money IS NULL THEN ho.ho_check else ho.ho_money END ) AS ho_check
@@ -53,7 +53,8 @@
            where pe.r_num = ${r_num} 
            GROUP BY pe.pe_num , pe.pe_title , pe.pe_writeday , ho.ho_money , ho.ho_check ,  ho.ho_addr , ho.ho_keyword
         ) x
-        order by x.pe_writeday desc
+       ORDER BY x.pe_writeday desc
+       LIMIT #{start}, #{perPage}
    </select>
    
    <!-- 이력서 삭제하기  -->
@@ -475,7 +476,7 @@
    </update>
    
    <!-- 스크랩 공고 하기 -->
-   <select id="getScrapHireList" parameterType="int" resultType="hdto">
+   <select id="getScrapHireList" parameterType="HashMap" resultType="hdto">
      SELECT h.*, c.*, s.*, ci.*
 	 FROM hire h
      JOIN 
@@ -486,6 +487,8 @@
      company_intro ci ON h.h_ci_num = ci.ci_num
      WHERE 
      s.r_num = #{r_num}
+     ORDER BY s.s_num DESC
+     LIMIT #{start}, #{perPage}
    </select>
    
    <!-- 스크랩 공고 갯수 구하기 -->
@@ -551,7 +554,7 @@
 	    AND s.st_support = '지원완료'
    </select>
    
-   <!-- 지원완료 상태일때 갯수 조회 -->
+   <!-- 지원 후 열람여부 갯수 조회 -->
    <select id="getOpenCount" parameterType="int" resultType="int">
 	  SELECT COUNT(*)
         FROM support
@@ -560,7 +563,7 @@
    </select>
    
    <!-- 관심기업 스크랩 하기 -->
-   <select id="getScrapCompanyList" parameterType="int" resultType="CompanyDto">
+   <select id="getScrapCompanyList" parameterType="Hashmap" resultType="CompanyDto">
     SELECT 
         c.*, s.* 
     FROM 
@@ -569,10 +572,12 @@
         scrap s ON c.c_num = s.c_num 
     WHERE 
 		s.r_num = #{r_num} 
-        AND s.h_num IS NULL;
+        AND s.h_num IS NULL
+    ORDER BY s.s_num DESC
+    LIMIT #{start}, #{perPage}
    </select>
    
-    <!-- 관심기업 갯수 하기 -->
+    <!-- 관심기업 갯수 구하기 -->
    <select id="getCompanyCount" parameterType="int" resultType="int">
     SELECT count(*)
     FROM 
@@ -581,7 +586,7 @@
         scrap s ON c.c_num = s.c_num 
     WHERE 
 		s.r_num = #{r_num} 
-        AND s.h_num IS NULL;
+        AND s.h_num IS NULL
    </select>
 
 </mapper>
