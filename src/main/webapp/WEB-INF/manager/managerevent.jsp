@@ -127,6 +127,32 @@ a, a:active, a:hover, a:visited {
 .cuslist{
 	cursor: pointer;
 }
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
 </style>
 </head>
 <body>
@@ -165,49 +191,55 @@ a, a:active, a:hover, a:visited {
 			    <div class="row">
 			        <main id="content" class="">
 			            <div class="dashboard">
-			                <table class="table table-hover custom-table">
-			                <thead>
-			                	<tr>
-			                		<td colspan="7">
-			                			<div style="border: 1px solid #ddd; border-radius: 5px; padding: 20px; margin-bottom: 15px; display: flex; justify-content: space-between;">
-			                				<h3 style="margin-top: 9px;"><span style="color: #0176ED;">${cus_count }</span> 개의 글이 있습니다.</h3>
-			                				<button type="button" class="btn btn-outline-primary" onclick="location.href='infowrite'">글쓰기</button>
-			                			</div>
-			                		</td>
-			                	</tr>
-			                	<tr align="center">
-			                		<td>NO</td>
-			                		<td>CATEGORY</td>
-			                		<td>TITLE</td>
-			                		<td>DAY</td>
-			                		<td>BLOCK</td>
-			                	</tr>
-			                	</thead>
-			                	<tbody>
-								<c:if test="${cus_count==0 }">
-								<tr height="50">
-								  <td colspan="5" align="center">
-								     <h5><b>등록된 글이 없습니다</b></h5>
-								  </td>
-								</tr>
-								</c:if>
-			                	<c:if test="${cus_count>0 }">
-			                	<c:forEach var="cus" items="${cuslist }">
-								    <tr style="height: 50px;" align="center" class="cuslist" onclick="location.href='infoedit?cus_num=${cus.cus_num}'">
-								       <td valign="middle">${no }</td><c:set var="no" value="${no-1 }"/>
-								       <td valign="middle" style="font-weight: bold;">
-											${cus.cus_category } 
-									   </td>
-								       <td valign="middle">${cus.cus_title }</td>
-								       <td valign="middle"><fmt:formatDate value="${cus.cus_writetime}" pattern="yyyy-MM-dd HH:mm"/></td>
-								       <td valign="middle">
-								           <input type="checkbox" num="${cus.cus_num }" class="del">
-								       </td>
-								    </tr>
-								</c:forEach>
-								</c:if>
-								</tbody>
-			                </table>
+			                <table class="table table-hover">
+					        <thead>
+					            <tr>
+					                <td colspan="7">
+					                    <div style="border: 1px solid #ddd; border-radius: 5px; padding: 20px; margin-bottom: 15px; display: flex; justify-content: space-between;">
+					                        <h3 style="margin-top: 9px;"><span style="color: #0176ED;">${cus_count}</span> 개의 글이 있습니다.</h3>
+					                        <button type="button" class="btn btn-outline-primary" onclick="location.href='eventwrite'">글쓰기</button>
+					                    </div>
+					                </td>
+					            </tr>
+					            <tr align="center">
+					                <td>NO</td>
+					                <td class="dropdown">CATEGORY
+					                   <div class="dropdown-content">
+					                       <a href="#" data-category="진행중 이벤트">진행중 이벤트</a>
+					                       <a href="#" data-category="마감된 이벤트">마감된 이벤트</a>
+					                       <a href="#" data-category="당첨자 발표">당첨자 발표</a>
+					                       <a href="#" data-category="CATEGORY">전체</a>
+					                   </div>
+					                </td>
+					                <td>TITLE</td>
+					                <td>DAY</td>
+					                <td>BLOCK</td>
+					            </tr>
+					        </thead>
+					        <tbody id="eventTableBody">
+					            <c:if test="${cus_count == 0}">
+					            <tr height="50">
+					                <td colspan="5" align="center">
+					                    <h5><b>등록된 글이 없습니다</b></h5>
+					                </td>
+					            </tr>
+					            </c:if>
+					            <c:if test="${cus_count > 0}">
+					            <c:forEach var="cus" items="${cuslist}">
+					                <tr style="height: 50px;" align="center" class="cuslist" data-category="${cus.cus_category}" onclick="location.href='eventedit?cus_num=${cus.cus_num}'">
+					                    <td valign="middle">${no}</td>
+					                    <c:set var="no" value="${no - 1}" />
+					                    <td valign="middle" style="font-weight: bold; color: #0176ED;">${cus.cus_category}</td>
+					                    <td valign="middle">${cus.cus_title}</td>
+					                    <td valign="middle"><fmt:formatDate value="${cus.cus_writetime}" pattern="yyyy-MM-dd HH:mm" /></td>
+					                    <td valign="middle">
+					                        <input type="checkbox" num="${cus.cus_num}" class="del">
+					                    </td>
+					                </tr>
+					            </c:forEach>
+					            </c:if>
+					        </tbody>
+					    </table>
 			                <!-- 페이징 -->
 							<div style="width: 1000px;">
 							  <ul class="pagination justify-content-center">
@@ -256,5 +288,41 @@ a, a:active, a:hover, a:visited {
 		$("a.menu_item").attr('aria-selected', 'false');
         $(this).attr('aria-selected', 'true');
 	})
+</script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $("td.dropdown").on("click", function(event) {
+        event.stopPropagation();
+        $(".dropdown-content").toggle();
+    });
+    
+    $("td.dropdown").click(function() {
+        $(".dropdown-content").show();
+    });
+
+    $(".dropdown-content a").on("click", function(e) {
+        e.preventDefault();
+        var category = $(this).text();
+        $("td.dropdown").text(category);
+        filterCategory(category);
+        $(".dropdown-content").hide();
+    });
+
+    function filterCategory(category) {
+        $("#eventTableBody tr").each(function() {
+            var rowCategory = $(this).data("category");
+            if (category === "CATEGORY" || rowCategory === category) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        });
+    }
+    
+    $(".dropdown-content").on("click", function(event) {
+        event.stopPropagation();
+    });
+});
 </script>
 </html>

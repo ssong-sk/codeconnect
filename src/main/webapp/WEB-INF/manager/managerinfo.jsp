@@ -195,7 +195,7 @@ a, a:active, a:hover, a:visited {
 			                	<c:forEach var="cus" items="${cuslist }">
 								    <tr style="height: 50px;" align="center" class="cuslist" onclick="location.href='infoedit?cus_num=${cus.cus_num}'">
 								       <td valign="middle">${no }</td><c:set var="no" value="${no-1 }"/>
-								       <td valign="middle" style="font-weight: bold;">
+								       <td valign="middle" style="font-weight: bold; color: #0176ED; ">
 											${cus.cus_category } 
 									   </td>
 								       <td valign="middle">${cus.cus_title }</td>

@@ -426,6 +426,95 @@ public class ManagerController {
 
 		return "manager/managerevent";
 	}
+	
+	@GetMapping("/manager/eventwrite")
+	public String eventwrite() {
+		return "manager/eventwrite";
+	}
+
+	@GetMapping("/manager/eventedit")
+	public String eventedit(HttpSession session, Model model, int cus_num) {
+
+		CustomerDto cusdto = mservice.getCustomer(cus_num);
+		model.addAttribute("cusdto", cusdto);
+
+		return "manager/eventedit";
+	}
+
+	@PostMapping("/manager/eventinsert")
+	public String eventinsert(CustomerDto dto, @RequestParam("upload") MultipartFile file, HttpSession session) {
+
+		// 파일 업로드 처리
+		if (!file.isEmpty()) {
+			String fileName = file.getOriginalFilename();
+			String uploadDir = session.getServletContext().getRealPath("/customerimage"); // 실제 업로드할 디렉토리 설정
+			File dir = new File(uploadDir);
+			if (!dir.exists()) {
+				dir.mkdirs(); // 디렉토리가 존재하지 않으면 생성
+			}
+			try {
+				File uploadedFile = new File(uploadDir + "/" + fileName);
+				file.transferTo(uploadedFile);
+				dto.setCus_photo(fileName); // 업로드된 파일명을 DTO에 설정
+				System.out.println("Uploaded file path: " + uploadedFile.getAbsolutePath());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}else {
+	        dto.setCus_photo("no");
+	    }
+
+		// 데이터베이스에 DTO 저장
+		mservice.insertCustomerEvent(dto);
+
+		return "redirect:/manager/event";
+	}
+	
+	@PostMapping("/manager/eventupdate")
+	public String eventupdate(@ModelAttribute CustomerDto dto, @RequestParam int cus_num, MultipartFile file,
+			HttpSession session ,@RequestParam String isDeleted) {
+
+		String path = session.getServletContext().getRealPath("/customerimage");
+
+	    if (isDeleted.equals("true") || file == null || file.getOriginalFilename().equals("")) {
+	        dto.setCus_photo("no");
+
+	        // Delete the previous file if it exists
+	        String cus_photo = mservice.getCustomer(cus_num).getCus_photo();
+	        File file2 = new File(path + "\\" + cus_photo);
+
+	        if (file2.exists()) {
+	            file2.delete();
+	        }
+	    } else {
+	        // Handle new file upload
+	        String cus_photo = mservice.getCustomer(cus_num).getCus_photo();
+	        File file2 = new File(path + "\\" + cus_photo);
+
+	        if (file2.exists()) {
+	            file2.delete();
+	        }
+
+	        String photname = file.getOriginalFilename();
+	        dto.setCus_photo(photname);
+
+	        try {
+	            file.transferTo(new File(path + "\\" + photname));
+	        } catch (IllegalStateException | IOException e) {
+	            e.printStackTrace();
+	        }
+	    }
+
+	    // Update customer data
+	    mservice.updateCustomerEvent(dto);
+	    return "redirect:/manager/event";
+	}
+
+	@GetMapping("/manager/eventdelete")
+	public String eventdelete(int cus_num) {
+		mservice.deleteCustomerEvent(cus_num);
+		return "redirect:/manager/event";
+	}
 
 	@GetMapping("/manager/edit")
 	public String edit() {

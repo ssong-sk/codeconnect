@@ -126,6 +126,21 @@ public class ManagerService implements ManagerServiceInter {
 		return mapper.getAllCustomerEvent(start, perpage);
 	}
 
+	@Override
+	public void insertCustomerEvent(CustomerDto dto) {
+		mapper.insertCustomerEvent(dto);
+	}
+
+	@Override
+	public void updateCustomerEvent(CustomerDto dto) {
+		mapper.updateCustomerEvent(dto);
+	}
+
+	@Override
+	public void deleteCustomerEvent(int cus_num) {
+		mapper.deleteCustomerEvent(cus_num);
+	}
+
 	
 
 
