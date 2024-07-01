@@ -14,6 +14,10 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <title>Insert title here</title>
 <style type="text/css">
+.Menu_jobListLink__GYHAI ,.Menu_MenuItem__wI1yA span{
+   color: black;
+}
+
 .detailaside {
     width: 370px;
     height: calc(100% - 100px);
