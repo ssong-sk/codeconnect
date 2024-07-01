@@ -61,6 +61,10 @@ public class CommunityController {
         cal.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
         cal.add(Calendar.WEEK_OF_YEAR, 1);
         Date endDate = new Date(cal.getTimeInMillis());
+        
+		// startDate와 endDate를 출력하여 확인
+		//System.out.println("Start Date: " + startDate);
+		//System.out.println("End Date: " + endDate);
 
         // 이번 주 인기 게시글 조회 (homelist에서는 5개만 보이게)
         List<CommunityDto> popularPosts = service.getWeeklyPopularPosts(startDate, endDate);

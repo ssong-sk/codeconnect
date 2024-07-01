@@ -96,6 +96,18 @@
         box-shadow: none;
     }
 </style>
+<script type="text/javascript">
+	$(document).ready(function() {
+	    var currentUrl = window.location.pathname;
+	    if (currentUrl.includes('/customer/noticelist')) {
+	        $('#noticeLink').addClass('active');
+	    } else if (currentUrl.includes('/customer/eventlist')) {
+	        $('#eventLink').addClass('active');
+	    } else if (currentUrl.includes('/customer/inquirylist')) {
+	        $('#inquiryLink').addClass('active');
+	    }
+	});
+</script>
 </head>
 <body>
 <div style="max-width: 1000px; margin-top: 70px; margin-left: 260px; width: 80%;">
@@ -103,9 +115,9 @@
 </div>
 <nav class="nav">
     <ul>
-        <a class="nav-link ${fn:contains(pageContext.request.requestURI, '/customer/noticelist') ? 'active' : ''}" href="${pageContext.request.contextPath}/customer/noticelist">공지사항</a>
-        <a class="nav-link ${fn:contains(pageContext.request.requestURI, '/customer/eventlist') ? 'active' : ''}" href="${pageContext.request.contextPath}/customer/eventlist">이벤트</a>
-        <a class="nav-link ${fn:contains(pageContext.request.requestURI, '/customer/inquirylist') ? 'active' : ''}" href="${pageContext.request.contextPath}/customer/inquirylist">1:1문의</a>
+        <li><a class="nav-link" id="noticeLink" href="${pageContext.request.contextPath}/customer/noticelist">공지사항</a></li>
+        <li><a class="nav-link" id="eventLink" href="${pageContext.request.contextPath}/customer/eventlist">이벤트</a></li>
+        <li><a class="nav-link" id="inquiryLink" href="${pageContext.request.contextPath}/customer/inquirylist">1:1문의</a></li>
     </ul>
 </nav>
 
