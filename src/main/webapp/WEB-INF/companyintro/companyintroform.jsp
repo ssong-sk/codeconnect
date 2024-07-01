@@ -38,7 +38,7 @@ body {
 
 .sidebar {
 	width: 250px;
-	height: 560px;
+	height: 460px;
 	border: 1px solid #E0E0E0;
 	padding: 20px;
 	background-color: #fff;
@@ -46,12 +46,14 @@ body {
 	margin-right: 20px;
 	flex-shrink: 0;
 	overflow-y: auto;
+	margin-top: 15px;
 }
 
 .sidebar h5 {
 	text-align: center;
 	font-weight: bold;
 	margin-bottom: 20px;
+	
 }
 
 .sidebar .btn {
@@ -281,16 +283,16 @@ th:nth-child(5), td:nth-child(5) {
 			<div class="sidebar">
                 <h5>코드커넥트 채용 솔루션</h5>
                 <button class="btn" onclick="location.href='/hire/hirewrite'">+ 공고 등록하기</button>
-                <button class="btn">🔍 인재풀 탐색하기</button>
+                <!-- <button class="btn">🔍 인재풀 탐색하기</button>-->
                 <div class="menu-divider"></div>
                 <div class="menu-item" onclick="location.href='jiwon'">전체 지원자 관리</div>
                 <div class="menu-item" onclick="location.href='companyhire'">
                     <span>채용공고 관리</span> <span>+</span>
                 </div>
-                <div class="menu-item"  onclick="location.href='injae'">제안 보낸 인재풀 관리</div>
+                <!-- <div class="menu-item"  onclick="location.href='injae'">제안 보낸 인재풀 관리</div>-->
                 <div class="menu-divider"></div>
                 <div class="menu-item" onclick="location.href='companyupdate'">기업 정보 수정</div>
-                <div class="menu-item" onclick="location.href='intromain'" style="font-weight: bold;">기업 소개 하기</div>
+                <div class="menu-item" onclick="location.href='intromain'"  style="font-weight: bold;">기업 소개 하기</div>
                 <div class="menu-divider"></div>
                 <div class="menu-item" onclick="location.href='account'">계정 관리</div>
                 <div class="menu-item" onclick="location.href='logoutprocess'">로그아웃</div>

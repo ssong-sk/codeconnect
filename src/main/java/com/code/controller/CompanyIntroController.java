@@ -3,6 +3,7 @@ package com.code.controller;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -246,31 +247,46 @@ public class CompanyIntroController {
 
 	}
 
-	//이제 임시 아님! 매우 중요!!!
-	//기업 마이페이지에서 =>기업소개리스트(임시)로 이동
-	//마이페이지에서만 이어갈 수 있는 기업들 소개리스트
-	@GetMapping("/company/gotoshowimsiList")
-	public String showimsiList(Model model, HttpSession session) {
-		List<CompanyIntroDto> clist = ciservice.getAllCompanyIntros();
-		String r_num_str = (String) session.getAttribute("r_num");
-		int r_num = r_num_str != null ? Integer.parseInt(r_num_str) : 0;
-		model.addAttribute("r_num", r_num);
+	  // 이제 임시 아님! 매우 중요!!!
+    // 기업 마이페이지에서 =>기업소개리스트(임시)로 이동
+    // 마이페이지에서만 이어갈 수 있는 기업들 소개리스트
+    @GetMapping("/company/gotoshowimsiList")
+    public String showimsiList(Model model, HttpSession session) {
+        List<CompanyIntroDto> clist = ciservice.getAllCompanyIntros();
+        String r_num_str = (String) session.getAttribute("r_num");
+        int r_num = r_num_str != null ? Integer.parseInt(r_num_str) : 0;
+        model.addAttribute("r_num", r_num);
 
-		// 사용자 스크랩 여부 확인
-		if (r_num != 0) {
-			List<CompanyDto> scrapList = cservice.getCompanyUserScraps(r_num);
-			List<String> scrapIds = scrapList.stream()
-					.map(CompanyDto::getC_num)
-					.collect(Collectors.toList());
-			model.addAttribute("scrapList", scrapIds);
-		}
-		model.addAttribute("clist", clist);
+        // 사용자 스크랩 여부 확인
+        if (r_num != 0) {
+            List<CompanyDto> scrapList = cservice.getCompanyUserScraps(r_num);
+            List<String> scrapIds = scrapList.stream()
+                    .map(CompanyDto::getC_num)
+                    .collect(Collectors.toList());
+            model.addAttribute("scrapList", scrapIds);
+        }
+        model.addAttribute("clist", clist);
 
-		// 로그 추가
-		//System.out.println("Company Intro List: " + clist);
+        // 로그 추가
+        // System.out.println("Company Intro List: " + clist);
 
-		return "/companyintro/companyintroList";
-	}
+        // 기업 랭킹
+        // 그냥 순위 랜덤
+        List<CompanyIntroDto> clist2 = ciservice.getAllCompanyIntros();
+        Collections.shuffle(clist2);  // 순서를 랜덤으로 섞기
+        model.addAttribute("clist2", clist2);
+
+        // 대기업 연봉 순위
+        List<CompanyIntroDto> blist1 = ciservice.getCompanyIntrosByMoneyWhereBig();
+        // 중견기업 연봉 순위
+        List<CompanyIntroDto> blist2 = ciservice.getCompanyIntrosByMoneyWhereMid();
+
+        model.addAttribute("blist1", blist1);
+        model.addAttribute("blist2", blist2);
+
+        return "/companyintro/companyintroList";
+    }
+
 
 	//중요!!: 기업 리스트에서 해당 기업 소개글(detail view)로 이동하기
 	//companyintro 소개글 완성본 보기
