@@ -31,7 +31,7 @@
 					<a href="/"><img src="/image/mainlogo.png"
 						alt="codeconnect Logo" class="logo"></a>
 				</div>
-				<ul class="Menu_MenuNav__EOf3X" style="margin-bottom: 0px;">
+				<ul class="Menu_MenuNav__EOf3X" style="margin-bottom: 0px;padding-left: 0px;">
 					<li class="Menu_MenuItem__wI1yA"><a href="/hire/main"
 						class="Menu_jobListLink__GYHAI"><span>채용</span></a></li>
 					<li class="Menu_MenuItem__wI1yA"><a href="/company/gotoshowimsiList"><span>기업</span></a></li>
