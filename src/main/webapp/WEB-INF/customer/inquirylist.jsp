@@ -11,16 +11,16 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-<title>1:1문의</title>
+<title>공지사항</title>
 <style type="text/css">
     body {
         font-family: 'IBM Plex Sans KR', sans-serif;
     }
-    
+
     /* 최상단 카테고리 nav */
     .nav {
         margin-top: 5px;
-        margin-left: 150px;
+        margin-left: 270px;
     }
     .nav ul {
         list-style-type: none;
@@ -48,24 +48,30 @@
         justify-content: center;
         align-items: center;
         width: 80%;
-        margin: 50px auto -30px auto; /* 아래쪽 간격을 10px로 줄임 */
+        margin: 50px auto -30px auto;
         gap: 870px;
     }
-
     /* 테이블 스타일 */
     table {
         width: 80%;
-        margin: 50px auto;
+        margin: 30px auto;
         border-collapse: collapse;
+        border-top: 2px solid #000;
     }
     th, td {
-        border: 1px solid #ddd;
-        padding: 8px;
+        padding: 15px;
         text-align: left;
     }
     td.center {
         text-align: center;
     }
+    tr:not(:first-child) td {
+        border-top: 1px solid #ddd;
+    }
+    th {
+        border-bottom: 2px solid #000;
+    }
+
     /* 페이징 스타일 */
     .pagination {
         display: flex;
@@ -110,7 +116,7 @@
 </script>
 </head>
 <body>
-<div style="max-width: 1000px; margin-top: 70px; margin-left: 260px; width: 80%;">
+<div style="max-width: 1000px; margin-top: 70px; margin-left: 370px; width: 80%;">
 	<h4 style="color: gray; font-weight: bold;">고객센터</h4>
 </div>
 <nav class="nav">
@@ -125,16 +131,26 @@
 <div class="top-section">
     <span>총 &nbsp;${totalCount}&nbsp;건</span>
     <c:if test="${sessionScope.myid == 'hyoyoung'}">
-        <button type="button" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/customer/inquiryform'">글쓰기</button>
+        <button type="button" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/customer/noticeform'">글쓰기</button>
     </c:if>
     <c:if test="${sessionScope.myid != 'hyoyoung'}">
         <button type="button" class="btn btn-outline-primary" style="visibility: hidden;">글쓰기</button>
     </c:if>
-
-	
 </div>
-
-
+<div style="max-width: 1000px; margin: 50px auto; width: 80%;">
+    <table class="table" style="font-size: 15px; border-top: 2px solid #E2E2E2; border-bottom: 2px solid #E2E2E2">
+         <c:forEach var="notice" items="${list}">
+             <tr style="height: 60px;">
+                 <td width="500" style="vertical-align: middle;">
+                    <a href="${pageContext.request.contextPath}/customer/noticedetail/${notice.cus_num}" style="text-decoration: none; color: black;">
+                        ${notice.cus_title}
+                    </a>
+                </td>
+                 <td class="center" width="120" style="vertical-align: middle; color: gray;"><fmt:formatDate value="${notice.cus_writetime}" pattern="yyyy.MM.dd" /></td>
+             </tr>
+         </c:forEach>
+    </table>
+</div>
 
 <div class="pagination">
     <c:if test="${startPage > 1}">

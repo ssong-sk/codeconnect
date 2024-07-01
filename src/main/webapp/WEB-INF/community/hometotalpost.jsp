@@ -17,8 +17,8 @@
     
     /* 최상단 카테고리 nav */
     .nav {
-        margin-top: 50px;
-        margin-left: 150px;
+        margin-top: 40px;
+        margin-left: 250px;
     }
     .nav ul {
         list-style-type: none;
@@ -139,7 +139,7 @@
         border: 1px solid #d7dce5;
         border-radius: 10px;
         height: 65px;
-        width: 180px;
+        width: 170px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -151,7 +151,7 @@
         color: #373f57;
         display: block;
         line-height: 40px;
-        font-size: 18px;
+        font-size: 17px;
     }
     
     .post_list a {
@@ -214,7 +214,7 @@
     $(document).ready(function(){
         // content 말줄임표 처리
         $('.content_text').each(function(){
-            var maxLength = 96;
+            var maxLength = 90;
             var text = $(this).text();
             if (text.length > maxLength) {
                 var cut = text.substring(0, maxLength) + '...';
@@ -222,20 +222,6 @@
             }
         });
         
-     	/* //체크박스 클릭 이벤트
-     	//최신순에 체크되는 것이 디폴트
-        $('.btn_sort').on('change', function() {
-            $('.btn_sort').not(this).prop('checked', false); // 다른 체크박스 해제
-            var sortBy = $(this).val();
-            var category = "${category}";
-            window.location.href = "${root}/community/hometotalpost?category=" + encodeURIComponent(category) + "&sortBy=" + sortBy;
-        });
-     	
-     	//체크박스 상태 설정
-        var urlParams = new URLSearchParams(window.location.search);
-        var sortBy = urlParams.get('sortBy') || 'new'; // 기본값은 'new'
-        $('#' + sortBy).prop('checked', true); */
-    
      	//체크박스 클릭 이벤트
         $('.btn_sort').on('change', function() {
             //모든 체크박스를 해제
@@ -263,7 +249,7 @@
         <a class="nav-link" href="${root}/community/interviewlist">현직자 인터뷰</a>
     </ul>
 </nav>
-<div style="max-width: 1200px; margin: 0px auto;">
+<div style="max-width: 1100px; margin: 0px auto;">
     <div class="container2">
         <div class="linkgo" style="width: 100%;">
             <div>
@@ -286,7 +272,7 @@
 </div>
 
 
-<div class="commutitle" style="max-width: 1200px; margin: 50px auto;">
+<div class="commutitle" style="max-width: 1100px; margin: 50px auto;">
     <div class="container">
         <div class="linkgo d-flex justify-content-between" style="width: 100%;">
             <a href="${root}/community/hometotalpost">
@@ -352,7 +338,7 @@
         </c:forEach>
     </ul>
 </div> --%>
-<div class="list_qna" style="max-width: 1200px; margin: 30px auto;">
+<div class="list_qna" style="max-width: 1100px; margin: 30px auto;">
 	<div id="s-qna-list">
     <ul class="qna-list">
         <c:if test="${topPost != null}">
