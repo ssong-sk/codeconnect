@@ -98,6 +98,14 @@
   color: gray;
   text-align: center; /* 마감일을 중앙 정렬합니다. */
 }
+
+.condition-notice {
+    background-color: #F4F6FA;
+    font-size: 0.7em;
+    margin-top: 8%;
+    margin-bottom: 5%;
+    padding: 10px 20px;
+  }
 </style>
 </head>
 <body>
@@ -158,7 +166,7 @@
 				    
 				    <li>
 				      <div class="menu-item">
-				        <a href="/resumehome/interestform">관심기업</a>
+				        <a href="/resumehome/interestform" style="color: #5494DB; background-color: rgba(84, 148, 219, 0.2);">관심기업</a>
 				      </div>
 				    </li>
 				  </ul>
@@ -217,9 +225,51 @@
 							</div>
 		              </table>
 		            </div>
-
-		           
 		            
+		            <!-- 페이징 -->
+				     <div style="width: 100%; margin-top: 7%; margin-bottom: 5%;">
+				       <ul class="pagination justify-content-center">
+				          <!--  이전-->
+				          <c:if test="${startPage>1 }">
+				             <li class="page-item ">
+				           <a class="page-link" href="interestform?currentPage=${startPage-1 }" style="color: black;">이전</a>
+				          </li>
+				          </c:if>
+				          
+				          <!--페이지번호  -->
+				          <c:forEach var="pp"  begin="${startPage }"  end="${endPage }">
+				            <c:if test="${currentPage==pp }">
+				                 <li class="page-item active">
+				               <a class="page-link" href="interestform?currentPage=${pp }">${pp }</a>
+				              </li>
+				            </c:if>
+				            
+				            <c:if test="${currentPage!=pp }">
+				               <li class="page-item">
+				               <a class="page-link" href="interestform?currentPage=${pp }">${pp }</a>
+				               </li>
+				            </c:if>
+				          </c:forEach>
+				          
+				          
+				          <!-- 다음 -->
+				          <c:if test="${endPage<totalPage }">
+				             <li class="page-item">
+				               <a  class="page-link" href="interestform?currentPage=${endPage+1 }"
+				               style="color: black;">다음</a>
+				            </li>
+				          </c:if>
+				       </ul>
+				     </div>
+				     
+                    <div class="condition-notice">
+		              <div>
+			              <div style="font-size: 1.2em;"><i class="bi bi-exclamation-circle"></i>&nbsp;&nbsp;<b>유의사항</b></div><br>
+			              <div>- 이력서는 최대 10개까지 등록 가능합니다.</div>
+			              <div>- '입사지원 내역'건수는 최근 1년간 내역에 대해 확인 가능합니다.</div>
+			              <div>- 수정, 삭제 기능은 이력서 우측 버튼을 누르면 확인하실 수 있습니다.(이력서는 부분 삭제 불가)</div>
+		              </div>
+		            </div>
 	              </div>   
               </div>
             </div>

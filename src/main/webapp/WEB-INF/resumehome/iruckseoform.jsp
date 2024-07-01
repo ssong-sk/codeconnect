@@ -2807,17 +2807,32 @@
                
                 	//체크박스 전체선택 체크 및 해제
                 	$(function() {
-                		
-                		$("#consentAllCheck").click(function() {
-                			
-                			var allcheck = $(this).is(":checked");
-
-                				$("#consentCheck1").prop('checked', allcheck);
-                				$("#consentCheck2").prop('checked', allcheck);
-                		
-                		});
-                	})
-                	
+				        // 체크박스 전체선택 체크 및 해제
+				        $("#consentAllCheck").click(function() {
+				            var allcheck = $(this).is(":checked");
+				            $("#consentCheck1").prop('checked', allcheck);
+				            $("#consentCheck2").prop('checked', allcheck);
+				        });
+				
+				        // 작성 완료 버튼 클릭 시
+				        $(document).on("click", "#allDataUpdate", function() {
+				            // 필수 항목 체크 여부 확인
+				            var consentCheck1 = $("#consentCheck1").is(":checked");
+				            var consentCheck2 = $("#consentCheck2").is(":checked");
+				
+				            if (!consentCheck1) {
+				                alert("필수 항목에 대한 개인정보 수집 및 이용 동의가 필요합니다.");
+				                return;
+				            }
+				
+				            // 추가할 필요가 있는 다른 확인 사항이 있다면 여기에 추가
+				
+				            // 모든 필수 항목이 체크되었을 때 작성 완료 메시지
+				            alert("작성이 완료되었습니다.");
+				            // 여기에 작성 완료 후 처리할 로직 추가
+				            $("#pe_form").submit();
+				        });
+				    });
 
                </script>
                
