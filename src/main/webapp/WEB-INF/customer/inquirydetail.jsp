@@ -13,6 +13,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-   
+   <h2>해당 작성글 상세보기</h2>
 </body>
 </html>

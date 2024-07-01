@@ -25,4 +25,10 @@ public interface CustomerServiceInter {
     public int getLastInsertedId(); 
     //카테고리별 이벤트 가져오는 메서드
     public List<CustomerDto> getEventsByCategory(String category); 
+    
+    //카테고리별 게시글 수 조회 메서드(event)
+    public int getCountByCategory(String category);
+    
+    //event 마감된 이벤트로 넘기기
+    public void moveExpiredEventsToClosed();
 }

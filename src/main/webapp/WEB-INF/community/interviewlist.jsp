@@ -15,8 +15,8 @@
         font-family: 'IBM Plex Sans KR', sans-serif;
     }
     .nav {
-        margin-top: 50px;
-        margin-left: 150px;
+        margin-top: 40px;
+        margin-left: 250px;
     }
     .nav ul {
         list-style-type: none;
@@ -40,7 +40,7 @@
         color: blue;
     }
     .container {
-        max-width: 1200px;
+        max-width: 1100px;
         margin: 0 auto;
     }
     .wrap_category_type {
@@ -51,7 +51,7 @@
     }
     .wrap_category_type ul {
         list-style-type: none;
-        font-size: 17px;
+        font-size: 16px;
         padding-left: 0;
         display: flex;
         flex-wrap: wrap;
@@ -186,7 +186,7 @@
         <li><a class="nav-link" href="${root}/community/interviewlist?category=전체" id="interviewLink">현직자 인터뷰</a></li>
     </ul>
 </nav>
-<div class="container" style="margin-top: 50px;">
+<div class="container" style="margin-top: 50px; width: 1100px;">
     <h3>현직자 인터뷰</h3>
     <div class="wrap_category_type" style="margin-top: 30px;">
         <ul class="list_category">
@@ -218,10 +218,10 @@
         <div style="font-size: 20px;">
             <b>총 <span>${totalCount}</span>건</b>
         </div>
-        <div style="display: flex; gap: 10px; height: 40px;">
+        <!-- <div style="display: flex; gap: 10px; height: 40px;">
             <input type="text" class="form-control" placeholder="직무 또는 기업명을 입력하세요">
             <button class="btn btn-primary" type="button" style="width: 75px;">검색</button>
-        </div>
+        </div> -->
     </div>
     
     <div class="interview-list">
@@ -253,7 +253,7 @@
 
     <div class="writebtn" style="margin-top: 20px;">
         <c:if test="${sessionScope.loginok!=null}">
-            <button type="button" class="btn btn-outline-primary" style="margin-left: 1100px;"
+            <button type="button" class="btn btn-outline-primary" style="margin-left: 1000px;"
             onclick="location.href='${pageContext.request.contextPath}/community/interviewform'">글쓰기</button>
         </c:if>
     </div>
