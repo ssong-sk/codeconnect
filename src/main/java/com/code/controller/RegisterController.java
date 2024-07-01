@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.code.dto.RegisterDto;
@@ -98,7 +99,7 @@ public class RegisterController {
       //이름 수정
       @PostMapping("/updateName")
       @ResponseBody
-      public void updateName(RegisterDto dto)
+      public void updateName(@RequestParam("r_name") RegisterDto dto,HttpSession session)
       {
          service.updateName(dto);
       }
@@ -106,7 +107,7 @@ public class RegisterController {
       //전화번호 수정
       @PostMapping("/updateHp")
       @ResponseBody
-      public void updateHp(RegisterDto dto)
+      public void updateHp(@RequestParam("r_hp") RegisterDto dto,HttpSession session)
       {
     	  service.updateHp(dto);
       }
@@ -114,20 +115,20 @@ public class RegisterController {
       //프로필 경력 수정
       @PostMapping("/updateExp")
       @ResponseBody
-      public void updateExp(RegisterDto dto)
+      public void updateExp(@RequestParam("r_exp") RegisterDto dto,HttpSession session)
       {
     	  service.updateExp(dto);
       }
       
       @PostMapping("/updateJob")
       @ResponseBody
-      public void updateJob(RegisterDto dto) {
+      public void updateJob(@RequestParam("r_job") RegisterDto dto,HttpSession session) {
     	  service.updateJob(dto);
       }
       
       @PostMapping("/updateDescription")
       @ResponseBody
-      public void upateDescription(RegisterDto dto) {
+      public void upateDescription(@RequestParam("r_sogae") RegisterDto dto,HttpSession session) {
     	  service.updateDescription(dto);
       }
 

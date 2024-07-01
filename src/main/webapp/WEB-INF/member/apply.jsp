@@ -17,6 +17,24 @@
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <link rel="stylesheet" type="text/css" href="/css/apply.css">
 <title>Insert title here</title>
+
+<style type="text/css">
+
+.Summary_Summary_list__Z6ikA dl {
+    color: inherit; /* 기본 텍스트 색상을 상속 */
+}
+
+/* dl 요소에 hover 상태일 때의 스타일 */
+.Summary_Summary_list__Z6ikA:hover dt {
+    color: #06f; /* 텍스트 색상을 #06f로 변경 */
+}
+
+Summary_Summary_list__Z6ikA:hover dd {
+color: #06f;	
+}
+
+</style>
+
 </head>
 <body>
 	<section>
@@ -44,9 +62,7 @@
 						<dt>지원</dt>
 						<dd>
 							<ul>
-								<li class=""><a href="/status/applications/write" class="">작성
-										중</a></li>
-								<li class="active"><a href="/status/applications/applied"
+								<li class="active"><a href="/member/apply"
 									class="">지원한 포지션</a></li>
 							</ul>
 						</dd>
@@ -56,27 +72,27 @@
 					<ul class="Summary_Summary__wbpVe">
 						<li
 							class="Summary_Summary_list__Z6ikA Summary_Summary_list_active__yEySM"><a
-							href="/status/applications/applied" class=""><dl>
+							href="/member/apply" class=""><dl>
 									<dt>0</dt>
 									<dd>전체</dd>
 								</dl></a></li>
 						<li class="Summary_Summary_list__Z6ikA"><a
-							href="/status/applications/applied?status=complete" class=""><dl>
+							href="/member/apply?status=complete" class=""><dl>
 									<dt>0</dt>
 									<dd>지원 완료</dd>
 								</dl></a></li>
 						<li class="Summary_Summary_list__Z6ikA"><a
-							href="/status/applications/applied?status=pass" class=""><dl>
+							href="/member/apply?status=pass" class=""><dl>
 									<dt>0</dt>
 									<dd>서류 통과</dd>
 								</dl></a></li>
 						<li class="Summary_Summary_list__Z6ikA"><a
-							href="/status/applications/applied?status=hire" class=""><dl>
+							href="/member/apply?status=hire" class=""><dl>
 									<dt>0</dt>
 									<dd>최종 합격</dd>
 								</dl></a></li>
 						<li class="Summary_Summary_list__Z6ikA"><a
-							href="/status/applications/applied?status=reject" class=""><dl>
+							href="/member/apply?status=reject" class=""><dl>
 									<dt>0</dt>
 									<dd>불합격</dd>
 								</dl></a></li>
