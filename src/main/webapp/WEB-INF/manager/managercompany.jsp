@@ -196,9 +196,9 @@ a, a:active, a:hover, a:visited {
 								    <tr align="center" class="comlist" onclick="location.href='companyedit?c_num=${c.c_num}'">
 								       <td valign="middle">${no }</td><c:set var="no" value="${no-1 }"/>
 								       <td valign="middle" width="150px">
-											<span style="color: #0176ED;">${c.c_name }</span>
+											<span style="color: #0176ED; font-weight: bold;">${c.c_name }</span>
 									   </td>
-								       <td valign="middle" width="150px">${c.c_category } <br> ${c.c_size }</td>
+								       <td valign="middle" width="170px">${c.c_category } <br> ${c.c_size }</td>
 								       <td valign="middle" width="500px">
 									       	${c.c_addr}
 								    	</td>

@@ -77,5 +77,22 @@
 	select * from customer where cus_top_type = 'event' order by cus_num desc limit #{start}, #{perpage}
 </select>
 
+<insert id="insertCustomerEvent" parameterType="CustomerDto">
+    insert into customer (cus_user_id, cus_top_type, cus_category, cus_title, cus_content, cus_photo, cus_writetime) 
+    values ('manager', 'event', #{cus_category}, #{cus_title}, #{cus_content}, #{cus_photo}, now())
+</insert>
+
+<update id="updateCustomerEvent" parameterType="CustomerDto">
+    update customer set cus_category=#{cus_category}, cus_title=#{cus_title}, cus_content=#{cus_content}
+    <if test="cus_photo != null">
+        ,cus_photo=#{cus_photo}    
+    </if>
+    where cus_num=#{cus_num}
+</update>
+
+<delete id="deleteCustomerEvent" parameterType="int">
+	delete from customer where cus_num=#{cus_num}
+</delete>
+
 
 </mapper>

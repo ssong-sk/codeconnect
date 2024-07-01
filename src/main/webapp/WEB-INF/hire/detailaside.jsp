@@ -14,6 +14,10 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <title>Insert title here</title>
 <style type="text/css">
+.Menu_jobListLink__GYHAI ,.Menu_MenuItem__wI1yA span{
+	color: black;
+}
+
 .detailaside {
     width: 370px;
     height: calc(100% - 100px);
@@ -674,8 +678,8 @@ div.footerdiv{
 				</span>
 			</div>
 			<div class="contents">
-				<a class="company" target="_blank" title="먼치팩토리 기업정보" href="#">
-					<img alt="먼치팩토리 로고" height="70" src="../../companyintro_uploads/${hdto.ci_logo }" width="70">
+				<a class="company" target="_blank" title="${hdto.c_name } 기업정보" href="#">
+					<img alt="${hdto.c_name } 로고" height="70" src="../../companyintro_uploads/${hdto.ci_logo }" width="70">
 					<div class="name">
 						<h2>${hdto.c_name }</h2>
 						<span>기업정보 보기 <i class="bi bi-chevron-right"></i></span>
