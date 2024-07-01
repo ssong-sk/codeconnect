@@ -153,8 +153,8 @@ a, a:active, a:hover, a:visited {
 			        		<a href="event" role="tab" id="event" tabindex="-1" class="menu_item" aria-selected="false" aria-controls="event">
 			        		<span class="menu_text">EVENT</span>
 			        		</a>
-			        		<a href="edit" role="tab" id="edit" tabindex="0" class="menu_item" aria-selected="false" aria-controls="edit">
-			        		<span class="menu_text">EDIT</span>
+			        		<a href="edit" role="tab" id="block" tabindex="0" class="menu_item" aria-selected="false" aria-controls="block">
+			        		<span class="menu_text">BLOCK</span>
 			        		</a>
 			        	</div>
 			        </div>
@@ -168,7 +168,7 @@ a, a:active, a:hover, a:visited {
 			                <table class="table table-hover custom-table">
 			                <thead>
 			                	<tr>
-			                		<td colspan="7">
+			                		<td colspan="6">
 			                			<div style="border: 1px solid #ddd; border-radius: 5px; padding: 20px; margin-bottom: 15px;">
 			                				<h3 style="margin-top: 9px;"><span style="color: #0176ED;">${c_count }</span> 개의 기업이 있습니다.</h3>
 			                			</div>
@@ -180,7 +180,6 @@ a, a:active, a:hover, a:visited {
 			                		<td>CATE / SIZE</td>
 			                		<td>ADDR</td>
 			                		<td>EMAIL</td>
-			                		<td>DAY</td>
 			                		<td>BLOCK</td>
 			                	</tr>
 			                	</thead>
@@ -196,15 +195,14 @@ a, a:active, a:hover, a:visited {
 			                	<c:forEach var="c" items="${clist }">
 								    <tr align="center" class="comlist" onclick="location.href='companyedit?c_num=${c.c_num}'">
 								       <td valign="middle">${no }</td><c:set var="no" value="${no-1 }"/>
-								       <td valign="middle">
+								       <td valign="middle" width="150px">
 											<span style="color: #0176ED;">${c.c_name }</span>
 									   </td>
-								       <td valign="middle">${c.c_category } <br> ${c.c_size }</td>
-								       <td valign="middle">
+								       <td valign="middle" width="150px">${c.c_category } <br> ${c.c_size }</td>
+								       <td valign="middle" width="500px">
 									       	${c.c_addr}
 								    	</td>
 								        <td valign="middle">${c.c_insa_email }</td>
-								        <td valign="middle"><fmt:formatDate value="${c.c_gaipday}" pattern="yyyy-MM-dd"/></td>
 								        <td valign="middle">
 								           <input type="checkbox" num="${c.c_num }" class="del">
 								        </td>
