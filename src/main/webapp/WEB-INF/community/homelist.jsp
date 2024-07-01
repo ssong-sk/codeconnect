@@ -155,7 +155,7 @@
 <script type="text/javascript">
     $(document).ready(function(){
         $('.title_link').each(function(){
-            var maxLength = 40;
+            var maxLength = 28;
             var text = $(this).text();
             if (text.length > maxLength) {
                 var cut = text.substring(0, maxLength) + '...';
@@ -199,7 +199,7 @@
         </div>
     </div>
     <div class="section_inner">
-	    <div class="wrap_title d-flex justify-content-between align-items-center" style="margin-bottom: 10px;">
+	    <div class="wrap_title d-flex justify-content-between align-items-center" style="margin-bottom: 25px;">
 	        <a href="${root}/community/homepopularlist" style="margin-top: 25px;">
 	            <b class="hot">HOT</b> &nbsp;<b>이번주 전체 인기글 🔥</b>
 	        </a>
@@ -212,7 +212,7 @@
 	                <c:forEach var="dto" items="${popularPosts}">
 	                    <c:if test="${dto.com_post_type == 'home'}">
 	                        <li class="item">
-	                            <a class="title_link" href="${root}/community/homedetail?com_num=${dto.com_num}" style="margin-left: 1px;">${dto.com_title}</a>
+	                            <a class="title_link1" href="${root}/community/homedetail?com_num=${dto.com_num}" style="margin-left: 1px; margin-top: 6px;">${dto.com_title}</a>
 	                            <div class="details" style="color: gray; font-size: 23px;">
 	                                <span class="comment"><i class="bi bi-chat-left"></i>&nbsp;${dto.com_commentcount}</span>
 	                                <span class="views"><i class="bi bi-eye"></i>&nbsp;${dto.com_readcount}</span>&nbsp;

@@ -20,6 +20,7 @@ public class CustomerDto {
 	private String cus_photo;
 	private Timestamp cus_writetime;
 	private String cus_answer;
+	private String cus_answer_status; //답변 상태 컬럼 추가
 	private String cus_target; //이벤트 대상
 	private Date cus_startday; //공고 시작일
 	private Date cus_endday; //공고 마감일

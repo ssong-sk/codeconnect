@@ -116,7 +116,7 @@
 	    </c:if>
 	</div>
     <div class="footer">
-        <c:if test="${sessionScope.myid == 'hyoyoung'}">
+        <c:if test="${sessionScope.myid == 'manager'}">
         	<button type="button" class="btn btn-secondary" onclick="location.href='${pageContext.request.contextPath}/customer/eventform'">글쓰기</button>
             <button type="button" class="btn btn-secondary" onclick="location.href='${pageContext.request.contextPath}/customer/eventupdateform/${dto.cus_num}'">수정</button>
         	<button type="button" class="btn btn-secondary" onclick="confirmDelete('${pageContext.request.contextPath}/customer/eventdelete/${dto.cus_num}')">삭제</button>
