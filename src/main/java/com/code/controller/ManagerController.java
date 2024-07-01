@@ -37,7 +37,7 @@ public class ManagerController {
 	
 	@GetMapping("/manager/main")
 	public String main() {
-		return "manager/managermain";
+		return "/sub/manager/managermain";
 	}
 	
 	//회원 관리

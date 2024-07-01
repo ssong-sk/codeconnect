@@ -62,7 +62,7 @@ color: #06f;
 						<dt>지원</dt>
 						<dd>
 							<ul>
-								<li class="active"><a href="/status/applications/applied"
+								<li class="active"><a href="/member/apply"
 									class="">지원한 포지션</a></li>
 							</ul>
 						</dd>
@@ -82,17 +82,17 @@ color: #06f;
 									<dd>지원 완료</dd>
 								</dl></a></li>
 						<li class="Summary_Summary_list__Z6ikA"><a
-							href="/status/applications/applied?status=pass" class=""><dl>
+							href="/member/apply?status=pass" class=""><dl>
 									<dt>0</dt>
 									<dd>서류 통과</dd>
 								</dl></a></li>
 						<li class="Summary_Summary_list__Z6ikA"><a
-							href="/status/applications/applied?status=hire" class=""><dl>
+							href="/member/apply?status=hire" class=""><dl>
 									<dt>0</dt>
 									<dd>최종 합격</dd>
 								</dl></a></li>
 						<li class="Summary_Summary_list__Z6ikA"><a
-							href="/status/applications/applied?status=reject" class=""><dl>
+							href="/member/apply?status=reject" class=""><dl>
 									<dt>0</dt>
 									<dd>불합격</dd>
 								</dl></a></li>
