@@ -19,7 +19,7 @@
     /* 최상단 카테고리 nav */
     .nav {
         margin-top: 5px;
-        margin-left: 150px;
+        margin-left: 270px;
     }
     .nav ul {
         list-style-type: none;
@@ -51,7 +51,7 @@
         box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
     .detail-title {
-        font-size: 24px;
+        font-size: 22px;
         font-weight: bold;
         margin-bottom: 20px;
     }
@@ -81,19 +81,36 @@
         margin-top: 20px;
     }
 </style>
+<script type="text/javascript">
+	$(document).ready(function() {
+	    var currentUrl = window.location.pathname;
+	    if (currentUrl.includes('/customer/noticelist') || currentUrl.includes('/customer/noticedetail')) {
+	        $('#noticeLink').addClass('active');
+	    } else if (currentUrl.includes('/customer/eventlist')) {
+	        $('#eventLink').addClass('active');
+	    } else if (currentUrl.includes('/customer/inquirylist')) {
+	        $('#inquiryLink').addClass('active');
+	    }
+	});
+	
+	function confirmDelete() {
+        return confirm("정말 삭제하시겠습니까?");
+    }
+</script>
+</script>
 </head>
 <body>
-<div style="max-width: 1000px; margin-top: 70px; margin-left: 260px; width: 80%;">
+<div style="max-width: 1000px; margin-top: 70px; margin-left: 370px; width: 80%;">
     <h4 style="color: gray; font-weight: bold;">고객센터</h4>
 </div>
 <nav class="nav">
     <ul>
-        <a class="nav-link ${fn:contains(pageContext.request.requestURI, '/customer/noticelist') || fn:contains(pageContext.request.requestURI, '/customer/noticedetail') ? 'active' : ''}" href="${pageContext.request.contextPath}/customer/noticelist">공지사항</a>
-        <a class="nav-link ${fn:contains(pageContext.request.requestURI, '/customer/eventlist') ? 'active' : ''}" href="${root}/customer/eventlist">이벤트</a>
-        <a class="nav-link ${fn:contains(pageContext.request.requestURI, '/customer/inquirylist') ? 'active' : ''}" href="${root}/customer/inquirylist">1:1문의</a>
+        <li><a class="nav-link" id="noticeLink" href="${pageContext.request.contextPath}/customer/noticelist">공지사항</a></li>
+        <li><a class="nav-link" id="eventLink" href="${pageContext.request.contextPath}/customer/eventlist">이벤트</a></li>
+        <li><a class="nav-link" id="inquiryLink" href="${pageContext.request.contextPath}/customer/inquirylist">1:1문의</a></li>
     </ul>
 </nav>
-<div class="container">
+<div class="container" style="width: 1100px;">
     <div class="detail-title">
         ${dto.cus_title}
     </div>
@@ -109,13 +126,13 @@
     
     <div class="footer">
         <c:if test="${sessionScope.myid == 'hyoyoung'}">
-            <button type="button" class="btn btn-secondary" onclick="location.href='${pageContext.request.contextPath}/customer/noticeform'">글쓰기</button>
-            <button type="button" class="btn btn-secondary" onclick="location.href='${pageContext.request.contextPath}/customer/noticeupdateform/${dto.cus_num}'">수정</button>
-            <form action="${pageContext.request.contextPath}/customer/noticedelete/${dto.cus_num}" method="get" style="display:inline;">
-                <button type="submit" class="btn btn-secondary">삭제</button>
-            </form>
+            <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='${pageContext.request.contextPath}/customer/noticeform'">글쓰기</button>
+            <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='${pageContext.request.contextPath}/customer/noticeupdateform/${dto.cus_num}'">수정</button>
+            <form action="${pageContext.request.contextPath}/customer/noticedelete/${dto.cus_num}" method="get" style="display:inline;" onsubmit="return confirmDelete();">
+			    <button type="submit" class="btn btn-secondary btn-sm">삭제</button>
+			</form>
         </c:if>
-        <button type="button" class="btn btn-secondary" onclick="location.href='${pageContext.request.contextPath}/customer/noticelist'">목록</button>
+        <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='${pageContext.request.contextPath}/customer/noticelist'">목록</button>
     </div>
 </div>
 </body>

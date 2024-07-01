@@ -57,5 +57,20 @@
     <select id="getEventsByCategory" parameterType="String" resultType="CustomerDto">
     	select * from customer where cus_category = #{category} and cus_top_type = 'event' 
     </select>
+    
+    <!-- 카테고리별 게시글 수 조회 쿼리(event) -->
+    <select id="getCountByCategory" parameterType="String" resultType="int">
+        select count(*) from customer where cus_category = #{category} and cus_top_type = 'event'
+    </select>
+    
+    <!-- 만료된 이벤트를 마감된 이벤트로 이동하는 SQL 문 추가 -->
+	<update id="moveExpiredEventsToClosed">
+	    <![CDATA[
+	    update customer
+	    set cus_category = '마감된 이벤트'
+	    where cus_category = '진행중 이벤트' and cus_endday < now()
+	    ]]>
+	</update>
+    
 </mapper>
 

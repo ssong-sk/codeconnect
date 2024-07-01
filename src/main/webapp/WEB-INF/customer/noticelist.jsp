@@ -20,7 +20,7 @@
     /* 최상단 카테고리 nav */
     .nav {
         margin-top: 5px;
-        margin-left: 150px;
+        margin-left: 270px;
     }
     .nav ul {
         list-style-type: none;
@@ -116,14 +116,11 @@
 </script>
 </head>
 <body>
-<div style="max-width: 1000px; margin-top: 70px; margin-left: 260px; width: 80%;">
+<div style="max-width: 1000px; margin-top: 70px; margin-left: 370px; width: 80%;">
 	<h4 style="color: gray; font-weight: bold;">고객센터</h4>
 </div>
 <nav class="nav">
     <ul>
-        <%-- <a class="nav-link ${fn:contains(pageContext.request.requestURI, '/customer/noticelist') ? 'active' : ''}" href="${pageContext.request.contextPath}/customer/noticelist">공지사항</a>
-        <a class="nav-link ${fn:contains(pageContext.request.requestURI, '/customer/eventlist') ? 'active' : ''}" href="${pageContext.request.contextPath}/customer/eventlist">이벤트</a>
-        <a class="nav-link ${fn:contains(pageContext.request.requestURI, '/customer/inquirylist') ? 'active' : ''}" href="${pageContext.request.contextPath}/customer/inquirylist">1:1문의</a> --%>
         <li><a class="nav-link" id="noticeLink" href="${pageContext.request.contextPath}/customer/noticelist">공지사항</a></li>
         <li><a class="nav-link" id="eventLink" href="${pageContext.request.contextPath}/customer/eventlist">이벤트</a></li>
         <li><a class="nav-link" id="inquiryLink" href="${pageContext.request.contextPath}/customer/inquirylist">1:1문의</a></li>
@@ -140,8 +137,8 @@
         <button type="button" class="btn btn-outline-primary" style="visibility: hidden;">글쓰기</button>
     </c:if>
 </div>
-<div style="max-width: 1000px; margin: 40px auto; width: 80%;">
-    <table class="table" style="font-size: 15px;">
+<div style="max-width: 1000px; margin: 50px auto; width: 80%;">
+    <table class="table" style="font-size: 15px; border-top: 2px solid #E2E2E2; border-bottom: 2px solid #E2E2E2">
          <c:forEach var="notice" items="${list}">
              <tr style="height: 60px;">
                  <td class="center" width="70" style="color: #2d65f2; font-weight: bold; vertical-align: middle;">${notice.cus_category}</td>

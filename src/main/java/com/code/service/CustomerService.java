@@ -74,5 +74,16 @@ public class CustomerService implements CustomerServiceInter {
 		return mapper.getEventsByCategory(category);
 	}
 
+	@Override
+	public int getCountByCategory(String category) {
+		// TODO Auto-generated method stub
+		return mapper.getCountByCategory(category);
+	}
+
+	@Override
+	public void moveExpiredEventsToClosed() {
+	    mapper.moveExpiredEventsToClosed();
+	}
+
 	
 }

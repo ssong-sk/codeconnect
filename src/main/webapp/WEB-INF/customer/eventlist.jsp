@@ -19,7 +19,7 @@
 
     .nav {
         margin-top: 5px;
-        margin-left: 150px;
+        margin-left: 270px;
     }
     .nav ul {
         list-style-type: none;
@@ -179,7 +179,7 @@
 </script>
 </head>
 <body>
-<div style="max-width: 1200px; margin-top: 70px; margin-left: 260px; width: 80%;">
+<div style="max-width: 1100px; margin-top: 70px; margin-left: 370px; width: 80%;">
     <h4 style="color: gray; font-weight: bold;">고객센터</h4>
 </div>
 <nav class="nav">
@@ -190,13 +190,13 @@
     </ul>
 </nav>
 
-<div class="tabs" style="max-width: 1200px; margin: 50px auto; width: 80%">
+<div class="tabs" style="max-width: 1100px; margin: 50px auto; width: 80%">
     <a href="#" class="active" data-category="ongoing">진행중 이벤트</a>
     <a href="#" data-category="closed">마감된 이벤트</a>
     <a href="#" data-category="announcement">당첨자 발표</a>
 </div>
 
-<div id="ongoing" class="events">
+<div id="ongoing" class="events" style="width: 900px;">
     <c:forEach var="event" items="${ongoingEvents}">
         <div class="event-card">
             <a href="${pageContext.request.contextPath}/customer/eventdetail/${event.cus_num}" style="text-decoration: none; color: inherit;">
@@ -207,7 +207,7 @@
             </a>
         </div>
     </c:forEach>
-    <div style="width: 100%; text-align: center; margin-top: 20px; margin-left: 1050px;">
+    <div style="width: 100%; text-align: center; margin-top: 20px; margin-left: 800px;">
         <c:if test="${sessionScope.myid == 'hyoyoung'}">
             <button type="button" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/customer/eventform'">글쓰기</button>
         </c:if>
@@ -218,8 +218,8 @@
 </div>
 
 
-<div id="closed" class="events" style="display: none; width: 80%">
-    <div class="top-section">
+<%-- <div id="closed" class="events" style="display: none; width: 80%">
+    <div class="top-section" style="width: 1000px;">
         <span>총 &nbsp;${totalCountClosed}&nbsp;건</span>
         <c:if test="${sessionScope.myid == 'hyoyoung'}">
             <button type="button" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/customer/eventform'">글쓰기</button>
@@ -244,7 +244,7 @@
         </table>
     </div>
 
-    <div style="max-width: 1200px; margin: 40px auto; width: 80%;">
+    <div style="max-width: 1100px; margin: 40px auto; width: 80%;">
         <div class="pagination">
             <c:if test="${startPage > 1}">
                 <a href="?pageNum=${startPage - 1}" class="page-link"><i class="bi bi-chevron-left"></i>이전</a>
@@ -257,7 +257,29 @@
             </c:if>
         </div>
     </div>
+</div> --%>
+
+<div id="closed" class="events" style="display: none; width: 900px;">
+    <c:forEach var="event" items="${closedEvents}">
+        <div class="event-card">
+            <a href="${pageContext.request.contextPath}/customer/eventdetail/${event.cus_num}" style="text-decoration: none; color: inherit;">
+                <img src="${pageContext.request.contextPath}/customerimage/${event.cus_photo}" alt="${event.cus_title}" style="margin-bottom: 22px;">
+                <b style="font-size: 16px;">${event.cus_title}</b>
+                <p style="font-size: 14px; margin-top: 10px;"><fmt:formatDate value="${event.cus_startday}" pattern="yyyy.MM.dd"/> - <fmt:formatDate value="${event.cus_endday}" pattern="yyyy.MM.dd"/></p>
+                <p style="margin-top: 10px; font-size: 13px; color: gray;">대상 : ${event.cus_target}</p>
+            </a>
+        </div>
+    </c:forEach>
+    <%-- <div style="width: 100%; text-align: center; margin-top: 20px; margin-left: 800px;">
+        <c:if test="${sessionScope.myid == 'hyoyoung'}">
+            <button type="button" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/customer/eventform'">글쓰기</button>
+        </c:if>
+        <c:if test="${sessionScope.myid != 'hyoyoung'}">
+            <button type="button" class="btn btn-outline-primary" style="visibility: hidden;">글쓰기</button>
+        </c:if>
+    </div> --%>
 </div>
+
 
 <div id="announcement" class="events" style="display: none; width: 80%">
     <div class="top-section">
@@ -285,7 +307,7 @@
         </table>
     </div>
 
-    <div style="max-width: 1200px; margin: 40px auto; width: 80%;">
+    <div style="max-width: 1100px; margin: 40px auto; width: 80%;">
         <div class="pagination">
             <c:if test="${startPage > 1}">
                 <a href="?pageNum=${startPage - 1}" class="page-link"><i class="bi bi-chevron-left"></i>이전</a>
