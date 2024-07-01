@@ -109,5 +109,24 @@ public class ManagerService implements ManagerServiceInter {
 		mapper.deleteCustomer(cus_num);
 	}
 
+	
+	//이벤트 관리
+	@Override
+	public int countCustomerEvent() {
+		return mapper.countCustomerEvent();
+	}
+	
+	@Override
+	public List<CustomerDto> getAllCustomerEvent(int start, int perpage) {
+		
+		HashMap<String, Integer> map=new HashMap<>();
+		map.put("start", start);
+		map.put("perpage", perpage);
+		
+		return mapper.getAllCustomerEvent(start, perpage);
+	}
+
+	
+
 
 }

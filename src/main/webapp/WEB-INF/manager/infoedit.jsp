@@ -228,8 +228,8 @@ a, a:active, a:hover, a:visited {
 			        		<a href="event" role="tab" id="event" tabindex="-1" class="menu_item" aria-selected="false" aria-controls="event">
 			        		<span class="menu_text">EVENT</span>
 			        		</a>
-			        		<a href="edit" role="tab" id="edit" tabindex="0" class="menu_item" aria-selected="false" aria-controls="edit">
-			        		<span class="menu_text">EDIT</span>
+			        		<a href="edit" role="tab" id="block" tabindex="0" class="menu_item" aria-selected="false" aria-controls="block">
+			        		<span class="menu_text">BLOCK</span>
 			        		</a>
 			        	</div>
 			        </div>
@@ -269,7 +269,7 @@ a, a:active, a:hover, a:visited {
 							            <input type="file" id="upload" name="file" multiple>&nbsp;
 							            <span id="file-status" style="font-size: 14px; margin-top: 6px;">
 							            	<c:choose>
-										        <c:when test="${cusdto.cus_photo == 'no'}">
+										         <c:when test="${empty cusdto.cus_photo or cusdto.cus_photo == 'no'}">
 										            &nbsp;&nbsp;&nbsp;이미지 첨부 없음
 										        </c:when>
 										        <c:otherwise>
