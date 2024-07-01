@@ -30,6 +30,7 @@ public class HireDto {
 	private String h_writeday;
 	private int h_count;
 	
+	//기업 테이블과 Join
 	private int c_num;
 	private String c_name;
 	private String c_birthyear;
@@ -43,5 +44,8 @@ public class HireDto {
 	private int r_num;
 	private String r_id;
 	private boolean scraped;
+	
+	//지원 테이블과 Join : 채용공고의 지원자 수 세기
+	private int support_count;
 
 }

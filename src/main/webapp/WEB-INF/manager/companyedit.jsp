@@ -114,6 +114,7 @@
 
 a, a:active, a:hover, a:visited {
     color: inherit;
+    text-decoration: none;
 }
 
 .dashboard {
@@ -192,8 +193,8 @@ table.custom-table{
 			        		<a href="event" role="tab" id="event" tabindex="-1" class="menu_item" aria-selected="false" aria-controls="event">
 			        		<span class="menu_text">EVENT</span>
 			        		</a>
-			        		<a href="edit" role="tab" id="edit" tabindex="0" class="menu_item" aria-selected="false" aria-controls="edit">
-			        		<span class="menu_text">EDIT</span>
+			        		<a href="edit" role="tab" id="block" tabindex="0" class="menu_item" aria-selected="false" aria-controls="block">
+			        		<span class="menu_text">BLOCK</span>
 			        		</a>
 			        	</div>
 			        </div>
@@ -385,7 +386,7 @@ table.custom-table{
 													<input type="email" class="form-control" id="c_insa_email"
 														name="c_insa_email" value="${cdto.c_insa_email}">
 												</div>
-												<div class="mb-6" style="margin-left: 323px;">
+												<div class="mb-6" style="margin-left: 311px;">
 													<button type="button" class="btn btn-outline-primary" onclick="saveFormWithAlert()">수정</button>
 													<button type="button" class="btn btn-outline-danger" onclick="deleteAlert(${cdto.c_num})">삭제</button>
 													<button type="button" class="btn btn-outline-dark" onclick="history.back()">취소</button>

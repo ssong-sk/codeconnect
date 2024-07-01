@@ -124,8 +124,87 @@ a, a:active, a:hover, a:visited {
     margin-top: 20px;
 }
 
-.cuslist{
-	cursor: pointer;
+.back_button {
+    background-color: #ffffff;
+    color: #5c667b;
+    font-size: 15px;
+    border: 1px solid #ddd;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 8px;
+    margin-left: -694px;
+}
+
+.form-container {
+    background: #fff;
+    border-radius: 10px;
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+    padding-bottom: 40px;
+    padding-top: 40px;
+}
+
+.form-container h2 {
+    margin-bottom: 20px;
+}
+
+.form-container select, 
+.form-container input[type="text"], 
+.form-container textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+    font-size: 14px;
+}
+
+.form-container input[type="file"] {
+    margin-top: 10px;
+}
+
+.form-container button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #2D65F2;
+    color: #fff;
+    font-size: 16px;
+}
+
+.form-container button:hover {
+    background-color: #1E4BB8;
+}
+
+@media (max-width: 768px) {
+    .form-container {
+        padding: 20px;
+    }
+}
+
+.custom-file-upload {
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    background-color: #f8f9fa;
+    color: #495057;
+    font-size: 14px;
+}
+
+#upload {
+    display: none;
+}
+
+#image-container img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 10px;
 }
 </style>
 </head>
@@ -165,83 +244,39 @@ a, a:active, a:hover, a:visited {
 			    <div class="row">
 			        <main id="content" class="">
 			            <div class="dashboard">
-			                <table class="table table-hover custom-table">
-			                <thead>
-			                	<tr>
-			                		<td colspan="7">
-			                			<div style="border: 1px solid #ddd; border-radius: 5px; padding: 20px; margin-bottom: 15px; display: flex; justify-content: space-between;">
-			                				<h3 style="margin-top: 9px;"><span style="color: #0176ED;">${cus_count }</span> 개의 글이 있습니다.</h3>
-			                				<button type="button" class="btn btn-outline-primary" onclick="location.href='infowrite'">글쓰기</button>
-			                			</div>
-			                		</td>
-			                	</tr>
-			                	<tr align="center">
-			                		<td>NO</td>
-			                		<td>CATEGORY</td>
-			                		<td>TITLE</td>
-			                		<td>DAY</td>
-			                		<td>BLOCK</td>
-			                	</tr>
-			                	</thead>
-			                	<tbody>
-								<c:if test="${cus_count==0 }">
-								<tr height="50">
-								  <td colspan="5" align="center">
-								     <h5><b>등록된 글이 없습니다</b></h5>
-								  </td>
-								</tr>
-								</c:if>
-			                	<c:if test="${cus_count>0 }">
-			                	<c:forEach var="cus" items="${cuslist }">
-								    <tr style="height: 50px;" align="center" class="cuslist" onclick="location.href='infoedit?cus_num=${cus.cus_num}'">
-								       <td valign="middle">${no }</td><c:set var="no" value="${no-1 }"/>
-								       <td valign="middle" style="font-weight: bold;">
-											${cus.cus_category } 
-									   </td>
-								       <td valign="middle">${cus.cus_title }</td>
-								       <td valign="middle"><fmt:formatDate value="${cus.cus_writetime}" pattern="yyyy-MM-dd HH:mm"/></td>
-								       <td valign="middle">
-								           <input type="checkbox" num="${cus.cus_num }" class="del">
-								       </td>
-								    </tr>
-								</c:forEach>
-								</c:if>
-								</tbody>
-			                </table>
-			                <!-- 페이징 -->
-							<div style="width: 1000px;">
-							  <ul class="pagination justify-content-center">
-							     <!--  이전-->
-							     <c:if test="${startPage>1 }">
-							        <li class="page-item ">
-								   <a class="page-link" href="info?currentPage=${startPage-1 }" style="color: black;">이전</a>
-								  </li>
-							     </c:if>
-							     
-							     <!--페이지번호  -->
-							     <c:forEach var="pp"  begin="${startPage }"  end="${endPage }">
-							       <c:if test="${currentPage==pp }">
-							       	  <li class="page-item active">
-							    		<a class="page-link" href="info?currentPage=${pp }">${pp }</a>
-							    	  </li>
-							       </c:if>
-							       
-							       <c:if test="${currentPage!=pp }">
-							          <li class="page-item">
-							    		<a class="page-link" href="info?currentPage=${pp }">${pp }</a>
-							    		</li>
-							       </c:if>
-							     </c:forEach>
-							     
-							     
-							     <!-- 다음 -->
-							     <c:if test="${endPage<totalPage }">
-							        <li class="page-item">
-							    		<a  class="page-link" href="info?currentPage=${endPage+1 }"
-							    		style="color: black;">다음</a>
-							    	</li>
-							     </c:if>
-							  </ul>
+							<div class="form-container">
+							    <h2>게시글 작성</h2>
+							    <form action="infoinsert" method="post" enctype="multipart/form-data">
+							        <input type="hidden" id="cus_user_id" name="cus_user_id" value="${sessionScope.myid}">
+							        <input type="hidden" id="cus_top_type" name="cus_top_type" value="notice">
+							        <div>
+							            <label for="category">카테고리</label>
+							            <select id="category" name="cus_category" required>
+							                <option value="공지">공지</option>
+							                <option value="안내">안내</option>
+							                <option value="기타">이벤트</option>
+							                <option value="기타">기타</option>
+							            </select>
+							        </div>
+							        <div>
+							            <label for="title">제목</label>
+							            <input type="text" id="title" name="cus_title" required placeholder="제목을 입력해주세요">
+							        </div>
+							        <div>
+							            <label for="content">내용</label>
+							            <textarea id="content" name="cus_content" style="height: 360px; border: 1px solid #ced4da; padding: 10px; margin-top: 10px; overflow-y: auto;" placeholder="내용을 입력해주세요"></textarea>
+							        </div>
+							        <div style="margin-top: 10px;">
+							            <label for="upload" class="custom-file-upload"><i class="bi bi-images"></i> 이미지 첨부</label>
+							            <input type="file" id="upload" name="upload" multiple>&nbsp;
+							            <span id="file-status" style="font-size: 14px;">이미지 첨부 없음</span>
+							        </div>
+							        <div id="image-container" style="margin-top: 10px;"></div>
+							        <div style="margin-top: 25px;">
+							            <button type="submit">게시글 등록</button>
+							        </div>
+							    </form>
+							</div>
 							</div>
 			            </div>
 			        </main>
@@ -256,5 +291,37 @@ a, a:active, a:hover, a:visited {
 		$("a.menu_item").attr('aria-selected', 'false');
         $(this).attr('aria-selected', 'true');
 	})
+</script>
+<script type="text/javascript">
+    /* 이미지파일 첨부 관련 js */
+    $(document).ready(function(){
+        $('#upload').change(function(){
+            var fileName = $(this).val().split('\\').pop();
+            if (fileName) {
+                $('#file-status').text(fileName);
+            } else {
+                $('#file-status').text('이미지 첨부 없음');
+            }
+            
+            /* content 하단에 첨부이미지 미리보기 */
+            var files = this.files;
+            var imageContainer = $('#image-container');
+            imageContainer.empty();
+            
+            for (var i = 0; i < files.length; i++) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    var image = $('<img>').attr('src', e.target.result);
+                    imageContainer.append(image);
+                }
+                reader.readAsDataURL(files[i]);
+            }
+        });
+    });
+    
+    /* 이전페이지 클릭시 상단으로 이동 */
+    function scrollToTop() {
+        window.scrollTo(0, 0);
+    }
 </script>
 </html>

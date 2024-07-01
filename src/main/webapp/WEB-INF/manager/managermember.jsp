@@ -114,6 +114,7 @@
 
 a, a:active, a:hover, a:visited {
     color: inherit;
+    text-decoration: none;
 }
 
 .dashboard {
@@ -121,10 +122,6 @@ a, a:active, a:hover, a:visited {
     border: 1px solid #ddd;
     border-radius: 5px;
     margin-top: 20px;
-}
-
-table.custom-table{
-	background-color: #f9f9f9;
 }
 
 .memlist{
@@ -156,8 +153,8 @@ table.custom-table{
 			        		<a href="event" role="tab" id="event" tabindex="-1" class="menu_item" aria-selected="false" aria-controls="event">
 			        		<span class="menu_text">EVENT</span>
 			        		</a>
-			        		<a href="edit" role="tab" id="edit" tabindex="0" class="menu_item" aria-selected="false" aria-controls="edit">
-			        		<span class="menu_text">EDIT</span>
+			        		<a href="edit" role="tab" id="block" tabindex="0" class="menu_item" aria-selected="false" aria-controls="block">
+			        		<span class="menu_text">BLOCK</span>
 			        		</a>
 			        	</div>
 			        </div>
@@ -173,7 +170,7 @@ table.custom-table{
 			                	<tr>
 			                		<td colspan="7">
 			                			<div style="border: 1px solid #ddd; border-radius: 5px; padding: 20px; margin-bottom: 15px;">
-			                				<h3><span style="color: #0176ED;">${r_count }</span> 명의 회원이 있습니다.</h3>
+			                				<h3 style="margin-top: 9px;"><span style="color: #0176ED;">${r_count }</span> 명의 회원이 있습니다.</h3>
 			                			</div>
 			                		</td>
 			                	</tr>

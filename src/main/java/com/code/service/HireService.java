@@ -87,7 +87,12 @@ public class HireService implements HireServiceInter {
 	}
 
 
-
+	//기업마이페이지 : 해당 기업 채용공고 리스트
+	@Override
+	public List<HireDto> getHireListByCnum(int c_num) {
+		// TODO Auto-generated method stub
+		return mapper.getHireListByCnum(c_num);
+	}
 	
 
 }

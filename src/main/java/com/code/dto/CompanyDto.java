@@ -41,5 +41,9 @@ public class CompanyDto {
 	private String r_id;
 	private boolean scraped;
 	
+	//관심기업
+	
+	private String h_location;
+	private String scrap_date;
 	
 }

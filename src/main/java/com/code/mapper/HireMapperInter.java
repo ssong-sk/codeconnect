@@ -31,5 +31,8 @@ public interface HireMapperInter {
 	
 	//채용공고 이력서 갯수
 	public String countIruckseo(int r_num);
+	
+	//기업마이페이지 : 해당 기업 채용공고 리스트
+	public List<HireDto> getHireListByCnum(int c_num);
 }
 
