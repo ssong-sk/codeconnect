@@ -114,7 +114,7 @@ public class CustomerController {
         ModelAndView mview = new ModelAndView();
 
         String myid = (String) session.getAttribute("myid");
-        if (!"hyoyoung".equals(myid)) {
+        if (!"manager".equals(myid)) {
             mview.setViewName("redirect:/login/main");
             return mview;
         }
@@ -133,7 +133,7 @@ public class CustomerController {
     @PostMapping("/customer/noticeupdate")
     public String noticeUpdate(CustomerDto dto, @RequestParam("upload") MultipartFile file, HttpSession session) {
         String myid = (String) session.getAttribute("myid");
-        if (!"hyoyoung".equals(myid)) {
+        if (!"manager".equals(myid)) {
             return "redirect:/login/main";
         }
 
@@ -170,7 +170,7 @@ public class CustomerController {
     @GetMapping("/customer/noticedelete/{cus_num}")
     public String noticeDelete(@PathVariable("cus_num") String cus_num, HttpSession session) {
         String myid = (String) session.getAttribute("myid");
-        if (!"hyoyoung".equals(myid)) {
+        if (!"manager".equals(myid)) {
             return "redirect:/login/main";
         }
 
@@ -338,7 +338,7 @@ public class CustomerController {
         ModelAndView mview = new ModelAndView();
 
         String myid = (String) session.getAttribute("myid");
-        if (!"hyoyoung".equals(myid)) {
+        if (!"manager".equals(myid)) {
             mview.setViewName("redirect:/login/main");
             return mview;
         }
@@ -357,7 +357,7 @@ public class CustomerController {
     @PostMapping("/customer/eventupdate")
     public String eventUpdate(CustomerDto dto, @RequestParam("upload") MultipartFile file, HttpSession session) {
         String myid = (String) session.getAttribute("myid");
-        if (!"hyoyoung".equals(myid)) {
+        if (!"manager".equals(myid)) {
             return "redirect:/login/main";
         }
 
@@ -400,7 +400,7 @@ public class CustomerController {
     @GetMapping("/customer/eventdelete/{cus_num}")
     public String eventDelete(@PathVariable("cus_num") int cus_num, HttpSession session) {
         String myid = (String) session.getAttribute("myid");
-        if (!"hyoyoung".equals(myid)) {
+        if (!"manager".equals(myid)) {
             return "redirect:/login/main";
         }
 
@@ -408,10 +408,36 @@ public class CustomerController {
         return "redirect:/customer/eventlist";
     }
 
-
-
+    /*
     @GetMapping("/customer/inquirylist")
     public ModelAndView inquiryList(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum) {
+        ModelAndView mview = new ModelAndView();
+        
+        int totalCount = service.getCountByType("inquiry");
+        int pageSize = 10;
+        int startRow = (pageNum - 1) * pageSize;
+        List<CustomerDto> list = service.getPagedDatasByType("inquiry", startRow, pageSize);
+
+        mview.addObject("totalCount", totalCount);
+        mview.addObject("list", list);
+
+        int totalPage = (int) Math.ceil((double) totalCount / pageSize);
+        int startPage = Math.max(1, pageNum - 5);
+        int endPage = Math.min(totalPage, pageNum + 4);
+
+        mview.addObject("currentPage", pageNum);
+        mview.addObject("totalPage", totalPage);
+        mview.addObject("startPage", startPage);
+        mview.addObject("endPage", endPage);
+        
+        mview.setViewName("/customer/inquirylist");
+
+        return mview;
+    }
+    */
+    
+    @GetMapping("/customer/inquirylist")
+    public ModelAndView inquiryList(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum, HttpSession session) {
         ModelAndView mview = new ModelAndView();
 
         int totalCount = service.getCountByType("inquiry");
@@ -431,13 +457,185 @@ public class CustomerController {
         mview.addObject("startPage", startPage);
         mview.addObject("endPage", endPage);
 
+        // 세션에 myid가 설정되어 있는지 확인
+        String myid = (String) session.getAttribute("myid");
+        //System.out.println("Current session myid: " + myid);
+
         mview.setViewName("/customer/inquirylist");
 
         return mview;
     }
-    
+
+
     @GetMapping("/customer/inquiryform")
     public String inquiryForm() {
         return "customer/inquiryform";
     }
+
+    @PostMapping("/customer/inquiryinsert")
+    public String inquiryInsert(CustomerDto dto, @RequestParam("upload") MultipartFile file, HttpSession session) {
+        String myid = (String) session.getAttribute("myid");
+        if (myid == null) {
+            return "redirect:/login/main";
+        }
+
+        dto.setCus_user_id(myid);
+        dto.setCus_top_type("inquiry");
+
+        //파일 업로드 처리
+        if (!file.isEmpty()) {
+            String fileName = file.getOriginalFilename();
+            String uploadDir = session.getServletContext().getRealPath("/customerimage");
+            File dir = new File(uploadDir);
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
+            try {
+                File uploadedFile = new File(uploadDir + "/" + fileName);
+                file.transferTo(uploadedFile);
+                dto.setCus_photo(fileName);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        service.insertCustomer(dto);
+
+        int cus_num = service.getLastInsertedId();
+        return "redirect:/customer/inquirydetail/" + cus_num;
+    }
+
+    @GetMapping("/customer/inquirydetail/{cus_num}")
+    public ModelAndView inquiryDetail(@PathVariable("cus_num") int cus_num) {
+        ModelAndView mview = new ModelAndView();
+
+        CustomerDto dto = service.getData(cus_num);
+        if (dto == null) {
+            mview.setViewName("redirect:/error");
+            return mview;
+        }
+
+        mview.addObject("dto", dto);
+        mview.setViewName("customer/inquirydetail");
+        return mview;
+    }
+
+    //1:1문의 업데이트 폼 메서드
+    @GetMapping("/customer/inquiryupdateform/{cus_num}")
+    public ModelAndView inquiryUpdateForm(@PathVariable("cus_num") int cus_num, HttpSession session) {
+        ModelAndView mview = new ModelAndView();
+
+        String myid = (String) session.getAttribute("myid");
+        CustomerDto dto = service.getData(cus_num);
+        
+        if (!dto.getCus_user_id().equals(myid)) {
+            mview.setViewName("redirect:/login/main");
+            return mview;
+        }
+
+        if (dto == null) {
+            mview.setViewName("redirect:/error");
+            return mview;
+        }
+
+        mview.addObject("dto", dto);
+        mview.setViewName("customer/inquiryupdateform");
+        return mview;
+    }
+
+    //1:1문의 업데이트 메서드
+    @PostMapping("/customer/inquiryupdate")
+    public String inquiryUpdate(CustomerDto dto, @RequestParam("upload") MultipartFile file, HttpSession session) {
+        String myid = (String) session.getAttribute("myid");
+        
+        if (!dto.getCus_user_id().equals(myid)) {
+            return "redirect:/login/main";
+        }
+
+        CustomerDto existingDto = service.getData(dto.getCus_num());
+        String existingPhoto = existingDto.getCus_photo();
+
+        if (!file.isEmpty()) {
+            String fileName = file.getOriginalFilename();
+            String uploadDir = session.getServletContext().getRealPath("/customerimage");
+            File dir = new File(uploadDir);
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
+            try {
+                File uploadedFile = new File(uploadDir + "/" + fileName);
+                file.transferTo(uploadedFile);
+                dto.setCus_photo(fileName);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            dto.setCus_photo(existingPhoto);
+        }
+
+        service.updateCustomer(dto);
+        return "redirect:/customer/inquirydetail/" + dto.getCus_num();
+    }
+
+    //1:1문의 삭제 메서드
+    @GetMapping("/customer/inquirydelete/{cus_num}")
+    public String inquiryDelete(@PathVariable("cus_num") int cus_num, HttpSession session) {
+        String myid = (String) session.getAttribute("myid");
+        CustomerDto dto = service.getData(cus_num);
+        
+        if (!dto.getCus_user_id().equals(myid)) {
+            return "redirect:/login/main";
+        }
+
+        service.deleteCustomer(String.valueOf(cus_num));
+        return "redirect:/customer/inquirylist";
+    }
+
+    //1:1문의 답변 작성 메서드
+    @PostMapping("/customer/answerinsert")
+    public String insertAnswer(@RequestParam("cus_num") int cus_num, @RequestParam("answer") String answer, HttpSession session) {
+        String myid = (String) session.getAttribute("myid");
+        if (!"manager".equals(myid)) {
+            return "redirect:/login/main";
+        }
+
+        CustomerDto dto = service.getData(cus_num);
+        dto.setCus_answer(answer);
+        dto.setCus_answer_status("답변 완료"); // 답변 상태 업데이트
+        service.updateCustomer(dto);
+
+        return "redirect:/customer/inquirydetail/" + cus_num;
+    }
+
+    //답변 수정 메서드
+    @PostMapping("/customer/answerupdate")
+    public String updateAnswer(@RequestParam("cus_num") int cus_num, @RequestParam("answer") String answer, HttpSession session) {
+        String myid = (String) session.getAttribute("myid");
+        if (!"manager".equals(myid)) {
+            return "redirect:/login/main";
+        }
+
+        CustomerDto dto = service.getData(cus_num);
+        dto.setCus_answer(answer);
+        service.updateCustomer(dto);
+
+        return "redirect:/customer/inquirydetail/" + cus_num;
+    }
+
+    //답변 삭제 메서드
+    @PostMapping("/customer/answerdelete")
+    public String deleteAnswer(@RequestParam("cus_num") int cus_num, HttpSession session) {
+        String myid = (String) session.getAttribute("myid");
+        if (!"manager".equals(myid)) {
+            return "redirect:/login/main";
+        }
+
+        CustomerDto dto = service.getData(cus_num);
+        dto.setCus_answer(null);
+        dto.setCus_answer_status("답변 대기"); // 답변 상태 업데이트
+        service.updateCustomer(dto);
+
+        return "redirect:/customer/inquirydetail/" + cus_num;
+    }
+
 }

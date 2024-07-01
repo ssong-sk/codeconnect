@@ -129,13 +129,14 @@
 
 <!-- 관리자(manager) 로그인시에만 글쓰기 버튼 보이게 & span,button 간격 조정-->
 <div class="top-section">
-    <span>총 &nbsp;${totalCount}&nbsp;건</span>
-    <c:if test="${sessionScope.myid == 'hyoyoung'}">
-        <button type="button" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/customer/noticeform'">글쓰기</button>
-    </c:if>
-    <c:if test="${sessionScope.myid != 'hyoyoung'}">
-        <button type="button" class="btn btn-outline-primary" style="visibility: hidden;">글쓰기</button>
-    </c:if>
+        <span>총 &nbsp;${totalCount}&nbsp;건</span>
+        <c:if test="${sessionScope.myid == 'manager'}">
+            <button type="button" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/customer/noticeform'">글쓰기</button>
+        </c:if>
+        <c:if test="${sessionScope.myid != 'manager'}">
+            <button type="button" class="btn btn-outline-primary" style="visibility: hidden;">글쓰기</button>
+        </c:if>
+    
 </div>
 <div style="max-width: 1000px; margin: 50px auto; width: 80%;">
     <table class="table" style="font-size: 15px; border-top: 2px solid #E2E2E2; border-bottom: 2px solid #E2E2E2">
@@ -152,6 +153,7 @@
          </c:forEach>
     </table>
 </div>
+
 
 <div class="pagination">
     <c:if test="${startPage > 1}">

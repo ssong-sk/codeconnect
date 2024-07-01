@@ -112,7 +112,29 @@
 	    font-size: 13px;
 	    color: gray;
 	}
-
+	
+	/* 테이블 스타일 */
+	table {
+        width: 80%;
+        margin: 30px auto;
+        border-collapse: collapse;
+        border-top: 2px solid #000;
+        border-bottom: 2px solid #E2E2E2;
+    }
+    th, td {
+        padding: 15px;
+        text-align: left;
+    }
+    td.center {
+        text-align: center;
+    }
+    tr:not(:first-child) td {
+        border-top: 1px solid #ddd;
+    }
+    th {
+        border-bottom: 2px solid #000;
+    }
+    
     /* 페이징 스타일 */
     .pagination {
         display: flex;
@@ -207,24 +229,21 @@
             </a>
         </div>
     </c:forEach>
-    <div style="width: 100%; text-align: center; margin-top: 20px; margin-left: 800px;">
-        <c:if test="${sessionScope.myid == 'hyoyoung'}">
+    <c:if test="${sessionScope.myid == 'manager'}">
+        <div style="width: 100%; text-align: center; margin-top: 20px; margin-left: 800px;">
             <button type="button" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/customer/eventform'">글쓰기</button>
-        </c:if>
-        <c:if test="${sessionScope.myid != 'hyoyoung'}">
-            <button type="button" class="btn btn-outline-primary" style="visibility: hidden;">글쓰기</button>
-        </c:if>
-    </div>
+        </div>
+    </c:if>
 </div>
 
 
 <%-- <div id="closed" class="events" style="display: none; width: 80%">
     <div class="top-section" style="width: 1000px;">
         <span>총 &nbsp;${totalCountClosed}&nbsp;건</span>
-        <c:if test="${sessionScope.myid == 'hyoyoung'}">
+        <c:if test="${sessionScope.myid == 'manager'}">
             <button type="button" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/customer/eventform'">글쓰기</button>
         </c:if>
-        <c:if test="${sessionScope.myid != 'hyoyoung'}">
+        <c:if test="${sessionScope.myid != 'manager'}">
             <button type="button" class="btn btn-outline-primary" style="visibility: hidden;">글쓰기</button>
         </c:if>
     </div>
@@ -271,10 +290,10 @@
         </div>
     </c:forEach>
     <%-- <div style="width: 100%; text-align: center; margin-top: 20px; margin-left: 800px;">
-        <c:if test="${sessionScope.myid == 'hyoyoung'}">
+        <c:if test="${sessionScope.myid == 'manager'}">
             <button type="button" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/customer/eventform'">글쓰기</button>
         </c:if>
-        <c:if test="${sessionScope.myid != 'hyoyoung'}">
+        <c:if test="${sessionScope.myid != 'manager'}">
             <button type="button" class="btn btn-outline-primary" style="visibility: hidden;">글쓰기</button>
         </c:if>
     </div> --%>
@@ -284,15 +303,15 @@
 <div id="announcement" class="events" style="display: none; width: 80%">
     <div class="top-section">
         <span>총 &nbsp;${totalCountAnnouncement}&nbsp;건</span>
-        <c:if test="${sessionScope.myid == 'hyoyoung'}">
+        <c:if test="${sessionScope.myid == 'manager'}">
             <button type="button" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/customer/eventform'">글쓰기</button>
         </c:if>
-        <c:if test="${sessionScope.myid != 'hyoyoung'}">
+        <c:if test="${sessionScope.myid != 'manager'}">
             <button type="button" class="btn btn-outline-primary" style="visibility: hidden;">글쓰기</button>
         </c:if>
     </div>
     <div class="mainlist" style="max-width: 1000px; margin: 40px auto; width: 80%;">
-        <table class="table" style="font-size: 15px;">
+        <table class="table" style="font-size: 15px; border-top: 2px solid #E2E2E2; border-bottom: 2px solid #E2E2E2;">
              <c:forEach var="event" items="${announcementEvents}">
                  <tr style="height: 60px;">
                      <td class="center" width="70" style="color: #2d65f2; font-weight: bold; vertical-align: middle;">${event.cus_target}</td>
