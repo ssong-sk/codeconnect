@@ -125,7 +125,7 @@
     </div>
     
     <div class="footer">
-        <c:if test="${sessionScope.myid == 'hyoyoung'}">
+        <c:if test="${sessionScope.myid != null && sessionScope.myid == 'manager'}">
             <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='${pageContext.request.contextPath}/customer/noticeform'">글쓰기</button>
             <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='${pageContext.request.contextPath}/customer/noticeupdateform/${dto.cus_num}'">수정</button>
             <form action="${pageContext.request.contextPath}/customer/noticedelete/${dto.cus_num}" method="get" style="display:inline;" onsubmit="return confirmDelete();">

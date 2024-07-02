@@ -196,12 +196,12 @@ a, a:active, a:hover, a:visited {
 					                <td>NO</td>
 					                <td>
 					                	<select id="eventCategory">
-										    <option disabled selected hidden>CATEGORY</option>
-										    <option style="text-align: center;">전체</option>
-										    <option style="text-align: center;">진행중 이벤트</option>
-										    <option style="text-align: center;">마감된 이벤트</option>
-										    <option style="text-align: center;">당첨자 발표</option>
-										</select>
+                              <option disabled selected hidden>CATEGORY</option>
+                              <option style="text-align: center;">전체</option>
+                              <option style="text-align: center;">진행중 이벤트</option>
+                              <option style="text-align: center;">마감된 이벤트</option>
+                              <option style="text-align: center;">당첨자 발표</option>
+										        </select>
 					                </td>
 					                <td>TITLE</td>
 					                <td>DAY</td>
@@ -281,7 +281,6 @@ $("a.menu_item").click(function() {
        $(this).attr('aria-selected', 'true');
 })
 </script>
-
 <script type="text/javascript">
 $(document).ready(function() {
     // CATEGORY 옵션 숨기기
@@ -304,6 +303,5 @@ $(document).ready(function() {
         }
     });
 });
-
 </script>
 </html>

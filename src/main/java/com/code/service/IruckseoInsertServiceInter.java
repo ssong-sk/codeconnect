@@ -1,6 +1,7 @@
 package com.code.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.code.dto.CompanyDto;
 import com.code.dto.HireDto;
@@ -26,7 +27,7 @@ public interface IruckseoInsertServiceInter {
 	public List<IruckseoInsertDto> OnePersonalDatas(IruckseoInsertDto pedto);
 	
 	//이력서 타이틀 list 출력
-	public List<IruckseoInsertDto> allPersonalDatas(int r_num);
+	public List<IruckseoInsertDto> allPersonalDatas(int r_num, int start, int perPage);
 	
 	//이력서 인적사항 list
 	public List<IruckseoInsertDto> allPersonallist(IruckseoInsertDto pedto);
@@ -174,7 +175,7 @@ public interface IruckseoInsertServiceInter {
 	public IruckseoInsertDto getImage(int r_num);
 	
 	//스크랩 채용공고 리스트띄우기
-	public List<HireDto> getScrapHireList(int r_num);
+	public List<HireDto> getScrapHireList(int r_num, int start, int perPage);
 	
 	//스크랩 채용공고 갯수
 	public int getScrapCount(int r_num);
@@ -185,15 +186,27 @@ public interface IruckseoInsertServiceInter {
 	//입사지원현황 리스트
 	public List<SupportDto> getSupportList(int r_num);
 	
-	//입사지원현황 갯수
-	public int getSupportCount(int r_num);
-	
 	//입사지원 지원취소 업데이트
 	public void updateSupportDelete(int st_num);
 	
 	//관심기업 리스트
-	public List<CompanyDto> getScrapCompanyList(int r_num);
+	public List<CompanyDto> getScrapCompanyList(int r_num, int start, int perPage);
 	
 	//관심기업 갯수
 	public int getCompanyCount(int r_num);
+	
+	//지원완료 갯수
+	public int getResultCount(int r_num);
+	
+	//이력서열람 갯수
+	public int getOpenCount(int r_num);
+	
+	//이력서지원현황 갯수
+	public int getSupportCount(int r_num);
+	
+	//이력서지원현황 페이징 및 리스트
+	public List<SupportDto> getSupportPaging(int r_num, int start, int perPage);
+	
+	//이력서지원현황 삭제
+	public void SupportDelete(int st_num);
 }

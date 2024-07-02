@@ -8,8 +8,8 @@
     </select>
     
     <insert id="insertCustomer" parameterType="CustomerDto">
-        insert into customer (cus_user_id, cus_top_type, cus_category, cus_title, cus_content, cus_photo, cus_writetime, cus_answer, cus_target, cus_startday, cus_endday) 
-        values (#{cus_user_id}, #{cus_top_type}, #{cus_category}, #{cus_title}, #{cus_content}, #{cus_photo}, now(), #{cus_answer}, #{cus_target}, #{cus_startday}, #{cus_endday})
+        insert into customer (cus_user_id, cus_top_type, cus_category, cus_title, cus_content, cus_photo, cus_writetime, cus_answer, cus_answer_status, cus_target, cus_startday, cus_endday) 
+        values (#{cus_user_id}, #{cus_top_type}, #{cus_category}, #{cus_title}, #{cus_content}, #{cus_photo}, now(), #{cus_answer}, #{cus_answer_status}, #{cus_target}, #{cus_startday}, #{cus_endday})
     </insert>
     
     <!-- 모든 데이터 조회 -->
@@ -25,7 +25,7 @@
     <update id="updateCustomer" parameterType="CustomerDto">
         update customer set 
             cus_category = #{cus_category}, cus_title = #{cus_title}, cus_content = #{cus_content},
-            cus_photo = #{cus_photo}, cus_answer = #{cus_answer}, cus_writetime = now(), cus_top_type = #{cus_top_type},
+            cus_photo = #{cus_photo}, cus_answer = #{cus_answer}, cus_answer_status = #{cus_answer_status}, cus_writetime = now(), cus_top_type = #{cus_top_type},
             cus_target = #{cus_target}, cus_startday = #{cus_startday}, cus_endday = #{cus_endday}
         where cus_num = #{cus_num}
     </update>
@@ -55,7 +55,7 @@
     
     <!-- 카테고리별 이벤트 가져오는 쿼리 -->
     <select id="getEventsByCategory" parameterType="String" resultType="CustomerDto">
-    	select * from customer where cus_category = #{category} and cus_top_type = 'event' 
+    	select * from customer where cus_category = #{category} and cus_top_type = 'event' order by cus_num desc
     </select>
     
     <!-- 카테고리별 게시글 수 조회 쿼리(event) -->

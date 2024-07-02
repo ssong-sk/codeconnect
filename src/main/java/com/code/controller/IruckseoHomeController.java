@@ -80,9 +80,13 @@ public class IruckseoHomeController {
       int totalCount = irservice.getPersonalCount(r_num);
       mview.addObject("totalCount", totalCount);
       
-      //지원완료 갯수
-      int supportCount = irservice.getSupportCount(r_num);
-      mview.addObject("supportCount", supportCount);
+      //지원상태일때 갯수 
+      int resultCount = irservice.getResultCount(r_num);
+      mview.addObject("resultCount", resultCount);
+      
+      //이력서 열람일때 갯수 
+      int openCount = irservice.getOpenCount(r_num);
+      mview.addObject("openCount", openCount);
       
       //스크랩공고 갯수
       int scrapCount = irservice.getScrapCount(r_num);
@@ -107,19 +111,61 @@ public class IruckseoHomeController {
    
    //이력서 현황 list 띄우기
    @GetMapping("/resumehome/conditionform")
-   public String cform(@ModelAttribute("pedto") IruckseoInsertDto pedto, Model model, HttpSession session) {
+   public ModelAndView conditionform(@RequestParam(value = "currentPage", defaultValue = "1") int currentPage,
+           HttpSession session) {
+		
+		ModelAndView mview = new ModelAndView();
+		
+		// r_num 가져오기
+		int r_num = Integer.parseInt((String) session.getAttribute("r_num"));
+		
+		// 갯수 가져오기
+		int totalCount = irservice.getPersonalCount(r_num);
+		
+		// 페이징에 필요한 변수 설정
+		int perPage = 3; // 한 페이지당 보여질 글의 갯수
+		int perBlock = 5; // 한 블럭당 보여질 페이지 갯수
+		int start; // DB에서 가져올 글의 시작번호
+		int startPage; // 각 블럭당 보여질 시작페이지
+		int endPage; // 각 블럭당 보여질 끝페이지
+		int totalPage; // 총 페이지 수
+		int no; // 각 페이지당 출력할 시작번호
+		
+		// 총 페이지 수 계산
+		totalPage = totalCount / perPage + (totalCount % perPage == 0 ? 0 : 1);
+		
+		// 각 블럭당 보여질 시작 페이지와 끝 페이지 계산
+		startPage = (currentPage - 1) / perBlock * perBlock + 1;
+		endPage = startPage + perBlock - 1;
+		if (endPage > totalPage) {
+		endPage = totalPage;
+		}
+		
+		// 각 페이지에서 보여질 시작 번호 계산
+		start = (currentPage - 1) * perPage;
+		
+		// 각 페이지당 출력할 시작 번호
+		no = totalCount - (currentPage - 1) * perPage;
+
+		//이력서 전체리스트
+		List<IruckseoInsertDto> pelist = irservice.allPersonalDatas(r_num, start, perPage);
+		
+		// 모델에 필요한 데이터 추가
+		mview.addObject("pelist", pelist);
+		mview.addObject("currentPage", currentPage);
+		mview.addObject("totalCount", totalCount);
+		mview.addObject("perPage", perPage);
+		mview.addObject("perBlock", perBlock);
+		mview.addObject("startPage", startPage);
+		mview.addObject("endPage", endPage);
+		mview.addObject("totalPage", totalPage);
+		mview.addObject("no", no);
+
+        // 뷰 이름 설정
+        mview.setViewName("/resumehome/iruckseoconditionform");
+        
+        return mview;
       
-      int r_num =  Integer.parseInt((String)session.getAttribute("r_num"));
-      //갯수
-      int totalCount = irservice.getPersonalCount(r_num);
-      
-      //이력서 전체리스트
-      List<IruckseoInsertDto> pelist = irservice.allPersonalDatas(r_num);
-      
-      model.addAttribute("totalCount", totalCount);
-      model.addAttribute("pelist", pelist);
-      
-      return "/resumehome/iruckseoconditionform";
    }
    
    //이력서 삭제
@@ -184,22 +230,65 @@ public class IruckseoHomeController {
         return mview;
      }
      
-    //입사지원 현황 띄우기
+     //입사지원 현황 띄우기
      @GetMapping("/resumehome/supportform")
-     public String sform(@ModelAttribute("pedto") IruckseoInsertDto pedto, Model model, HttpSession session) {
-        
-        int r_num =  Integer.parseInt((String)session.getAttribute("r_num"));
-
-        
-        //이력서 전체리스트
-        List<SupportDto> sulist = irservice.getSupportList(r_num);
-        model.addAttribute("sulist", sulist);
-
-        
-        return "/resumehome/iruckseosupportform";
+     public ModelAndView supportForm(@RequestParam(value = "currentPage", defaultValue = "1") int currentPage,
+                                     HttpSession session) {
+         
+         ModelAndView mview = new ModelAndView();
+         
+         // r_num 가져오기
+         int r_num = Integer.parseInt((String) session.getAttribute("r_num"));
+         
+         // 갯수 가져오기
+         int totalCount = irservice.getSupportCount(r_num);
+         
+         // 페이징에 필요한 변수 설정
+         int perPage = 5; // 한 페이지당 보여질 글의 갯수
+         int perBlock = 5; // 한 블럭당 보여질 페이지 갯수
+         int start; // DB에서 가져올 글의 시작번호
+         int startPage; // 각 블럭당 보여질 시작페이지
+         int endPage; // 각 블럭당 보여질 끝페이지
+         int totalPage; // 총 페이지 수
+         int no; // 각 페이지당 출력할 시작번호
+         
+         // 총 페이지 수 계산
+         totalPage = totalCount / perPage + (totalCount % perPage == 0 ? 0 : 1);
+         
+         // 각 블럭당 보여질 시작 페이지와 끝 페이지 계산
+         startPage = (currentPage - 1) / perBlock * perBlock + 1;
+         endPage = startPage + perBlock - 1;
+         if (endPage > totalPage) {
+             endPage = totalPage;
+         }
+         
+         // 각 페이지에서 보여질 시작 번호 계산
+         start = (currentPage - 1) * perPage;
+         
+         // 각 페이지당 출력할 시작 번호
+         no = totalCount - (currentPage - 1) * perPage;
+         
+         // 페이징된 리스트 가져오기
+         List<SupportDto> sulist = irservice.getSupportPaging(r_num, start, perPage);
+         
+         // 모델에 필요한 데이터 추가
+         mview.addObject("sulist", sulist);
+         mview.addObject("currentPage", currentPage);
+         mview.addObject("totalCount", totalCount);
+         mview.addObject("perPage", perPage);
+         mview.addObject("perBlock", perBlock);
+         mview.addObject("startPage", startPage);
+         mview.addObject("endPage", endPage);
+         mview.addObject("totalPage", totalPage);
+         mview.addObject("no", no);
+         
+         // 뷰 이름 설정
+         mview.setViewName("/resumehome/iruckseosupportform");
+         
+         return mview;
      }
      
-     //입사지원 지원취소 시 업데이트
+     //입사지원현황 지원취소 시 업데이트
      @PostMapping("/resumehome/supportupdate")
      @ResponseBody
      public void supportupdate(@RequestParam int st_num) {
@@ -208,17 +297,72 @@ public class IruckseoHomeController {
          irservice.updateSupportDelete(st_num);
      }
      
+     //입사지원현황 삭제하기
+     @PostMapping("/resumehome/Supportdelete")
+     @ResponseBody
+     public void SupportDelete(@RequestParam int st_num) {
+    	 
+    	 irservice.SupportDelete(st_num);
+     }
+     
      //스크랩공고 띄우기
      @GetMapping("/resumehome/scrapform")
-     public String scrapform(@ModelAttribute("pedto") IruckseoInsertDto pedto, Model model, HttpSession session) {
-        
-        int r_num =  Integer.parseInt((String)session.getAttribute("r_num"));
+     public ModelAndView scrapform(@RequestParam(value = "currentPage", defaultValue = "1") int currentPage,
+             HttpSession session) {
 
-        //스크랩 가져오기
-        List<HireDto> shlist = irservice.getScrapHireList(r_num);
-        model.addAttribute("shlist", shlist);
+		ModelAndView mview = new ModelAndView();
+		
+		// r_num 가져오기
+		int r_num = Integer.parseInt((String) session.getAttribute("r_num"));
+		
+		// 갯수 가져오기
+		int totalCount = irservice.getScrapCount(r_num);
+		
+		// 페이징에 필요한 변수 설정
+		int perPage = 5; // 한 페이지당 보여질 글의 갯수
+		int perBlock = 5; // 한 블럭당 보여질 페이지 갯수
+		int start; // DB에서 가져올 글의 시작번호
+		int startPage; // 각 블럭당 보여질 시작페이지
+		int endPage; // 각 블럭당 보여질 끝페이지
+		int totalPage; // 총 페이지 수
+		int no; // 각 페이지당 출력할 시작번호
+		
+		// 총 페이지 수 계산
+		totalPage = totalCount / perPage + (totalCount % perPage == 0 ? 0 : 1);
+		
+		// 각 블럭당 보여질 시작 페이지와 끝 페이지 계산
+		startPage = (currentPage - 1) / perBlock * perBlock + 1;
+		endPage = startPage + perBlock - 1;
+		if (endPage > totalPage) {
+		endPage = totalPage;
+		}
+		
+		// 각 페이지에서 보여질 시작 번호 계산
+		start = (currentPage - 1) * perPage;
+		
+		// 각 페이지당 출력할 시작 번호
+		no = totalCount - (currentPage - 1) * perPage;
+		
+		// 페이징된 리스트 가져오기
+		List<HireDto> shlist = irservice.getScrapHireList(r_num, start, perPage);
+		//List<CompanyIntroDto> clist = ciservice.getAllCompanyIntros();
+		
+		
+		//데이터 가져오기
+		mview.addObject("shlist", shlist);
+		mview.addObject("currentPage", currentPage);
+        mview.addObject("totalCount", totalCount);
+        mview.addObject("perPage", perPage);
+        mview.addObject("perBlock", perBlock);
+        mview.addObject("startPage", startPage);
+        mview.addObject("endPage", endPage);
+        mview.addObject("totalPage", totalPage);
+        mview.addObject("no", no);
+    
+        // 뷰 이름 설정
+        mview.setViewName("/resumehome/iruckseoscrapform");
 
-        return "/resumehome/iruckseoscrapform";
+        return mview;
      }
      
      //스크랩공고 삭제하기
@@ -231,19 +375,61 @@ public class IruckseoHomeController {
      
       //관심기업 스크랩 띄우기
      @GetMapping("/resumehome/interestform")
-     public String interestform(@ModelAttribute("pedto") HireDto hdto, Model model, HttpSession session) {
-        
-    	 int r_num =  Integer.parseInt((String)session.getAttribute("r_num"));
-         
-         //갯수
-         int totalCount = irservice.getScrapCount(r_num);
-         model.addAttribute("totalCount", totalCount);
-         
-         //스크랩 가져오기
-         List<CompanyDto> clist = irservice.getScrapCompanyList(r_num);
-         model.addAttribute("clist", clist);
+	 public ModelAndView interestform(@RequestParam(value = "currentPage", defaultValue = "1") int currentPage,
+             HttpSession session) {
 
-        return "/resumehome/iruckseointerestform";
+		ModelAndView mview = new ModelAndView();
+		
+		// r_num 가져오기
+		int r_num = Integer.parseInt((String) session.getAttribute("r_num"));
+		
+		// 갯수 가져오기
+		int totalCount = irservice.getScrapCount(r_num);
+		
+		// 페이징에 필요한 변수 설정
+		int perPage = 10; // 한 페이지당 보여질 글의 갯수
+		int perBlock = 5; // 한 블럭당 보여질 페이지 갯수
+		int start; // DB에서 가져올 글의 시작번호
+		int startPage; // 각 블럭당 보여질 시작페이지
+		int endPage; // 각 블럭당 보여질 끝페이지
+		int totalPage; // 총 페이지 수
+		int no; // 각 페이지당 출력할 시작번호
+		
+		// 총 페이지 수 계산
+		totalPage = totalCount / perPage + (totalCount % perPage == 0 ? 0 : 1);
+		
+		// 각 블럭당 보여질 시작 페이지와 끝 페이지 계산
+		startPage = (currentPage - 1) / perBlock * perBlock + 1;
+		endPage = startPage + perBlock - 1;
+		if (endPage > totalPage) {
+		endPage = totalPage;
+		}
+		
+		// 각 페이지에서 보여질 시작 번호 계산
+		start = (currentPage - 1) * perPage;
+		
+		// 각 페이지당 출력할 시작 번호
+		no = totalCount - (currentPage - 1) * perPage;
+		
+		// 페이징된 리스트 가져오기
+		List<CompanyDto> clist = irservice.getScrapCompanyList(r_num, start, perPage);
+		
+		
+		//데이터 가져오기
+		mview.addObject("clist", clist);
+		mview.addObject("currentPage", currentPage);
+        mview.addObject("totalCount", totalCount);
+        mview.addObject("perPage", perPage);
+        mview.addObject("perBlock", perBlock);
+        mview.addObject("startPage", startPage);
+        mview.addObject("endPage", endPage);
+        mview.addObject("totalPage", totalPage);
+        mview.addObject("no", no);
+     
+        // 뷰 이름 설정
+        mview.setViewName("/resumehome/iruckseointerestform");
+
+        return mview;
      }
 
 }

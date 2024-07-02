@@ -1,6 +1,8 @@
 package com.code.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -56,9 +58,14 @@ public class IruckseoInsertService implements IruckseoInsertServiceInter {
 	}
 	
     //이력서 희망조건 및 제목 리스트 출력
-	public List<IruckseoInsertDto> allPersonalDatas(int r_num) {
-		// TODO Auto-generated method stub
-		return irmapper.allPersonalDatas(r_num);
+	public List<IruckseoInsertDto> allPersonalDatas(int r_num, int start, int perPage) {
+        Map<String, Object> map = new HashMap<>();
+	    
+	    map.put("r_num", r_num);
+	    map.put("start", start);
+	    map.put("perPage", perPage); // 수정: 키 이름을 SQL 쿼리와 일치하게 설정
+	    
+	    return irmapper.allPersonalDatas(map);
 	}
 	
 	//이력서 갯수
@@ -352,11 +359,17 @@ public class IruckseoInsertService implements IruckseoInsertServiceInter {
 	}
 
 	//스크랩 채용공고 리스트 띄우기
-	public List<HireDto> getScrapHireList(int r_num) {
+	public List<HireDto> getScrapHireList(int r_num, int start, int perPage) {
 		// TODO Auto-generated method stub
-		return irmapper.getScrapHireList(r_num);
+        Map<String, Object> map = new HashMap<>();
+	    
+	    map.put("r_num", r_num);
+	    map.put("start", start);
+	    map.put("perPage", perPage); // 수정: 키 이름을 SQL 쿼리와 일치하게 설정
+	    
+	    return irmapper.getScrapHireList(map);
 	}
-
+	
 	//스크랩 갯수구하기
 	public int getScrapCount(int r_num) {
 		// TODO Auto-generated method stub
@@ -375,12 +388,6 @@ public class IruckseoInsertService implements IruckseoInsertServiceInter {
 		return irmapper.getSupportList(r_num);
 	}
 
-	//입사지원 현황 갯수
-	public int getSupportCount(int r_num) {
-		// TODO Auto-generated method stub
-		return irmapper.getSupportCount(r_num);
-	}
-
 	//입사지원 지원취소 업데이트
 	public void updateSupportDelete(int st_num) {
 		// TODO Auto-generated method stub
@@ -388,9 +395,14 @@ public class IruckseoInsertService implements IruckseoInsertServiceInter {
 	}
 
 	//관심기업 리스트
-	public List<CompanyDto> getScrapCompanyList(int r_num) {
-		// TODO Auto-generated method stub
-		return irmapper.getScrapCompanyList(r_num);
+	public List<CompanyDto> getScrapCompanyList(int r_num, int start, int perPage) {
+	    Map<String, Object> map = new HashMap<>();
+	    
+	    map.put("r_num", r_num);
+	    map.put("start", start);
+	    map.put("perPage", perPage); // 수정: 키 이름을 SQL 쿼리와 일치하게 설정
+	    
+	    return irmapper.getScrapCompanyList(map);
 	}
 
 	//관심기업 갯수
@@ -398,5 +410,42 @@ public class IruckseoInsertService implements IruckseoInsertServiceInter {
 		// TODO Auto-generated method stub
 		return irmapper.getCompanyCount(r_num);
 	}
+
+	//지원완료 갯수
+	public int getResultCount(int r_num) {
+		// TODO Auto-generated method stub
+		return irmapper.getResultCount(r_num);
+	}
+
+	//이력서 열람 갯수
+	public int getOpenCount(int r_num) {
+		// TODO Auto-generated method stub
+		return irmapper.getOpenCount(r_num);
+	}
+
+	//이력서지원현황 갯수
+	public int getSupportCount(int r_num) {
+		// TODO Auto-generated method stub
+		return irmapper.getSupportCount(r_num);
+	}
+
+	//이력서지원현황 페이징 및 리스트
+	public List<SupportDto> getSupportPaging(int r_num, int start, int perPage) {
+	    Map<String, Object> map = new HashMap<>();
+	    
+	    map.put("r_num", r_num);
+	    map.put("start", start);
+	    map.put("perPage", perPage); // 수정: 키 이름을 SQL 쿼리와 일치하게 설정
+	    
+	    return irmapper.getSupportPaging(map);
+	}
+
+	//이력서지원현황 삭제
+	public void SupportDelete(int st_num) {
+		// TODO Auto-generated method stub
+		irmapper.SupportDelete(st_num);
+	}
+
+
 }
 
