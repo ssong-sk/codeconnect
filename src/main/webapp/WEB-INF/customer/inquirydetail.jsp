@@ -137,11 +137,11 @@
                 <form action="${pageContext.request.contextPath}/customer/answerupdate" method="post">
                     <input type="hidden" name="cus_num" value="${dto.cus_num}">
                     <textarea name="answer" rows="5" style="width: 100%;">${dto.cus_answer}</textarea>
-                    <button type="submit" class="btn btn-secondary btn-sm" style="margin-top: 10px;">답변 수정</button>
+                    <button type="submit" class="btn btn-primary btn-sm" style="margin-top: 10px;">답변 수정</button>
                 </form>
                 <form action="${pageContext.request.contextPath}/customer/answerdelete" method="post" onsubmit="return confirmDelete();" style="margin-top: 10px;">
                     <input type="hidden" name="cus_num" value="${dto.cus_num}">
-                    <button type="submit" class="btn btn-secondary btn-sm">답변 삭제</button>
+                    <button type="submit" class="btn btn-primary btn-sm">답변 삭제</button>
                 </form>
             </c:if>
             <div style="margin-top: 15px;">
@@ -158,7 +158,7 @@
             <form action="${pageContext.request.contextPath}/customer/answerinsert" method="post">
                 <input type="hidden" name="cus_num" value="${dto.cus_num}">
                 <textarea name="answer" rows="5" style="width: 100%;"></textarea>
-                <button type="submit" class="btn btn-secondary btn-sm" style="margin-top: 10px;">답변 등록</button>
+                <button type="submit" class="btn btn-primary btn-sm" style="margin-top: 10px;">답변 등록</button>
             </form>
         </div>
     </c:if>
@@ -176,12 +176,12 @@
     <!-- 글 작성자가 관리자 답글이 달린 글을 수정, 삭제할 수 없도록 -->
     <div class="footer">
 	    <c:if test="${sessionScope.myid == dto.cus_user_id && empty dto.cus_answer}">
-	        <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='${pageContext.request.contextPath}/customer/inquiryupdateform/${dto.cus_num}'">수정</button>
+	        <button type="button" class="btn btn-outline-primary btn-sm" onclick="location.href='${pageContext.request.contextPath}/customer/inquiryupdateform/${dto.cus_num}'">수정</button>
 	        <form action="${pageContext.request.contextPath}/customer/inquirydelete/${dto.cus_num}" method="get" style="display:inline;" onsubmit="return confirmDelete();">
-	            <button type="submit" class="btn btn-secondary btn-sm">삭제</button>
+	            <button type="submit" class="btn btn-outline-primary btn-sm">삭제</button>
 	        </form>
 	    </c:if>
-	    <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='${pageContext.request.contextPath}/customer/inquirylist'">목록</button>
+	    <button type="button" class="btn btn-outline-primary btn-sm" onclick="location.href='${pageContext.request.contextPath}/customer/inquirylist'">목록</button>
 	</div>
     
 </div>

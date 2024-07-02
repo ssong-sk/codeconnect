@@ -64,19 +64,16 @@ public class CustomerService implements CustomerServiceInter {
     //noticeform에서 삽입된 게시글의 번호를 가져오는 메서드
     @Override
 	public int getLastInsertedId() {
-		// TODO Auto-generated method stub
 		return mapper.getLastInsertedId();
 	}
 
 	@Override
 	public List<CustomerDto> getEventsByCategory(String category) {
-		// TODO Auto-generated method stub
 		return mapper.getEventsByCategory(category);
 	}
 
 	@Override
 	public int getCountByCategory(String category) {
-		// TODO Auto-generated method stub
 		return mapper.getCountByCategory(category);
 	}
 
@@ -84,6 +81,26 @@ public class CustomerService implements CustomerServiceInter {
 	public void moveExpiredEventsToClosed() {
 	    mapper.moveExpiredEventsToClosed();
 	}
+
+	@Override
+	public int getCountByTypeAndUser(String cus_top_type, String cus_user_id) {
+		return mapper.getCountByTypeAndUser(cus_top_type, cus_user_id);
+	}
+
+	@Override
+	public List<CustomerDto> getPagedDatasByTypeAndUser(String cus_top_type, String cus_user_id, int startRow, int pageSize) {
+		return mapper.getPagedDatasByTypeAndUser(cus_top_type, cus_user_id, startRow, pageSize);
+	}
+
+	@Override
+    public void updateAnswer(int cus_num, String answer) {
+        mapper.updateAnswer(cus_num, answer);
+    }
+
+    @Override
+    public void modifyAnswer(int cus_num, String answer) {
+        mapper.modifyAnswer(cus_num, answer);
+    }
 
 	
 }

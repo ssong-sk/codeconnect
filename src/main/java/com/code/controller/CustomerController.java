@@ -2,7 +2,9 @@ package com.code.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpSession;
 
@@ -66,33 +68,32 @@ public class CustomerController {
         dto.setCus_user_id(myid);
         dto.setCus_top_type("notice");
 
-        // 파일 업로드 처리
+        //파일 업로드 처리
         if (!file.isEmpty()) {
             String fileName = file.getOriginalFilename();
             String uploadDir = session.getServletContext().getRealPath("/customerimage"); // 실제 업로드할 디렉토리 설정
             File dir = new File(uploadDir);
             if (!dir.exists()) {
-                dir.mkdirs(); // 디렉토리가 존재하지 않으면 생성
+                dir.mkdirs(); //디렉토리가 존재하지 않으면 생성
             }
             try {
                 File uploadedFile = new File(uploadDir + "/" + fileName);
                 file.transferTo(uploadedFile);
-                dto.setCus_photo(fileName); // 업로드된 파일명을 DTO에 설정
+                dto.setCus_photo(fileName); //업로드된 파일명을 DTO에 설정
                 System.out.println("Uploaded file path: " + uploadedFile.getAbsolutePath());
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
 
-        // 데이터베이스에 DTO 저장
+        //데이터베이스에 DTO 저장
         service.insertCustomer(dto);
 
-        // 게시글 등록 후 해당 게시글의 번호 가져오기
-        int cus_num = service.getLastInsertedId(); // 방금 삽입된 게시글의 번호를 가져옴
+        //게시글 등록 후 해당 게시글의 번호 가져오기
+        int cus_num = service.getLastInsertedId(); //방금 삽입된 게시글의 번호를 가져옴
         return "redirect:/customer/noticedetail/" + cus_num;
     }
 
-    
 
     @GetMapping("/customer/noticedetail/{cus_num}")
     public ModelAndView noticeDetail(@PathVariable("cus_num") int cus_num) {
@@ -137,11 +138,11 @@ public class CustomerController {
             return "redirect:/login/main";
         }
 
-        // 기존 데이터에서 현재 이미지 파일명을 가져온다.
+        //기존 데이터에서 현재 이미지 파일명을 가져온다.
         CustomerDto existingDto = service.getData(dto.getCus_num());
         String existingPhoto = existingDto.getCus_photo();
 
-        // 파일 업로드 처리
+        //파일 업로드 처리
         if (!file.isEmpty()) {
             String fileName = file.getOriginalFilename();
             String uploadDir = session.getServletContext().getRealPath("/customerimage");
@@ -152,12 +153,12 @@ public class CustomerController {
             try {
                 File uploadedFile = new File(uploadDir + "/" + fileName);
                 file.transferTo(uploadedFile);
-                dto.setCus_photo(fileName); // 새로운 파일명을 설정
+                dto.setCus_photo(fileName); //새로운 파일명을 설정
             } catch (IOException e) {
                 e.printStackTrace();
             }
         } else {
-            // 파일을 업로드하지 않은 경우 기존 파일명을 유지
+            //파일을 업로드하지 않은 경우 기존 파일명을 유지
             dto.setCus_photo(existingPhoto);
         }
 
@@ -178,58 +179,12 @@ public class CustomerController {
         return "redirect:/customer/noticelist";
     }
 
-    /*
-    @GetMapping("/customer/eventlist")
-    public ModelAndView eventList(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum) {
-        ModelAndView mview = new ModelAndView();
-
-        int totalCount = service.getCountByType("event");
-        int pageSize = 10;
-        int startRow = (pageNum - 1) * pageSize;
-        List<CustomerDto> list = service.getPagedDatasByType("event", startRow, pageSize);
-
-        mview.addObject("totalCount", totalCount);
-        mview.addObject("list", list);
-
-        int totalPage = (int) Math.ceil((double) totalCount / pageSize);
-        int startPage = Math.max(1, pageNum - 5);
-        int endPage = Math.min(totalPage, pageNum + 4);
-
-        mview.addObject("currentPage", pageNum);
-        mview.addObject("totalPage", totalPage);
-        mview.addObject("startPage", startPage);
-        mview.addObject("endPage", endPage);
-
-        // 카테고리별 이벤트 데이터 추가
-        List<CustomerDto> ongoingEvents = service.getEventsByCategory("진행중 이벤트");
-        List<CustomerDto> closedEvents = service.getEventsByCategory("마감된 이벤트");
-        List<CustomerDto> announcementEvents = service.getEventsByCategory("당첨자 발표");
-
-        // 각각의 카테고리에 대한 총 개수를 추가
-        int totalCountOngoing = service.getCountByCategory("진행중 이벤트");
-        int totalCountClosed = service.getCountByCategory("마감된 이벤트");
-        int totalCountAnnouncement = service.getCountByCategory("당첨자 발표");
-
-        // 모델에 총 개수를 추가
-        mview.addObject("totalCountOngoing", totalCountOngoing);
-        mview.addObject("totalCountClosed", totalCountClosed);
-        mview.addObject("totalCountAnnouncement", totalCountAnnouncement);
-
-        mview.addObject("ongoingEvents", ongoingEvents);
-        mview.addObject("closedEvents", closedEvents);
-        mview.addObject("announcementEvents", announcementEvents);
-
-        mview.setViewName("/customer/eventlist");
-
-        return mview;
-    }
-    */
     
     @GetMapping("/customer/eventlist")
     public ModelAndView eventList(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum) {
         ModelAndView mview = new ModelAndView();
 
-        // 만료된 이벤트를 마감된 이벤트로 이동
+        //만료된 이벤트를 마감된 이벤트로 이동
         service.moveExpiredEventsToClosed();
 
         int totalCount = service.getCountByType("event");
@@ -249,17 +204,17 @@ public class CustomerController {
         mview.addObject("startPage", startPage);
         mview.addObject("endPage", endPage);
 
-        // 카테고리별 이벤트 데이터 추가
+        //카테고리별 이벤트 데이터 추가
         List<CustomerDto> ongoingEvents = service.getEventsByCategory("진행중 이벤트");
         List<CustomerDto> closedEvents = service.getEventsByCategory("마감된 이벤트");
         List<CustomerDto> announcementEvents = service.getEventsByCategory("당첨자 발표");
 
-        // 각각의 카테고리에 대한 총 개수를 추가
+        //각각의 카테고리에 대한 총 개수를 추가
         int totalCountOngoing = service.getCountByCategory("진행중 이벤트");
         int totalCountClosed = service.getCountByCategory("마감된 이벤트");
         int totalCountAnnouncement = service.getCountByCategory("당첨자 발표");
 
-        // 모델에 총 개수를 추가
+        //모델에 총 갯수를 추가
         mview.addObject("totalCountOngoing", totalCountOngoing);
         mview.addObject("totalCountClosed", totalCountClosed);
         mview.addObject("totalCountAnnouncement", totalCountAnnouncement);
@@ -274,14 +229,12 @@ public class CustomerController {
     }
 
 
-
-
     @GetMapping("/customer/eventform")
     public String eventForm() {
         return "/customer/eventform";
     }
 
-    // 이벤트 삽입 메서드
+    //이벤트 삽입 메서드
     @PostMapping("/customer/eventinsert")
     public String eventInsert(CustomerDto dto, @RequestParam("upload") MultipartFile file, HttpSession session) {
         String myid = (String) session.getAttribute("myid");
@@ -317,7 +270,7 @@ public class CustomerController {
         return "redirect:/customer/eventdetail/" + cus_num;
     }
 
-    // 이벤트 상세 페이지를 표시하는 메서드
+    //이벤트 상세 페이지를 표시하는 메서드
     @GetMapping("/customer/eventdetail/{cus_num}")
     public ModelAndView eventDetail(@PathVariable("cus_num") int cus_num) {
         ModelAndView mview = new ModelAndView();
@@ -361,13 +314,13 @@ public class CustomerController {
             return "redirect:/login/main";
         }
 
-        // 기존 데이터에서 현재 이미지 파일명 및 기타 필드를 가져온다.
+        //기존 데이터에서 현재 이미지 파일명 및 기타 필드를 가져온다.
         CustomerDto existingDto = service.getData(dto.getCus_num());
         String existingPhoto = existingDto.getCus_photo();
         String existingTopType = existingDto.getCus_top_type();
         String existingCategory = existingDto.getCus_category();
 
-        // 파일 업로드 처리
+        //파일 업로드 처리
         if (!file.isEmpty()) {
             String fileName = file.getOriginalFilename();
             String uploadDir = session.getServletContext().getRealPath("/customerimage");
@@ -396,7 +349,7 @@ public class CustomerController {
     }
 
 
-    // 이벤트 삭제 메서드
+    //이벤트 삭제 메서드
     @GetMapping("/customer/eventdelete/{cus_num}")
     public String eventDelete(@PathVariable("cus_num") int cus_num, HttpSession session) {
         String myid = (String) session.getAttribute("myid");
@@ -408,42 +361,31 @@ public class CustomerController {
         return "redirect:/customer/eventlist";
     }
 
-    /*
-    @GetMapping("/customer/inquirylist")
-    public ModelAndView inquiryList(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum) {
-        ModelAndView mview = new ModelAndView();
-        
-        int totalCount = service.getCountByType("inquiry");
-        int pageSize = 10;
-        int startRow = (pageNum - 1) * pageSize;
-        List<CustomerDto> list = service.getPagedDatasByType("inquiry", startRow, pageSize);
-
-        mview.addObject("totalCount", totalCount);
-        mview.addObject("list", list);
-
-        int totalPage = (int) Math.ceil((double) totalCount / pageSize);
-        int startPage = Math.max(1, pageNum - 5);
-        int endPage = Math.min(totalPage, pageNum + 4);
-
-        mview.addObject("currentPage", pageNum);
-        mview.addObject("totalPage", totalPage);
-        mview.addObject("startPage", startPage);
-        mview.addObject("endPage", endPage);
-        
-        mview.setViewName("/customer/inquirylist");
-
-        return mview;
-    }
-    */
     
     @GetMapping("/customer/inquirylist")
     public ModelAndView inquiryList(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum, HttpSession session) {
         ModelAndView mview = new ModelAndView();
 
-        int totalCount = service.getCountByType("inquiry");
+        String myid = (String) session.getAttribute("myid");
         int pageSize = 10;
         int startRow = (pageNum - 1) * pageSize;
-        List<CustomerDto> list = service.getPagedDatasByType("inquiry", startRow, pageSize);
+
+        List<CustomerDto> list;
+        int totalCount;
+
+        if (myid == null) {
+            // 비회원일 경우
+            list = Collections.emptyList();
+            totalCount = 0;
+        } else if ("manager".equals(myid)) {
+            // 관리자일 경우 전체 문의 표시
+            totalCount = service.getCountByType("inquiry");
+            list = service.getPagedDatasByType("inquiry", startRow, pageSize);
+        } else {
+            // 회원일 경우 본인이 작성한 문의만 표시
+            totalCount = service.getCountByTypeAndUser("inquiry", myid);
+            list = service.getPagedDatasByTypeAndUser("inquiry", myid, startRow, pageSize);
+        }
 
         mview.addObject("totalCount", totalCount);
         mview.addObject("list", list);
@@ -456,10 +398,6 @@ public class CustomerController {
         mview.addObject("totalPage", totalPage);
         mview.addObject("startPage", startPage);
         mview.addObject("endPage", endPage);
-
-        // 세션에 myid가 설정되어 있는지 확인
-        String myid = (String) session.getAttribute("myid");
-        //System.out.println("Current session myid: " + myid);
 
         mview.setViewName("/customer/inquirylist");
 
@@ -591,6 +529,7 @@ public class CustomerController {
         return "redirect:/customer/inquirylist";
     }
 
+    
     //1:1문의 답변 작성 메서드
     @PostMapping("/customer/answerinsert")
     public String insertAnswer(@RequestParam("cus_num") int cus_num, @RequestParam("answer") String answer, HttpSession session) {
@@ -599,11 +538,7 @@ public class CustomerController {
             return "redirect:/login/main";
         }
 
-        CustomerDto dto = service.getData(cus_num);
-        dto.setCus_answer(answer);
-        dto.setCus_answer_status("답변 완료"); // 답변 상태 업데이트
-        service.updateCustomer(dto);
-
+        service.updateAnswer(cus_num, answer);
         return "redirect:/customer/inquirydetail/" + cus_num;
     }
 
@@ -615,10 +550,7 @@ public class CustomerController {
             return "redirect:/login/main";
         }
 
-        CustomerDto dto = service.getData(cus_num);
-        dto.setCus_answer(answer);
-        service.updateCustomer(dto);
-
+        service.modifyAnswer(cus_num, answer);
         return "redirect:/customer/inquirydetail/" + cus_num;
     }
 
@@ -632,7 +564,7 @@ public class CustomerController {
 
         CustomerDto dto = service.getData(cus_num);
         dto.setCus_answer(null);
-        dto.setCus_answer_status("답변 대기"); // 답변 상태 업데이트
+        dto.setCus_answer_status("답변 대기"); //답변 상태 업데이트
         service.updateCustomer(dto);
 
         return "redirect:/customer/inquirydetail/" + cus_num;
