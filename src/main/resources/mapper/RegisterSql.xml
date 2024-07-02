@@ -60,4 +60,35 @@
     <delete id="deleteRegister" parameterType="String">
     	delete from register where r_num = #{r_num }
     </delete>
+    
+    
+ <!-- 스크랩 -->
+<insert id="scrapInsertReg" parameterType="hdto">
+	insert into scrap (h_num, r_num) values(#{h_num}, #{r_num})
+</insert>
+
+<delete id="scrapDeleteReg" parameterType="map">
+    DELETE FROM scrap WHERE r_num = #{r_num} AND h_num = #{h_num}
+</delete>
+
+<select id="scrapSelectReg" resultType="hdto">
+    select * from scrap where s_num = #{s_num}
+</select>
+
+<select id="getUserScrapsReg" parameterType="int" resultType="hdto">
+    SELECT h_num FROM scrap WHERE r_num = #{r_num}
+</select>
+
+<select id="getRnumByIdReg" parameterType="String" resultType="int">
+	select r_num from register where r_id=#{r_id}
+</select>
+
+<select id="getScrapCountReg" parameterType="int" resultType="int">
+     select count(*) from scrap where r_num = #{r_num}
+</select>
+
+<select id="getScrapList" parameterType="int" resultType="int">
+	select * from scrap where r_num = #{r_num}
+</select>
+
 </mapper>

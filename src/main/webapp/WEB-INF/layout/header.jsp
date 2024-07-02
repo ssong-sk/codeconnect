@@ -61,7 +61,7 @@
 
 						</div>
 						<li class="Aside_signUpButtonContainer___0wTS"><c:if
-								test="${sessionScope.loginok==null and sessionScope.c_loginok==null}">
+								test="${sessionScope.loginok==null and sessionScope.c_loginok==null and sessionScope.m_loginok == null }">
 								<button
 									class="Button_Button__root__V1ie3 Button_Button__outlined__H2mkd Button_Button__outlinedAssistive__mBcQK Button_Button__outlinedSizeSmall__JJmOo Aside_signUpButton__pY721"
 									type="button" onclick="location.href='/login/main'">

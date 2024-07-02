@@ -24,7 +24,6 @@ width:55px;
 
 }
 
-
 </style>
 </head>
 <body>
@@ -46,7 +45,7 @@ width:55px;
 							class="Grid_Grid__item__4GoIZ Grid_Grid__align-items_flex-start__nEOiH Grid_Grid__grid__xs__4__d_Dih">
 							<a href="/member/bookmarks"
 								class="CountSummary_CountSummary__mm865"><h6
-									class="Typography_Typography__root__RdAI1 Typography_Typography__headline1__oRteu Typography_Typography__weightBold__KkJEY ">0</h6>
+									class="Typography_Typography__root__RdAI1 Typography_Typography__headline1__oRteu Typography_Typography__weightBold__KkJEY "> ${rScrap }</h6>
 								<span
 								class="Typography_Typography__root__RdAI1 Typography_Typography__caption1__P91eH Typography_Typography__weightRegular__jzmck Typography_Typography__alignCenter__HDWWj CountSummary_CountSummary_summaryTitle__lDXC6">북마크</span></a>
 						</div>
@@ -81,28 +80,40 @@ width:55px;
 						
 						
 						<div class="Grid_Grid__item__4GoIZ Grid_Grid__align-items_flex-start__nEOiH Grid_Grid__grid__xs__3__Ao_Ex">
-							<a class="CountSummary_CountSummary__mm865" data-attribute-id="myActivity__applicationStatus" data-status-kind="applyDone" href="/member/apply"><h6 class="Typography_Typography__root__RdAI1 Typography_Typography__headline1__oRteu Typography_Typography__weightBold__KkJEY ">미작성</h6>
+							<a class="CountSummary_CountSummary__mm865" data-attribute-id="myActivity__applicationStatus" data-status-kind="applyDone" href="/resumehome/form">
+							
+							<h6 class="Typography_Typography__root__RdAI1 Typography_Typography__headline1__oRteu Typography_Typography__weightBold__KkJEY ">미작성</h6>
+								
 								<span class="Typography_Typography__root__RdAI1 Typography_Typography__caption1__P91eH Typography_Typography__weightRegular__jzmck Typography_Typography__alignCenter__HDWWj CountSummary_CountSummary_summaryTitle__lDXC6">학력
 									</span></a>
 						</div>
 						
 						
 						<div class="Grid_Grid__item__4GoIZ Grid_Grid__align-items_flex-start__nEOiH Grid_Grid__grid__xs__3__Ao_Ex">
-							<a class="CountSummary_CountSummary__mm865" data-attribute-id="myActivity__applicationStatus" data-status-kind="pass" href="/status/applications/applied?status=pass"><h6 class="Typography_Typography__root__RdAI1 Typography_Typography__headline1__oRteu Typography_Typography__weightBold__KkJEY ">미작성</h6>
+							<a class="CountSummary_CountSummary__mm865" data-attribute-id="myActivity__applicationStatus" data-status-kind="pass" href="/resumehome/form">
+							
+							<h6 class="Typography_Typography__root__RdAI1 Typography_Typography__headline1__oRteu Typography_Typography__weightBold__KkJEY ">미작성</h6>
+								
 								<span class="Typography_Typography__root__RdAI1 Typography_Typography__caption1__P91eH Typography_Typography__weightRegular__jzmck Typography_Typography__alignCenter__HDWWj CountSummary_CountSummary_summaryTitle__lDXC6">경력
 									</span></a>
 						</div>
 						
 						
 						<div class="Grid_Grid__item__4GoIZ Grid_Grid__align-items_flex-start__nEOiH Grid_Grid__grid__xs__3__Ao_Ex">
-							<a class="CountSummary_CountSummary__mm865" data-attribute-id="myActivity__applicationStatus" data-status-kind="hire" href="/status/applications/applied?status=hire"><h6 class="Typography_Typography__root__RdAI1 Typography_Typography__headline1__oRteu Typography_Typography__weightBold__KkJEY ">미작성</h6>
+							<a class="CountSummary_CountSummary__mm865" data-attribute-id="myActivity__applicationStatus" data-status-kind="hire" href="/resumehome/form">
+							
+							<h6 class="Typography_Typography__root__RdAI1 Typography_Typography__headline1__oRteu Typography_Typography__weightBold__KkJEY ">미작성</h6>
+								
 								<span class="Typography_Typography__root__RdAI1 Typography_Typography__caption1__P91eH Typography_Typography__weightRegular__jzmck Typography_Typography__alignCenter__HDWWj CountSummary_CountSummary_summaryTitle__lDXC6">경험/활동/교육
 									</span></a>
 						</div>
 						
 						
 						<div class="Grid_Grid__item__4GoIZ Grid_Grid__align-items_flex-start__nEOiH Grid_Grid__grid__xs__3__Ao_Ex">
-							<a class="CountSummary_CountSummary__mm865" data-attribute-id="myActivity__applicationStatus" data-status-kind="rejected" href="/status/applications/applied?status=reject"><h6 class="Typography_Typography__root__RdAI1 Typography_Typography__headline1__oRteu Typography_Typography__weightBold__KkJEY ">미작성</h6>
+							<a class="CountSummary_CountSummary__mm865" data-attribute-id="myActivity__applicationStatus" data-status-kind="rejected" href="/resumehome/form">
+							
+							<h6 class="Typography_Typography__root__RdAI1 Typography_Typography__headline1__oRteu Typography_Typography__weightBold__KkJEY ">미작성</h6>
+								
 								<span class="Typography_Typography__root__RdAI1 Typography_Typography__caption1__P91eH Typography_Typography__weightRegular__jzmck Typography_Typography__alignCenter__HDWWj CountSummary_CountSummary_summaryTitle__lDXC6">자격/어학/수상</span></a>
 						</div>
 						
@@ -111,7 +122,7 @@ width:55px;
 						
 						
 						
-						<button
+						<button onclick="location.href='/resumehome/form'"
 							class="Button_Button__root__m1NGq Button_Button__contained__qyP2s Button_Button__containedPrimary__kCB60 Button_Button__containedSizeMedium__xBgIW Button_Button__fullWidth__zAnDP BasicResume_BasicResume__container__wantedResume__button__FnCW7"
 							data-attribute-id="myActivity__profile__update"
 							data-profile-level="2">

@@ -43,6 +43,7 @@ body {
     border: 0px;
     -webkit-transition: background-color .15s ease;
     transition: background-color .15s ease;
+    background: hsla(0, 0%, 100%, .88);
 }
 
 .Aside_searchButton__rajGo svg {
@@ -182,7 +183,7 @@ a {
 }
 
 a {
-	color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1));
+	color: #171719 !important;
 	text-decoration: none !important;
 }
 

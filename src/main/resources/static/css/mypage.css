@@ -44,6 +44,7 @@ a, abbr, acronym, address, applet, article, aside, audio, b, big,
 	color: inherit;
 }
 
+
 /*  --------------------------------------MainLayout------------------------------------------ */
 .MainLayout_MainLayout__2EBgM {
 	background-color: #fff;
@@ -796,7 +797,7 @@ a, abbr, acronym, address, applet, article, aside, audio, b, big,
 
 /*--------------------------------------------------- 내 활동 페이지----------------------------------------------------- */
 a, a:active, a:hover, a:visited {
-	color: inherit;
+	color: #212529 !important;
 }
 
 /* -------------------------------------------------Grid_Grid-------------------------------------------------- */
