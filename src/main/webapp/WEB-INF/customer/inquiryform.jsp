@@ -12,7 +12,6 @@
 <title>1:1 문의 글쓰기</title>
 <style>
     body {
-        display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
@@ -31,7 +30,8 @@
         text-decoration: none;
         display: inline-block;
         margin-bottom: 8px;
-        margin-left: -694px;
+        margin-left: 550px;
+        margin-top: 50px;
     }
     .form-container {
         background: #fff;
@@ -42,9 +42,7 @@
         width: 100%;
         margin: 0 auto;
     }
-    .form-container h2 {
-        margin-bottom: 20px;
-    }
+    
     .form-container select, 
     .form-container input[type="text"], 
     .form-container textarea {
@@ -129,8 +127,8 @@
 </head>
 <body>
 <a href="${pageContext.request.contextPath}/customer/inquirylist" onclick="scrollToTop()" class="back_button"><i class="bi bi-chevron-left"></i>&nbsp;이전페이지</a>
-<div class="form-container">
-    <h2>1:1문의 작성</h2>
+<div class="form-container" style="margin-bottom: 70px;">
+    <h3 style="margin-bottom: 30px;">1:1문의 작성</h3>
     <form action="${pageContext.request.contextPath}/customer/inquiryinsert" method="post" enctype="multipart/form-data">
         <input type="hidden" id="cus_user_id" name="cus_user_id" value="${sessionScope.myid}">
         <input type="hidden" id="cus_top_type" name="cus_top_type" value="inquiry">

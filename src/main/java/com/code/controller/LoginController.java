@@ -53,10 +53,7 @@ public class LoginController {
 
 			RegisterDto mdto = service.getDataById(r_id);
 			
-			//관리자로 로그인시 관리자 페이지로 리다이렉트 -> 삭제 금지
-			if ("manager".equals(r_id)) {
-				return "redirect:/manager/main";
-		    }
+			
 
 			
   		session.setMaxInactiveInterval(30*30*1); //30분
@@ -80,6 +77,11 @@ public class LoginController {
 			session.setAttribute("r_job", mdto.getR_job());
 			session.setAttribute("r_sogae", mdto.getR_sogae());
 			session.setAttribute("r_exp", mdto.getR_exp());
+			
+			//관리자로 로그인시 관리자 페이지로 리다이렉트 -> 삭제 금지
+			if ("manager".equals(r_id)) {
+				return "redirect:/manager/main";
+		    }
 			
 			return "redirect:/";
 			

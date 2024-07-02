@@ -36,28 +36,28 @@
 </style>
 </head>
 <body>
-<div class="container">
-    <h2>이벤트 수정하기</h2>
+<div class="container" style="max-width: 950px">
+    <h2 style="margin-bottom: 25px;">이벤트 수정하기</h2>
     <form action="${pageContext.request.contextPath}/customer/eventupdate" method="post" enctype="multipart/form-data">
         <input type="hidden" name="cus_num" value="${dto.cus_num}">
         <div class="form-group">
-            <label for="cus_title">제목:</label>
+            <label for="cus_title">제목</label>
             <input type="text" class="form-control" id="cus_title" name="cus_title" value="${dto.cus_title}" required>
         </div>
         <div class="form-group">
-            <label for="cus_content">내용:</label>
+            <label for="cus_content">내용</label>
             <textarea class="form-control" id="cus_content" name="cus_content" rows="5" required>${dto.cus_content}</textarea>
         </div>
         <div class="form-group">
-            <label for="cus_target">대상:</label>
+            <label for="cus_target">대상</label>
             <input type="text" class="form-control" id="cus_target" name="cus_target" value="${dto.cus_target}" required>
         </div>
         <div class="form-group">
-            <label for="cus_startday">시작일:</label>
+            <label for="cus_startday">시작일</label>
             <input type="date" class="form-control" id="cus_startday" name="cus_startday" value="${dto.cus_startday}" required>
         </div>
         <div class="form-group">
-            <label for="cus_endday">종료일:</label>
+            <label for="cus_endday">종료일</label>
             <input type="date" class="form-control" id="cus_endday" name="cus_endday" value="${dto.cus_endday}" required>
         </div>
         <div class="form-group">

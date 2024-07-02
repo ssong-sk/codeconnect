@@ -13,7 +13,7 @@
 <title>게시글 작성</title>
 <style>
     body {
-        display: flex;
+        /* display: flex; */
         flex-direction: column;
         justify-content: center;
         align-items: center;
@@ -23,7 +23,7 @@
         font-family: 'IBM Plex Sans KR', sans-serif;
     }
     .back_button {
-        background-color: #ffffff;
+        background-color: #ffffff;	
         color: #5c667b;
         font-size: 15px;
         border: 1px solid #ddd;
@@ -32,7 +32,8 @@
         text-decoration: none;
         display: inline-block;
         margin-bottom: 8px;
-        margin-left: -694px;
+        margin-left: 550px;
+        margin-top: 50px;
         
     }
     .form-container {
@@ -130,8 +131,9 @@
 </script>
 </head>
 <body>
+<%-- <a href="${pageContext.request.contextPath}/community/homelist" onclick="scrollToTop()" class="back_button"><i class="bi bi-chevron-left"></i>&nbsp;이전페이지</a> --%>
 <a href="${pageContext.request.contextPath}/community/homelist" onclick="scrollToTop()" class="back_button"><i class="bi bi-chevron-left"></i>&nbsp;이전페이지</a>
-<div class="form-container">
+<div class="form-container" style="margin-bottom: 70px;">
     <h2>게시글 작성</h2>
     <form action="${pageContext.request.contextPath}/community/homeinsert" method="post" enctype="multipart/form-data">
     	<input type="hidden" id="id" name="com_user_id" value="${userid }">

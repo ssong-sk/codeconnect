@@ -117,11 +117,54 @@ a, a:active, a:hover, a:visited {
 }
 
 .dashboard {
-    padding: 20px;
-    background-color: #f9f9f9;
+    margin-top: 20px;
+}
+
+.logo {
+	width: 112px;
+	height: 32px;
+	margin-top: 7px;
+	margin-right: 30px;
+}
+
+.board1 {
+	padding: 20px;
     border: 1px solid #ddd;
     border-radius: 5px;
-    margin-top: 20px;
+    width: 500px;
+}
+
+.wrap1 {
+	display: flex;
+}
+
+.codego {
+	color: #0176ED;
+	border: 1px solid #0176ED;
+	border-radius: 5px;
+	padding: 10px 50px;
+	width: 220px;
+	margin-right: 10px;
+	cursor: pointer;
+}
+
+.codego:hover{
+	background: #0176ED;
+	color: #fff;
+}
+
+.cusgo {
+	color: #0176ED;
+	border: 1px solid #0176ED;
+	border-radius: 5px;
+	padding: 10px 64px;
+	width: 220px;
+	cursor: pointer;
+}
+
+.cusgo:hover{
+	background: #0176ED;
+	color: #fff;
 }
 </style>
 </head>
@@ -131,7 +174,10 @@ a, a:active, a:hover, a:visited {
 		<div class="center">
 			<div class="manager">
 			    <div class="container-main">
-			        <a class="" href="#"><h1 style="font-weight: 600;">관리자 페이지</h1></a>
+			    	<div style="display: flex;">
+				    	<a href="/"><img src="/image/mainlogo.png" alt="codeconnect Logo" class="logo"></a>
+				        <a class="" href="#"><h1 style="font-weight: 600;">MANAGER</h1></a>
+			        </div>
 			        <div class="menu_container">
 			        	<div role="tablist" class="menu_menu" aria-label="검색 분류">
 			        		<a href="#" role="tab" id="home" tabindex="-1" class="menu_item" aria-selected="true" aria-controls="home">
@@ -161,7 +207,19 @@ a, a:active, a:hover, a:visited {
 			    <div class="row">
 			        <main id="content" class="">
 			            <div class="dashboard">
-			                관리자 페이지 입니다.
+			            	<div class="board1">
+			            		<h1 style="margin-bottom: 25px;">안녕하세요. 관리자님<br></h1>
+			            		<div class="wrap1">
+				            		<div class="codego">
+				                		<a title="코드커넥트로 이동" href="/">코드커넥트로 이동</a>
+				                	</div>
+				                	<div class="cusgo">
+				                		<a title="고객센터로 이동" href="/customer/noticelist">고객센터 이동</a>
+				                	</div>
+				                </div>
+			            	</div>
+			                <div class="board2">
+			                </div>
 			            </div>
 			        </main>
 			    </div>

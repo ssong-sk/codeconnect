@@ -128,31 +128,22 @@ a, a:active, a:hover, a:visited {
 	cursor: pointer;
 }
 
-.dropdown {
-    position: relative;
-    display: inline-block;
-    cursor: pointer;
+#eventCategory {
+    appearance: none; /* appearance 속성으로 기본 스타일을 없앰 (크로스 브라우징 고려) */
+    -webkit-appearance: none; /* WebKit 기반 브라우저 (Safari, Chrome 등) */
+    -moz-appearance: none; /* Firefox */
+    -ms-appearance: none; /* IE/Edge */
+    background-color: transparent; /* 배경색을 투명으로 설정 */
+    border: none; /* 테두리 제거 */
+    padding: 0; /* 패딩 제거 */
+    font-size: inherit; /* 폰트 사이즈 상속 */
+    cursor: pointer; /* 커서 모양을 포인터로 설정 */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="8"><path fill="%23000" d="M0 0l6 8 6-8H0z"/></svg>'); /* 화살표 이미지 추가 */
+    background-repeat: no-repeat; /* 배경 이미지 반복 설정 */
+    background-position: right 0px bottom 10px; /* 화살표 이미지 위치 설정 (오른쪽으로 10px 이동, 아래로 10px 이동) */
+    padding: 0px 15px 0px 0px;
 }
 
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-}
-
-.dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-}
-
-.dropdown-content a:hover {
-    background-color: #f1f1f1;
-}
 </style>
 </head>
 <body>
@@ -203,13 +194,14 @@ a, a:active, a:hover, a:visited {
 					            </tr>
 					            <tr align="center">
 					                <td>NO</td>
-					                <td class="dropdown">CATEGORY
-					                   <div class="dropdown-content">
-					                       <a href="#" data-category="진행중 이벤트">진행중 이벤트</a>
-					                       <a href="#" data-category="마감된 이벤트">마감된 이벤트</a>
-					                       <a href="#" data-category="당첨자 발표">당첨자 발표</a>
-					                       <a href="#" data-category="CATEGORY">전체</a>
-					                   </div>
+					                <td>
+					                	<select id="eventCategory">
+                              <option disabled selected hidden>CATEGORY</option>
+                              <option style="text-align: center;">전체</option>
+                              <option style="text-align: center;">진행중 이벤트</option>
+                              <option style="text-align: center;">마감된 이벤트</option>
+                              <option style="text-align: center;">당첨자 발표</option>
+										        </select>
 					                </td>
 					                <td>TITLE</td>
 					                <td>DAY</td>
@@ -284,44 +276,31 @@ a, a:active, a:hover, a:visited {
 </div>
 </body>
 <script type="text/javascript">
-	$("a.menu_item").click(function() {
-		$("a.menu_item").attr('aria-selected', 'false');
-        $(this).attr('aria-selected', 'true');
-	})
+$("a.menu_item").click(function() {
+	$("a.menu_item").attr('aria-selected', 'false');
+       $(this).attr('aria-selected', 'true');
+})
 </script>
-
 <script type="text/javascript">
 $(document).ready(function() {
-    $("td.dropdown").on("click", function(event) {
-        event.stopPropagation();
-        $(".dropdown-content").toggle();
-    });
-    
-    $("td.dropdown").click(function() {
-        $(".dropdown-content").show();
-    });
+    // CATEGORY 옵션 숨기기
+    $("#eventCategory option[value='category']").hide();
+});
 
-    $(".dropdown-content a").on("click", function(e) {
-        e.preventDefault();
-        var category = $(this).text();
-        $("td.dropdown").text(category);
-        filterCategory(category);
-        $(".dropdown-content").hide();
-    });
+$(document).ready(function() {
+    // eventCategory의 값이 변경될 때마다 실행되는 이벤트 핸들러
+    $("#eventCategory").change(function() {
+        var selectedCategory = $(this).val(); // 선택된 옵션의 값
 
-    function filterCategory(category) {
-        $("#eventTableBody tr").each(function() {
-            var rowCategory = $(this).data("category");
-            if (category === "CATEGORY" || rowCategory === category) {
-                $(this).show();
-            } else {
-                $(this).hide();
-            }
-        });
-    }
-    
-    $(".dropdown-content").on("click", function(event) {
-        event.stopPropagation();
+        // 모든 tr 요소 숨기기
+        $("#eventTableBody tr").hide();
+
+        // 선택된 카테고리에 해당하는 tr 요소만 보이도록 설정
+        if (selectedCategory === "전체") {
+            $("#eventTableBody tr").show(); // 전체인 경우 모든 요소 보이기
+        } else {
+            $("#eventTableBody tr[data-category='" + selectedCategory + "']").show(); // 선택된 카테고리에 해당하는 요소만 보이기
+        }
     });
 });
 </script>

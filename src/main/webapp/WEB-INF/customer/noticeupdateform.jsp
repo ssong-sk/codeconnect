@@ -12,7 +12,6 @@
 <title>게시글 수정</title>
 <style>
     body {
-        display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
@@ -31,7 +30,8 @@
         text-decoration: none;
         display: inline-block;
         margin-bottom: 8px;
-        margin-left: -694px;
+        margin-left: 550px;
+        margin-top: 50px;
     }
     .form-container {
         background: #fff;
@@ -129,7 +129,7 @@
 </head>
 <body>
 <a href="${pageContext.request.contextPath}/customer/noticelist" onclick="scrollToTop()" class="back_button"><i class="bi bi-chevron-left"></i>&nbsp;이전페이지</a>
-<div class="form-container">
+<div class="form-container" style="margin-bottom: 70px;">
     <h2>게시글 수정</h2>
     <form action="${pageContext.request.contextPath}/customer/noticeupdate" method="post" enctype="multipart/form-data">
         <input type="hidden" id="cus_num" name="cus_num" value="${dto.cus_num}">

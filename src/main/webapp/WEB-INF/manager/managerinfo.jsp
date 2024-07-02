@@ -127,6 +127,22 @@ a, a:active, a:hover, a:visited {
 .cuslist{
 	cursor: pointer;
 }
+
+#eventCategory {
+    appearance: none; /* appearance 속성으로 기본 스타일을 없앰 (크로스 브라우징 고려) */
+    -webkit-appearance: none; /* WebKit 기반 브라우저 (Safari, Chrome 등) */
+    -moz-appearance: none; /* Firefox */
+    -ms-appearance: none; /* IE/Edge */
+    background-color: transparent; /* 배경색을 투명으로 설정 */
+    border: none; /* 테두리 제거 */
+    padding: 0; /* 패딩 제거 */
+    font-size: inherit; /* 폰트 사이즈 상속 */
+    cursor: pointer; /* 커서 모양을 포인터로 설정 */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="8"><path fill="%23000" d="M0 0l6 8 6-8H0z"/></svg>'); /* 화살표 이미지 추가 */
+    background-repeat: no-repeat; /* 배경 이미지 반복 설정 */
+    background-position: right 0px bottom 10px; /* 화살표 이미지 위치 설정 (오른쪽으로 10px 이동, 아래로 10px 이동) */
+    padding: 0px 15px 0px 0px;
+}
 </style>
 </head>
 <body>
@@ -183,7 +199,7 @@ a, a:active, a:hover, a:visited {
 			                		<td>BLOCK</td>
 			                	</tr>
 			                	</thead>
-			                	<tbody>
+			                	<tbody id="eventTableBody">
 								<c:if test="${cus_count==0 }">
 								<tr height="50">
 								  <td colspan="5" align="center">
@@ -193,7 +209,7 @@ a, a:active, a:hover, a:visited {
 								</c:if>
 			                	<c:if test="${cus_count>0 }">
 			                	<c:forEach var="cus" items="${cuslist }">
-								    <tr style="height: 50px;" align="center" class="cuslist" onclick="location.href='infoedit?cus_num=${cus.cus_num}'">
+								    <tr style="height: 50px;" align="center" class="cuslist" data-category="${cus.cus_category}" onclick="location.href='infoedit?cus_num=${cus.cus_num}'">
 								       <td valign="middle">${no }</td><c:set var="no" value="${no-1 }"/>
 								       <td valign="middle" style="font-weight: bold; color: #0176ED; ">
 											${cus.cus_category } 
@@ -257,4 +273,5 @@ a, a:active, a:hover, a:visited {
         $(this).attr('aria-selected', 'true');
 	})
 </script>
+
 </html>

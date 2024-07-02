@@ -95,7 +95,7 @@
 	        $('#noticeLink').addClass('active');
 	    } else if (currentUrl.includes('/customer/eventlist')) {
 	        $('#eventLink').addClass('active');
-	    } else if (currentUrl.includes('/customer/inquirylist')) {
+	    } else if (currentUrl.includes('/customer/inquirylist') || currentUrl.includes('/customer/inquirydetail')) {
 	        $('#inquiryLink').addClass('active');
 	    }
 	});
@@ -116,7 +116,7 @@
         <li><a class="nav-link" id="inquiryLink" href="${pageContext.request.contextPath}/customer/inquirylist">1:1문의</a></li>
     </ul>
 </nav>
-<div class="container" style="width: 1100px;">
+<div class="container" style="width: 1000px;">
     <div class="detail-title">
         ${dto.cus_title}
     </div>
