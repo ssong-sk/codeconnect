@@ -33,5 +33,8 @@ public interface CompanyIntroMapperInter {
 	public List<CompanyIntroDto> getCompanyIntrosByMoneyWhereBig();
 	//중견기업 연봉 순위
 	public List<CompanyIntroDto> getCompanyIntrosByMoneyWhereMid();
-	
+	//중소기업 연봉 순위
+	public List<CompanyIntroDto> getCompanyIntrosByMoneyWhereSmall();
+	//공기업 연봉 순위
+	public List<CompanyIntroDto> getCompanyIntrosByMoneyWhereGong();
 }

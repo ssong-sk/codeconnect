@@ -74,5 +74,17 @@ public class CompanyIntroService implements CompanyIntroServiceInter {
 		// TODO Auto-generated method stub
 		return cmapperInter.getCompanyIntrosByMoneyWhereMid();
 	}
+	//공기업 연봉 순위
+	@Override
+	public List<CompanyIntroDto> getCompanyIntrosByMoneyWhereGong() {
+		// TODO Auto-generated method stub
+		return cmapperInter.getCompanyIntrosByMoneyWhereGong();
+	}
+	//중소기업 연봉 순위
+	@Override
+	public List<CompanyIntroDto> getCompanyIntrosByMoneyWhereSmall() {
+		// TODO Auto-generated method stub
+		return cmapperInter.getCompanyIntrosByMoneyWhereSmall();
+	}
 
 }

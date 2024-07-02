@@ -276,7 +276,6 @@ svg {
 }
 
 /* 랭킹 리스트 스타일 */
-
 .ranking-list {
 	display: flex;
 	justify-content: space-between;
@@ -289,7 +288,7 @@ svg {
 	border: 1px solid #ddd;
 	border-radius: 10px;
 	padding: 20px;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	/*box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);*/
 }
 
 .ranking-title {
@@ -321,66 +320,67 @@ svg {
 .ranking-item .amount {
 	color: blue;
 }
-
-
-
-
 </style>
 </head>
 <body>
 	<div class="all">
 		<div id="wrap">
+
 			<div class="center">
+
 				<div class="all-form">
-				<section class="hirelist">
-				<!-- 랭킹 리스트 -->
-				<div class="ranking-list">
-					<div class="ranking-box">
-						<div class="ranking-title">인기검색 기업</div>
-						
-						<c:forEach var="c" items="${clist2}" varStatus="status">
-						<c:if test="${status.index < 10}">
-							<div class="ranking-item">
-								<span class="rank">${status.index + 1}</span>
-								<span class="company">${c.c_name}</span>
-								<span class="amount">${c.c_salary} 만원</span>
-							</div>
-						</c:if>
-						</c:forEach>
-						</c:if>
-					</div>
-					<div class="ranking-box">
-						<div class="ranking-title">대기업</div>
-						<c:forEach var="b1" items="${blist1}" varStatus="status">
-						<c:if test="${status.index < 10}">
-							<div class="ranking-item">
-								<span class="rank">${status.index + 1}</span>
-								<span class="company">${b1.c_name}</span>
-								<span class="amount">${b1.c_salary} 만원</span>
-							</div>
-						</c:if>
-						</c:forEach>
-					</div>
-					<div class="ranking-box">
-						<div class="ranking-title">중견기업</div>
-						<c:forEach var="b2" items="${blist2}" varStatus="status">
-						<c:if test="${status.index < 10}">
-							<div class="ranking-item">
-								<span class="rank">${status.index + 1}</span>
-								<span class="company">${b2.c_name}</span>
-								<span class="amount">${b2.c_salary} 만원</span>
-							</div>
-						</c:if>
-						</c:forEach>
-					</div>
-				</div>
-	
-				
-				<!-- 랭킹 리스트 끝-->
 
-					<!-- 채용공고 리스트 -->
-					<!-- <section class="hirelist">-->
+					<section class="hirelist">
 
+						<!-- 랭킹 리스트 -->
+						<div class="ranking-list">
+							<div class="ranking-box">
+								<div class="ranking-title">인기검색 기업 순위</div><br>
+
+								<c:forEach var="c" items="${clist2}" varStatus="status">
+									<c:if test="${status.index < 10}">
+										<div class="ranking-item">
+											<span class="rank">${status.index + 1}</span> <a
+												href="/company/showimsiCom?c_num=${c.c_num }"> <span
+												class="company">${c.c_name}</span>
+											</a> <span class="amount">${c.c_salary} 만원</span>
+										</div>
+									</c:if>
+								</c:forEach>
+
+							</div>
+							<div class="ranking-box">
+								<div class="ranking-title">대기업 연봉 순위</div><br>
+								<c:forEach var="b1" items="${blist1}" varStatus="status">
+									<c:if test="${status.index < 10}">
+										<div class="ranking-item">
+											<span class="rank">${status.index + 1}</span> <a
+												href="/company/showimsiCom?c_num=${b1.c_num }"> <span
+												class="company">${b1.c_name}</span>
+											</a> <span class="amount">${b1.c_salary} 만원</span>
+										</div>
+									</c:if>
+								</c:forEach>
+							</div>
+							<div class="ranking-box">
+								<div class="ranking-title">중견기업 연봉 순위</div><br>
+								<c:forEach var="b2" items="${blist2}" varStatus="status">
+									<c:if test="${status.index < 10}">
+										<div class="ranking-item">
+											<span class="rank">${status.index + 1}</span> <a
+												href="/company/showimsiCom?c_num=${b2.c_num }"> <span
+												class="company">${b2.c_name}</span>
+											</a> <span class="amount">${b2.c_salary} 만원</span>
+										</div>
+									</c:if>
+								</c:forEach>
+							</div>
+						</div>
+
+
+						<!-- 랭킹 리스트 끝-->
+						<!-- 기업 리스트 -->
+						<!-- <section class="hirelist">-->
 						<c:forEach var="a" items="${clist}">
 							<div class="hireinfo">
 								<a target="_self" title="${a.c_name}"
@@ -456,67 +456,91 @@ svg {
 	</div>
 
 	<script type="text/javascript">
-      /* 스크랩 기능 */
-      scrapPress();
-      
-      function scrapPress() {
-         $("button.scrap").click(function() {
-            var scrappressed = $(this);
-            var isPressed = scrappressed.attr('aria-pressed') === 'true';
-            var r_num = $("#r_num").val();
-            var c_num = scrappressed.val();
-            var isLoggedIn = r_num != 0 ? true : false;
+		/* 스크랩 기능 */
+		scrapPress();
 
-            console.log("isPressed:", isPressed, "r_num:", r_num, "c_num:", c_num);
-      
-            if(isLoggedIn){
-                if (isPressed) {
-                   $.ajax({
-                        type: "post",
-                        url: "/company/scrapdelete",
-                        dataType: "html",
-                        data: {
-                            "r_num": r_num,
-                            "c_num": c_num,
-                        },
-                        success: function() {
-                          // aria-pressed가 true인 경우 -> false로 변경
-                          scrappressed.attr('aria-pressed', 'false');
-                          scrappressed.find('i').removeClass('bi-heart-fill').addClass('bi-heart');
-                        },
-                        error: function(request, status, error) {
-                            console.log("Error:", error);
-                        }
-                   });
-                } else {        
-                    $.ajax({
-                        type: "post",
-                        url: "/company/scrap",
-                        dataType: "html",
-                        data: {
-                            "r_num": r_num,
-                            "c_num": c_num,
-                        },
-                        success: function() {
-                           // aria-pressed가 false인 경우 -> true로 변경
-                          scrappressed.attr('aria-pressed', 'true');
-                          scrappressed.find('i').removeClass('bi-heart').addClass('bi-heart-fill');
-                        },
-                        error: function(request, status, error) {
-                            console.log("Error:", error);
-                        }
-                    });
-                }
-            } else {
-               var confirmLogin = confirm("로그인이 필요합니다.\n로그인 페이지로 이동하시겠습니까?");
-                 if (confirmLogin) {
-                     window.location.href = "/login/main";
-                 }
-            }
-      
-         });
-      }
-      </script>
+		function scrapPress() {
+			$("button.scrap")
+					.click(
+							function() {
+								var scrappressed = $(this);
+								var isPressed = scrappressed
+										.attr('aria-pressed') === 'true';
+								var r_num = $("#r_num").val();
+								var c_num = scrappressed.val();
+								var isLoggedIn = r_num != 0 ? true : false;
+
+								console.log("isPressed:", isPressed, "r_num:",
+										r_num, "c_num:", c_num);
+
+								if (isLoggedIn) {
+									if (isPressed) {
+										$
+												.ajax({
+													type : "post",
+													url : "/company/scrapdelete",
+													dataType : "html",
+													data : {
+														"r_num" : r_num,
+														"c_num" : c_num,
+													},
+													success : function() {
+														// aria-pressed가 true인 경우 -> false로 변경
+														scrappressed.attr(
+																'aria-pressed',
+																'false');
+														scrappressed
+																.find('i')
+																.removeClass(
+																		'bi-heart-fill')
+																.addClass(
+																		'bi-heart');
+													},
+													error : function(request,
+															status, error) {
+														console.log("Error:",
+																error);
+													}
+												});
+									} else {
+										$
+												.ajax({
+													type : "post",
+													url : "/company/scrap",
+													dataType : "html",
+													data : {
+														"r_num" : r_num,
+														"c_num" : c_num,
+													},
+													success : function() {
+														// aria-pressed가 false인 경우 -> true로 변경
+														scrappressed.attr(
+																'aria-pressed',
+																'true');
+														scrappressed
+																.find('i')
+																.removeClass(
+																		'bi-heart')
+																.addClass(
+																		'bi-heart-fill');
+													},
+													error : function(request,
+															status, error) {
+														console.log("Error:",
+																error);
+													}
+												});
+									}
+								} else {
+									var confirmLogin = confirm("로그인이 필요합니다.\n로그인 페이지로 이동하시겠습니까?");
+									if (confirmLogin) {
+										window.location.href = "/login/main";
+									}
+								}
+
+							});
+		}
+	</script>
 
 </body>
 </html>

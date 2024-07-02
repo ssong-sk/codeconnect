@@ -280,9 +280,14 @@ public class CompanyIntroController {
         List<CompanyIntroDto> blist1 = ciservice.getCompanyIntrosByMoneyWhereBig();
         // 중견기업 연봉 순위
         List<CompanyIntroDto> blist2 = ciservice.getCompanyIntrosByMoneyWhereMid();
-
+        //중소기업 연봉순위
+        List<CompanyIntroDto> blist3 = ciservice.getCompanyIntrosByMoneyWhereSmall();
+        //공기업 연봉순위
+        List<CompanyIntroDto> blist4 = ciservice.getCompanyIntrosByMoneyWhereGong();
         model.addAttribute("blist1", blist1);
         model.addAttribute("blist2", blist2);
+        model.addAttribute("blist3", blist3);
+        model.addAttribute("blist4", blist4);
 
         return "/companyintro/companyintroList";
     }
