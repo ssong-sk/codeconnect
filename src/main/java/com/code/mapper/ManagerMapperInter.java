@@ -32,5 +32,11 @@ public interface ManagerMapperInter {
 	public void updateCustomer(CustomerDto dto);
 	public void deleteCustomer(int cus_num);
 	
+	//이벤트 관리
+	public int countCustomerEvent();
+	public List<CustomerDto> getAllCustomerEvent(int start, int perpage);
+	public void insertCustomerEvent(CustomerDto dto);
+	public void updateCustomerEvent(CustomerDto dto);
+	public void deleteCustomerEvent(int cus_num);
 
 }

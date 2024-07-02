@@ -153,8 +153,8 @@ a, a:active, a:hover, a:visited {
 			        		<a href="event" role="tab" id="event" tabindex="-1" class="menu_item" aria-selected="false" aria-controls="event">
 			        		<span class="menu_text">EVENT</span>
 			        		</a>
-			        		<a href="edit" role="tab" id="edit" tabindex="0" class="menu_item" aria-selected="false" aria-controls="edit">
-			        		<span class="menu_text">EDIT</span>
+			        		<a href="edit" role="tab" id="block" tabindex="0" class="menu_item" aria-selected="false" aria-controls="block">
+			        		<span class="menu_text">BLOCK</span>
 			        		</a>
 			        	</div>
 			        </div>
@@ -195,7 +195,7 @@ a, a:active, a:hover, a:visited {
 			                	<c:forEach var="cus" items="${cuslist }">
 								    <tr style="height: 50px;" align="center" class="cuslist" onclick="location.href='infoedit?cus_num=${cus.cus_num}'">
 								       <td valign="middle">${no }</td><c:set var="no" value="${no-1 }"/>
-								       <td valign="middle">
+								       <td valign="middle" style="font-weight: bold; color: #0176ED; ">
 											${cus.cus_category } 
 									   </td>
 								       <td valign="middle">${cus.cus_title }</td>

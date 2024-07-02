@@ -2683,7 +2683,7 @@
                         <tr>
                            <td colspan="2" align="right">
                               <br>
-                              <button type="button" id="hopeOK"  class="btn btn-outline-primary">수정</button>
+                              <button type="button" id="hopeOK"  class="btn btn-outline-primary" style="margin-bottom: 5%;">수정</button>
                            </td>
                         </tr>
                     </table>        
@@ -2997,125 +2997,6 @@
                 });
                 </script>
                 
-<!-- 동의내역 --------------------------------------------------------------------------------------------------------------------->
-                <div class="consent">
-                        <hr style="width: 100%;">
-                        <table class="" style="width: 100%;">
-                          <tr>
-                      <td class="form-group">
-                          <input type="checkbox" style="font-size: 1.2em;" id="consentAllCheck">모두 동의합니다.&nbsp;&nbsp;&nbsp;&nbsp;
-                          <span style="font-size: 0.8em;">이력서 작성을 위한 개인정보 수집 및 이용 동의(필수/선택)</span>
-                      </td>
-                    </tr>
-                    
-                    <tr>
-                      <td class="form-group">
-                        <hr style="width: 100%;">
-                      </td>
-                    </tr>
-                    
-                    <tr>
-                      <td class="form-group">
-                          <span style="font-size: 0.8em;"><input type="checkbox" id="consentCheck1">  필수 항목에 대한 개인정보 수집 및 이용 동의</span>&nbsp;&nbsp;&nbsp;&nbsp;
-                          <span style="font-size: 0.8em;"><a id="requireClick" style="text-decoration: none; color: gray; cursor: pointer;"
-                          data-bs-toggle="modal" data-bs-target="#requireModal">상세보기 ></a></span>
-                      </td>
-                    </tr>
-                    
-                    <tr>
-                      <td class="form-group">
-                          <span style="font-size: 0.8em;"><input type="checkbox" id="consentCheck2">  선택 항목에 대한 개인정보 수집 및 이용 동의</span>&nbsp;&nbsp;&nbsp;&nbsp;
-                          <span style="font-size: 0.8em; "><a style="text-decoration: none; color: gray; cursor: pointer;" id="choiceClick"
-                          data-bs-toggle="modal" data-bs-target="#choiceModal">상세보기 ></a></span>
-                      </td>
-                    </tr>
-
-                        </table>
-                  <br>
-                  <br>
-                  <br>
-                  <br>  
-                </div>
-                
-                <script type="text/javascript">
-               
-                	//체크박스 전체선택 체크 및 해제
-                	$(function() {
-                		
-                		$("#consentAllCheck").click(function() {
-                			
-                			var allcheck = $(this).is(":checked");
-
-                				$("#consentCheck1").prop('checked', allcheck);
-                				$("#consentCheck2").prop('checked', allcheck);
-                		
-                		});
-                	})
-                	
-
-               </script>
-               
-
-                <!-- 필수항목 자세히 보기 누르면 나오는 The Modal -->
-               <div class="modal" id="requireModal">
-                 <div class="modal-dialog modal-dialog-centered modal-fullsize">
-                   <div class="modal-content">
-               
-                     <!-- Modal Header -->
-                     <div class="modal-header">
-                       <h5 class="modal-title">이력서 작성을 위한 개인정보 수집 및 이용 동의</h5>
-                       <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                     </div>
-               
-                     <!-- Modal body -->
-                     <div class="modal-body">
-                      <hr style="margin-top: -3%;">
-                       <span><b>수집항목(필수)</b></span><br>
-                       <span style="font-size: 0.8em;">기본정보(이름, 생년월일, 이메일, 휴대폰, 주소), 학력(학교명, 졸업 여부, 전공), 
-                       경력(경력 구분, 회사명, 재직 여부, 재직기간, 총 경력)</span><br><br>
-                     
-                       <span><b>수집 및 이용 목적</b></span><br>
-                       <span style="font-size: 0.8em;">이력서 등록을 통한 입사 지원 등 취업 활동 서비스 제공, 
-                       각종 맞춤형 취업 서비스 제공</span><br><br>
-                       
-                       <span><b>이용 및 보유기간</b></span><br> 
-                       <span style="font-size: 0.8em;">이력서 삭제 또는 회원 탈퇴 시 파기
-                      위 동의를 거부할 권리가 있으며 동의 거부 시 이력서 등록이 불가합니다.</span>
-                     </div>
-               
-                   </div>
-                 </div>
-               </div>
-               
-            <!-- 선택항목 자세히 보기 누르면 나오는 The Modal -->
-               <div class="modal" id="choiceModal">
-                 <div class="modal-dialog modal-dialog-centered modal-fullsize">
-                   <div class="modal-content">
-               
-                     <!-- Modal Header -->
-                     <div class="modal-header">
-                       <h5 class="modal-title">이력서 작성을 위한 개인정보 수집 및 이용 동의</h5>
-                       <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                     </div>
-               
-                     <!-- Modal body -->
-                     <div class="modal-body">
-                      <hr style="margin-top: -3%;">
-                       <span><b>수집항목(필수)</b></span><br>
-                       <span style="font-size: 0.8em;">기본정보(이름, 생년월일, 이메일, 휴대폰, 주소), 학력(학교명, 졸업 여부, 전공), 
-                       경력(경력 구분, 회사명, 재직 여부, 재직기간, 총 경력)</span><br><br>
-                     
-                       <span><b>수집 및 이용 목적</b></span><br>
-                       <span style="font-size: 0.8em;">이력서 등록을 통한 입사 지원 등 취업 활동 서비스 제공, 
-                       각종 맞춤형 취업 서비스 제공</span><br><br>
-                       
-                       <span><b>이용 및 보유기간</b></span><br> 
-                       <span style="font-size: 0.8em;">이력서 삭제 또는 회원 탈퇴 시 파기
-                      위 동의를 거부할 권리가 있으며 동의 거부 시 이력서 등록이 불가합니다.</span>
-                       </div>
-                   </div>
-                 </div>
-               </div>   
                 
                 
 <!-- 최종 저장 및 미리보기 --------------------------------------------------------------------------------------------------------->
@@ -3158,21 +3039,22 @@
                 	  $("#modal_selfList").html($("#selfList").html()); // 자기소개서 정보
                 	  $("#modal_selfList").find('i').remove(); // 자기소개서 수정/삭제 제거
                 	  
-                	  $("#modal_ho_category").html($("select[name=ho_category]").val()); // 자기소개서 수정/삭제 제거
+                	  $("#modal_ho_category").html($("select[name=ho_category]").val() + " | "); //희망근무 직무선택
                 	  
                 	  
                 	  
-                	  var hoCheck = $('input[name="ho_check"]').is(':checked');
+                	  var hoCheck = $('input[name="ho_check"]').is(':checked'); //연봉
                 	  if(hoCheck){
 	                	  $("#modal_ho_money").html("면접 후 결정");
                 	  }else{
-	                	  $("#modal_ho_money").html($("#ho_money").val());
+                		  var hoMoney = $("#ho_money").val();
+                		  $("#modal_ho_money").html(hoMoney + "만원");
                 	  } 
                 	  
                 	  $("#modal_areaform").html($("#areaform").html());
-                	  $("#modal_areaform").find('i').remove(); // 자기소개서 수정/삭제 제거
+                	  $("#modal_areaform").find('i').remove(); //  지역 아이콘삭제 수정/삭제 제거
                 	  $("#modal_jobform").html($("#jobform").html());
-                	  $("#modal_jobform").find('i').remove(); // 자기소개서 수정/삭제 제거
+                	  $("#modal_jobform").find('i').remove(); // 직무 아이콘삭제 수정/삭제 제거
 
                 	  
                   });
@@ -3295,7 +3177,7 @@
 					</div>
 					
 					<!-- 희망근무조건 -->
-					
+					<div class="self">
 					<div class="form-caption">
                         <h5><b>희망근무조건</b></h5>
                     </div>
@@ -3340,10 +3222,7 @@
                         </tr>   
                       
                        </table>
-					
-					
-					
-
+				   </div>
 				</div>
 			</div>
 		</div>

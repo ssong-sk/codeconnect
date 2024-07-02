@@ -37,7 +37,7 @@ public class HireController {
 
       hservice.hireInsert(hdto);
 
-      return "/hire/hiremain";
+      return "redirect:/hire/main";
    }
 
    @GetMapping("/hire/main")
@@ -159,7 +159,7 @@ public class HireController {
       mview.addObject("r_hp", r_hp);
       mview.addObject("r_email", r_email);
       mview.addObject("r_num",r_num);
-      mview.setViewName("hire/hiredetail");
+      mview.setViewName("/sub/hire/hiredetail");
       
       return mview;
    }

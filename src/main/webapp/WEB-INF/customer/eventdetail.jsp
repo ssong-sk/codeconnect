@@ -18,7 +18,7 @@
     }
     .nav {
         margin-top: 5px;
-        margin-left: 150px;
+        margin-left: 270px;
     }
     .nav ul {
         list-style-type: none;
@@ -89,7 +89,7 @@
 </script>
 </head>
 <body>
-<div style="max-width: 1000px; margin-top: 70px; margin-left: 260px; width: 80%;">
+<div style="max-width: 1000px; margin-top: 70px; margin-left: 370px; width: 80%;">
     <h4 style="color: gray; font-weight: bold;">고객센터</h4>
 </div>
 <nav class="nav">
@@ -110,13 +110,13 @@
         <span>동록일 : <fmt:formatDate value="${dto.cus_writetime}" pattern="yyyy-MM-dd"/></span>
     </div>
     <div class="detail-content">
-        ${dto.cus_content}
-        <c:if test="${not empty dto.cus_photo}">
-            <img src="${pageContext.request.contextPath}/customerimage/${dto.cus_photo}" alt="첨부 이미지" />
-        </c:if>
-    </div>
+	    ${dto.cus_content}
+	    <c:if test="${not empty dto.cus_photo}">
+	        <img src="${pageContext.request.contextPath}/customerimage/${dto.cus_photo}" alt="첨부 이미지" style="max-width: 970px; width: 100%; height: auto;" />
+	    </c:if>
+	</div>
     <div class="footer">
-        <c:if test="${sessionScope.myid == 'hyoyoung'}">
+        <c:if test="${sessionScope.myid == 'manager'}">
         	<button type="button" class="btn btn-secondary" onclick="location.href='${pageContext.request.contextPath}/customer/eventform'">글쓰기</button>
             <button type="button" class="btn btn-secondary" onclick="location.href='${pageContext.request.contextPath}/customer/eventupdateform/${dto.cus_num}'">수정</button>
         	<button type="button" class="btn btn-secondary" onclick="confirmDelete('${pageContext.request.contextPath}/customer/eventdelete/${dto.cus_num}')">삭제</button>

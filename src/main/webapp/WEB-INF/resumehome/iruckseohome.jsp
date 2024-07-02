@@ -283,7 +283,7 @@ svg {
                   <ul class="leftmenu">
                 <li>
                   <div class="menu-home">
-                    <a href="/resumehome/home"><b>My Home</b></a>
+                    <a href="/resumehome/home" style="color: #5494DB; background-color: rgba(84, 148, 219, 0.2);"><b>My Home</b></a>
                   </div>
                 </li>
                 
@@ -355,14 +355,14 @@ svg {
                    <div>
                      <ul>
                        <li>지원 완료
-                       <a href="/resumehome/supportform"><span>${supportCount}</span></a></li>
+                       <a href="/resumehome/supportform"><span>${resultCount}</span></a></li>
                      </ul>
                    </div>
                    
                    <div>
                      <ul>
                        <li>이력서 열람
-                       <a href="#"></a><span>${totalCount}</span></li>
+                       <a href="/resumehome/supportform"><span>${openCount}</a></span></li>
                      </ul>
                    </div>
                    

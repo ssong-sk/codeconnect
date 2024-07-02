@@ -794,17 +794,17 @@ input:disabled {
 										<li><button type="button" class="careeroption-btn2">7</button></li>
 										<li><button type="button" class="careeroption-btn2">8</button></li>
 										<li><button type="button" class="careeroption-btn2">9</button></li>
-										<li><button type="button" class="careeroption-btn">10</button></li>
-										<li><button type="button" class="careeroption-btn">11</button></li>
-										<li><button type="button" class="careeroption-btn">12</button></li>
-										<li><button type="button" class="careeroption-btn">13</button></li>
-										<li><button type="button" class="careeroption-btn">14</button></li>
-										<li><button type="button" class="careeroption-btn">15</button></li>
-										<li><button type="button" class="careeroption-btn">16</button></li>
-										<li><button type="button" class="careeroption-btn">17</button></li>
-										<li><button type="button" class="careeroption-btn">18</button></li>
-										<li><button type="button" class="careeroption-btn">19</button></li>
-										<li><button type="button" class="careeroption-btn">20</button></li>
+										<li><button type="button" class="careeroption-btn2">10</button></li>
+										<li><button type="button" class="careeroption-btn2">11</button></li>
+										<li><button type="button" class="careeroption-btn2">12</button></li>
+										<li><button type="button" class="careeroption-btn2">13</button></li>
+										<li><button type="button" class="careeroption-btn2">14</button></li>
+										<li><button type="button" class="careeroption-btn2">15</button></li>
+										<li><button type="button" class="careeroption-btn2">16</button></li>
+										<li><button type="button" class="careeroption-btn2">17</button></li>
+										<li><button type="button" class="careeroption-btn2">18</button></li>
+										<li><button type="button" class="careeroption-btn2">19</button></li>
+										<li><button type="button" class="careeroption-btn2">20</button></li>
 									</ul>
 							</section>
                         </section>
@@ -900,7 +900,7 @@ input:disabled {
 				   <span class="title">자격요건</span>
 				   <span><i class="bi bi-asterisk imstar"></i></span>
 				   <br>
-				   <div><pre style="font-family: IBM Plex Sans KR; overflow-x: hidden; font-size: 12pt;"><textarea required="required" name="h_require" class="textarea" placeholder="주요업무 및 전형절차를 함께 작성해주세요."></textarea></pre></div>
+				   <div><pre style="font-family: IBM Plex Sans KR; overflow-x: hidden; font-size: 12pt;"><textarea required="required" name="h_require" class="textarea" placeholder="내용 작성"></textarea></pre></div>
 				</div>
                      
 				<br><br>

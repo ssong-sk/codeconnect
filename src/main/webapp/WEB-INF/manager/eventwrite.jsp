@@ -167,9 +167,17 @@ a, a:active, a:hover, a:visited {
 }
 
 .form-container button {
-    width: 263px;
+    width: 100%;
     padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #2D65F2;
+    color: #fff;
     font-size: 16px;
+}
+
+.form-container button:hover {
+    background-color: #1E4BB8;
 }
 
 @media (max-width: 768px) {
@@ -198,10 +206,6 @@ a, a:active, a:hover, a:visited {
     height: auto;
     margin-top: 10px;
 }
-
-.imgdel {
-    cursor: pointer;
-}
 </style>
 </head>
 <body>
@@ -222,10 +226,10 @@ a, a:active, a:hover, a:visited {
 			        		<a href="company" role="tab" id="company" tabindex="-1" class="menu_item" aria-selected="false" aria-controls="company">
 			        		<span class="menu_text">COMPANY</span>
 			        		</a>
-			        		<a href="info" role="tab" id="info" tabindex="-1" class="menu_item" aria-selected="true" aria-controls="info">
+			        		<a href="info" role="tab" id="info" tabindex="-1" class="menu_item" aria-selected="false" aria-controls="info">
 			        		<span class="menu_text">INFO</span>
 			        		</a>
-			        		<a href="event" role="tab" id="event" tabindex="-1" class="menu_item" aria-selected="false" aria-controls="event">
+			        		<a href="event" role="tab" id="event" tabindex="-1" class="menu_item" aria-selected="true" aria-controls="event">
 			        		<span class="menu_text">EVENT</span>
 			        		</a>
 			        		<a href="edit" role="tab" id="block" tabindex="0" class="menu_item" aria-selected="false" aria-controls="block">
@@ -241,52 +245,34 @@ a, a:active, a:hover, a:visited {
 			        <main id="content" class="">
 			            <div class="dashboard">
 							<div class="form-container">
-							    <h2>게시글 수정</h2>
-							    <form action="infoupdate" method="post" enctype="multipart/form-data">
-							    	<input type="hidden" name="cus_num" value="${cusdto.cus_num }">
+							    <h2>게시글 작성</h2>
+							    <form action="eventinsert" method="post" enctype="multipart/form-data">
 							        <input type="hidden" id="cus_user_id" name="cus_user_id" value="${sessionScope.myid}">
 							        <input type="hidden" id="cus_top_type" name="cus_top_type" value="notice">
 							        <div>
 							            <label for="category">카테고리</label>
 							            <select id="category" name="cus_category" required>
-							                <option <c:if test="${cusdto.cus_category == '공지'}">selected</c:if> value="공지">공지</option>
-							                <option <c:if test="${cusdto.cus_category == '안내'}">selected</c:if> value="안내">안내</option>
-							                <option <c:if test="${cusdto.cus_category == '기타'}">selected</c:if> value="기타">기타</option>
+							                <option value="진행중 이벤트">진행중 이벤트</option>
+							                <option value="마감된 이벤트">마감된 이벤트</option>
+							                <option value="당첨자 발표">당첨자 발표</option>
 							            </select>
 							        </div>
 							        <div>
 							            <label for="title">제목</label>
-							            <input type="text" value="${cusdto.cus_title }" id="title" name="cus_title" required placeholder="제목을 입력해주세요">
+							            <input type="text" id="title" name="cus_title" required placeholder="제목을 입력해주세요">
 							        </div>
 							        <div>
 							            <label for="content">내용</label>
-							            <textarea id="content" name="cus_content" style="height: 360px; border: 1px solid #ced4da; padding: 10px; margin-top: 10px; overflow-y: auto;" placeholder="내용을 입력해주세요">
-							            	${cusdto.cus_content }
-							            </textarea>
+							            <textarea id="content" name="cus_content" style="height: 360px; border: 1px solid #ced4da; padding: 10px; margin-top: 10px; overflow-y: auto;" placeholder="내용을 입력해주세요"></textarea>
 							        </div>
-							        <div style="margin-top: 10px; display: flex;">
+							        <div style="margin-top: 10px;">
 							            <label for="upload" class="custom-file-upload"><i class="bi bi-images"></i> 이미지 첨부</label>
-							            <input type="file" id="upload" name="file" multiple>&nbsp;
-							            <span id="file-status" style="font-size: 14px; margin-top: 6px;">
-							            	<c:choose>
-										         <c:when test="${empty cusdto.cus_photo or cusdto.cus_photo == 'no'}">
-										            &nbsp;&nbsp;&nbsp;이미지 첨부 없음
-										        </c:when>
-										        <c:otherwise>
-										        	<div style="display: flex;">
-										            	&nbsp;&nbsp;&nbsp;${cusdto.cus_photo}&nbsp;
-										            	<span style="margin-top: 2px; color: #4876EF;"><i class="bi bi-x-lg imgdel"></i></span> 
-										            </div>
-										        </c:otherwise>
-										    </c:choose>
-							            </span>
-							            <input type="hidden" id="isDeleted" name="isDeleted" value="false">
+							            <input type="file" id="upload" name="upload" multiple>&nbsp;
+							            <span id="file-status" style="font-size: 14px;">이미지 첨부 없음</span>
 							        </div>
 							        <div id="image-container" style="margin-top: 10px;"></div>
 							        <div style="margin-top: 25px;">
-							            <button type="submit" class="btn btn-outline-primary">수정</button>
-							            <button type="button" class="btn btn-outline-danger" onclick="location.href='infodelete?cus_num=${cusdto.cus_num}'">삭제</button>
-							            <button type="button" class="btn btn-outline-dark" onclick="history.back()">취소</button>
+							            <button type="submit">게시글 등록</button>
 							        </div>
 							    </form>
 							</div>
@@ -336,14 +322,5 @@ a, a:active, a:hover, a:visited {
     function scrollToTop() {
         window.scrollTo(0, 0);
     }
-</script>
-<script type="text/javascript">
-$(document).ready(function() {
-    $('.imgdel').on('click', function() {
-        $('#upload').val('');
-        $('#file-status').html('&nbsp;&nbsp;&nbsp;이미지 첨부 없음');
-        $('#isDeleted').val('true');
-    });
-});
 </script>
 </html>

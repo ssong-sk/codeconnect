@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,16 +10,16 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-<title>1:1문의</title>
+<title>1:1 문의</title>
 <style type="text/css">
     body {
         font-family: 'IBM Plex Sans KR', sans-serif;
     }
-    
+
     /* 최상단 카테고리 nav */
     .nav {
         margin-top: 5px;
-        margin-left: 150px;
+        margin-left: 270px;
     }
     .nav ul {
         list-style-type: none;
@@ -48,24 +47,30 @@
         justify-content: center;
         align-items: center;
         width: 80%;
-        margin: 50px auto -30px auto; /* 아래쪽 간격을 10px로 줄임 */
+        margin: 50px auto -30px auto;
         gap: 870px;
     }
-
     /* 테이블 스타일 */
     table {
         width: 80%;
-        margin: 50px auto;
+        margin: 30px auto;
         border-collapse: collapse;
+        border-top: 2px solid #000;
     }
     th, td {
-        border: 1px solid #ddd;
-        padding: 8px;
+        padding: 15px;
         text-align: left;
     }
     td.center {
         text-align: center;
     }
+    tr:not(:first-child) td {
+        border-top: 1px solid #ddd;
+    }
+    th {
+        border-bottom: 2px solid #000;
+    }
+
     /* 페이징 스타일 */
     .pagination {
         display: flex;
@@ -110,7 +115,7 @@
 </script>
 </head>
 <body>
-<div style="max-width: 1000px; margin-top: 70px; margin-left: 260px; width: 80%;">
+<div style="max-width: 1000px; margin-top: 70px; margin-left: 370px; width: 80%;">
 	<h4 style="color: gray; font-weight: bold;">고객센터</h4>
 </div>
 <nav class="nav">
@@ -123,18 +128,50 @@
 
 <!-- 관리자(manager) 로그인시에만 글쓰기 버튼 보이게 & span,button 간격 조정-->
 <div class="top-section">
-    <span>총 &nbsp;${totalCount}&nbsp;건</span>
-    <c:if test="${sessionScope.myid == 'hyoyoung'}">
-        <button type="button" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/customer/inquiryform'">글쓰기</button>
-    </c:if>
-    <c:if test="${sessionScope.myid != 'hyoyoung'}">
-        <button type="button" class="btn btn-outline-primary" style="visibility: hidden;">글쓰기</button>
-    </c:if>
-
-	
+    <span style="margin-right: 940px;">총 &nbsp;${totalCount}&nbsp;건</span>
+    
 </div>
-
-
+<div style="max-width: 1000px; margin: 50px auto; width: 80%;">
+    <table class="table" style="font-size: 15px; vertical-align: middle; border-top: 2px solid gray; border-bottom: 2px solid #E2E2E2">
+         <tr align="center" style="height: 50px; border-bottom: 2px solid #C0C0C0;">
+             <th width="500">제목</th>
+             <th width="120">작성일</th>
+             <th width="100">답변상태</th>
+         </tr>
+         <!-- 1:1문의 게시판은 본인이 작성한 글만 보이도록 처리 -->
+         <c:if test="${sessionScope.myid != null}">
+		    <c:forEach var="inquiry" items="${list}">
+		        <c:if test="${sessionScope.myid == 'manager' || inquiry.cus_user_id == sessionScope.myid}">
+		            <tr style="height: 55px;">
+		                <td width="500" style="vertical-align: middle;">
+		                    <a href="${pageContext.request.contextPath}/customer/inquirydetail/${inquiry.cus_num}" style="text-decoration: none; color: black; margin-left: 5px;">
+		                        ${inquiry.cus_title}
+		                    </a>
+		                </td>
+		                <td class="center" width="120" style="vertical-align: middle; color: gray;">
+		                    <fmt:formatDate value="${inquiry.cus_writetime}" pattern="yyyy.MM.dd" />
+		                </td>
+		                <td class="center" width="100">
+		                    <c:choose>
+		                        <c:when test="${not empty inquiry.cus_answer}">
+		                            <span style="color: #0000FF;">답변 완료</span>
+		                        </c:when>
+		                        <c:otherwise>
+		                            답변 대기
+		                        </c:otherwise>
+		                    </c:choose>
+		                </td>
+		            </tr>
+		        </c:if>
+		    </c:forEach>
+		</c:if>
+    </table>
+</div>
+<div style="margin-left: 1350px; margin-top: -30px;">
+	<c:if test="${sessionScope.myid != null}">
+        <button type="button" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/customer/inquiryform'">문의하기</button>
+    </c:if>
+</div>
 
 <div class="pagination">
     <c:if test="${startPage > 1}">

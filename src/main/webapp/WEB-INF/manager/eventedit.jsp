@@ -222,10 +222,10 @@ a, a:active, a:hover, a:visited {
 			        		<a href="company" role="tab" id="company" tabindex="-1" class="menu_item" aria-selected="false" aria-controls="company">
 			        		<span class="menu_text">COMPANY</span>
 			        		</a>
-			        		<a href="info" role="tab" id="info" tabindex="-1" class="menu_item" aria-selected="true" aria-controls="info">
+			        		<a href="info" role="tab" id="info" tabindex="-1" class="menu_item" aria-selected="false" aria-controls="info">
 			        		<span class="menu_text">INFO</span>
 			        		</a>
-			        		<a href="event" role="tab" id="event" tabindex="-1" class="menu_item" aria-selected="false" aria-controls="event">
+			        		<a href="event" role="tab" id="event" tabindex="-1" class="menu_item" aria-selected="true" aria-controls="event">
 			        		<span class="menu_text">EVENT</span>
 			        		</a>
 			        		<a href="edit" role="tab" id="block" tabindex="0" class="menu_item" aria-selected="false" aria-controls="block">
@@ -242,16 +242,16 @@ a, a:active, a:hover, a:visited {
 			            <div class="dashboard">
 							<div class="form-container">
 							    <h2>게시글 수정</h2>
-							    <form action="infoupdate" method="post" enctype="multipart/form-data">
+							    <form action="eventupdate" method="post" enctype="multipart/form-data">
 							    	<input type="hidden" name="cus_num" value="${cusdto.cus_num }">
 							        <input type="hidden" id="cus_user_id" name="cus_user_id" value="${sessionScope.myid}">
 							        <input type="hidden" id="cus_top_type" name="cus_top_type" value="notice">
 							        <div>
 							            <label for="category">카테고리</label>
 							            <select id="category" name="cus_category" required>
-							                <option <c:if test="${cusdto.cus_category == '공지'}">selected</c:if> value="공지">공지</option>
-							                <option <c:if test="${cusdto.cus_category == '안내'}">selected</c:if> value="안내">안내</option>
-							                <option <c:if test="${cusdto.cus_category == '기타'}">selected</c:if> value="기타">기타</option>
+							                <option <c:if test="${cusdto.cus_category == '진행중 이벤트'}">selected</c:if> value="진행중 이벤트">진행중 이벤트</option>
+							                <option <c:if test="${cusdto.cus_category == '마감된 이벤트'}">selected</c:if> value="마감된 이벤트">마감된 이벤트</option>
+							                <option <c:if test="${cusdto.cus_category == '당첨자 발표'}">selected</c:if> value="당첨자 발표">당첨자 발표</option>
 							            </select>
 							        </div>
 							        <div>
@@ -285,7 +285,7 @@ a, a:active, a:hover, a:visited {
 							        <div id="image-container" style="margin-top: 10px;"></div>
 							        <div style="margin-top: 25px;">
 							            <button type="submit" class="btn btn-outline-primary">수정</button>
-							            <button type="button" class="btn btn-outline-danger" onclick="location.href='infodelete?cus_num=${cusdto.cus_num}'">삭제</button>
+							            <button type="button" class="btn btn-outline-danger" onclick="location.href='eventdelete?cus_num=${cusdto.cus_num}'">삭제</button>
 							            <button type="button" class="btn btn-outline-dark" onclick="history.back()">취소</button>
 							        </div>
 							    </form>

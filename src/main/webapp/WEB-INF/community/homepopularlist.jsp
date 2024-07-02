@@ -17,8 +17,8 @@
     
     /* 최상단 카테고리 nav */
     .nav {
-        margin-top: 50px;
-        margin-left: 150px;
+        margin-top: 40px;
+        margin-left: 250px;
     }
     .nav ul {
         list-style-type: none;
@@ -85,7 +85,7 @@
         border-radius: 5px;
     }
     .list_qna {
-        max-width: 1200px;
+        max-width: 1100px;
         margin: 30px auto;
     }
     .qna-list {
@@ -154,7 +154,7 @@
     $(document).ready(function(){
         // content 말줄임표 처리
         $('.content_text').each(function(){
-            var maxLength = 96;
+            var maxLength = 90;
             var text = $(this).text();
             if (text.length > maxLength) {
                 var cut = text.substring(0, maxLength) + '...';
@@ -172,7 +172,7 @@
         <a class="nav-link" href="${root}/community/interviewlist">현직자 인터뷰</a>
     </ul>
 </nav>
-<div style="max-width: 1200px; margin: 0 auto;">
+<div style="max-width: 1100px; margin: 0 auto;">
     <div class="container2">
         <div class="linkgo" style="width: 100%;">
             <div>
@@ -183,16 +183,16 @@
         </div>
     </div>
 </div>
-<div class="container d-flex justify-content-end" style="margin-top: -12px;">
+<!-- <div class="container d-flex justify-content-end" style="margin-top: -12px;">
     <div class="d-flex search">
         <input class="form-control me-2" type="search" placeholder="다른 사람들은 어떤 이야기를 할까?" aria-label="Search" style="width: 350px;">
         <button type="button" class="btn btn-outline-primary">
             <span class="blind">검색</span>
         </button>
     </div>
-</div>
+</div> -->
 
-<div class="list_qna" style="max-width: 1200px; margin: 70px auto;">
+<div class="list_qna" style="max-width: 1100px; margin: 70px auto;">
     <ul class="qna-list">
 	    <c:choose>
 	        <c:when test="${not empty popularPosts}">

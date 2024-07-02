@@ -95,10 +95,11 @@
   }
   
   .condition-notice {
-    width: 100%;
-    height: 130px;
     background-color: #F4F6FA;
-    font-size: 0.8em;
+    font-size: 0.7em;
+    margin-top: 8%;
+    margin-bottom: 5%;
+    padding: 10px 20px;
   }
 
 </style>
@@ -131,7 +132,7 @@
 				    
 				    <li>
 				      <div class="menu-item">
-				        <a href="/resumehome/conditionform">이력서 현황</a>
+				        <a href="/resumehome/conditionform" style="color: #5494DB; background-color: rgba(84, 148, 219, 0.2);">이력서 현황</a>
 				      </div>
 				    </li>
 				    
@@ -186,8 +187,6 @@
 			                </tr>
 			              </c:if>
 			              
-			              <tr><td><br></td></tr>
-			              
 			              <c:if test="${totalCount>0 }">
 			                <c:forEach var="pe" items="${pelist }">
 			                <tr>
@@ -211,7 +210,13 @@
 							
 							<tr>
 							    <!-- 두 번째 열: 희망연봉과 희망지역 -->
-							    <td style="font-size: 0.8em;"><i class="bi bi-coin"></i> 희망연봉: ${pe.ho_check}</td>
+							    <c:if test="${pe.ho_check == '면접 후 결정'}">
+							      <td style="font-size: 0.8em;"><i class="bi bi-coin"></i> 희망연봉: ${pe.ho_check}</td>
+							    </c:if>
+							    <c:if test="${pe.ho_check != '면접 후 결정'}">
+							      <td style="font-size: 0.8em;"><i class="bi bi-coin"></i> 희망연봉: ${pe.ho_check} 만원</td>
+							    </c:if>
+							    
 							    <td style="font-size: 0.8em;"><i class="bi bi-geo-alt"></i> 희망지역: ${pe.ho_addr}</td>
 							</tr>
 							
@@ -226,7 +231,6 @@
 							    </td>
 							</tr>
 			                  
-			                  <tr><td><br></td></tr>
 			                  
 		                      <tr>
 			                    <td colspan="4"><hr></td> <!-- 각 섹션 사이에 구분선 추가 -->
@@ -236,12 +240,47 @@
 		              </table>
 		            </div>
 
+                    <!-- 페이징 -->
+				     <div style="width: 100%; margin-top: 7%; margin-bottom: 5%;">
+				       <ul class="pagination justify-content-center">
+				          <!--  이전-->
+				          <c:if test="${startPage>1 }">
+				             <li class="page-item ">
+				           <a class="page-link" href="conditionform?currentPage=${startPage-1 }" style="color: black;">이전</a>
+				          </li>
+				          </c:if>
+				          
+				          <!--페이지번호  -->
+				          <c:forEach var="pp"  begin="${startPage }"  end="${endPage }">
+				            <c:if test="${currentPage==pp }">
+				                 <li class="page-item active">
+				               <a class="page-link" href="conditionform?currentPage=${pp }">${pp }</a>
+				              </li>
+				            </c:if>
+				            
+				            <c:if test="${currentPage!=pp }">
+				               <li class="page-item">
+				               <a class="page-link" href="conditionform?currentPage=${pp }">${pp }</a>
+				               </li>
+				            </c:if>
+				          </c:forEach>
+				          
+				          
+				          <!-- 다음 -->
+				          <c:if test="${endPage<totalPage }">
+				             <li class="page-item">
+				               <a  class="page-link" href="supportform?currentPage=${endPage+1 }"
+				               style="color: black;">다음</a>
+				            </li>
+				          </c:if>
+				       </ul>
+				     </div>
 		            <div class="condition-notice">
-		              <div style="margin: 30px 30px;">
-			              <span><i class="bi bi-exclamation-circle"></i>&nbsp;&nbsp;<b>유의사항</b></span><br>
-			              <p>- 이력서는 최대 10개까지 등록 가능합니다.</p>
-			              <p>- '입사지원 내역'건수는 최근 1년간 내역에 대해 확인 가능합니다.</p>
-			              <p>- 수정, 삭제 기능은 이력서 우측 버튼을 누르면 확인하실 수 있습니다.(이력서는 부분 삭제 불가)</p>
+		              <div>
+			              <div style="font-size: 1.2em;"><i class="bi bi-exclamation-circle"></i>&nbsp;&nbsp;<b>유의사항</b></div><br>
+			              <div>- 이력서는 최대 10개까지 등록 가능합니다.</div>
+			              <div>- '입사지원 내역'건수는 최근 1년간 내역에 대해 확인 가능합니다.</div>
+			              <div>- 수정, 삭제 기능은 이력서 우측 버튼을 누르면 확인하실 수 있습니다.(이력서는 부분 삭제 불가)</div>
 		              </div>
 		            </div>
 		            

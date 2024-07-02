@@ -17,8 +17,8 @@
     
     /* 최상단 카테고리 nav */
     .nav {
-        margin-top: 50px;
-        margin-left: 150px;
+        margin-top: 40px;
+        margin-left: 250px;
     }
     .nav ul {
         list-style-type: none;
@@ -52,7 +52,7 @@
         align-items: center;
         justify-content: space-between;
         margin-bottom: 20px;
-        max-width: 1200px;
+        max-width: 900px;
         margin: 50px auto;
     }
     .container h2 {
@@ -120,7 +120,7 @@
         border: 1px solid #d7dce5;
         border-radius: 10px;
         height: 65px;
-        width: 180px;
+        width: 165px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -155,7 +155,7 @@
 <script type="text/javascript">
     $(document).ready(function(){
         $('.title_link').each(function(){
-            var maxLength = 40;
+            var maxLength = 28;
             var text = $(this).text();
             if (text.length > maxLength) {
                 var cut = text.substring(0, maxLength) + '...';
@@ -181,12 +181,12 @@
         <li><a class="nav-link" href="${root}/community/interviewlist" id="interviewLink">현직자 인터뷰</a></li>
     </ul>
 </nav>
-<div class="commutitle" style="max-width: 1200px; margin: 50px auto;">
+<div class="commutitle" style="max-width: 1100px; margin: 60px auto;">
     <div class="container">
         <div class="linkgo d-flex justify-content-between" style="width: 100%;">
             <a href="${root}/community/hometotalpost">
                 <h2>
-                    <b>실시간 전체글 ${totalCount}개<i class="bi bi-chevron-right"></i></b>
+                    <b style="font-size: 25px;">실시간 전체글 ${totalCount}개<i class="bi bi-chevron-right"></i></b>
                 </h2>
             </a>
             <!-- <div class="d-flex search">
@@ -199,7 +199,7 @@
         </div>
     </div>
     <div class="section_inner">
-	    <div class="wrap_title d-flex justify-content-between align-items-center" style="margin-bottom: 20px;">
+	    <div class="wrap_title d-flex justify-content-between align-items-center" style="margin-bottom: 25px;">
 	        <a href="${root}/community/homepopularlist" style="margin-top: 25px;">
 	            <b class="hot">HOT</b> &nbsp;<b>이번주 전체 인기글 🔥</b>
 	        </a>
@@ -212,7 +212,7 @@
 	                <c:forEach var="dto" items="${popularPosts}">
 	                    <c:if test="${dto.com_post_type == 'home'}">
 	                        <li class="item">
-	                            <a class="title_link" href="${root}/community/homedetail?com_num=${dto.com_num}" style="margin-left: 1px;">${dto.com_title}</a>
+	                            <a class="title_link1" href="${root}/community/homedetail?com_num=${dto.com_num}" style="margin-left: 1px; margin-top: 6px;">${dto.com_title}</a>
 	                            <div class="details" style="color: gray; font-size: 23px;">
 	                                <span class="comment"><i class="bi bi-chat-left"></i>&nbsp;${dto.com_commentcount}</span>
 	                                <span class="views"><i class="bi bi-eye"></i>&nbsp;${dto.com_readcount}</span>&nbsp;
@@ -233,10 +233,10 @@
 
 </div>
 
-<div style="max-width: 1200px; margin: 60px auto;">
+<div style="max-width: 1100px; margin: 60px auto;">
     <div class="container2">
         <div class="linkgo d-flex justify-content-between" style="width: 100%;">
-            <h2><b>주제별 커뮤니티</b></h2>
+            <h2><b style="font-size: 25px;">주제별 커뮤니티</b></h2>
         </div>
         <div class="category" style="margin-top: 50px;">
             <ul class="list_category js-category">
@@ -347,7 +347,7 @@
             </div>
             <div>
                 <c:if test="${sessionScope.loginok!=null }">
-                    <button type="button" class="btn btn-outline-primary" style="margin-left: 1100px;"
+                    <button type="button" class="btn btn-outline-primary" style="margin-left: 1000px;"
                     onclick="location.href='${pageContext.request.contextPath}/community/homeform'">글쓰기</button>
                 </c:if>
             </div>
