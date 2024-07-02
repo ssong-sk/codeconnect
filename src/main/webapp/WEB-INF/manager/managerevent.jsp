@@ -203,14 +203,7 @@ a, a:active, a:hover, a:visited {
 					            </tr>
 					            <tr align="center">
 					                <td>NO</td>
-					                <td class="dropdown">CATEGORY
-					                   <div class="dropdown-content">
-					                       <a href="#" data-category="진행중 이벤트">진행중 이벤트</a>
-					                       <a href="#" data-category="마감된 이벤트">마감된 이벤트</a>
-					                       <a href="#" data-category="당첨자 발표">당첨자 발표</a>
-					                       <a href="#" data-category="CATEGORY">전체</a>
-					                   </div>
-					                </td>
+					                <td>CATEGORY</td>
 					                <td>TITLE</td>
 					                <td>DAY</td>
 					                <td>BLOCK</td>
@@ -288,41 +281,5 @@ a, a:active, a:hover, a:visited {
 		$("a.menu_item").attr('aria-selected', 'false');
         $(this).attr('aria-selected', 'true');
 	})
-</script>
-
-<script type="text/javascript">
-$(document).ready(function() {
-    $("td.dropdown").on("click", function(event) {
-        event.stopPropagation();
-        $(".dropdown-content").toggle();
-    });
-    
-    $("td.dropdown").click(function() {
-        $(".dropdown-content").show();
-    });
-
-    $(".dropdown-content a").on("click", function(e) {
-        e.preventDefault();
-        var category = $(this).text();
-        $("td.dropdown").text(category);
-        filterCategory(category);
-        $(".dropdown-content").hide();
-    });
-
-    function filterCategory(category) {
-        $("#eventTableBody tr").each(function() {
-            var rowCategory = $(this).data("category");
-            if (category === "CATEGORY" || rowCategory === category) {
-                $(this).show();
-            } else {
-                $(this).hide();
-            }
-        });
-    }
-    
-    $(".dropdown-content").on("click", function(event) {
-        event.stopPropagation();
-    });
-});
 </script>
 </html>
