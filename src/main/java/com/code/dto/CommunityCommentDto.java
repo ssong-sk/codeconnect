@@ -13,7 +13,7 @@ import lombok.Data;
 public class CommunityCommentDto {
 
     private int cc_idx;
-    private int cc_num; // FK-게시글 번호(com_num)
+    private int cc_num; //FK-게시글 번호(com_num)
     private String cc_user_id;
     private String cc_nickname;
     private String cc_content;

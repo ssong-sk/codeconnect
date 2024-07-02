@@ -334,7 +334,8 @@
         <div class="meta-left">
             <img class="memberimage" src="/communityimage/no_image.png" alt="User Image">
             <div class="details">
-                <span>${userNickname }</span>
+                <%-- <span>${userNickname }</span> --%>
+                <span>${dto.com_nickname}</span> <!-- 작성자의 닉네임 표시 -->
                 <span><fmt:formatDate value="${dto.com_writetime}" pattern="yyyy-MM-dd HH:mm" /></span>
             </div>
         </div>

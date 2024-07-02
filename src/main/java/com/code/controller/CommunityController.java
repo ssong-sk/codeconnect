@@ -123,8 +123,6 @@ public class CommunityController {
     }
 
 
-
-
     @GetMapping("/community/homeupdateform")
     public String updateform(@RequestParam("com_num") String comNum, Model model) {
         int comNumInt = Integer.parseInt(comNum);
@@ -173,16 +171,16 @@ public class CommunityController {
     @GetMapping("/community/homedetail")
     public String detail(@RequestParam("com_num") int comNum, HttpSession session, Model model) {
         CommunityDto dto = service.getData(comNum);
-        //조회수 증가 로직 추가
+        // 조회수 증가 로직 추가
         service.increaseReadCount(comNum);
 
-        //content 줄바꿈 로직 추가
+        // content 줄바꿈 로직 추가
         dto.setCom_content(dto.getCom_content().replace("\n", "<br/>"));
 
-        //세션에서 사용자 닉네임을 가져와 모델에 추가
+        // 세션에서 사용자 닉네임을 가져와 모델에 추가
         String userNickname = (String) session.getAttribute("userNickname");
         if (userNickname == null) {
-            //세션에 닉네임이 없으면 데이터베이스에서 조회하여 설정
+            // 세션에 닉네임이 없으면 데이터베이스에서 조회하여 설정
             String userId = (String) session.getAttribute("myid");
             if (userId != null) {
                 RegisterDto userDto = mapperinter.getDataById(userId);
@@ -193,7 +191,7 @@ public class CommunityController {
             }
         }
 
-        //userNickname이 여전히 null인 경우 기본 닉네임 설정
+        // userNickname이 여전히 null인 경우 기본 닉네임 설정
         if (userNickname == null) {
             userNickname = dto.getCom_nickname(); // 기본 닉네임 설정
         }
@@ -203,7 +201,7 @@ public class CommunityController {
 
         return "/community/homedetail"; // "community/homedetail.jsp"로 매핑
     }
-    
+
     
     //homedetail 페이지 좋아요 버튼
     @PostMapping("/community/updateLike")
@@ -396,21 +394,6 @@ public class CommunityController {
         return mview;
     }
 
-    /*
-    @GetMapping("/community/interviewform")
-    public String interviewForm(HttpSession session, Model model) {
-        // 회원 정보를 가져와서 모델에 추가
-        String userId = (String) session.getAttribute("myid");
-        if (userId != null) {
-            RegisterDto userDto = mapperinter.getDataById(userId);
-            if (userDto != null) {
-                model.addAttribute("username", userDto.getR_name());
-                model.addAttribute("userNickname", userDto.getR_nickname()); // 닉네임 추가
-            }
-        }
-        return "community/interviewform";
-    }
-    */
     @GetMapping("/community/interviewform")
     public String interviewForm(HttpSession session, Model model) {
         // 회원 정보를 가져와서 모델에 추가
@@ -425,8 +408,6 @@ public class CommunityController {
         }
         return "/community/interviewform";
     }
-
-
 
     
     @PostMapping("/community/interviewinsert")
@@ -478,10 +459,6 @@ public class CommunityController {
     }
 
 
-
-
-
-
     @GetMapping("/community/interviewdetail")
     public String interviewDetail(@RequestParam int com_num, Model model) {
     	
@@ -500,14 +477,6 @@ public class CommunityController {
         return "redirect:" + redirectUrl; // 삭제 후 전체 목록으로 리다이렉트
     }
 
-    /*
-    @GetMapping("/community/interviewupdateform")
-    public String interviewUpdateForm(@RequestParam("com_num") int comNum, Model model) {
-        CommunityDto dto = service.getData(comNum);
-        model.addAttribute("dto", dto);
-        return "community/interviewupdateform";
-    }
-    */
     @GetMapping("/community/interviewupdateform")
     public String interviewUpdateForm(@RequestParam("com_num") int comNum, Model model, HttpSession session) {
         CommunityDto dto = service.getData(comNum);
