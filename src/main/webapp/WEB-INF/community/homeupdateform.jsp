@@ -16,7 +16,7 @@
 <title>게시글 수정</title>
 <style>
     body {
-        display: flex;
+        /* display: flex; */
         flex-direction: column;
         justify-content: center;
         align-items: center;
@@ -35,7 +35,8 @@
         text-decoration: none;
         display: inline-block;
         margin-bottom: 8px;
-        margin-left: -694px;
+        margin-left: 550px;
+        margin-top: 50px;
     }
     .form-container {
         background: #fff;
@@ -163,7 +164,7 @@
 </head>
 <body>
 <a href="${pageContext.request.contextPath}/community/homelist" onclick="scrollToTop()" class="back_button"><i class="bi bi-chevron-left"></i>&nbsp;이전페이지</a>
-<div class="form-container">
+<div class="form-container" style="margin-bottom: 70px;">
     <h2>게시글 수정</h2>
     <form action="${pageContext.request.contextPath}/community/homeupdate" method="post" enctype="multipart/form-data" onsubmit="submitForm(event)">
         <input type="hidden" id="num" name="com_num" value="${dto.com_num}">

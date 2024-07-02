@@ -87,7 +87,7 @@
   <input type="hidden" name="existingPhotos" value="${dto.com_photo}">
   <input type="hidden" name="existingMainPhoto" value="${dto.com_main_photo}">
   <input type="hidden" name="com_user_id" value="${dto.com_user_id}">
-  <input type="hidden" name="com_nickname" value="${dto.com_nickname}">
+  <input type="hidden" name="com_nickname" value="${sessionScope.userNickname}">
   <input type="hidden" name="com_post_type" value="interview">
   <table class="table table-bordered">
      <tr>

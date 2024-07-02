@@ -82,7 +82,7 @@
 <div style="margin: 50px 100px; width: 700px;">
 <form action="/community/interviewinsert" method="post" enctype="multipart/form-data">
   <input type="hidden" name="com_user_id" value="${sessionScope.myid}">
-  <input type="hidden" name="com_nickname" value="${userNickname}">
+  <input type="hidden" name="com_nickname" value="${sessionScope.userNickname}">
   <input type="hidden" name="com_main_photo" id="com_main_photo">
 	<table class="table table-bordered">
      <tr>

@@ -86,6 +86,17 @@
 	        location.href = url;
 	    }
 	}
+	
+	$(document).ready(function() {
+	    var currentUrl = window.location.pathname;
+	    if (currentUrl.includes('/customer/noticelist') || currentUrl.includes('/customer/noticedetail')) {
+	        $('#noticeLink').addClass('active');
+	    } else if (currentUrl.includes('/customer/eventlist') || currentUrl.includes('/customer/eventdetail')) {
+	        $('#eventLink').addClass('active');
+	    } else if (currentUrl.includes('/customer/inquirylist') || currentUrl.includes('/customer/inquirydetail')) {
+	        $('#inquiryLink').addClass('active');
+	    }
+	});
 </script>
 </head>
 <body>
@@ -94,12 +105,12 @@
 </div>
 <nav class="nav">
     <ul>
-        <a class="nav-link ${fn:contains(pageContext.request.requestURI, '/customer/noticelist') || fn:contains(pageContext.request.requestURI, '/customer/noticedetail') ? 'active' : ''}" href="${pageContext.request.contextPath}/customer/noticelist">공지사항</a>
-        <a class="nav-link ${fn:contains(pageContext.request.requestURI, '/customer/eventlist') || fn:contains(pageContext.request.requestURI, '/customer/eventdetail') ? 'active' : ''}" href="${pageContext.request.contextPath}/customer/eventlist">이벤트</a>
-        <a class="nav-link ${fn:contains(pageContext.request.requestURI, '/customer/inquirylist') ? 'active' : ''}" href="${root}/customer/inquirylist">1:1문의</a>
+        <a class="nav-link" id="noticeLink" href="${pageContext.request.contextPath}/customer/noticelist">공지사항</a>
+        <a class="nav-link" id="eventLink" href="${pageContext.request.contextPath}/customer/eventlist">이벤트</a>
+        <a class="nav-link" id="inquiryLink" href="${root}/customer/inquirylist">1:1문의</a>
     </ul>
 </nav>
-<div class="container">
+<div class="container" style=" max-width: 1000px;">
     <div class="detail-title">
         ${dto.cus_title}
     </div>
@@ -107,21 +118,21 @@
         <span>대상 : ${dto.cus_target}</span><br>
         <span>이벤트 기간 : <fmt:formatDate value="${dto.cus_startday}" pattern="yyyy-MM-dd"/></span>~&nbsp;
         <span><fmt:formatDate value="${dto.cus_endday}" pattern="yyyy-MM-dd"/></span><br>
-        <span>동록일 : <fmt:formatDate value="${dto.cus_writetime}" pattern="yyyy-MM-dd"/></span>
+        <span>등록일 : <fmt:formatDate value="${dto.cus_writetime}" pattern="yyyy-MM-dd"/></span>
     </div>
     <div class="detail-content">
 	    ${dto.cus_content}
 	    <c:if test="${not empty dto.cus_photo}">
-	        <img src="${pageContext.request.contextPath}/customerimage/${dto.cus_photo}" alt="첨부 이미지" style="max-width: 970px; width: 100%; height: auto;" />
+	        <img src="${pageContext.request.contextPath}/customerimage/${dto.cus_photo}" alt="첨부 이미지" style="display: block; max-width: 940px; width: 92%; height: auto; margin: 0 auto;"/>
 	    </c:if>
 	</div>
     <div class="footer">
         <c:if test="${sessionScope.myid == 'manager'}">
-        	<button type="button" class="btn btn-secondary" onclick="location.href='${pageContext.request.contextPath}/customer/eventform'">글쓰기</button>
-            <button type="button" class="btn btn-secondary" onclick="location.href='${pageContext.request.contextPath}/customer/eventupdateform/${dto.cus_num}'">수정</button>
-        	<button type="button" class="btn btn-secondary" onclick="confirmDelete('${pageContext.request.contextPath}/customer/eventdelete/${dto.cus_num}')">삭제</button>
+        	<button type="button" class="btn btn-secondary btn-sm" onclick="location.href='${pageContext.request.contextPath}/customer/eventform'">글쓰기</button>
+            <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='${pageContext.request.contextPath}/customer/eventupdateform/${dto.cus_num}'">수정</button>
+        	<button type="button" class="btn btn-secondary btn-sm" onclick="confirmDelete('${pageContext.request.contextPath}/customer/eventdelete/${dto.cus_num}')">삭제</button>
         </c:if>
-        <button type="button" class="btn btn-secondary" onclick="location.href='${pageContext.request.contextPath}/customer/eventlist'">목록</button>
+        <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='${pageContext.request.contextPath}/customer/eventlist'">목록</button>
     </div>
 </div>
 </body>

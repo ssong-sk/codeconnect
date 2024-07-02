@@ -52,7 +52,7 @@ public class CustomerController {
     
     @GetMapping("/customer/noticeform")
     public String noticeForm() {
-        return "customer/noticeform";
+        return "/customer/noticeform";
     }
 
     
@@ -126,7 +126,7 @@ public class CustomerController {
         }
 
         mview.addObject("dto", dto);
-        mview.setViewName("customer/noticeupdateform");
+        mview.setViewName("/customer/noticeupdateform");
         return mview;
     }
     
@@ -278,7 +278,7 @@ public class CustomerController {
 
     @GetMapping("/customer/eventform")
     public String eventForm() {
-        return "customer/eventform";
+        return "/customer/eventform";
     }
 
     // 이벤트 삽입 메서드
@@ -329,7 +329,7 @@ public class CustomerController {
         }
 
         mview.addObject("dto", dto);
-        mview.setViewName("customer/eventdetail");
+        mview.setViewName("/customer/eventdetail");
         return mview;
     }
 
@@ -350,7 +350,7 @@ public class CustomerController {
         }
 
         mview.addObject("dto", dto);
-        mview.setViewName("customer/eventupdateform");
+        mview.setViewName("/customer/eventupdateform");
         return mview;
     }
     
@@ -469,7 +469,7 @@ public class CustomerController {
 
     @GetMapping("/customer/inquiryform")
     public String inquiryForm() {
-        return "customer/inquiryform";
+        return "/customer/inquiryform";
     }
 
     @PostMapping("/customer/inquiryinsert")
@@ -516,7 +516,7 @@ public class CustomerController {
         }
 
         mview.addObject("dto", dto);
-        mview.setViewName("customer/inquirydetail");
+        mview.setViewName("/customer/inquirydetail");
         return mview;
     }
 
@@ -539,7 +539,7 @@ public class CustomerController {
         }
 
         mview.addObject("dto", dto);
-        mview.setViewName("customer/inquiryupdateform");
+        mview.setViewName("/customer/inquiryupdateform");
         return mview;
     }
 
