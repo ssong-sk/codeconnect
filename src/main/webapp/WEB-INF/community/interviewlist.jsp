@@ -84,9 +84,11 @@
         flex: 1 1 calc(33.333% - 20px);
         border: 1px solid #eaeaea;
         padding: 20px;
-        padding-top: 45px;
-        padding-bottom: 45px;
         border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 300px; /* 높이 일정하게 유지 */
     }
     .interview-item img {
         width: 100%;
@@ -99,6 +101,7 @@
     .interview-item .details {
         color: gray;
         font-size: 14px;
+        margin-top: auto; /* details 부분을 아래로 고정 */
     }
     .input-group {
         margin-top: 30px;
@@ -107,12 +110,9 @@
         align-items: center;
         width: 100%;
     }
-    /* 인터뷰 리스트 내용 */
     .details {
-        color: gray;
-        font-size: 14px;
         display: flex;
-        justify-content: space-between; /* 양 끝으로 배치 */
+        justify-content: space-between;
         position: relative;
     }
     .details div:last-child {
@@ -129,21 +129,18 @@
     .iphoto img {
         width: 100%;
         height: 100%;
-        border-radius: 50%; /* 완전한 동그라미 모양으로 만들기 위해 추가 */
-        object-fit: cover; /* 이미지가 컨테이너를 완전히 채우도록 하기 위해 추가 */
+        border-radius: 50%;
+        object-fit: cover;
     }
     .details_list {
         margin-left: 20px;
     }
-    
-    /* 페이징 스타일 */
     .pagination {
         display: flex;
         justify-content: center;
         margin-top: 40px;
         margin-bottom: 50px;
     }
-
     .pagination a {
         padding: 10px 15px;
         margin: 0 5px;
@@ -153,11 +150,9 @@
         border-radius: 5px;
         border: none;
     }
-
     .pagination a:hover {
         background-color: #e9ecef;
     }
-
     .pagination a.active {
         border: 1px solid #dee2e6;
         background-color: white;
@@ -180,8 +175,6 @@
 <body>
 <nav class="nav">
     <ul>
-        <%-- <a class="nav-link" href="${root}/community/homelist">홈</a>
-        <a class="nav-link" href="${root}/community/interviewlist?category=전체">현직자 인터뷰</a> --%>
         <li><a class="nav-link" href="${root}/community/homelist" id="homeLink">홈</a></li>
         <li><a class="nav-link" href="${root}/community/interviewlist?category=전체" id="interviewLink">현직자 인터뷰</a></li>
     </ul>
@@ -218,10 +211,6 @@
         <div style="font-size: 20px;">
             <b>총 <span>${totalCount}</span>건</b>
         </div>
-        <!-- <div style="display: flex; gap: 10px; height: 40px;">
-            <input type="text" class="form-control" placeholder="직무 또는 기업명을 입력하세요">
-            <button class="btn btn-primary" type="button" style="width: 75px;">검색</button>
-        </div> -->
     </div>
     
     <div class="interview-list">
@@ -231,8 +220,8 @@
                     <a href="${pageContext.request.contextPath}/community/interviewdetail?com_num=${dto.com_num}" class="interview-item" style="text-decoration: none; color: inherit;">
                         <b style="color: blue; margin-left: 15px;">${dto.com_category}</b>
                         <br><br>
-                        <h5 style="margin-left: 15px;">${dto.com_title}</h5><br><br><br>
-                        <div class="details">
+                        <h5 style="margin-left: 15px; margin-top: -15px; font-size: 19px;">${dto.com_title}</h5>
+                        <div class="details" style="margin-bottom: 20px;">
                             <div class="details_list">
                                 <p>${dto.com_companyname}</p>
                                 <p>${dto.com_name}</p>

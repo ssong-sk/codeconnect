@@ -74,8 +74,8 @@
         gap: 10px.
     }
     .totalpostgo a {
-        margin-top: 20px;
-        margin-left: 536px;
+        margin-top: 40px;
+        margin-left: 555px;
         background-color: #ffffff;
         color: #5c667b;
         border: 1px solid #ddd;
@@ -382,7 +382,7 @@
 
 <!-- comment board -->
 <div class="comment-section" style="width: 900px;">
-    <h5>댓글</h5>
+    <h5 style="margin-left: 5px; margin-bottom: 5px;">댓글</h5>
     <div class="input-group mb-3">
         <c:choose>
         <c:when test="${sessionScope.loginok == 'yes'}">
@@ -469,7 +469,7 @@
   </div>
 </div>
 
-<div class="homelistgo" style="margin-bottom: 30px; margin-left: -20px;">
+<div class="homelistgo" style="margin-bottom: 40px; margin-left: -10px;">
     <a href="${pageContext.request.contextPath}/community/homelist"><span>목록<i class="bi bi-chevron-right"></i></span></a>
 </div>
 </body>

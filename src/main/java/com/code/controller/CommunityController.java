@@ -130,7 +130,7 @@ public class CommunityController {
         int comNumInt = Integer.parseInt(comNum);
         CommunityDto dto = service.getData(comNumInt);
         model.addAttribute("dto", dto);
-        return "community/homeupdateform"; // "community/homeupdateform.jsp"로 매핑
+        return "/community/homeupdateform"; // "community/homeupdateform.jsp"로 매핑
     }
 
     @PostMapping("/community/homeupdate")
@@ -251,7 +251,7 @@ public class CommunityController {
         model.addAttribute("userNickname", nickname);
         model.addAttribute("name", name);
         model.addAttribute("userid", userid);
-        return "community/homeform"; //"community/homeform.jsp"로 매핑
+        return "/community/homeform"; //"community/homeform.jsp"로 매핑
     }
 
     
@@ -396,7 +396,7 @@ public class CommunityController {
         return mview;
     }
 
-
+    /*
     @GetMapping("/community/interviewform")
     public String interviewForm(HttpSession session, Model model) {
         // 회원 정보를 가져와서 모델에 추가
@@ -410,6 +410,23 @@ public class CommunityController {
         }
         return "community/interviewform";
     }
+    */
+    @GetMapping("/community/interviewform")
+    public String interviewForm(HttpSession session, Model model) {
+        // 회원 정보를 가져와서 모델에 추가
+        String userId = (String) session.getAttribute("myid");
+        if (userId != null) {
+            RegisterDto userDto = mapperinter.getDataById(userId);
+            if (userDto != null) {
+                model.addAttribute("username", userDto.getR_name());
+                model.addAttribute("userNickname", userDto.getR_nickname()); // 닉네임 추가
+                session.setAttribute("userNickname", userDto.getR_nickname()); // 세션에 닉네임 저장
+            }
+        }
+        return "/community/interviewform";
+    }
+
+
 
     
     @PostMapping("/community/interviewinsert")
@@ -445,6 +462,13 @@ public class CommunityController {
 
         // 세션에서 닉네임을 가져와 DTO에 설정
         String nickname = (String) session.getAttribute("userNickname");
+        if (nickname == null || nickname.isEmpty()) {
+            // 닉네임이 없을 경우 기본 닉네임 설정
+            nickname = "기본닉네임"; // 적절한 기본 닉네임으로 수정
+        }
+        
+        System.out.println("닉네임: " + nickname);
+        
         dto.setCom_nickname(nickname); // 닉네임 설정
         dto.setCom_main_photo(mainPhoto);
         dto.setCom_photo(uploadNames.toString());
@@ -452,6 +476,9 @@ public class CommunityController {
         service.insertCommunity(dto);
         return "redirect:/community/interviewdetail?com_num=" + service.getInsertId();
     }
+
+
+
 
 
 
@@ -473,12 +500,30 @@ public class CommunityController {
         return "redirect:" + redirectUrl; // 삭제 후 전체 목록으로 리다이렉트
     }
 
-
+    /*
     @GetMapping("/community/interviewupdateform")
     public String interviewUpdateForm(@RequestParam("com_num") int comNum, Model model) {
         CommunityDto dto = service.getData(comNum);
         model.addAttribute("dto", dto);
         return "community/interviewupdateform";
+    }
+    */
+    @GetMapping("/community/interviewupdateform")
+    public String interviewUpdateForm(@RequestParam("com_num") int comNum, Model model, HttpSession session) {
+        CommunityDto dto = service.getData(comNum);
+        model.addAttribute("dto", dto);
+        
+        String userId = (String) session.getAttribute("myid");
+        if (userId != null) {
+            RegisterDto userDto = mapperinter.getDataById(userId);
+            if (userDto != null) {
+                model.addAttribute("username", userDto.getR_name());
+                model.addAttribute("userNickname", userDto.getR_nickname()); // 닉네임 추가
+                session.setAttribute("userNickname", userDto.getR_nickname()); // 세션에 닉네임 저장
+            }
+        }
+        
+        return "/community/interviewupdateform";
     }
 
 
