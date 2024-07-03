@@ -21,7 +21,7 @@
       margin: 0 auto;
       width: 100%;
       height: 100%;
-      max-width: 1200px;
+      max-width: 1060px;
   }
   
   #wrap {
@@ -200,7 +200,7 @@
 							      <div><input type="checkbox" class="oneselect" name="oneselect" data-s-num="${sh.s_num}"></div>
 							      <div>
 							        <div><a href="/company/showimsiCom?c_num=${sh.c_num }">${sh.c_name }&nbsp;</a>
-							        <i class="bi bi-heart"></i></div><br>
+							        </div><br>
 							        <div class="title"><a href="/hire/detail?h_num=${sh.h_num }"><b>[${sh.c_name }]&nbsp;&nbsp;&nbsp;${sh.h_title }</b></a></div>
 							        <div class="info" style="font-size: 0.8em; color: gray;">
 							          ${sh.h_grade}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
