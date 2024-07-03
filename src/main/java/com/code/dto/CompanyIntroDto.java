@@ -42,4 +42,6 @@ public class CompanyIntroDto {
 	
 	private String c_size;//기업의 규모:대/중견/중소/공기업 추가
 	
+	//private String sc_c_num;
+	
 }

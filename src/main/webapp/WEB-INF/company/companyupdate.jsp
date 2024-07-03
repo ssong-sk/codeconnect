@@ -36,12 +36,11 @@ body {
 	display: flex;
 	width: 90%;
 	max-width: 1200px;
-	
 }
 
 .sidebar {
 	width: 250px;
-	height: 540px;
+	height: 460px;
 	border: 1px solid #E0E0E0;
 	padding: 20px;
 	background-color: #fff;
@@ -49,13 +48,13 @@ body {
 	margin-right: 20px;
 	flex-shrink: 0;
 	overflow-y: auto;
+	margin-top: 15px;
 }
 
 .sidebar h5 {
 	text-align: center;
 	font-weight: bold;
 	margin-bottom: 20px;
-	cursor: pointer;
 }
 
 .sidebar .btn {
@@ -144,28 +143,29 @@ body {
 	<div class="wrapper">
 		<div class="container">
 			<div class="sidebar">
-				<h5 onclick="location.href='main'">코드커넥트 채용 솔루션</h5>
-				<button class="btn" onclick="location.href='/hire/hirewrite'">+
-					공고 등록하기</button>
-				<button class="btn" >🔍 인재풀 탐색하기</button>
-				<div class="menu-divider"></div>
-				<div class="menu-item" onclick="location.href='jiwon'">전체 지원자 관리</div>
-				<div class="menu-item" onclick="location.href='companyhire'">
-					<span>채용공고 관리</span> <span>+</span>
-				</div>
-				<div class="menu-item" onclick="location.href='injae'">제안 보낸 인재풀 관리</div>
-				<div class="menu-divider"></div>
-				<div class="menu-item" onclick="location.href='companyupdate'" style="font-weight: bold;">기업 정보 수정</div>
-				<div class="menu-item" onclick="location.href='intromain'">기업 소개 하기</div>
-				<div class="menu-item" onclick="location.href='showimsi'">내 기업 소개 페이지로 이동</div>
-				<div class="menu-item" onclick="location.href='account'">계정 관리</div>
-			</div>
+                <h5>코드커넥트 채용 솔루션</h5>
+                <button class="btn" onclick="location.href='/hire/hirewrite'">+ 공고 등록하기</button>
+                <!-- <button class="btn">🔍 인재풀 탐색하기</button>-->
+                <div class="menu-divider"></div>
+                <div class="menu-item" onclick="location.href='jiwon'">전체 지원자 관리</div>
+                <div class="menu-item" onclick="location.href='companyhire'">
+                    <span>채용공고 관리</span> <span>+</span>
+                </div>
+                <!-- <div class="menu-item"  onclick="location.href='injae'">제안 보낸 인재풀 관리</div>-->
+                <div class="menu-divider"></div>
+                <div class="menu-item" onclick="location.href='companyupdate'" style="font-weight: bold;">기업 정보 수정</div>
+                <div class="menu-item" onclick="location.href='intromain'">기업 소개 하기</div>
+                <div class="menu-divider"></div>
+                <div class="menu-item" onclick="location.href='account'">계정 관리</div>
+                <div class="menu-item" onclick="location.href='logoutprocess'">로그아웃</div>
+            </div>
 			<div class="main-content-wrapper">
 				<div class="header">
 					<h1>기업 정보 수정</h1>
 				</div>
 				<div class="container mt-4">
-					<form id="companyForm" action="update" method="post" enctype="multipart/form-data">
+					<form id="companyForm" action="update" method="post"
+						enctype="multipart/form-data">
 						<input type="hidden" name="c_num" id="c_num" value="${dto.c_num}">
 						<div class="row">
 							<div class="col-md-6">
@@ -289,24 +289,44 @@ body {
 									<label for="c_category" class="form-label">산업군</label> <select
 										class="form-select" id="c_category" name="c_category">
 										<option value="">산업군 선택</option>
-										<option value="IT"
-											<c:if test="${dto.c_category == 'IT'}">selected</c:if>>IT</option>
-										<option value="제조"
-											<c:if test="${dto.c_category == '제조'}">selected</c:if>>제조</option>
-										<option value="건설"
-											<c:if test="${dto.c_category == '건설'}">selected</c:if>>건설</option>
-										<option value="서비스"
-											<c:if test="${dto.c_category == '서비스'}">selected</c:if>>서비스</option>
-										<option value="금융"
-											<c:if test="${dto.c_category == '금융'}">selected</c:if>>금융</option>
-										<option value="교육"
-											<c:if test="${dto.c_category == '교육'}">selected</c:if>>교육</option>
-										<option value="의료"
-											<c:if test="${dto.c_category == '의료'}">selected</c:if>>의료</option>
+										<option value="정보통신/IT"
+											<c:if test="${dto.c_category == '정보통신/IT'}">selected</c:if>>정보통신/IT</option>
+										<option value="제조업"
+											<c:if test="${dto.c_category == '제조업'}">selected</c:if>>제조업</option>
+										<option value="건설/토목업"
+											<c:if test="${dto.c_category == '건설/토목업'}">selected</c:if>>건설/토목업</option>
+										<option value="개인/가사/서비스"
+											<c:if test="${dto.c_category == '개인/가사/서비스'}">selected</c:if>>개인/가사/서비스</option>
+										<option value="금융/보험"
+											<c:if test="${dto.c_category == '금융/보험'}">selected</c:if>>금융/보험</option>
+										<option value="교육/도서"
+											<c:if test="${dto.c_category == '교육/도서'}">selected</c:if>>교육/도서</option>
+										<option value="공공/의료/사회기반"
+											<c:if test="${dto.c_category == '공공/의료/사회기반'}">selected</c:if>>공공/의료/사회기반</option>
+										<option value="법률/회계"
+											<c:if test="${dto.c_category == '법률/회계'}">selected</c:if>>법률/회계</option>
+										<option value="연구/과학기술"
+											<c:if test="${dto.c_category == '연구/과학기술'}">selected</c:if>>연구/과학기술</option>
+										<option value="방송/광고/문화"
+											<c:if test="${dto.c_category == '방송/광고/문화'}">selected</c:if>>방송/광고/문화</option>
+										<option value="여행/숙박/음식점"
+											<c:if test="${dto.c_category == '여행/숙박/음식점'}">selected</c:if>>여행/숙박/음식점</option>
+										<option value="도매/소매"
+											<c:if test="${dto.c_category == '도매/소매'}">selected</c:if>>도매/소매</option>
+										<option value="유통/물류/무역업"
+											<c:if test="${dto.c_category == '유통/물류/무역업'}">selected</c:if>>유통/물류/무역업</option>
+										<option value="운수업"
+											<c:if test="${dto.c_category == '운수업'}">selected</c:if>>운수업</option>
+										<option value="부동산/임대업"
+											<c:if test="${dto.c_category == '부동산/임대업'}">selected</c:if>>부동산/임대업</option>
+										<option value="사업시설/지원서비스업"
+											<c:if test="${dto.c_category == '사업시설/지원서비스업'}">selected</c:if>>사업/인력지원서비스업</option>
 										<option value="기타"
 											<c:if test="${dto.c_category == '기타'}">selected</c:if>>기타</option>
 									</select>
 								</div>
+
+
 								<div class="mb-4">
 									<label for="c_peoplesu" class="form-label">직원수</label> <select
 										class="form-select" id="c_peoplesu" name="c_peoplesu"
@@ -342,7 +362,8 @@ body {
 										name="c_insa_email" value="${dto.c_insa_email}">
 								</div>
 								<div class="mb-4">
-									<button type="button" class="btn btn-outline-primary" onclick="saveFormWithAlert()">저장</button>
+									<button type="button" class="btn btn-outline-primary"
+										onclick="saveFormWithAlert()">저장</button>
 								</div>
 							</div>
 						</div>
@@ -352,65 +373,71 @@ body {
 		</div>
 	</div>
 	<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3c2a4c379a7f83fd166976b93258be7f&libraries=services"></script>
+	<script
+		src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3c2a4c379a7f83fd166976b93258be7f&libraries=services"></script>
 	<script>
-    function openPostcodePopup() {
-        new daum.Postcode({
-            oncomplete: function(data) {
-                var roadAddr = data.roadAddress; 
-                var extraRoadAddr = ''; 
-                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
-                    extraRoadAddr += data.bname;
-                }
-                if(data.buildingName !== '' && data.apartment === 'Y'){
-                    extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-                }
-                if(extraRoadAddr !== ''){
-                    extraRoadAddr = ' (' + extraRoadAddr + ')';
-                }
-                var fullAddr = roadAddr + extraRoadAddr;
-                document.getElementById('c_postnum').value = data.zonecode;
-                document.getElementById('c_addr').value = fullAddr;
-                document.getElementById('c_addrdetail').focus();
-                
-                // 지도 표시
-                //displayMap(fullAddr);
-            }
-        }).open();
-    }
+		function openPostcodePopup() {
+			new daum.Postcode({
+				oncomplete : function(data) {
+					var roadAddr = data.roadAddress;
+					var extraRoadAddr = '';
+					if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+						extraRoadAddr += data.bname;
+					}
+					if (data.buildingName !== '' && data.apartment === 'Y') {
+						extraRoadAddr += (extraRoadAddr !== '' ? ', '
+								+ data.buildingName : data.buildingName);
+					}
+					if (extraRoadAddr !== '') {
+						extraRoadAddr = ' (' + extraRoadAddr + ')';
+					}
+					var fullAddr = roadAddr + extraRoadAddr;
+					document.getElementById('c_postnum').value = data.zonecode;
+					document.getElementById('c_addr').value = fullAddr;
+					document.getElementById('c_addrdetail').focus();
 
-    function displayMap(address) {
-        var mapContainer = document.getElementById('map'), 
-            mapOption = { 
-                center: new kakao.maps.LatLng(33.450701, 126.570667),
-                level: 3 
-            };  
+					// 지도 표시
+					//displayMap(fullAddr);
+				}
+			}).open();
+		}
 
-        var map = new kakao.maps.Map(mapContainer, mapOption);
+		function displayMap(address) {
+			var mapContainer = document.getElementById('map'), mapOption = {
+				center : new kakao.maps.LatLng(33.450701, 126.570667),
+				level : 3
+			};
 
-        var geocoder = new kakao.maps.services.Geocoder();
+			var map = new kakao.maps.Map(mapContainer, mapOption);
 
-        geocoder.addressSearch(address, function(result, status) {
-            if (status === kakao.maps.services.Status.OK) {
-                var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+			var geocoder = new kakao.maps.services.Geocoder();
 
-                map.setCenter(coords);
+			geocoder
+					.addressSearch(
+							address,
+							function(result, status) {
+								if (status === kakao.maps.services.Status.OK) {
+									var coords = new kakao.maps.LatLng(
+											result[0].y, result[0].x);
 
-                var marker = new kakao.maps.Marker({
-                    map: map,
-                    position: coords
-                });
-                
-                document.getElementById('map').style.display = 'block';
-            } 
-        });
-    }
+									map.setCenter(coords);
 
-    function saveFormWithAlert() {
-        alert('저장되었습니다!');
-        document.getElementById('companyForm').submit();
-    }
-</script>
+									var marker = new kakao.maps.Marker({
+										map : map,
+										position : coords
+									});
+
+									document.getElementById('map').style.display = 'block';
+								}
+							});
+		}
+
+		function saveFormWithAlert() {
+			alert('저장되었습니다!');
+			document.getElementById('companyForm').submit();
+		}
+	</script>
 </body>
 </html>

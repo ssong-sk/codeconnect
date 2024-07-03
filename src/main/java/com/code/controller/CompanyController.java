@@ -75,13 +75,6 @@ public class CompanyController {
 	@Autowired
 	HireService hservice;
 
-
-	//기업 로그인로그아웃관련 임시 통합페이지
-	@GetMapping("/company")
-	public String imsicom() {
-		return "/company/companyimsiall"; //앞에 '/'넣은게 최신입니다.
-	}
-
 	//채용공고 작성 페이지로 이동하기
 	@GetMapping("/hire/hirewrite")
 	public String gohirewrite(HttpSession session, Model model) {
@@ -146,17 +139,31 @@ public class CompanyController {
 		return "/company/gaipsuccess";
 	}
 
-	// 회원정보로 가기
+	// 회원정보로 가기=> 기업마이페이지의 채용공고 리스트로 가기
 	@GetMapping("/company/myinfo")
 	public String myinfo(Model model, HttpSession session) {
 		String c_myid = (String) session.getAttribute("c_myid");
 		CompanyDto dto = cservice.getDataById(c_myid); // myid로 CompanyDto를 가져오는 서비스 메서드
 
-		// List<CompanyDto> c_list=cservice.getAllCompanys();
-		// model.addAttribute("c_list", c_list);
+		// c_myid를 통해 CompanyDto를 가져오기
+		session.setAttribute("c_num", dto.getC_num());			
+		session.setAttribute("c_loginname", dto.getC_name());
+
+
+		// c_num을 가져오기
+		String c_num_str = dto.getC_num();  // c_num을 String으로 가져오기
+		int c_num = Integer.parseInt(c_num_str);  // String을 int로 변환
+
+
+		// c_num을 통해 hire 테이블의 리스트를 가져오기
+		List<HireDto> hlist = hservice.getHireListByCnum(c_num);
+		//System.out.println(c_num);
+
+		// 모델에 hlist를 추가
+		model.addAttribute("hlist", hlist);
 
 		model.addAttribute("dto", dto);
-		return "/company/companymypage";
+		return "/companyhire/companyhire_gongolist";
 	}
 
 	// 회원리스트확인
@@ -427,7 +434,6 @@ public class CompanyController {
 			CompanyDto cdto = cservice.getDataById(c_myid);
 
 			// c_num을 가져오기
-			// c_num을 가져오기
 			String c_num_str = cdto.getC_num();  // c_num을 String으로 가져오기
 			int c_num = Integer.parseInt(c_num_str);  // String을 int로 변환
 
@@ -435,7 +441,6 @@ public class CompanyController {
 			// c_num을 통해 hire 테이블의 리스트를 가져오기
 			List<HireDto> hlist = hservice.getHireListByCnum(c_num);
 			System.out.println(c_num);
-
 
 			// 모델에 hlist를 추가
 			model.addAttribute("hlist", hlist);
@@ -466,9 +471,6 @@ public class CompanyController {
 
 		// 모델에 리스트와 변환된 날짜 리스트를 추가
 		model.addAttribute("slist", slist);
-
-
-
 
 		return "/companyhire/companyhire_jiwon"; 
 	}
