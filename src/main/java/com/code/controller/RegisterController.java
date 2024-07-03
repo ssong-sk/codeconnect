@@ -16,12 +16,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
+import com.code.dto.CompanyIntroDto;
 import com.code.dto.HireDto;
 import com.code.dto.RegisterDto;
-import com.code.mapper.HireMapperInter;
 import com.code.mapper.RegisterMapperInter;
+import com.code.service.CompanyIntroService;
 import com.code.service.HireService;
 import com.code.service.RegisterService;
 
@@ -37,11 +37,16 @@ public class RegisterController {
    @Autowired
    HireService hservice;
    
+   @Autowired
+   CompanyIntroService ciservice;
+   
    @GetMapping("/")
-   public String start(@ModelAttribute("hdto") HireDto dto, Model model)
+   public String start(@ModelAttribute("hdto") HireDto dto, @ModelAttribute CompanyIntroDto cidto, Model model)
    {
 	   List<HireDto> hlist = hservice.getHireList();
+	   List<CompanyIntroDto> cilist = ciservice.getAllCompanyIntros();
 	   model.addAttribute("hlist", hlist);
+	   model.addAttribute("cilist", cilist);
 	   
 	   return "/layout/main";
    }

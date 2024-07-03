@@ -109,28 +109,28 @@
 												data-ai-score-status="fail"
 												data-recommend-model-status="notBase"
 												data-domain="recommendPosition" data-position-index="0"
-												href="../../companyintro_uploads/${h.ci_image}">
+												href="hire/detail?h_num=${h.h_num }">
 													<div class="JobCard_JobCard__thumb__WU1ax">
 														<div class="JobCard_JobCard__thumb__reward__6_Xx_">
 															<span class="Typography_Typography__root__RdAI1 Typography_Typography__label1__hNiv5 Typography_Typography__weightBold__KkJEY JobCard_JobCard__thumb__reward__text__i15UM"></span>
 														</div>
 														<img src="../../companyintro_uploads/${h.ci_image}">
-															<button class="IconButton_IconButton__root__IJlt6 IconButton_IconButton__normal__Twwsf IconButton_IconButton__disableGutters__F_K1l bookmarkBtn"
-															aria-label="bookmark button"
-															data-attribute-id="position__bookmark__click"
-															data-position-index="0"
-															data-kind="add" style="font-size: 22px;" tabindex="1">
-																<span class="IconButton_IconButton__label__o4AtY">
-																	<span class="SvgIcon_SvgIcon__root__OHiSO">
-																		<svg class="SvgIcon_SvgIcon__root__svg__ohdSc" viewBox="0 0 24 24">
-																			<path fill-rule="evenodd"
-																			clip-rule="evenodd"
-																			d="M8.16445 2.59985H15.8353C16.3651 2.59984 16.8163 2.59983 17.1867 2.63009C17.5759 2.66189 17.9545 2.73152 18.3164 2.91594C18.8621 3.19397 19.3057 3.63761 19.5838 4.18328C19.7682 4.54522 19.8378 4.92381 19.8696 5.31297C19.8999 5.6834 19.8999 6.13458 19.8999 6.66445V21.4999C19.8999 21.8249 19.7245 22.1248 19.4412 22.2842C19.1579 22.4436 18.8107 22.4379 18.5328 22.2692L11.9999 18.3028L5.46694 22.2692C5.18906 22.4379 4.84179 22.4436 4.55848 22.2842C4.27517 22.1248 4.09985 21.8249 4.09985 21.4999V6.66445C4.09984 6.13461 4.09983 5.68339 4.13009 5.31297C4.16189 4.92381 4.23152 4.54522 4.41594 4.18328C4.69397 3.63761 5.13761 3.19397 5.68328 2.91594C6.04522 2.73152 6.42381 2.66189 6.81297 2.63009C7.18338 2.59983 7.63462 2.59984 8.16445 2.59985ZM7.79989 4.39992C6.98533 4.39992 6.79149 4.41103 6.65997 4.45376C6.32509 4.56257 6.06254 4.82512 5.95373 5.16001C5.91099 5.29153 5.89989 5.48536 5.89989 6.29992V19.9006L11.5328 16.4806C11.8198 16.3064 12.18 16.3064 12.467 16.4806L18.0999 19.9006V6.29992C18.0999 5.48536 18.0888 5.29153 18.0461 5.16001C17.9372 4.82512 17.6747 4.56257 17.3398 4.45376C17.2083 4.41103 17.0145 4.39992 16.1999 4.39992H7.79989Z"
-																			fill="#ffffff"></path>
-																		</svg>
-																	</span>
+														<button class="IconButton_IconButton__root__IJlt6 IconButton_IconButton__normal__Twwsf IconButton_IconButton__disableGutters__F_K1l bookmarkBtn"
+														aria-label="bookmark button"
+														data-attribute-id="position__bookmark__click"
+														data-position-index="0"
+														data-kind="add" style="font-size: 22px;" tabindex="1">
+															<span class="IconButton_IconButton__label__o4AtY">
+																<span class="SvgIcon_SvgIcon__root__OHiSO">
+																	<svg class="SvgIcon_SvgIcon__root__svg__ohdSc" viewBox="0 0 24 24">
+																		<path fill-rule="evenodd"
+																		clip-rule="evenodd"
+																		d="M8.16445 2.59985H15.8353C16.3651 2.59984 16.8163 2.59983 17.1867 2.63009C17.5759 2.66189 17.9545 2.73152 18.3164 2.91594C18.8621 3.19397 19.3057 3.63761 19.5838 4.18328C19.7682 4.54522 19.8378 4.92381 19.8696 5.31297C19.8999 5.6834 19.8999 6.13458 19.8999 6.66445V21.4999C19.8999 21.8249 19.7245 22.1248 19.4412 22.2842C19.1579 22.4436 18.8107 22.4379 18.5328 22.2692L11.9999 18.3028L5.46694 22.2692C5.18906 22.4379 4.84179 22.4436 4.55848 22.2842C4.27517 22.1248 4.09985 21.8249 4.09985 21.4999V6.66445C4.09984 6.13461 4.09983 5.68339 4.13009 5.31297C4.16189 4.92381 4.23152 4.54522 4.41594 4.18328C4.69397 3.63761 5.13761 3.19397 5.68328 2.91594C6.04522 2.73152 6.42381 2.66189 6.81297 2.63009C7.18338 2.59983 7.63462 2.59984 8.16445 2.59985ZM7.79989 4.39992C6.98533 4.39992 6.79149 4.41103 6.65997 4.45376C6.32509 4.56257 6.06254 4.82512 5.95373 5.16001C5.91099 5.29153 5.89989 5.48536 5.89989 6.29992V19.9006L11.5328 16.4806C11.8198 16.3064 12.18 16.3064 12.467 16.4806L18.0999 19.9006V6.29992C18.0999 5.48536 18.0888 5.29153 18.0461 5.16001C17.9372 4.82512 17.6747 4.56257 17.3398 4.45376C17.2083 4.41103 17.0145 4.39992 16.1999 4.39992H7.79989Z"
+																		fill="#ffffff"></path>
+																	</svg>
 																</span>
-															</button>
+															</span>
+														</button>
 													</div>
 													<div>
 														<p class="Typography_Typography__root__RdAI1 Typography_Typography__body1__q3AOP Typography_Typography__weightBold__KkJEY JobCard_JobCard__body__position__CyaGY">${h.h_title}</p>
@@ -146,7 +146,7 @@
 						</div>
 				</article>
 			</c:if>
-
+			
 			<script type="text/javascript">
 				$('.post-wrapper').slick({
 					slidesToShow : 4,
@@ -159,6 +159,7 @@
 			<article class="TopBannerArea_MainBannerArea__27LJX">
 				<div class="post-slider">
 					<div class="slide-banner">
+					
 						<div data-index="0" class="slick-slide slick-active slick-current"
 							tabindex="-1" aria-hidden="false"
 							style="outline: none; width: 1060px;">
@@ -397,533 +398,53 @@
 
 					<div class="CarouselContainer_CarouselContainer__slider__dWB5h">
 						<div class="mutiple-items">
-							<div data-index="0"
-								class="slick-slide slick-active slick-current" tabindex="-1"
-								aria-hidden="false" style="outline: none; width: 270px;">
-								<div>
-									<div
-										class="CarouselContainer_CarouselContainer__slider__item__5wY5G"
+						<c:forEach var="h" items="${hlist}">
+ 									<div>
+										<div class="CarouselContainer_CarouselContainer__slider__item__5wY5G"
 										tabindex="-1" style="width: 100%; display: inline-block;">
-										<div data-cy="job-card" class="JobCard_JobCard__Tb7pI">
-											<a data-attribute-id="position__click"
+											<div data-cy="job-card" class="JobCard_JobCard__Tb7pI">
+												<a data-attribute-id="position__click"
 												data-job-category-id="518" data-job-category="IT"
-												data-company-id="15531" data-company-name="글로비즈"
-												data-position-id="219433"
-												data-position-name="Linux 통신 Application 개발자"
-												data-response-rate="0" data-ai-score=""
-												data-ai-score-status=""
+												data-company-id="7148" data-company-name="모라이(MORAI)"
+												data-position-id="225191"
+												data-position-name="[전문연구요원 가능] SW Engineer(Virtual Sensor팀)"
+												data-response-rate="92.59" data-ai-score=""
+												data-ai-score-status="fail"
 												data-recommend-model-status="notBase"
-												data-base-action="bookmark" data-domain="actionBased"
-												data-position-index="0" href="/wd/219433"><div
-													class="JobCard_JobCard__thumb__WU1ax">
-													<div class="JobCard_JobCard__thumb__reward__6_Xx_">
-														<span
-															class="Typography_Typography__root__RdAI1 Typography_Typography__label1__hNiv5 Typography_Typography__weightBold__KkJEY JobCard_JobCard__thumb__reward__text__i15UM">
-														</span>
-													</div>
-													<img
-														src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fcompany%2F15531%2Fsmlyrzch9rh43moy__400_400.jpg&amp;w=400&amp;q=75"
-														fetchpriority="auto" alt="Linux 통신 Application 개발자"
-														decoding="sync" loading="eager">
-													<button
-														class="IconButton_IconButton__root__IJlt6 IconButton_IconButton__normal__Twwsf IconButton_IconButton__disableGutters__F_K1l bookmarkBtn"
+												data-domain="recommendPosition" data-position-index="0"
+												href="hire/detail?h_num=${h.h_num }">
+													<div class="JobCard_JobCard__thumb__WU1ax">
+														<div class="JobCard_JobCard__thumb__reward__6_Xx_">
+															<span class="Typography_Typography__root__RdAI1 Typography_Typography__label1__hNiv5 Typography_Typography__weightBold__KkJEY JobCard_JobCard__thumb__reward__text__i15UM"></span>
+														</div>
+														<img src="../../companyintro_uploads/${h.ci_image}">
+														<button class="IconButton_IconButton__root__IJlt6 IconButton_IconButton__normal__Twwsf IconButton_IconButton__disableGutters__F_K1l bookmarkBtn"
 														aria-label="bookmark button"
 														data-attribute-id="position__bookmark__click"
-														data-job-category-id="518" data-job-category="IT"
-														data-company-id="15531" data-company-name="글로비즈"
-														data-position-id="219433"
-														data-position-name="Linux 통신 Application 개발자"
-														data-response-rate="0" data-ai-score=""
-														data-ai-score-status=""
-														data-recommend-model-status="notBase"
-														data-base-action="bookmark" data-domain="actionBased"
-														data-position-index="0" data-kind="remove"
-														style="font-size: 22px;">
-														<span class="IconButton_IconButton__label__o4AtY"><span
-															class="SvgIcon_SvgIcon__root__OHiSO"><svg
-																	class="SvgIcon_SvgIcon__root__svg__ohdSc"
-																	viewBox="0 0 24 24">
-																	<path
-																		d="M8.16445 2.59985C7.6346 2.59984 7.1834 2.59983 6.81297 2.63009C6.42381 2.66189 6.04522 2.73152 5.68328 2.91594C5.13761 3.19397 4.69397 3.63761 4.41594 4.18328C4.23152 4.54522 4.16189 4.92381 4.13009 5.31297C4.09983 5.6834 4.09984 6.13457 4.09985 6.66442V21.4999C4.09985 21.8249 4.27517 22.1248 4.55848 22.2842C4.84179 22.4436 5.18905 22.4379 5.46694 22.2692L11.9999 18.3027L18.5328 22.2692C18.8107 22.4379 19.1579 22.4436 19.4412 22.2842C19.7245 22.1248 19.8999 21.8249 19.8999 21.4999V6.66445C19.8999 6.13458 19.8999 5.6834 19.8696 5.31297C19.8378 4.92381 19.7682 4.54522 19.5838 4.18328C19.3057 3.63761 18.8621 3.19397 18.3164 2.91594C17.9545 2.73152 17.5759 2.66189 17.1867 2.63009C16.8163 2.59983 16.3651 2.59984 15.8353 2.59985H8.16445Z"
-																		fill="#3366ff"></path></svg></span></span>
-													</button>
-												</div>
-												<div>
-													<p
-														class="Typography_Typography__root__RdAI1 Typography_Typography__body1__q3AOP Typography_Typography__weightBold__KkJEY JobCard_JobCard__body__position__CyaGY">Linux
-														통신 Application 개발자</p>
-													<span
-														class="Typography_Typography__root__RdAI1 Typography_Typography__label2__svmAA Typography_Typography__weightMedium__GXnOM JobCard_JobCard__body__company__AUj_B">글로비즈</span>
-													<div class="JobCard_JobCard__body__badge__atLen"></div>
-												</div></a>
-										</div>
-									</div>
-								</div>
-							</div>
-
-
-
-							<div data-index="1" class="slick-slide slick-active"
-								tabindex="-1" aria-hidden="false"
-								style="outline: none; width: 270px;">
-								<div>
-									<div
-										class="CarouselContainer_CarouselContainer__slider__item__5wY5G"
-										tabindex="-1" style="width: 100%; display: inline-block;">
-										<div data-cy="job-card" class="JobCard_JobCard__Tb7pI">
-											<a data-attribute-id="position__click"
-												data-job-category-id="518" data-job-category="IT"
-												data-company-id="890" data-company-name="한국신용데이터(KCD)"
-												data-position-id="227181"
-												data-position-name="[제품실] POS Engineer (Windows Client)"
-												data-response-rate="91.03" data-ai-score=""
-												data-ai-score-status=""
-												data-recommend-model-status="notBase"
-												data-base-action="bookmark" data-domain="actionBased"
-												data-position-index="1" href="/wd/227181"><div
-													class="JobCard_JobCard__thumb__WU1ax">
-													<div class="JobCard_JobCard__thumb__reward__6_Xx_">
-														<span
-															class="Typography_Typography__root__RdAI1 Typography_Typography__label1__hNiv5 Typography_Typography__weightBold__KkJEY JobCard_JobCard__thumb__reward__text__i15UM">
-														</span>
-													</div>
-													<img
-														src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fcompany%2F890%2Fe1cvyooejhfjp3wf__400_400.jpg&amp;w=400&amp;q=75"
-														fetchpriority="auto"
-														alt="[제품실] POS Engineer (Windows Client)" decoding="sync"
-														loading="eager">
-													<button
-														class="IconButton_IconButton__root__IJlt6 IconButton_IconButton__normal__Twwsf IconButton_IconButton__disableGutters__F_K1l bookmarkBtn"
-														aria-label="bookmark button"
-														data-attribute-id="position__bookmark__click"
-														data-job-category-id="518" data-job-category="IT"
-														data-company-id="890" data-company-name="한국신용데이터(KCD)"
-														data-position-id="227181"
-														data-position-name="[제품실] POS Engineer (Windows Client)"
-														data-response-rate="91.03" data-ai-score=""
-														data-ai-score-status=""
-														data-recommend-model-status="notBase"
-														data-base-action="bookmark" data-domain="actionBased"
-														data-position-index="1" data-kind="remove"
-														style="font-size: 22px;">
-														<span class="IconButton_IconButton__label__o4AtY"><span
-															class="SvgIcon_SvgIcon__root__OHiSO"><svg
-																	class="SvgIcon_SvgIcon__root__svg__ohdSc"
-																	viewBox="0 0 24 24">
-																	<path
-																		d="M8.16445 2.59985C7.6346 2.59984 7.1834 2.59983 6.81297 2.63009C6.42381 2.66189 6.04522 2.73152 5.68328 2.91594C5.13761 3.19397 4.69397 3.63761 4.41594 4.18328C4.23152 4.54522 4.16189 4.92381 4.13009 5.31297C4.09983 5.6834 4.09984 6.13457 4.09985 6.66442V21.4999C4.09985 21.8249 4.27517 22.1248 4.55848 22.2842C4.84179 22.4436 5.18905 22.4379 5.46694 22.2692L11.9999 18.3027L18.5328 22.2692C18.8107 22.4379 19.1579 22.4436 19.4412 22.2842C19.7245 22.1248 19.8999 21.8249 19.8999 21.4999V6.66445C19.8999 6.13458 19.8999 5.6834 19.8696 5.31297C19.8378 4.92381 19.7682 4.54522 19.5838 4.18328C19.3057 3.63761 18.8621 3.19397 18.3164 2.91594C17.9545 2.73152 17.5759 2.66189 17.1867 2.63009C16.8163 2.59983 16.3651 2.59984 15.8353 2.59985H8.16445Z"
-																		fill="#3366ff"></path></svg></span></span>
-													</button>
-												</div>
-												<div>
-													<p
-														class="Typography_Typography__root__RdAI1 Typography_Typography__body1__q3AOP Typography_Typography__weightBold__KkJEY JobCard_JobCard__body__position__CyaGY">[제품실]
-														POS Engineer (Windows Client)</p>
-													<span
-														class="Typography_Typography__root__RdAI1 Typography_Typography__label2__svmAA Typography_Typography__weightMedium__GXnOM JobCard_JobCard__body__company__AUj_B">한국신용데이터(KCD)</span>
-													<div class="JobCard_JobCard__body__badge__atLen"></div>
-												</div></a>
-										</div>
-									</div>
-								</div>
-							</div>
-
-
-
-							<div data-index="2" class="slick-slide slick-active"
-								tabindex="-1" aria-hidden="false"
-								style="outline: none; width: 270px;">
-								<div>
-									<div
-										class="CarouselContainer_CarouselContainer__slider__item__5wY5G"
-										tabindex="-1" style="width: 100%; display: inline-block;">
-										<div data-cy="job-card" class="JobCard_JobCard__Tb7pI">
-											<a data-attribute-id="position__click"
-												data-job-category-id="518" data-job-category="IT"
-												data-company-id="3260" data-company-name="모노리스"
-												data-position-id="151961"
-												data-position-name="임베디드 어플리케이션 개발자"
-												data-response-rate="90.27" data-ai-score=""
-												data-ai-score-status=""
-												data-recommend-model-status="notBase"
-												data-base-action="bookmark" data-domain="actionBased"
-												data-position-index="2" href="/wd/151961"><div
-													class="JobCard_JobCard__thumb__WU1ax">
-													<div class="JobCard_JobCard__thumb__reward__6_Xx_">
-														<span
-															class="Typography_Typography__root__RdAI1 Typography_Typography__label1__hNiv5 Typography_Typography__weightBold__KkJEY JobCard_JobCard__thumb__reward__text__i15UM">
-														</span>
-													</div>
-													<img
-														src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fcompany%2F3260%2F7jpvju6etisrw6ue__400_400.jpg&amp;w=400&amp;q=75"
-														fetchpriority="auto" alt="임베디드 어플리케이션 개발자" decoding="sync"
-														loading="eager">
-													<button
-														class="IconButton_IconButton__root__IJlt6 IconButton_IconButton__normal__Twwsf IconButton_IconButton__disableGutters__F_K1l bookmarkBtn"
-														aria-label="bookmark button"
-														data-attribute-id="position__bookmark__click"
-														data-job-category-id="518" data-job-category="IT"
-														data-company-id="3260" data-company-name="모노리스"
-														data-position-id="151961"
-														data-position-name="임베디드 어플리케이션 개발자"
-														data-response-rate="90.27" data-ai-score=""
-														data-ai-score-status=""
-														data-recommend-model-status="notBase"
-														data-base-action="bookmark" data-domain="actionBased"
-														data-position-index="2" data-kind="remove"
-														style="font-size: 22px;">
-														<span class="IconButton_IconButton__label__o4AtY"><span
-															class="SvgIcon_SvgIcon__root__OHiSO"><svg
-																	class="SvgIcon_SvgIcon__root__svg__ohdSc"
-																	viewBox="0 0 24 24">
-																	<path
-																		d="M8.16445 2.59985C7.6346 2.59984 7.1834 2.59983 6.81297 2.63009C6.42381 2.66189 6.04522 2.73152 5.68328 2.91594C5.13761 3.19397 4.69397 3.63761 4.41594 4.18328C4.23152 4.54522 4.16189 4.92381 4.13009 5.31297C4.09983 5.6834 4.09984 6.13457 4.09985 6.66442V21.4999C4.09985 21.8249 4.27517 22.1248 4.55848 22.2842C4.84179 22.4436 5.18905 22.4379 5.46694 22.2692L11.9999 18.3027L18.5328 22.2692C18.8107 22.4379 19.1579 22.4436 19.4412 22.2842C19.7245 22.1248 19.8999 21.8249 19.8999 21.4999V6.66445C19.8999 6.13458 19.8999 5.6834 19.8696 5.31297C19.8378 4.92381 19.7682 4.54522 19.5838 4.18328C19.3057 3.63761 18.8621 3.19397 18.3164 2.91594C17.9545 2.73152 17.5759 2.66189 17.1867 2.63009C16.8163 2.59983 16.3651 2.59984 15.8353 2.59985H8.16445Z"
-																		fill="#3366ff"></path></svg></span></span>
-													</button>
-												</div>
-												<div>
-													<p
-														class="Typography_Typography__root__RdAI1 Typography_Typography__body1__q3AOP Typography_Typography__weightBold__KkJEY JobCard_JobCard__body__position__CyaGY">임베디드
-														어플리케이션 개발자</p>
-													<span
-														class="Typography_Typography__root__RdAI1 Typography_Typography__label2__svmAA Typography_Typography__weightMedium__GXnOM JobCard_JobCard__body__company__AUj_B">모노리스</span>
-													<div class="JobCard_JobCard__body__badge__atLen"></div>
-												</div></a>
-										</div>
-									</div>
-								</div>
-							</div>
-
-
-
-							<div data-index="3" class="slick-slide slick-active"
-								tabindex="-1" aria-hidden="false"
-								style="outline: none; width: 270px;">
-								<div>
-									<div
-										class="CarouselContainer_CarouselContainer__slider__item__5wY5G"
-										tabindex="-1" style="width: 100%; display: inline-block;">
-										<div data-cy="job-card" class="JobCard_JobCard__Tb7pI">
-											<a data-attribute-id="position__click"
-												data-job-category-id="518" data-job-category="IT"
-												data-company-id="22646" data-company-name="비주얼신"
-												data-position-id="222391"
-												data-position-name="3D엔진(OpenGL) 개발자"
-												data-response-rate="100" data-ai-score=""
-												data-ai-score-status=""
-												data-recommend-model-status="notBase"
-												data-base-action="bookmark" data-domain="actionBased"
-												data-position-index="3" href="/wd/222391"><div
-													class="JobCard_JobCard__thumb__WU1ax">
-													<div class="JobCard_JobCard__thumb__reward__6_Xx_">
-														<span
-															class="Typography_Typography__root__RdAI1 Typography_Typography__label1__hNiv5 Typography_Typography__weightBold__KkJEY JobCard_JobCard__thumb__reward__text__i15UM">
-														</span>
-													</div>
-													<img
-														src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fcompany%2F22646%2Fjhk6iry9ejxrp4uq__400_400.jpg&amp;w=400&amp;q=75"
-														fetchpriority="auto" alt="3D엔진(OpenGL) 개발자"
-														decoding="sync" loading="eager">
-													<button
-														class="IconButton_IconButton__root__IJlt6 IconButton_IconButton__normal__Twwsf IconButton_IconButton__disableGutters__F_K1l bookmarkBtn"
-														aria-label="bookmark button"
-														data-attribute-id="position__bookmark__click"
-														data-job-category-id="518" data-job-category="IT"
-														data-company-id="22646" data-company-name="비주얼신"
-														data-position-id="222391"
-														data-position-name="3D엔진(OpenGL) 개발자"
-														data-response-rate="100" data-ai-score=""
-														data-ai-score-status=""
-														data-recommend-model-status="notBase"
-														data-base-action="bookmark" data-domain="actionBased"
-														data-position-index="3" data-kind="remove"
-														style="font-size: 22px;">
-														<span class="IconButton_IconButton__label__o4AtY"><span
-															class="SvgIcon_SvgIcon__root__OHiSO"><svg
-																	class="SvgIcon_SvgIcon__root__svg__ohdSc"
-																	viewBox="0 0 24 24">
-																	<path
-																		d="M8.16445 2.59985C7.6346 2.59984 7.1834 2.59983 6.81297 2.63009C6.42381 2.66189 6.04522 2.73152 5.68328 2.91594C5.13761 3.19397 4.69397 3.63761 4.41594 4.18328C4.23152 4.54522 4.16189 4.92381 4.13009 5.31297C4.09983 5.6834 4.09984 6.13457 4.09985 6.66442V21.4999C4.09985 21.8249 4.27517 22.1248 4.55848 22.2842C4.84179 22.4436 5.18905 22.4379 5.46694 22.2692L11.9999 18.3027L18.5328 22.2692C18.8107 22.4379 19.1579 22.4436 19.4412 22.2842C19.7245 22.1248 19.8999 21.8249 19.8999 21.4999V6.66445C19.8999 6.13458 19.8999 5.6834 19.8696 5.31297C19.8378 4.92381 19.7682 4.54522 19.5838 4.18328C19.3057 3.63761 18.8621 3.19397 18.3164 2.91594C17.9545 2.73152 17.5759 2.66189 17.1867 2.63009C16.8163 2.59983 16.3651 2.59984 15.8353 2.59985H8.16445Z"
-																		fill="#3366ff"></path></svg></span></span>
-													</button>
-												</div>
-												<div>
-													<p
-														class="Typography_Typography__root__RdAI1 Typography_Typography__body1__q3AOP Typography_Typography__weightBold__KkJEY JobCard_JobCard__body__position__CyaGY">3D엔진(OpenGL)
-														개발자</p>
-													<span
-														class="Typography_Typography__root__RdAI1 Typography_Typography__label2__svmAA Typography_Typography__weightMedium__GXnOM JobCard_JobCard__body__company__AUj_B">비주얼신</span>
-												</div></a>
-										</div>
-									</div>
-								</div>
-							</div>
-
-
-
-							<div data-index="4"
-								class="slick-slide slick-active slick-current" tabindex="-1"
-								aria-hidden="false" style="outline: none; width: 270px;">
-								<div>
-									<div
-										class="CarouselContainer_CarouselContainer__slider__item__5wY5G"
-										tabindex="-1" style="width: 100%; display: inline-block;">
-										<div data-cy="job-card" class="JobCard_JobCard__Tb7pI">
-											<a data-attribute-id="position__click"
-												data-job-category-id="518" data-job-category="IT"
-												data-company-id="117" data-company-name="데브시스터즈(Devsisters)"
-												data-position-id="206944"
-												data-position-name="[쿠키런: 마녀의성] 게임 서버 소프트웨어 엔지니어 (3년 이상)"
-												data-response-rate="67.6" data-ai-score=""
-												data-ai-score-status=""
-												data-recommend-model-status="notBase"
-												data-base-action="bookmark" data-domain="actionBased"
-												data-position-index="4" href="/wd/206944"><div
-													class="JobCard_JobCard__thumb__WU1ax">
-													<div class="JobCard_JobCard__thumb__reward__6_Xx_">
-														<span
-															class="Typography_Typography__root__RdAI1 Typography_Typography__label1__hNiv5 Typography_Typography__weightBold__KkJEY JobCard_JobCard__thumb__reward__text__i15UM">
-														</span>
-													</div>
-													<img
-														src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fcompany%2F117%2Fh7bnmucwmannqhae__400_400.jpg&amp;w=400&amp;q=75"
-														fetchpriority="auto"
-														alt="[쿠키런: 마녀의성] 게임 서버 소프트웨어 엔지니어 (3년 이상)"
-														decoding="async" loading="lazy">
-													<button
-														class="IconButton_IconButton__root__IJlt6 IconButton_IconButton__normal__Twwsf IconButton_IconButton__disableGutters__F_K1l bookmarkBtn"
-														aria-label="bookmark button"
-														data-attribute-id="position__bookmark__click"
-														data-job-category-id="518" data-job-category="IT"
-														data-company-id="117"
-														data-company-name="데브시스터즈(Devsisters)"
-														data-position-id="206944"
-														data-position-name="[쿠키런: 마녀의성] 게임 서버 소프트웨어 엔지니어 (3년 이상)"
-														data-response-rate="67.6" data-ai-score=""
-														data-ai-score-status=""
-														data-recommend-model-status="notBase"
-														data-base-action="bookmark" data-domain="actionBased"
-														data-position-index="4" data-kind="remove"
-														style="font-size: 22px;">
-														<span class="IconButton_IconButton__label__o4AtY"><span
-															class="SvgIcon_SvgIcon__root__OHiSO"><svg
-																	class="SvgIcon_SvgIcon__root__svg__ohdSc"
-																	viewBox="0 0 24 24">
-																	<path
-																		d="M8.16445 2.59985C7.6346 2.59984 7.1834 2.59983 6.81297 2.63009C6.42381 2.66189 6.04522 2.73152 5.68328 2.91594C5.13761 3.19397 4.69397 3.63761 4.41594 4.18328C4.23152 4.54522 4.16189 4.92381 4.13009 5.31297C4.09983 5.6834 4.09984 6.13457 4.09985 6.66442V21.4999C4.09985 21.8249 4.27517 22.1248 4.55848 22.2842C4.84179 22.4436 5.18905 22.4379 5.46694 22.2692L11.9999 18.3027L18.5328 22.2692C18.8107 22.4379 19.1579 22.4436 19.4412 22.2842C19.7245 22.1248 19.8999 21.8249 19.8999 21.4999V6.66445C19.8999 6.13458 19.8999 5.6834 19.8696 5.31297C19.8378 4.92381 19.7682 4.54522 19.5838 4.18328C19.3057 3.63761 18.8621 3.19397 18.3164 2.91594C17.9545 2.73152 17.5759 2.66189 17.1867 2.63009C16.8163 2.59983 16.3651 2.59984 15.8353 2.59985H8.16445Z"
-																		fill="#3366ff"></path></svg></span></span>
-													</button>
-												</div>
-												<div>
-													<p
-														class="Typography_Typography__root__RdAI1 Typography_Typography__body1__q3AOP Typography_Typography__weightBold__KkJEY JobCard_JobCard__body__position__CyaGY">[쿠키런:
-														마녀의성] 게임 서버 소프트웨어 엔지니어 (3년 이상)</p>
-													<span
-														class="Typography_Typography__root__RdAI1 Typography_Typography__label2__svmAA Typography_Typography__weightMedium__GXnOM JobCard_JobCard__body__company__AUj_B">데브시스터즈(Devsisters)</span>
-													<div class="JobCard_JobCard__body__badge__atLen"></div>
-												</div></a>
-										</div>
-									</div>
-								</div>
-							</div>
-
-
-
-							<div data-index="5" class="slick-slide slick-active"
-								tabindex="-1" aria-hidden="false"
-								style="outline: none; width: 270px;">
-								<div>
-									<div
-										class="CarouselContainer_CarouselContainer__slider__item__5wY5G"
-										tabindex="-1" style="width: 100%; display: inline-block;">
-										<div data-cy="job-card" class="JobCard_JobCard__Tb7pI">
-											<a data-attribute-id="position__click"
-												data-job-category-id="518" data-job-category="IT"
-												data-company-id="1422" data-company-name="센트비(Sentbe)"
-												data-position-id="199109"
-												data-position-name="Backend Developer (Java/Kotlin)"
-												data-response-rate="92.69" data-ai-score=""
-												data-ai-score-status=""
-												data-recommend-model-status="notBase"
-												data-domain="actionBased" data-position-index="5"
-												href="/wd/199109"><div
-													class="JobCard_JobCard__thumb__WU1ax">
-													<div class="JobCard_JobCard__thumb__reward__6_Xx_">
-														<span
-															class="Typography_Typography__root__RdAI1 Typography_Typography__label1__hNiv5 Typography_Typography__weightBold__KkJEY JobCard_JobCard__thumb__reward__text__i15UM">
-														</span>
-													</div>
-													<img
-														src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fcompany%2F1422%2Fzkducslwrktzyjll__400_400.jpg&amp;w=400&amp;q=75"
-														fetchpriority="auto" alt="Backend Developer (Java/Kotlin)"
-														decoding="async" loading="lazy">
-													<button
-														class="IconButton_IconButton__root__IJlt6 IconButton_IconButton__normal__Twwsf IconButton_IconButton__disableGutters__F_K1l bookmarkBtn"
-														aria-label="bookmark button"
-														data-attribute-id="position__bookmark__click"
-														data-job-category-id="518" data-job-category="IT"
-														data-company-id="1422" data-company-name="센트비(Sentbe)"
-														data-position-id="199109"
-														data-position-name="Backend Developer (Java/Kotlin)"
-														data-response-rate="92.69" data-ai-score=""
-														data-ai-score-status=""
-														data-recommend-model-status="notBase"
-														data-domain="actionBased" data-position-index="5"
-														data-kind="add" style="font-size: 22px;">
-														<span class="IconButton_IconButton__label__o4AtY"><span
-															class="SvgIcon_SvgIcon__root__OHiSO"><svg
-																	class="SvgIcon_SvgIcon__root__svg__ohdSc"
-																	viewBox="0 0 24 24">
-																	<path fill-rule="evenodd" clip-rule="evenodd"
+														data-position-index="0"
+														data-kind="add" style="font-size: 22px;" tabindex="1">
+															<span class="IconButton_IconButton__label__o4AtY">
+																<span class="SvgIcon_SvgIcon__root__OHiSO">
+																	<svg class="SvgIcon_SvgIcon__root__svg__ohdSc" viewBox="0 0 24 24">
+																		<path fill-rule="evenodd"
+																		clip-rule="evenodd"
 																		d="M8.16445 2.59985H15.8353C16.3651 2.59984 16.8163 2.59983 17.1867 2.63009C17.5759 2.66189 17.9545 2.73152 18.3164 2.91594C18.8621 3.19397 19.3057 3.63761 19.5838 4.18328C19.7682 4.54522 19.8378 4.92381 19.8696 5.31297C19.8999 5.6834 19.8999 6.13458 19.8999 6.66445V21.4999C19.8999 21.8249 19.7245 22.1248 19.4412 22.2842C19.1579 22.4436 18.8107 22.4379 18.5328 22.2692L11.9999 18.3028L5.46694 22.2692C5.18906 22.4379 4.84179 22.4436 4.55848 22.2842C4.27517 22.1248 4.09985 21.8249 4.09985 21.4999V6.66445C4.09984 6.13461 4.09983 5.68339 4.13009 5.31297C4.16189 4.92381 4.23152 4.54522 4.41594 4.18328C4.69397 3.63761 5.13761 3.19397 5.68328 2.91594C6.04522 2.73152 6.42381 2.66189 6.81297 2.63009C7.18338 2.59983 7.63462 2.59984 8.16445 2.59985ZM7.79989 4.39992C6.98533 4.39992 6.79149 4.41103 6.65997 4.45376C6.32509 4.56257 6.06254 4.82512 5.95373 5.16001C5.91099 5.29153 5.89989 5.48536 5.89989 6.29992V19.9006L11.5328 16.4806C11.8198 16.3064 12.18 16.3064 12.467 16.4806L18.0999 19.9006V6.29992C18.0999 5.48536 18.0888 5.29153 18.0461 5.16001C17.9372 4.82512 17.6747 4.56257 17.3398 4.45376C17.2083 4.41103 17.0145 4.39992 16.1999 4.39992H7.79989Z"
-																		fill="#ffffff"></path></svg></span></span>
-													</button>
-												</div>
-												<div>
-													<p
-														class="Typography_Typography__root__RdAI1 Typography_Typography__body1__q3AOP Typography_Typography__weightBold__KkJEY JobCard_JobCard__body__position__CyaGY">Backend
-														Developer (Java/Kotlin)</p>
-													<span
-														class="Typography_Typography__root__RdAI1 Typography_Typography__label2__svmAA Typography_Typography__weightMedium__GXnOM JobCard_JobCard__body__company__AUj_B">센트비(Sentbe)</span>
-													<div class="JobCard_JobCard__body__badge__atLen"></div>
-												</div></a>
-										</div>
-									</div>
-								</div>
-							</div>
-
-
-
-							<div data-index="6" class="slick-slide slick-active"
-								tabindex="-1" aria-hidden="false"
-								style="outline: none; width: 270px;">
-								<div>
-									<div
-										class="CarouselContainer_CarouselContainer__slider__item__5wY5G"
-										tabindex="-1" style="width: 100%; display: inline-block;">
-										<div data-cy="job-card" class="JobCard_JobCard__Tb7pI">
-											<a data-attribute-id="position__click"
-												data-job-category-id="518" data-job-category="IT"
-												data-company-id="9072" data-company-name="오케스트로"
-												data-position-id="220839"
-												data-position-name="Network Architect"
-												data-response-rate="95.55" data-ai-score=""
-												data-ai-score-status=""
-												data-recommend-model-status="notBase"
-												data-domain="actionBased" data-position-index="6"
-												href="/wd/220839"><div
-													class="JobCard_JobCard__thumb__WU1ax">
-													<div class="JobCard_JobCard__thumb__reward__6_Xx_">
-														<span
-															class="Typography_Typography__root__RdAI1 Typography_Typography__label1__hNiv5 Typography_Typography__weightBold__KkJEY JobCard_JobCard__thumb__reward__text__i15UM">
-														</span>
+																		fill="#ffffff"></path>
+																	</svg>
+																</span>
+															</span>
+														</button>
 													</div>
-													<img
-														src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fcompany%2F9072%2Fb3wso1ulcwvot3qn__400_400.jpg&amp;w=400&amp;q=75"
-														fetchpriority="auto" alt="Network Architect"
-														decoding="async" loading="lazy">
-													<button
-														class="IconButton_IconButton__root__IJlt6 IconButton_IconButton__normal__Twwsf IconButton_IconButton__disableGutters__F_K1l bookmarkBtn"
-														aria-label="bookmark button"
-														data-attribute-id="position__bookmark__click"
-														data-job-category-id="518" data-job-category="IT"
-														data-company-id="9072" data-company-name="오케스트로"
-														data-position-id="220839"
-														data-position-name="Network Architect"
-														data-response-rate="95.55" data-ai-score=""
-														data-ai-score-status=""
-														data-recommend-model-status="notBase"
-														data-domain="actionBased" data-position-index="6"
-														data-kind="add" style="font-size: 22px;">
-														<span class="IconButton_IconButton__label__o4AtY"><span
-															class="SvgIcon_SvgIcon__root__OHiSO"><svg
-																	class="SvgIcon_SvgIcon__root__svg__ohdSc"
-																	viewBox="0 0 24 24">
-																	<path fill-rule="evenodd" clip-rule="evenodd"
-																		d="M8.16445 2.59985H15.8353C16.3651 2.59984 16.8163 2.59983 17.1867 2.63009C17.5759 2.66189 17.9545 2.73152 18.3164 2.91594C18.8621 3.19397 19.3057 3.63761 19.5838 4.18328C19.7682 4.54522 19.8378 4.92381 19.8696 5.31297C19.8999 5.6834 19.8999 6.13458 19.8999 6.66445V21.4999C19.8999 21.8249 19.7245 22.1248 19.4412 22.2842C19.1579 22.4436 18.8107 22.4379 18.5328 22.2692L11.9999 18.3028L5.46694 22.2692C5.18906 22.4379 4.84179 22.4436 4.55848 22.2842C4.27517 22.1248 4.09985 21.8249 4.09985 21.4999V6.66445C4.09984 6.13461 4.09983 5.68339 4.13009 5.31297C4.16189 4.92381 4.23152 4.54522 4.41594 4.18328C4.69397 3.63761 5.13761 3.19397 5.68328 2.91594C6.04522 2.73152 6.42381 2.66189 6.81297 2.63009C7.18338 2.59983 7.63462 2.59984 8.16445 2.59985ZM7.79989 4.39992C6.98533 4.39992 6.79149 4.41103 6.65997 4.45376C6.32509 4.56257 6.06254 4.82512 5.95373 5.16001C5.91099 5.29153 5.89989 5.48536 5.89989 6.29992V19.9006L11.5328 16.4806C11.8198 16.3064 12.18 16.3064 12.467 16.4806L18.0999 19.9006V6.29992C18.0999 5.48536 18.0888 5.29153 18.0461 5.16001C17.9372 4.82512 17.6747 4.56257 17.3398 4.45376C17.2083 4.41103 17.0145 4.39992 16.1999 4.39992H7.79989Z"
-																		fill="#ffffff"></path></svg></span></span>
-													</button>
-												</div>
-												<div>
-													<p
-														class="Typography_Typography__root__RdAI1 Typography_Typography__body1__q3AOP Typography_Typography__weightBold__KkJEY JobCard_JobCard__body__position__CyaGY">Network
-														Architect</p>
-													<span
-														class="Typography_Typography__root__RdAI1 Typography_Typography__label2__svmAA Typography_Typography__weightMedium__GXnOM JobCard_JobCard__body__company__AUj_B">오케스트로</span>
-												</div></a>
-										</div>
-									</div>
-								</div>
-							</div>
-
-
-
-							<div data-index="7" class="slick-slide slick-active"
-								tabindex="-1" aria-hidden="false"
-								style="outline: none; width: 270px;">
-								<div>
-									<div
-										class="CarouselContainer_CarouselContainer__slider__item__5wY5G"
-										tabindex="-1" style="width: 100%; display: inline-block;">
-										<div data-cy="job-card" class="JobCard_JobCard__Tb7pI">
-											<a data-attribute-id="position__click"
-												data-job-category-id="518" data-job-category="IT"
-												data-company-id="411" data-company-name="모인(MOIN)"
-												data-position-id="126952"
-												data-position-name="개발팀 프론트엔드 엔지니어"
-												data-response-rate="97.22" data-ai-score=""
-												data-ai-score-status=""
-												data-recommend-model-status="notBase"
-												data-domain="recentPosition" data-position-index="3"
-												href="/wd/126952"><div
-													class="JobCard_JobCard__thumb__WU1ax">
-													<div class="JobCard_JobCard__thumb__reward__6_Xx_">
-														<span
-															class="Typography_Typography__root__RdAI1 Typography_Typography__label1__hNiv5 Typography_Typography__weightBold__KkJEY JobCard_JobCard__thumb__reward__text__i15UM">
-														</span>
+													<div>
+														<p class="Typography_Typography__root__RdAI1 Typography_Typography__body1__q3AOP Typography_Typography__weightBold__KkJEY JobCard_JobCard__body__position__CyaGY">${h.h_title}</p>
+														<span class="Typography_Typography__root__RdAI1 Typography_Typography__label2__svmAA Typography_Typography__weightMedium__GXnOM JobCard_JobCard__body__company__AUj_B">${h.c_name}</span>
+														<div class="JobCard_JobCard__body__badge__atLen"></div>
 													</div>
-													<img
-														src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fcompany%2F411%2Fmxlg58ghnria8pve__400_400.png&amp;w=400&amp;q=75"
-														fetchpriority="high" alt="개발팀 프론트엔드 엔지니어" decoding="sync"
-														loading="eager">
-													<button
-														class="IconButton_IconButton__root__IJlt6 IconButton_IconButton__normal__Twwsf IconButton_IconButton__disableGutters__F_K1l bookmarkBtn"
-														aria-label="bookmark button"
-														data-attribute-id="position__bookmark__click"
-														data-job-category-id="518" data-job-category="IT"
-														data-company-id="411" data-company-name="모인(MOIN)"
-														data-position-id="126952"
-														data-position-name="개발팀 프론트엔드 엔지니어"
-														data-response-rate="97.22" data-ai-score=""
-														data-ai-score-status=""
-														data-recommend-model-status="notBase"
-														data-domain="recentPosition" data-position-index="3"
-														data-kind="add" style="font-size: 22px;">
-														<span class="IconButton_IconButton__label__o4AtY"><span
-															class="SvgIcon_SvgIcon__root__OHiSO"><svg
-																	class="SvgIcon_SvgIcon__root__svg__ohdSc"
-																	viewBox="0 0 24 24">
-																	<path fill-rule="evenodd" clip-rule="evenodd"
-																		d="M8.16445 2.59985H15.8353C16.3651 2.59984 16.8163 2.59983 17.1867 2.63009C17.5759 2.66189 17.9545 2.73152 18.3164 2.91594C18.8621 3.19397 19.3057 3.63761 19.5838 4.18328C19.7682 4.54522 19.8378 4.92381 19.8696 5.31297C19.8999 5.6834 19.8999 6.13458 19.8999 6.66445V21.4999C19.8999 21.8249 19.7245 22.1248 19.4412 22.2842C19.1579 22.4436 18.8107 22.4379 18.5328 22.2692L11.9999 18.3028L5.46694 22.2692C5.18906 22.4379 4.84179 22.4436 4.55848 22.2842C4.27517 22.1248 4.09985 21.8249 4.09985 21.4999V6.66445C4.09984 6.13461 4.09983 5.68339 4.13009 5.31297C4.16189 4.92381 4.23152 4.54522 4.41594 4.18328C4.69397 3.63761 5.13761 3.19397 5.68328 2.91594C6.04522 2.73152 6.42381 2.66189 6.81297 2.63009C7.18338 2.59983 7.63462 2.59984 8.16445 2.59985ZM7.79989 4.39992C6.98533 4.39992 6.79149 4.41103 6.65997 4.45376C6.32509 4.56257 6.06254 4.82512 5.95373 5.16001C5.91099 5.29153 5.89989 5.48536 5.89989 6.29992V19.9006L11.5328 16.4806C11.8198 16.3064 12.18 16.3064 12.467 16.4806L18.0999 19.9006V6.29992C18.0999 5.48536 18.0888 5.29153 18.0461 5.16001C17.9372 4.82512 17.6747 4.56257 17.3398 4.45376C17.2083 4.41103 17.0145 4.39992 16.1999 4.39992H7.79989Z"
-																		fill="#ffffff"></path></svg></span></span>
-													</button>
-												</div>
-												<div>
-													<p
-														class="Typography_Typography__root__RdAI1 Typography_Typography__body1__q3AOP Typography_Typography__weightBold__KkJEY JobCard_JobCard__body__position__CyaGY">개발팀
-														프론트엔드 엔지니어</p>
-													<span
-														class="Typography_Typography__root__RdAI1 Typography_Typography__label2__svmAA Typography_Typography__weightMedium__GXnOM JobCard_JobCard__body__company__AUj_B">모인(MOIN)</span>
-													<div class="JobCard_JobCard__body__badge__atLen"></div>
-												</div></a>
+												</a>
+											</div>
 										</div>
-									</div>
-								</div>
-							</div>
-
-
-
-
+ 									</div>
+								</c:forEach>
 						</div>
 					</div>
 
@@ -932,7 +453,6 @@
 					$('.mutiple-items').slick({
 						slidesToShow : 4,
 						slidesToScroll : 4,
-						variableWidth : true,
 						draggable : true
 					});
 				</script>
