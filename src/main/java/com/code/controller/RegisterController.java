@@ -168,9 +168,6 @@ public class RegisterController {
       }
 
       
-      
-      
-      
    @GetMapping("/member/mypage")
    public String mypage(@ModelAttribute("hdto") HireDto dto,Model model,HttpSession session)
    {    

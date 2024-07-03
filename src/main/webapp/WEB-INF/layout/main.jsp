@@ -867,38 +867,26 @@
 							</a>
 						</div>
 					</aside>
-					<div
-						class="CarouselContainer_CarouselContainer__slider__dWB5h CarouselContainer_CarouselContainer__slider__isTagList__b8_2h">
-						<div class="slick-slider slick-initialized" dir="ltr">
-							<div class="slick-list">
-								<div class="slick-track"
-									style="width: 1820px; opacity: 1; transform: translate3d(0px, 0px, 0px);">
-									<div data-index="0"
-										class="slick-slide slick-active slick-current" tabindex="-1"
-										aria-hidden="false" style="outline: none; width: 364px;">
-										<div>
+					
+					
+					
+					<div class="CarouselContainer_CarouselContainer__slider__dWB5h CarouselContainer_CarouselContainer__slider__isTagList__b8_2h">
+						<div class="mutiple-items2">
+										<c:forEach var="r" items="${cilist}">
 											<ul class="List_TagList__yoeks">
-												<li class="ListCard_List__RGzzX"><a
-													href="/company/35972" data-attribute-id="company__click"
-													data-tag-id="10405" data-tag-name="1,001~10,000명"
-													data-company-id="35972" data-company-name="투썸플레이스"
-													data-company-index="0" data-domain="attractionTag"
-													data-base-action="popular"><div
-															class="Grid_Grid__container__43uvK Grid_Grid__align-items_center__2CxBh Grid_Grid__align-content_space-between__hVHLa Grid_Grid__wrap_nowrap__lW8k0 ListCard_ListCard__x7sMD">
+												<li class="ListCard_List__RGzzX">
+												<a href="/company/showimsiCom?c_num=${r.c_num }"
+													data-company-index="0">
+													 <div class="Grid_Grid__container__43uvK Grid_Grid__align-items_center__2CxBh Grid_Grid__align-content_space-between__hVHLa Grid_Grid__wrap_nowrap__lW8k0 ListCard_ListCard__x7sMD">
 															<div
 																class="Grid_Grid__container__43uvK Grid_Grid__align-items_center__2CxBh Grid_Grid__align-content_space-between__hVHLa Grid_Grid__wrap_nowrap__lW8k0 ListCard_ListCard__Contents__kgwtL">
-																<img
-																	src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fwdes%2F0_5.1b73ee1e.png&amp;w=110&amp;q=100"
-																	fetchpriority="low" alt="투썸플레이스"
-																	class="ListCard_ListCard__Contents__Image__ZnXfj"
-																	decoding="async" loading="lazy">
+																<img src="../../companyintro_uploads/${r.ci_logo }">
 																<div
 																	class="ListCard_ListCard__Contents__Information__nzox0">
 																	<p
-																		class="Typography_Typography__root__RdAI1 Typography_Typography__body1__q3AOP Typography_Typography__weightBold__KkJEY ListCard_ListCard__Contents__Information_companyName__vtCMs">투썸플레이스</p>
-																	<span
-																		class="Typography_Typography__root__RdAI1 Typography_Typography__caption1__P91eH Typography_Typography__weightRegular__jzmck Typography_Typography__displayBlock__A3AK8 ListCard_ListCard__Contents__Information_industryName__hy1BM">숙박,
-																		음식점</span>
+																		class="Typography_Typography__root__RdAI1 Typography_Typography__body1__q3AOP Typography_Typography__weightBold__KkJEY ListCard_ListCard__Contents__Information_companyName__vtCMs">${r.c_name }</p>
+																	<span class="Typography_Typography__root__RdAI1 Typography_Typography__caption1__P91eH Typography_Typography__weightRegular__jzmck Typography_Typography__displayBlock__A3AK8 ListCard_ListCard__Contents__Information_industryName__hy1BM">${r.c_category }
+																		</span>
 																</div>
 															</div>
 															<button
@@ -913,413 +901,113 @@
 																	class="Button_Button__interaction__1LUyr"></span>
 															</button>
 														</div></a></li>
-												<li class="ListCard_List__RGzzX"><a
-													href="/company/23220" data-attribute-id="company__click"
-													data-tag-id="10405" data-tag-name="1,001~10,000명"
-													data-company-id="23220" data-company-name="매일유업"
-													data-company-index="1" data-domain="attractionTag"
-													data-base-action="popular"><div
-															class="Grid_Grid__container__43uvK Grid_Grid__align-items_center__2CxBh Grid_Grid__align-content_space-between__hVHLa Grid_Grid__wrap_nowrap__lW8k0 ListCard_ListCard__x7sMD">
+														
+														
+												<li class="ListCard_List__RGzzX">
+												<a href="/company/showimsiCom?c_num=${r.c_num }"
+													data-company-index="0">
+													 <div class="Grid_Grid__container__43uvK Grid_Grid__align-items_center__2CxBh Grid_Grid__align-content_space-between__hVHLa Grid_Grid__wrap_nowrap__lW8k0 ListCard_ListCard__x7sMD">
 															<div
 																class="Grid_Grid__container__43uvK Grid_Grid__align-items_center__2CxBh Grid_Grid__align-content_space-between__hVHLa Grid_Grid__wrap_nowrap__lW8k0 ListCard_ListCard__Contents__kgwtL">
-																<img
-																	src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fwdes%2F0_4.f430326b.jpg&amp;w=110&amp;q=100"
-																	fetchpriority="low" alt="매일유업"
-																	class="ListCard_ListCard__Contents__Image__ZnXfj"
-																	decoding="async" loading="lazy">
+																<img src="../../companyintro_uploads/${r.ci_logo }">
 																<div
 																	class="ListCard_ListCard__Contents__Information__nzox0">
 																	<p
-																		class="Typography_Typography__root__RdAI1 Typography_Typography__body1__q3AOP Typography_Typography__weightBold__KkJEY ListCard_ListCard__Contents__Information_companyName__vtCMs">매일유업</p>
-																	<span
-																		class="Typography_Typography__root__RdAI1 Typography_Typography__caption1__P91eH Typography_Typography__weightRegular__jzmck Typography_Typography__displayBlock__A3AK8 ListCard_ListCard__Contents__Information_industryName__hy1BM">제조</span>
+																		class="Typography_Typography__root__RdAI1 Typography_Typography__body1__q3AOP Typography_Typography__weightBold__KkJEY ListCard_ListCard__Contents__Information_companyName__vtCMs">${r.c_name }</p>
+																	<span class="Typography_Typography__root__RdAI1 Typography_Typography__caption1__P91eH Typography_Typography__weightRegular__jzmck Typography_Typography__displayBlock__A3AK8 ListCard_ListCard__Contents__Information_industryName__hy1BM">${r.c_category }
+																		</span>
 																</div>
 															</div>
 															<button
 																class="Button_Button__root__m1NGq Button_Button__outlined__0HnEd Button_Button__outlinedAssistive__JKDyz Button_Button__outlinedSizeSmall__PllaZ ListCard_ListCard__Button__PQ9Ge"
 																data-attribute-id="company__follow__click"
 																data-domain="attractionTag" data-tag-id="10405"
-																data-tag-name="1,001~10,000명" data-company-id="23220"
-																data-company-index="1" data-company-name="매일유업"
+																data-tag-name="1,001~10,000명" data-company-id="35972"
+																data-company-index="0" data-company-name="투썸플레이스"
 																data-kind="add" data-base-action="popular">
 																<span class="Button_Button__label__K0sBs"><span
 																	class="Typography_Typography__root__RdAI1 Typography_Typography__label2__svmAA Typography_Typography__weightMedium__GXnOM Typography_Typography__displayBlock__A3AK8 ListCard_ListCard__Button__Text__GxZco">팔로우</span></span><span
 																	class="Button_Button__interaction__1LUyr"></span>
 															</button>
 														</div></a></li>
-												<li class="ListCard_List__RGzzX"><a href="/company/426"
-													data-attribute-id="company__click" data-tag-id="10405"
-													data-tag-name="1,001~10,000명" data-company-id="426"
-													data-company-name="컬리" data-company-index="2"
-													data-domain="attractionTag" data-base-action="popular"><div
-															class="Grid_Grid__container__43uvK Grid_Grid__align-items_center__2CxBh Grid_Grid__align-content_space-between__hVHLa Grid_Grid__wrap_nowrap__lW8k0 ListCard_ListCard__x7sMD">
+														
+														
+												<li class="ListCard_List__RGzzX">
+												<a href="/company/showimsiCom?c_num=${r.c_num }"
+													data-company-index="0">
+													 <div class="Grid_Grid__container__43uvK Grid_Grid__align-items_center__2CxBh Grid_Grid__align-content_space-between__hVHLa Grid_Grid__wrap_nowrap__lW8k0 ListCard_ListCard__x7sMD">
 															<div
 																class="Grid_Grid__container__43uvK Grid_Grid__align-items_center__2CxBh Grid_Grid__align-content_space-between__hVHLa Grid_Grid__wrap_nowrap__lW8k0 ListCard_ListCard__Contents__kgwtL">
-																<img
-																	src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fwdes%2F0_4.e2c011d3.png&amp;w=110&amp;q=100"
-																	fetchpriority="low" alt="컬리"
-																	class="ListCard_ListCard__Contents__Image__ZnXfj"
-																	decoding="async" loading="lazy">
+																<img src="../../companyintro_uploads/${r.ci_logo }">
 																<div
 																	class="ListCard_ListCard__Contents__Information__nzox0">
 																	<p
-																		class="Typography_Typography__root__RdAI1 Typography_Typography__body1__q3AOP Typography_Typography__weightBold__KkJEY ListCard_ListCard__Contents__Information_companyName__vtCMs">컬리</p>
-																	<span
-																		class="Typography_Typography__root__RdAI1 Typography_Typography__caption1__P91eH Typography_Typography__weightRegular__jzmck Typography_Typography__displayBlock__A3AK8 ListCard_ListCard__Contents__Information_industryName__hy1BM">판매,
-																		유통</span>
+																		class="Typography_Typography__root__RdAI1 Typography_Typography__body1__q3AOP Typography_Typography__weightBold__KkJEY ListCard_ListCard__Contents__Information_companyName__vtCMs">${r.c_name }</p>
+																	<span class="Typography_Typography__root__RdAI1 Typography_Typography__caption1__P91eH Typography_Typography__weightRegular__jzmck Typography_Typography__displayBlock__A3AK8 ListCard_ListCard__Contents__Information_industryName__hy1BM">${r.c_category }
+																		</span>
 																</div>
 															</div>
 															<button
 																class="Button_Button__root__m1NGq Button_Button__outlined__0HnEd Button_Button__outlinedAssistive__JKDyz Button_Button__outlinedSizeSmall__PllaZ ListCard_ListCard__Button__PQ9Ge"
 																data-attribute-id="company__follow__click"
 																data-domain="attractionTag" data-tag-id="10405"
-																data-tag-name="1,001~10,000명" data-company-id="426"
-																data-company-index="2" data-company-name="컬리"
+																data-tag-name="1,001~10,000명" data-company-id="35972"
+																data-company-index="0" data-company-name="투썸플레이스"
 																data-kind="add" data-base-action="popular">
 																<span class="Button_Button__label__K0sBs"><span
 																	class="Typography_Typography__root__RdAI1 Typography_Typography__label2__svmAA Typography_Typography__weightMedium__GXnOM Typography_Typography__displayBlock__A3AK8 ListCard_ListCard__Button__Text__GxZco">팔로우</span></span><span
 																	class="Button_Button__interaction__1LUyr"></span>
 															</button>
 														</div></a></li>
-												<li class="ListCard_List__RGzzX"><a href="/company/35"
-													data-attribute-id="company__click" data-tag-id="10405"
-													data-tag-name="1,001~10,000명" data-company-id="35"
-													data-company-name="위대한상상(요기요)" data-company-index="3"
-													data-domain="attractionTag" data-base-action="popular"><div
-															class="Grid_Grid__container__43uvK Grid_Grid__align-items_center__2CxBh Grid_Grid__align-content_space-between__hVHLa Grid_Grid__wrap_nowrap__lW8k0 ListCard_ListCard__x7sMD">
+														
+														
+												<li class="ListCard_List__RGzzX">
+												<a href="/company/showimsiCom?c_num=${r.c_num }"
+													data-company-index="0">
+													 <div class="Grid_Grid__container__43uvK Grid_Grid__align-items_center__2CxBh Grid_Grid__align-content_space-between__hVHLa Grid_Grid__wrap_nowrap__lW8k0 ListCard_ListCard__x7sMD">
 															<div
 																class="Grid_Grid__container__43uvK Grid_Grid__align-items_center__2CxBh Grid_Grid__align-content_space-between__hVHLa Grid_Grid__wrap_nowrap__lW8k0 ListCard_ListCard__Contents__kgwtL">
-																<img
-																	src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fwdes%2F0_4.e39b35d6.jpg&amp;w=110&amp;q=100"
-																	fetchpriority="low" alt="위대한상상(요기요)"
-																	class="ListCard_ListCard__Contents__Image__ZnXfj"
-																	decoding="async" loading="lazy">
+																<img src="../../companyintro_uploads/${r.ci_logo }">
 																<div
 																	class="ListCard_ListCard__Contents__Information__nzox0">
 																	<p
-																		class="Typography_Typography__root__RdAI1 Typography_Typography__body1__q3AOP Typography_Typography__weightBold__KkJEY ListCard_ListCard__Contents__Information_companyName__vtCMs">위대한상상(요기요)</p>
-																	<span
-																		class="Typography_Typography__root__RdAI1 Typography_Typography__caption1__P91eH Typography_Typography__weightRegular__jzmck Typography_Typography__displayBlock__A3AK8 ListCard_ListCard__Contents__Information_industryName__hy1BM">IT,
-																		컨텐츠</span>
+																		class="Typography_Typography__root__RdAI1 Typography_Typography__body1__q3AOP Typography_Typography__weightBold__KkJEY ListCard_ListCard__Contents__Information_companyName__vtCMs">${r.c_name }</p>
+																	<span class="Typography_Typography__root__RdAI1 Typography_Typography__caption1__P91eH Typography_Typography__weightRegular__jzmck Typography_Typography__displayBlock__A3AK8 ListCard_ListCard__Contents__Information_industryName__hy1BM">${r.c_category }
+																		</span>
 																</div>
 															</div>
 															<button
 																class="Button_Button__root__m1NGq Button_Button__outlined__0HnEd Button_Button__outlinedAssistive__JKDyz Button_Button__outlinedSizeSmall__PllaZ ListCard_ListCard__Button__PQ9Ge"
 																data-attribute-id="company__follow__click"
 																data-domain="attractionTag" data-tag-id="10405"
-																data-tag-name="1,001~10,000명" data-company-id="35"
-																data-company-index="3" data-company-name="위대한상상(요기요)"
+																data-tag-name="1,001~10,000명" data-company-id="35972"
+																data-company-index="0" data-company-name="투썸플레이스"
 																data-kind="add" data-base-action="popular">
 																<span class="Button_Button__label__K0sBs"><span
 																	class="Typography_Typography__root__RdAI1 Typography_Typography__label2__svmAA Typography_Typography__weightMedium__GXnOM Typography_Typography__displayBlock__A3AK8 ListCard_ListCard__Button__Text__GxZco">팔로우</span></span><span
 																	class="Button_Button__interaction__1LUyr"></span>
 															</button>
 														</div></a></li>
+														
+														
 											</ul>
+											</c:forEach>
 										</div>
 									</div>
-									<div data-index="1" class="slick-slide slick-active"
-										tabindex="-1" aria-hidden="false"
-										style="outline: none; width: 364px;">
-										<div>
-											<ul class="List_TagList__yoeks">
-												<li class="ListCard_List__RGzzX"><a
-													href="/company/20963" data-attribute-id="company__click"
-													data-tag-id="10405" data-tag-name="1,001~10,000명"
-													data-company-id="20963" data-company-name="알라딘커뮤니케이션"
-													data-company-index="4" data-domain="attractionTag"
-													data-base-action="popular"><div
-															class="Grid_Grid__container__43uvK Grid_Grid__align-items_center__2CxBh Grid_Grid__align-content_space-between__hVHLa Grid_Grid__wrap_nowrap__lW8k0 ListCard_ListCard__x7sMD">
-															<div
-																class="Grid_Grid__container__43uvK Grid_Grid__align-items_center__2CxBh Grid_Grid__align-content_space-between__hVHLa Grid_Grid__wrap_nowrap__lW8k0 ListCard_ListCard__Contents__kgwtL">
-																<img
-																	src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fwdes%2F0_4.89028340.jpg&amp;w=110&amp;q=100"
-																	fetchpriority="low" alt="알라딘커뮤니케이션"
-																	class="ListCard_ListCard__Contents__Image__ZnXfj"
-																	decoding="async" loading="lazy">
-																<div
-																	class="ListCard_ListCard__Contents__Information__nzox0">
-																	<p
-																		class="Typography_Typography__root__RdAI1 Typography_Typography__body1__q3AOP Typography_Typography__weightBold__KkJEY ListCard_ListCard__Contents__Information_companyName__vtCMs">알라딘커뮤니케이션</p>
-																	<span
-																		class="Typography_Typography__root__RdAI1 Typography_Typography__caption1__P91eH Typography_Typography__weightRegular__jzmck Typography_Typography__displayBlock__A3AK8 ListCard_ListCard__Contents__Information_industryName__hy1BM">IT,
-																		컨텐츠</span>
-																</div>
-															</div>
-															<button
-																class="Button_Button__root__m1NGq Button_Button__outlined__0HnEd Button_Button__outlinedAssistive__JKDyz Button_Button__outlinedSizeSmall__PllaZ ListCard_ListCard__Button__PQ9Ge"
-																data-attribute-id="company__follow__click"
-																data-domain="attractionTag" data-tag-id="10405"
-																data-tag-name="1,001~10,000명" data-company-id="20963"
-																data-company-index="4" data-company-name="알라딘커뮤니케이션"
-																data-kind="add" data-base-action="popular">
-																<span class="Button_Button__label__K0sBs"><span
-																	class="Typography_Typography__root__RdAI1 Typography_Typography__label2__svmAA Typography_Typography__weightMedium__GXnOM Typography_Typography__displayBlock__A3AK8 ListCard_ListCard__Button__Text__GxZco">팔로우</span></span><span
-																	class="Button_Button__interaction__1LUyr"></span>
-															</button>
-														</div></a></li>
-												<li class="ListCard_List__RGzzX"><a
-													href="/company/5857" data-attribute-id="company__click"
-													data-tag-id="10405" data-tag-name="1,001~10,000명"
-													data-company-id="5857" data-company-name="아이아이컴바인드"
-													data-company-index="5" data-domain="attractionTag"
-													data-base-action="popular"><div
-															class="Grid_Grid__container__43uvK Grid_Grid__align-items_center__2CxBh Grid_Grid__align-content_space-between__hVHLa Grid_Grid__wrap_nowrap__lW8k0 ListCard_ListCard__x7sMD">
-															<div
-																class="Grid_Grid__container__43uvK Grid_Grid__align-items_center__2CxBh Grid_Grid__align-content_space-between__hVHLa Grid_Grid__wrap_nowrap__lW8k0 ListCard_ListCard__Contents__kgwtL">
-																<img
-																	src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fwdes%2F0_4.6b70de4d.jpg&amp;w=110&amp;q=100"
-																	fetchpriority="low" alt="아이아이컴바인드"
-																	class="ListCard_ListCard__Contents__Image__ZnXfj"
-																	decoding="async" loading="lazy">
-																<div
-																	class="ListCard_ListCard__Contents__Information__nzox0">
-																	<p
-																		class="Typography_Typography__root__RdAI1 Typography_Typography__body1__q3AOP Typography_Typography__weightBold__KkJEY ListCard_ListCard__Contents__Information_companyName__vtCMs">아이아이컴바인드</p>
-																	<span
-																		class="Typography_Typography__root__RdAI1 Typography_Typography__caption1__P91eH Typography_Typography__weightRegular__jzmck Typography_Typography__displayBlock__A3AK8 ListCard_ListCard__Contents__Information_industryName__hy1BM">제조</span>
-																</div>
-															</div>
-															<button
-																class="Button_Button__root__m1NGq Button_Button__outlined__0HnEd Button_Button__outlinedAssistive__JKDyz Button_Button__outlinedSizeSmall__PllaZ ListCard_ListCard__Button__PQ9Ge"
-																data-attribute-id="company__follow__click"
-																data-domain="attractionTag" data-tag-id="10405"
-																data-tag-name="1,001~10,000명" data-company-id="5857"
-																data-company-index="5" data-company-name="아이아이컴바인드"
-																data-kind="add" data-base-action="popular">
-																<span class="Button_Button__label__K0sBs"><span
-																	class="Typography_Typography__root__RdAI1 Typography_Typography__label2__svmAA Typography_Typography__weightMedium__GXnOM Typography_Typography__displayBlock__A3AK8 ListCard_ListCard__Button__Text__GxZco">팔로우</span></span><span
-																	class="Button_Button__interaction__1LUyr"></span>
-															</button>
-														</div></a></li>
-												<li class="ListCard_List__RGzzX"><a
-													href="/company/4667" data-attribute-id="company__click"
-													data-tag-id="10405" data-tag-name="1,001~10,000명"
-													data-company-id="4667"
-													data-company-name="씨제이올리브네트웍스(CJ올리브네트웍스)"
-													data-company-index="6" data-domain="attractionTag"
-													data-base-action="popular"><div
-															class="Grid_Grid__container__43uvK Grid_Grid__align-items_center__2CxBh Grid_Grid__align-content_space-between__hVHLa Grid_Grid__wrap_nowrap__lW8k0 ListCard_ListCard__x7sMD">
-															<div
-																class="Grid_Grid__container__43uvK Grid_Grid__align-items_center__2CxBh Grid_Grid__align-content_space-between__hVHLa Grid_Grid__wrap_nowrap__lW8k0 ListCard_ListCard__Contents__kgwtL">
-																<img
-																	src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fwdes%2F0_4.eeda0d5f.jpg&amp;w=110&amp;q=100"
-																	fetchpriority="low" alt="씨제이올리브네트웍스(CJ올리브네트웍스)"
-																	class="ListCard_ListCard__Contents__Image__ZnXfj"
-																	decoding="async" loading="lazy">
-																<div
-																	class="ListCard_ListCard__Contents__Information__nzox0">
-																	<p
-																		class="Typography_Typography__root__RdAI1 Typography_Typography__body1__q3AOP Typography_Typography__weightBold__KkJEY ListCard_ListCard__Contents__Information_companyName__vtCMs">씨제이올리브네트웍스(CJ올리브네트웍스)</p>
-																	<span
-																		class="Typography_Typography__root__RdAI1 Typography_Typography__caption1__P91eH Typography_Typography__weightRegular__jzmck Typography_Typography__displayBlock__A3AK8 ListCard_ListCard__Contents__Information_industryName__hy1BM">IT,
-																		컨텐츠</span>
-																</div>
-															</div>
-															<button
-																class="Button_Button__root__m1NGq Button_Button__outlined__0HnEd Button_Button__outlinedAssistive__JKDyz Button_Button__outlinedSizeSmall__PllaZ ListCard_ListCard__Button__PQ9Ge"
-																data-attribute-id="company__follow__click"
-																data-domain="attractionTag" data-tag-id="10405"
-																data-tag-name="1,001~10,000명" data-company-id="4667"
-																data-company-index="6"
-																data-company-name="씨제이올리브네트웍스(CJ올리브네트웍스)"
-																data-kind="add" data-base-action="popular">
-																<span class="Button_Button__label__K0sBs"><span
-																	class="Typography_Typography__root__RdAI1 Typography_Typography__label2__svmAA Typography_Typography__weightMedium__GXnOM Typography_Typography__displayBlock__A3AK8 ListCard_ListCard__Button__Text__GxZco">팔로우</span></span><span
-																	class="Button_Button__interaction__1LUyr"></span>
-															</button>
-														</div></a></li>
-												<li class="ListCard_List__RGzzX"><a href="/company/521"
-													data-attribute-id="company__click" data-tag-id="10405"
-													data-tag-name="1,001~10,000명" data-company-id="521"
-													data-company-name="크래프톤(Krafton)" data-company-index="7"
-													data-domain="attractionTag" data-base-action="popular"><div
-															class="Grid_Grid__container__43uvK Grid_Grid__align-items_center__2CxBh Grid_Grid__align-content_space-between__hVHLa Grid_Grid__wrap_nowrap__lW8k0 ListCard_ListCard__x7sMD">
-															<div
-																class="Grid_Grid__container__43uvK Grid_Grid__align-items_center__2CxBh Grid_Grid__align-content_space-between__hVHLa Grid_Grid__wrap_nowrap__lW8k0 ListCard_ListCard__Contents__kgwtL">
-																<img
-																	src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fwdes%2F0_4.30208ed5.jpg&amp;w=110&amp;q=100"
-																	fetchpriority="low" alt="크래프톤(Krafton)"
-																	class="ListCard_ListCard__Contents__Image__ZnXfj"
-																	decoding="async" loading="lazy">
-																<div
-																	class="ListCard_ListCard__Contents__Information__nzox0">
-																	<p
-																		class="Typography_Typography__root__RdAI1 Typography_Typography__body1__q3AOP Typography_Typography__weightBold__KkJEY ListCard_ListCard__Contents__Information_companyName__vtCMs">크래프톤(Krafton)</p>
-																	<span
-																		class="Typography_Typography__root__RdAI1 Typography_Typography__caption1__P91eH Typography_Typography__weightRegular__jzmck Typography_Typography__displayBlock__A3AK8 ListCard_ListCard__Contents__Information_industryName__hy1BM">IT,
-																		컨텐츠</span>
-																</div>
-															</div>
-															<button
-																class="Button_Button__root__m1NGq Button_Button__outlined__0HnEd Button_Button__outlinedAssistive__JKDyz Button_Button__outlinedSizeSmall__PllaZ ListCard_ListCard__Button__PQ9Ge"
-																data-attribute-id="company__follow__click"
-																data-domain="attractionTag" data-tag-id="10405"
-																data-tag-name="1,001~10,000명" data-company-id="521"
-																data-company-index="7" data-company-name="크래프톤(Krafton)"
-																data-kind="add" data-base-action="popular">
-																<span class="Button_Button__label__K0sBs"><span
-																	class="Typography_Typography__root__RdAI1 Typography_Typography__label2__svmAA Typography_Typography__weightMedium__GXnOM Typography_Typography__displayBlock__A3AK8 ListCard_ListCard__Button__Text__GxZco">팔로우</span></span><span
-																	class="Button_Button__interaction__1LUyr"></span>
-															</button>
-														</div></a></li>
-											</ul>
-										</div>
-									</div>
-									<div data-index="2" class="slick-slide slick-active"
-										tabindex="-1" aria-hidden="false"
-										style="outline: none; width: 364px;">
-										<div>
-											<ul class="List_TagList__yoeks">
-												<li class="ListCard_List__RGzzX"><a
-													href="/company/29505" data-attribute-id="company__click"
-													data-tag-id="10405" data-tag-name="1,001~10,000명"
-													data-company-id="29505" data-company-name="한국필립모리스"
-													data-company-index="8" data-domain="attractionTag"
-													data-base-action="popular"><div
-															class="Grid_Grid__container__43uvK Grid_Grid__align-items_center__2CxBh Grid_Grid__align-content_space-between__hVHLa Grid_Grid__wrap_nowrap__lW8k0 ListCard_ListCard__x7sMD">
-															<div
-																class="Grid_Grid__container__43uvK Grid_Grid__align-items_center__2CxBh Grid_Grid__align-content_space-between__hVHLa Grid_Grid__wrap_nowrap__lW8k0 ListCard_ListCard__Contents__kgwtL">
-																<img
-																	src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fwdes%2F0_4.c9cb799b.jpg&amp;w=110&amp;q=100"
-																	fetchpriority="low" alt="한국필립모리스"
-																	class="ListCard_ListCard__Contents__Image__ZnXfj"
-																	decoding="async" loading="lazy">
-																<div
-																	class="ListCard_ListCard__Contents__Information__nzox0">
-																	<p
-																		class="Typography_Typography__root__RdAI1 Typography_Typography__body1__q3AOP Typography_Typography__weightBold__KkJEY ListCard_ListCard__Contents__Information_companyName__vtCMs">한국필립모리스</p>
-																	<span
-																		class="Typography_Typography__root__RdAI1 Typography_Typography__caption1__P91eH Typography_Typography__weightRegular__jzmck Typography_Typography__displayBlock__A3AK8 ListCard_ListCard__Contents__Information_industryName__hy1BM">제조</span>
-																</div>
-															</div>
-															<button
-																class="Button_Button__root__m1NGq Button_Button__outlined__0HnEd Button_Button__outlinedAssistive__JKDyz Button_Button__outlinedSizeSmall__PllaZ ListCard_ListCard__Button__PQ9Ge"
-																data-attribute-id="company__follow__click"
-																data-domain="attractionTag" data-tag-id="10405"
-																data-tag-name="1,001~10,000명" data-company-id="29505"
-																data-company-index="8" data-company-name="한국필립모리스"
-																data-kind="add" data-base-action="popular">
-																<span class="Button_Button__label__K0sBs"><span
-																	class="Typography_Typography__root__RdAI1 Typography_Typography__label2__svmAA Typography_Typography__weightMedium__GXnOM Typography_Typography__displayBlock__A3AK8 ListCard_ListCard__Button__Text__GxZco">팔로우</span></span><span
-																	class="Button_Button__interaction__1LUyr"></span>
-															</button>
-														</div></a></li>
-												<li class="ListCard_List__RGzzX"><a
-													href="/company/7810" data-attribute-id="company__click"
-													data-tag-id="10405" data-tag-name="1,001~10,000명"
-													data-company-id="7810" data-company-name="한화생명보험"
-													data-company-index="9" data-domain="attractionTag"
-													data-base-action="popular"><div
-															class="Grid_Grid__container__43uvK Grid_Grid__align-items_center__2CxBh Grid_Grid__align-content_space-between__hVHLa Grid_Grid__wrap_nowrap__lW8k0 ListCard_ListCard__x7sMD">
-															<div
-																class="Grid_Grid__container__43uvK Grid_Grid__align-items_center__2CxBh Grid_Grid__align-content_space-between__hVHLa Grid_Grid__wrap_nowrap__lW8k0 ListCard_ListCard__Contents__kgwtL">
-																<img
-																	src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fwdes%2F0_4.bc62e98e.png&amp;w=110&amp;q=100"
-																	fetchpriority="low" alt="한화생명보험"
-																	class="ListCard_ListCard__Contents__Image__ZnXfj"
-																	decoding="async" loading="lazy">
-																<div
-																	class="ListCard_ListCard__Contents__Information__nzox0">
-																	<p
-																		class="Typography_Typography__root__RdAI1 Typography_Typography__body1__q3AOP Typography_Typography__weightBold__KkJEY ListCard_ListCard__Contents__Information_companyName__vtCMs">한화생명보험</p>
-																	<span
-																		class="Typography_Typography__root__RdAI1 Typography_Typography__caption1__P91eH Typography_Typography__weightRegular__jzmck Typography_Typography__displayBlock__A3AK8 ListCard_ListCard__Contents__Information_industryName__hy1BM">금융</span>
-																</div>
-															</div>
-															<button
-																class="Button_Button__root__m1NGq Button_Button__outlined__0HnEd Button_Button__outlinedAssistive__JKDyz Button_Button__outlinedSizeSmall__PllaZ ListCard_ListCard__Button__PQ9Ge"
-																data-attribute-id="company__follow__click"
-																data-domain="attractionTag" data-tag-id="10405"
-																data-tag-name="1,001~10,000명" data-company-id="7810"
-																data-company-index="9" data-company-name="한화생명보험"
-																data-kind="add" data-base-action="popular">
-																<span class="Button_Button__label__K0sBs"><span
-																	class="Typography_Typography__root__RdAI1 Typography_Typography__label2__svmAA Typography_Typography__weightMedium__GXnOM Typography_Typography__displayBlock__A3AK8 ListCard_ListCard__Button__Text__GxZco">팔로우</span></span><span
-																	class="Button_Button__interaction__1LUyr"></span>
-															</button>
-														</div></a></li>
-												<li class="ListCard_List__RGzzX"><a
-													href="/company/27759" data-attribute-id="company__click"
-													data-tag-id="10405" data-tag-name="1,001~10,000명"
-													data-company-id="27759" data-company-name="코웨이"
-													data-company-index="10" data-domain="attractionTag"
-													data-base-action="popular"><div
-															class="Grid_Grid__container__43uvK Grid_Grid__align-items_center__2CxBh Grid_Grid__align-content_space-between__hVHLa Grid_Grid__wrap_nowrap__lW8k0 ListCard_ListCard__x7sMD">
-															<div
-																class="Grid_Grid__container__43uvK Grid_Grid__align-items_center__2CxBh Grid_Grid__align-content_space-between__hVHLa Grid_Grid__wrap_nowrap__lW8k0 ListCard_ListCard__Contents__kgwtL">
-																<img
-																	src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fwdes%2F0_4.66e4ad49.jpg&amp;w=110&amp;q=100"
-																	fetchpriority="low" alt="코웨이"
-																	class="ListCard_ListCard__Contents__Image__ZnXfj"
-																	decoding="async" loading="lazy">
-																<div
-																	class="ListCard_ListCard__Contents__Information__nzox0">
-																	<p
-																		class="Typography_Typography__root__RdAI1 Typography_Typography__body1__q3AOP Typography_Typography__weightBold__KkJEY ListCard_ListCard__Contents__Information_companyName__vtCMs">코웨이</p>
-																	<span
-																		class="Typography_Typography__root__RdAI1 Typography_Typography__caption1__P91eH Typography_Typography__weightRegular__jzmck Typography_Typography__displayBlock__A3AK8 ListCard_ListCard__Contents__Information_industryName__hy1BM">제조</span>
-																</div>
-															</div>
-															<button
-																class="Button_Button__root__m1NGq Button_Button__outlined__0HnEd Button_Button__outlinedAssistive__JKDyz Button_Button__outlinedSizeSmall__PllaZ ListCard_ListCard__Button__PQ9Ge"
-																data-attribute-id="company__follow__click"
-																data-domain="attractionTag" data-tag-id="10405"
-																data-tag-name="1,001~10,000명" data-company-id="27759"
-																data-company-index="10" data-company-name="코웨이"
-																data-kind="add" data-base-action="popular">
-																<span class="Button_Button__label__K0sBs"><span
-																	class="Typography_Typography__root__RdAI1 Typography_Typography__label2__svmAA Typography_Typography__weightMedium__GXnOM Typography_Typography__displayBlock__A3AK8 ListCard_ListCard__Button__Text__GxZco">팔로우</span></span><span
-																	class="Button_Button__interaction__1LUyr"></span>
-															</button>
-														</div></a></li>
-												<li class="ListCard_List__RGzzX"><a
-													href="/company/21933" data-attribute-id="company__click"
-													data-tag-id="10405" data-tag-name="1,001~10,000명"
-													data-company-id="21933" data-company-name="현대캐피탈"
-													data-company-index="11" data-domain="attractionTag"
-													data-base-action="popular"><div
-															class="Grid_Grid__container__43uvK Grid_Grid__align-items_center__2CxBh Grid_Grid__align-content_space-between__hVHLa Grid_Grid__wrap_nowrap__lW8k0 ListCard_ListCard__x7sMD">
-															<div
-																class="Grid_Grid__container__43uvK Grid_Grid__align-items_center__2CxBh Grid_Grid__align-content_space-between__hVHLa Grid_Grid__wrap_nowrap__lW8k0 ListCard_ListCard__Contents__kgwtL">
-																<img
-																	src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fwdes%2F0_4.c938bd4c.jpg&amp;w=110&amp;q=100"
-																	fetchpriority="low" alt="현대캐피탈"
-																	class="ListCard_ListCard__Contents__Image__ZnXfj"
-																	decoding="async" loading="lazy">
-																<div
-																	class="ListCard_ListCard__Contents__Information__nzox0">
-																	<p
-																		class="Typography_Typography__root__RdAI1 Typography_Typography__body1__q3AOP Typography_Typography__weightBold__KkJEY ListCard_ListCard__Contents__Information_companyName__vtCMs">현대캐피탈</p>
-																	<span
-																		class="Typography_Typography__root__RdAI1 Typography_Typography__caption1__P91eH Typography_Typography__weightRegular__jzmck Typography_Typography__displayBlock__A3AK8 ListCard_ListCard__Contents__Information_industryName__hy1BM">금융</span>
-																</div>
-															</div>
-															<button
-																class="Button_Button__root__m1NGq Button_Button__outlined__0HnEd Button_Button__outlinedAssistive__JKDyz Button_Button__outlinedSizeSmall__PllaZ ListCard_ListCard__Button__PQ9Ge"
-																data-attribute-id="company__follow__click"
-																data-domain="attractionTag" data-tag-id="10405"
-																data-tag-name="1,001~10,000명" data-company-id="21933"
-																data-company-index="11" data-company-name="현대캐피탈"
-																data-kind="add" data-base-action="popular">
-																<span class="Button_Button__label__K0sBs"><span
-																	class="Typography_Typography__root__RdAI1 Typography_Typography__label2__svmAA Typography_Typography__weightMedium__GXnOM Typography_Typography__displayBlock__A3AK8 ListCard_ListCard__Button__Text__GxZco">팔로우</span></span><span
-																	class="Button_Button__interaction__1LUyr"></span>
-															</button>
-														</div></a></li>
-											</ul>
-										</div>
-									</div>
-									<div data-index="3" class="slick-slide" tabindex="-1"
-										aria-hidden="true" style="outline: none; width: 364px;"></div>
-									<div data-index="4" class="slick-slide" tabindex="-1"
-										aria-hidden="true" style="outline: none; width: 364px;"></div>
-								</div>
-							</div>
 						</div>
-					</div>
-				</div>
-			</section>
+				<script type="text/javascript">
+				$('.mutiple-items2').slick({
+					slidesToShow : 3,
+					slidesToScroll : 3,
+					autoplay : true,
+					autoplaySpeed : 3000,
+					draggable : true
+				});
+				
+				
+				</script>	
+						
+				</section>
 			<!-- 			</article> -->
 			<article class="ThemeArea_ThemeArea__a7D3I">
 				<div class="CarouselContainer_CarouselContainer__jvm3u">
