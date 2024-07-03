@@ -194,7 +194,8 @@ button {
 				<section
 					class="Grid_Grid__item__4GoIZ Grid_Grid__align-items_flex-start__nEOiH">
 					<span
-						class="Typography_Typography__root__RdAI1 Typography_Typography__label2__svmAA Typography_Typography__weightMedium__GXnOM Typography_Typography__displayBlock__A3AK8 ListItem_ListItem__label__0m2Cd">한줄 소개글</span>
+						class="Typography_Typography__root__RdAI1 Typography_Typography__label2__svmAA Typography_Typography__weightMedium__GXnOM Typography_Typography__displayBlock__A3AK8 ListItem_ListItem__label__0m2Cd">한줄
+						소개글</span>
 					<button id="openDesModal"
 						class="ListItem_ListItem__root__4HTKO ListItem_ListItem__divider__KWrpp ListItem_ListItem__button__cVygs ProfileEditJobCategory_ProfileEditJobCategory__listItem__V9f5Q"
 						data-attribute-id="profileEdit__jobCategory__click">
@@ -260,17 +261,22 @@ button {
 			</div>
 			<div class="modal-body">
 				<div class="job-list">
-					<label>웹 개발자 <input type="checkbox" name="job" value="웹 개발자"></label> 
-					<label>서버 개발자 <input type="checkbox" name="job" value="서버 개발자"> </label> 
-					<label>프론트엔드 개발자 <input type="checkbox" name="job" value="프론트엔드 개발자"></label>
-					<label>백엔드 개발자 <input type="checkbox" name="job" value="백엔드 개발자"></label>
-					<label>시스템 개발자 <input type="checkbox" name="job" value="시스템 개발자 "></label>
-					<label>데이터 엔지니어 <input type="checkbox" name="job" value="데이터 엔지니어"></label>
-					<label>머신러닝 엔지니어 <input type="checkbox" name="job" value="머신러닝 엔지니어"></label>
-					<label>데브옵스 엔지니어 <input type="checkbox" name="job" value="데브옵스 엔지니어"></label>
-					<label>풀스택 개발자 <input type="checkbox" name="job" value="풀스택 개발자"></label>
-					<label>시스템 아키텍트 <input type="checkbox" name="job" value="시스템 아키텍트"></label>
-					<label>네트워크 엔지니어 <input type="checkbox" name="job" value="네트워크 엔지니어"></label>
+					<label>웹 개발자 <input type="checkbox" name="job"
+						value="웹 개발자"></label> <label>서버 개발자 <input
+						type="checkbox" name="job" value="서버 개발자">
+					</label> <label>프론트엔드 개발자 <input type="checkbox" name="job"
+						value="프론트엔드 개발자"></label> <label>백엔드 개발자 <input
+						type="checkbox" name="job" value="백엔드 개발자"></label> <label>시스템
+						개발자 <input type="checkbox" name="job" value="시스템 개발자 ">
+					</label> <label>데이터 엔지니어 <input type="checkbox" name="job"
+						value="데이터 엔지니어"></label> <label>머신러닝 엔지니어 <input
+						type="checkbox" name="job" value="머신러닝 엔지니어"></label> <label>데브옵스
+						엔지니어 <input type="checkbox" name="job" value="데브옵스 엔지니어">
+					</label> <label>풀스택 개발자 <input type="checkbox" name="job"
+						value="풀스택 개발자"></label> <label>시스템 아키텍트 <input
+						type="checkbox" name="job" value="시스템 아키텍트"></label> <label>네트워크
+						엔지니어 <input type="checkbox" name="job" value="네트워크 엔지니어">
+					</label>
 				</div>
 			</div>
 			<div class="modal-actions">
@@ -280,46 +286,51 @@ button {
 	</div>
 
 	<script type="text/javascript">
-	
-	
-	// Modal 열기
-	document.getElementById('openModalBtn').addEventListener('click', function() {
-	  document.getElementById('jobCategoryModal').style.display = 'block';
-	});
+		// Modal 열기
+		document
+				.getElementById('openModalBtn')
+				.addEventListener(
+						'click',
+						function() {
+							document.getElementById('jobCategoryModal').style.display = 'block';
+						});
 
-	// Modal 닫기
-	document.querySelector('#jobCategoryModal .close').addEventListener('click', function() {
-	  document.getElementById('jobCategoryModal').style.display = 'none';
-	});
-	
-	
-	 $("#saveJobBtn").click(function() {
-		 
-		 var selectedJobs = [];
-	        $("input[name='job']:checked").each(function() {
-	            selectedJobs.push($(this).val());
-	        });
-	        var r_num = $('#r_num').val();
-	        
-	        var data = "r_num="+r_num+"&r_job="+selectedJobs;
-	        
-        $.ajax({
-            url: '/updateJob', 
-            type: 'POST',
-            dataType: 'json',
-            data : data,
-            success: function(res) {
-                location.reload();
+		// Modal 닫기
+		document
+				.querySelector('#jobCategoryModal .close')
+				.addEventListener(
+						'click',
+						function() {
+							document.getElementById('jobCategoryModal').style.display = 'none';
+						});
 
-            },
-            error: function(xhr, status, error) {
-                console.error('경력 업데이트 중 오류가 발생했습니다:', error);
-				history.back();
-            }
-        });
+		$("#saveJobBtn").click(function() {
 
-    });
-	 </script>
+			var selectedJobs = [];
+			$("input[name='job']:checked").each(function() {
+				selectedJobs.push($(this).val());
+			});
+			var r_num = $('#r_num').val();
+
+			var data = "r_num=" + r_num + "&r_job=" + selectedJobs;
+
+			$.ajax({
+				url : '/updateJob',
+				type : 'POST',
+				dataType : 'json',
+				data : data,
+				success : function(res) {
+					location.reload();
+
+				},
+				error : function(xhr, status, error) {
+					console.error('경력 업데이트 중 오류가 발생했습니다:', error);
+					history.back();
+				}
+			});
+
+		});
+	</script>
 
 
 	<div id="careerModal" class="modal">
@@ -372,45 +383,52 @@ button {
 			</div>
 		</div>
 	</div>
-		
-		<script type="text/javascript">
-		
+
+	<script type="text/javascript">
 		// Modal 열기
-		document.getElementById('opencareerModal').addEventListener('click', function() {
-		  document.getElementById('careerModal').style.display = 'block';
-		});
+		document
+				.getElementById('opencareerModal')
+				.addEventListener(
+						'click',
+						function() {
+							document.getElementById('careerModal').style.display = 'block';
+						});
 
 		// Modal 닫기
-		document.querySelector('#careerModal .close').addEventListener('click', function() {
-		  document.getElementById('careerModal').style.display = 'none';
-		});
-		
-	 $("#saveCareerBtn").click(function() {
-		 
-        var Career = $("input[name='career']:checked").val();
-        var r_num = document.getElementById('r_num').value;
-        
-        var data = "r_num="+r_num+"&r_exp="+Career;
-        
-        $.ajax({
-            url: '/updateExp', 
-            type: 'POST',
-            dataType: 'json',
-            data : data,
-            success: function(res) {
-                alert("수정완료");
-                location.reload();
+		document
+				.querySelector('#careerModal .close')
+				.addEventListener(
+						'click',
+						function() {
+							document.getElementById('careerModal').style.display = 'none';
+						});
 
-            },
-            error: function(xhr, status, error) {
-                console.error('경력 업데이트 중 오류가 발생했습니다:', error);
-				history.back();
-            }
-        });
-        
-    });
-	 </script>
-	 
+		$("#saveCareerBtn").click(function() {
+
+			var Career = $("input[name='career']:checked").val();
+			var r_num = document.getElementById('r_num').value;
+
+			var data = "r_num=" + r_num + "&r_exp=" + Career;
+
+			$.ajax({
+				url : '/updateExp',
+				type : 'POST',
+				dataType : 'json',
+				data : data,
+				success : function(res) {
+					alert("수정완료");
+					location.reload();
+
+				},
+				error : function(xhr, status, error) {
+					console.error('경력 업데이트 중 오류가 발생했습니다:', error);
+					history.back();
+				}
+			});
+
+		});
+	</script>
+
 
 	<div class="modal" id="descriptionModal" tabindex="-1"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -418,49 +436,72 @@ button {
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="exampleModalLabel">한줄 소개 작성</h5>
-					<button type="button" class="btn-close" data-bs-dismiss="modal"
-						aria-label="Close"></button>
+					<button class="close">&times;</button>
 				</div>
 				<div class="modal-body">
 					<form>
 						<div class="mb-3">
 							<textarea class="form-control" id="message-text" maxlength="150"
-								row="5" placeholder="한 줄 소개를 입력해 주세요."></textarea>
+								row="5" placeholder="한 줄 소개를 입력해 주세요." style="height: 225px;"></textarea>
 						</div>
 					</form>
+					<div
+						class="Grid_Grid__item__4GoIZ Grid_Grid__align-items_flex-start__nEOiH">
+						<span id="char-count"
+							class="Typography_Typography__root__RdAI1 Typography_Typography__caption2__114s_ Typography_Typography__weightMedium__GXnOM ProfileEditDescription_ProfileEditDescription__actions__primary__xbA2s">0</span><span
+							class="Typography_Typography__root__RdAI1 Typography_Typography__caption2__114s_ Typography_Typography__weightMedium__GXnOM ProfileEditDescription_ProfileEditDescription__actions__has__LF0qI">
+							/ 150</span>
+					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"
-						data-bs-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">Send message</button>
+					<button id="DesCancel" type="button" class="btn btn-secondary"
+						data-bs-dismiss="modal">취소</button>
+					<button type="button" id="DesSave" class="btn btn-primary">저장</button>
 				</div>
 			</div>
 		</div>
 	</div>
 
 	<script type="text/javascript">
-		
-	// Modal 열기
-	document.getElementById('openDesModal').addEventListener('click', function() {
-	  document.getElementById('descriptionModal').style.display = 'block';
-	});
+		document.addEventListener("DOMContentLoaded", function() {
+			const textarea = document.getElementById("message-text");
+			const charCountSpan = document.getElementById("char-count");
 
-	// Modal 닫기
-	document.querySelector('#descriptionModal .close').addEventListener('click', function() {
-	  document.getElementById('descriptionModal').style.display = 'none';
-	});
-	
-	
-		$("#sendMessageBtn").click(function() {
-			 var r_num = document.getElementById('r_num').value;
+			textarea.addEventListener("input", function() {
+				const currentLength = textarea.value.length;
+				charCountSpan.textContent = currentLength;
+			});
+		});
+		// Modal 열기
+		document
+				.getElementById('openDesModal')
+				.addEventListener(
+						'click',
+						function() {
+							document.getElementById('descriptionModal').style.display = 'block';
+						});
+
+		// Modal 닫기
+		document
+				.querySelector('#descriptionModal .close')
+				.addEventListener(
+						'click',
+						function() {
+							document.getElementById('descriptionModal').style.display = 'none';
+						});
+
+		// 취소 버튼을 클릭했을 때
+		document.getElementById('DesCancel').onclick = function() {
+			document.getElementById('descriptionModal').style.display = "none";
+		}
+
+		$("#DesSave").click(function() {
+			var r_num = document.getElementById('r_num').value;
 			var description = $("#message-text").val();
-			
-			var data = "r_num="+r_num+"&r_sogae="+description;
 
-			if (description.length > 150) {
-				alert("한 줄 소개는 최대 150자까지 작성할 수 있습니다.");
-				return;
-			}
+			var data = "r_num=" + r_num + "&r_sogae=" + description;
+
+
 
 			$.ajax({
 				url : '/updateDescription',
@@ -469,7 +510,6 @@ button {
 				data : data,
 				success : function(res) {
 					alert("업데이트 완료");
-					$('#descriptionModal').modal('hide');
 				},
 				error : function(xhr, status, error) {
 					console.error('업데이트 중 오류발생', error);
