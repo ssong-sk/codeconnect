@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.code.dto.HireDto;
 import com.code.dto.RegisterDto;
+import com.code.service.HireService;
 import com.code.service.RegisterService;
 
 @Controller
@@ -24,10 +26,16 @@ public class RegisterController {
    @Autowired
    RegisterService service;
    
+   @Autowired
+   HireService hservice;
+   
    @GetMapping("/")
-   public String start()
+   public String start(@ModelAttribute("hdto") HireDto dto, Model model)
    {
-      return "/layout/main";
+	   List<HireDto> hlist = hservice.getHireList();
+	   model.addAttribute("hlist", hlist);
+	   
+	   return "/layout/main";
    }
    
    @GetMapping("/main")
