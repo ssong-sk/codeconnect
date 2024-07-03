@@ -126,13 +126,13 @@
     
     <div class="footer">
         <c:if test="${sessionScope.myid != null && sessionScope.myid == 'manager'}">
-            <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='${pageContext.request.contextPath}/customer/noticeform'">글쓰기</button>
-            <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='${pageContext.request.contextPath}/customer/noticeupdateform/${dto.cus_num}'">수정</button>
+            <button type="button" class="btn btn-outline-primary btn-sm" onclick="location.href='${pageContext.request.contextPath}/customer/noticeform'">글쓰기</button>
+            <button type="button" class="btn btn-outline-primary btn-sm" onclick="location.href='${pageContext.request.contextPath}/customer/noticeupdateform/${dto.cus_num}'">수정</button>
             <form action="${pageContext.request.contextPath}/customer/noticedelete/${dto.cus_num}" method="get" style="display:inline;" onsubmit="return confirmDelete();">
-			    <button type="submit" class="btn btn-secondary btn-sm">삭제</button>
+			    <button type="submit" class="btn btn-outline-primary btn-sm">삭제</button>
 			</form>
         </c:if>
-        <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='${pageContext.request.contextPath}/customer/noticelist'">목록</button>
+        <button type="button" class="btn btn-outline-primary btn-sm" onclick="location.href='${pageContext.request.contextPath}/customer/noticelist'">목록</button>
     </div>
 </div>
 </body>

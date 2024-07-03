@@ -15,8 +15,6 @@
     body {
         font-family: 'IBM Plex Sans KR', sans-serif;
     }
-
-    /* 최상단 카테고리 nav */
     .nav {
         margin-top: 5px;
         margin-left: 270px;
@@ -50,7 +48,6 @@
         margin: 50px auto -30px auto;
         gap: 870px;
     }
-    /* 테이블 스타일 */
     table {
         width: 80%;
         margin: 30px auto;
@@ -70,15 +67,12 @@
     th {
         border-bottom: 2px solid #000;
     }
-
-    /* 페이징 스타일 */
     .pagination {
         display: flex;
         justify-content: center;
         margin-top: 40px;
         margin-bottom: 50px;
     }
-
     .pagination a {
         padding: 10px 15px;
         margin: 0 5px;
@@ -88,11 +82,9 @@
         border-radius: 5px;
         border: none;
     }
-
     .pagination a:hover {
         background-color: #e9ecef;
     }
-
     .pagination a.active {
         border: 1px solid #dee2e6;
         background-color: white;
@@ -102,21 +94,21 @@
     }
 </style>
 <script type="text/javascript">
-	$(document).ready(function() {
-	    var currentUrl = window.location.pathname;
-	    if (currentUrl.includes('/customer/noticelist')) {
-	        $('#noticeLink').addClass('active');
-	    } else if (currentUrl.includes('/customer/eventlist')) {
-	        $('#eventLink').addClass('active');
-	    } else if (currentUrl.includes('/customer/inquirylist')) {
-	        $('#inquiryLink').addClass('active');
-	    }
-	});
+    $(document).ready(function() {
+        var currentUrl = window.location.pathname;
+        if (currentUrl.includes('/customer/noticelist')) {
+            $('#noticeLink').addClass('active');
+        } else if (currentUrl.includes('/customer/eventlist')) {
+            $('#eventLink').addClass('active');
+        } else if (currentUrl.includes('/customer/inquirylist')) {
+            $('#inquiryLink').addClass('active');
+        }
+    });
 </script>
 </head>
 <body>
 <div style="max-width: 1000px; margin-top: 70px; margin-left: 370px; width: 80%;">
-	<h4 style="color: gray; font-weight: bold;">고객센터</h4>
+    <h4 style="color: gray; font-weight: bold;">고객센터</h4>
 </div>
 <nav class="nav">
     <ul>
@@ -126,49 +118,63 @@
     </ul>
 </nav>
 
-<!-- 관리자(manager) 로그인시에만 글쓰기 버튼 보이게 & span,button 간격 조정-->
 <div class="top-section">
-    <span style="margin-right: 940px;">총 &nbsp;${totalCount}&nbsp;건</span>
-    
+    <c:if test="${sessionScope.myid != null}">
+        <span style="margin-right: 940px;">총 &nbsp;${totalCount}&nbsp;건</span>
+    </c:if>
 </div>
-<div style="max-width: 1000px; margin: 50px auto; width: 80%;">
-    <table class="table" style="font-size: 15px; vertical-align: middle; border-top: 2px solid gray; border-bottom: 2px solid #E2E2E2">
-         <tr align="center" style="height: 50px; border-bottom: 2px solid #C0C0C0;">
-             <th width="500">제목</th>
-             <th width="120">작성일</th>
-             <th width="100">답변상태</th>
-         </tr>
-         <!-- 1:1문의 게시판은 본인이 작성한 글만 보이도록 처리 -->
-         <c:if test="${sessionScope.myid != null}">
-		    <c:forEach var="inquiry" items="${list}">
-		        <c:if test="${sessionScope.myid == 'manager' || inquiry.cus_user_id == sessionScope.myid}">
-		            <tr style="height: 55px;">
-		                <td width="500" style="vertical-align: middle;">
-		                    <a href="${pageContext.request.contextPath}/customer/inquirydetail/${inquiry.cus_num}" style="text-decoration: none; color: black; margin-left: 5px;">
-		                        ${inquiry.cus_title}
-		                    </a>
-		                </td>
-		                <td class="center" width="120" style="vertical-align: middle; color: gray;">
-		                    <fmt:formatDate value="${inquiry.cus_writetime}" pattern="yyyy.MM.dd" />
-		                </td>
-		                <td class="center" width="100">
-		                    <c:choose>
-		                        <c:when test="${not empty inquiry.cus_answer}">
-		                            <span style="color: #0000FF;">답변 완료</span>
-		                        </c:when>
-		                        <c:otherwise>
-		                            답변 대기
-		                        </c:otherwise>
-		                    </c:choose>
-		                </td>
-		            </tr>
-		        </c:if>
-		    </c:forEach>
-		</c:if>
-    </table>
-</div>
+
+<c:choose>
+    <c:when test="${sessionScope.myid == null}">
+        <!-- 비회원일 경우 -->
+        <div style="text-align: center; margin-top: 20px;">
+            <p>로그인 시 1:1문의가 가능합니다.</p>
+        </div>
+    </c:when>
+    <c:otherwise>
+        <!-- 회원 및 관리자일 경우 -->
+        <div style="max-width: 1000px; margin: 50px auto; width: 80%;">
+            <c:if test="${totalCount == 0}">
+                <p align="center">작성한 1:1 문의가 없습니다.</p>
+            </c:if>
+            <c:if test="${totalCount > 0}">
+                <table class="table" style="font-size: 15px; vertical-align: middle; border-top: 2px solid gray; border-bottom: 2px solid #E2E2E2">
+                    <tr align="center" style="height: 50px; border-bottom: 2px solid #C0C0C0;">
+                        <th width="500">제목</th>
+                        <th width="120">작성일</th>
+                        <th width="100">답변상태</th>
+                    </tr>
+                    <c:forEach var="inquiry" items="${list}">
+                        <tr style="height: 55px;">
+                            <td width="500" style="vertical-align: middle;">
+                                <a href="${pageContext.request.contextPath}/customer/inquirydetail/${inquiry.cus_num}" style="text-decoration: none; color: black; margin-left: 5px;">
+                                    ${inquiry.cus_title}
+                                </a>
+                            </td>
+                            <td class="center" width="120" style="vertical-align: middle; color: gray;">
+                                <fmt:formatDate value="${inquiry.cus_writetime}" pattern="yyyy.MM.dd" />
+                            </td>
+                            <td class="center" width="100">
+                                <c:choose>
+                                    <c:when test="${not empty inquiry.cus_answer}">
+                                        <span style="color: #0000FF;">답변 완료</span>
+                                    </c:when>
+                                    <c:otherwise>
+                                        답변 대기
+                                    </c:otherwise>
+                                </c:choose>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                </table>
+            </c:if>
+        </div>
+    </c:otherwise>
+</c:choose>
+
+<!-- 비회원, 관리자(manager)제외한 모든 회원은 문의하기 버튼 보이게 -->
 <div style="margin-left: 1350px; margin-top: -30px;">
-	<c:if test="${sessionScope.myid != null}">
+    <c:if test="${sessionScope.myid != null && sessionScope.myid != 'manager'}">
         <button type="button" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/customer/inquiryform'">문의하기</button>
     </c:if>
 </div>

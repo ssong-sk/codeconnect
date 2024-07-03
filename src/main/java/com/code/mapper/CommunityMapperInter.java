@@ -22,7 +22,7 @@ public interface CommunityMapperInter {
     public void deleteCommunity(String com_num); //home 커뮤니티 글 삭제
     //public void deleteInterview(String com_num); //interview 커뮤니티 글 삭제
     
-    @Delete("DELETE FROM community WHERE com_num = #{com_num} AND com_post_type = 'interview'")
+    @Delete("delete from community where com_num = #{com_num} and com_post_type = 'interview'")
     void deleteInterview(@Param("com_num") String com_num); // 인터뷰 커뮤니티 글만 삭제하도록
     
     //인터뷰 목록을 가져오는 메소드 추가
