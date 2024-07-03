@@ -7,7 +7,9 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.code.dto.HireDto;
 import com.code.dto.RegisterDto;
+import com.code.mapper.HireMapperInter;
 import com.code.mapper.RegisterMapperInter;
 
 @Service
@@ -15,6 +17,10 @@ public class RegisterService implements RegisterServiceInter {
 
 	@Autowired
 	RegisterMapperInter mapperInter;
+	
+	@Autowired
+	HireMapperInter mapper;
+	
 
 	@Override
 	public void insertRegister(RegisterDto dto) {
@@ -113,7 +119,36 @@ public class RegisterService implements RegisterServiceInter {
 		mapperInter.getUpdateDescription(dto);
 		
 	}
+	
+	@Override
+	public void scrapInsert(HireDto dto) {
+		mapper.scrapInsert(dto);
+		
+	}
 
+	@Override
+	public int getRnumById(String r_id) {
+		return mapper.getRnumById(r_id);
+	}
 
+	@Override
+	public void scrapDelete(int r_num, int h_num) {
+		Map<String, Object> param = new HashMap<>();
+		param.put("r_num",r_num);
+		param.put("h_num",h_num);
+		mapper.scrapDelete(r_num, h_num);
+		
+	}
 
+	@Override
+	public List<HireDto> getUserScraps(int r_num) {
+		return mapper.getUserScraps(r_num);
+	}
+
+	@Override
+	public int getScrapCount(int r_num) {
+		return mapper.getScrapCount(r_num);
+	}
+
+	
 }

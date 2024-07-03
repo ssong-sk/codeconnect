@@ -71,6 +71,15 @@
 	    where cus_category = '진행중 이벤트' and cus_endday < now()
 	    ]]>
 	</update>
+	
+	<!-- inquirylist 회원 작성글 구분 -->
+	<select id="getCountByTypeAndUser" parameterType="map" resultType="int">
+	    select count(*) from customer where cus_top_type = #{cus_top_type} and cus_user_id = #{cus_user_id}
+	</select>
+	
+	<select id="getPagedDatasByTypeAndUser" parameterType="map" resultType="CustomerDto">
+	    select * from customer where cus_top_type = #{cus_top_type} and cus_user_id = #{cus_user_id} order by cus_num desc limit #{startRow}, #{pageSize}
+	</select>
     
 </mapper>
 

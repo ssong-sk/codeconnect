@@ -44,6 +44,7 @@ a, abbr, acronym, address, applet, article, aside, audio, b, big,
 	color: inherit;
 }
 
+
 /*  --------------------------------------MainLayout------------------------------------------ */
 .MainLayout_MainLayout__2EBgM {
 	background-color: #fff;
@@ -796,7 +797,7 @@ a, abbr, acronym, address, applet, article, aside, audio, b, big,
 
 /*--------------------------------------------------- 내 활동 페이지----------------------------------------------------- */
 a, a:active, a:hover, a:visited {
-	color: inherit;
+	color: #212529 !important;
 }
 
 /* -------------------------------------------------Grid_Grid-------------------------------------------------- */
@@ -875,36 +876,6 @@ Typography_Typography__weightMedium__GXnOM {
 	font-weight: 500;
 }
 
-.Typography_Typography__body1__q3AOP {
-	font-size: 16px;
-	letter-spacing: .0057em;
-	line-height: 24px;
-}
-
-.Typography_Typography__root__RdAI1 {
-	margin: 0;
-}
-
-.Typography_Typography__weightBold__KkJEY {
-	font-weight: 600;
-}
-
-.Typography_Typography__headline1__oRteu {
-	font-size: 18px;
-	letter-spacing: -.002em;
-	line-height: 26px;
-}
-
-.Typography_Typography__weightRegular__jzmck {
-	font-weight: 400;
-}
-
-.Typography_Typography__caption1__P91eH {
-	font-size: 12px;
-	letter-spacing: .0252em;
-	line-height: 16px;
-}
-
 .Typography_Typography__alignCenter__HDWWj {
 	text-align: Center;
 }
@@ -921,9 +892,6 @@ Typography_Typography__weightMedium__GXnOM {
 	line-height: 20px;
 }
 
-.Typography_Typography__weightMedium__GXnOM {
-	font-weight: 500;
-}
 
 /* -------------------------------------------------CountSummary-------------------------------------------------- */
 .CountSummary_CountSummary__mm865 {
@@ -1663,3 +1631,108 @@ input, input:focus {
     justify-content: flex-center;
     flex: 0 0 auto;
 }
+
+.JobHuntingSetting_JobHuntingSetting__72QoT {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.JobHuntingSetting_JobHuntingSetting__72QoT h2 {
+    color: rgba(55, 56, 60, .61);
+}
+
+.JobHuntingSetting_JobHuntingSetting__container__FIYsw {
+    width: 100%;
+    border-radius: 12px;
+    background: hsla(225, 5%, 46%, .04);
+}
+
+.JobHuntingSetting_JobHuntingSetting__container__FIYsw>div:not(:last-child) {
+    border-bottom: 1px solid hsla(225, 5%, 46%, .04);
+}
+
+.JobHuntingSetting_JobHuntingSetting__container_counterContainer__D8kpd {
+    padding: 20px 0;
+    color: #000;
+}
+
+.JobHuntingSetting_JobHuntingSetting__container_counterContainer__D8kpd>div:not(:last-child) {
+    min-height: 42px;
+    border-right: 1px solid hsla(225, 5%, 46%, .04);
+}
+
+.CountSummary_CountSummary__mm865 {
+    flex-direction: column;
+    gap: 4px;
+    justify-content: center;
+    align-items: center;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.Typography_Typography__alignCenter__HDWWj {
+    text-align: Center;
+}
+
+.JobHuntingSetting_JobHuntingSetting__container_rowContianer__rv5KD {
+    margin: 0 24px;
+    min-height: 60px;
+}
+
+.RowBar_RowBar__RB_Ur {
+    text-align: left;
+    width: 100%;
+}
+
+.RowBar_RowBar__container__0HJfH {
+    height: 60px;
+    display: flex;
+    color: #171717;
+    align-items: center;
+    cursor: pointer;
+}
+
+.RowBar_RowBar__container__iconColor_red__NRe7k {
+    background: #ff4242;
+    color: #fff;
+}
+
+.RowBar_RowBar__container__iconBox__EtRst {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    width: 30px;
+    height: 30px;
+    overflow: hidden;
+    font-size: 18px;
+}
+
+.RowBar_RowBar__container__content__woyOc {
+    display: -ms-flexbox;
+    display: flex;
+    flex: 1 1;
+    margin: 0 0 0 12px;
+}
+
+.RowBar_RowBar__container__content__woyOc h2:first-child, .RowBar_RowBar__container__content__woyOc span:first-child, .RowBar_RowBar__container__content__woyOc>p:first-child {
+    
+    flex: 1 1;
+}
+
+.RowBar_RowBar__container__iconColor_lightBlue__Ick8a {
+    background: #00aeff;
+    color: #fff;
+}
+
+.JobHuntingSetting_JobHuntingSetting__container_preview__cMLx2 {
+    color: rgba(55, 56, 60, .61);
+    display: flex;
+        align-items: center;
+}
+
+
+

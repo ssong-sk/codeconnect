@@ -130,14 +130,14 @@
     <div class="btns">
         <!-- 로그인한 회원만 글쓰기 가능 -->
         <c:if test="${sessionScope.loginok != null}">
-            <button type="button" class="btn btn-secondary" onclick="location.href='${pageContext.request.contextPath}/community/interviewform'">글쓰기</button>
+            <button type="button" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/community/interviewform'">글쓰기</button>
         </c:if>
         <!-- 해당 글을 작성한 회원만 수정, 삭제 가능 -->
         <c:if test="${sessionScope.myid == dto.com_user_id}">
-            <button type="button" class="btn btn-secondary" onclick="location.href='${pageContext.request.contextPath}/community/interviewupdateform?com_num=${dto.com_num}'">수정</button>
-            <button type="button" class="btn btn-secondary" onclick="deleteInterview(${dto.com_num})">삭제</button>
+            <button type="button" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/community/interviewupdateform?com_num=${dto.com_num}'">수정</button>
+            <button type="button" class="btn btn-outline-primary" onclick="deleteInterview(${dto.com_num})">삭제</button>
         </c:if>
-        <button type="button" class="btn btn-secondary" onclick="location.href='${pageContext.request.contextPath}/community/interviewlist'">목록</button>
+        <button type="button" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/community/interviewlist'">목록</button>
     </div>
 </div>
 </body>

@@ -28,7 +28,7 @@ public class CommunityCommentRestController {
     //댓글 등록
     @PostMapping("/community/ainsert")  // 매핑주소 겹치지 않게 :)
     public void insert(@ModelAttribute CommunityCommentDto dto, @RequestParam int cc_num, HttpSession session) {
-        // 글쓴사람 id 아니고 로그인한 id
+        //글쓴사람 id 아니고 로그인한 id
         String myid = (String) session.getAttribute("myid");
         String nickname = (String) session.getAttribute("userNickname");
         
@@ -36,12 +36,12 @@ public class CommunityCommentRestController {
             nickname = "defaultNickname";
         }
         
-        // dto 넣기
+        //dto 넣기
         dto.setCc_user_id(myid);
         dto.setCc_nickname(nickname);
         dto.setCc_num(cc_num);
         
-        // insert
+        //insert
         service.insertComment(dto);
         comservice.incrementCommentCount(cc_num);
         

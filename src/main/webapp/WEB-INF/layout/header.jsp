@@ -33,15 +33,15 @@
 				</div>
 				<ul class="Menu_MenuNav__EOf3X" style="margin-bottom: 0px;padding-left: 0px;">
 					<li class="Menu_MenuItem__wI1yA"><a href="/hire/main"
-						class="Menu_jobListLink__GYHAI"><span>채용</span></a></li>
-					<li class="Menu_MenuItem__wI1yA"><a href="/company/gotoshowimsiList"><span>기업</span></a></li>
+						class="Menu_jobListLink__GYHAI"><span class="span_header">채용</span></a></li>
+					<li class="Menu_MenuItem__wI1yA"><a href="/company/gotoshowimsiList"><span class="span_header">기업</span></a></li>
 					<li class="Menu_MenuItem__wI1yA" data-attribute-id="gnb"
-						data-gnb-kind="resume"><a href="/resumehome/home"><span>이력서</span></a></li>
+						data-gnb-kind="resume"><a href="/resumehome/home"><span class="span_header">이력서</span></a></li>
 	<li class="Menu_MenuItem__wI1yA" data-attribute-id="gnb"
-						data-gnb-kind="community"><a href="/community/homelist"><span>커뮤니티</span></a></li>
+						data-gnb-kind="community"><a href="/community/homelist"><span class="span_header">커뮤니티</span></a></li>
 
 					<li class="Menu_MenuItem__wI1yA" data-attribute-id="gnb"
-						data-gnb-kind="customer"><a href="/customer/noticelist"><span>고객센터</span></a></li>
+						data-gnb-kind="customer"><a href="/customer/noticelist"><span class="span_header">고객센터</span></a></li>
 
 				</ul>
 
@@ -61,7 +61,7 @@
 
 						</div>
 						<li class="Aside_signUpButtonContainer___0wTS"><c:if
-								test="${sessionScope.loginok==null and sessionScope.c_loginok==null}">
+								test="${sessionScope.loginok==null and sessionScope.c_loginok==null and sessionScope.m_loginok == null }">
 								<button
 									class="Button_Button__root__V1ie3 Button_Button__outlined__H2mkd Button_Button__outlinedAssistive__mBcQK Button_Button__outlinedSizeSmall__JJmOo Aside_signUpButton__pY721"
 									type="button" onclick="location.href='/login/main'">
