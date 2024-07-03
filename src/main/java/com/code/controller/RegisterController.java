@@ -37,11 +37,13 @@ public class RegisterController {
    @Autowired
    HireService hservice;
    
-   
    @GetMapping("/")
-   public String start()
+   public String start(@ModelAttribute("hdto") HireDto dto, Model model)
    {
-      return "/layout/main";
+	   List<HireDto> hlist = hservice.getHireList();
+	   model.addAttribute("hlist", hlist);
+	   
+	   return "/layout/main";
    }
    
    @GetMapping("/main")
