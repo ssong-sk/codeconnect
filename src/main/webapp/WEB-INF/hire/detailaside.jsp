@@ -59,7 +59,7 @@
 
 .detailaside .celebration em {
     font-weight: 800;
-    color: rgb(1, 118, 237);
+    color: #0D6CF9;
     font-style: normal;
 }
 
@@ -153,7 +153,7 @@
     align-items: center;
     gap: 4px;
     font-weight: 500;
-    color: rgb(1, 118, 237);
+    color: #0D6CF9;
     text-decoration-line: underline;
 }
 
@@ -176,7 +176,7 @@
 }
 
 .supportbtn {
-    background: rgb(1, 118, 237);
+    background: #0D6CF9;
     border: 1px solid rgb(1, 118, 237);
     color: rgb(255, 255, 255);
     padding: 0px 16px;
@@ -945,19 +945,19 @@ $('.xbtn').click(function() {
 $(".applybox").click(function(){
 	// 선택된 applybox의 테두리 색상 변경
 	$(".applybox").css("border", "1px solid rgb(228, 228, 228)");
-	$(this).css("border", "2px solid #0d6efd");
+	$(this).css("border", "2px solid #0D6CF9");
 	
 	// 선택된 라디오 버튼 체크
 	$(this).find(".form-check-input").prop("checked", true);
 	
 	// 지원 버튼의 배경색 변경
-	$(".footerbtn").css("background", "#0d6efd");
+	$(".footerbtn").css("background", "#0D6CF9");
 });
 
 $(".form-check-input").change(function(){
     $(".applybox").css("border", "1px solid rgb(228, 228, 228)"); // 모든 applybox의 테두리를 초기화
-    $(this).closest(".applybox").css("border", "2px solid #0d6efd"); // 선택된 radio 버튼의 부모 .applybox만 테두리 변경
-    $(".footerbtn").css("background", "#0d6efd"); // 지원 버튼의 배경색 변경
+    $(this).closest(".applybox").css("border", "2px solid #0D6CF9"); // 선택된 radio 버튼의 부모 .applybox만 테두리 변경
+    $(".footerbtn").css("background", "#0D6CF9"); // 지원 버튼의 배경색 변경
 });
 </script>
 
@@ -1045,7 +1045,7 @@ function scrapPress() {
 		            success: function() {
 		            	scrappressed.attr('aria-pressed', 'true');
 				        scrappressed.html(`
-				        		<i class="bi bi-bookmark-fill scrap" style="color: #0176ED"></i>
+				        		<i class="bi bi-bookmark-fill scrap" style="color: #0D6CF9"></i>
 				                <span>스크랩</span>
 				        `);
 		            }

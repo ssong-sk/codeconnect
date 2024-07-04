@@ -80,7 +80,7 @@ public class LoginController {
 			
 			//관리자로 로그인시 관리자 페이지로 리다이렉트 -> 삭제 금지
 			if ("manager".equals(r_id)) {
-				return "redirect:/manager/main";
+				return "redirect:/manager/member";
 		    }
 			
 			return "redirect:/";

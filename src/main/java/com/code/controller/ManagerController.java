@@ -573,5 +573,26 @@ public class ManagerController {
 		
 		return "manager/managerinquiry";
 	}
+	
+	@GetMapping("/manager/inquiryedit")
+	public String inquiryedit(HttpSession session, Model model, int cus_num) {
+
+		CustomerDto indto = mservice.getCustomer(cus_num);
+		model.addAttribute("indto", indto);
+
+		return "manager/inquiryedit";
+	}
+	
+	@PostMapping("/manager/inquiryupdate")
+	public String inquiryupdate(@ModelAttribute CustomerDto dto) {
+	    mservice.updateInquiry(dto);
+	    return "redirect:/manager/inquiry";
+	}
+
+	@PostMapping("/manager/inquirydelete")
+	public String inquirydelete(@ModelAttribute CustomerDto dto) {
+		mservice.deleteInquiry(dto);
+		return "redirect:/manager/inquiry";
+	}
 
 }

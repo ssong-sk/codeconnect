@@ -132,10 +132,10 @@
 </head>
 <body>
 <%-- <a href="${pageContext.request.contextPath}/community/homelist" onclick="scrollToTop()" class="back_button"><i class="bi bi-chevron-left"></i>&nbsp;이전페이지</a> --%>
-<a href="${pageContext.request.contextPath}/community/homelist" onclick="scrollToTop()" class="back_button"><i class="bi bi-chevron-left"></i>&nbsp;이전페이지</a>
+<a href="homelist" onclick="scrollToTop()" class="back_button"><i class="bi bi-chevron-left"></i>&nbsp;이전페이지</a>
 <div class="form-container" style="margin-bottom: 70px;">
     <h2>게시글 작성</h2>
-    <form action="${pageContext.request.contextPath}/community/homeinsert" method="post" enctype="multipart/form-data">
+    <form action="homeinsert" method="post" enctype="multipart/form-data">
     	<input type="hidden" id="id" name="com_user_id" value="${userid }">
     	<input type="hidden" id="name" name="com_name" value="${name }">
         <div>

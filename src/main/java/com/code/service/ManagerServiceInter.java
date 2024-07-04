@@ -41,4 +41,6 @@ public interface ManagerServiceInter {
 	public int getCountInquirySuccess();
 	public int getCountInquiryStandBy();
 	public List<CustomerDto> getAllCustomerInquiry(int start, int perpage);
+	public void updateInquiry(CustomerDto dto);
+	public void deleteInquiry(CustomerDto dto);
 }
