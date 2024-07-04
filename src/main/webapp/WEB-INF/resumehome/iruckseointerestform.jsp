@@ -60,7 +60,7 @@
   justify-content: space-between; /* 좌우 섹션을 공간에 따라 나눕니다. */
   align-items: center; /* 좌우 섹션을 수직으로 가운데 정렬합니다. */
   padding: 10px 0; /* 항목 간의 간격을 추가합니다. */
-}
+  }
 
 .left-section {
   display: flex;
@@ -264,7 +264,7 @@
 				     
                     <div class="condition-notice">
 		              <div style="padding: 10px 10px;">
-			              <div ><i class="bi bi-exclamation-circle"></i>&nbsp;&nbsp;<b>유의사항</b></div><br>
+			              <div><i class="bi bi-exclamation-circle"></i>&nbsp;&nbsp;<b>유의사항</b></div><br>
 			              <div style="font-size: 0.8em;">- 기업을 스크랩할 경우 제한 및 기간 상관없이 리스트에 추가 가능합니다.</div>
 			              <div style="font-size: 0.8em;">- 상세보기를 누르면 해당 기업의 정보를 확인하실 수 있습니다.</div>
 		              </div>

@@ -116,7 +116,7 @@
 </script>
 </head>
 <body>
-<div style="max-width: 1000px; margin-top: 70px; margin-left: 370px; width: 80%;">
+<div style="max-width: 1060px; margin-top: 70px; margin-left: 370px; width: 80%;">
 	<h4 style="color: gray; font-weight: bold;">고객센터</h4>
 </div>
 <nav class="nav">
@@ -138,7 +138,7 @@
         </c:if>
     
 </div>
-<div style="max-width: 1000px; margin: 50px auto; width: 80%;">
+<div style="max-width: 1060px; margin: 50px auto; width: 80%;">
     <table class="table" style="font-size: 15px; border-top: 2px solid #E2E2E2; border-bottom: 2px solid #E2E2E2">
          <c:forEach var="notice" items="${list}">
              <tr style="height: 60px;">
