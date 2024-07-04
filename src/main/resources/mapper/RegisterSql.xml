@@ -63,18 +63,6 @@
     
     
  <!-- 스크랩 -->
-<insert id="scrapInsertReg" parameterType="hdto">
-	insert into scrap (h_num, r_num) values(#{h_num}, #{r_num})
-</insert>
-
-<delete id="scrapDeleteReg" parameterType="map">
-    DELETE FROM scrap WHERE r_num = #{r_num} AND h_num = #{h_num}
-</delete>
-
-<select id="scrapSelectReg" resultType="hdto">
-    select * from scrap where s_num = #{s_num}
-</select>
-
 <select id="getUserScrapsReg" parameterType="int" resultType="hdto">
     SELECT h_num FROM scrap WHERE r_num = #{r_num}
 </select>

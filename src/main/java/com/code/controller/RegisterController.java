@@ -39,21 +39,43 @@ public class RegisterController {
    
    @Autowired
    CompanyIntroService ciservice;
-   
+
    @GetMapping("/")
-   public String start(@ModelAttribute("hdto") HireDto dto, @ModelAttribute CompanyIntroDto cidto, Model model)
+   public String start(@ModelAttribute("hdto") HireDto dto, @ModelAttribute CompanyIntroDto cidto, Model model,HttpSession session)
    {
 	   List<HireDto> hlist = hservice.getHireList();
+	   List<HireDto> rlist = hservice.getHireList();
 	   List<CompanyIntroDto> cilist = ciservice.getAllCompanyIntros();
+	   
+	   String myid =(String)session.getAttribute("myid");
+	   Integer r_num = null;
+	   
+	   if(myid != null) {
+		   r_num = hservice.getRnumById(myid);
+	   }
+	   if(r_num == null)
+	   {
+		   r_num = 0;
+	   }
+
+	   int rScrap = service.getScrapCount(r_num);
+	   
+	   List<HireDto> userScraps = hservice.getUserScraps(r_num);
+	   
 	   model.addAttribute("hlist", hlist);
 	   model.addAttribute("cilist", cilist);
+	   model.addAttribute("rlist",rlist);
+	   model.addAttribute("r_num",r_num);
+	   model.addAttribute("userScraps",userScraps);
+	   model.addAttribute("rScrap",rScrap);
 	   
 	   return "/layout/main";
    }
-   
+      
    @GetMapping("/main")
    public String form(HttpSession session,Model model)
-   {
+   {		
+	   
       //폼의 아이디얻어줌
       String myid=(String)session.getAttribute("myid");
       //로그인중인지 아닌지
@@ -89,17 +111,6 @@ public class RegisterController {
           return "/member/gaipsuccess";
    }
    
-   
-   
-   //회원정보로 가기
-      @GetMapping("/member/myinfo")
-      public String myinfo(Model model)
-      {
-         List<RegisterDto> list=service.getAllRegister();
-         model.addAttribute("list", list);
-         return "/member/memberinfo";
-      }
-      
       //회원목록 삭제
       @GetMapping("/deleteRegister")
       @ResponseBody
@@ -107,8 +118,6 @@ public class RegisterController {
       {
          service.deleteRegister(r_num);
       }
-      
-      
       
       //수정폼에 출력할 데이타 반환
       @GetMapping("/member/updateform")
@@ -203,7 +212,6 @@ public class RegisterController {
    
    
    
-   
  @GetMapping("/member/apply")
    public String apply() {
 	   return "/member/apply";
@@ -213,12 +221,6 @@ public class RegisterController {
    public String memberform() {
       return "/member/memberform";
    }
-   
-   @GetMapping("/member/register2")
-   public String position() {
-      return "/member/register2";
-   }
-   
    
    
     @PostMapping("/checkDuplicateId")
