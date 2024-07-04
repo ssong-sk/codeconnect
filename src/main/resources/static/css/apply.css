@@ -63,7 +63,7 @@ ol, ul {
 
 .Aside_className__FJWzI {
     float: left;
-    width: 25.4716981132%;
+    width: 17.471698%;
     margin-bottom: 0;
     padding-right: 20px;
 }
@@ -149,7 +149,7 @@ ol, ul {
 }
 
 .Body_Body__lyHIo {
-    width: 74.5283018868%;
+    width: 82.528302%;
 }
 
 .Summary_Summary__wbpVe {
@@ -290,7 +290,6 @@ input[type=text], textarea {
     text-align: center;
     flex-grow: 1;
     flex-shrink: 0;
-    flex-basis: calc(21% + 34px);
 }
 
 .List_List_table_td__C8YQe.table-header {
@@ -298,6 +297,7 @@ input[type=text], textarea {
     color: #171719;
     font-size: 14px;
     font-weight: 400;
+    
 }
 
 .List_List_table_td_company_name__xwoY9 {

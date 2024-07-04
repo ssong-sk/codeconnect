@@ -213,6 +213,12 @@ public class RegisterController {
 	   int spcecount = service.getwritesp_ce(pe_num);
 	   int splacount = service.getwritesp_la(pe_num);
 	   int spawcount = service.getwritesp_aw(pe_num);
+	   
+	   	 int totalCount = irservice.getSupportCount(r_num);
+		 int CountApply = irservice.getCountApply(r_num);
+		 int CountApplySuc = irservice.getCountApplySuc(r_num);
+		 int CountApplyFin = irservice.getCountApplyFin(r_num);
+		 int CountApplyFail = irservice.getCountApplyFail(r_num);
 
 	   model.addAttribute("pe_num", pe_num);
 	   model.addAttribute("rScrap",rScrap);
@@ -223,6 +229,12 @@ public class RegisterController {
 	   model.addAttribute("spcecount", spcecount);
 	   model.addAttribute("splacount", splacount);
 	   model.addAttribute("spawcount", spawcount);
+	   
+	   model.addAttribute("count",totalCount);
+	   model.addAttribute("apply",CountApply);
+	   model.addAttribute("applySuc",CountApplySuc);
+	   model.addAttribute("applyFin",CountApplyFin);
+	   model.addAttribute("applyFail",CountApplyFail);
 	   return "/sub/member/mypage"; 
 	}
    
