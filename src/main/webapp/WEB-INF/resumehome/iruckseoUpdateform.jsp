@@ -23,7 +23,7 @@
       margin: 0 auto;
       width: 100%;
       height: 100%;
-      max-width: 1000px;
+      max-width: 1060px;
   }
   
   #wrap {
@@ -3003,7 +3003,7 @@
                   
                   <div class="fixed_final">
                       <input type="text" class="form-control"   id="pe_title_temp" style="height: 40px; 
-                      width: 43%;" value="${pedto.pe_title }" required="required">&nbsp;&nbsp;&nbsp;&nbsp;
+                      width: 51%;" value="${pedto.pe_title }" required="required">&nbsp;&nbsp;&nbsp;&nbsp;
                       <button type="button" id="allDataSelect" class="btn btn-outline-primary" 
                       data-bs-target="#ListSelect" data-bs-toggle="modal">미리보기</button>&nbsp;
                       <button type="button" id="allDataUpdate" class="btn btn-primary">수정완료</button>

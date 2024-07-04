@@ -65,10 +65,10 @@
         font-weight: bold;
     }
 
-    .events {
+	.events {
 	    display: flex;
 	    flex-wrap: wrap;
-	    justify-content: space-around;
+	    justify-content: flex-start; /* 중앙 정렬에서 왼쪽 정렬로 변경 */
 	    margin: 20px auto;
 	    width: 60%;
 	}
@@ -79,6 +79,7 @@
 	    border-radius: 5px;
 	    width: calc(30% - 10px);
 	    margin-bottom: 20px;
+	    margin-left: 20px;
 	    padding: 15px;
 	    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 	}
@@ -236,48 +237,6 @@
     </c:if>
 </div>
 
-
-<%-- <div id="closed" class="events" style="display: none; width: 80%">
-    <div class="top-section" style="width: 1000px;">
-        <span>총 &nbsp;${totalCountClosed}&nbsp;건</span>
-        <c:if test="${sessionScope.myid == 'manager'}">
-            <button type="button" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/customer/eventform'">글쓰기</button>
-        </c:if>
-        <c:if test="${sessionScope.myid != 'manager'}">
-            <button type="button" class="btn btn-outline-primary" style="visibility: hidden;">글쓰기</button>
-        </c:if>
-    </div>
-    <div class="mainlist" style="max-width: 1000px; margin: 40px auto; width: 80%;">
-        <table class="table" style="font-size: 15px;">
-             <c:forEach var="event" items="${closedEvents}">
-                 <tr style="height: 60px;">
-                     <td class="center" width="70" style="color: #2d65f2; font-weight: bold; vertical-align: middle;">${event.cus_target}</td>
-                     <td width="500" style="vertical-align: middle;">
-                        <a href="${pageContext.request.contextPath}/customer/eventdetail/${event.cus_num}" style="text-decoration: none; color: black;">
-                            ${event.cus_title}
-                        </a>
-                    </td>
-                     <td class="center" width="120" style="vertical-align: middle; color: gray;"><fmt:formatDate value="${event.cus_writetime}" pattern="yyyy.MM.dd" /></td>
-                 </tr>
-             </c:forEach>
-        </table>
-    </div>
-
-    <div style="max-width: 1100px; margin: 40px auto; width: 80%;">
-        <div class="pagination">
-            <c:if test="${startPage > 1}">
-                <a href="?pageNum=${startPage - 1}" class="page-link"><i class="bi bi-chevron-left"></i>이전</a>
-            </c:if>
-            <c:forEach begin="${startPage}" end="${endPage}" var="i">
-                <a href="?pageNum=${i}" class="page-link ${currentPage == i ? 'active' : ''}">${i}</a>
-            </c:forEach>
-            <c:if test="${endPage < totalPage}">
-                <a href="?pageNum=${endPage + 1}" class="page-link">다음<i class="bi bi-chevron-right"></i></a>
-            </c:if>
-        </div>
-    </div>
-</div> --%>
-
 <div id="closed" class="events" style="display: none; width: 900px;">
     <c:forEach var="event" items="${closedEvents}">
         <div class="event-card">
@@ -289,16 +248,7 @@
             </a>
         </div>
     </c:forEach>
-    <%-- <div style="width: 100%; text-align: center; margin-top: 20px; margin-left: 800px;">
-        <c:if test="${sessionScope.myid == 'manager'}">
-            <button type="button" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/customer/eventform'">글쓰기</button>
-        </c:if>
-        <c:if test="${sessionScope.myid != 'manager'}">
-            <button type="button" class="btn btn-outline-primary" style="visibility: hidden;">글쓰기</button>
-        </c:if>
-    </div> --%>
 </div>
-
 
 <div id="announcement" class="events" style="display: none; width: 80%">
     <div class="top-section">

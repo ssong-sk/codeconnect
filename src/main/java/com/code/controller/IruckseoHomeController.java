@@ -58,6 +58,10 @@ public class IruckseoHomeController {
    @Autowired
    CompanyService cservice;
    
+   //기업
+   @Autowired
+   CompanyIntroService ciservice;
+   
    //이력서 메인홈 띄우기
    @GetMapping("/resumehome/home")
    public ModelAndView hform(HttpSession session) {
@@ -225,7 +229,7 @@ public class IruckseoHomeController {
         mview.addObject("hodto", hodto);
         
         //포워드
-        mview.setViewName("/resumehome/iruckseolist");
+        mview.setViewName("/sub/resumehome/iruckseolist");
         
         return mview;
      }
@@ -312,6 +316,7 @@ public class IruckseoHomeController {
 
 		ModelAndView mview = new ModelAndView();
 		
+		
 		// r_num 가져오기
 		int r_num = Integer.parseInt((String) session.getAttribute("r_num"));
 		
@@ -345,11 +350,12 @@ public class IruckseoHomeController {
 		
 		// 페이징된 리스트 가져오기
 		List<HireDto> shlist = irservice.getScrapHireList(r_num, start, perPage);
-		//List<CompanyIntroDto> clist = ciservice.getAllCompanyIntros();
+		List<CompanyDto> scrapList = cservice.getCompanyUserScraps(r_num);
 		
 		
 		//데이터 가져오기
 		mview.addObject("shlist", shlist);
+		mview.addObject("scrapList", scrapList);
 		mview.addObject("currentPage", currentPage);
         mview.addObject("totalCount", totalCount);
         mview.addObject("perPage", perPage);
@@ -384,7 +390,7 @@ public class IruckseoHomeController {
 		int r_num = Integer.parseInt((String) session.getAttribute("r_num"));
 		
 		// 갯수 가져오기
-		int totalCount = irservice.getScrapCount(r_num);
+		int totalCount = irservice.getCompanyCount(r_num);
 		
 		// 페이징에 필요한 변수 설정
 		int perPage = 10; // 한 페이지당 보여질 글의 갯수

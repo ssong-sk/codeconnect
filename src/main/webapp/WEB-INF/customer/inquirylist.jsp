@@ -173,7 +173,7 @@
 </c:choose>
 
 <!-- 비회원, 관리자(manager)제외한 모든 회원은 문의하기 버튼 보이게 -->
-<div style="margin-left: 1350px; margin-top: -30px;">
+<div style="margin-left: 1368px; margin-top: -30px;">
     <c:if test="${sessionScope.myid != null && sessionScope.myid != 'manager'}">
         <button type="button" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/customer/inquiryform'">문의하기</button>
     </c:if>
