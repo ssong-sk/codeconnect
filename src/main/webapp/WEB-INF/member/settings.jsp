@@ -831,7 +831,6 @@ button[data-testid="Button"]:not(:disabled):hover {
 					        data: data,
 					        success: function(response) {
 					            alert('수정완료');
-					            session.
 					            location.reload();
 					           
 
