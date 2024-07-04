@@ -12,86 +12,128 @@
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <title>1:1 문의</title>
 <style type="text/css">
-    body {
-        font-family: 'IBM Plex Sans KR', sans-serif;
-    }
-    .nav {
-        margin-top: 5px;
-        margin-left: 270px;
-    }
-    .nav ul {
-        list-style-type: none;
-        display: flex;
-        gap: 20px;
-        padding: 0;
-        justify-content: flex-start;
-        margin-top: 40px;
-        margin-left: 100px;
-    }
-    .nav ul a {
-        display: block;
-        color: gray;
-        text-decoration: none;
-        font-weight: 700;
-        font-size: 17px;
-        line-height: 32px;
-        padding: 0 15px;
-    }
-    .nav ul .active {
-        color: blue;
-    }
-    .top-section {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 80%;
-        margin: 50px auto -30px auto;
-        gap: 870px;
-    }
-    table {
-        width: 80%;
-        margin: 30px auto;
-        border-collapse: collapse;
-        border-top: 2px solid #000;
-    }
-    th, td {
-        padding: 15px;
-        text-align: left;
-    }
-    td.center {
-        text-align: center;
-    }
-    tr:not(:first-child) td {
-        border-top: 1px solid #ddd;
-    }
-    th {
-        border-bottom: 2px solid #000;
-    }
-    .pagination {
-        display: flex;
-        justify-content: center;
-        margin-top: 40px;
-        margin-bottom: 50px;
-    }
-    .pagination a {
-        padding: 10px 15px;
-        margin: 0 5px;
-        color: gray;
-        text-decoration: none;
-        transition: background-color 0.3s;
-        border-radius: 5px;
-        border: none;
-    }
-    .pagination a:hover {
-        background-color: #e9ecef;
-    }
-    .pagination a.active {
-        border: 1px solid #dee2e6;
-        background-color: white;
-        color: blue;
-        pointer-events: none;
-        box-shadow: none;
-    }
+.all {
+	height: 100%;
+}
+
+.center {
+	margin: 0 auto;
+	width: 100%;
+	height: 100%;
+	max-width: 1060px;
+	margin-bottom: 100px;
+}
+
+#wrap {
+	margin-top: 45px; /* 헤더 들어갈 부분 */
+	font-family: IBM Plex Sans KR;
+}
+
+body {
+    font-family: 'IBM Plex Sans KR', sans-serif;
+}
+
+/* 최상단 카테고리 nav */
+.nav ul {
+    list-style-type: none;
+    display: flex;
+    gap: 50px;
+    justify-content: flex-start;
+    margin-top: 40px;
+}
+
+.nav ul a {
+    display: block;
+    color: gray;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 17px;
+    line-height: 32px;
+    padding: 0px;
+}
+
+.nav ul .active {
+    color: #0D6CF9;
+}
+
+.nav ul a:hover {
+    color: #0D6CF9;
+}
+
+.top-section {
+    margin-top: 40px;
+}
+
+/* 테이블 스타일 */
+table {
+    width: 80%;
+    margin: 30px auto;
+    border-collapse: collapse;
+    border-top: 2px solid #000;
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+}
+
+td.center {
+    text-align: center;
+}
+
+tr:not(:first-child) td {
+    border-top: 1px solid #ddd;
+}
+
+th {
+    border-bottom: 2px solid #000;
+}
+
+/* 페이징 스타일 */
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    margin-bottom: 50px;
+}
+
+.pagination a {
+    padding: 10px 15px;
+    margin: 0 5px;
+    color: gray;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    border-radius: 5px;
+    border: none;
+}
+
+.pagination a:hover {
+    background-color: #e9ecef;
+}
+
+.pagination a.active {
+    border: 1px solid #0D6CF9;
+    background-color: white;
+    color: #0D6CF9;
+    pointer-events: none;
+    box-shadow: none;
+}
+    
+/* 이미지 */
+.image-container {
+    position: relative;
+    display: inline-block;
+}
+
+.centered-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: black;
+    font-weight: bold;
+    text-align: center;
+} 
 </style>
 <script type="text/javascript">
     $(document).ready(function() {
@@ -107,88 +149,99 @@
 </script>
 </head>
 <body>
-<div style="max-width: 1000px; margin-top: 70px; margin-left: 370px; width: 80%;">
-    <h4 style="color: gray; font-weight: bold;">고객센터</h4>
-</div>
-<nav class="nav">
-    <ul>
-        <li><a class="nav-link" id="noticeLink" href="${pageContext.request.contextPath}/customer/noticelist">공지사항</a></li>
-        <li><a class="nav-link" id="eventLink" href="${pageContext.request.contextPath}/customer/eventlist">이벤트</a></li>
-        <li><a class="nav-link" id="inquiryLink" href="${pageContext.request.contextPath}/customer/inquirylist">1:1문의</a></li>
-    </ul>
-</nav>
+<div class="all">
+	<div id="wrap">
+		<div class="center">
+			<div class="image-container">
+				<img alt="" src="../image/customerimg.jpg" style="width: 1060px; border-radius: 10px;">
+				<h4 class="centered-text">코드커넥트 고객센터입니다.</h4>
+			</div>
+			<nav class="nav">
+			    <ul>
+			        <li><a class="nav-link" id="noticeLink" href="noticelist">공지사항</a></li>
+			        <li><a class="nav-link" id="eventLink" href="eventlist">이벤트</a></li>
+			        <li><a class="nav-link" id="inquiryLink" href="inquirylist">1:1문의</a></li>
+			    </ul>
+			</nav>
 
-<div class="top-section">
-    <c:if test="${sessionScope.myid != null}">
-        <span style="margin-right: 940px;">총 &nbsp;${totalCount}&nbsp;건</span>
-    </c:if>
-</div>
-
-<c:choose>
-    <c:when test="${sessionScope.myid == null}">
-        <!-- 비회원일 경우 -->
-        <div style="text-align: center; margin-top: 20px;">
-            <p>로그인 시 1:1문의가 가능합니다.</p>
-        </div>
-    </c:when>
-    <c:otherwise>
-        <!-- 회원 및 관리자일 경우 -->
-        <div style="max-width: 1000px; margin: 50px auto; width: 80%;">
-            <c:if test="${totalCount == 0}">
-                <p align="center">작성한 1:1 문의가 없습니다.</p>
-            </c:if>
-            <c:if test="${totalCount > 0}">
-                <table class="table" style="font-size: 15px; vertical-align: middle; border-top: 2px solid gray; border-bottom: 2px solid #E2E2E2">
-                    <tr align="center" style="height: 50px; border-bottom: 2px solid #C0C0C0;">
-                        <th width="500">제목</th>
-                        <th width="120">작성일</th>
-                        <th width="100">답변상태</th>
-                    </tr>
-                    <c:forEach var="inquiry" items="${list}">
-                        <tr style="height: 55px;">
-                            <td width="500" style="vertical-align: middle;">
-                                <a href="${pageContext.request.contextPath}/customer/inquirydetail/${inquiry.cus_num}" style="text-decoration: none; color: black; margin-left: 5px;">
-                                    ${inquiry.cus_title}
-                                </a>
-                            </td>
-                            <td class="center" width="120" style="vertical-align: middle; color: gray;">
-                                <fmt:formatDate value="${inquiry.cus_writetime}" pattern="yyyy.MM.dd" />
-                            </td>
-                            <td class="center" width="100">
-                                <c:choose>
-                                    <c:when test="${not empty inquiry.cus_answer}">
-                                        <span style="color: #0000FF;">답변 완료</span>
-                                    </c:when>
-                                    <c:otherwise>
-                                        답변 대기
-                                    </c:otherwise>
-                                </c:choose>
-                            </td>
-                        </tr>
-                    </c:forEach>
-                </table>
-            </c:if>
-        </div>
-    </c:otherwise>
-</c:choose>
-
-<!-- 비회원, 관리자(manager)제외한 모든 회원은 문의하기 버튼 보이게 -->
-<div style="margin-left: 1368px; margin-top: -30px;">
-    <c:if test="${sessionScope.myid != null && sessionScope.myid != 'manager'}">
-        <button type="button" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/customer/inquiryform'">문의하기</button>
-    </c:if>
-</div>
-
-<div class="pagination">
-    <c:if test="${startPage > 1}">
-        <a href="?pageNum=${startPage - 1}" class="page-link"><i class="bi bi-chevron-left"></i>이전</a>
-    </c:if>
-    <c:forEach begin="${startPage}" end="${endPage}" var="i">
-        <a href="?pageNum=${i}" class="page-link ${currentPage == i ? 'active' : ''}">${i}</a>
-    </c:forEach>
-    <c:if test="${endPage < totalPage}">
-        <a href="?pageNum=${endPage + 1}" class="page-link">다음<i class="bi bi-chevron-right"></i></a>
-    </c:if>
+			<div class="top-section">
+			    <c:if test="${sessionScope.myid != null}">
+			        <span style="margin-right: 940px;">총 &nbsp;${totalCount}&nbsp;건</span>
+			    </c:if>
+			</div>
+			
+			<c:choose>
+			    <c:when test="${sessionScope.myid == null}">
+			        <!-- 비회원일 경우 -->
+			        <div style="text-align: center; margin-top: 20px;">
+			            <p>로그인 시 1:1문의가 가능합니다.</p>
+			        </div>
+			    </c:when>
+			    <c:otherwise>
+			        <!-- 회원 및 관리자일 경우 -->
+			        <div style="width: 100%; margin-top: 10px;">
+					  <c:if test="${totalCount == 0}">
+					      <p align="center">작성한 1:1 문의가 없습니다.</p>
+					  </c:if>
+					  <c:if test="${totalCount > 0}">
+					      <table class="table" style="font-size: 15px; vertical-align: middle; border-top: 2px solid gray; border-bottom: 2px solid #E2E2E2">
+					          <tr align="center" style="height: 50px; border-bottom: 2px solid #C0C0C0;">
+					              <th width="70">번호</th>
+					              <th width="500">제목</th>
+					              <th width="120">작성일</th>
+					              <th width="100">답변상태</th>
+					          </tr>
+					          <c:set var="no" value="${totalCount}" />
+					          <c:forEach var="inquiry" items="${list}">
+					              <tr style="height: 55px;">
+					                  <td valign="middle">${no }</td>
+					                  <td style="vertical-align: middle; width: 500px;">
+					                      <a href="inquirydetail/${inquiry.cus_num}" style="text-decoration: none; color: black; margin-left: 5px;">
+					                          ${inquiry.cus_title}
+					                      </a>
+					                  </td>
+					                  <td class="center" style="vertical-align: middle; color: gray; width: 120px;">
+					                      <fmt:formatDate value="${inquiry.cus_writetime}" pattern="yyyy.MM.dd" />
+					                  </td>
+					                  <td class="center" style="width: 100px;">
+					                      <c:choose>
+					                          <c:when test="${not empty inquiry.cus_answer}">
+					                              <span style="color: #0D6CF9;">답변 완료</span>
+					                          </c:when>
+					                          <c:otherwise>
+					                              답변 대기
+					                          </c:otherwise>
+					                      </c:choose>
+					                  </td>
+					              </tr>
+					              <c:set var="no" value="${no-1 }"/>
+					          </c:forEach>
+					      </table>
+					  </c:if>
+					</div>
+			    </c:otherwise>
+			</c:choose>
+			
+			<!-- 비회원, 관리자(manager)제외한 모든 회원은 문의하기 버튼 보이게 -->
+			<div style="margin-left: 975px; margin-top: 30px;">
+			    <c:if test="${sessionScope.myid != null && sessionScope.myid != 'manager'}">
+			        <button type="button" class="btn btn-outline-primary" onclick="location.href='inquiryform'">문의하기</button>
+			    </c:if>
+			</div>
+			
+			<div class="pagination">
+			    <c:if test="${startPage > 1}">
+			        <a href="?pageNum=${startPage - 1}" class="page-link"><i class="bi bi-chevron-left"></i>이전</a>
+			    </c:if>
+			    <c:forEach begin="${startPage}" end="${endPage}" var="i">
+			        <a href="?pageNum=${i}" class="page-link ${currentPage == i ? 'active' : ''}">${i}</a>
+			    </c:forEach>
+			    <c:if test="${endPage < totalPage}">
+			        <a href="?pageNum=${endPage + 1}" class="page-link">다음<i class="bi bi-chevron-right"></i></a>
+			    </c:if>
+			</div>
+		</div>
+	</div>
 </div>
 </body>
 </html>
