@@ -20,14 +20,13 @@ public class SupportDto {
 	
 	
 	private String c_name;
-	
+	private String h_title;
 
 	
 	//hire테이블과 join
 	private int h_ci_num;
 	private String h_category;
 	private String h_job;
-	private String h_title;
 	private String h_tech;
 	private String h_career;
 	private String h_grade;

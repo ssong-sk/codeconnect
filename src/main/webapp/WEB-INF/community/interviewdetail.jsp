@@ -13,34 +13,9 @@
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <style>
     body {
-        font-family: 'IBM Plex Sans KR', sans-serif;
+        font-family: 'IBM Plex Sans KR';
     }
-    .nav {
-        margin-top: 50px;
-        margin-left: 150px;
-    }
-    .nav ul {
-        list-style-type: none;
-        display: flex;
-        gap: 20px;
-        padding: 0;
-        justify-content: center;
-        margin-top: 40px;
-        margin-left: 100px;
-    }
-    .nav ul a {
-        display: block;
-        color: gray;
-        text-decoration: none;
-        font-weight: 700;
-        font-size: 17px;
-        line-height: 32px;
-        padding: 0 15px;
-    }
-    .nav ul .active {
-        color: blue;
-        border-bottom: 2px solid blue;
-    }
+
     .container {
         max-width: 1200px;
         margin: 0 auto;
@@ -83,13 +58,7 @@
 </script>
 </head>
 <body>
-<nav class="nav">
-    <ul>
-        <a class="nav-link" href="${root}/community/homelist">홈</a>
-        <a class="nav-link" href="${root}/community/interviewlist">현직자 인터뷰</a>
-    </ul>
-</nav>
-<div class="container">
+<div class="container" style="width: 1060px;">
     <div class="content-row" style="margin-top: 80px;">
         <div>
         	<!--  
@@ -127,17 +96,17 @@
     <div class="content" style="margin-top: 150px; margin-bottom: 60px;">
         <p>${dto.com_content}</p>
     </div>
-    <div class="btns">
+    <div class="btns" style="margin-bottom: 5%;">
         <!-- 로그인한 회원만 글쓰기 가능 -->
         <c:if test="${sessionScope.loginok != null}">
-            <button type="button" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/community/interviewform'">글쓰기</button>
+            <button type="button" class="btn btn-outline-primary" onclick="location.href='interviewform'">글쓰기</button>
         </c:if>
         <!-- 해당 글을 작성한 회원만 수정, 삭제 가능 -->
         <c:if test="${sessionScope.myid == dto.com_user_id}">
-            <button type="button" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/community/interviewupdateform?com_num=${dto.com_num}'">수정</button>
+            <button type="button" class="btn btn-outline-primary" onclick="location.href='interviewupdateform?com_num=${dto.com_num}'">수정</button>
             <button type="button" class="btn btn-outline-primary" onclick="deleteInterview(${dto.com_num})">삭제</button>
         </c:if>
-        <button type="button" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/community/interviewlist'">목록</button>
+        <button type="button" class="btn btn-outline-primary" onclick="location.href='interviewlist'">목록</button>
     </div>
 </div>
 </body>
