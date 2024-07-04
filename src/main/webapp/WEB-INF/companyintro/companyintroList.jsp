@@ -31,17 +31,18 @@
 }
 
 #wrap {
-	margin-top: 100px; /* 헤더 들어갈 부분 */
-	font-family: 'IBM Plex Sans KR', sans-serif;
-}
-
-.all-form {
-	display: flex; /* Flexbox로 배치 */
-	align-items: flex-start; /* 상단 정렬 */
-	/*padding: 20px;  전체 여백 */
-	margin: 0 auto; /* 가운데 정렬 */
-	border: 0px solid #ddd; /* 외곽선 */
-}
+      margin-top: 60px; /* 헤더 들어갈 부분 */
+      font-family: 'IBM Plex Sans KR', sans-serif;
+  }
+  .all-form {
+      display: flex; /* Flexbox로 배치 */
+      align-items: flex-start; /* 상단 정렬 */
+      padding: 20px; /* 전체 여백 */
+      margin: 0 auto; /* 가운데 정렬 */
+      border: 0px solid #ddd; /* 외곽선 */
+      margin-top: 60px;
+      padding: 0px;
+  }
 
 button {
 	border: none;
@@ -320,6 +321,22 @@ svg {
 .ranking-item .amount {
 	color: blue;
 }
+
+ /* 이미지 */
+.image-container {
+    position: relative;
+    display: inline-block;
+}
+
+.centered-text {
+    position: absolute;
+    top: 90%;
+    left: 17%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-weight: bold;
+    text-align: center;
+} 
 </style>
 </head>
 <body>
@@ -327,7 +344,10 @@ svg {
 		<div id="wrap">
 
 			<div class="center">
-
+              <div class="image-container">
+	            <img alt="" src="../image/company.PNG" style="width: 1060px; border-radius: 10px; height: 300px;">
+	            <h4 class="centered-text">미래를 함께할 인재를 찾습니다</h4>
+	          </div>
 				<div class="all-form">
 
 					<section class="hirelist">
@@ -381,7 +401,6 @@ svg {
 						<!-- 랭킹 리스트 끝-->
 						<!-- 기업 리스트 -->
 						<!-- <section class="hirelist">-->
-						
 						<c:forEach var="a" items="${clist}">
 							<div class="hireinfo">
 								<a target="_self" title="${a.c_name}"
