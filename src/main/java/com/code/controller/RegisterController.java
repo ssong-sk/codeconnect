@@ -1,8 +1,8 @@
 package com.code.controller;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 
@@ -168,29 +168,38 @@ public class RegisterController {
       }
 
       
-   @GetMapping("/member/mypage")
-   public String mypage(@ModelAttribute("hdto") HireDto dto,Model model,HttpSession session)
-   {    
+	@GetMapping("/member/mypage")
+	public String mypage(@ModelAttribute("hdto") HireDto dto,Model model,HttpSession session)
+	{    
 	   String myid =(String)session.getAttribute("myid");
+	   String r_num2 =(String)session.getAttribute("r_num");
+	   // 사용자의 r_num을 초기화
+	   Integer r_num = null;
 
-	   	// 사용자의 r_num을 초기화
-	    Integer r_num = null;
-
-	    // 만약 myid가 null이 아니면, 해당 사용자의 r_num을 가져옴
-	    if (myid != null) {
-	        r_num = hservice.getRnumById(myid);
-	    }
+	   // 만약 myid가 null이 아니면, 해당 사용자의 r_num을 가져옴
+	   if (myid != null) {
+		   	r_num = hservice.getRnumById(myid);
+	   }
 	    
-	    // r_num이 null인 경우, 기본값 0으로 설정
-	    if (r_num == null) {
-	        r_num = 0;
-	    }
+	   // r_num이 null인 경우, 기본값 0으로 설정
+	   if (r_num == null) {
+		   r_num = 0;
+	   }
 	   
-	   	int rScrap = service.getScrapCount(r_num);
-      
+	   int rScrap = service.getScrapCount(r_num);
+	   int pe_num = service.getpenum(r_num2);
+	   int midcount = service.getwritemiddle(pe_num);
+	   int unicount = service.getwriteuni(pe_num);
+	   Optional<Integer> carcountOpt = service.getwritecareer(pe_num);
+	   int carcount = carcountOpt.orElse(0);
+
+	   model.addAttribute("pe_num", pe_num);
 	   model.addAttribute("rScrap",rScrap);
+	   model.addAttribute("midcount",midcount);
+	   model.addAttribute("unicount", unicount);
+	   model.addAttribute("carcount", carcount);
 	   return "/sub/member/mypage"; 
-   }
+	}
    
    
    

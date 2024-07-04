@@ -2,6 +2,7 @@ package com.code.mapper;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -39,6 +40,19 @@ public interface RegisterMapperInter {
 	public List<RegisterDto> getScrapList();
 	
 	public int getScrapcountReg();
+	
+	/* r_num으로 pe-num 구하기 */
+	public int getpenum(String r_num);
+
+	/* 이력서 작성 상태 조회(학력, 고등학교) */
+	public int getwritemiddle(int pe_num);
+	
+	/* 이력서 작성 상태 조회(학력, 대학교) */
+	public int getwriteuni(int pe_num);
+	
+	/* 이력서 작성 상태 조회(경력) */
+	public Optional<Integer> getwritecareer(int pe_num);
+	
 }
 
 
