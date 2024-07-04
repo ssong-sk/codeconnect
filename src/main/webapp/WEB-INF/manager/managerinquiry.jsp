@@ -124,8 +124,59 @@ a, a:active, a:hover, a:visited {
     margin-top: 20px;
 }
 
-.memlist{
+.cuslist{
 	cursor: pointer;
+}
+
+#eventCategory {
+    appearance: none; /* appearance 속성으로 기본 스타일을 없앰 (크로스 브라우징 고려) */
+    -webkit-appearance: none; /* WebKit 기반 브라우저 (Safari, Chrome 등) */
+    -moz-appearance: none; /* Firefox */
+    -ms-appearance: none; /* IE/Edge */
+    background-color: transparent; /* 배경색을 투명으로 설정 */
+    border: none; /* 테두리 제거 */
+    padding: 0; /* 패딩 제거 */
+    font-size: inherit; /* 폰트 사이즈 상속 */
+    cursor: pointer; /* 커서 모양을 포인터로 설정 */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="8"><path fill="%23000" d="M0 0l6 8 6-8H0z"/></svg>'); /* 화살표 이미지 추가 */
+    background-repeat: no-repeat; /* 배경 이미지 반복 설정 */
+    background-position: right 0px bottom 10px; /* 화살표 이미지 위치 설정 (오른쪽으로 10px 이동, 아래로 10px 이동) */
+    padding: 0px 15px 0px 0px;
+}
+
+.tabs {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.tabs button.active {
+    background-color: #f0f4ff;
+    color: #000000;
+    border-bottom: 2px solid #007bff;
+    font-weight: bold;
+}
+
+.tabs button.active2 {
+    background-color: #FAFAFA;
+    color: #000000;
+    border-bottom: 2px solid #000000;
+    font-weight: bold;
+}
+
+.tabs button.active3 {
+    background-color: #F8E0E0;
+    color: #000000;
+    border-bottom: 2px solid #FF0000;
+    font-weight: bold;
+}
+
+.tabs button {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    cursor: auto;
 }
 </style>
 </head>
@@ -138,7 +189,7 @@ a, a:active, a:hover, a:visited {
 			        <a class="" href="#"><h1 style="font-weight: 600;">관리자 페이지</h1></a>
 			        <div class="menu_container">
 			        	<div role="tablist" class="menu_menu" aria-label="검색 분류">
-			        		<a href="member" role="tab" id="member" tabindex="-1" class="menu_item" aria-selected="true" aria-controls="member">
+			        		<a href="member" role="tab" id="member" tabindex="-1" class="menu_item" aria-selected="false" aria-controls="member">
 			        		<span class="menu_text">회원</span>
 			        		</a>
 			        		<a href="company" role="tab" id="company" tabindex="-1" class="menu_item" aria-selected="false" aria-controls="company">
@@ -150,8 +201,8 @@ a, a:active, a:hover, a:visited {
 			        		<a href="event" role="tab" id="event" tabindex="-1" class="menu_item" aria-selected="false" aria-controls="event">
 			        		<span class="menu_text">이벤트</span>
 			        		</a>
-			        		<a href="inquiry" role="tab" id="inquiry" tabindex="0" class="menu_item" aria-selected="false" aria-controls="block">
-			        		<span class="menu_text">1:1문의</span>
+			        		<a href="inquiry" role="tab" id="inquiry" tabindex="0" class="menu_item" aria-selected="true" aria-controls="block">
+			        		<span class="menu_text">1:1 문의</span>
 			        		</a>
 			        	</div>
 			        </div>
@@ -166,51 +217,44 @@ a, a:active, a:hover, a:visited {
 			                <thead>
 			                	<tr>
 			                		<td colspan="7">
-			                			<div style="border: 1px solid #ddd; border-radius: 5px; padding: 20px; margin-bottom: 15px;">
-			                				<h3 style="margin-top: 9px;"><span style="color: #0176ED;">${r_count }</span> 명의 회원이 있습니다.</h3>
-			                			</div>
+		                				<div class="tabs">
+											<button class="active btn btn-light">총 <span style="color: #007bff;">${all_count }</span> 개의 문의글</button>
+											<button class="active2 btn btn-light"><span style="color: #000000;">${success_count }</span> 개 답변완료</button>
+											<button class="active3 btn btn-light"><span style="color: #FF0000;">${standby_count }</span> 개 답변대기</button>
+										</div>
 			                		</td>
 			                	</tr>
 			                	<tr align="center">
 			                		<td>번호</td>
-			                		<td>이름 / 닉네임</td>
-			                		<td>아이디 / 패스워드</td>
-			                		<td>성별 / 생일</td>
-			                		<td>이메일</td>
-			                		<td>가입날짜</td>
+			                		<td>제목</td>
+			                		<td>작성날짜</td>
+			                		<td>답변상태</td>
 			                	</tr>
 			                	</thead>
-			                	<tbody>
-								<c:if test="${r_count==0 }">
+			                	<tbody id="eventTableBody">
+								<c:if test="${all_count==0 }">
 								<tr height="50">
 								  <td colspan="5" align="center">
-								     <h5><b>등록된 회원이 없습니다</b></h5>
+								     <h5><b>등록된 문의가 없습니다</b></h5>
 								  </td>
 								</tr>
 								</c:if>
-			                	<c:if test="${r_count>0 }">
-			                	<c:forEach var="r" items="${rlist }">
-								    <tr align="center" class="memlist" onclick="location.href='memberedit?r_num=${r.r_num}'">
+			                	<c:if test="${all_count>0 }">
+			                	<c:forEach var="in" items="${inlist }">
+								    <tr style="height: 50px;" align="center" class="cuslist" data-category="${in.cus_category}" onclick="location.href='infoedit?cus_num=${cus.cus_num}'">
 								       <td valign="middle">${no }</td><c:set var="no" value="${no-1 }"/>
+								       <td valign="middle">${in.cus_title }</td>
+								       <td valign="middle"><fmt:formatDate value="${in.cus_writetime}" pattern="yyyy-MM-dd HH:mm"/></td>
 								       <td valign="middle">
-										${r.r_name } 
-										<c:if test="${not empty r.r_nickname}">
-											<br> 🙂<span style="color: #0176ED;">${r.r_nickname }</span>
-									   	</c:if>
-									   </td>
-								       <td valign="middle">${r.r_id } <br> ${r.r_pass }</td>
-								       <td valign="middle">
-									       	<c:choose>
-										        <c:when test="${r.r_gender == '남자'}">
-										            <i class="bi bi-gender-male" style="color: blue;"></i>
+								       		<c:choose>
+										        <c:when test="${in.cus_answer_status == '답변 완료'}">
+										            <span style="color: #007bff;">${in.cus_answer_status}</span>
 										        </c:when>
-										        <c:when test="${r.r_gender == '여자'}">
-										            <i class="bi bi-gender-female" style="color: pink;"></i>
+										        <c:when test="${in.cus_answer_status == '답변 대기'}">
+										            <button type="button" class="btn btn-outlint-primary" style="border: 1px solid #FF0000; color: #FF0000;">답변 작성</button>
 										        </c:when>
-									    	</c:choose>  / ${r.r_hp }
-								    	</td>
-								        <td valign="middle">${r.r_email }</td>
-								        <td valign="middle"><fmt:formatDate value="${r.r_gaipday}" pattern="yyyy-MM-dd"/></td>
+									    	</c:choose>
+								       </td>
 								    </tr>
 								</c:forEach>
 								</c:if>
@@ -222,7 +266,7 @@ a, a:active, a:hover, a:visited {
 							     <!--  이전-->
 							     <c:if test="${startPage>1 }">
 							        <li class="page-item ">
-								   <a class="page-link" href="member?currentPage=${startPage-1 }" style="color: black;">이전</a>
+								   <a class="page-link" href="inquiry?currentPage=${startPage-1 }" style="color: black;">이전</a>
 								  </li>
 							     </c:if>
 							     
@@ -230,13 +274,13 @@ a, a:active, a:hover, a:visited {
 							     <c:forEach var="pp"  begin="${startPage }"  end="${endPage }">
 							       <c:if test="${currentPage==pp }">
 							       	  <li class="page-item active">
-							    		<a class="page-link" href="member?currentPage=${pp }">${pp }</a>
+							    		<a class="page-link" href="inquiry?currentPage=${pp }">${pp }</a>
 							    	  </li>
 							       </c:if>
 							       
 							       <c:if test="${currentPage!=pp }">
 							          <li class="page-item">
-							    		<a class="page-link" href="member?currentPage=${pp }">${pp }</a>
+							    		<a class="page-link" href="inquiry?currentPage=${pp }">${pp }</a>
 							    		</li>
 							       </c:if>
 							     </c:forEach>
@@ -245,7 +289,7 @@ a, a:active, a:hover, a:visited {
 							     <!-- 다음 -->
 							     <c:if test="${endPage<totalPage }">
 							        <li class="page-item">
-							    		<a  class="page-link" href="member?currentPage=${endPage+1 }"
+							    		<a  class="page-link" href="inquiry?currentPage=${endPage+1 }"
 							    		style="color: black;">다음</a>
 							    	</li>
 							     </c:if>
@@ -265,4 +309,5 @@ a, a:active, a:hover, a:visited {
         $(this).attr('aria-selected', 'true');
 	})
 </script>
+
 </html>
