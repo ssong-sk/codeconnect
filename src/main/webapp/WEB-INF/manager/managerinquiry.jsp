@@ -241,7 +241,7 @@ a, a:active, a:hover, a:visited {
 								</c:if>
 			                	<c:if test="${all_count>0 }">
 			                	<c:forEach var="in" items="${inlist }">
-								    <tr style="height: 50px;" align="center" class="cuslist" data-category="${in.cus_category}" onclick="location.href='infoedit?cus_num=${cus.cus_num}'">
+								    <tr style="height: 50px;" align="center" class="cuslist" data-category="${in.cus_category}" onclick="location.href='inquiryedit?cus_num=${in.cus_num}'">
 								       <td valign="middle">${no }</td><c:set var="no" value="${no-1 }"/>
 								       <td valign="middle">${in.cus_title }</td>
 								       <td valign="middle"><fmt:formatDate value="${in.cus_writetime}" pattern="yyyy-MM-dd HH:mm"/></td>

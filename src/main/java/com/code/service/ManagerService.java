@@ -168,6 +168,16 @@ public class ManagerService implements ManagerServiceInter {
 		return mapper.getAllCustomerInquiry(map);
 	}
 
+	@Override
+	public void updateInquiry(CustomerDto dto) {
+		mapper.updateInquiry(dto);
+	}
+
+	@Override
+	public void deleteInquiry(CustomerDto dto) {
+		mapper.deleteInquiry(dto);
+	}
+
 	
 
 	

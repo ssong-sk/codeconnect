@@ -44,6 +44,8 @@ public interface ManagerMapperInter {
 	public int getCountInquirySuccess();
 	public int getCountInquiryStandBy();
 	public List<CustomerDto> getAllCustomerInquiry(HashMap<String, Integer> map);
+	public void updateInquiry(CustomerDto dto);
+	public void deleteInquiry(CustomerDto dto);
 	
 
 }
