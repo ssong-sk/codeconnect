@@ -1,6 +1,5 @@
 package com.code.controller;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -16,13 +15,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.code.dto.CompanyIntroDto;
 import com.code.dto.HireDto;
 import com.code.dto.RegisterDto;
+import com.code.dto.SupportDto;
 import com.code.mapper.RegisterMapperInter;
 import com.code.service.CompanyIntroService;
 import com.code.service.HireService;
+import com.code.service.IruckseoInsertService;
 import com.code.service.RegisterService;
 
 @Controller
@@ -39,6 +41,9 @@ public class RegisterController {
    
    @Autowired
    CompanyIntroService ciservice;
+   
+   @Autowired
+   IruckseoInsertService irservice;
 
    @GetMapping("/")
    public String start(@ModelAttribute("hdto") HireDto dto, @ModelAttribute CompanyIntroDto cidto, Model model,HttpSession session)
@@ -46,6 +51,7 @@ public class RegisterController {
 	   List<HireDto> hlist = hservice.getHireList();
 	   List<HireDto> rlist = hservice.getHireList();
 	   List<CompanyIntroDto> cilist = ciservice.getAllCompanyIntros();
+
 	   
 	   String myid =(String)session.getAttribute("myid");
 	   Integer r_num = null;
@@ -204,8 +210,23 @@ public class RegisterController {
    
    
  @GetMapping("/member/apply")
-   public String apply() {
-	   return "/member/apply";
+   public String apply(@RequestParam(value="currentPage",defaultValue="1") int currentPage,HttpSession session,Model model) {
+	 
+	 int r_num = Integer.parseInt((String) session.getAttribute("r_num"));
+	 
+	 int perPage = 5;
+	 int start;
+	 
+	 
+	 start = (currentPage -1) * perPage;
+	 
+	 List<SupportDto> sulist = irservice.getSupportPaging(r_num,start,perPage);
+	 int totalCount = irservice.getSupportCount(r_num);
+	 
+	 model.addAttribute("sulist",sulist);
+	 model.addAttribute("count",totalCount);
+	   
+	   return "/sub/member/apply";
    }
 
    @GetMapping("/member/memberform")

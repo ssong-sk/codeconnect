@@ -26,6 +26,7 @@ public class SupportDto {
 	private int h_ci_num;
 	private String h_category;
 	private String h_job;
+	private String h_title;
 	private String h_tech;
 	private String h_career;
 	private String h_grade;
