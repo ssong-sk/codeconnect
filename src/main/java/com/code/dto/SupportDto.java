@@ -21,7 +21,6 @@ public class SupportDto {
 	
 	private String c_name;
 	private String h_title;
-	
 
 	
 	//hire테이블과 join
@@ -42,7 +41,6 @@ public class SupportDto {
 	private String h_deadline;
 	private String h_writeday;
 	private int h_count;
-	
 	
 	//register 테이블과 join
 	private String r_name;
