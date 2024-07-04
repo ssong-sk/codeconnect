@@ -18,107 +18,111 @@
 <title>기업 마이페이지</title>
 
 <style>
+/*전체 너비에 맞게 수정 */
 body {
-    font-family: 'Noto Sans KR', sans-serif;
-    background-color: #f8f9fa;
-    margin: 0;
+	font-family: 'Noto Sans KR', sans-serif;
+	background-color: #f8f9fa;
+	margin: 0;
 }
 
 .wrapper {
-    display: flex;
-    justify-content: center;
-    padding: 20px 0;
+	display: flex;
+	justify-content: center;
+	padding: 20px 420px;
+	
 }
 
 .container {
-    display: flex;
-    width: 90%;
-    max-width: 1200px;
+	display: flex;
+	width: 1060px; /* 전체 너비를 1060px로 설정 */
 }
 
 .sidebar {
-    width: 250px;
-    height: 460px;
-    border: 1px solid #E0E0E0;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-    margin-right: 20px;
-    flex-shrink: 0;
-    overflow-y: auto;
-    margin-top: 15px;
+	width: 200px; /* 사이드바 너비 조정 */
+	height: 460px;
+	border: 1px solid #E0E0E0;
+	padding: 20px;
+	background-color: #fff;
+	border-radius: 10px;
+	margin-right: 20px;
+	flex-shrink: 0;
+	overflow-y: auto;
+	margin-bottom: 50px;
+	margin-top: 15px;
 }
 
 .sidebar h5 {
-    text-align: center;
-    font-weight: bold;
-    margin-bottom: 20px;
+	text-align: center;
+	font-weight: bold;
+	margin-bottom: 20px;
 }
 
 .sidebar .btn {
-    width: 100%;
-    margin-bottom: 10px;
-    background-color: #f0f4ff;
-    color: #007bff;
-    border: 1px solid #d0e2ff;
-    border-radius: 5px;
-    font-weight: bold;
-    padding: 10px;
-    text-align: left;
-    transition: background-color 0.3s, color 0.3s;
+	width: 100%;
+	margin-bottom: 10px;
+	background-color: #f0f4ff;
+	color: #007bff;
+	border: 1px solid #d0e2ff;
+	border-radius: 5px;
+	font-weight: bold;
+	padding: 10px;
+	text-align: left;
+	transition: background-color 0.3s, color 0.3s;
 }
 
 .sidebar .btn:hover {
-    background-color: #007bff;
-    color: #fff;
+	background-color: #007bff;
+	color: #fff;
 }
 
 .sidebar .menu-section {
-    margin-top: 20px;
+	margin-top: 20px;
 }
 
 .sidebar .menu-item {
-    padding: 10px 0;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: #000;
+	padding: 10px 0;
+	cursor: pointer;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	color: #000;
 }
 
 .sidebar .menu-item:hover {
-    color: #007bff;
+	color: #007bff;
 }
 
 .sidebar .menu-item+.menu-item {
-    border-top: none;
+	border-top: none;
 }
 
 .menu-divider {
-    border-top: 1px solid #E0E0E0;
-    margin: 10px 0;
+	border-top: 1px solid #E0E0E0;
+	margin: 10px 0;
 }
 
 .main-content-wrapper {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    background-color: #fff;
-    border-radius: 10px;
-    padding: 20px;
-    overflow-y: auto;
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+	background-color: #fff;
+	border-radius: 10px;
+	padding: 10px;
+	overflow-y: auto;
+	width: calc(100% - 240px); /* 사이드바 너비를 뺀 나머지 공간 */
 }
 
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 20px;
 }
 
 .header h1 {
-    font-size: 24px;
+	font-size: 24px;
 }
+/*여기까지 복붙*/
 
 .header .btn-view-page {
     background-color: #e9ecef;
@@ -328,7 +332,7 @@ th:nth-child(5), td:nth-child(5) {
     <div class="wrapper">
         <div class="container">
             <div class="sidebar">
-                <h5>코드커넥트 채용 솔루션</h5>
+                <h5>기업 채용 솔루션</h5>
                 <button class="btn" onclick="location.href='/hire/hirewrite'">+ 공고 등록하기</button>
                 <!-- <button class="btn">🔍 인재풀 탐색하기</button>-->
                 <div class="menu-divider"></div>

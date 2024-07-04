@@ -12,6 +12,7 @@
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <title>기업 마이페이지</title>
 <style>
+/*전체 너비에 맞게 수정 */
 body {
 	font-family: 'Noto Sans KR', sans-serif;
 	background-color: #f8f9fa;
@@ -21,17 +22,17 @@ body {
 .wrapper {
 	display: flex;
 	justify-content: center;
-	padding: 20px 0;
+	padding: 20px 420px;
+	
 }
 
 .container {
 	display: flex;
-	width: 90%;
-	max-width: 1200px;
+	width: 1060px; /* 전체 너비를 1060px로 설정 */
 }
 
 .sidebar {
-	width: 250px;
+	width: 200px; /* 사이드바 너비 조정 */
 	height: 460px;
 	border: 1px solid #E0E0E0;
 	padding: 20px;
@@ -40,6 +41,7 @@ body {
 	margin-right: 20px;
 	flex-shrink: 0;
 	overflow-y: auto;
+	margin-bottom: 50px;
 	margin-top: 15px;
 }
 
@@ -99,8 +101,9 @@ body {
 	flex-grow: 1;
 	background-color: #fff;
 	border-radius: 10px;
-	padding: 20px;
+	padding: 10px;
 	overflow-y: auto;
+	width: calc(100% - 240px); /* 사이드바 너비를 뺀 나머지 공간 */
 }
 
 .header {
@@ -113,6 +116,7 @@ body {
 .header h1 {
 	font-size: 24px;
 }
+/*여기까지 복붙*/
 
 .account-info {
 	display: flex;
@@ -206,7 +210,7 @@ body {
 	<div class="wrapper">
 		<div class="container">
 			<div class="sidebar">
-                <h5>코드커넥트 채용 솔루션</h5>
+                <h5>기업 채용 솔루션ㄴ</h5>
                 <button class="btn" onclick="location.href='/hire/hirewrite'">+ 공고 등록하기</button>
                 <!-- <button class="btn">🔍 인재풀 탐색하기</button>-->
                 <div class="menu-divider"></div>
