@@ -19,8 +19,24 @@
 <style>
 body {
 	font-family: 'IBM Plex Sans KR', sans-serif;
-	padding: 20px;
 	background-color: #f7f7f7;
+}
+
+.all {
+	height: 100%;
+}
+
+.center {
+	margin: 0 auto;
+	width: 100%;
+	height: 100%;
+	max-width: 1060px;
+}
+
+#wrap {
+	margin-top: 40px;
+	font-family: IBM Plex Sans KR;
+	margin-bottom: 100px;
 }
 
 .container {
@@ -30,7 +46,6 @@ body {
 
 .company-info, .company-details {
 	background-color: white;
-	padding: 20px;
 	border-radius: 8px;
 	margin-bottom: 20px;
 }
@@ -187,7 +202,7 @@ body {
 	align-items: center; /* Center align stars vertically */
 	margin-left: auto; /* Add this to move the rating to the right */
 }
-
+	
 .rating>label {
 	display: inline-block;
 	width: 1em;
@@ -261,6 +276,9 @@ int currentYear = Calendar.getInstance().get(Calendar.YEAR);
 request.setAttribute("currentYear", currentYear);
 %>
 <body>
+<div class="all">
+	<div id="wrap">
+		<div class="center">
 	<div class="container">
 		<div class="company-info">
 			<c:choose>
@@ -702,5 +720,8 @@ $('[id^="deadline-"]').each(function() {
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 	<br>
+	</div>
+</div>
+</div>
 </body>
 </html>
