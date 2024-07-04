@@ -57,5 +57,16 @@ public interface RegisterServiceInter {
 	
 	/* 이력서 작성 상태 조회(경력) */
 	public Optional<Integer> getwritecareer(int pe_num);
+	
+	/* 이력서 작성 상태 조회(활동) */
+	public int getwriteactibity(int pe_num);
 
+	/* 이력서 작성 상태 조회(스펙, 자격증) */
+	public int getwritesp_ce(int pe_num);
+	
+	/* 이력서 작성 상태 조회(스펙, 어학) */
+	public int getwritesp_la(int pe_num);
+	
+	/* 이력서 작성 상태 조회(스펙, 수상) */
+	public int getwritesp_aw(int pe_num);
 }

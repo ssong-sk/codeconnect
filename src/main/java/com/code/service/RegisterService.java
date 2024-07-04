@@ -170,5 +170,25 @@ public class RegisterService implements RegisterServiceInter {
 	public Optional<Integer> getwritecareer(int pe_num) {
 		return mapperInter.getwritecareer(pe_num);
 	}
+
+	@Override
+	public int getwriteactibity(int pe_num) {
+		return mapperInter.getwriteactibity(pe_num);
+	}
+
+	@Override
+	public int getwritesp_ce(int pe_num) {
+		return mapperInter.getwritesp_ce(pe_num);
+	}
+
+	@Override
+	public int getwritesp_la(int pe_num) {
+		return mapperInter.getwritesp_la(pe_num);
+	}
+
+	@Override
+	public int getwritesp_aw(int pe_num) {
+		return mapperInter.getwritesp_aw(pe_num);
+	}
 	
 }
