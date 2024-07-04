@@ -2,114 +2,141 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.code.mapper.ManagerMapperInter">
 
-<!-- 회원 관리 -->
-<select id="countRegister" resultType="int">
-	select count(*) from register
-</select>
+	<!-- 회원 관리 -->
+	<select id="countRegister" resultType="int">
+		select count(*) from register
+	</select>
 
-<select id="getAllRegister" parameterType="HashMap" resultType="RDto">
-	select * from register order by r_id desc limit #{start},#{perpage}
-</select>
+	<select id="getAllRegister" parameterType="HashMap"
+		resultType="RDto">
+		select * from register order by r_id desc limit #{start},#{perpage}
+	</select>
 
-<select id="getRegister" resultType="RDto" parameterType="String">
-	select * from register where r_num = #{r_num}
-</select>
+	<select id="getRegister" resultType="RDto"
+		parameterType="String">
+		select * from register where r_num = #{r_num}
+	</select>
 
-<update id="updateRegister" parameterType="RDto">
-	update register set r_id = #{r_id}, r_pass = #{r_pass}, r_name = #{r_name}, r_nickname=#{r_nickname}, r_birthday = #{r_birthday},
-	r_hp = #{r_hp}, r_zipcode = #{r_zipcode}, r_addr = #{r_addr}, r_addr_detail = #{r_addr_detail}, r_email = #{r_email}, r_gender = #{r_gender}
-	where r_num = #{r_num}
-</update>
+	<update id="updateRegister" parameterType="RDto">
+		update register set r_id = #{r_id}, r_pass = #{r_pass}, r_name = #{r_name},
+		r_nickname=#{r_nickname}, r_birthday = #{r_birthday},
+		r_hp = #{r_hp}, r_zipcode = #{r_zipcode}, r_addr = #{r_addr},
+		r_addr_detail = #{r_addr_detail}, r_email = #{r_email}, r_gender = #{r_gender}
+		where r_num = #{r_num}
+	</update>
 
-<delete id="deleteRegister" parameterType="String">
-	delete from register where r_num = #{r_num}
-</delete>
+	<delete id="deleteRegister" parameterType="String">
+		delete from register where r_num = #{r_num}
+	</delete>
 
-<!-- 기업 관리 -->
-<select id="countCompany" resultType="int">
-	select count(*) from company
-</select>
+	<!-- 기업 관리 -->
+	<select id="countCompany" resultType="int">
+		select count(*) from company
+	</select>
 
-<select id="getAllCompany" resultType="CompanyDto" parameterType="HashMap">
-	select * from company order by c_id desc limit #{start}, #{perpage}
-</select>
+	<select id="getAllCompany" resultType="CompanyDto"
+		parameterType="HashMap">
+		select * from company order by c_id desc limit #{start}, #{perpage}
+	</select>
 
-<select id="getCompany" resultType="CompanyDto" parameterType="String">
-	select * from company where c_num = #{c_num}
-</select>
+	<select id="getCompany" resultType="CompanyDto"
+		parameterType="String">
+		select * from company where c_num = #{c_num}
+	</select>
 
-<!-- 공지글 관리 -->
-<select id="countCustomer" resultType="int">
-    select count(*) from customer where cus_top_type = 'notice'
-</select>
+	<!-- 공지글 관리 -->
+	<select id="countCustomer" resultType="int">
+		select count(*) from customer where cus_top_type = 'notice'
+	</select>
 
-<select id="getAllCustomer" parameterType="HashMap" resultType="CustomerDto">
-	select * from customer where cus_top_type = 'notice' order by cus_num desc limit #{start}, #{perpage}
-</select>
+	<select id="getAllCustomer" parameterType="HashMap"
+		resultType="CustomerDto">
+		select * from customer where cus_top_type = 'notice' order by cus_num desc
+		limit #{start}, #{perpage}
+	</select>
 
-<select id="getCustomer" parameterType="int" resultType="CustomerDto">
-    select * from customer where cus_num = #{cus_num}
-</select>
+	<select id="getCustomer" parameterType="int"
+		resultType="CustomerDto">
+		select * from customer where cus_num = #{cus_num}
+	</select>
 
-<insert id="insertCustomer" parameterType="CustomerDto">
-    insert into customer (cus_user_id, cus_top_type, cus_category, cus_title, cus_content, cus_photo, cus_writetime) 
-    values ('manager', 'notice', #{cus_category}, #{cus_title}, #{cus_content}, #{cus_photo}, now())
-</insert>
+	<insert id="insertCustomer" parameterType="CustomerDto">
+		insert into customer (cus_user_id, cus_top_type, cus_category, cus_title,
+		cus_content, cus_photo, cus_writetime)
+		values ('manager', 'notice', #{cus_category}, #{cus_title}, #{cus_content}, #{cus_photo}, now())
+	</insert>
 
-<update id="updateCustomer" parameterType="CustomerDto">
-    update customer set cus_category=#{cus_category}, cus_title=#{cus_title}, cus_content=#{cus_content}
-    <if test="cus_photo != null">
-        ,cus_photo=#{cus_photo}    
-    </if>
-    where cus_num=#{cus_num}
-</update>
-	
-<delete id="deleteCustomer" parameterType="int">
-	delete from customer where cus_num=#{cus_num}
-</delete>
+	<update id="updateCustomer" parameterType="CustomerDto">
+		update customer set cus_category=#{cus_category},
+		cus_title=#{cus_title}, cus_content=#{cus_content}
+		<if test="cus_photo != null">
+			,cus_photo=#{cus_photo}
+		</if>
+		where cus_num=#{cus_num}
+	</update>
 
-<!-- 이벤트 관리 -->
-<select id="countCustomerEvent" resultType="int">
-    select count(*) from customer where cus_top_type = 'event'
-</select>
+	<delete id="deleteCustomer" parameterType="int">
+		delete from customer where cus_num=#{cus_num}
+	</delete>
 
-<select id="getAllCustomerEvent" parameterType="HashMap" resultType="CustomerDto">
-	select * from customer where cus_top_type = 'event' order by cus_num desc limit #{start}, #{perpage}
-</select>
+	<!-- 이벤트 관리 -->
+	<select id="countCustomerEvent" resultType="int">
+		select count(*) from customer where cus_top_type = 'event'
+	</select>
 
-<insert id="insertCustomerEvent" parameterType="CustomerDto">
-    insert into customer (cus_user_id, cus_top_type, cus_category, cus_title, cus_content, cus_photo, cus_writetime) 
-    values ('manager', 'event', #{cus_category}, #{cus_title}, #{cus_content}, #{cus_photo}, now())
-</insert>
+	<select id="getAllCustomerEvent" parameterType="HashMap"
+		resultType="CustomerDto">
+		select * from customer where cus_top_type = 'event' order by cus_num desc
+		limit #{start}, #{perpage}
+	</select>
 
-<update id="updateCustomerEvent" parameterType="CustomerDto">
-    update customer set cus_category=#{cus_category}, cus_title=#{cus_title}, cus_content=#{cus_content}
-    <if test="cus_photo != null">
-        ,cus_photo=#{cus_photo}    
-    </if>
-    where cus_num=#{cus_num}
-</update>
+	<insert id="insertCustomerEvent" parameterType="CustomerDto">
+		insert into customer (cus_user_id, cus_top_type, cus_category, cus_title,
+		cus_content, cus_photo, cus_writetime)
+		values ('manager', 'event', #{cus_category}, #{cus_title}, #{cus_content}, #{cus_photo}, now())
+	</insert>
 
-<delete id="deleteCustomerEvent" parameterType="int">
-	delete from customer where cus_num=#{cus_num}
-</delete>
+	<update id="updateCustomerEvent" parameterType="CustomerDto">
+		update customer set cus_category=#{cus_category},
+		cus_title=#{cus_title}, cus_content=#{cus_content}
+		<if test="cus_photo != null">
+			,cus_photo=#{cus_photo}
+		</if>
+		where cus_num=#{cus_num}
+	</update>
 
-<!-- 1:1문의 관리 -->
-<select id="countInquiry" resultType="int">
-    select count(*) from customer where cus_top_type = 'inquiry'
-</select>
+	<delete id="deleteCustomerEvent" parameterType="int">
+		delete from customer where cus_num=#{cus_num}
+	</delete>
 
-<select id="getCountInquirySuccess" resultType="int">
-    select count(*) from customer where cus_answer_status = '답변 완료'
-</select>
+	<!-- 1:1문의 관리 -->
+	<select id="countInquiry" resultType="int">
+		select count(*) from customer where cus_top_type = 'inquiry'
+	</select>
 
-<select id="getCountInquiryStandBy" resultType="int">
-    select count(*) from customer where cus_answer_status = '답변 대기'
-</select>
+	<select id="getCountInquirySuccess" resultType="int">
+		select count(*) from customer where cus_answer_status = '답변 완료'
+	</select>
 
-<select id="getAllCustomerInquiry" parameterType="HashMap" resultType="CustomerDto">
-    select * from customer where cus_top_type = 'inquiry' order by cus_num desc limit #{start}, #{perpage}
-</select>
+	<select id="getCountInquiryStandBy" resultType="int">
+		select count(*) from customer where cus_answer_status = '답변 대기'
+	</select>
+
+	<select id="getAllCustomerInquiry" parameterType="HashMap"
+		resultType="CustomerDto">
+		select * from customer where cus_top_type = 'inquiry' order by cus_num desc
+		limit #{start}, #{perpage}
+	</select>
+
+	<update id="updateInquiry" parameterType="CustomerDto">
+		update customer set cus_answer=#{cus_answer}, cus_answer_status='답변 완료'
+		where cus_num=#{cus_num}
+	</update>
+
+	<update id="deleteInquiry" parameterType="CustomerDto">
+		update customer set cus_answer = null, cus_answer_status='답변 대기' 
+		where cus_num=#{cus_num}
+	</update>
 
 
 </mapper>
