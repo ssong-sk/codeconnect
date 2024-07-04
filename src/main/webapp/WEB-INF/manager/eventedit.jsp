@@ -213,23 +213,20 @@ a, a:active, a:hover, a:visited {
 			        <a class="" href="#"><h1 style="font-weight: 600;">관리자 페이지</h1></a>
 			        <div class="menu_container">
 			        	<div role="tablist" class="menu_menu" aria-label="검색 분류">
-			        		<a href="main" role="tab" id="home" tabindex="-1" class="menu_item" aria-selected="false" aria-controls="home">
-			        		<span class="menu_text">HOME</span>
-			        		</a>
 			        		<a href="member" role="tab" id="member" tabindex="-1" class="menu_item" aria-selected="false" aria-controls="member">
-			        		<span class="menu_text">MEMBER</span>
+			        		<span class="menu_text">회원</span>
 			        		</a>
 			        		<a href="company" role="tab" id="company" tabindex="-1" class="menu_item" aria-selected="false" aria-controls="company">
-			        		<span class="menu_text">COMPANY</span>
+			        		<span class="menu_text">기업</span>
 			        		</a>
 			        		<a href="info" role="tab" id="info" tabindex="-1" class="menu_item" aria-selected="false" aria-controls="info">
-			        		<span class="menu_text">INFO</span>
+			        		<span class="menu_text">공지사항</span>
 			        		</a>
 			        		<a href="event" role="tab" id="event" tabindex="-1" class="menu_item" aria-selected="true" aria-controls="event">
-			        		<span class="menu_text">EVENT</span>
+			        		<span class="menu_text">이벤트</span>
 			        		</a>
-			        		<a href="edit" role="tab" id="block" tabindex="0" class="menu_item" aria-selected="false" aria-controls="block">
-			        		<span class="menu_text">BLOCK</span>
+			        		<a href="inquiry" role="tab" id="inquiry" tabindex="0" class="menu_item" aria-selected="false" aria-controls="block">
+			        		<span class="menu_text">1:1문의</span>
 			        		</a>
 			        	</div>
 			        </div>
