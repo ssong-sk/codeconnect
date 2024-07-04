@@ -327,9 +327,8 @@ svg {
 		<div id="wrap">
 
 			<div class="center">
-
 				<div class="all-form">
-
+					
 					<section class="hirelist">
 
 						<!-- 랭킹 리스트 -->
