@@ -222,15 +222,43 @@ body {
 	margin-right: 10px;
 	/* Adjust the spacing between the label and stars */
 }
-.card-text{
-font-size: 0.8em;
+
+.card-text {
+	font-size: 0.8em;
 }
+
+/* 리뷰작성 버튼 */
+.btn-custom {
+    background-color: #6c757d; /* 회색 배경색 */
+    color: white;
+    font-size: 16px; /* 폰트 크기 증가 */
+    padding: 12px 24px; /* 패딩 조정 */
+    border: none;
+    border-radius: 8px; /* 테두리 둥글게 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px; /* 아이콘과 텍스트 간격 */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-custom:hover {
+    background-color: #5a6268; /* 호버시 더 어두운 회색 */
+    transform: translateY(-2px);
+}
+
+.btn-custom i {
+    font-size: 20px; /* 아이콘 크기 */
+}
+
+
 </style>
 <title>Company Profile</title>
 </head>
 <%
-    int currentYear = Calendar.getInstance().get(Calendar.YEAR);
-    request.setAttribute("currentYear", currentYear);
+int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+request.setAttribute("currentYear", currentYear);
 %>
 <body>
 	<div class="container">
@@ -270,7 +298,7 @@ font-size: 0.8em;
 				</c:choose>
 			</p>
 			<!-- 기업 채용공고 리스트를 card형식으로 보여주기 -->
-			<br><br>
+			<br> <br>
 			<h2 class="section-title">채용중인 포지션</h2>
 			<div class="row">
 				<c:forEach var="h" items="${hlist}">
@@ -278,14 +306,15 @@ font-size: 0.8em;
 						<div class="card mb-4 shadow-sm">
 							<div class="card-body">
 								<h6 class="card-title">
-									<a target="_blank" href="/hire/detail?h_num=${h.h_num}"
-										><p style="font-weight: bold;">[${h.h_title}]</p>
+									<a target="_blank" href="/hire/detail?h_num=${h.h_num}"><p
+											style="font-weight: bold;">[${h.h_title}]</p>
 								</h6>
 								<p class="card-text">
 									${h.h_job}<br> <span id="location-${h.h_num}">${h.h_location}</span>
 									· <span id="career-${h.h_num}">${h.h_career}</span> · <span
 										id="deadline-${h.h_num}">${h.h_deadline}</span><br>
-								</p></a>
+								</p>
+								</a>
 							</div>
 						</div>
 					</div>
@@ -310,30 +339,42 @@ font-size: 0.8em;
 				<div class="ratings-container">
 					<h2 class="section-title">전체 리뷰 및 통계</h2>
 					<div class="ratings">
-						<div class="score"><%= String.format("%.1f", request.getAttribute("avgAll")) %></div>
+						<div class="score"><%=String.format("%.1f", request.getAttribute("avgAll"))%></div>
 						<div class="stars"
-							data-avg-all="<%= request.getAttribute("avgAll") %>">
+							data-avg-all="<%=request.getAttribute("avgAll")%>">
 							<i class="bi bi-star"></i> <i class="bi bi-star"></i> <i
 								class="bi bi-star"></i> <i class="bi bi-star"></i> <i
 								class="bi bi-star"></i>
 						</div>
 					</div>
 					<ul class="ratings-list">
-						<li><span>복지 및 급여:</span> <span><%= String.format("%.1f", request.getAttribute("avgHappy")) %></span></li>
-						<li><span>근무환경:</span> <span><%= String.format("%.1f", request.getAttribute("avgEnvironment")) %></span></li>
-						<li><span>사내문화:</span> <span><%= String.format("%.1f", request.getAttribute("avgCulture")) %></span></li>
-						<li><span>승진 기회 및 가능성:</span> <span><%= String.format("%.1f", request.getAttribute("avgPossibility")) %></span></li>
-						<li><span>경영진:</span> <span><%= String.format("%.1f", request.getAttribute("avgHeads")) %></span></li>
+						<li><span>복지 및 급여:</span> <span><%=String.format("%.1f", request.getAttribute("avgHappy"))%></span></li>
+						<li><span>근무환경:</span> <span><%=String.format("%.1f", request.getAttribute("avgEnvironment"))%></span></li>
+						<li><span>사내문화:</span> <span><%=String.format("%.1f", request.getAttribute("avgCulture"))%></span></li>
+						<li><span>승진 기회 및 가능성:</span> <span><%=String.format("%.1f", request.getAttribute("avgPossibility"))%></span></li>
+						<li><span>경영진:</span> <span><%=String.format("%.1f", request.getAttribute("avgHeads"))%></span></li>
 					</ul>
+					
+					<!-- 리뷰 작성 버튼 -->
 					<c:if test="${sessionScope.loginok != null}">
-						<button type="button" class="btn btn-primary"
-							data-bs-toggle="modal" data-bs-target="#reviewModal">자세히
-							보기</button>
+						<div style="margin-top: 20px;">
+							<button type="button" class="btn btn-outline-primary"
+								data-bs-toggle="modal" data-bs-target="#reviewModal">
+								<i class="bi bi-chat-dots"></i> 리뷰 작성
+							</button>
+						</div>
 					</c:if>
 					<c:if test="${sessionScope.loginok == null}">
-						<button type="button" class="btn btn-primary"
-							onclick="alert('개인회원 로그인이 필요합니다.');">자세히 보기</button>
+						<div style="margin-top: 20px;">
+							<button type="button" class="btn btn-outline-primary"
+								onclick="alert('개인회원 로그인이 필요합니다.');">
+								<i class="bi bi-chat-dots"></i> 리뷰 작성
+							</button>
+						</div>
 					</c:if>
+
+
+
 				</div>
 			</div>
 		</div>
