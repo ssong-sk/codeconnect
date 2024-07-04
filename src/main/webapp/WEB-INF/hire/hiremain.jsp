@@ -97,7 +97,7 @@ ul {
 }
 
 .bottomlist {
-	background-color: #f6f6f6;
+	background-color: white;
 	width: 100%;
 }
 
@@ -688,10 +688,10 @@ svg {
                         <!-- Modal Footer -->
                         <div class="modal-footer" style="float: left;">
                            <button type="button" class="btn btn-outline-light resetjob"
-                              style="color: black; border-color: lightgray; font-weight: bold; font-size: 10pt; padding: 7px 18px;">초기화</button>
+                              style="color: black; border-color: lightgray; font-weight: bold; font-size: 16px; padding: 7px 18px;">초기화</button>
                            <button type="button" class="btn btn-primary apply-btn"
                               data-bs-dismiss="modal"
-                              style="float: right; font-weight: bold; font-size: 10pt; padding: 6px 18px;">적용</button>
+                              style="float: right; font-weight: bold; font-size: 16px; padding: 6px 18px;">적용</button>
                         </div>
                      </div>
                   </div>
@@ -799,9 +799,9 @@ svg {
                         <!-- Modal Footer -->
                         <div class="modal-footer" style="float: left;">
                            <button type="button" class="btn btn-outline-light resettech"
-                              style="color: black; border-color: lightgray;">초기화</button>
+                              style="color: black; border-color: lightgray; font-weight: bold;">초기화</button>
                            <button type="button" class="btn btn-primary techapply-btn"
-                              data-bs-dismiss="modal" style="float: right;">적용</button>
+                              data-bs-dismiss="modal" style="float: right; font-weight: bold;">적용</button>
                         </div>
                      </div>
                   </div>
@@ -880,7 +880,7 @@ svg {
                <hr style="margin-top: 5px;">
                <div>
                   <button type="button" class="btn btn-outline-light resetcareer"
-                     style="color: black; border: 1px solid lightgray;">초기화</button>
+                     style="color: black; border: 1px solid lightgray;font-weight: bold;">초기화</button>
                   <input type="hidden" id="search_career" name="search_career">
                </div>
             </div>
@@ -1240,9 +1240,9 @@ svg {
 		            <div style="border: 1px solid lightgray; margin: 0px -10px 0 -10px;padding: 12.5px 0 0 10px;
 		            border-width: 1px 0 0;">
 		               <button type="button" class="btn btn-outline-light resetregion"
-		               style="color: black;border: 1px solid lightgray;">초기화</button>
+		               style="color: black;border: 1px solid lightgray;font-weight: bold;">초기화</button>
 		               <button type="button" class="btn btn-outline-light btnapply"
-		               style="color: #0D6EFD;border: 1px solid #0D6EFD;float: right;
+		               style="color: #0D6CF9;border: 1px solid #0D6CF9;float: right;font-weight: bold;
 		               margin-right: 10px;">적용하기</button>
 		            </div>
 				</div>

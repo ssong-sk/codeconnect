@@ -215,4 +215,10 @@ public interface IruckseoInsertMapperInter {
 	//이력서지원현황 삭제
 	public void SupportDelete(int st_num);
 
+//	마이페이지 지원현황 카운드들 ----------------------------------------------------
+	public int getCountApply(int r_num);
+	public int getCountApplySuc(int r_num);
+	public int getCountApplyFin(int r_num);
+	public int getCountApplyFail(int r_num);
+
 }

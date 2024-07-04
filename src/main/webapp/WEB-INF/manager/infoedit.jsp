@@ -282,7 +282,7 @@ a, a:active, a:hover, a:visited {
 							        <div id="image-container" style="margin-top: 10px;"></div>
 							        <div style="margin-top: 25px;">
 							            <button type="submit" class="btn btn-outline-primary">수정</button>
-							            <button type="button" class="btn btn-outline-danger" onclick="location.href='infodelete?cus_num=${cusdto.cus_num}'">삭제</button>
+							            <button type="button" class="btn btn-outline-danger" onclick="if(confirmDelete()) { location.href='infodelete?cus_num=${cusdto.cus_num}'}">삭제</button>
 							            <button type="button" class="btn btn-outline-dark" onclick="history.back()">취소</button>
 							        </div>
 							    </form>
@@ -342,5 +342,10 @@ $(document).ready(function() {
         $('#isDeleted').val('true');
     });
 });
+</script>
+<script type="text/javascript">
+    function confirmDelete() {
+            return confirm("정말 삭제하시겠습니까?");
+    }
 </script>
 </html>

@@ -50,7 +50,7 @@
 .name:hover span, .name:hover i{
 	text-decoration-line: underline;
     text-underline-position: under;
-    color: rgb(1, 118, 237);
+    color: #0D6CF9;
 }
 
 /* 카테고리 */
@@ -176,16 +176,16 @@ span.con{
     line-height: 20px;
     text-decoration: underline;
     text-underline-position: under;
-    color: rgb(1, 118, 237);
+    color: #0D6CF9;
     margin: 48px 0px 16px;
 }
 
 .title_link:visited {
-    color: rgb(1, 118, 237); /* 방문한 링크의 색상을 초기 색상으로 유지 */
+    color: #0D6CF9; /* 방문한 링크의 색상을 초기 색상으로 유지 */
 }
 
 .title_link:hover {
-    color: rgb(1, 118, 237);
+    color: #0D6CF9;
 }
 
 .soge_pre{
@@ -244,7 +244,7 @@ span.con{
 		<div class="center">
 			<div class="mainhire">
 				<h1>${hdto.h_title }</h1>
-				<a class="name" target="_blank">
+				<a class="name" target="_blank" href="/company/showimsiCom?c_num=${hdto.c_num }">
 					<span>${hdto.c_name }</span> <i class="bi bi-chevron-right"></i>
 				</a>
 				
@@ -336,7 +336,7 @@ span.con{
 				<div style="display: block; unicode-bidi: isolate;">
 					<div class="container">
 					    <h2 class="soge_title">기업/서비스 소개</h2>
-					    <a class="title_link" target="_blank" href="#">
+					    <a class="title_link" target="_blank" href="/company/showimsiCom?c_num=${hdto.c_num }">
 					        기업 상세정보로 이동 <i class="bi bi-chevron-right"></i>
 					    </a>
 					</div>

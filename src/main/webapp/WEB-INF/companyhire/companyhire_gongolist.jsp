@@ -12,6 +12,7 @@
 <title>기업 마이페이지</title>
 
 <style>
+/*전체 너비에 맞게 수정 */
 body {
 	font-family: 'Noto Sans KR', sans-serif;
 	background-color: #f8f9fa;
@@ -21,17 +22,17 @@ body {
 .wrapper {
 	display: flex;
 	justify-content: center;
-	padding: 20px 0;
+	padding: 20px 420px;
+	
 }
 
 .container {
 	display: flex;
-	width: 90%;
-	max-width: 1200px;
+	width: 1060px; /* 전체 너비를 1060px로 설정 */
 }
 
 .sidebar {
-	width: 250px;
+	width: 200px; /* 사이드바 너비 조정 */
 	height: 460px;
 	border: 1px solid #E0E0E0;
 	padding: 20px;
@@ -100,8 +101,9 @@ body {
 	flex-grow: 1;
 	background-color: #fff;
 	border-radius: 10px;
-	padding: 20px;
+	padding: 10px;
 	overflow-y: auto;
+	width: calc(100% - 240px); /* 사이드바 너비를 뺀 나머지 공간 */
 }
 
 .header {
@@ -114,6 +116,7 @@ body {
 .header h1 {
 	font-size: 24px;
 }
+/*여기까지 복붙*/
 
 .search-bar {
 	display: flex;
@@ -178,7 +181,7 @@ table {
 }
 
 th:nth-child(1), td:nth-child(1) {
-	width: 5%;
+	width: 10%;
 }
 
 th:nth-child(2), td:nth-child(2) {
@@ -194,7 +197,7 @@ th:nth-child(4), td:nth-child(4) {
 }
 
 th:nth-child(5), td:nth-child(5) {
-	width: 20%;
+	width: 15%;
 }
 th:nth-child(6), td:nth-child(6) {
 	width: 15%;
@@ -237,7 +240,7 @@ th:nth-child(6), td:nth-child(6) {
 	<div class="wrapper">
 		<div class="container">
 			<div class="sidebar">
-                <h5>코드커넥트 채용 솔루션</h5>
+                <h5>기업 채용 솔루션</h5>
                 <button class="btn" onclick="location.href='/hire/hirewrite'">+ 공고 등록하기</button>
                 <!-- <button class="btn">🔍 인재풀 탐색하기</button>-->
                 <div class="menu-divider"></div>
@@ -257,12 +260,14 @@ th:nth-child(6), td:nth-child(6) {
 			<div class="main-content-wrapper">
 				<div class="header">
 					<h1>채용공고 관리</h1>
+					<!-- 
 					<div class="search-bar">
 						<input type="text" class="form-control" placeholder="공고 검색">
 						<button class="btn btn-primary ms-2">
 							<i class="bi bi-search"></i>
 						</button>
 					</div>
+					-->
 				</div>
 				<div class="tabs">
 					<button class="active btn btn-light">공고 전체</button>
