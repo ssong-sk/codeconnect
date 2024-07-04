@@ -155,7 +155,7 @@ body {
 
 .option-card {
 	flex: 1;
-	height: 270px; 
+	height: 230px; 
 	border : 1px solid #E0E0E0;
 	border-radius: 5px;
 	padding: 20px;
@@ -197,8 +197,8 @@ body {
 }
 
 .btn-outline-danger {
-	padding: 10px 20px;
-	margin-top: 10px;
+	padding: 10px 10px;
+	margin-top: 5px;
 	cursor: pointer;
 	align-self: flex-end;
 }
@@ -210,7 +210,7 @@ body {
 	<div class="wrapper">
 		<div class="container">
 			<div class="sidebar">
-                <h5>기업 채용 솔루션ㄴ</h5>
+                <h5>기업 채용 솔루션</h5>
                 <button class="btn" onclick="location.href='/hire/hirewrite'">+ 공고 등록하기</button>
                 <!-- <button class="btn">🔍 인재풀 탐색하기</button>-->
                 <div class="menu-divider"></div>

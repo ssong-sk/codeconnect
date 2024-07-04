@@ -175,7 +175,7 @@ th:nth-child(1), td:nth-child(1) {
 }
 
 th:nth-child(2), td:nth-child(2) {
-	width: 25%;
+	width: 30%;
 }
 
 th:nth-child(3), td:nth-child(3) {
@@ -187,7 +187,7 @@ th:nth-child(4), td:nth-child(4) {
 }
 
 th:nth-child(5), td:nth-child(5) {
-	width: 20%;
+	width: 15%;
 }
 
 th:nth-child(6), td:nth-child(6) {

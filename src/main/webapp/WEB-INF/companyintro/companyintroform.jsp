@@ -28,13 +28,13 @@ body {
 .wrapper {
 	display: flex;
 	justify-content: center;
-	padding: 20px 420px;
+	padding: 20px 410px;
 	
 }
 
 .container {
 	display: flex;
-	width: 1060px; /* 전체 너비를 1060px로 설정 */
+	width: 1080px; /* 전체 너비를 1060px로 설정 */
 }
 
 .sidebar {

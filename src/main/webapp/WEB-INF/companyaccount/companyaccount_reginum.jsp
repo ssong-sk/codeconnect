@@ -125,6 +125,7 @@ body {
     padding: 40px;
     border: 1px solid #dcdcdc;
     border-radius: 10px;
+    margin-top: 10px;
 }
 
 .form-container h2 {
