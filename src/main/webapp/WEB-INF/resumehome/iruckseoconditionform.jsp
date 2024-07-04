@@ -223,8 +223,8 @@
 			                
 			                <tr>
 							    <!-- 첫 번째 열: 총 경력과 희망직무 -->
-							    <td style="font-size: 0.8em; width: 30%;"><i class="bi bi-calendar-week"></i> 총 경력: ${pe.ca_resign}개월</td>
-							    <td style="font-size: 0.8em;"><i class="bi bi-buildings"></i> 희망직무: ${pe.ho_keyword}</td>
+							    <td style="font-size: 0.8em; width: 30%;"><i class="bi bi-calendar-week"></i> &nbsp;&nbsp;총 경력: ${pe.ca_resign}개월</td>
+							    <td style="font-size: 0.8em;"><i class="bi bi-buildings"></i>&nbsp;&nbsp; 희망직무: ${pe.ho_keyword}</td>
 							</tr>
 							
 							<tr><td><br></td></tr>
@@ -232,13 +232,13 @@
 							<tr>
 							    <!-- 두 번째 열: 희망연봉과 희망지역 -->
 							    <c:if test="${pe.ho_check == '면접 후 결정'}">
-							      <td style="font-size: 0.8em;"><i class="bi bi-coin"></i> 희망연봉: ${pe.ho_check}</td>
+							      <td style="font-size: 0.8em;"><i class="bi bi-coin"></i>&nbsp;&nbsp; 희망연봉: ${pe.ho_check}</td>
 							    </c:if>
 							    <c:if test="${pe.ho_check != '면접 후 결정'}">
-							      <td style="font-size: 0.8em;"><i class="bi bi-coin"></i> 희망연봉: ${pe.ho_check} 만원</td>
+							      <td style="font-size: 0.8em;"><i class="bi bi-coin"></i>&nbsp;&nbsp; 희망연봉: ${pe.ho_check} 만원</td>
 							    </c:if>
 							    
-							    <td style="font-size: 0.8em;"><i class="bi bi-geo-alt"></i> 희망지역: ${pe.ho_addr}</td>
+							    <td style="font-size: 0.8em;"><i class="bi bi-geo-alt"></i>&nbsp;&nbsp; 희망지역: ${pe.ho_addr}</td>
 							</tr>
 							
 							<tr><td><br></td></tr>

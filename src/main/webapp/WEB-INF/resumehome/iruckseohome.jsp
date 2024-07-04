@@ -562,6 +562,13 @@ svg {
 		
 		}
 		
+		var msg = "${msg}";
+		
+		if( msg != ""){
+			history.replaceState({}, null, location.pathname); 
+			alert(msg);
+		}
+		
 		</script>
 		
 </body>		

@@ -64,7 +64,7 @@ public class IruckseoHomeController {
    
    //이력서 메인홈 띄우기
    @GetMapping("/resumehome/home")
-   public ModelAndView hform(HttpSession session) {
+   public ModelAndView hform(HttpSession session , @RequestParam(value = "msg", defaultValue = "") String msg ) {
       
       ModelAndView mview = new ModelAndView();
       
@@ -107,6 +107,8 @@ public class IruckseoHomeController {
       //스크랩 공고
       List<HireDto> userScraps = hservice.getUserScraps(r_num);
       mview.addObject("userScraps", userScraps);
+
+      mview.addObject("msg", msg);
       
       mview.setViewName("/resumehome/iruckseohome");
 
@@ -295,7 +297,7 @@ public class IruckseoHomeController {
      //입사지원현황 지원취소 시 업데이트
      @PostMapping("/resumehome/supportupdate")
      @ResponseBody
-     public void supportupdate(@RequestParam int st_num) {
+     public void supportupdate(@RequestParam int[] st_num) {
     	 
          //이력서 지원취소 누르면 지원취소하기로 업데이트
          irservice.updateSupportDelete(st_num);
@@ -304,7 +306,7 @@ public class IruckseoHomeController {
      //입사지원현황 삭제하기
      @PostMapping("/resumehome/Supportdelete")
      @ResponseBody
-     public void SupportDelete(@RequestParam int st_num) {
+     public void SupportDelete(@RequestParam int[] st_num) {
     	 
     	 irservice.SupportDelete(st_num);
      }
@@ -374,8 +376,9 @@ public class IruckseoHomeController {
      //스크랩공고 삭제하기
      @PostMapping("/resumehome/scrapdelete")
      @ResponseBody
-     public void scrapDelete(@RequestParam int s_num) {
+     public void scrapDelete(@RequestParam int[] s_num) {
     	 
+    	 //System.out.println(s_num);
          irservice.scrapDelete(s_num);
      }
      

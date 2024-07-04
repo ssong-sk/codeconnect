@@ -310,7 +310,7 @@
 			$("#deleteBtn").click(function() {
 				//선택된 항목 내용 수집
 				var chbox = $("input[name='oneselect']:checked");
-	        	 console.log("선택된 체크박스 개수:", chbox.length);
+	        	// console.log("선택된 체크박스 개수:", chbox.length);
 	            
 	            if (chbox.length === 0) {
 	                alert("지원 취소할 항목을 선택해주세요.");
