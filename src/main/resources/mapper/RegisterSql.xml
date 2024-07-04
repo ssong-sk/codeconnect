@@ -91,4 +91,56 @@
 	select * from scrap where r_num = #{r_num}
 </select>
 
+<!-- r_num으로 pe-num 구하기 -->
+<select id="getpenum" parameterType="String" resultType="int">
+	select pe_num from personal where r_num = #{r_num} order by pe_writeday DESC limit 1
+</select>
+
+<!-- 이력서 작성 상태 조회(학력, 고등학교) -->
+<select id="getwritemiddle" parameterType="int" resultType="int">
+	SELECT 
+		(CASE WHEN sc_category IS NOT NULL AND sc_category != '' THEN 1 ELSE 0 END +
+		 CASE WHEN sc_hi_name IS NOT NULL AND sc_hi_name != '' THEN 1 ELSE 0 END +
+		 CASE WHEN sc_hi_check IS NOT NULL AND sc_hi_check != '' THEN 1 ELSE 0 END +
+		 CASE WHEN sc_hi_iphack IS NOT NULL AND sc_hi_iphack != '' THEN 1 ELSE 0 END +
+		 CASE WHEN sc_hi_jolup IS NOT NULL AND sc_hi_jolup != '' THEN 1 ELSE 0 END +
+		 CASE WHEN sc_hi_major IS NOT NULL AND sc_hi_major != '' THEN 1 ELSE 0 END
+		) AS filled_columns
+	FROM school
+	WHERE pe_num = #{pe_num}
+	order by sc_num DESC limit 1
+</select>
+
+<!-- 이력서 작성 상태 조회(학력, 대학교) -->
+<select id="getwriteuni" parameterType="int" resultType="int">
+	SELECT 
+		(CASE WHEN sc_uni_category IS NOT NULL AND sc_uni_category != '' THEN 1 ELSE 0 END +
+	     CASE WHEN sc_uni_name IS NOT NULL AND sc_uni_name != '' THEN 1 ELSE 0 END +
+	     CASE WHEN sc_uni_major IS NOT NULL AND sc_uni_major != '' THEN 1 ELSE 0 END +
+	     CASE WHEN sc_uni_check IS NOT NULL AND sc_uni_check != '' THEN 1 ELSE 0 END +
+	     CASE WHEN sc_uni_iphack IS NOT NULL AND sc_uni_iphack != '' THEN 1 ELSE 0 END +
+	     CASE WHEN sc_uni_jolup IS NOT NULL AND sc_uni_jolup != '' THEN 1 ELSE 0 END +
+	     CASE WHEN sc_uni_grade IS NOT NULL AND sc_uni_grade != '' THEN 1 ELSE 0 END +
+	     CASE WHEN sc_uni_sum IS NOT NULL AND sc_uni_sum != '' THEN 1 ELSE 0 END
+	    ) AS filled_columns
+	FROM school
+	WHERE pe_num = #{pe_num}
+	order by sc_num DESC limit 1
+</select>
+
+<!-- 이력서 작성 상태 조회(경력) -->
+<select id="getwritecareer" parameterType="int" resultType="integer">
+	SELECT 
+		(CASE WHEN ca_name IS NOT NULL AND ca_name != '' THEN 1 ELSE 0 END +
+	     CASE WHEN ca_ipsa IS NOT NULL AND ca_ipsa != '' THEN 1 ELSE 0 END +
+	     CASE WHEN ca_resign IS NOT NULL AND ca_resign != '' THEN 1 ELSE 0 END +
+	     CASE WHEN ca_work IS NOT NULL AND ca_work != '' THEN 1 ELSE 0 END +
+	     CASE WHEN ca_position IS NOT NULL AND ca_position != '' THEN 1 ELSE 0 END +
+	     CASE WHEN ca_content IS NOT NULL AND ca_content != '' THEN 1 ELSE 0 END
+	    ) AS filled_columns
+	FROM career
+	WHERE pe_num = #{pe_num}
+	ORDER BY ca_num DESC LIMIT 1
+</select>
+
 </mapper>
