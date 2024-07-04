@@ -20,7 +20,6 @@ public class SupportDto {
 	
 	
 	private String c_name;
-	private String h_title;
 	
 
 	
@@ -43,8 +42,6 @@ public class SupportDto {
 	private String h_deadline;
 	private String h_writeday;
 	private int h_count;
-	private String h_title;
-	
 	
 	//register 테이블과 join
 	private String r_name;
