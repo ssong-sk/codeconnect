@@ -3,6 +3,8 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -60,38 +62,6 @@
 							<h4
 								class="Typography_Typography__root__RdAI1 Typography_Typography__heading1__N9Asv Typography_Typography__weightBold__KkJEY ">내가
 								관심 있을 만한 포지션</h4>
-							<div class="CarouselHeader_CarouselHeader__action__nal5g">
-								<a href="/matched"
-									class="CarouselHeader_CarouselHeader__link__2mjNY"
-									data-attribute-id="jobs__seeMore"
-									data-domain="recommendPosition">전체보기<span
-									class="CarouselHeader_CarouselHeader__link__interaction__rETxI"></span></a>
-								<div class="CarouselNavigation_CarouselNavigation__Llibu">
-									<button
-										class="IconButton_IconButton__root__IJlt6 IconButton_IconButton__normal__Twwsf IconButton_IconButton__normalDisabled__lpQXR IconButton_IconButton__disabled__6qJ2Q CarouselNavigation_CarouselNavigation__left__ZzsPB"
-										aria-label="이전" style="font-size: 15px;" disabled="">
-										<span class="IconButton_IconButton__label__o4AtY"><span
-											class="SvgIcon_SvgIcon__root__OHiSO"><svg
-													class="SvgIcon_SvgIcon__root__svg__ohdSc"
-													viewBox="0 0 24 24">
-														<path
-														d="M7.5812 3.08022C7.07352 3.58791 7.07352 4.41102 7.5812 4.9187L14.662 11.9995L7.5812 19.0802C7.07352 19.5879 7.07352 20.411 7.5812 20.9187C8.08888 21.4264 8.912 21.4264 9.41968 20.9187L17.4197 12.9187C17.9274 12.411 17.9274 11.5879 17.4197 11.0802L9.41968 3.08022C8.912 2.57254 8.08888 2.57254 7.5812 3.08022Z"
-														fill="#e1e2e4"></path></svg></span></span>
-									</button>
-									<button
-										class="IconButton_IconButton__root__IJlt6 IconButton_IconButton__normal__Twwsf CarouselNavigation_CarouselNavigation__right__lB17m"
-										aria-label="다음" style="font-size: 15px;">
-										<span class="IconButton_IconButton__label__o4AtY"><span
-											class="SvgIcon_SvgIcon__root__OHiSO"><svg
-													class="SvgIcon_SvgIcon__root__svg__ohdSc"
-													viewBox="0 0 24 24">
-														<path
-														d="M7.5812 3.08022C7.07352 3.58791 7.07352 4.41102 7.5812 4.9187L14.662 11.9995L7.5812 19.0802C7.07352 19.5879 7.07352 20.411 7.5812 20.9187C8.08888 21.4264 8.912 21.4264 9.41968 20.9187L17.4197 12.9187C17.9274 12.411 17.9274 11.5879 17.4197 11.0802L9.41968 3.08022C8.912 2.57254 8.08888 2.57254 7.5812 3.08022Z"
-														fill="#70737C"></path></svg></span></span><span
-											class="IconButton_IconButton__interaction__7RjPt"></span>
-									</button>
-								</div>
-							</div>
 						</aside>
 						<div class="CarouselContainer_CarouselContainer__slider__dWB5h">
 							<div class="post-wrapper">
@@ -100,37 +70,12 @@
 										<div class="CarouselContainer_CarouselContainer__slider__item__5wY5G"
 										tabindex="-1" style="width: 100%; display: inline-block;">
 											<div data-cy="job-card" class="JobCard_JobCard__Tb7pI">
-												<a data-attribute-id="position__click"
-												data-job-category-id="518" data-job-category="IT"
-												data-company-id="7148" data-company-name="모라이(MORAI)"
-												data-position-id="225191"
-												data-position-name="[전문연구요원 가능] SW Engineer(Virtual Sensor팀)"
-												data-response-rate="92.59" data-ai-score=""
-												data-ai-score-status="fail"
-												data-recommend-model-status="notBase"
-												data-domain="recommendPosition" data-position-index="0"
-												href="hire/detail?h_num=${h.h_num }">
+												<a href="hire/detail?h_num=${h.h_num }">
 													<div class="JobCard_JobCard__thumb__WU1ax">
 														<div class="JobCard_JobCard__thumb__reward__6_Xx_">
 															<span class="Typography_Typography__root__RdAI1 Typography_Typography__label1__hNiv5 Typography_Typography__weightBold__KkJEY JobCard_JobCard__thumb__reward__text__i15UM"></span>
 														</div>
 														<img src="../../companyintro_uploads/${h.ci_image}">
-														<button class="IconButton_IconButton__root__IJlt6 IconButton_IconButton__normal__Twwsf IconButton_IconButton__disableGutters__F_K1l bookmarkBtn"
-														aria-label="bookmark button"
-														data-attribute-id="position__bookmark__click"
-														data-position-index="0"
-														data-kind="add" style="font-size: 22px;" tabindex="1">
-															<span class="IconButton_IconButton__label__o4AtY">
-																<span class="SvgIcon_SvgIcon__root__OHiSO">
-																	<svg class="SvgIcon_SvgIcon__root__svg__ohdSc" viewBox="0 0 24 24">
-																		<path fill-rule="evenodd"
-																		clip-rule="evenodd"
-																		d="M8.16445 2.59985H15.8353C16.3651 2.59984 16.8163 2.59983 17.1867 2.63009C17.5759 2.66189 17.9545 2.73152 18.3164 2.91594C18.8621 3.19397 19.3057 3.63761 19.5838 4.18328C19.7682 4.54522 19.8378 4.92381 19.8696 5.31297C19.8999 5.6834 19.8999 6.13458 19.8999 6.66445V21.4999C19.8999 21.8249 19.7245 22.1248 19.4412 22.2842C19.1579 22.4436 18.8107 22.4379 18.5328 22.2692L11.9999 18.3028L5.46694 22.2692C5.18906 22.4379 4.84179 22.4436 4.55848 22.2842C4.27517 22.1248 4.09985 21.8249 4.09985 21.4999V6.66445C4.09984 6.13461 4.09983 5.68339 4.13009 5.31297C4.16189 4.92381 4.23152 4.54522 4.41594 4.18328C4.69397 3.63761 5.13761 3.19397 5.68328 2.91594C6.04522 2.73152 6.42381 2.66189 6.81297 2.63009C7.18338 2.59983 7.63462 2.59984 8.16445 2.59985ZM7.79989 4.39992C6.98533 4.39992 6.79149 4.41103 6.65997 4.45376C6.32509 4.56257 6.06254 4.82512 5.95373 5.16001C5.91099 5.29153 5.89989 5.48536 5.89989 6.29992V19.9006L11.5328 16.4806C11.8198 16.3064 12.18 16.3064 12.467 16.4806L18.0999 19.9006V6.29992C18.0999 5.48536 18.0888 5.29153 18.0461 5.16001C17.9372 4.82512 17.6747 4.56257 17.3398 4.45376C17.2083 4.41103 17.0145 4.39992 16.1999 4.39992H7.79989Z"
-																		fill="#ffffff"></path>
-																	</svg>
-																</span>
-															</span>
-														</button>
 													</div>
 													<div>
 														<p class="Typography_Typography__root__RdAI1 Typography_Typography__body1__q3AOP Typography_Typography__weightBold__KkJEY JobCard_JobCard__body__position__CyaGY">${h.h_title}</p>
@@ -144,6 +89,7 @@
 								</c:forEach>
 							</div>
 						</div>
+					</div>
 				</article>
 			</c:if>
 			
@@ -151,7 +97,9 @@
 				$('.post-wrapper').slick({
 					slidesToShow : 4,
 					slidesToScroll : 4,
-					draggable : true
+					draggable : true,
+					dots : true
+					
 					
 				});
 			</script>
@@ -357,48 +305,27 @@
 				});
 			</script>
 
-			<c:if test="${sessionScope.loginok!=null }">
+
+
+		<c:if test="${sessionScope.loginok!=null }">
 			<article class="UserActionArea_UserActionArea__sjZgi">
 				<div class="CarouselContainer_CarouselContainer__jvm3u">
 					<aside class="CarouselHeader_CarouselHeader__5VBaX">
-						<h4
-							class="Typography_Typography__root__RdAI1 Typography_Typography__heading1__N9Asv Typography_Typography__weightBold__KkJEY ">${r_name }님,
-							지금 바로 지원해볼까요?</h4>
+						<h4 class="Typography_Typography__root__RdAI1 Typography_Typography__heading1__N9Asv Typography_Typography__weightBold__KkJEY ">
+						${r_name }님, 지금 바로 지원해볼까요?</h4>
 						<div class="CarouselHeader_CarouselHeader__action__nal5g">
-							<div class="CarouselNavigation_CarouselNavigation__Llibu">
-								<button
-									class="IconButton_IconButton__root__IJlt6 IconButton_IconButton__normal__Twwsf IconButton_IconButton__normalDisabled__lpQXR IconButton_IconButton__disabled__6qJ2Q CarouselNavigation_CarouselNavigation__left__ZzsPB"
-									aria-label="이전" disabled="" style="font-size: 15px;">
-									<span class="IconButton_IconButton__label__o4AtY"><span
-										class="SvgIcon_SvgIcon__root__OHiSO"><svg
-												class="SvgIcon_SvgIcon__root__svg__ohdSc"
-												viewBox="0 0 24 24">
-												<path
-													d="M7.5812 3.08022C7.07352 3.58791 7.07352 4.41102 7.5812 4.9187L14.662 11.9995L7.5812 19.0802C7.07352 19.5879 7.07352 20.411 7.5812 20.9187C8.08888 21.4264 8.912 21.4264 9.41968 20.9187L17.4197 12.9187C17.9274 12.411 17.9274 11.5879 17.4197 11.0802L9.41968 3.08022C8.912 2.57254 8.08888 2.57254 7.5812 3.08022Z"
-													fill="#e1e2e4"></path></svg></span></span>
-								</button>
-								<button
-									class="IconButton_IconButton__root__IJlt6 IconButton_IconButton__normal__Twwsf CarouselNavigation_CarouselNavigation__right__lB17m"
-									aria-label="다음" style="font-size: 15px;">
-									<span class="IconButton_IconButton__label__o4AtY"><span
-										class="SvgIcon_SvgIcon__root__OHiSO"><svg
-												class="SvgIcon_SvgIcon__root__svg__ohdSc"
-												viewBox="0 0 24 24">
-												<path
-													d="M7.5812 3.08022C7.07352 3.58791 7.07352 4.41102 7.5812 4.9187L14.662 11.9995L7.5812 19.0802C7.07352 19.5879 7.07352 20.411 7.5812 20.9187C8.08888 21.4264 8.912 21.4264 9.41968 20.9187L17.4197 12.9187C17.9274 12.411 17.9274 11.5879 17.4197 11.0802L9.41968 3.08022C8.912 2.57254 8.08888 2.57254 7.5812 3.08022Z"
-													fill="#70737C"></path></svg></span></span><span
-										class="IconButton_IconButton__interaction__7RjPt"></span>
-								</button>
-							</div>
 						</div>
 					</aside>
-
-
-
-
+					
+					
+						<c:set var="hasScrapedItems" value="false" />
 					<div class="CarouselContainer_CarouselContainer__slider__dWB5h">
 						<div class="mutiple-items">
-						<c:forEach var="h" items="${hlist}">
+						<c:forEach var="r" items="${rlist}">
+						<c:set var="isScraped"
+								value="${fn:contains(userScraps, r.h_num)}" />
+							<c:if test="${isScraped}">
+								<c:set var="hasScrapedItems" value="true"/>
  									<div>
 										<div class="CarouselContainer_CarouselContainer__slider__item__5wY5G"
 										tabindex="-1" style="width: 100%; display: inline-block;">
@@ -412,48 +339,47 @@
 												data-ai-score-status="fail"
 												data-recommend-model-status="notBase"
 												data-domain="recommendPosition" data-position-index="0"
-												href="hire/detail?h_num=${h.h_num }">
+												href="hire/detail?h_num=${r.h_num }">
 													<div class="JobCard_JobCard__thumb__WU1ax">
 														<div class="JobCard_JobCard__thumb__reward__6_Xx_">
 															<span class="Typography_Typography__root__RdAI1 Typography_Typography__label1__hNiv5 Typography_Typography__weightBold__KkJEY JobCard_JobCard__thumb__reward__text__i15UM"></span>
 														</div>
-														<img src="../../companyintro_uploads/${h.ci_image}">
-														<button class="IconButton_IconButton__root__IJlt6 IconButton_IconButton__normal__Twwsf IconButton_IconButton__disableGutters__F_K1l bookmarkBtn"
-														aria-label="bookmark button"
-														data-attribute-id="position__bookmark__click"
-														data-position-index="0"
-														data-kind="add" style="font-size: 22px;" tabindex="1">
-															<span class="IconButton_IconButton__label__o4AtY">
-																<span class="SvgIcon_SvgIcon__root__OHiSO">
-																	<svg class="SvgIcon_SvgIcon__root__svg__ohdSc" viewBox="0 0 24 24">
-																		<path fill-rule="evenodd"
-																		clip-rule="evenodd"
-																		d="M8.16445 2.59985H15.8353C16.3651 2.59984 16.8163 2.59983 17.1867 2.63009C17.5759 2.66189 17.9545 2.73152 18.3164 2.91594C18.8621 3.19397 19.3057 3.63761 19.5838 4.18328C19.7682 4.54522 19.8378 4.92381 19.8696 5.31297C19.8999 5.6834 19.8999 6.13458 19.8999 6.66445V21.4999C19.8999 21.8249 19.7245 22.1248 19.4412 22.2842C19.1579 22.4436 18.8107 22.4379 18.5328 22.2692L11.9999 18.3028L5.46694 22.2692C5.18906 22.4379 4.84179 22.4436 4.55848 22.2842C4.27517 22.1248 4.09985 21.8249 4.09985 21.4999V6.66445C4.09984 6.13461 4.09983 5.68339 4.13009 5.31297C4.16189 4.92381 4.23152 4.54522 4.41594 4.18328C4.69397 3.63761 5.13761 3.19397 5.68328 2.91594C6.04522 2.73152 6.42381 2.66189 6.81297 2.63009C7.18338 2.59983 7.63462 2.59984 8.16445 2.59985ZM7.79989 4.39992C6.98533 4.39992 6.79149 4.41103 6.65997 4.45376C6.32509 4.56257 6.06254 4.82512 5.95373 5.16001C5.91099 5.29153 5.89989 5.48536 5.89989 6.29992V19.9006L11.5328 16.4806C11.8198 16.3064 12.18 16.3064 12.467 16.4806L18.0999 19.9006V6.29992C18.0999 5.48536 18.0888 5.29153 18.0461 5.16001C17.9372 4.82512 17.6747 4.56257 17.3398 4.45376C17.2083 4.41103 17.0145 4.39992 16.1999 4.39992H7.79989Z"
-																		fill="#ffffff"></path>
-																	</svg>
-																</span>
-															</span>
-														</button>
+														<img src="../../companyintro_uploads/${r.ci_image}">
 													</div>
 													<div>
-														<p class="Typography_Typography__root__RdAI1 Typography_Typography__body1__q3AOP Typography_Typography__weightBold__KkJEY JobCard_JobCard__body__position__CyaGY">${h.h_title}</p>
-														<span class="Typography_Typography__root__RdAI1 Typography_Typography__label2__svmAA Typography_Typography__weightMedium__GXnOM JobCard_JobCard__body__company__AUj_B">${h.c_name}</span>
+														<p class="Typography_Typography__root__RdAI1 Typography_Typography__body1__q3AOP Typography_Typography__weightBold__KkJEY JobCard_JobCard__body__position__CyaGY">${r.h_title}</p>
+														<span class="Typography_Typography__root__RdAI1 Typography_Typography__label2__svmAA Typography_Typography__weightMedium__GXnOM JobCard_JobCard__body__company__AUj_B">${r.c_name}</span>
 														<div class="JobCard_JobCard__body__badge__atLen"></div>
 													</div>
 												</a>
 											</div>
 										</div>
  									</div>
+ 									</c:if>
 								</c:forEach>
 						</div>
 					</div>
+					<c:if test="${!hasScrapedItems }">
+					<c:set var="isScraped"
+						value="${fn:contains(userScraps, r.h_num)}" />
+					<article class="MatchedBanner_MatchedBanner__jSUtn">
+					<div class="MatchedBanner_MatchedBanner__info__HEO_b">
+						<h6 class="Typography_Typography__root__RdAI1 Typography_Typography__headline2__vR7L_ Typography_Typography__weightBold__KkJEY MatchedBanner_MatchedBanner__info__title__ciAu_">관심있는 회사를<br>북마크에 추가해보세요!
+						</h6>
+						<button type="button" onclick="location.href='/hire/main'" class="Button_Button__root__m1NGq Button_Button__contained__qyP2s Button_Button__containedPrimary__kCB60 Button_Button__containedSizeMedium__xBgIW MatchedBanner_MatchedBanner__btn__XNKYB" data-attribute-id="jobs__signupLogin__click">
+							<span class="Button_Button__label__K0sBs">회사 찾아보기</span><span class="Button_Button__interaction__1LUyr"></span>
+						</button>
+					</div>
+				</article>
+					</c:if>
 
 				</div>
 				<script>
 					$('.mutiple-items').slick({
 						slidesToShow : 4,
 						slidesToScroll : 4,
-						draggable : true
+						draggable : true,
+						dots : true
 					});
 				</script>
 			</article>
@@ -464,40 +390,8 @@
 					<aside class="CarouselHeader_CarouselHeader__5VBaX">
 						<a href="/wdlist" data-attribute-id="jobs__seeMore"
 							data-domain="attractionTag"><h4
-								class="Typography_Typography__root__RdAI1 Typography_Typography__heading1__N9Asv Typography_Typography__weightBold__KkJEY ">#1,001~10,000명</h4></a>
-						<div class="CarouselHeader_CarouselHeader__action__nal5g">
-							<a href="/wdlist"
-								class="CarouselHeader_CarouselHeader__link__2mjNY"
-								data-attribute-id="jobs__seeMore" data-domain="attractionTag">포지션으로
-								더보기<span
-								class="CarouselHeader_CarouselHeader__link__interaction__rETxI"></span>
-							</a>
-							<div class="CarouselNavigation_CarouselNavigation__Llibu">
-								<button
-									class="IconButton_IconButton__root__IJlt6 IconButton_IconButton__normal__Twwsf IconButton_IconButton__normalDisabled__lpQXR IconButton_IconButton__disabled__6qJ2Q CarouselNavigation_CarouselNavigation__left__ZzsPB"
-									aria-label="이전" disabled="" style="font-size: 15px;">
-									<span class="IconButton_IconButton__label__o4AtY"><span
-										class="SvgIcon_SvgIcon__root__OHiSO"><svg
-												class="SvgIcon_SvgIcon__root__svg__ohdSc"
-												viewBox="0 0 24 24">
-													<path
-													d="M7.5812 3.08022C7.07352 3.58791 7.07352 4.41102 7.5812 4.9187L14.662 11.9995L7.5812 19.0802C7.07352 19.5879 7.07352 20.411 7.5812 20.9187C8.08888 21.4264 8.912 21.4264 9.41968 20.9187L17.4197 12.9187C17.9274 12.411 17.9274 11.5879 17.4197 11.0802L9.41968 3.08022C8.912 2.57254 8.08888 2.57254 7.5812 3.08022Z"
-													fill="#e1e2e4"></path></svg></span></span>
-								</button>
-								<button
-									class="IconButton_IconButton__root__IJlt6 IconButton_IconButton__normal__Twwsf CarouselNavigation_CarouselNavigation__right__lB17m"
-									aria-label="다음" style="font-size: 15px;">
-									<span class="IconButton_IconButton__label__o4AtY"><span
-										class="SvgIcon_SvgIcon__root__OHiSO"><svg
-												class="SvgIcon_SvgIcon__root__svg__ohdSc"
-												viewBox="0 0 24 24">
-													<path
-													d="M7.5812 3.08022C7.07352 3.58791 7.07352 4.41102 7.5812 4.9187L14.662 11.9995L7.5812 19.0802C7.07352 19.5879 7.07352 20.411 7.5812 20.9187C8.08888 21.4264 8.912 21.4264 9.41968 20.9187L17.4197 12.9187C17.9274 12.411 17.9274 11.5879 17.4197 11.0802L9.41968 3.08022C8.912 2.57254 8.08888 2.57254 7.5812 3.08022Z"
-													fill="#70737C"></path></svg></span></span><span
-										class="IconButton_IconButton__interaction__7RjPt"></span>
-								</button>
-							</div>
-						</div>
+								class="Typography_Typography__root__RdAI1 Typography_Typography__heading1__N9Asv Typography_Typography__weightBold__KkJEY ">#인기있는 포지션</h4></a>
+						
 					</aside>
 					<div class="CarouselContainer_CarouselContainer__slider__dWB5h">
 						<div class="triple-items">
@@ -841,11 +735,12 @@
 					<script type="text/javascript">
 						$('.triple-items').slick({
 							slidesToShow : 3,
-							slidesToScroll : 1,
+							slidesToScroll : 3,
 							autoplay : true,
 							autoplaySpeed : 3000,
 							draggable : true,
-							variableWidth : true
+							variableWidth : true,
+							dots: true
 						});
 					</script>
 
@@ -857,156 +752,74 @@
 						class="CarouselHeader_CarouselHeader__5VBaX CarouselHeader_CarouselHeader__isTagList__mdBDx">
 						<a href="/wdlist" data-attribute-id="jobs__seeMore"
 							data-domain="attractionTag"><h4
-								class="Typography_Typography__root__RdAI1 Typography_Typography__heading1__N9Asv Typography_Typography__weightBold__KkJEY ">#1,001~10,000명</h4></a>
-						<div class="CarouselHeader_CarouselHeader__action__nal5g">
-							<a href="/wdlist"
-								class="CarouselHeader_CarouselHeader__link__2mjNY"
-								data-attribute-id="jobs__seeMore" data-domain="attractionTag">포지션으로
-								더보기<span
-								class="CarouselHeader_CarouselHeader__link__interaction__rETxI"></span>
-							</a>
-						</div>
-					</aside>
-					
-					
-					
-					<div class="CarouselContainer_CarouselContainer__slider__dWB5h CarouselContainer_CarouselContainer__slider__isTagList__b8_2h">
-						<div class="mutiple-items2">
-										<c:forEach var="r" items="${cilist}">
-											<ul class="List_TagList__yoeks">
-												<li class="ListCard_List__RGzzX">
-												<a href="/company/showimsiCom?c_num=${r.c_num }"
-													data-company-index="0">
-													 <div class="Grid_Grid__container__43uvK Grid_Grid__align-items_center__2CxBh Grid_Grid__align-content_space-between__hVHLa Grid_Grid__wrap_nowrap__lW8k0 ListCard_ListCard__x7sMD">
-															<div
-																class="Grid_Grid__container__43uvK Grid_Grid__align-items_center__2CxBh Grid_Grid__align-content_space-between__hVHLa Grid_Grid__wrap_nowrap__lW8k0 ListCard_ListCard__Contents__kgwtL">
-																<img src="../../companyintro_uploads/${r.ci_logo }">
-																<div
-																	class="ListCard_ListCard__Contents__Information__nzox0">
-																	<p
-																		class="Typography_Typography__root__RdAI1 Typography_Typography__body1__q3AOP Typography_Typography__weightBold__KkJEY ListCard_ListCard__Contents__Information_companyName__vtCMs">${r.c_name }</p>
-																	<span class="Typography_Typography__root__RdAI1 Typography_Typography__caption1__P91eH Typography_Typography__weightRegular__jzmck Typography_Typography__displayBlock__A3AK8 ListCard_ListCard__Contents__Information_industryName__hy1BM">${r.c_category }
-																		</span>
-																</div>
-															</div>
-															<button
-																class="Button_Button__root__m1NGq Button_Button__outlined__0HnEd Button_Button__outlinedAssistive__JKDyz Button_Button__outlinedSizeSmall__PllaZ ListCard_ListCard__Button__PQ9Ge"
-																data-attribute-id="company__follow__click"
-																data-domain="attractionTag" data-tag-id="10405"
-																data-tag-name="1,001~10,000명" data-company-id="35972"
-																data-company-index="0" data-company-name="투썸플레이스"
-																data-kind="add" data-base-action="popular">
-																<span class="Button_Button__label__K0sBs"><span
-																	class="Typography_Typography__root__RdAI1 Typography_Typography__label2__svmAA Typography_Typography__weightMedium__GXnOM Typography_Typography__displayBlock__A3AK8 ListCard_ListCard__Button__Text__GxZco">팔로우</span></span><span
-																	class="Button_Button__interaction__1LUyr"></span>
-															</button>
-														</div></a></li>
-														
-														
-												<li class="ListCard_List__RGzzX">
-												<a href="/company/showimsiCom?c_num=${r.c_num }"
-													data-company-index="0">
-													 <div class="Grid_Grid__container__43uvK Grid_Grid__align-items_center__2CxBh Grid_Grid__align-content_space-between__hVHLa Grid_Grid__wrap_nowrap__lW8k0 ListCard_ListCard__x7sMD">
-															<div
-																class="Grid_Grid__container__43uvK Grid_Grid__align-items_center__2CxBh Grid_Grid__align-content_space-between__hVHLa Grid_Grid__wrap_nowrap__lW8k0 ListCard_ListCard__Contents__kgwtL">
-																<img src="../../companyintro_uploads/${r.ci_logo }">
-																<div
-																	class="ListCard_ListCard__Contents__Information__nzox0">
-																	<p
-																		class="Typography_Typography__root__RdAI1 Typography_Typography__body1__q3AOP Typography_Typography__weightBold__KkJEY ListCard_ListCard__Contents__Information_companyName__vtCMs">${r.c_name }</p>
-																	<span class="Typography_Typography__root__RdAI1 Typography_Typography__caption1__P91eH Typography_Typography__weightRegular__jzmck Typography_Typography__displayBlock__A3AK8 ListCard_ListCard__Contents__Information_industryName__hy1BM">${r.c_category }
-																		</span>
-																</div>
-															</div>
-															<button
-																class="Button_Button__root__m1NGq Button_Button__outlined__0HnEd Button_Button__outlinedAssistive__JKDyz Button_Button__outlinedSizeSmall__PllaZ ListCard_ListCard__Button__PQ9Ge"
-																data-attribute-id="company__follow__click"
-																data-domain="attractionTag" data-tag-id="10405"
-																data-tag-name="1,001~10,000명" data-company-id="35972"
-																data-company-index="0" data-company-name="투썸플레이스"
-																data-kind="add" data-base-action="popular">
-																<span class="Button_Button__label__K0sBs"><span
-																	class="Typography_Typography__root__RdAI1 Typography_Typography__label2__svmAA Typography_Typography__weightMedium__GXnOM Typography_Typography__displayBlock__A3AK8 ListCard_ListCard__Button__Text__GxZco">팔로우</span></span><span
-																	class="Button_Button__interaction__1LUyr"></span>
-															</button>
-														</div></a></li>
-														
-														
-												<li class="ListCard_List__RGzzX">
-												<a href="/company/showimsiCom?c_num=${r.c_num }"
-													data-company-index="0">
-													 <div class="Grid_Grid__container__43uvK Grid_Grid__align-items_center__2CxBh Grid_Grid__align-content_space-between__hVHLa Grid_Grid__wrap_nowrap__lW8k0 ListCard_ListCard__x7sMD">
-															<div
-																class="Grid_Grid__container__43uvK Grid_Grid__align-items_center__2CxBh Grid_Grid__align-content_space-between__hVHLa Grid_Grid__wrap_nowrap__lW8k0 ListCard_ListCard__Contents__kgwtL">
-																<img src="../../companyintro_uploads/${r.ci_logo }">
-																<div
-																	class="ListCard_ListCard__Contents__Information__nzox0">
-																	<p
-																		class="Typography_Typography__root__RdAI1 Typography_Typography__body1__q3AOP Typography_Typography__weightBold__KkJEY ListCard_ListCard__Contents__Information_companyName__vtCMs">${r.c_name }</p>
-																	<span class="Typography_Typography__root__RdAI1 Typography_Typography__caption1__P91eH Typography_Typography__weightRegular__jzmck Typography_Typography__displayBlock__A3AK8 ListCard_ListCard__Contents__Information_industryName__hy1BM">${r.c_category }
-																		</span>
-																</div>
-															</div>
-															<button
-																class="Button_Button__root__m1NGq Button_Button__outlined__0HnEd Button_Button__outlinedAssistive__JKDyz Button_Button__outlinedSizeSmall__PllaZ ListCard_ListCard__Button__PQ9Ge"
-																data-attribute-id="company__follow__click"
-																data-domain="attractionTag" data-tag-id="10405"
-																data-tag-name="1,001~10,000명" data-company-id="35972"
-																data-company-index="0" data-company-name="투썸플레이스"
-																data-kind="add" data-base-action="popular">
-																<span class="Button_Button__label__K0sBs"><span
-																	class="Typography_Typography__root__RdAI1 Typography_Typography__label2__svmAA Typography_Typography__weightMedium__GXnOM Typography_Typography__displayBlock__A3AK8 ListCard_ListCard__Button__Text__GxZco">팔로우</span></span><span
-																	class="Button_Button__interaction__1LUyr"></span>
-															</button>
-														</div></a></li>
-														
-														
-												<li class="ListCard_List__RGzzX">
-												<a href="/company/showimsiCom?c_num=${r.c_num }"
-													data-company-index="0">
-													 <div class="Grid_Grid__container__43uvK Grid_Grid__align-items_center__2CxBh Grid_Grid__align-content_space-between__hVHLa Grid_Grid__wrap_nowrap__lW8k0 ListCard_ListCard__x7sMD">
-															<div
-																class="Grid_Grid__container__43uvK Grid_Grid__align-items_center__2CxBh Grid_Grid__align-content_space-between__hVHLa Grid_Grid__wrap_nowrap__lW8k0 ListCard_ListCard__Contents__kgwtL">
-																<img src="../../companyintro_uploads/${r.ci_logo }">
-																<div
-																	class="ListCard_ListCard__Contents__Information__nzox0">
-																	<p
-																		class="Typography_Typography__root__RdAI1 Typography_Typography__body1__q3AOP Typography_Typography__weightBold__KkJEY ListCard_ListCard__Contents__Information_companyName__vtCMs">${r.c_name }</p>
-																	<span class="Typography_Typography__root__RdAI1 Typography_Typography__caption1__P91eH Typography_Typography__weightRegular__jzmck Typography_Typography__displayBlock__A3AK8 ListCard_ListCard__Contents__Information_industryName__hy1BM">${r.c_category }
-																		</span>
-																</div>
-															</div>
-															<button
-																class="Button_Button__root__m1NGq Button_Button__outlined__0HnEd Button_Button__outlinedAssistive__JKDyz Button_Button__outlinedSizeSmall__PllaZ ListCard_ListCard__Button__PQ9Ge"
-																data-attribute-id="company__follow__click"
-																data-domain="attractionTag" data-tag-id="10405"
-																data-tag-name="1,001~10,000명" data-company-id="35972"
-																data-company-index="0" data-company-name="투썸플레이스"
-																data-kind="add" data-base-action="popular">
-																<span class="Button_Button__label__K0sBs"><span
-																	class="Typography_Typography__root__RdAI1 Typography_Typography__label2__svmAA Typography_Typography__weightMedium__GXnOM Typography_Typography__displayBlock__A3AK8 ListCard_ListCard__Button__Text__GxZco">팔로우</span></span><span
-																	class="Button_Button__interaction__1LUyr"></span>
-															</button>
-														</div></a></li>
-														
-														
-											</ul>
-											</c:forEach>
-										</div>
-									</div>
-						</div>
-				<script type="text/javascript">
-				$('.mutiple-items2').slick({
-					slidesToShow : 3,
-					slidesToScroll : 3,
-					autoplay : true,
-					autoplaySpeed : 3000,
-					draggable : true
-				});
-				
-				
-				</script>	
+								class="Typography_Typography__root__RdAI1 Typography_Typography__heading1__N9Asv Typography_Typography__weightBold__KkJEY ">#인기있는 포지션</h4></a>
 						
+					</aside>
+
+
+
+
+					<div
+						class="CarouselContainer_CarouselContainer__slider__dWB5h CarouselContainer_CarouselContainer__slider__isTagList__b8_2h">
+						<div class="mutiple-items2">
+							<c:forEach var="ci" items="${cilist}" varStatus="loop">
+								<c:if test="${loop.index % 4 == 0}">
+									<ul class="List_TagList__yoeks">
+								</c:if>
+
+								<li class="ListCard_List__RGzzX"><a
+									href="/company/showimsiCom?c_num=${ci.c_num }" data-attribute-id="company__click"
+									data-tag-id="10405" data-tag-name="1,001~10,000명"
+									data-company-id="${ci.c_num}" data-company-name="${ci.c_name}"
+									data-company-index="${loop.index}" data-domain="attractionTag"
+									data-base-action="popular">
+										<div
+											class="Grid_Grid__container__43uvK Grid_Grid__align-items_center__2CxBh Grid_Grid__align-content_space-between__hVHLa Grid_Grid__wrap_nowrap__lW8k0 ListCard_ListCard__x7sMD">
+											<div
+												class="Grid_Grid__container__43uvK Grid_Grid__align-items_center__2CxBh Grid_Grid__align-content_space-between__hVHLa Grid_Grid__wrap_nowrap__lW8k0 ListCard_ListCard__Contents__kgwtL">
+												<img src="../../companyintro_uploads/${ci.ci_logo }" fetchpriority="low"
+													alt="${ci.c_name}"
+													class="ListCard_ListCard__Contents__Image__ZnXfj"
+													decoding="async" loading="lazy">
+												<div class="ListCard_ListCard__Contents__Information__nzox0">
+													<p
+														class="Typography_Typography__root__RdAI1 Typography_Typography__body1__q3AOP Typography_Typography__weightBold__KkJEY ListCard_ListCard__Contents__Information_companyName__vtCMs">${ci.c_name}</p>
+													<span
+														class="Typography_Typography__root__RdAI1 Typography_Typography__caption1__P91eH Typography_Typography__weightRegular__jzmck Typography_Typography__displayBlock__A3AK8 ListCard_ListCard__Contents__Information_industryName__hy1BM">${ci.c_category}</span>
+												</div>
+											</div>
+											<button
+												class="Button_Button__root__m1NGq Button_Button__outlined__0HnEd Button_Button__outlinedAssistive__JKDyz Button_Button__outlinedSizeSmall__PllaZ ListCard_ListCard__Button__PQ9Ge"
+												data-attribute-id="company__follow__click"
+												data-domain="attractionTag" data-tag-id="10405"
+												data-tag-name="1,001~10,000명" data-company-id="${ci.c_num}"
+												data-company-index="${loop.index}"
+												data-company-name="${ci.c_name}" data-kind="add"
+												data-base-action="popular">
+												<span class="Button_Button__label__K0sBs"><span
+													class="Typography_Typography__root__RdAI1 Typography_Typography__label2__svmAA Typography_Typography__weightMedium__GXnOM Typography_Typography__displayBlock__A3AK8 ListCard_ListCard__Button__Text__GxZco">팔로우</span></span>
+												<span class="Button_Button__interaction__1LUyr"></span>
+											</button>
+										</div>
+								</a></li>
+
+								<c:if test="${loop.index % 4 == 3 or loop.last}">
+									</ul>
+								</c:if>
+							</c:forEach>
+						</div>
+					</div>
+
+					<script type="text/javascript">
+						$('.mutiple-items2').slick({
+							slidesToShow : 3,
+							slidesToScroll : 1,
+							autoplay : true,
+							autoplaySpeed : 4000,
+							draggable : true,
+							dots : true
+						});
+					</script>			
 				</section>
 			<!-- 			</article> -->
 			<article class="ThemeArea_ThemeArea__a7D3I">
@@ -1017,29 +830,8 @@
 							모아보기</h4>
 						<div class="CarouselHeader_CarouselHeader__action__nal5g">
 							<div class="CarouselNavigation_CarouselNavigation__Llibu">
-								<button
-									class="IconButton_IconButton__root__IJlt6 IconButton_IconButton__normal__Twwsf IconButton_IconButton__normalDisabled__lpQXR IconButton_IconButton__disabled__6qJ2Q CarouselNavigation_CarouselNavigation__left__ZzsPB"
-									aria-label="이전" disabled="" style="font-size: 15px">
-									<span class="IconButton_IconButton__label__o4AtY"><span
-										class="SvgIcon_SvgIcon__root__OHiSO"><svg
-												class="SvgIcon_SvgIcon__root__svg__ohdSc"
-												viewBox="0 0 24 24">
-												<path
-													d="M7.5812 3.08022C7.07352 3.58791 7.07352 4.41102 7.5812 4.9187L14.662 11.9995L7.5812 19.0802C7.07352 19.5879 7.07352 20.411 7.5812 20.9187C8.08888 21.4264 8.912 21.4264 9.41968 20.9187L17.4197 12.9187C17.9274 12.411 17.9274 11.5879 17.4197 11.0802L9.41968 3.08022C8.912 2.57254 8.08888 2.57254 7.5812 3.08022Z"
-													fill="#e1e2e4"></path></svg></span></span>
-								</button>
-								<button
-									class="IconButton_IconButton__root__IJlt6 IconButton_IconButton__normal__Twwsf CarouselNavigation_CarouselNavigation__right__lB17m"
-									aria-label="다음" style="font-size: 15px">
-									<span class="IconButton_IconButton__label__o4AtY"><span
-										class="SvgIcon_SvgIcon__root__OHiSO"><svg
-												class="SvgIcon_SvgIcon__root__svg__ohdSc"
-												viewBox="0 0 24 24">
-												<path
-													d="M7.5812 3.08022C7.07352 3.58791 7.07352 4.41102 7.5812 4.9187L14.662 11.9995L7.5812 19.0802C7.07352 19.5879 7.07352 20.411 7.5812 20.9187C8.08888 21.4264 8.912 21.4264 9.41968 20.9187L17.4197 12.9187C17.9274 12.411 17.9274 11.5879 17.4197 11.0802L9.41968 3.08022C8.912 2.57254 8.08888 2.57254 7.5812 3.08022Z"
-													fill="#70737C"></path></svg></span></span><span
-										class="IconButton_IconButton__interaction__7RjPt"></span>
-								</button>
+	
+								
 							</div>
 						</div>
 					</aside>
@@ -1399,7 +1191,8 @@
 						slidesToShow : 3,
 						slidesToScroll : 3,
 						draggable : true,
-						variableWidth : true
+						variableWidth : true,
+						dots : true
 					});
 				</script>
 			</article>
@@ -1671,24 +1464,6 @@
 				</div>
 			</article>
 		</section>
-		<script type="text/javascript">
-			document.querySelector('.bookmarkBtn').addEventListener(
-					'click',
-					function() {
-						const bookmarkPath = document
-								.querySelector('#bookmark-path');
-						const currentFill = bookmarkPath.getAttribute('fill');
-						bookmarkPath.setAttribute('fill',
-								currentFill === '#ffffff' ? '#3366ff'
-										: '#ffffff');
-
-						const currentDataKind = this.getAttribute('data-kind');
-						this.setAttribute('data-kind',
-								currentDataKind === 'add' ? 'remove' : 'add');
-					});
-		</script>
-		</script>
-
 	</main>
 </body>
 </html>

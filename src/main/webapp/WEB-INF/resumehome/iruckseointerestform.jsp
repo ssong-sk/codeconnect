@@ -263,11 +263,10 @@
 				     </div>
 				     
                     <div class="condition-notice">
-		              <div>
-			              <div style="font-size: 1.2em;"><i class="bi bi-exclamation-circle"></i>&nbsp;&nbsp;<b>유의사항</b></div><br>
-			              <div>- 이력서는 최대 10개까지 등록 가능합니다.</div>
-			              <div>- '입사지원 내역'건수는 최근 1년간 내역에 대해 확인 가능합니다.</div>
-			              <div>- 수정, 삭제 기능은 이력서 우측 버튼을 누르면 확인하실 수 있습니다.(이력서는 부분 삭제 불가)</div>
+		              <div style="padding: 10px 10px;">
+			              <div ><i class="bi bi-exclamation-circle"></i>&nbsp;&nbsp;<b>유의사항</b></div><br>
+			              <div style="font-size: 0.8em;">- 기업을 스크랩할 경우 제한 및 기간 상관없이 리스트에 추가 가능합니다.</div>
+			              <div style="font-size: 0.8em;">- 상세보기를 누르면 해당 기업의 정보를 확인하실 수 있습니다.</div>
 		              </div>
 		            </div>
 	              </div>   
