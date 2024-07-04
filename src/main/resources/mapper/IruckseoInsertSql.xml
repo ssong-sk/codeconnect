@@ -12,8 +12,8 @@
                   ) X;
 	    </selectKey>
 	    insert into personal
-	    (pe_num, r_num,pe_image,pe_writeday)
-	    values (#{pe_num},#{r_num}, 'noimg.png', now())
+	    (pe_num, r_num,pe_writeday)
+	    values (#{pe_num},#{r_num},  now())
     </insert>
     
     <!-- 이력서 수정하기 -->
@@ -31,7 +31,16 @@
    
    <!-- 이력서 pe_num으로조회 -->
    <select id="Personallist" parameterType="int" resultType="IruckseoInsertDto">
-     select * from personal  where pe_num = #{pe_num}
+     select pe_num 
+			,r_num  
+			,( case WHEN length(TRIM(pe_image)) = 0 OR pe_image IS NULL THEN 'noimg.png' 
+					ELSE pe_image
+					 END ) AS pe_image
+			,pe_category  
+			,pe_title  
+			,pe_writeday  
+			,pe_filepath 
+	  from personal  where pe_num = #{pe_num}
    </select>
    
    <!-- 이력서 갯수 구하기 -->
@@ -41,18 +50,35 @@
    
    <!-- 이력서 현황 리스트 출력 _ join -->
    <select id="allPersonalDatas" parameterType="Hashmap" resultType="IruckseoInsertDto">
-       select x.pe_num , x.pe_title , x.pe_writeday , x.ho_check ,  x.ho_addr , x.ho_keyword ,  PERIOD_DIFF( x.ca_resign ,   x.ca_ipsa ) as ca_resign
-	   from ( 
- 	      select pe.pe_num , pe.pe_title , pe.pe_writeday  , ( case when  LENGTH(TRIM(ho.ho_money)) = 0 || ho.ho_money IS NULL THEN ho.ho_check else ho.ho_money END ) AS ho_check
-                , ho.ho_addr , ho.ho_keyword
-                ,SUBSTR(REPLACE(MAX(ca.ca_resign),'-',''),1,6) AS ca_resign
-                ,SUBSTR(REPLACE(MIN(ca.ca_ipsa),'-',''),1,6) as ca_ipsa
-           from personal pe 
-           LEFT outer JOIN career ca ON (pe.pe_num = ca.pe_num) 
-           LEFT outer JOIN hope ho ON (pe.pe_num = ho.pe_num)
-           where pe.r_num = ${r_num} 
-           GROUP BY pe.pe_num , pe.pe_title , pe.pe_writeday , ho.ho_money , ho.ho_check ,  ho.ho_addr , ho.ho_keyword
-        ) x
+       SELECT x.pe_num, 
+       x.pe_title, 
+       x.pe_writeday, 
+       x.ho_check,  
+       x.ho_addr, 
+       x.ho_keyword,  
+       CASE 
+		           WHEN length(TRIM(x.ca_resign)) = 0 OR x.ca_resign IS NULL
+		           OR length(trim(x.ca_ipsa)) = 0 or x.ca_ipsa IS NULL THEN '' 
+		           ELSE PERIOD_DIFF(x.ca_resign, x.ca_ipsa) 
+		       END AS ca_resign
+		FROM (
+		    SELECT pe.pe_num, 
+		           pe.pe_title, 
+		           pe.pe_writeday, 
+		           CASE 
+		               WHEN LENGTH(TRIM(ho.ho_money)) = 0 OR ho.ho_money IS NULL THEN ho.ho_check 
+		               ELSE ho.ho_money 
+		           END AS ho_check,
+		           ho.ho_addr, 
+		           ho.ho_keyword,
+		           SUBSTR(REPLACE(MAX(ca.ca_resign), '-', ''), 1, 6) AS ca_resign,
+		           SUBSTR(REPLACE(MIN(ca.ca_ipsa), '-', ''), 1, 6) AS ca_ipsa
+		    FROM personal pe
+		    LEFT OUTER JOIN career ca ON pe.pe_num = ca.pe_num
+		    LEFT OUTER JOIN hope ho ON pe.pe_num = ho.pe_num
+		    WHERE pe.r_num = #{r_num}
+		    GROUP BY pe.pe_num, pe.pe_title, pe.pe_writeday, ho.ho_money, ho.ho_check, ho.ho_addr, ho.ho_keyword
+		) x
        ORDER BY x.pe_writeday desc
        LIMIT #{start}, #{perPage}
    </select>
@@ -64,7 +90,10 @@
    
    <!-- 이력서홈 이미지 -->
    <select id="getImage" parameterType="int" resultType="IruckseoInsertDto">
-     select A.pe_num , A.pe_image
+     select A.pe_num 
+           ,( case WHEN length(TRIM(A.pe_image)) = 0 OR A.pe_image IS NULL THEN 'noimg.png' 
+		           ELSE A.pe_image
+		            END ) AS pe_image
 	   FROM personal A  
 		   ,(SELECT MAX(pe_num) AS pe_num 
 		      FROM personal B where r_num = #{r_num}
@@ -501,8 +530,11 @@
    </select>
    
    <!-- 스크랩 공고 삭제하기 -->
-   <delete id="scrapDelete" parameterType="int">
-     delete from scrap where s_num = #{s_num}
+   <delete id="scrapDelete" parameterType="int[]">
+     delete from scrap where s_num in
+  <foreach item="s_num" index="index" collection="array" open="(" separator="," close=")">
+    #{s_num}
+  </foreach>
    </delete>
    
    <!-- 입사지원 공고  list 가져오기-->
@@ -522,47 +554,7 @@
 		JOIN company c ON h.h_c_num = c.c_num
 	 WHERE s.r_num = #{r_num}
    </select>
-   
-   
-   
-
-
-
-
-
-   
-<!--    지원현황 카운드들		support db에서 지원완료인 갯수 가져오기 -->
-   <select id="getCountApply" parameterType="int" resultType="int">
-   	select count(*) as count
-    	from support
-   			 where st_support = '지원완료' and r_num = #{r_num}
-   </select>
-   
-   <select id="getCountApplySuc" parameterType="int" resultType="int">
-   	select count(*) AS count
-		FROM support
-			WHERE st_result = '서류 통과' and r_num = #{r_num}
-   </select>
-   
-   <select id="getCountApplyFin" parameterType="int" resultType="int">
-   	select count(*) AS count
-		FROM support
-			WHERE st_result = '최종 합격' and r_num = #{r_num}
-   </select>
-   
-   <select id="getCountApplyFail" parameterType="int" resultType="int">
-   	select count(*) AS count
-		FROM support
-			WHERE st_result = '불합격' and r_num = #{r_num}
-   </select>
-   
-   
-   
-   
-   
-   
-   
-   
+  
    <!-- 입사지원현황 페이징 처리 -->
    <select id="getSupportPaging" parameterType="HashMap" resultType="sdto">
 	    SELECT s.*, h.h_title, c.c_name
@@ -575,14 +567,20 @@
 	</select>
 	
 	<!-- 입사지원현황 삭제하기 -->
-   <delete id="SupportDelete" parameterType="int">
-     delete from support where st_num = #{st_num}
+   <delete id="SupportDelete" parameterType="int[]">
+     delete from support where st_num in
+     <foreach item="st_num" index="index" collection="array" open="(" separator="," close=")">
+     #{st_num}
+     </foreach>
    </delete>
-   
+
    <!-- 입사지원 취소시 업데이트 되어 지원완료를 지원취소로 바꾸기 -->
-   <update id="updateSupportDelete" parameterType="int">
+   <update id="updateSupportDelete" parameterType="int[]">
      update support set st_support = '지원취소'
-     where st_num = #{st_num}
+     where st_num in
+     <foreach item="st_num" index="index" collection="array" open="(" separator="," close=")">
+     #{st_num}
+     </foreach>
    </update>
    
    <!-- 지원완료 상태일때 갯수 조회 -->
@@ -592,7 +590,7 @@
 	    JOIN hire h ON s.h_num = h.h_num
 	    JOIN company c ON h.h_c_num = c.c_num
 	  WHERE s.r_num = #{r_num}
-	    AND s.st_support = '지원완료'
+	    AND s.st_support = '지원 완료'
    </select>
    
    <!-- 지원 후 열람여부 갯수 조회 -->
@@ -629,5 +627,32 @@
 		s.r_num = #{r_num} 
         AND s.h_num IS NULL
    </select>
+   
+   
+   <!--    지원현황 카운드들		support db에서 지원완료인 갯수 가져오기 -->
+   <select id="getCountApply" parameterType="int" resultType="int">
+   	select count(*) AS count
+		FROM support
+			WHERE st_support = '지원완료'
+   </select>
+   
+   <select id="getCountApplySuc" parameterType="int" resultType="int">
+   	select count(*) AS count
+		FROM support
+			WHERE st_result = '서류 통과'
+   </select>
+   
+   <select id="getCountApplyFin" parameterType="int" resultType="int">
+   	select count(*) AS count
+		FROM support
+			WHERE st_result = '최종 합격'
+   </select>
+   
+   <select id="getCountApplyFail" parameterType="int" resultType="int">
+   	select count(*) AS count
+		FROM support
+			WHERE st_result = '불합격'
+   </select>
+   
 
 </mapper>
