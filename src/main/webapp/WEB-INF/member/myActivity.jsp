@@ -107,7 +107,7 @@ width:55px;
 						<div class="Grid_Grid__item__4GoIZ Grid_Grid__align-items_flex-start__nEOiH Grid_Grid__grid__xs__3__Ao_Ex">
 							<a class="CountSummary_CountSummary__mm865" data-attribute-id="myActivity__applicationStatus" data-status-kind="hire" href="/resumehome/updateForm?pe_num=${pe_num }">
 							
-							<h6 class="Typography_Typography__root__RdAI1 Typography_Typography__headline1__oRteu Typography_Typography__weightBold__KkJEY ">미작성</h6>
+							<h6 class="Typography_Typography__root__RdAI1 Typography_Typography__headline1__oRteu Typography_Typography__weightBold__KkJEY " id="actibitytext">미작성</h6>
 								
 								<span class="Typography_Typography__root__RdAI1 Typography_Typography__caption1__P91eH Typography_Typography__weightRegular__jzmck Typography_Typography__alignCenter__HDWWj CountSummary_CountSummary_summaryTitle__lDXC6">경험/활동/교육
 									</span></a>
@@ -117,7 +117,7 @@ width:55px;
 						<div class="Grid_Grid__item__4GoIZ Grid_Grid__align-items_flex-start__nEOiH Grid_Grid__grid__xs__3__Ao_Ex">
 							<a class="CountSummary_CountSummary__mm865" data-attribute-id="myActivity__applicationStatus" data-status-kind="rejected" href="/resumehome/updateForm?pe_num=${pe_num }">
 							
-							<h6 class="Typography_Typography__root__RdAI1 Typography_Typography__headline1__oRteu Typography_Typography__weightBold__KkJEY ">미작성</h6>
+							<h6 class="Typography_Typography__root__RdAI1 Typography_Typography__headline1__oRteu Typography_Typography__weightBold__KkJEY " id="spectext">미작성</h6>
 								
 								<span class="Typography_Typography__root__RdAI1 Typography_Typography__caption1__P91eH Typography_Typography__weightRegular__jzmck Typography_Typography__alignCenter__HDWWj CountSummary_CountSummary_summaryTitle__lDXC6">자격/어학/수상</span></a>
 						</div>
@@ -205,6 +205,11 @@ width:55px;
 var midcount = ${midcount}; // 서버에서 전달된 midcount 값을 여기에 설정
 var unicount = ${unicount}; // 서버에서 전달된 midcount 값을 여기에 설정
 var carcount = ${carcount};
+var actcount = ${actcount};
+var spcecount = ${spcecount};
+var splacount = ${splacount};
+var spawcount = ${spawcount};
+
 
 //midcount 조건 처리
 if (midcount >= 6 || unicount >= 8) {
@@ -222,6 +227,24 @@ if (carcount >= 6) {
     $("#careertext").text("미작성").css("color", "red");
 } else {
     $("#careertext").text("작성중").css("color", "");
+}
+
+/* 이력서 작성 상태 조회(활동) */
+if (actcount >= 5) {
+    $("#actibitytext").text("작성완료").css("color", "#06f");
+} else if (actcount === 0) {
+    $("#actibitytext").text("미작성").css("color", "red");
+} else {
+    $("#actibitytext").text("작성중").css("color", "");
+}
+
+/* 이력서 작성 상태 조회(스펙) */
+if (spcecount >= 5 || splacount >= 4 || spawcount >= 4) {
+    $("#spectext").text("작성완료").css("color", "#06f");
+} else if (spcecount === 0 || splacount === 0 || spawcount === 0) {
+    $("#spectext").text("미작성").css("color", "red");
+} else {
+    $("#spectext").text("작성중").css("color", "");
 }
 </script>	
 </body>

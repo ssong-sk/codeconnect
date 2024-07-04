@@ -153,4 +153,80 @@
 	ORDER BY ca_num DESC LIMIT 1
 </select>
 
+<!-- 이력서 작성 상태 조회(활동) -->
+<select id="getwriteactibity" parameterType="int" resultType="int">
+	SELECT COALESCE(
+	    (
+	        SELECT 
+	            (CASE WHEN COALESCE(ac_category, '') != '' THEN 1 ELSE 0 END +
+	             CASE WHEN COALESCE(ac_name, '') != '' THEN 1 ELSE 0 END +
+	             CASE WHEN COALESCE(ac_start, '') != '' THEN 1 ELSE 0 END +
+	             CASE WHEN COALESCE(ac_end, '') != '' THEN 1 ELSE 0 END +
+	             CASE WHEN COALESCE(ac_content, '') != '' THEN 1 ELSE 0 END
+	            ) AS filled_columns
+	        FROM actibity
+	        WHERE pe_num = #{pe_num}
+	        ORDER BY ac_num DESC LIMIT 1
+	    ),
+	    0  -- 기본값
+	) AS result
+</select>
+
+<!-- 이력서 작성 상태 조회(스펙, 자격증) -->
+<select id="getwritesp_ce" parameterType="int" resultType="int">
+	SELECT COALESCE(
+	    (
+	        SELECT 
+		        (CASE WHEN COALESCE(sp_category, '') != '' THEN 1 ELSE 0 END +
+		         CASE WHEN COALESCE(sp_ce_name, '') != '' THEN 1 ELSE 0 END +
+		         CASE WHEN COALESCE(sp_ce_organization, '') != '' THEN 1 ELSE 0 END +
+		         CASE WHEN COALESCE(sp_ce_pass, '') != '' THEN 1 ELSE 0 END +
+		         CASE WHEN COALESCE(sp_ce_passday, '') != '' THEN 1 ELSE 0 END
+		        ) AS filled_columns
+			FROM spec
+	        WHERE pe_num = #{pe_num}
+	        ORDER BY sp_num DESC LIMIT 1
+	    ),
+	    0  -- 기본값
+	) AS result
+</select>
+
+<!-- 이력서 작성 상태 조회(스펙, 어학) -->
+<select id="getwritesp_la" parameterType="int" resultType="int">
+	SELECT COALESCE(
+	    (
+	        SELECT
+		        (CASE WHEN COALESCE(sp_category, '') != '' THEN 1 ELSE 0 END +
+		         CASE WHEN COALESCE(sp_la_name, '') != '' THEN 1 ELSE 0 END +
+		         CASE WHEN COALESCE(sp_la_passday, '') != '' THEN 1 ELSE 0 END +
+		         CASE WHEN COALESCE(sp_la_grade, '') != '' THEN 1 ELSE 0 END
+		        ) AS filled_columns
+			FROM spec
+	        WHERE pe_num = #{pe_num}
+	        ORDER BY sp_num DESC LIMIT 1
+	    ),
+	    0  -- 기본값
+	) AS result
+</select>
+
+<!-- 이력서 작성 상태 조회(스펙, 수상) -->
+<select id="getwritesp_aw" parameterType="int" resultType="int">
+	SELECT COALESCE(
+	    (
+	        SELECT
+		        (CASE WHEN COALESCE(sp_category, '') != '' THEN 1 ELSE 0 END +
+		         CASE WHEN COALESCE(sp_aw_name, '') != '' THEN 1 ELSE 0 END +
+		         CASE WHEN COALESCE(sp_aw_organization, '') != '' THEN 1 ELSE 0 END +
+		         CASE WHEN COALESCE(sp_aw_sangday, '') != '' THEN 1 ELSE 0 END
+        		) AS filled_columns
+			FROM spec
+	        WHERE pe_num = #{pe_num}
+	        ORDER BY sp_num DESC LIMIT 1
+	    ),
+	    0  -- 기본값
+	) AS result
+</select>
+
+
+
 </mapper>

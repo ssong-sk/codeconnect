@@ -201,12 +201,20 @@ public class RegisterController {
 	   int unicount = service.getwriteuni(pe_num);
 	   Optional<Integer> carcountOpt = service.getwritecareer(pe_num);
 	   int carcount = carcountOpt.orElse(0);
+	   int actcount = service.getwriteactibity(pe_num);
+	   int spcecount = service.getwritesp_ce(pe_num);
+	   int splacount = service.getwritesp_la(pe_num);
+	   int spawcount = service.getwritesp_aw(pe_num);
 
 	   model.addAttribute("pe_num", pe_num);
 	   model.addAttribute("rScrap",rScrap);
 	   model.addAttribute("midcount",midcount);
 	   model.addAttribute("unicount", unicount);
 	   model.addAttribute("carcount", carcount);
+	   model.addAttribute("actcount", actcount);
+	   model.addAttribute("spcecount", spcecount);
+	   model.addAttribute("splacount", splacount);
+	   model.addAttribute("spawcount", spawcount);
 	   return "/sub/member/mypage"; 
 	}
    
