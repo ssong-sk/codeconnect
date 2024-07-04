@@ -21,7 +21,7 @@
       margin: 0 auto;
       width: 100%;
       height: 100%;
-      max-width: 1200px;
+      max-width: 1060px;
   }
   
   #wrap {
@@ -202,8 +202,8 @@
 			                
 			                <tr>
 							    <!-- 첫 번째 열: 총 경력과 희망직무 -->
-							    <td style="font-size: 0.8em; width: 30%;">총 경력: ${pe.ca_resign}개월</td>
-							    <td style="font-size: 0.8em;">희망직무: ${pe.ho_keyword}</td>
+							    <td style="font-size: 0.8em; width: 30%;"><i class="bi bi-calendar-week"></i> 총 경력: ${pe.ca_resign}개월</td>
+							    <td style="font-size: 0.8em;"><i class="bi bi-buildings"></i> 희망직무: ${pe.ho_keyword}</td>
 							</tr>
 							
 							<tr><td><br></td></tr>
@@ -276,11 +276,11 @@
 				       </ul>
 				     </div>
 		            <div class="condition-notice">
-		              <div>
-			              <div style="font-size: 1.2em;"><i class="bi bi-exclamation-circle"></i>&nbsp;&nbsp;<b>유의사항</b></div><br>
-			              <div>- 이력서는 최대 10개까지 등록 가능합니다.</div>
-			              <div>- '입사지원 내역'건수는 최근 1년간 내역에 대해 확인 가능합니다.</div>
-			              <div>- 수정, 삭제 기능은 이력서 우측 버튼을 누르면 확인하실 수 있습니다.(이력서는 부분 삭제 불가)</div>
+		              <div style="padding: 10px 10px;">
+			              <div ><i class="bi bi-exclamation-circle"></i>&nbsp;&nbsp;<b>유의사항</b></div><br>
+			              <div style="font-size: 0.8em;">- 이력서는 최대 10개까지 등록 가능합니다.</div>
+			              <div style="font-size: 0.8em;">- '입사지원 내역'건수는 최근 1년간 내역에 대해 확인 가능합니다.</div>
+			              <div style="font-size: 0.8em;">- 수정, 삭제 기능은 이력서 우측 버튼을 누르면 확인하실 수 있습니다.(이력서는 부분 삭제 불가)</div>
 		              </div>
 		            </div>
 		            

@@ -1,8 +1,8 @@
 package com.code.controller;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 
@@ -39,21 +39,43 @@ public class RegisterController {
    
    @Autowired
    CompanyIntroService ciservice;
-   
+
    @GetMapping("/")
-   public String start(@ModelAttribute("hdto") HireDto dto, @ModelAttribute CompanyIntroDto cidto, Model model)
+   public String start(@ModelAttribute("hdto") HireDto dto, @ModelAttribute CompanyIntroDto cidto, Model model,HttpSession session)
    {
 	   List<HireDto> hlist = hservice.getHireList();
+	   List<HireDto> rlist = hservice.getHireList();
 	   List<CompanyIntroDto> cilist = ciservice.getAllCompanyIntros();
+	   
+	   String myid =(String)session.getAttribute("myid");
+	   Integer r_num = null;
+	   
+	   if(myid != null) {
+		   r_num = hservice.getRnumById(myid);
+	   }
+	   if(r_num == null)
+	   {
+		   r_num = 0;
+	   }
+
+	   int rScrap = service.getScrapCount(r_num);
+	   
+	   List<HireDto> userScraps = hservice.getUserScraps(r_num);
+	   
 	   model.addAttribute("hlist", hlist);
 	   model.addAttribute("cilist", cilist);
+	   model.addAttribute("rlist",rlist);
+	   model.addAttribute("r_num",r_num);
+	   model.addAttribute("userScraps",userScraps);
+	   model.addAttribute("rScrap",rScrap);
 	   
 	   return "/layout/main";
    }
-   
+      
    @GetMapping("/main")
    public String form(HttpSession session,Model model)
-   {
+   {		
+	   
       //폼의 아이디얻어줌
       String myid=(String)session.getAttribute("myid");
       //로그인중인지 아닌지
@@ -89,17 +111,6 @@ public class RegisterController {
           return "/member/gaipsuccess";
    }
    
-   
-   
-   //회원정보로 가기
-      @GetMapping("/member/myinfo")
-      public String myinfo(Model model)
-      {
-         List<RegisterDto> list=service.getAllRegister();
-         model.addAttribute("list", list);
-         return "/member/memberinfo";
-      }
-      
       //회원목록 삭제
       @GetMapping("/deleteRegister")
       @ResponseBody
@@ -107,8 +118,6 @@ public class RegisterController {
       {
          service.deleteRegister(r_num);
       }
-      
-      
       
       //수정폼에 출력할 데이타 반환
       @GetMapping("/member/updateform")
@@ -168,30 +177,46 @@ public class RegisterController {
       }
 
       
-   @GetMapping("/member/mypage")
-   public String mypage(@ModelAttribute("hdto") HireDto dto,Model model,HttpSession session)
-   {    
+	@GetMapping("/member/mypage")
+	public String mypage(@ModelAttribute("hdto") HireDto dto,Model model,HttpSession session)
+	{    
 	   String myid =(String)session.getAttribute("myid");
+	   String r_num2 =(String)session.getAttribute("r_num");
+	   // 사용자의 r_num을 초기화
+	   Integer r_num = null;
 
-	   	// 사용자의 r_num을 초기화
-	    Integer r_num = null;
-
-	    // 만약 myid가 null이 아니면, 해당 사용자의 r_num을 가져옴
-	    if (myid != null) {
-	        r_num = hservice.getRnumById(myid);
-	    }
+	   // 만약 myid가 null이 아니면, 해당 사용자의 r_num을 가져옴
+	   if (myid != null) {
+		   	r_num = hservice.getRnumById(myid);
+	   }
 	    
-	    // r_num이 null인 경우, 기본값 0으로 설정
-	    if (r_num == null) {
-	        r_num = 0;
-	    }
+	   // r_num이 null인 경우, 기본값 0으로 설정
+	   if (r_num == null) {
+		   r_num = 0;
+	   }
 	   
-	   	int rScrap = service.getScrapCount(r_num);
-      
+	   int rScrap = service.getScrapCount(r_num);
+	   int pe_num = service.getpenum(r_num2);
+	   int midcount = service.getwritemiddle(pe_num);
+	   int unicount = service.getwriteuni(pe_num);
+	   Optional<Integer> carcountOpt = service.getwritecareer(pe_num);
+	   int carcount = carcountOpt.orElse(0);
+	   int actcount = service.getwriteactibity(pe_num);
+	   int spcecount = service.getwritesp_ce(pe_num);
+	   int splacount = service.getwritesp_la(pe_num);
+	   int spawcount = service.getwritesp_aw(pe_num);
+
+	   model.addAttribute("pe_num", pe_num);
 	   model.addAttribute("rScrap",rScrap);
+	   model.addAttribute("midcount",midcount);
+	   model.addAttribute("unicount", unicount);
+	   model.addAttribute("carcount", carcount);
+	   model.addAttribute("actcount", actcount);
+	   model.addAttribute("spcecount", spcecount);
+	   model.addAttribute("splacount", splacount);
+	   model.addAttribute("spawcount", spawcount);
 	   return "/sub/member/mypage"; 
-   }
-   
+	}
    
    
    
@@ -204,12 +229,6 @@ public class RegisterController {
    public String memberform() {
       return "/member/memberform";
    }
-   
-   @GetMapping("/member/register2")
-   public String position() {
-      return "/member/register2";
-   }
-   
    
    
     @PostMapping("/checkDuplicateId")

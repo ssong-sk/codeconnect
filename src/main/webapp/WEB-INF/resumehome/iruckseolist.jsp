@@ -23,7 +23,7 @@
       margin: 0 auto;
       width: 100%;
       height: 100%;
-      max-width: 1000px;
+      max-width: 1060px;
   }
   
   #wrap {
@@ -504,13 +504,13 @@
                      <tr>
                        <td class="form-group">
                        <c:if test="${hodto != null}">
-                       	<span> ${hodto.ho_category} </span>
+                       	<span> ${hodto.ho_category}&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; </span>
                        	<c:choose>
 			            	<c:when test="${hodto.ho_money != ''}"> 	
-		                        <span> ${hodto.ho_money } </span>
+		                        <span>연봉 :  ${hodto.ho_money } 만원</span>
 			                </c:when>
 			                <c:otherwise> 
-			                	<span>면접 후 결정</span>
+			                	<span>연봉 : 면접 후 결정</span>
 			                </c:otherwise>
 			             </c:choose>
                        </c:if>
@@ -562,7 +562,7 @@
 
                         <!-- 직무 --------------------------------------------------------------------------------------------------------->
                         <tr>
-                           <td class="form-group" style="margin-top: 2%;">
+                           <td class="form-group" style="margin-top: 2%; margin-bottom: 5%;">
                             &nbsp;<span style="font-size: 0.8em; display: inline-block;">직무 키워드</span>&nbsp;&nbsp;&nbsp;
                            </td>
                          </tr>
@@ -680,7 +680,7 @@
                   
                   <div class="fixed_final">
                       <span id="pe_title_temp" style="height: 40px; font-size: 1.2em;
-                      width: 43%;"><b>${pedto.pe_title }</b></span>&nbsp;&nbsp;&nbsp;&nbsp;
+                      width: 51.5%;"><b>${pedto.pe_title }</b></span>&nbsp;&nbsp;&nbsp;&nbsp;
                       <button type="button" id="allDataUpdate" onclick="location.href='updateForm?pe_num=${pedto.pe_num}'" 
                       style="width: 180px;" class="btn btn-primary">수정하기</button>
                   </div>

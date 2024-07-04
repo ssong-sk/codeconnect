@@ -35,4 +35,10 @@ public interface ManagerServiceInter {
 	public void insertCustomerEvent(CustomerDto dto);
 	public void updateCustomerEvent(CustomerDto dto);
 	public void deleteCustomerEvent(int cus_num);
+	
+	//1:1문의 관리
+	public int countInquiry();
+	public int getCountInquirySuccess();
+	public int getCountInquiryStandBy();
+	public List<CustomerDto> getAllCustomerInquiry(int start, int perpage);
 }

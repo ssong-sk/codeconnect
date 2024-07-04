@@ -63,18 +63,6 @@
     
     
  <!-- 스크랩 -->
-<insert id="scrapInsertReg" parameterType="hdto">
-	insert into scrap (h_num, r_num) values(#{h_num}, #{r_num})
-</insert>
-
-<delete id="scrapDeleteReg" parameterType="map">
-    DELETE FROM scrap WHERE r_num = #{r_num} AND h_num = #{h_num}
-</delete>
-
-<select id="scrapSelectReg" resultType="hdto">
-    select * from scrap where s_num = #{s_num}
-</select>
-
 <select id="getUserScrapsReg" parameterType="int" resultType="hdto">
     SELECT h_num FROM scrap WHERE r_num = #{r_num}
 </select>
@@ -90,5 +78,155 @@
 <select id="getScrapList" parameterType="int" resultType="int">
 	select * from scrap where r_num = #{r_num}
 </select>
+
+<!-- r_num으로 pe-num 구하기 -->
+<select id="getpenum" parameterType="String" resultType="int">
+    SELECT COALESCE(
+        (
+            SELECT pe_num
+            FROM personal
+            WHERE r_num = #{r_num}
+            ORDER BY pe_writeday DESC
+            LIMIT 1
+        ),
+        0  -- 기본값: 만약 결과가 없는 경우 반환할 값
+    ) AS pe_num
+</select>
+
+
+<!-- 이력서 작성 상태 조회(학력, 고등학교) -->
+<select id="getwritemiddle" parameterType="int" resultType="int">
+    SELECT COALESCE(
+        (
+            SELECT 
+                (CASE WHEN sc_category IS NOT NULL AND sc_category != '' THEN 1 ELSE 0 END +
+                 CASE WHEN sc_hi_name IS NOT NULL AND sc_hi_name != '' THEN 1 ELSE 0 END +
+                 CASE WHEN sc_hi_check IS NOT NULL AND sc_hi_check != '' THEN 1 ELSE 0 END +
+                 CASE WHEN sc_hi_iphack IS NOT NULL AND sc_hi_iphack != '' THEN 1 ELSE 0 END +
+                 CASE WHEN sc_hi_jolup IS NOT NULL AND sc_hi_jolup != '' THEN 1 ELSE 0 END +
+                 CASE WHEN sc_hi_major IS NOT NULL AND sc_hi_major != '' THEN 1 ELSE 0 END
+                ) AS filled_columns
+            FROM school
+            WHERE pe_num = #{pe_num}
+            ORDER BY sc_num DESC LIMIT 1
+        ),
+        0  -- 기본값
+    ) AS result
+</select>
+
+
+<!-- 이력서 작성 상태 조회(학력, 대학교) -->
+<select id="getwriteuni" parameterType="int" resultType="int">
+    SELECT COALESCE(
+        (
+            SELECT 
+                (CASE WHEN sc_uni_category IS NOT NULL AND sc_uni_category != '' THEN 1 ELSE 0 END +
+                 CASE WHEN sc_uni_name IS NOT NULL AND sc_uni_name != '' THEN 1 ELSE 0 END +
+                 CASE WHEN sc_uni_major IS NOT NULL AND sc_uni_major != '' THEN 1 ELSE 0 END +
+                 CASE WHEN sc_uni_check IS NOT NULL AND sc_uni_check != '' THEN 1 ELSE 0 END +
+                 CASE WHEN sc_uni_iphack IS NOT NULL AND sc_uni_iphack != '' THEN 1 ELSE 0 END +
+                 CASE WHEN sc_uni_jolup IS NOT NULL AND sc_uni_jolup != '' THEN 1 ELSE 0 END +
+                 CASE WHEN sc_uni_grade IS NOT NULL AND sc_uni_grade != '' THEN 1 ELSE 0 END +
+                 CASE WHEN sc_uni_sum IS NOT NULL AND sc_uni_sum != '' THEN 1 ELSE 0 END
+                ) AS filled_columns
+            FROM school
+            WHERE pe_num = #{pe_num}
+            ORDER BY sc_num DESC LIMIT 1
+        ),
+        0  -- 기본값
+    ) AS result
+</select>
+
+
+<!-- 이력서 작성 상태 조회(경력) -->
+<select id="getwritecareer" parameterType="int" resultType="integer">
+	SELECT 
+		(CASE WHEN ca_name IS NOT NULL AND ca_name != '' THEN 1 ELSE 0 END +
+	     CASE WHEN ca_ipsa IS NOT NULL AND ca_ipsa != '' THEN 1 ELSE 0 END +
+	     CASE WHEN ca_resign IS NOT NULL AND ca_resign != '' THEN 1 ELSE 0 END +
+	     CASE WHEN ca_work IS NOT NULL AND ca_work != '' THEN 1 ELSE 0 END +
+	     CASE WHEN ca_position IS NOT NULL AND ca_position != '' THEN 1 ELSE 0 END +
+	     CASE WHEN ca_content IS NOT NULL AND ca_content != '' THEN 1 ELSE 0 END
+	    ) AS filled_columns
+	FROM career
+	WHERE pe_num = #{pe_num}
+	ORDER BY ca_num DESC LIMIT 1
+</select>
+
+<!-- 이력서 작성 상태 조회(활동) -->
+<select id="getwriteactibity" parameterType="int" resultType="int">
+	SELECT COALESCE(
+	    (
+	        SELECT 
+	            (CASE WHEN COALESCE(ac_category, '') != '' THEN 1 ELSE 0 END +
+	             CASE WHEN COALESCE(ac_name, '') != '' THEN 1 ELSE 0 END +
+	             CASE WHEN COALESCE(ac_start, '') != '' THEN 1 ELSE 0 END +
+	             CASE WHEN COALESCE(ac_end, '') != '' THEN 1 ELSE 0 END +
+	             CASE WHEN COALESCE(ac_content, '') != '' THEN 1 ELSE 0 END
+	            ) AS filled_columns
+	        FROM actibity
+	        WHERE pe_num = #{pe_num}
+	        ORDER BY ac_num DESC LIMIT 1
+	    ),
+	    0  -- 기본값
+	) AS result
+</select>
+
+<!-- 이력서 작성 상태 조회(스펙, 자격증) -->
+<select id="getwritesp_ce" parameterType="int" resultType="int">
+	SELECT COALESCE(
+	    (
+	        SELECT 
+		        (CASE WHEN COALESCE(sp_category, '') != '' THEN 1 ELSE 0 END +
+		         CASE WHEN COALESCE(sp_ce_name, '') != '' THEN 1 ELSE 0 END +
+		         CASE WHEN COALESCE(sp_ce_organization, '') != '' THEN 1 ELSE 0 END +
+		         CASE WHEN COALESCE(sp_ce_pass, '') != '' THEN 1 ELSE 0 END +
+		         CASE WHEN COALESCE(sp_ce_passday, '') != '' THEN 1 ELSE 0 END
+		        ) AS filled_columns
+			FROM spec
+	        WHERE pe_num = #{pe_num}
+	        ORDER BY sp_num DESC LIMIT 1
+	    ),
+	    0  -- 기본값
+	) AS result
+</select>
+
+<!-- 이력서 작성 상태 조회(스펙, 어학) -->
+<select id="getwritesp_la" parameterType="int" resultType="int">
+	SELECT COALESCE(
+	    (
+	        SELECT
+		        (CASE WHEN COALESCE(sp_category, '') != '' THEN 1 ELSE 0 END +
+		         CASE WHEN COALESCE(sp_la_name, '') != '' THEN 1 ELSE 0 END +
+		         CASE WHEN COALESCE(sp_la_passday, '') != '' THEN 1 ELSE 0 END +
+		         CASE WHEN COALESCE(sp_la_grade, '') != '' THEN 1 ELSE 0 END
+		        ) AS filled_columns
+			FROM spec
+	        WHERE pe_num = #{pe_num}
+	        ORDER BY sp_num DESC LIMIT 1
+	    ),
+	    0  -- 기본값
+	) AS result
+</select>
+
+<!-- 이력서 작성 상태 조회(스펙, 수상) -->
+<select id="getwritesp_aw" parameterType="int" resultType="int">
+	SELECT COALESCE(
+	    (
+	        SELECT
+		        (CASE WHEN COALESCE(sp_category, '') != '' THEN 1 ELSE 0 END +
+		         CASE WHEN COALESCE(sp_aw_name, '') != '' THEN 1 ELSE 0 END +
+		         CASE WHEN COALESCE(sp_aw_organization, '') != '' THEN 1 ELSE 0 END +
+		         CASE WHEN COALESCE(sp_aw_sangday, '') != '' THEN 1 ELSE 0 END
+        		) AS filled_columns
+			FROM spec
+	        WHERE pe_num = #{pe_num}
+	        ORDER BY sp_num DESC LIMIT 1
+	    ),
+	    0  -- 기본값
+	) AS result
+</select>
+
+
 
 </mapper>

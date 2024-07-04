@@ -1,6 +1,7 @@
 package com.code.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.code.dto.HireDto;
 import com.code.dto.RegisterDto;
@@ -43,5 +44,29 @@ public interface RegisterServiceInter {
 		public List<HireDto> getUserScraps(int r_num);
 		//갯수구하기
 		public int getScrapCount(int r_num);
+		
+		
+	/* r_num으로 pe-num 구하기 */
+	public int getpenum(String r_num);
+	
+	/* 이력서 작성 상태 조회(학력, 고등학교) */
+	public int getwritemiddle(int pe_num);
+	
+	/* 이력서 작성 상태 조회(학력, 대학교) */
+	public int getwriteuni(int pe_num);
+	
+	/* 이력서 작성 상태 조회(경력) */
+	public Optional<Integer> getwritecareer(int pe_num);
+	
+	/* 이력서 작성 상태 조회(활동) */
+	public int getwriteactibity(int pe_num);
 
+	/* 이력서 작성 상태 조회(스펙, 자격증) */
+	public int getwritesp_ce(int pe_num);
+	
+	/* 이력서 작성 상태 조회(스펙, 어학) */
+	public int getwritesp_la(int pe_num);
+	
+	/* 이력서 작성 상태 조회(스펙, 수상) */
+	public int getwritesp_aw(int pe_num);
 }

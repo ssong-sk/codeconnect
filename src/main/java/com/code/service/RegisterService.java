@@ -3,6 +3,7 @@ package com.code.service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -150,5 +151,44 @@ public class RegisterService implements RegisterServiceInter {
 		return mapper.getScrapCount(r_num);
 	}
 
+	@Override
+	public int getpenum(String r_num) {
+		return mapperInter.getpenum(r_num);
+	}
+
+	@Override
+	public int getwritemiddle(int pe_num) {
+		return mapperInter.getwritemiddle(pe_num);
+	}
+
+	@Override
+	public int getwriteuni(int pe_num) {
+		return mapperInter.getwriteuni(pe_num);
+	}
+
+	@Override
+	public Optional<Integer> getwritecareer(int pe_num) {
+		return mapperInter.getwritecareer(pe_num);
+	}
+
+	@Override
+	public int getwriteactibity(int pe_num) {
+		return mapperInter.getwriteactibity(pe_num);
+	}
+
+	@Override
+	public int getwritesp_ce(int pe_num) {
+		return mapperInter.getwritesp_ce(pe_num);
+	}
+
+	@Override
+	public int getwritesp_la(int pe_num) {
+		return mapperInter.getwritesp_la(pe_num);
+	}
+
+	@Override
+	public int getwritesp_aw(int pe_num) {
+		return mapperInter.getwritesp_aw(pe_num);
+	}
 	
 }

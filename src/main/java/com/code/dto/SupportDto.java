@@ -20,6 +20,8 @@ public class SupportDto {
 	
 	
 	private String c_name;
+	private String h_title;
+	
 
 	
 	//hire테이블과 join

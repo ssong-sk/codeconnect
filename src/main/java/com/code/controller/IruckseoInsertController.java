@@ -66,7 +66,7 @@ public class IruckseoInsertController {
 		mview.addObject("irdto", irdto);
 		mview.addObject("rdto", rdto);
 		//포워드
-		mview.setViewName("/resumehome/iruckseoform");
+		mview.setViewName("/sub/resumehome/iruckseoform");
 		
 		return mview;
 	}
@@ -496,7 +496,7 @@ public class IruckseoInsertController {
   		mview.addObject("hodto", hodto);
   		
   		//포워드
-  		mview.setViewName("/resumehome/iruckseoUpdateform");
+  		mview.setViewName("/sub/resumehome/iruckseoUpdateform");
   		
   		return mview;
   	}
