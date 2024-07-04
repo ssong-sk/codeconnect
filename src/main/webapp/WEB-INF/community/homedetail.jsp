@@ -312,7 +312,7 @@
 <body>
 
 <div class="totalpostgo">
-    <a href="${pageContext.request.contextPath}/community/hometotalpost"><span><i class="bi bi-chevron-left"></i>전체 게시글</span></a>
+    <a href="hometotalpost"><span><i class="bi bi-chevron-left"></i>전체 게시글</span></a>
 </div>
 <div class="post_view_wrap" style="margin-top: 15px;">
     <!-- 게시글 상단 -->
@@ -353,7 +353,7 @@
     <!-- 게시글 이미지 -->
     <c:if test="${not empty dto.com_photo && dto.com_photo != 'no'}">
         <div class="images">
-            <img src="${pageContext.request.contextPath}/communityimage/${dto.com_photo}" class="img-fluid">
+            <img src="communityimage/${dto.com_photo}" class="img-fluid">
         </div>
     </c:if>
     <c:if test="${sessionScope.loginok == 'yes'}">
@@ -471,7 +471,7 @@
 </div>
 
 <div class="homelistgo" style="margin-bottom: 40px; margin-left: -10px;">
-    <a href="${pageContext.request.contextPath}/community/homelist"><span>목록<i class="bi bi-chevron-right"></i></span></a>
+    <a href="homelist"><span>목록<i class="bi bi-chevron-right"></i></span></a>
 </div>
 </body>
 </html>
