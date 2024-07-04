@@ -446,6 +446,25 @@ public class IruckseoInsertService implements IruckseoInsertServiceInter {
 		irmapper.SupportDelete(st_num);
 	}
 
+	
+//	--------------------------------------------- 지원 현황 메서드 ----------------------------------------------------------
+	
+	public int getCountApply(int r_num)
+	{
+		return irmapper.getCountApply(r_num);
+	}
+
+	public int getCountApplySuc(int r_num) {
+		return irmapper.getCountApplySuc(r_num);
+	}
+
+	public int getCountApplyFin(int r_num) {
+		return irmapper.getCountApplyFin(r_num);
+	}
+
+	public int getCountApplyFail(int r_num) {
+		return irmapper.getCountApplyFail(r_num);
+	}
 
 }
 

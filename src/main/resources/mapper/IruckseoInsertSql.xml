@@ -522,6 +522,37 @@
 	 WHERE s.r_num = #{r_num}
    </select>
    
+   
+   
+
+   
+<!--    지원현황 카운드들		support db에서 지원완료인 갯수 가져오기 -->
+   <select id="getCountApply" parameterType="int" resultType="int">
+   	select count(*) AS count
+		FROM support
+			WHERE st_support = '지원완료'
+   </select>
+   
+   <select id="getCountApplySuc" parameterType="int" resultType="int">
+   	select count(*) AS count
+		FROM support
+			WHERE st_result = '서류 통과'
+   </select>
+   
+   <select id="getCountApplyFin" parameterType="int" resultType="int">
+   	select count(*) AS count
+		FROM support
+			WHERE st_result = '최종 합격'
+   </select>
+   
+   <select id="getCountApplyFail" parameterType="int" resultType="int">
+   	select count(*) AS count
+		FROM support
+			WHERE st_result = '불합격'
+   </select>
+   
+   
+   
    <!-- 입사지원현황 페이징 처리 -->
    <select id="getSupportPaging" parameterType="HashMap" resultType="sdto">
 	    SELECT s.*, h.h_title, c.c_name

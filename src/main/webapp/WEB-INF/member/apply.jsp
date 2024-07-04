@@ -66,14 +66,38 @@ Summary_Summary_list__Z6ikA:hover dd {
 						</dd>
 					</dl>
 				</div>
-
-
-
-
-
 				<section class="Body_Body__lyHIo">
+				
+				<ul class="Summary_Summary__wbpVe">
+						<li
+							class="Summary_Summary_list__Z6ikA Summary_Summary_list_active__yEySM"><a
+							href="/member/apply" class=""><dl>
+									<dt>${count }</dt>
+									<dd>전체</dd>
+								</dl></a></li>
+						<li class="Summary_Summary_list__Z6ikA"><a
+							href="/member/apply?status=complete" class=""><dl>
+									<dt>${apply }</dt>
+									<dd>지원 완료</dd>
+								</dl></a></li>
+						<li class="Summary_Summary_list__Z6ikA"><a
+							href="/member/apply?status=pass" class=""><dl>
+									<dt>${applySuc }</dt>
+									<dd>서류 통과</dd>
+								</dl></a></li>
+						<li class="Summary_Summary_list__Z6ikA"><a
+							href="/member/apply?status=hire" class=""><dl>
+									<dt>${applyFin }</dt>
+									<dd>최종 합격</dd>
+								</dl></a></li>
+						<li class="Summary_Summary_list__Z6ikA"><a
+							href="/member/apply?status=reject" class=""><dl>
+									<dt>${applyFail }</dt>
+									<dd>불합격</dd>
+								</dl></a></li>
+					</ul>
+				
 					<div class="Search_Search__BET2N">
-
 					</div>
 					<div>
 						<div class="List_List_table__G1RDe">
@@ -100,20 +124,16 @@ Summary_Summary_list__Z6ikA:hover dd {
 										<section class="Body_Body__lyHIo">
 											<div class="Search_Search__BET2N">
 											</div>
-											<div>
-												
-											</div>
+
 										</section>
 										<li class="List_List_table_tr__kfQ7j"><div>
-												<a href="/wd/227181"
-													class="List_List_table_td__C8YQe List_List_table_td_company_logo__DNKWj"></a><a
-													href="/wd/227181"
-													class="List_List_table_td__C8YQe List_List_table_td_company_name__xwoY9">${su.c_name }</a><a
-													href="#"
-													class="List_List_table_td__C8YQe List_List_table_td_position__RCnTM">${su.h_title }</a><a
-													href="#"
-													class="List_List_table_td__C8YQe List_List_table_td_create_time__9aOhL">${su.st_write }</a><a
-													href="#"
+												<a href="#"
+													class="List_List_table_td__C8YQe List_List_table_td_company_name__xwoY9">${su.c_name }</a>
+												<a href="#"
+													class="List_List_table_td__C8YQe List_List_table_td_position__RCnTM">${su.h_title }</a>
+												<a href="#"
+													class="List_List_table_td__C8YQe List_List_table_td_create_time__9aOhL">${su.st_write }</a>
+												<a href="#"
 													class="List_List_table_td__C8YQe List_List_table_td_status__ZCt7y">${su.st_support }</a>
 												<a href="#"
 													class="List_List_table_td__C8YQe List_List_table_td_status__ZCt7y">${su.st_result }</a>

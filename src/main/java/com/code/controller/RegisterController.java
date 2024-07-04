@@ -241,9 +241,18 @@ public class RegisterController {
 	 
 	 List<SupportDto> sulist = irservice.getSupportPaging(r_num,start,perPage);
 	 int totalCount = irservice.getSupportCount(r_num);
+	 int CountApply = irservice.getCountApply(r_num);
+	 int CountApplySuc = irservice.getCountApplySuc(r_num);
+	 int CountApplyFin = irservice.getCountApplyFin(r_num);
+	 int CountApplyFail = irservice.getCountApplyFail(r_num);
+	 
 	 
 	 model.addAttribute("sulist",sulist);
 	 model.addAttribute("count",totalCount);
+	 model.addAttribute("apply",CountApply);
+	 model.addAttribute("applySuc",CountApplySuc);
+	 model.addAttribute("applyFin",CountApplyFin);
+	 model.addAttribute("applyFail",CountApplyFail);
 	   
 	   return "/sub/member/apply";
    }
