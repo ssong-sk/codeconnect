@@ -203,7 +203,7 @@
         </div>
         <div id="image-container" class="image-container" style="margin-top: 10px;">
             <c:if test="${not empty dto.com_photo && dto.com_photo != 'no'}">
-                <img src="${pageContext.request.contextPath}/communityimage/${dto.com_photo}" class="image-preview">
+                <img src="/communityimage/${dto.com_photo}" class="image-preview">
             </c:if>
         </div>
         <div style="margin-top: 25px;">
@@ -225,7 +225,7 @@
         수정이 완료되었습니다.
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="location.href='${pageContext.request.contextPath}/community/homedetail?com_num=${dto.com_num}'">확인</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="location.href='homedetail?com_num=${dto.com_num}'">확인</button>
       </div>
     </div>
   </div>

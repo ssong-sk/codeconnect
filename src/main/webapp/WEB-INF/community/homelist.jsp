@@ -12,7 +12,7 @@
 <title>이번 주 인기글</title>
 <style>
     body {
-        font-family: 'IBM Plex Sans KR', sans-serif;
+        font-family: 'IBM Plex Sans KR';
     }
     
     /* 최상단 카테고리 nav */
@@ -39,7 +39,7 @@
 
     }
     .nav ul .active {
-        color: blue;
+        color: #0D6CF9;
     }
     .linkgo {
         display: flex;
@@ -152,6 +152,22 @@
         text-overflow: ellipsis;
         white-space: nowrap;
     }
+    
+    /* 이미지 */
+	.image-container {
+	    position: relative;
+	    display: inline-block;
+	}
+	
+	.centered-text {
+	    position: absolute;
+	    top: 50%;
+	    left: 20%;
+	    transform: translate(-50%, -50%);
+	    color: white;
+	    font-weight: bold;
+	    text-align: center;
+	} 
 </style>
 <script type="text/javascript">
     $(document).ready(function(){
@@ -177,9 +193,13 @@
 </head>
 <body>
 <div class="commutitle" style="max-width: 1060px; margin: 60px auto;">
+<div class="image-container">
+            <img alt="" src="../image/community.PNG" style="width: 1060px; border-radius: 10px;">
+            <h4 class="centered-text">다양한 정보를 공유하는 커뮤니티 공간</h4>
+</div>
 <nav class="nav">
     <ul>
-        <li><a class="nav-link" href="${root}/community/homelist" id="homeLink">홈</a></li>
+        <li><a class="nav-link" href="${root}/community/homelist" id="homeLink">소셜</a></li>
         <li><a class="nav-link" href="${root}/community/interviewlist" id="interviewLink">현직자 인터뷰</a></li>
     </ul>
 </nav>
@@ -350,7 +370,7 @@
             <br>
                 <c:if test="${sessionScope.loginok!=null }">
                     <button type="button" class="btn btn-outline-primary" style="float: right;"
-                    onclick="location.href='${pageContext.request.contextPath}/community/homeform'">글쓰기</button>
+                    onclick="location.href='homeform'">글쓰기</button>
                 </c:if>
             </div>
         </div>

@@ -146,8 +146,8 @@
      </tr>
      <tr>
        <td colspan="2" align="center">
-         <button type="submit" class="btn btn-success" onclick="submitContents(this);">저장</button>
-         <button type="button" class="btn btn-success" onclick="location.href='/community/interviewlist'">목록</button>
+         <button type="submit" class="btn btn-outline-primary" onclick="submitContents(this);">저장</button>
+         <button type="button" class="btn btn-outline-primary" onclick="location.href='/community/interviewlist'">목록</button>
        </td>
      </tr>
   </table>

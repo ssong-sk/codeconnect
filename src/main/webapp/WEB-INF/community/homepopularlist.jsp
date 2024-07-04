@@ -12,36 +12,31 @@
 <title>이번 주 인기글</title>
 <style>
     body {
-        font-family: 'IBM Plex Sans KR', sans-serif;
+        font-family: 'IBM Plex Sans KR';
     }
     
     /* 최상단 카테고리 nav */
-    .nav {
-        margin-top: 40px;
-        margin-left: 250px;
-    }
     .nav ul {
-        list-style-type: none;
-        display: flex;
-        gap: 20px;
-        padding: 0;
-        justify-content: flex-start;
-        margin-top: 40px;
-        margin-left: 100px;
-    }
-    .nav ul a {
-       display: block;
-       color: gray;
-       text-decoration: none;
-       font-weight: 700;
-       font-size: 17px;
-       line-height: 32px;
-       padding: 0 15px;
-    }
-    .nav ul .active {
-        color: blue;
-        border-bottom: 2px solid blue;
-    }
+    list-style-type: none;
+    display: flex;
+    gap: 20px;
+    padding: 0;
+    justify-content: flex-start;
+    margin-top: 40px;
+	}
+
+	.nav ul a {
+	    display: block;
+	    color: gray;
+	    text-decoration: none;
+	    font-weight: 700;
+	    font-size: 17px;
+	    line-height: 32px;
+	}
+	
+	.nav ul .active {
+	    color: #0D6CF9;
+	}
     .post_list_wrap {
         margin: 50px auto;
         max-width: 800px;
@@ -166,13 +161,13 @@
 </head>
 
 <body>
+<div style="max-width: 1060px; margin: 0 auto;">
 <nav class="nav">
     <ul>
-        <a class="nav-link" href="${root}/community/homelist">홈</a>
-        <a class="nav-link" href="${root}/community/interviewlist">현직자 인터뷰</a>
+        <li><a class="nav-link" href="${root}/community/homelist" id="homeLink">소셜</a></li>
+        <li><a class="nav-link" href="${root}/community/interviewlist" id="interviewLink">현직자 인터뷰</a></li>
     </ul>
 </nav>
-<div style="max-width: 1100px; margin: 0 auto;">
     <div class="container2">
         <div class="linkgo" style="width: 100%;">
             <div>
@@ -192,7 +187,7 @@
     </div>
 </div> -->
 
-<div class="list_qna" style="max-width: 1100px; margin: 70px auto;">
+<div class="list_qna" style="max-width: 1060px; margin: 70px auto;">
     <ul class="qna-list">
 	    <c:choose>
 	        <c:when test="${not empty popularPosts}">
@@ -202,7 +197,7 @@
 	                        <div class="qna-item">
 	                            <div class="post_list">
 	                                <a href="${root}/community/homedetail?com_num=${dto.com_num}">
-	                                    <span class="hot" style="color: blue; font-weight: bold; font-size: 18px;">HOT</span>
+	                                    <span class="hot" style="color: #0D6CF9; font-weight: bold; font-size: 18px;">HOT</span>
 	                                    <span>&nbsp;&nbsp;<b style="font-size: 20px;">${dto.com_title}</b></span><br>
 	                                    <span class="content_text">${dto.com_content}</span>
 	                                    <div>
