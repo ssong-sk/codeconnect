@@ -132,21 +132,28 @@ a, abbr, acronym, address, applet, article, aside, audio, b, big,
 	color: inherit;
 }
 
-@media ( min-width :1600px) {
-	.MainBar_MainBar__40DX7 {
-		width: 90%;
-		max-width: 1400px;
-		margin: 0 auto;
-	}
-}
+/* @media ( min-width :1600px) { */
+/* 	.MainBar_MainBar__40DX7 { */
+/* 		width: 90%; */
+/* 		max-width: 1400px; */
+/* 		margin: 0 auto; */
+/* 	} */
+/* } */
 
-@media ( min-width : 1200px) and (max-width: 1599px) {
-	.MainBar_MainBar__40DX7 {
+/* @media ( min-width : 1200px) and (max-width: 1599px) { */
+/* 	.MainBar_MainBar__40DX7 { */
+/* 		max-width: 1060px; */
+/* 		width: 90%; */
+/* 		margin: 0 auto; */
+/* 	} */
+/* } */
+
+
+.MainBar_MainBar__40DX7 {
 		max-width: 1060px;
 		width: 90%;
 		margin: 0 auto;
 	}
-}
 
 .MainBar_MainBarNav__pVhal {
 	display: -ms-flexbox;
@@ -183,6 +190,11 @@ a {
 }
 
 a {
+	color: #171719;
+	text-decoration: none !important;
+}
+
+.span_header{
 	color: #171719 !important;
 	text-decoration: none !important;
 }

@@ -33,15 +33,15 @@
 				</div>
 				<ul class="Menu_MenuNav__EOf3X" style="margin-bottom: 0px;padding-left: 0px;">
 					<li class="Menu_MenuItem__wI1yA"><a href="/hire/main"
-						class="Menu_jobListLink__GYHAI"><span>채용</span></a></li>
-					<li class="Menu_MenuItem__wI1yA"><a href="/company/gotoshowimsiList"><span>기업</span></a></li>
+						class="Menu_jobListLink__GYHAI"><span class="span_header">채용</span></a></li>
+					<li class="Menu_MenuItem__wI1yA"><a href="/company/gotoshowimsiList"><span class="span_header">기업</span></a></li>
 					<li class="Menu_MenuItem__wI1yA" data-attribute-id="gnb"
-						data-gnb-kind="resume"><a href="/resumehome/home"><span>이력서</span></a></li>
+						data-gnb-kind="resume"><a href="/resumehome/home"><span class="span_header">이력서</span></a></li>
 	<li class="Menu_MenuItem__wI1yA" data-attribute-id="gnb"
-						data-gnb-kind="community"><a href="/community/homelist"><span>커뮤니티</span></a></li>
+						data-gnb-kind="community"><a href="/community/homelist"><span class="span_header">커뮤니티</span></a></li>
 
 					<li class="Menu_MenuItem__wI1yA" data-attribute-id="gnb"
-						data-gnb-kind="customer"><a href="/customer/noticelist"><span>고객센터</span></a></li>
+						data-gnb-kind="customer"><a href="/customer/noticelist"><span class="span_header">고객센터</span></a></li>
 
 				</ul>
 

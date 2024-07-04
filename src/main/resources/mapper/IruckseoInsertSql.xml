@@ -12,8 +12,8 @@
                   ) X;
 	    </selectKey>
 	    insert into personal
-	    (pe_num, r_num, pe_writeday)
-	    values (#{pe_num},#{r_num}, now())
+	    (pe_num, r_num,pe_image,pe_writeday)
+	    values (#{pe_num},#{r_num}, 'noimg.png', now())
     </insert>
     
     <!-- 이력서 수정하기 -->

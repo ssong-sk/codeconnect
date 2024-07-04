@@ -23,7 +23,7 @@
 	margin: 0 auto;
 	width: 100%;
 	height: 100%;
-	max-width: 1080px;
+	max-width: 1060px;
 }
 
 #wrap {
@@ -35,7 +35,7 @@
 	margin: 0 auto;
 	width: 100%;
 	height: 100%;
-	max-width: 1080px;
+	max-width: 1060px;
 }
 
 #wrap2 {
@@ -1325,20 +1325,6 @@ svg {
 			<!-- 리스트 시작 -->
 			<!-- 리스트 배열 선택하기 -->
             <div class="hirelistsort listsort">
-				<div>
-					<div class="order_wrap">
-						<ul class="ullist">
-							<li>
-								<button aria-pressed="true" type="button" class="listtrue">
-									최신순&nbsp;&nbsp;&nbsp; <span
-									style="font-size: 12pt; color: gray;">ㆍ</span>
-								</button>
-							</li>
-							<li><button aria-pressed="false" type="button"
-							class="listfalse">인기순</button></li>
-						</ul>
-					</div>
-				</div>
 			</div>
 			<!-- 채용공고 리스트 -->
 			<section class="hirelist">
