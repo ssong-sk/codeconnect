@@ -589,7 +589,7 @@ request.setAttribute("currentYear", currentYear);
 							<c:forEach var="a" items="${rlist}">
 								<div class="card mb-3 position-relative">
 									<div class="card-body">
-										<h5 class="card-title">익명</h5>
+										<h5 class="card-title">${a.r_nickname}</h5>
 										<p class="card-text">
 											<strong>복지 및 급여:</strong> ${a.cr_happy} <br> <strong>근무환경:</strong>
 											${a.cr_environment} <br> <strong>사내문화:</strong>

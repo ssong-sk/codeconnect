@@ -20,5 +20,7 @@ public class CompanyReviewDto {
 	private int cr_heads;
 	private String cr_comment;
 	private Timestamp cr_writeday;
+	//닉네임 추가
+	private String r_nickname;
 	
 }

@@ -520,6 +520,7 @@
      LIMIT #{start}, #{perPage}
    </select>
    
+   
    <!-- 스크랩 공고 갯수 구하기 -->
    <select id="getScrapCount" parameterType="int" resultType="int">
       SELECT count(*) FROM hire h
@@ -553,7 +554,7 @@
 		JOIN company c ON h.h_c_num = c.c_num
 	 WHERE s.r_num = #{r_num}
    </select>
-
+  
    <!-- 입사지원현황 페이징 처리 -->
    <select id="getSupportPaging" parameterType="HashMap" resultType="sdto">
 	    SELECT s.*, h.h_title, c.c_name

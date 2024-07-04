@@ -497,24 +497,20 @@ button {
 
 		$("#DesSave").click(function() {
 			var r_num = document.getElementById('r_num').value;
-			var description = $("#message-text").val();
-
-			var data = "r_num=" + r_num + "&r_sogae=" + description;
-
-
+			var r_sogae = $("#message-text").val();
 
 			$.ajax({
-				url : '/updateDescription',
-				type : 'POST',
-				dataType : 'json',
-				data : data,
-				success : function(res) {
-					alert("업데이트 완료");
-				},
-				error : function(xhr, status, error) {
-					console.error('업데이트 중 오류발생', error);
-					alert('업데이트 중 오류발생');
-				}
+			    url: '/updateDescription',
+			    type: 'POST',
+			    dataType: 'json',
+			    data: {"r_num": r_num, "r_sogae": r_sogae},
+			    success: function(res) {
+			        alert("업데이트 완료");
+			    },
+			    error: function(xhr, status, error) {
+			        console.error('업데이트 중 오류발생', error); 
+			        alert('업데이트 중 오류발생');
+			    }
 			});
 		});
 	</script>
