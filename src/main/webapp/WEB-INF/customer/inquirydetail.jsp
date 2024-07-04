@@ -144,7 +144,7 @@ body {
 			                    <textarea name="answer" rows="5"  style="width: 100%;">${dto.cus_answer}</textarea>
 			                    <button type="submit" class="btn btn-primary btn-sm" style="margin-top: 10px;">답변 수정</button>
 			                </form>
-			                <form action="${pageContext.request.contextPath}/customer/answerdelete" method="post" onsubmit="return confirmDelete();" style="margin-top: 10px;">
+			                <form action="answerdelete" method="post" onsubmit="return confirmDelete();" style="margin-top: 10px;">
 			                    <input type="hidden" name="cus_num" value="${dto.cus_num}">
 			                    <button type="submit" class="btn btn-primary btn-sm">답변 삭제</button>
 			                </form>
