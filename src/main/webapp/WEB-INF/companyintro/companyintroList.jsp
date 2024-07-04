@@ -397,10 +397,9 @@ svg {
 							</div>
 						</div>
 
-
 						<!-- 랭킹 리스트 끝-->
 						<!-- 기업 리스트 -->
-						<!-- <section class="hirelist">-->
+						<div style="font-size: 1.5em; margin-bottom: 2%; width: 100%;"><b>주목할 만한 기업들</b></div>
 						<c:forEach var="a" items="${clist}">
 							<div class="hireinfo">
 								<a target="_self" title="${a.c_name}"
