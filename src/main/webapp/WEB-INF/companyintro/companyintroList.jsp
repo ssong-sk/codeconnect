@@ -27,7 +27,7 @@
 	margin: 0 auto;
 	width: 100%;
 	height: 100%;
-	max-width: 1200px;
+	max-width: 1060px;
 }
 
 #wrap {
@@ -38,7 +38,7 @@
 .all-form {
 	display: flex; /* Flexbox로 배치 */
 	align-items: flex-start; /* 상단 정렬 */
-	padding: 20px; /* 전체 여백 */
+	/*padding: 20px;  전체 여백 */
 	margin: 0 auto; /* 가운데 정렬 */
 	border: 0px solid #ddd; /* 외곽선 */
 }
@@ -109,7 +109,7 @@ button {
 	flex: 1 1 22%;
 	box-sizing: border-box;
 	padding: 10px;
-	max-width: 230px;
+	max-width: 265px;
 }
 
 a {
@@ -292,7 +292,7 @@ svg {
 }
 
 .ranking-title {
-	font-size: 1.5em;
+	font-size: 1.2em;
 	margin-bottom: 20px;
 	text-align: center;
 }
@@ -331,7 +331,7 @@ svg {
 				<div class="all-form">
 
 					<section class="hirelist">
-
+                      <div style="font-size: 1.5em; margin-bottom: 2%;"><b>카테고리별 기업 순위</b></div>
 						<!-- 랭킹 리스트 -->
 						<div class="ranking-list">
 							<div class="ranking-box">
@@ -381,6 +381,7 @@ svg {
 						<!-- 랭킹 리스트 끝-->
 						<!-- 기업 리스트 -->
 						<!-- <section class="hirelist">-->
+						
 						<c:forEach var="a" items="${clist}">
 							<div class="hireinfo">
 								<a target="_self" title="${a.c_name}"
