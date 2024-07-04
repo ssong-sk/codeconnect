@@ -20,10 +20,12 @@
 
     <!-- 기업소개 페이지에서 해당 기업 리뷰 "리스트 보기" -->
     <select id="CompanyReviewList" resultType="CompanyReviewDto">
-        SELECT *
-        FROM company_review
-        WHERE c_num = #{c_num}
-    </select>
+    	SELECT cr.*, r.r_nickname
+    	FROM company_review cr
+    	JOIN register r ON cr.r_id = r.r_id
+    	WHERE cr.c_num = #{c_num}
+	</select>
+
 
     <!-- 개인회원이 기업 리뷰 "수정" -->
     <update id="CompanyReviewUpdate" parameterType="CompanyReviewDto">
