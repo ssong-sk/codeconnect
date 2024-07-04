@@ -26,7 +26,7 @@
   }
   
   #wrap {
-      margin-top: 100px; /* 헤더 들어갈 부분 */
+      margin-top: 60px; /* 헤더 들어갈 부분 */
       font-family: 'IBM Plex Sans KR', sans-serif;
   }
   .all-form {
@@ -35,6 +35,7 @@
       padding: 20px; /* 전체 여백 */
       margin: 0 auto; /* 가운데 정렬 */
       border: 0px solid #ddd; /* 외곽선 */
+      margin-top: 60px;
   }
   
   button {
@@ -51,6 +52,7 @@
   
   .title-section {
      margin-top: 30%;
+     
   }
   
   .leftmenu li {
@@ -58,7 +60,7 @@
   }
   
   .menu-item {
-      font-size: 0.9em;
+     
   }
   
   /*오른쪽 스타일*/
@@ -271,25 +273,45 @@ svg {
   cursor: pointer;
   
   }
+  
+      /* 이미지 */
+	.image-container {
+	    position: relative;
+	    display: inline-block;
+	}
+	
+	.centered-text {
+	    position: absolute;
+	    top: 90%;
+	    left: 20%;
+	    transform: translate(-50%, -50%);
+	    color: white;
+	    font-weight: bold;
+	    text-align: center;
+	} 
 </style>
 </head>
 <body>
     <div class="all">
         <div id="wrap">
             <div class="center">
-              <div class="all-form">
+	         <div class="image-container">
+	            <img alt="" src="../image/resume.PNG" style="width: 1060px; border-radius: 10px;">
+	            <h4 class="centered-text">이력서 작성 하고 합격률 높이자!</h4>
+	         </div>
+              <div class="all-form" >
 <!-- 왼쪽 메뉴바------------------------------------------------------------------------------------------------------- -->
               <div class="leftmenubar" style="width: 20%;">
                   <ul class="leftmenu">
                 <li>
-                  <div class="menu-home">
-                    <a href="/resumehome/home" style="color: #5494DB; background-color: rgba(84, 148, 219, 0.2);"><b>My Home</b></a>
+                  <div class="menu-home" style="font-size: 1.2em;">
+                    <a href="/resumehome/home" style="color: #0D6CF9; background-color: rgba(84, 148, 219, 0.2);"><b>My Home</b></a>
                   </div>
                 </li>
                 
                 <li class="title-section">
                   <div class="menu-section">
-                    <span><b>이력서 관리</b></span>
+                    <span  style="font-size: 1.2em;"><b>이력서 관리</b></span>
                   </div>
                 </li>
                 
@@ -307,7 +329,7 @@ svg {
                 
                 <li class="title-section">
                   <div class="menu-section">
-                    <span><b>입사지원 관리</b></span>
+                    <span style="font-size: 1.2em;"><b>입사지원 관리</b></span>
                   </div>
                 </li>
                 
@@ -319,7 +341,7 @@ svg {
                 
                 <li class="title-section">
                   <div class="menu-section">
-                    <span><b>스크랩/관심기업</b></span>
+                    <span style="font-size: 1.2em;"><b>스크랩/관심기업</b></span>
                   </div>
                 </li>
                 
@@ -384,7 +406,7 @@ svg {
                  <hr>
                  <!-- 배너----------------------------------------------------------------------- -->
                  <div>
-                   <img alt="" src="../iruckseobanner.JPG" style="width: 100%; margin-top: 2%;">
+                   <img alt="" src="../iruckseobanner.JPG" style="width: 100%; margin-top: 2%; border-radius: 10px;">
                  </div>  
                  
                  

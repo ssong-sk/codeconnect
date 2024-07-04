@@ -718,7 +718,7 @@ button[disabled], html input[disabled] {
 												<button class="footer_up_ybtn" type="submit" id="bnt_up"
 													tabindex="10">수정</button>
 												<button class="footer_de_ybtn" type="button" id="bnt_de"
-													tabindex="10" onclick="location.href='memberdelete?r_num=${rdto.r_num}'">삭제</button>
+													tabindex="10" onclick="if(confirmDelete()) { location.href='memberdelete?r_num=${rdto.r_num}'}">삭제</button>
 												<button class="footer_ex_ybtn" type="button" id="bnt_ex"
 													tabindex="10" onclick="history.back()">취소</button>
 											</dl>
@@ -1105,5 +1105,10 @@ button[disabled], html input[disabled] {
 		$("a.menu_item").attr('aria-selected', 'false');
         $(this).attr('aria-selected', 'true');
 	})
+</script>
+<script type="text/javascript">
+    function confirmDelete() {
+            return confirm("정말 삭제하시겠습니까?");
+    }
 </script>
 </html>

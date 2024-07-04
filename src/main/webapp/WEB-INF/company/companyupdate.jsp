@@ -20,6 +20,7 @@
 <title>기업 마이페이지</title>
 
 <style>
+/*전체 너비에 맞게 수정 */
 body {
 	font-family: 'Noto Sans KR', sans-serif;
 	background-color: #f8f9fa;
@@ -29,17 +30,16 @@ body {
 .wrapper {
 	display: flex;
 	justify-content: center;
-	padding: 20px 0;
+	padding: 20px 420px;
 }
 
 .container {
 	display: flex;
-	width: 90%;
-	max-width: 1200px;
+	width: 1060px; /* 전체 너비를 1060px로 설정 */
 }
 
 .sidebar {
-	width: 250px;
+	width: 200px; /* 사이드바 너비 조정 */
 	height: 460px;
 	border: 1px solid #E0E0E0;
 	padding: 20px;
@@ -48,6 +48,7 @@ body {
 	margin-right: 20px;
 	flex-shrink: 0;
 	overflow-y: auto;
+	margin-bottom: 50px;
 	margin-top: 15px;
 }
 
@@ -107,9 +108,9 @@ body {
 	flex-grow: 1;
 	background-color: #fff;
 	border-radius: 10px;
-	padding: 20px;
+	padding: 10px;
 	overflow-y: auto;
-	position: relative;
+	width: calc(100% - 240px); /* 사이드바 너비를 뺀 나머지 공간 */
 }
 
 .header {
@@ -122,10 +123,20 @@ body {
 .header h1 {
 	font-size: 24px;
 }
-
+/*여기까지 복붙*/
 .container.mt-4 .row {
 	margin-bottom: 20px;
 }
+
+.col-md-6 {
+	
+}
+
+.bin{
+	width: 420px;
+	padding-right: 40px;
+}
+
 
 .table-responsive {
 	margin-top: 20px;
@@ -133,32 +144,47 @@ body {
 
 #map {
 	width: 100%;
-	height: 400px;
+	height: 420px;
 	margin-top: 20px;
 	display: none;
 }
+
+
+
+/* bin2 클래스를 수정 */
+.bin2 {
+    padding-left: 20px;
+    width: 380px;
+    margin-right: 0px;
+    text-align: right; /* 버튼을 오른쪽으로 정렬 */
+}
 </style>
+
 </head>
 <body>
 	<div class="wrapper">
 		<div class="container">
 			<div class="sidebar">
-                <h5>코드커넥트 채용 솔루션</h5>
-                <button class="btn" onclick="location.href='/hire/hirewrite'">+ 공고 등록하기</button>
-                <!-- <button class="btn">🔍 인재풀 탐색하기</button>-->
-                <div class="menu-divider"></div>
-                <div class="menu-item" onclick="location.href='jiwon'">전체 지원자 관리</div>
-                <div class="menu-item" onclick="location.href='companyhire'">
-                    <span>채용공고 관리</span> <span>+</span>
-                </div>
-                <!-- <div class="menu-item"  onclick="location.href='injae'">제안 보낸 인재풀 관리</div>-->
-                <div class="menu-divider"></div>
-                <div class="menu-item" onclick="location.href='companyupdate'" style="font-weight: bold;">기업 정보 수정</div>
-                <div class="menu-item" onclick="location.href='intromain'">기업 소개 하기</div>
-                <div class="menu-divider"></div>
-                <div class="menu-item" onclick="location.href='account'">계정 관리</div>
-                <div class="menu-item" onclick="location.href='logoutprocess'">로그아웃</div>
-            </div>
+				<h5>기업 채용 솔루션</h5>
+				<button class="btn" onclick="location.href='/hire/hirewrite'">+
+					공고 등록하기</button>
+				<!-- <button class="btn">🔍 인재풀 탐색하기</button>-->
+				<div class="menu-divider"></div>
+				<div class="menu-item" onclick="location.href='jiwon'">전체 지원자
+					관리</div>
+				<div class="menu-item" onclick="location.href='companyhire'">
+					<span>채용공고 관리</span> <span>+</span>
+				</div>
+				<!-- <div class="menu-item"  onclick="location.href='injae'">제안 보낸 인재풀 관리</div>-->
+				<div class="menu-divider"></div>
+				<div class="menu-item" onclick="location.href='companyupdate'"
+					style="font-weight: bold;">기업 정보 수정</div>
+				<div class="menu-item" onclick="location.href='intromain'">기업
+					소개 하기</div>
+				<div class="menu-divider"></div>
+				<div class="menu-item" onclick="location.href='account'">계정 관리</div>
+				<div class="menu-item" onclick="location.href='logoutprocess'">로그아웃</div>
+			</div>
 			<div class="main-content-wrapper">
 				<div class="header">
 					<h1>기업 정보 수정</h1>
@@ -169,17 +195,17 @@ body {
 						<input type="hidden" name="c_num" id="c_num" value="${dto.c_num}">
 						<div class="row">
 							<div class="col-md-6">
-								<div class="mb-4">
+								<div class="mb-4 bin">
 									<label for="c_name" class="form-label">기업명</label> <input
 										type="text" class="form-control" id="c_name" name="c_name"
 										value="${dto.c_name}" disabled>
 								</div>
-								<div class="mb-4">
+								<div class="mb-4 bin">
 									<label for="c_phone" class="form-label">기업 대표 전화번호</label> <input
 										type="text" class="form-control" id="c_phone" name="c_phone"
 										value="${dto.c_phone}">
 								</div>
-								<div class="mb-4">
+								<div class="mb-4 bin">
 									<label for="c_postnum" class="form-label">우편번호</label>
 									<div class="input-group">
 										<input type="text" class="form-control" id="c_postnum"
@@ -188,18 +214,18 @@ body {
 											onclick="openPostcodePopup()">주소찾기</button>
 									</div>
 								</div>
-								<div class="mb-4">
+								<div class="mb-4 bin">
 									<label for="c_addr" class="form-label">대표 주소</label> <input
 										type="text" class="form-control" id="c_addr" name="c_addr"
 										value="${dto.c_addr}" readonly>
 								</div>
-								<div class="mb-4">
+								<div class="mb-4 bin">
 									<label for="c_addrdetail" class="form-label">상세 주소</label> <input
 										type="text" class="form-control" id="c_addrdetail"
 										name="c_addrdetail" value="${dto.c_addrdetail}">
 								</div>
 								<div id="map"></div>
-								<div class="mb-4">
+								<div class="mb-4 bin">
 									<label for="c_local" class="form-label">대표 지역</label> <select
 										class="form-select" id="c_local" name="c_local"
 										required="required">
@@ -240,12 +266,12 @@ body {
 											<c:if test="${dto.c_local == '제주'}">selected</c:if>>제주</option>
 									</select>
 								</div>
-								<div class="mb-4">
+								<div class="mb-4 bin">
 									<label for="c_reginum" class="form-label">사업자 등록번호</label> <input
 										type="text" class="form-control" id="c_reginum"
 										name="c_reginum" value="${dto.c_reginum}" disabled>
 								</div>
-								<div class="mb-4">
+								<div class="mb-4 bin">
 									<label for="c_registration_file" class="form-label">사업자
 										등록증 파일</label> <input type="file" class="form-control"
 										id="c_registration_file" name="c_registration_file"
@@ -255,7 +281,7 @@ body {
 								</div>
 							</div>
 							<div class="col-md-6">
-								<div class="mb-4">
+								<div class="mb-4 bin2">
 									<label for="c_money" class="form-label">매출액</label>
 									<div class="input-group">
 										<input type="text" class="form-control" id="c_money"
@@ -263,7 +289,7 @@ body {
 											class="input-group-text">억</span>
 									</div>
 								</div>
-								<div class="mb-4">
+								<div class="mb-4 bin2">
 									<label for="c_salary" class="form-label">평균임금</label>
 									<div class="input-group">
 										<input type="text" class="form-control" id="c_salary"
@@ -271,7 +297,7 @@ body {
 											class="input-group-text">만</span>
 									</div>
 								</div>
-								<div class="mb-4">
+								<div class="mb-4 bin2">
 									<label for="c_size" class="form-label">기업 규모</label> <select
 										class="form-select" id="c_size" name="c_size">
 										<option value="">기업 규모 선택</option>
@@ -285,7 +311,7 @@ body {
 											<c:if test="${dto.c_size == '공기업'}">selected</c:if>>공기업</option>
 									</select>
 								</div>
-								<div class="mb-4">
+								<div class="mb-4 bin2">
 									<label for="c_category" class="form-label">산업군</label> <select
 										class="form-select" id="c_category" name="c_category">
 										<option value="">산업군 선택</option>
@@ -327,7 +353,7 @@ body {
 								</div>
 
 
-								<div class="mb-4">
+								<div class="mb-4 bin2">
 									<label for="c_peoplesu" class="form-label">직원수</label> <select
 										class="form-select" id="c_peoplesu" name="c_peoplesu"
 										required="required">
@@ -346,24 +372,24 @@ body {
 											<c:if test="${dto.c_peoplesu == '1001+'}">selected</c:if>>1001+</option>
 									</select>
 								</div>
-								<div class="mb-4">
+								<div class="mb-4 bin2">
 									<label for="c_birthyear" class="form-label">설립년도</label> <input
 										type="text" class="form-control" id="c_birthyear"
 										name="c_birthyear" value="${dto.c_birthyear}">
 								</div>
-								<div class="mb-4">
+								<div class="mb-4 bin2">
 									<label for="c_insa_phone" class="form-label">인사담당자 전화번호</label>
 									<input type="text" class="form-control" id="c_insa_phone"
 										name="c_insa_phone" value="${dto.c_insa_phone}">
 								</div>
-								<div class="mb-4">
+								<div class="mb-4 bin2">
 									<label for="c_insa_email" class="form-label">인사담당자 이메일</label>
 									<input type="email" class="form-control" id="c_insa_email"
 										name="c_insa_email" value="${dto.c_insa_email}">
 								</div>
-								<div class="mb-4">
+								<div class="mb-4 bin2">
 									<button type="button" class="btn btn-outline-primary"
-										onclick="saveFormWithAlert()">저장</button>
+										onclick="saveFormWithAlert()" >저장</button>
 								</div>
 							</div>
 						</div>

@@ -155,8 +155,8 @@
      </tr>
      <tr>
 	   <td colspan="2" class="text-center">
-	     <button type="submit" class="btn btn-success btn-sm" onclick="submitContents(this);" style="display: inline-block; width: auto;">저장</button>
-	     <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='/community/interviewlist'" style="display: inline-block; width: auto;">목록</button>
+	     <button type="submit" class="btn btn-outline-primary btn-sm" onclick="submitContents(this);" style="display: inline-block; width: auto;">저장</button>
+	     <button type="button" class="btn btn-outline-primary btn-sm" onclick="location.href='/community/interviewlist'" style="display: inline-block; width: auto;">목록</button>
 	   </td>
 	</tr>
   </table>

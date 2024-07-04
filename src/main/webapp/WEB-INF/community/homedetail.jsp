@@ -14,7 +14,7 @@
 <title>게시글 상세</title>
 <style>
     body {
-        font-family: 'IBM Plex Sans KR', sans-serif;
+        font-family: 'IBM Plex Sans KR';
     }
     .post_view_wrap .title {
         color: #666;

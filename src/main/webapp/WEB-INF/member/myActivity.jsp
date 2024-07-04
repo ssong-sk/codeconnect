@@ -212,5 +212,57 @@ width:55px;
 	</div>
 	<div
 		class="Grid_Grid__item__4GoIZ Grid_Grid__align-items_flex-start__nEOiH Grid_Grid__grid__md__1__Wzfhp MainLayout_MainLayout__space__vN0G7"></div>
+	</div>
+	</div>
+	</div>
+
+<script type="text/javascript">
+/* 이력서 작성 상태 조회(학력) */
+// 서버에서 midcount 값을 가져와서 설정
+var midcount = ${midcount}; // 서버에서 전달된 midcount 값을 여기에 설정
+var unicount = ${unicount}; // 서버에서 전달된 midcount 값을 여기에 설정
+var carcount = ${carcount};
+var actcount = ${actcount};
+var spcecount = ${spcecount};
+var splacount = ${splacount};
+var spawcount = ${spawcount};
+
+
+//midcount 조건 처리
+if (midcount >= 6 || unicount >= 8) {
+    $("#schooltext").text("작성완료").css("color", "#0D6CF9");
+} else if (midcount === 0 || unicount === 0) {
+    $("#schooltext").text("미작성").css("color", "red");
+} else {
+    $("#schooltext").text("작성중").css("color", "");
+}
+
+/* 이력서 작성 상태 조회(경력) */
+if (carcount >= 6) {
+    $("#careertext").text("작성완료").css("color", "#0D6CF9");
+} else if (carcount === 0) {
+    $("#careertext").text("미작성").css("color", "red");
+} else {
+    $("#careertext").text("작성중").css("color", "");
+}
+
+/* 이력서 작성 상태 조회(활동) */
+if (actcount >= 5) {
+    $("#actibitytext").text("작성완료").css("color", "#0D6CF9");
+} else if (actcount === 0) {
+    $("#actibitytext").text("미작성").css("color", "red");
+} else {
+    $("#actibitytext").text("작성중").css("color", "");
+}
+
+/* 이력서 작성 상태 조회(스펙) */
+if (spcecount >= 5 || splacount >= 4 || spawcount >= 4) {
+    $("#spectext").text("작성완료").css("color", "#0D6CF9");
+} else if (spcecount === 0 || splacount === 0 || spawcount === 0) {
+    $("#spectext").text("미작성").css("color", "red");
+} else {
+    $("#spectext").text("작성중").css("color", "");
+}
+</script>	
 </body>
 </html>
