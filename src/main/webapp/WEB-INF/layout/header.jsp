@@ -35,8 +35,10 @@
 					<li class="Menu_MenuItem__wI1yA"><a href="/hire/main"
 						class="Menu_jobListLink__GYHAI"><span class="span_header">채용</span></a></li>
 					<li class="Menu_MenuItem__wI1yA"><a href="/company/gotoshowimsiList"><span class="span_header">기업</span></a></li>
-					<li class="Menu_MenuItem__wI1yA" data-attribute-id="gnb"
-						data-gnb-kind="resume"><a href="/resumehome/home"><span class="span_header">이력서</span></a></li>
+					<c:if test="${sessionScope.c_loginok==null }">
+						<li class="Menu_MenuItem__wI1yA" data-attribute-id="gnb"
+							data-gnb-kind="resume"><a href="#"><span class="span_header resumehome">이력서</span></a></li>
+					</c:if>
 	<li class="Menu_MenuItem__wI1yA" data-attribute-id="gnb"
 						data-gnb-kind="community"><a href="/community/homelist"><span class="span_header">커뮤니티</span></a></li>
 
@@ -111,5 +113,15 @@
 		</div>
 	</div>
 	<div class="Padding_padding___Nyki"></div>
+<script type="text/javascript">
+$(".resumehome").click(function(event) {
+	if (${sessionScope.myid == null || sessionScope.myid == ""}) { 
+		alert("로그인 후 이용해 주세요.");
+		window.location.href = "/";
+	}else {
+		window.location.href = "/resumehome/home";
+	}
+});
+</script>
 </body>
 </html>

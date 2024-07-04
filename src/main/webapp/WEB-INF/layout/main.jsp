@@ -42,18 +42,20 @@
 	<main class="JobsFeed_Jobsfeed___FVwn">
 		<section class="Section_Section__XyOtJ">
 			<c:if test="${sessionScope.loginok==null }">
-				<article class="MatchedBanner_MatchedBanner__jSUtn">
-					<div class="MatchedBanner_MatchedBanner__info__HEO_b">
-						<h6 class="Typography_Typography__root__RdAI1 Typography_Typography__headline2__vR7L_ Typography_Typography__weightBold__KkJEY MatchedBanner_MatchedBanner__info__title__ciAu_">내 이력서를 분석해<br>관심 있을 만한 포지션을 추천해 드려요.
-						</h6>
-						<button type="button" onclick="location.href='/login/main'"
-							class="Button_Button__root__m1NGq Button_Button__contained__qyP2s Button_Button__containedPrimary__kCB60 Button_Button__containedSizeMedium__xBgIW MatchedBanner_MatchedBanner__btn__XNKYB"
-							data-attribute-id="jobs__signupLogin__click">
-							<span class="Button_Button__label__K0sBs">지금 시작하기</span><span
-								class="Button_Button__interaction__1LUyr"></span>
-						</button>
-					</div>
-				</article>
+				<c:if test="${sessionScope.c_loginok==null }">
+					<article class="MatchedBanner_MatchedBanner__jSUtn">
+						<div class="MatchedBanner_MatchedBanner__info__HEO_b">
+							<h6 class="Typography_Typography__root__RdAI1 Typography_Typography__headline2__vR7L_ Typography_Typography__weightBold__KkJEY MatchedBanner_MatchedBanner__info__title__ciAu_">내 이력서를 분석해<br>관심 있을 만한 포지션을 추천해 드려요.
+							</h6>
+							<button type="button" onclick="location.href='/login/main'"
+								class="Button_Button__root__m1NGq Button_Button__contained__qyP2s Button_Button__containedPrimary__kCB60 Button_Button__containedSizeMedium__xBgIW MatchedBanner_MatchedBanner__btn__XNKYB"
+								data-attribute-id="jobs__signupLogin__click">
+								<span class="Button_Button__label__K0sBs">지금 시작하기</span><span
+									class="Button_Button__interaction__1LUyr"></span>
+							</button>
+						</div>
+					</article>
+				</c:if>
 			</c:if>
 			<c:if test="${sessionScope.loginok!=null }">
 				<article class="MatchedJobArea_MatchedJobArea__oYonU">

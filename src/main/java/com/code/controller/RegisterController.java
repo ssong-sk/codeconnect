@@ -145,6 +145,7 @@ public class RegisterController {
     	 dto.setR_name(r_name);
     	 
          service.updateName(dto);
+         session.setAttribute("r_name", dto.getR_name());
          return ResponseEntity.ok("수정 완료");
          
       }
@@ -156,7 +157,7 @@ public class RegisterController {
       {
     	  dto.setR_hp(r_hp);
     	  service.updateHp(dto);
-    	  
+    	  session.setAttribute("r_hp", dto.getR_hp());
       }
       
       //프로필 경력 수정
