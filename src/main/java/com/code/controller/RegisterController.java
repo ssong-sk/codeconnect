@@ -214,11 +214,11 @@ public class RegisterController {
 	   int splacount = service.getwritesp_la(pe_num);
 	   int spawcount = service.getwritesp_aw(pe_num);
 	   
-	   	 int totalCount = irservice.getSupportCount(r_num);
-		 int CountApply = irservice.getCountApply(r_num);
-		 int CountApplySuc = irservice.getCountApplySuc(r_num);
-		 int CountApplyFin = irservice.getCountApplyFin(r_num);
-		 int CountApplyFail = irservice.getCountApplyFail(r_num);
+	   int totalCount = irservice.getSupportCount(r_num);
+	   int CountApply = irservice.getCountApply(r_num);
+	   int CountApplySuc = irservice.getCountApplySuc(r_num);
+	   int CountApplyFin = irservice.getCountApplyFin(r_num);
+	   int CountApplyFail = irservice.getCountApplyFail(r_num);
 
 	   model.addAttribute("pe_num", pe_num);
 	   model.addAttribute("rScrap",rScrap);
