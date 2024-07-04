@@ -50,7 +50,7 @@ width:55px;
 							class="Grid_Grid__item__4GoIZ Grid_Grid__align-items_flex-start__nEOiH Grid_Grid__grid__xs__4__d_Dih">
 							<a href="/member/bookmarks"
 								class="CountSummary_CountSummary__mm865"><h6
-									class="Typography_Typography__root__RdAI1 Typography_Typography__headline1__oRteu Typography_Typography__weightBold__KkJEY "> ${rScrap }</h6>
+									class="Typography_Typography__root__RdAI1 Typography_Typography__headline1__oRteu Typography_Typography__weightBold__KkJEY "> ${scrapCount }</h6>
 								<span
 								class="Typography_Typography__root__RdAI1 Typography_Typography__caption1__P91eH Typography_Typography__weightRegular__jzmck Typography_Typography__alignCenter__HDWWj CountSummary_CountSummary_summaryTitle__lDXC6">북마크</span></a>
 						</div>
@@ -61,7 +61,7 @@ width:55px;
 							class="Grid_Grid__item__4GoIZ Grid_Grid__align-items_flex-start__nEOiH Grid_Grid__grid__xs__4__d_Dih">
 							<a class="CountSummary_CountSummary__mm865"
 								href="/member/companies"><h6
-									class="Typography_Typography__root__RdAI1 Typography_Typography__headline1__oRteu Typography_Typography__weightBold__KkJEY ">0</h6>
+									class="Typography_Typography__root__RdAI1 Typography_Typography__headline1__oRteu Typography_Typography__weightBold__KkJEY ">${companyCount }</h6>
 								<span
 								class="Typography_Typography__root__RdAI1 Typography_Typography__caption1__P91eH Typography_Typography__weightRegular__jzmck Typography_Typography__alignCenter__HDWWj CountSummary_CountSummary_summaryTitle__lDXC6">관심회사</span></a>
 						</div>
@@ -156,7 +156,7 @@ width:55px;
 							<a class="CountSummary_CountSummary__mm865"
 								data-attribute-id="myActivity__applicationStatus"
 								data-status-kind="applyDone" href="/member/apply"><h6
-									class="Typography_Typography__root__RdAI1 Typography_Typography__headline1__oRteu Typography_Typography__weightBold__KkJEY ">0</h6>
+									class="Typography_Typography__root__RdAI1 Typography_Typography__headline1__oRteu Typography_Typography__weightBold__KkJEY ">${apply }</h6>
 								<span
 								class="Typography_Typography__root__RdAI1 Typography_Typography__caption1__P91eH Typography_Typography__weightRegular__jzmck Typography_Typography__alignCenter__HDWWj CountSummary_CountSummary_summaryTitle__lDXC6">지원
 									완료</span></a>
@@ -167,7 +167,7 @@ width:55px;
 								data-attribute-id="myActivity__applicationStatus"
 								data-status-kind="pass"
 								href="/status/applications/applied?status=pass"><h6
-									class="Typography_Typography__root__RdAI1 Typography_Typography__headline1__oRteu Typography_Typography__weightBold__KkJEY ">0</h6>
+									class="Typography_Typography__root__RdAI1 Typography_Typography__headline1__oRteu Typography_Typography__weightBold__KkJEY ">${applySuc }</h6>
 								<span
 								class="Typography_Typography__root__RdAI1 Typography_Typography__caption1__P91eH Typography_Typography__weightRegular__jzmck Typography_Typography__alignCenter__HDWWj CountSummary_CountSummary_summaryTitle__lDXC6">서류
 									통과</span></a>
@@ -178,7 +178,7 @@ width:55px;
 								data-attribute-id="myActivity__applicationStatus"
 								data-status-kind="hire"
 								href="/status/applications/applied?status=hire"><h6
-									class="Typography_Typography__root__RdAI1 Typography_Typography__headline1__oRteu Typography_Typography__weightBold__KkJEY ">0</h6>
+									class="Typography_Typography__root__RdAI1 Typography_Typography__headline1__oRteu Typography_Typography__weightBold__KkJEY ">${applyFin }</h6>
 								<span
 								class="Typography_Typography__root__RdAI1 Typography_Typography__caption1__P91eH Typography_Typography__weightRegular__jzmck Typography_Typography__alignCenter__HDWWj CountSummary_CountSummary_summaryTitle__lDXC6">최종
 									합격</span></a>
@@ -189,7 +189,7 @@ width:55px;
 								data-attribute-id="myActivity__applicationStatus"
 								data-status-kind="rejected"
 								href="/status/applications/applied?status=reject"><h6
-									class="Typography_Typography__root__RdAI1 Typography_Typography__headline1__oRteu Typography_Typography__weightBold__KkJEY ">0</h6>
+									class="Typography_Typography__root__RdAI1 Typography_Typography__headline1__oRteu Typography_Typography__weightBold__KkJEY ">${applyFail }</h6>
 								<span
 								class="Typography_Typography__root__RdAI1 Typography_Typography__caption1__P91eH Typography_Typography__weightRegular__jzmck Typography_Typography__alignCenter__HDWWj CountSummary_CountSummary_summaryTitle__lDXC6">불합격</span></a>
 						</div>

@@ -53,13 +53,16 @@
     <update id="getUpdateJob" parameterType="String">
     	update register set r_job = #{r_job} where r_num = #{r_num}
     </update>
+    
+    
     <update id="getUpdateDescription" parameterType="String">
     	update register set r_sogae = #{r_sogae} where r_num = #{r_num}
     </update>
-    
+
     <delete id="deleteRegister" parameterType="String">
     	delete from register where r_num = #{r_num }
     </delete>
+    
     
     
  <!-- 스크랩 -->
@@ -78,6 +81,9 @@
 <select id="getScrapList" parameterType="int" resultType="int">
 	select * from scrap where r_num = #{r_num}
 </select>
+
+
+
 
 <!-- r_num으로 pe-num 구하기 -->
 <select id="getpenum" parameterType="String" resultType="int">

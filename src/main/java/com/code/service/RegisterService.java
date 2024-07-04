@@ -116,10 +116,6 @@ public class RegisterService implements RegisterServiceInter {
 		mapperInter.getUpdateJob(dto);
 	}
 
-	public void updateDescription(RegisterDto dto) {
-		mapperInter.getUpdateDescription(dto);
-		
-	}
 	
 	@Override
 	public void scrapInsert(HireDto dto) {
@@ -189,6 +185,11 @@ public class RegisterService implements RegisterServiceInter {
 	@Override
 	public int getwritesp_aw(int pe_num) {
 		return mapperInter.getwritesp_aw(pe_num);
+	}
+
+	@Override
+	public void getUpdateDescription(RegisterDto dto) {
+		mapperInter.getUpdateDescription(dto);
 	}
 	
 }

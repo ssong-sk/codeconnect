@@ -92,6 +92,8 @@ public class IruckseoHomeController {
       int openCount = irservice.getOpenCount(r_num);
       mview.addObject("openCount", openCount);
       
+      
+      
       //스크랩공고 갯수
       int scrapCount = irservice.getScrapCount(r_num);
       mview.addObject("scrapCount", scrapCount);
@@ -99,6 +101,8 @@ public class IruckseoHomeController {
       //관심기업 갯수
       int companyCount = irservice.getCompanyCount(r_num);
       mview.addObject("companyCount", companyCount);
+      
+      
       
       //채용공고 정보 조회 및 추가
       List<HireDto> hlist = hservice.getHireList();
