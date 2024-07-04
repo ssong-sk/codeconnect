@@ -62,7 +62,7 @@ input.searchinput {
 }
 
 input.searchinput:focus {
-	border-color: #0d6efd;
+	border-color: #0D6CF9;
 	outline: none; /* 기본 브라우저 테두리 제거 */
 }
 
