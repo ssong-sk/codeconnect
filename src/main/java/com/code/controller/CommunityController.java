@@ -406,7 +406,7 @@ public class CommunityController {
                 session.setAttribute("userNickname", userDto.getR_nickname()); // 세션에 닉네임 저장
             }
         }
-        return "community/interviewform";
+        return "/community/interviewform";
     }
 
     

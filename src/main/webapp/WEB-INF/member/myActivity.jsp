@@ -85,7 +85,7 @@ width:55px;
 						
 						
 						<div class="Grid_Grid__item__4GoIZ Grid_Grid__align-items_flex-start__nEOiH Grid_Grid__grid__xs__3__Ao_Ex">
-							<a class="CountSummary_CountSummary__mm865" data-attribute-id="myActivity__applicationStatus" data-status-kind="applyDone" href="/resumehome/updateForm?pe_num=${pe_num }">
+							<a class="CountSummary_CountSummary__mm865 iruckseocheck" data-attribute-id="myActivity__applicationStatus" data-status-kind="applyDone" href="#">
 							
 							<h6 class="Typography_Typography__root__RdAI1 Typography_Typography__headline1__oRteu Typography_Typography__weightBold__KkJEY " id="schooltext">미작성</h6>
 								
@@ -95,7 +95,7 @@ width:55px;
 						
 						
 						<div class="Grid_Grid__item__4GoIZ Grid_Grid__align-items_flex-start__nEOiH Grid_Grid__grid__xs__3__Ao_Ex">
-							<a class="CountSummary_CountSummary__mm865" data-attribute-id="myActivity__applicationStatus" data-status-kind="pass" href="/resumehome/updateForm?pe_num=${pe_num }">
+							<a class="CountSummary_CountSummary__mm865 iruckseocheck" data-attribute-id="myActivity__applicationStatus" data-status-kind="pass" href="#">
 							
 							<h6 class="Typography_Typography__root__RdAI1 Typography_Typography__headline1__oRteu Typography_Typography__weightBold__KkJEY " id="careertext">미작성</h6>
 								
@@ -105,7 +105,7 @@ width:55px;
 						
 						
 						<div class="Grid_Grid__item__4GoIZ Grid_Grid__align-items_flex-start__nEOiH Grid_Grid__grid__xs__3__Ao_Ex">
-							<a class="CountSummary_CountSummary__mm865" data-attribute-id="myActivity__applicationStatus" data-status-kind="hire" href="/resumehome/updateForm?pe_num=${pe_num }">
+							<a class="CountSummary_CountSummary__mm865 iruckseocheck" data-attribute-id="myActivity__applicationStatus" data-status-kind="hire" href="#">
 							
 							<h6 class="Typography_Typography__root__RdAI1 Typography_Typography__headline1__oRteu Typography_Typography__weightBold__KkJEY " id="actibitytext">미작성</h6>
 								
@@ -115,7 +115,7 @@ width:55px;
 						
 						
 						<div class="Grid_Grid__item__4GoIZ Grid_Grid__align-items_flex-start__nEOiH Grid_Grid__grid__xs__3__Ao_Ex">
-							<a class="CountSummary_CountSummary__mm865" data-attribute-id="myActivity__applicationStatus" data-status-kind="rejected" href="/resumehome/updateForm?pe_num=${pe_num }">
+							<a class="CountSummary_CountSummary__mm865 iruckseocheck" data-attribute-id="myActivity__applicationStatus" data-status-kind="rejected" href="#">
 							
 							<h6 class="Typography_Typography__root__RdAI1 Typography_Typography__headline1__oRteu Typography_Typography__weightBold__KkJEY " id="spectext">미작성</h6>
 								
@@ -128,7 +128,7 @@ width:55px;
 						
 						
 						<button onclick="location.href='/resumehome/updateForm?pe_num=${pe_num }'"
-							class="Button_Button__root__m1NGq Button_Button__contained__qyP2s Button_Button__containedPrimary__kCB60 Button_Button__containedSizeMedium__xBgIW Button_Button__fullWidth__zAnDP BasicResume_BasicResume__container__wantedResume__button__FnCW7"
+							class="Button_Button__root__m1NGq Button_Button__contained__qyP2s Button_Button__containedPrimary__kCB60 Button_Button__containedSizeMedium__xBgIW Button_Button__fullWidth__zAnDP BasicResume_BasicResume__container__wantedResume__button__FnCW7 iruckseocheckbtn"
 							data-attribute-id="myActivity__profile__update"
 							data-profile-level="2">
 							<span class="Button_Button__label__K0sBs">이력서 업데이트 하기</span><span
@@ -166,7 +166,7 @@ width:55px;
 							<a class="CountSummary_CountSummary__mm865"
 								data-attribute-id="myActivity__applicationStatus"
 								data-status-kind="pass"
-								href="/status/applications/applied?status=pass"><h6
+								href="/member/apply"><h6
 									class="Typography_Typography__root__RdAI1 Typography_Typography__headline1__oRteu Typography_Typography__weightBold__KkJEY ">${applySuc }</h6>
 								<span
 								class="Typography_Typography__root__RdAI1 Typography_Typography__caption1__P91eH Typography_Typography__weightRegular__jzmck Typography_Typography__alignCenter__HDWWj CountSummary_CountSummary_summaryTitle__lDXC6">서류
@@ -177,7 +177,7 @@ width:55px;
 							<a class="CountSummary_CountSummary__mm865"
 								data-attribute-id="myActivity__applicationStatus"
 								data-status-kind="hire"
-								href="/status/applications/applied?status=hire"><h6
+								href="/member/apply"><h6
 									class="Typography_Typography__root__RdAI1 Typography_Typography__headline1__oRteu Typography_Typography__weightBold__KkJEY ">${applyFin }</h6>
 								<span
 								class="Typography_Typography__root__RdAI1 Typography_Typography__caption1__P91eH Typography_Typography__weightRegular__jzmck Typography_Typography__alignCenter__HDWWj CountSummary_CountSummary_summaryTitle__lDXC6">최종
@@ -188,7 +188,7 @@ width:55px;
 							<a class="CountSummary_CountSummary__mm865"
 								data-attribute-id="myActivity__applicationStatus"
 								data-status-kind="rejected"
-								href="/status/applications/applied?status=reject"><h6
+								href="/member/apply"><h6
 									class="Typography_Typography__root__RdAI1 Typography_Typography__headline1__oRteu Typography_Typography__weightBold__KkJEY ">${applyFail }</h6>
 								<span
 								class="Typography_Typography__root__RdAI1 Typography_Typography__caption1__P91eH Typography_Typography__weightRegular__jzmck Typography_Typography__alignCenter__HDWWj CountSummary_CountSummary_summaryTitle__lDXC6">불합격</span></a>
@@ -261,6 +261,27 @@ if (spcecount >= 5 || splacount >= 4 || spawcount >= 4) {
 } else {
     $("#spectext").text("작성중").css("color", "");
 }
+</script>
+<script type="text/javascript">
+var r_num = '${r_num2}'; //문자열이므로 ''로 표시
+var pe_num = '${pe_num}';
+
+/* 이력서 없을 시 이력서 작성 경고창 띄우기*/
+$("a.iruckseocheck").click(function(){
+	if(r_num !== 'null' && pe_num === '0'){
+		alert("이력서 등록을 먼저하셔야 합니다!");
+		location.href="/resumehome/form";
+	} else{
+		location.href="/resumehome/updateForm?pe_num="+${pe_num };
+	}
+})
+
+$("button.iruckseocheckbtn").click(function(){
+	if(r_num !== 'null' && pe_num === '0'){
+		alert("이력서 등록을 먼저하셔야 합니다!");
+		location.href="/resumehome/form";
+	}
+})
 </script>	
 </body>
 </html>

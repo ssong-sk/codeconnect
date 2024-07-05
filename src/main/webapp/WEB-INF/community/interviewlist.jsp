@@ -86,6 +86,7 @@
         flex-direction: column;
         justify-content: space-between;
         min-height: 300px; /* 높이 일정하게 유지 */
+        max-width: 340px;
     }
     .interview-item img {
         width: 100%;

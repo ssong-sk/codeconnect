@@ -220,9 +220,9 @@ button {
 
 					<!-- 경력 추가 버튼 -->
 					<c:if test="${ca_name == null }">
-						<button class="Box_Box__root__WZu52"
+						<button class="Box_Box__root__WZu52 careeradd"
 							data-attribute-id="profile__addCareer__click"
-							data-career-count="0" onclick="location.href='/resumehome/form'">
+							data-career-count="0">
 							<div
 								class="Grid_Grid__container__43uvK Grid_Grid__justify_space-between__xzhoO Grid_Grid__align-items_center__2CxBh">
 								<p
@@ -245,7 +245,7 @@ button {
 						</button>
 					</c:if>
 					<!-- 경력 추가 되었을 시 -->
-					<c:if test="${ca_name != null }">
+					<c:if test="${carcount >= 6}">
 						<section
 							class="Grid_Grid__item__4GoIZ Grid_Grid__align-items_flex-start__nEOiH">
 							<ul
@@ -314,10 +314,9 @@ button {
 
 					<!-- 학력 추가 버튼 -->
 					<c:if test="${sc_category == null}">
-						<button class="Box_Box__root__WZu52"
+						<button class="Box_Box__root__WZu52 gradeadd"
 							data-attribute-id="profile__addEducation__click"
-							data-education-count="0"
-							onclick="location.href='/resumehome/form'">
+							data-education-count="0">
 							<div
 								class="Grid_Grid__container__43uvK Grid_Grid__justify_space-between__xzhoO Grid_Grid__align-items_center__2CxBh">
 								<p
@@ -340,7 +339,7 @@ button {
 						</button>
 					</c:if>
 					<!-- 학력 추가 되었을 시 -->
-					<c:if test="${sc_category != null }">
+					<c:if test="${midcount >= 6 || unicount >= 8}">
 						<section
 							class="Grid_Grid__item__4GoIZ Grid_Grid__align-items_flex-start__nEOiH">
 							<ul
@@ -515,5 +514,30 @@ button {
 	    });
 	});
 	</script>
+	
+<script type="text/javascript">
+var r_num = '${r_num2}'; //문자열이므로 ''로 표시
+var pe_num = '${pe_num}';
+
+/* 이력서 없을 시 경력 추가 */
+$("button.careeradd").click(function(){
+	if(r_num !== 'null' && pe_num === '0'){
+		alert("이력서 등록을 먼저하셔야 합니다!");
+		location.href="/resumehome/form";
+	} else{
+		location.href="/resumehome/updateForm?pe_num="+${pe_num };
+	}
+})
+
+/* 이력서 없을 시 학력 추가 */
+$("button.gradeadd").click(function(){
+	if(r_num !== 'null' && pe_num === '0'){
+		alert("이력서 등록을 먼저하셔야 합니다!");
+		location.href="/resumehome/form";
+	} else{
+		location.href="/resumehome/updateForm?pe_num="+${pe_num };
+	}
+})
+</script>
 </body>
 </html>

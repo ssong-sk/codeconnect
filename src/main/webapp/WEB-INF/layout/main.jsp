@@ -754,7 +754,7 @@
 						class="CarouselHeader_CarouselHeader__5VBaX CarouselHeader_CarouselHeader__isTagList__mdBDx">
 						<a href="/wdlist" data-attribute-id="jobs__seeMore"
 							data-domain="attractionTag"><h4
-								class="Typography_Typography__root__RdAI1 Typography_Typography__heading1__N9Asv Typography_Typography__weightBold__KkJEY ">#인기있는 포지션</h4></a>
+								class="Typography_Typography__root__RdAI1 Typography_Typography__heading1__N9Asv Typography_Typography__weightBold__KkJEY ">#요즘 뜨는 기업</h4></a>
 						
 					</aside>
 

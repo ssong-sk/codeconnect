@@ -226,6 +226,7 @@ public class RegisterController {
 	   int scrapCount = irservice.getScrapCount(r_num);
 	   int companyCount = irservice.getCompanyCount(r_num);
 
+	   model.addAttribute("r_num2", r_num2);
 	   model.addAttribute("pe_num", pe_num);
 	   model.addAttribute("midcount",midcount);
 	   model.addAttribute("unicount", unicount);

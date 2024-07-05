@@ -426,6 +426,7 @@ $('.me-2').keypress(function(e) {
 
 /* 검색 기능 */
 $('#btnsearch').click(function() {
+	$("div.pagination").hide();
     var searchword = $('.me-2').val().trim(); // 입력 필드의 값 가져오기
     $.ajax({
         type: "GET",
