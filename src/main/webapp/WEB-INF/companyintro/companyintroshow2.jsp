@@ -318,26 +318,37 @@ request.setAttribute("currentYear", currentYear);
 			<!-- 기업 채용공고 리스트를 card형식으로 보여주기 -->
 			<br> <br>
 			<h2 class="section-title">채용중인 포지션</h2>
-			<div class="row">
-				<c:forEach var="h" items="${hlist}">
-					<div class="col-md-4">
-						<div class="card mb-4 shadow-sm">
-							<div class="card-body">
-								<h6 class="card-title">
-									<a target="_blank" href="/hire/detail?h_num=${h.h_num}"><p
-											style="font-weight: bold;">[${h.h_title}]</p>
-								</h6>
-								<p class="card-text">
-									${h.h_job}<br> <span id="location-${h.h_num}">${h.h_location}</span>
-									· <span id="career-${h.h_num}">${h.h_career}</span> · <span
-										id="deadline-${h.h_num}">${h.h_deadline}</span><br>
-								</p>
-								</a>
-							</div>
-						</div>
-					</div>
-				</c:forEach>
-			</div>
+<div class="row">
+    <c:choose>
+        <c:when test="${empty hlist}">
+            <div style="border: 1px solid #ccc; border-radius: 8px; padding: 20px; text-align: center; width: 1040px; margin: 0 auto;">
+               해당 기업은 현재 채용중인 포지션이 없습니다.
+            </div>
+        </c:when>
+        <c:otherwise>
+            <c:forEach var="h" items="${hlist}">
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <div class="card-body">
+                            <h6 class="card-title">
+                                <a target="_blank" href="/hire/detail?h_num=${h.h_num}">
+                                    <p style="font-weight: bold;">[${h.h_title}]</p>
+                                </a>
+                            </h6>
+                            <p class="card-text">
+                                ${h.h_job}<br>
+                                <span id="location-${h.h_num}">${h.h_location}</span> · 
+                                <span id="career-${h.h_num}">${h.h_career}</span> · 
+                                <span id="deadline-${h.h_num}">${h.h_deadline}</span><br>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </c:forEach>
+        </c:otherwise>
+    </c:choose>
+</div>
+
 			<!-- 기업 채용공고 리스트를 card형식으로 보여주기 :끝-->
 
 			<div class="map-container">
@@ -396,6 +407,7 @@ request.setAttribute("currentYear", currentYear);
 				</div>
 			</div>
 		</div>
+		<br>
 		<div class="map-container2">
 			<h2 class="section-title">기업 정보</h2>
 			<div class="company-details-wrapper">
