@@ -332,7 +332,7 @@
     <!-- 게시글 메타 정보 -->
     <div class="meta" style="margin-top: 30px;">
         <div class="meta-left">
-            <img class="memberimage" src="/communityimage/no_image.png" alt="User Image">
+            <img class="memberimage" src="/communityimage/no_image.png" alt="User Image" >
             <div class="details">
                 <%-- <span>${userNickname }</span> --%>
                 <span>${dto.com_nickname}</span> <!-- 작성자의 닉네임 표시 -->
@@ -353,7 +353,7 @@
     <!-- 게시글 이미지 -->
     <c:if test="${not empty dto.com_photo && dto.com_photo != 'no'}">
         <div class="images">
-            <img src="communityimage/${dto.com_photo}" class="img-fluid">
+            <img src="communityimage/${dto.com_photo}" class="img-fluid" style="max-width: 1000px;">
         </div>
     </c:if>
     <c:if test="${sessionScope.loginok == 'yes'}">
