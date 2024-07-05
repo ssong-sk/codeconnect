@@ -265,7 +265,7 @@ th {
 			
 			<div id="ongoing" class="events" style="width: 900px;">
 			    <c:forEach var="event" items="${ongoingEvents}">
-			        <div class="event-card">
+			        <div class="event-card" style="width: 280px;">
 			            <a href="eventdetail/${event.cus_num}" style="text-decoration: none; color: inherit;">
 			                <img src="../customerimage/${event.cus_photo}" alt="${event.cus_title}" style="margin-bottom: 22px;">
 			                <b style="font-size: 16px;">${event.cus_title}</b>

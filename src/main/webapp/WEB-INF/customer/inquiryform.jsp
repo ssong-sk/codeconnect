@@ -30,8 +30,6 @@
         text-decoration: none;
         display: inline-block;
         margin-bottom: 8px;
-        margin-left: 550px;
-        margin-top: 50px;
     }
     .form-container {
         background: #fff;
@@ -91,6 +89,13 @@
         height: auto;
         margin-top: 10px;
     }
+    
+   	.alldiv {
+	    justify-content: center;
+	    align-items: center;
+	    margin: 50px auto; /* 수평 마진을 auto로 설정하여 중앙 정렬합니다. */
+	    max-width: 700px;
+	}
 </style>
 <script type="text/javascript">
     /* 이미지파일 첨부 관련 js */
@@ -113,7 +118,7 @@
                 reader.onload = function (e) {
                     var image = $('<img>').attr('src', e.target.result);
                     imageContainer.append(image);
-                }
+                }ㅕ
                 reader.readAsDataURL(files[i]);
             }
         });
@@ -126,30 +131,32 @@
 </script>
 </head>
 <body>
-<a href="${pageContext.request.contextPath}/customer/inquirylist" onclick="scrollToTop()" class="back_button"><i class="bi bi-chevron-left"></i>&nbsp;이전페이지</a>
-<div class="form-container" style="margin-bottom: 70px;">
-    <h3 style="margin-bottom: 30px;">1:1문의 작성</h3>
-    <form action="${pageContext.request.contextPath}/customer/inquiryinsert" method="post" enctype="multipart/form-data">
-        <input type="hidden" id="cus_user_id" name="cus_user_id" value="${sessionScope.myid}">
-        <input type="hidden" id="cus_top_type" name="cus_top_type" value="inquiry">
-        <div>
-            <label for="title">제목</label>
-            <input type="text" id="title" name="cus_title" required placeholder="제목을 입력해주세요">
-        </div>
-        <div>
-            <label for="content">내용</label>
-            <textarea id="content" name="cus_content" style="height: 360px; border: 1px solid #ced4da; padding: 10px; margin-top: 10px; overflow-y: auto;" placeholder="내용을 입력해주세요"></textarea>
-        </div>
-        <div style="margin-top: 10px;">
-            <label for="upload" class="custom-file-upload"><i class="bi bi-images"></i> 이미지 첨부</label>
-            <input type="file" id="upload" name="upload" multiple>&nbsp;
-            <span id="file-status" style="font-size: 14px;">이미지 첨부 없음</span>
-        </div>
-        <div id="image-container" style="margin-top: 10px;"></div>
-        <div style="margin-top: 25px;">
-            <button type="submit">1:1문의 등록</button>
-        </div>
-    </form>
+<div class="alldiv" style="width: 800px;">
+	<a href="${pageContext.request.contextPath}/customer/inquirylist" onclick="scrollToTop()" class="back_button"><i class="bi bi-chevron-left"></i>&nbsp;이전페이지</a>
+	<div class="form-container" style="margin-bottom: 70px;">
+	    <h3 style="margin-bottom: 30px;">1:1문의 작성</h3>
+	    <form action="${pageContext.request.contextPath}/customer/inquiryinsert" method="post" enctype="multipart/form-data">
+	        <input type="hidden" id="cus_user_id" name="cus_user_id" value="${sessionScope.myid}">
+	        <input type="hidden" id="cus_top_type" name="cus_top_type" value="inquiry">
+	        <div>
+	            <label for="title">제목</label>
+	            <input type="text" id="title" name="cus_title" required placeholder="제목을 입력해주세요">
+	        </div>
+	        <div>
+	            <label for="content">내용</label>
+	            <textarea id="content" name="cus_content" style="height: 360px; border: 1px solid #ced4da; padding: 10px; margin-top: 10px; overflow-y: auto;" placeholder="내용을 입력해주세요"></textarea>
+	        </div>
+	        <div style="margin-top: 10px;">
+	            <label for="upload" class="custom-file-upload"><i class="bi bi-images"></i> 이미지 첨부</label>
+	            <input type="file" id="upload" name="upload" multiple>&nbsp;
+	            <span id="file-status" style="font-size: 14px;">이미지 첨부 없음</span>
+	        </div>
+	        <div id="image-container" style="margin-top: 10px;"></div>
+	        <div style="margin-top: 25px;">
+	            <button type="submit">1:1문의 등록</button>
+	        </div>
+	    </form>
+	</div>
 </div>
 </body>
 </html>

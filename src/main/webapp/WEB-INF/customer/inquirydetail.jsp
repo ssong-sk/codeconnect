@@ -117,7 +117,7 @@ body {
 <div class="all">
 	<div id="wrap">
 		<div class="center">
-			<a href="javascript:history.back();" style="font-weight: bold; display: flex;">
+			<a href="/customer/inquirylist" style="font-weight: bold; display: flex;">
 				<img src="../../hire_img/chevron.png" class="backimg">
 				<h4 style="font-weight: bold; margin-top: 4px;">돌아가기</h4> 
 			</a>
@@ -131,7 +131,7 @@ body {
 			    </div>
 			    <div class="detail-content">${dto.cus_content}
 			        <c:if test="${not empty dto.cus_photo}">
-			            <img src="../customerimage/${dto.cus_photo}" alt="첨부 이미지" />
+			            <img src="../../customerimage/${dto.cus_photo}" alt="첨부 이미지" />
 			        </c:if>
 			    </div>
 			
