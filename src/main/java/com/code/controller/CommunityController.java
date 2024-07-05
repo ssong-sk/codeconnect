@@ -492,7 +492,7 @@ public class CommunityController {
             }
         }
         
-        return "community/interviewupdateform";
+        return "/community/interviewupdateform";
     }
 
 

@@ -292,7 +292,7 @@ ul.list_category li {
 
 
 <div class="commutitle" style="max-width: 1060px; margin: 50px auto;">
-    <div class="container">
+    <div class="container" style="padding: 0px 0px;">
         <div class="linkgo d-flex justify-content-between" style="width: 100%;">
             <a href="${root}/community/hometotalpost">
                 <h4>
@@ -302,7 +302,7 @@ ul.list_category li {
             <div class="d-flex search">
                 <input class="form-control me-2" type="search" placeholder="다른 사람들은 어떤 이야기를 할까?" aria-label="Search"
                 style="width: 350px;" name="searchword">
-                <button type="button" class="btn btn-outline-primary" id="btnsearch">
+                <button type="button" class="btn btn-outline-primary" id="btnsearch" style="margin-right: 0px;">
                     <span class="blind">검색</span>
                 </button>
             </div>

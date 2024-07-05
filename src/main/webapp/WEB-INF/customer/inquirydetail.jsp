@@ -131,7 +131,7 @@ body {
 			    </div>
 			    <div class="detail-content">${dto.cus_content}
 			        <c:if test="${not empty dto.cus_photo}">
-			            <img src="../../customerimage/${dto.cus_photo}" alt="첨부 이미지" />
+			            <img src="../../customerimage/${dto.cus_photo}" alt="첨부 이미지" style="max-width: 1000px;"/>
 			        </c:if>
 			    </div>
 			
