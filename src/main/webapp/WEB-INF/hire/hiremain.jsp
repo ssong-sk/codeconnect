@@ -1813,12 +1813,12 @@ $('.region-btn').click(function() {
     $(this).css("color","blue").css("font-weight","bold");
 });
 
-//'전체' 체크박스 클릭 이벤트
+//'전체' 체크박스를 클릭 이벤트
 $('li:contains("전체") input[type="checkbox"]').click(function() {
     const $ul = $(this).closest('ul');
     const isAllChecked = $(this).prop("checked");
     const regionTextss = regionText + " " + $(this).closest('li').text().trim();
-	
+
     if (isAllChecked) {
         // '전체' 체크박스를 선택한 경우
         // 같은 ul 내의 다른 체크박스를 해제
@@ -1830,27 +1830,53 @@ $('li:contains("전체") input[type="checkbox"]').click(function() {
         });
         // '전체'를 추가
         if (!$('#selected-region').find('.selected-region:contains("' + regionTextss + '")').length) {
-            addSelectedregion(regionTextss);
-            /* 기술 검색 시 사용 */
-    		if (search_region !== "") {
-    			search_region += "|";
-    		}
+            addSelectedregion(regionText, true);
+            // 기술 검색 시 사용
+            if (search_region !== "") {
+                search_region += "|";
+            }
             search_region += regionTextss.trim(); // 추가: search_region '지역' 추가
-    		$("#search_region").val(search_region);  // 추가: '지역' 포함된 값 설정
+            $("#search_region").val(search_region);  // 추가: '지역' 포함된 값 설정
         }
     } else {
         // '전체' 체크박스를 해제한 경우
         $('#selected-region').find('.selected-region:contains("' + regionTextss + '")').remove();
-        
-     	// search_region에서 해당 부분 제거
+
+        // search_region에서 해당 부분 제거
         var regex = new RegExp(regionTextss.trim() + "(\\|)?", "g");
         search_region = search_region.replace(regex, "");
+
         // search_region 변수의 앞뒤 공백 제거 및 앞뒤 '|' 제거
         search_region = search_region.trim().replace(/^(\|)/, '').replace(/(\|)$/, '');
-        
-        $("#search_region").val(search_region);  // 추가: 초기화된 값 설정
+
+        // '전체'라는 단어가 포함되어 있으면 제거
+        if (search_region.includes('전체')) {
+            search_region = search_region.replace(/\w* 전체\b(\|)?/g, '');
+            // 앞뒤 공백 및 '|' 정리
+            search_region = search_region.trim().replace(/^(\|)/, '').replace(/(\|)$/, '');
+        }
+
+        // 초기화된 값 설정
+        $("#search_region").val(search_region);
     }
 });
+
+// addSelectedregion 함수 수정
+function addSelectedregion(regionText, isAll) {
+    let displayText = regionText;
+    if (isAll) {
+        displayText = regionText; // '전체'를 포함하지 않도록 함
+    }
+    const newRegion = `
+        <div class="selected-region" style="display: inline-block; margin-left: 5px; margin-right: 5px; margin-bottom: 5px; border: 1px solid rgb(204, 204, 204); background-color: rgb(250, 250, 250); padding: 6px 6px 6px 8px; border-radius: 15px; font-weight: bold;">
+            <span>${displayText}</span>
+            <button style="margin-left: 0px; border: none; background: none; color: blue; cursor: pointer;">
+                <i class="bi bi-x-lg"></i>
+            </button>
+        </div>
+    `;
+    $('#selected-region').append(newRegion);
+}
 
 //다른 체크박스 클릭 이벤트
 $('li').not(':contains("전체")').find('input[type="checkbox"]').click(function() {
