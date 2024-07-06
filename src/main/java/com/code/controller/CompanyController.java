@@ -86,7 +86,7 @@ public class CompanyController {
 		model.addAttribute("c_id",c_id);
 		model.addAttribute("c_num",c_num);
 		model.addAttribute("ci_num",ci_num);
-		return "/hire/hirewrite";
+		return "/sub/hire/hirewrite";
 	}
 
 	//아직없어!

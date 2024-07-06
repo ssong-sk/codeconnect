@@ -399,5 +399,13 @@ $(".map_link").click(function() {
 });
 
 </script>
+<script type="text/javascript">
+window.onload = function() {
+    if (performance.navigation.type === 2) {
+        // 페이지가 브라우저의 뒤로 가기 버튼을 통해 접근되었을 때 페이지를 다시 로드
+        window.location.reload();
+    }
+}
+</script>
 </body>
 </html>

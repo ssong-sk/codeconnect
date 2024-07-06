@@ -1,5 +1,6 @@
 package com.code.mapper;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -34,5 +35,8 @@ public interface HireMapperInter {
 	
 	//기업마이페이지 : 해당 기업 채용공고 리스트
 	public List<HireDto> getHireListByCnum(int c_num);
+	
+	//지원 체크
+	public int getSupportCheck(HashMap<String, Object> map);
 }
 

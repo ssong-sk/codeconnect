@@ -678,7 +678,7 @@ div.footerdiv{
 				</span>
 			</div>
 			<div class="contents">
-				<a class="company" target="_blank" title="${hdto.c_name } 기업정보" href="#">
+				<a class="company" target="_blank" title="${hdto.c_name } 기업정보" href="/company/showimsiCom?c_num=${hdto.c_num }">
 					<img alt="${hdto.c_name } 로고" height="70" src="../../companyintro_uploads/${hdto.ci_logo }" width="70">
 					<div class="name">
 						<h2>${hdto.c_name }</h2>
@@ -730,7 +730,7 @@ div.footerdiv{
 			            |
 						<li class="bottomtag" id="copyurl">
 							<i class="bi bi-share"></i>
-							<span>공유</span>
+							<span>링크 복사</span>
 						</li>
 					</ul>
 				</div>
@@ -764,16 +764,19 @@ div.footerdiv{
 						<h2>연락정보</h2>
 					</div>
 					<ul class="smbox">
-						<li style="margin-bottom: 12px;">
+						<li style="margin-bottom: 12px; margin-left: 20px;">
 							<span class="title">이메일</span>
 							<a href="#" class="write">
 								<span style="width: 280px;">${r_email }</span>
+								<input type="hidden" id="r_name" value="${r_name }">
+								<input type="hidden" id="r_num" value="${r_num }">
 							</a>
 						</li>
-						<li>
+						<li style=" margin-left: 20px;">
 							<span class="title">연락처</span>
 							<a href="#" class="write">
 								<span style="width: 280px;">${r_hp }</span>
+								<input type="hidden" id="scheck" value="${scheck }">
 							</a>
 						</li>
 					</ul>
@@ -931,8 +934,22 @@ $('#toggleBtn').click(function() {
 
 /* 지원창 열기 */
 $(".supportbtn").click(function(){
-	$('.ipsa').show();
-})
+	
+	if($("#r_num").val()==0){
+		var confirmLogin = confirm("로그인이 필요합니다.\n로그인 페이지로 이동하시겠습니까?");
+        if (confirmLogin) {
+            window.location.href = "/login/main";
+        }
+	}else{		
+		if($("#scheck").val()==1){
+			alert("이미 지원한 공고입니다.");
+		}else{
+			$('.ipsa').show();
+		}
+		
+	}
+	
+});
 
 /* 지원창 닫기 */
 $('.xbtn').click(function() {
@@ -985,6 +1002,7 @@ $(".footerbtn").click(function(){
 	
 	var pe_num = getSelectedPeNum();
 	var h_num = $("#h_num").val();
+	var r_name = $("#r_name").val();
 	
     if (!pe_num) {
         alert("이력서를 선택해주세요.");
@@ -997,6 +1015,7 @@ $(".footerbtn").click(function(){
 		data: {"pe_num":pe_num, "h_num":h_num},
 		url: "/support/insert",
 		success:function(){
+			alert("지원이 완료되었습니다! "+r_name+"님의 성공을 진심으로 기원합니다.")
 			location.reload();
 		}
 	})

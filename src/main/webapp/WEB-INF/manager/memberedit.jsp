@@ -428,54 +428,6 @@ button[disabled], html input[disabled] {
 	cursor: default;
 }
 
-.footer_up_ybtn {
-	background-color: #fff;
-	color: #4876EF;
-	cursor: pointer;
-	font-weight: bold;
-	font-size: 15px;
-	width: 100px;
-	border: 1px solid #4876EF;
-	border-radius: 32px;
-	height: 56px;
-	margin-top: 20px;
-	margin-bottom: 15px;
-	letter-spacing: -1.3px !important;
-	margin-left: 70px;
-	margin-right: 3px;
-}
-
-.footer_de_ybtn {
-	background-color: #fff;
-	color: red;
-	cursor: pointer;
-	font-weight: bold;
-	font-size: 15px;
-	width: 100px;
-	border: 1px solid red;
-	border-radius: 32px;
-	height: 56px;
-	margin-top: 20px;
-	margin-bottom: 15px;
-	margin-right: 3px;
-	letter-spacing: -1.3px !important;
-}
-
-.footer_ex_ybtn {
-	background-color: #fff;
-	color: black;
-	cursor: pointer;
-	font-weight: bold;
-	font-size: 15px;
-	width: 100px;
-	border: 1px solid black;
-	border-radius: 32px;
-	height: 56px;
-	margin-top: 20px;
-	margin-bottom: 15px;
-	letter-spacing: -1.3px !important;
-}
-
 .footer_join_nbtn {
 	background-color: #B2B2B2;
 	color: #fff;
@@ -489,6 +441,11 @@ button[disabled], html input[disabled] {
 	margin-top: 20px;
 	margin-bottom: 15px;
 	letter-spacing: -1.3px !important;
+}
+
+dl.allbtn{
+	padding-top: 20px;
+    padding-left: 140px;
 }
 
 .certifi_num_btn {
@@ -714,12 +671,12 @@ button[disabled], html input[disabled] {
 												</dd>
 											</dl>
 
-											<dl>
-												<button class="footer_up_ybtn" type="submit" id="bnt_up"
-													tabindex="10">수정</button>
-												<button class="footer_de_ybtn" type="button" id="bnt_de"
+											<dl class="allbtn">
+												<button class="btn btn-outline-primary" type="submit" id="bnt_up"
+													tabindex="10" style="margin-right: 5px;">수정</button>
+												<button class="btn btn-outline-danger" type="button" id="bnt_de" style="margin-right: 5px;"
 													tabindex="10" onclick="if(confirmDelete()) { location.href='memberdelete?r_num=${rdto.r_num}'}">삭제</button>
-												<button class="footer_ex_ybtn" type="button" id="bnt_ex"
+												<button class="btn btn-outline-dark" type="button" id="bnt_ex"
 													tabindex="10" onclick="history.back()">취소</button>
 											</dl>
 										</form>

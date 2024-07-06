@@ -29,4 +29,7 @@ public interface HireServiceInter {
 	
 	//기업마이페이지 : 해당 기업 채용공고 리스트
 	public List<HireDto> getHireListByCnum(int c_num);
+	
+	//지원 체크
+	public int getSupportCheck(int r_num, int h_num);
 }

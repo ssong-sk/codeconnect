@@ -100,6 +100,11 @@
    ORDER BY h.h_num DESC 
 </select>
 
+<!-- 지원한 채용공고인지 확인 -->
+<select id="getSupportCheck" parameterType="HashMap" resultType="int">
+	SELECT EXISTS ( SELECT 1 FROM support WHERE r_num = #{r_num} AND h_num = #{h_num} ) AS boolen
+</select>
+
 
 
 </mapper>
