@@ -315,29 +315,6 @@
 	    </c:if>
 	</div>
 </div>
-<%-- <div class="list_qna" style="max-width: 1200px; margin: 30px auto;">
-    <ul class="qna-list">
-        <c:forEach var="dto" items="${list}">
-            <li style="border-top: 1px solid #eaeaea;">
-                <div class="qna-item">
-                    <div class="post_list">
-                        <a href="${root}/community/homedetail?com_num=${dto.com_num}">
-                            <h5><b>${dto.com_title}</b></h5>
-                            <span class="content_text">${dto.com_content}</span>
-                            <div>
-                                &nbsp;<span><i class="bi bi-hand-thumbs-up"></i>&nbsp;${dto.com_likes}</span>&nbsp;&nbsp;&nbsp;
-                                <span><i class="bi bi-chat-left"></i>&nbsp;${dto.com_commentcount}</span>&nbsp;&nbsp;
-                                <span><i class="bi bi-eye"></i>&nbsp;${dto.com_readcount}</span>&nbsp;&nbsp;&nbsp;&nbsp;
-                                <br>
-                                <span>'${dto.com_nickname }'님&nbsp;&nbsp;<fmt:formatDate value="${dto.com_writetime}" pattern="yyyy-MM-dd HH:mm" />&nbsp;작성</span>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </li>
-        </c:forEach>
-    </ul>
-</div> --%>
 <div class="list_qna" style="max-width: 1100px; margin: 30px auto;">
 	<div id="s-qna-list">
     <ul class="qna-list">
