@@ -167,6 +167,7 @@ public class RegisterController {
       {
     	  dto.setR_exp(r_exp);
     	  service.updateExp(dto);
+    	  session.setAttribute("r_exp", dto.getR_exp());
       }
       
       @PostMapping("/updateJob")
@@ -175,14 +176,17 @@ public class RegisterController {
     	  
     	  dto.setR_job(r_job);
     	  service.updateJob(dto);
+    	  session.setAttribute("r_job", dto.getR_job());
       }
       
       @PostMapping("/updateDescription")
       @ResponseBody
-      public void upateDescription(@ModelAttribute("r_sogae")String r_sogae, RegisterDto dto,HttpSession session) {
-    	  dto.setR_sogae(r_sogae);
-    	  service.updateDescription(dto);
+      public void updateDescription(String r_sogae, RegisterDto dto, HttpSession session) {
+          dto.setR_sogae(r_sogae);
+          service.getUpdateDescription(dto);
+          session.setAttribute("r_sogae", dto.getR_sogae());
       }
+
 
       
 	@GetMapping("/member/mypage")
@@ -202,8 +206,7 @@ public class RegisterController {
 	   if (r_num == null) {
 		   r_num = 0;
 	   }
-	   
-	   int rScrap = service.getScrapCount(r_num);
+	   	   
 	   int pe_num = service.getpenum(r_num2);
 	   int midcount = service.getwritemiddle(pe_num);
 	   int unicount = service.getwriteuni(pe_num);
@@ -219,9 +222,12 @@ public class RegisterController {
 	   int CountApplySuc = irservice.getCountApplySuc(r_num);
 	   int CountApplyFin = irservice.getCountApplyFin(r_num);
 	   int CountApplyFail = irservice.getCountApplyFail(r_num);
+	   
+	   int scrapCount = irservice.getScrapCount(r_num);
+	   int companyCount = irservice.getCompanyCount(r_num);
 
+	   model.addAttribute("r_num2", r_num2);
 	   model.addAttribute("pe_num", pe_num);
-	   model.addAttribute("rScrap",rScrap);
 	   model.addAttribute("midcount",midcount);
 	   model.addAttribute("unicount", unicount);
 	   model.addAttribute("carcount", carcount);
@@ -229,6 +235,13 @@ public class RegisterController {
 	   model.addAttribute("spcecount", spcecount);
 	   model.addAttribute("splacount", splacount);
 	   model.addAttribute("spawcount", spawcount);
+	   
+	   
+	   
+	   model.addAttribute("scrapCount",scrapCount);
+	   model.addAttribute("companyCount",companyCount);
+	   
+	   
 	   
 	   model.addAttribute("count",totalCount);
 	   model.addAttribute("apply",CountApply);

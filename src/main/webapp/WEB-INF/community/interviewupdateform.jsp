@@ -14,7 +14,6 @@
 <title>인터뷰 수정</title>
 <style>
     body {
-        display: flex;
         justify-content: center;
         align-items: center;
         min-height: 100vh;
@@ -22,6 +21,12 @@
         background-color: #f8f9fa;
         font-family: 'IBM Plex Sans KR', sans-serif;
     }
+    .interdiv {
+	    justify-content: center;
+	    align-items: center;
+	    margin: 50px auto; /* 수평 마진을 auto로 설정하여 중앙 정렬합니다. */
+	    max-width: 700px;
+	}
     .form-container {
         background: #fff;
         padding: 30px;
@@ -51,13 +56,11 @@
         padding: 10px;
         border: none;
         border-radius: 5px;
-        background-color: #28a745;
+        background-color: #0D6CF9;
         color: #fff;
         font-size: 16px;
     }
-    .form-container button:hover {
-        background-color: #218838;
-    }
+
     @media (max-width: 768px) {
         .form-container {
             padding: 20px;
@@ -75,13 +78,14 @@
         border: 2px solid transparent;
     }
     .image-preview img.selected {
-        border-color: #28a745;
+        border-color: #0D6CF9;
     }
 </style>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/smarteditor2/js/service/HuskyEZCreator.js" charset="utf-8"></script>
 </head>
 <body>
-<div class="form-container">
+<div class="interdiv">
+<div class="form-container ">
 <form action="/community/interviewupdate" method="post" enctype="multipart/form-data">
   <input type="hidden" name="com_num" value="${dto.com_num}">
   <input type="hidden" name="existingPhotos" value="${dto.com_photo}">
@@ -162,7 +166,7 @@
   </table>
 </form>
 </div>
-
+</div>
 <script type="text/javascript">
 $(document).ready(function() {
     // SmartEditor2 초기화
@@ -207,5 +211,6 @@ $(document).ready(function() {
     });
 });
 </script>
+
 </body>
 </html>

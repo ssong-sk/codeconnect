@@ -97,6 +97,7 @@
   /*희망근무*/
   .hope  {
     margin-top: 8%;
+    margin-bottom: 8%;
   }
   
   .areaSelect {
@@ -313,7 +314,7 @@
                    	<table style="border-bottom: 0.5px solid #D9D9D9; width: 100%; margin-top: 1%;">
            				<tr>
                     		<td class="form-group">
-                            <span style="font-size: 1.3em;"><b>${scdto.sc_category}</b></span>&nbsp;
+                            <span style="font-size: 1.2em;"><b>${scdto.sc_category}</b></span>&nbsp;
                             <c:if test="${scdto.sc_category ne '고등학교 졸업'}" > 
                             	<b>${scdto.sc_uni_category}</b>&nbsp;&nbsp;&nbsp;&nbsp;
                             </c:if>
@@ -348,7 +349,7 @@
                       <table style="border-bottom: 0.5px solid #D9D9D9; width: 100%; margin-top: 1%;">
                   		<tr>
                   	   	  <td class="form-group">
-                  			<span style="font-size: 1.3em;"><b>${cadto.ca_name}</b></span>&nbsp;
+                  			<span style="font-size: 1.2em;"><b>${cadto.ca_name}</b></span>&nbsp;
                   			<span>${cadto.ca_ipsa} ~ ${cadto.ca_resign}</span>
                   		  </td>
                   		  <td class="form-group">
@@ -376,7 +377,7 @@
                            <table style="border-bottom: 0.5px solid #D9D9D9; width: 100%; margin-top: 1%;">
                     		 <tr>
                     			<td class="form-group">
-                    			  <span style="font-size: 1.3em;"><b>${acdto.ac_category} -> ${acdto.ac_name}</b></span>&nbsp;
+                    			  <span style="font-size: 1.2em;"><b>${acdto.ac_category} -> ${acdto.ac_name}</b></span>&nbsp;
                     			  <span>${acdto.ac_start} ~ ${acdto.ac_end}</span>
                     			</td>
                     			<td class="form-group" style="margin-top:1%;">
@@ -450,7 +451,7 @@
 					                  <c:if test="${not empty podto.po_file}">
 					                      <c:set var="filePath" value="../iruckseoportfolio/${podto.po_file}" />
 					                      <a id="download" url="${filePath}" fileName="${podto.po_file}">
-					                          <span><b>${podto.po_file}</b></span>
+					                          <span style="font-size: 1.2em;"><b>${podto.po_file}</b></span>
 					                      </a>
 					                  </c:if>
 					              </td>
@@ -472,7 +473,7 @@
 							    <table style="border-bottom: 0.5px solid #D9D9D9; width: 100%; margin-top: 1%;">
 							        <tr>
 							            <td class="form-group">
-							                <span style="font-size: 1.3em;"><b>${sedto.se_subject}</b></span>&nbsp;
+							                <span style="font-size: 1.2em;"><b>${sedto.se_subject}</b></span>&nbsp;
 							            </td>
 							            <td class="form-group" style="margin-top: 1%;">
 							                <span>${sedto.se_content}</span>
@@ -562,7 +563,7 @@
 
                         <!-- 직무 --------------------------------------------------------------------------------------------------------->
                         <tr>
-                           <td class="form-group" style="margin-top: 2%; margin-bottom: 5%;">
+                           <td class="form-group" style="margin-top: 2%;">
                             &nbsp;<span style="font-size: 0.8em; display: inline-block;">직무 키워드</span>&nbsp;&nbsp;&nbsp;
                            </td>
                          </tr>
@@ -680,7 +681,7 @@
                   
                   <div class="fixed_final">
                       <span id="pe_title_temp" style="height: 40px; font-size: 1.2em;
-                      width: 51.5%;"><b>${pedto.pe_title }</b></span>&nbsp;&nbsp;&nbsp;&nbsp;
+                      width: 45.5%;"><b>제목 : ${pedto.pe_title }</b></span>&nbsp;&nbsp;&nbsp;&nbsp;
                       <button type="button" id="allDataUpdate" onclick="location.href='updateForm?pe_num=${pedto.pe_num}'" 
                       style="width: 180px;" class="btn btn-primary">수정하기</button>
                   </div>

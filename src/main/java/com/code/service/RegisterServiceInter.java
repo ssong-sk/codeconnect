@@ -35,7 +35,7 @@ public interface RegisterServiceInter {
 	public void deleteRegister(String r_num);
 	public void updateName(RegisterDto dto);
 	public void updateHp(RegisterDto dto);
-	
+	public void getUpdateDescription(RegisterDto dto);
 	
 	//스크랩
 		public void scrapInsert(HireDto dto);

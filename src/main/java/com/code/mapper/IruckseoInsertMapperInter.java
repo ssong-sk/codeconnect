@@ -201,10 +201,10 @@ public interface IruckseoInsertMapperInter {
 	public List<SupportDto> getSupportList(int r_num);
 
 	//이력서지원현황 지원취소 업데이트
-	public void updateSupportDelete(int st_num);
+	public void updateSupportDelete(int[] st_num);
 
 	//스크랩 공고 삭제하기
-	public void scrapDelete(int s_num);
+	public void scrapDelete(int[] s_num);
 
 	//관심기업 리스트
 	public List<CompanyDto> getScrapCompanyList(Map<String, Object> map);
@@ -213,7 +213,7 @@ public interface IruckseoInsertMapperInter {
 	public List<SupportDto> getSupportPaging(Map<String, Object> map);
 
 	//이력서지원현황 삭제
-	public void SupportDelete(int st_num);
+	public void SupportDelete(int[] st_num);
 
 //	마이페이지 지원현황 카운드들 ----------------------------------------------------
 	public int getCountApply(int r_num);

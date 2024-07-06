@@ -302,6 +302,8 @@ public class CompanyIntroController {
 		CompanyDto cdto = cservice.getDataByNum(c_num);
 		int review_count = crservice.getTotalCountCompanyReview(c_num);
 		List<CompanyReviewDto> rlist = crservice.CompanyReviewList(c_num);
+		
+		
 
 		// Add data to the model
 		model.addAttribute("dto", dto);
