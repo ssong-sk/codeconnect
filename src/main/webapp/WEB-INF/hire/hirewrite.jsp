@@ -81,6 +81,7 @@ p.info {
    color: gray;
    font-weight: 400;
    font-size: 10pt;
+   margin-bottom: 10px;
 }
 
 
@@ -618,8 +619,8 @@ input:disabled {
 		<div id="wrap">
 			<div class="center">
 				<div class="d-inline-flex top">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-					<img alt="뒤로가기" class="backimg" src="../hire_img/chevron.png">&nbsp;&nbsp;&nbsp;&nbsp;
-					<h2 style="font-weight: bold; font-size: 30px;">채용 공고 등록</h2>
+					<img alt="뒤로가기" class="backimg" src="../hire_img/chevron.png" onclick="history.back()">&nbsp;&nbsp;&nbsp;&nbsp;
+					<h2 style="font-weight: bold; font-size: 30px; margin-top: 3px;">채용 공고 등록</h2>
             	</div>
             	<div class="bottom">
             	

@@ -1470,7 +1470,7 @@ $(document).ready(function() {
 			marginLeft : '10px',
 			border : 'none',
 			background : 'none',
-			color : 'blue',
+			color : '#0D6CF9',
 			cursor : 'pointer'
 		});
 
@@ -1570,7 +1570,7 @@ $(document).ready(function() {
 			marginLeft: '10px',
 			border: 'none',
 			background: 'none',
-			color: 'blue',
+			color: '#0D6CF9',
 			cursor: 'pointer'
 		});
 
@@ -1648,7 +1648,7 @@ $('input[name="career"]').change(function() {
     // 선택된 경력 텍스트 가져오기
     var selectedCareer = $('input[name="career"]:checked').next().text().trim();
     // 경력 버튼 텍스트 업데이트
-    $('.carreerbtn').html('경력 <span style="color: blue;">' + selectedCareer + '</span> <span class="bi bi-chevron-down" style="vertical-align: middle;font-size: 15px;font-weight: bold;"></span>');
+    $('.carreerbtn').html('경력 <span style="color: #0D6CF9;">' + selectedCareer + '</span> <span class="bi bi-chevron-down" style="vertical-align: middle;font-size: 15px;font-weight: bold;"></span>');
     // 버튼 너비 조정
     $('.carreerbtn').css('width', '90px');
     $('div.region').css('margin-left', '94px');
@@ -1745,7 +1745,7 @@ $(".regionbtn").click(function() {
     
     /* 지역버튼 클릭시 전국이 클릭되어있도록 */
     if (isAllSelected) {
-        $(".regionbox-option").find("button[value='all']").addClass("selected").css("color", "blue").css("font-weight", "bold");
+        $(".regionbox-option").find("button[value='all']").addClass("selected").css("color", "#0D6CF9").css("font-weight", "bold");
     }else{
     	$(".regionbox-option button").find("button[value='all']").removeClass("selected").css("color", "black").css("font-weight", "0");
     	$('#selected-region').find('.selected-region:contains("전국")').remove();
@@ -1806,11 +1806,11 @@ $('.region-btn').click(function() {
      	// 선택된 지역을 삭제
         $('#selected-region').find('.selected-region:contains("전국")').remove();
     }else{
-       $(this).addClass("selected").css("color","blue").css("font-weight","bold");
+       $(this).addClass("selected").css("color","#0D6CF9").css("font-weight","bold");
        $(".regionbox-option").find("button").not("[value='all']").removeClass("selected").css("color", "").css("font-weight", "");
        $(".region-detail-empty").show();
     }
-    $(this).css("color","blue").css("font-weight","bold");
+    $(this).css("color","#0D6CF9").css("font-weight","bold");
 });
 
 //'전체' 체크박스를 클릭 이벤트
@@ -1870,7 +1870,7 @@ function addSelectedregion(regionText, isAll) {
     const newRegion = `
         <div class="selected-region" style="display: inline-block; margin-left: 5px; margin-right: 5px; margin-bottom: 5px; border: 1px solid rgb(204, 204, 204); background-color: rgb(250, 250, 250); padding: 6px 6px 6px 8px; border-radius: 15px; font-weight: bold;">
             <span>${displayText}</span>
-            <button style="margin-left: 0px; border: none; background: none; color: blue; cursor: pointer;">
+            <button style="margin-left: 0px; border: none; background: none; color: #0D6CF9; cursor: pointer;">
                 <i class="bi bi-x-lg"></i>
             </button>
         </div>
@@ -1947,7 +1947,7 @@ $(".resetregion").click(function() {
     // '전국' 버튼 초기화
     isAllSelected = true;
     $(".regionbox-option button[value='all']").addClass("selected").css({
-        color: "blue",
+        color: "#0D6CF9",
         "font-weight": "bold"
     });
 
@@ -1967,7 +1967,7 @@ $(".resetregion").click(function() {
 // '적용하기' 버튼 클릭 이벤트
 $(".btnapply").click(function() {
     var selectedCount = $('#selected-region .selected-region').length;
-    var buttonText = '지역 <span style="color: blue;">' + selectedCount + '</span> <i class="bi bi-chevron-down"></i>';
+    var buttonText = '지역 <span style="color: #0D6CF9;">' + selectedCount + '</span> <i class="bi bi-chevron-down"></i>';
     
     // 버튼에 텍스트 적용
     $(".regionbtn.category3").html(buttonText);
@@ -1999,7 +1999,7 @@ function addSelectedregion(regionTextss) {
         marginLeft: '0px',
         border: 'none',
         background: 'none',
-        color: 'blue',
+        color: '#0D6CF9',
         cursor: 'pointer'
     });
 
@@ -2317,5 +2317,6 @@ function scrapPress() {
 
 }
 </script>
+
 </body>
 </html>

@@ -93,6 +93,17 @@ public class HireService implements HireServiceInter {
 		// TODO Auto-generated method stub
 		return mapper.getHireListByCnum(c_num);
 	}
+
+	//지원 체크
+	@Override
+	public int getSupportCheck(int r_num, int h_num) {
+		
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("r_num", r_num);
+		map.put("h_num", h_num);
+        
+		return mapper.getSupportCheck(map);
+	}
 	
 
 }
