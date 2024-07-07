@@ -118,7 +118,7 @@
                 reader.onload = function (e) {
                     var image = $('<img>').attr('src', e.target.result);
                     imageContainer.append(image);
-                }ㅕ
+                }
                 reader.readAsDataURL(files[i]);
             }
         });
@@ -129,6 +129,7 @@
         window.scrollTo(0, 0);
     }
 </script>
+
 </head>
 <body>
 <div class="alldiv" style="width: 800px;">

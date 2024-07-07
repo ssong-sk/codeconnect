@@ -80,5 +80,7 @@ public interface CommunityMapperInter {
     List<CommunityDto> getPostsByCategoryAndSort(@Param("type") String type, @Param("category") String category, @Param("sortBy") String sortBy, @Param("offset") int offset, @Param("limit") int limit);
 
     //검색기능
-	public List<CommunityDto> commuAllSearch(String searchword);
+	//public List<CommunityDto> commuAllSearch(String searchword);
+    public List<CommunityDto> commuAllSearch(@Param("searchword") String searchword, @Param("postType") String postType);
+
 }

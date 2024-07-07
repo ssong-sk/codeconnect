@@ -534,6 +534,7 @@ public class CommunityController {
     }
 
     //검색 기능
+    /*
     @ResponseBody
 	@GetMapping("/community/commuAllSearch")
 	public List<CommunityDto> commuAllSearch(String searchword) {
@@ -542,5 +543,14 @@ public class CommunityController {
       
 		return comlist;
 	}
+	*/
+    
+    //검색 기능 -> com_post_type이 'home'인 글마 출력되도록 수정
+    @ResponseBody
+    @GetMapping("/community/commuAllSearch")
+    public List<CommunityDto> commuAllSearch(@RequestParam("searchword") String searchword) {
+        String postType = "home";
+        return service.commuAllSearch(searchword, postType);
+    }
 
 }

@@ -49,6 +49,18 @@ body {
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
+/* 첨부 이미지 관련 css */
+.image-center {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.image-center img {
+    max-width: 100%;
+    height: auto;
+}
+
 .detail-title {
     font-size: 22px;
     font-weight: bold;
@@ -119,21 +131,28 @@ body {
 		<div class="center">
 			<a href="/customer/inquirylist" style="font-weight: bold; display: flex;">
 				<img src="../../hire_img/chevron.png" class="backimg">
-				<h4 style="font-weight: bold; margin-top: 4px;">돌아가기</h4> 
+				<h4 style="font-weight: bold; margin-top: 4px; font-size: 20px;">돌아가기</h4> 
 			</a>
 
-			<div class="container" style="width: 1060px;">
+			<div class="container" style="width: 1060px; margin-top: 25px;">
 			    <div class="detail-title">
 			        ${dto.cus_title}
 			    </div>
 			    <div class="detail-info">
 			        <span>등록일 : <fmt:formatDate value="${dto.cus_writetime}" pattern="yyyy-MM-dd"/></span>
 			    </div>
-			    <div class="detail-content">${dto.cus_content}
+			    <%-- <div class="detail-content">${dto.cus_content}
 			        <c:if test="${not empty dto.cus_photo}">
-			            <img src="../../customerimage/${dto.cus_photo}" alt="첨부 이미지" style="max-width: 1000px;"/>
+			            <img src="../../customerimage/${dto.cus_photo}" alt="첨부 이미지" style="max-width: 800px;"/>
 			        </c:if>
-			    </div>
+			    </div> --%>
+			    <div class="detail-content">${dto.cus_content}
+				    <c:if test="${not empty dto.cus_photo}">
+				        <div class="image-center">
+				            <img src="../../customerimage/${dto.cus_photo}" alt="첨부 이미지" style="max-width: 800px;"/>
+				        </div>
+				    </c:if>
+				</div>
 			
 			    <c:if test="${not empty dto.cus_answer}">
 			        <div class="answer-section">

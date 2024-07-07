@@ -35,8 +35,8 @@ body {
 }
 
 .backimg {
-   width: 30px;
-   height: 30px;
+   width: 28px;
+   height: 28px;
    padding-top: 2px;
    cursor: pointer;
 }
@@ -111,10 +111,10 @@ body {
 	<div id="wrap">
 		<div class="center">
 			<a href="javascript:history.back();" style="font-weight: bold; display: flex;">
-				<img src="../../hire_img/chevron.png" class="backimg">
-				<h4 style="font-weight: bold; margin-top: 4px;">돌아가기</h4> 
+				<img src="../../hire_img/chevron.png" class="backimg"">
+				<h4 style="font-weight: bold; margin-top: 4px; font-size: 20px;">돌아가기</h4> 
 			</a>
-			<div class="container" style=" max-width: 1060px;">
+			<div class="container" style=" max-width: 1060px; margin-top: 25px;">
 			    <div class="detail-title">
 			        ${dto.cus_title}
 			    </div>

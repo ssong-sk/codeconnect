@@ -312,7 +312,7 @@
 <body>
 
 <div class="totalpostgo">
-    <a href="hometotalpost"><span><i class="bi bi-chevron-left"></i>전체 게시글</span></a>
+    <a href="hometotalpost"><span><i class="bi bi-chevron-left"></i> 뒤로가기</span></a>
 </div>
 <div class="post_view_wrap" style="margin-top: 15px;">
     <!-- 게시글 상단 -->
@@ -418,8 +418,8 @@
 
       <!-- Modal footer -->
       <div class="modal-footer">
-        <button type="button" class="btn btn-success" data-bs-dismiss="modal" id="btnUpdateOk">수정</button>
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal" id="btnUpdateOk">수정</button>
+        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Close</button>
       </div>
 
     </div>
@@ -463,8 +463,8 @@
       </div>
       <!-- Modal footer -->
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" id="btnConfirmDelete">네</button>
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">아니요</button>
+        <button type="button" class="btn btn-outline-danger" id="btnConfirmDelete">네</button>
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">아니요</button>
       </div>
     </div>
   </div>

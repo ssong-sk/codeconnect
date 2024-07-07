@@ -72,6 +72,7 @@
         display: flex;
         flex-wrap: wrap;
         gap: 10px;
+        justify-content: center; /* 이미지 가운데 정렬 */
     }
     .image-preview img {
         max-width: 100px;
@@ -197,7 +198,7 @@ $(document).ready(function() {
                     $('#com_main_photo').val(e.target.result);
                 }
                 previewContainer.append(img);
-                oEditors.getById["content"].exec("PASTE_HTML", [ "<img src='" + e.target.result + "'/>" ]);
+                oEditors.getById["content"].exec("PASTE_HTML", [ "<img src='" + e.target.result + "' style='display: block; margin: 0 auto;'/>" ]); // 중앙 정렬 스타일 추가
             }
             reader.readAsDataURL(files[i]);
         }
