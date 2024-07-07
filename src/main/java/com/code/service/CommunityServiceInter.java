@@ -67,5 +67,6 @@ public interface CommunityServiceInter {
     List<CommunityDto> getPostsByCategoryAndSort(String type, String category, String sortBy, int offset, int limit);
     
     //검색기능
-	public List<CommunityDto> commuAllSearch(String searchword);
+	public List<CommunityDto> commuAllSearch(String searchword, String postType);
+
 }

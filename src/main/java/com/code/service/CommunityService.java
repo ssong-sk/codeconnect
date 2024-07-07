@@ -201,8 +201,9 @@ public class CommunityService implements CommunityServiceInter {
         return mapper.getPostsByCategoryAndSort(type, category, sortBy, offset, limit);
     }
 
-	@Override
-	public List<CommunityDto> commuAllSearch(String searchword) {
-		return mapper.commuAllSearch(searchword);
-	}
+    @Override
+    public List<CommunityDto> commuAllSearch(String searchword, String postType) {
+        return mapper.commuAllSearch(searchword, postType);
+    }
+
 }

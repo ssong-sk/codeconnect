@@ -70,6 +70,7 @@
         display: flex;
         flex-wrap: wrap;
         gap: 10px;
+        justify-content: center; /* 이미지 가운데 정렬 */
     }
     .image-preview img {
         max-width: 100px;
@@ -169,7 +170,7 @@
 </div>
 <script type="text/javascript">
 $(document).ready(function() {
-    // SmartEditor2 초기화
+    //SmartEditor2 초기화
     var oEditors = [];
     nhn.husky.EZCreator.createInIFrame({
         oAppRef: oEditors,
@@ -178,20 +179,20 @@ $(document).ready(function() {
         fCreator: "createSEditor2"
     });
 
-    // 폼 제출 시 내용 업데이트
+    //폼 제출 시 내용 업데이트
     window.submitContents = function(elClickedObj) {
         oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD", []); // 에디터 내용 업데이트
         elClickedObj.form.submit();
     }
 
-    // 이미지 선택 시 메인 사진 설정
+    //이미지 선택 시 메인 사진 설정
     window.selectMainPhoto = function(photo) {
         $('#image-preview img').removeClass('selected'); // 기존 선택된 이미지 해제
         $('img[src="/communityimage/' + photo + '"]').addClass('selected'); // 선택된 이미지 표시
         $('#com_main_photo').val(photo); // 메인 사진 값 설정
     }
 
-    // 파일 업로드 시 이미지 미리보기 생성 및 클릭 이벤트 추가
+    //파일 업로드 시 이미지 미리보기 생성 및 클릭 이벤트 추가
     $('#upload').change(function(event) {
         var files = event.target.files;
         var previewContainer = $('#image-preview');
@@ -204,7 +205,7 @@ $(document).ready(function() {
                     selectMainPhoto(file.name);
                 });
                 previewContainer.append(img); // 미리보기 컨테이너에 이미지 추가
-                oEditors.getById["content"].exec("PASTE_HTML", ["<img src='" + e.target.result + "'/>"]); // 에디터에 이미지 삽입
+                oEditors.getById["content"].exec("PASTE_HTML", ["<img src='" + e.target.result + "' style='display: block; margin: 0 auto;'/>"]); // 중앙 정렬 스타일 추가
             }
             reader.readAsDataURL(file);
         });

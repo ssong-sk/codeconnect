@@ -23,11 +23,14 @@
         text-align: center;
     }
     .custom-img {
-        width: 500px;
+        width: 100%;
+        max-width: 500px;
         height: 220px;
         object-fit: cover;
         border: none;
         border-radius: 10px;
+        display: block;
+        margin: 0 auto; /* 이미지 중앙 정렬 */
     }
     .detail {
         margin-bottom: 15px;
@@ -61,21 +64,12 @@
 <div class="container" style="width: 1060px;">
     <div class="content-row" style="margin-top: 80px;">
         <div>
-        	<!--  
-            <c:if test="${dto.com_main_photo ne 'no'}">
-                <img src="<c:url value='/communityimage/${dto.com_main_photo}'/>" alt="Interview Image" class="custom-img">
-            </c:if>
-            <c:if test="${dto.com_main_photo eq 'no'}">
-                <p>이미지가 없습니다.</p>
-            </c:if>
-            -->
             <c:if test="${dto.com_main_photo ne 'no'}">
 			    <img src="<c:url value='/communityimage/${dto.com_main_photo}'/>" alt="Interview Image" class="custom-img">
 			</c:if>
 			<c:if test="${dto.com_main_photo eq 'no'}">
 			    <img src="<c:url value='/path/to/default/image.png'/>" alt="No Image" class="custom-img">
 			</c:if>
-
         </div>
         <div style="margin-top: 10px;">
             <div class="detail">

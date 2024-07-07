@@ -111,9 +111,9 @@ body {
 		<div class="center">
 			<a href="javascript:history.back();" style="font-weight: bold; display: flex;">
 				<img src="../../hire_img/chevron.png" class="backimg">
-				<h4 style="font-weight: bold; margin-top: 4px;">돌아가기</h4> 
+				<h4 style="font-weight: bold; margin-top: 4px; font-size: 20px;">돌아가기</h4> 
 			</a>
-			<div class="container" style="width: 1060px;">
+			<div class="container" style="width: 1060px; margin-top: 25px;">
 			    <div class="detail-title">
 			        ${dto.cus_title}
 			    </div>

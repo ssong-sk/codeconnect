@@ -183,30 +183,29 @@
     </select>
     
     <!-- 검색 기능 -->
-    <select id="commuAllSearch" parameterType="map" resultType="CommunityDto">
+	<select id="commuAllSearch" parameterType="map" resultType="CommunityDto">
 	    SELECT *
 	    FROM community
-	    WHERE 
+	    WHERE com_post_type = #{postType}
 	    <if test="searchword != null and searchword != ''">
-	        (
-	        com_num LIKE CONCAT('%', #{searchword}, '%')
-	        OR com_user_id LIKE CONCAT('%', #{searchword}, '%')
-	        OR com_nickname LIKE CONCAT('%', #{searchword}, '%')
-	        OR com_title LIKE CONCAT('%', #{searchword}, '%')
-	        OR com_content LIKE CONCAT('%', #{searchword}, '%')
-	        OR com_photo LIKE CONCAT('%', #{searchword}, '%')
-	        OR com_main_photo LIKE CONCAT('%', #{searchword}, '%')
-	        OR com_category LIKE CONCAT('%', #{searchword}, '%')
-	        OR com_writetime LIKE CONCAT('%', #{searchword}, '%')
-	        OR com_updatetime LIKE CONCAT('%', #{searchword}, '%')
-	        OR com_readcount LIKE CONCAT('%', #{searchword}, '%')
-	        OR com_likes LIKE CONCAT('%', #{searchword}, '%')
-	        OR com_post_type LIKE CONCAT('%', #{searchword}, '%')
-	        OR com_commentcount LIKE CONCAT('%', #{searchword}, '%')
-	        OR com_name LIKE CONCAT('%', #{searchword}, '%')
-	        OR com_companyname LIKE CONCAT('%', #{searchword}, '%')
+	        AND (
+	            com_num LIKE CONCAT('%', #{searchword}, '%')
+	            OR com_user_id LIKE CONCAT('%', #{searchword}, '%')
+	            OR com_nickname LIKE CONCAT('%', #{searchword}, '%')
+	            OR com_title LIKE CONCAT('%', #{searchword}, '%')
+	            OR com_content LIKE CONCAT('%', #{searchword}, '%')
+	            OR com_photo LIKE CONCAT('%', #{searchword}, '%')
+	            OR com_main_photo LIKE CONCAT('%', #{searchword}, '%')
+	            OR com_category LIKE CONCAT('%', #{searchword}, '%')
+	            OR com_writetime LIKE CONCAT('%', #{searchword}, '%')
+	            OR com_updatetime LIKE CONCAT('%', #{searchword}, '%')
+	            OR com_readcount LIKE CONCAT('%', #{searchword}, '%')
+	            OR com_likes LIKE CONCAT('%', #{searchword}, '%')
+	            OR com_commentcount LIKE CONCAT('%', #{searchword}, '%')
+	            OR com_name LIKE CONCAT('%', #{searchword}, '%')
+	            OR com_companyname LIKE CONCAT('%', #{searchword}, '%')
 	        )
 	    </if>
 	</select>
-    
+
 </mapper>

@@ -183,6 +183,7 @@ ul.list_category li {
 
 
 /* 페이징 스타일 */
+/*  
 .pagination {
     display: flex;
     justify-content: center;
@@ -211,6 +212,7 @@ ul.list_category li {
     pointer-events: none;
     box-shadow: none;
 }
+*/
 
 /* 선택된 li a 효과 */
 .list_category a.active {
@@ -374,8 +376,7 @@ ul.list_category li {
     </div>
 </div>
 
-
-<div class="pagination">
+<%-- <div class="pagination">
     <c:if test="${startPage > 1}">
         <a href="?category=${category}&pageNum=${startPage - 1}" class="page-link"><i class="bi bi-chevron-left"></i>이전</a>
     </c:if>
@@ -386,7 +387,7 @@ ul.list_category li {
         <a href="?category=${category}&pageNum=${endPage + 1}" class="page-link">다음<i class="bi bi-chevron-right"></i></a>
     </c:if>
 </div>
-
+ --%>
 <script type="text/javascript">
 //엔터 키 눌렀을 때 검색 버튼 클릭 이벤트 처리
 $('.me-2').keypress(function(e) {
