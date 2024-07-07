@@ -14,12 +14,7 @@
     body {
         font-family: 'IBM Plex Sans KR';
     }
-    
-    /* 최상단 카테고리 nav */
-    /*.nav {
-        margin-top: 40px;
-        margin-left: 250px;
-    }*/
+
     .nav ul {
     list-style-type: none;
     display: flex;
@@ -289,7 +284,6 @@ ul.list_category li {
         </div>
     </div>
 </div>
-
 
 <div class="commutitle" style="max-width: 1060px; margin: 50px auto;">
     <div class="container" style="padding: 0px 0px;">
