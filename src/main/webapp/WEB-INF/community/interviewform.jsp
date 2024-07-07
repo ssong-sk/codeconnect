@@ -12,7 +12,6 @@
 <title>인터뷰 작성</title>
 <style>
     body {
-        display: flex;
         justify-content: center;
         align-items: center;
         min-height: 100vh;
@@ -20,6 +19,14 @@
         background-color: #f8f9fa;
         font-family: 'IBM Plex Sans KR', sans-serif;
     }
+    
+	.interdiv {
+	    justify-content: center;
+	    align-items: center;
+	    margin: 50px auto; /* 수평 마진을 auto로 설정하여 중앙 정렬합니다. */
+	    max-width: 700px;
+	}
+	
     .form-container {
         background: #fff;
         padding: 30px;
@@ -79,7 +86,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/smarteditor2/js/service/HuskyEZCreator.js" charset="utf-8"></script>
 </head>
 <body>
-<div style="margin: 50px 100px; width: 700px;">
+<div class="interdiv">
 <form action="/community/interviewinsert" method="post" enctype="multipart/form-data">
   <input type="hidden" name="com_user_id" value="${sessionScope.myid}">
   <input type="hidden" name="com_nickname" value="${sessionScope.userNickname}">

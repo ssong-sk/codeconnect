@@ -43,7 +43,7 @@ body {
     border: 0px;
     -webkit-transition: background-color .15s ease;
     transition: background-color .15s ease;
-    background-color: #ffffff;
+    background: hsla(0, 0%, 100%, .88);
 }
 
 .Aside_searchButton__rajGo svg {
@@ -85,6 +85,7 @@ body {
 }
 
 button, div, h1, h2, h3, h4, h5, h6, input, p, select, span, textarea {
+	font-family: IBM Plex Sans KR;
 	font-size: 15px;
 	line-height: 22px;
 }
@@ -131,21 +132,28 @@ a, abbr, acronym, address, applet, article, aside, audio, b, big,
 	color: inherit;
 }
 
-@media ( min-width :1600px) {
-	.MainBar_MainBar__40DX7 {
-		width: 90%;
-		max-width: 1400px;
-		margin: 0 auto;
-	}
-}
+/* @media ( min-width :1600px) { */
+/* 	.MainBar_MainBar__40DX7 { */
+/* 		width: 90%; */
+/* 		max-width: 1400px; */
+/* 		margin: 0 auto; */
+/* 	} */
+/* } */
 
-@media ( min-width : 1200px) and (max-width: 1599px) {
-	.MainBar_MainBar__40DX7 {
+/* @media ( min-width : 1200px) and (max-width: 1599px) { */
+/* 	.MainBar_MainBar__40DX7 { */
+/* 		max-width: 1060px; */
+/* 		width: 90%; */
+/* 		margin: 0 auto; */
+/* 	} */
+/* } */
+
+
+.MainBar_MainBar__40DX7 {
 		max-width: 1060px;
 		width: 90%;
 		margin: 0 auto;
 	}
-}
 
 .MainBar_MainBarNav__pVhal {
 	display: -ms-flexbox;
@@ -182,7 +190,12 @@ a {
 }
 
 a {
-	color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1));
+	color: #171719;
+	text-decoration: none !important;
+}
+
+.span_header{
+	color: #171719 !important;
 	text-decoration: none !important;
 }
 
@@ -208,13 +221,18 @@ ol, ul {
 }
 
 .Menu_MenuItem__wI1yA>a, .Menu_MenuItem__wI1yA>button {
-	font-size: 15px;
-	font-weight: 600;
-	line-height: 22px;
-	letter-spacing: .0096em;
-	height: 100%;
-	display: flex;
-	align-items: center;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 22px;
+    letter-spacing: .0096em;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    font-family: IBM Plex Sans KR;
+}
+
+ol, ul {
+    padding-left: 0 !important;
 }
 
 .Menu_jobListLink__GYHAI>span {
@@ -456,12 +474,6 @@ ol, ul {
 	white-space: nowrap;
 	-webkit-appearance: none;
 	appearance: none;
-}
-
-button, div, h1, h2, h3, h4, h5, h6, input, p, select, span, textarea {
-	font-family: inherit;
-	font-size: inherit;
-	line-height: inherit;
 }
 
 input, input:focus, input[type=text], textarea {

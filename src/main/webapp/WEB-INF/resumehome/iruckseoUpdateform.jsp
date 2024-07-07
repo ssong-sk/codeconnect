@@ -23,7 +23,7 @@
       margin: 0 auto;
       width: 100%;
       height: 100%;
-      max-width: 1000px;
+      max-width: 1060px;
   }
   
   #wrap {
@@ -353,17 +353,17 @@
                         <span style="font-size: 0.8em; color: #4876EF; margin-left: 82%;">
                         <a style="cursor: pointer;" id="schoolPlus">+ 추가하기</a></span>
                     </div>
-                    <hr style="width: 100%;">
+                    <hr style="width: 100%;"> 
 
                     <div id="schoolList">
                     
                     <c:if test="${fn:length(sclist) != 0}" >
                     <c:forEach items="${sclist }" var="scdto">
-                   	<table style="border-bottom: 0.5px solid #D9D9D9; width: 100%; margin-top: 1%;">
+                   	<table style="border-bottom: 0.5px solid #D9D9D9; width: 100%; margin-top: 1%; margin-bottom: 2%;">
            				<tr>
                     		<td class="form-group">
-                            <span style="font-size: 1.3em;"><b>${scdto.sc_category}</b></span>&nbsp;
-                            <c:if test="${scdto.sc_category ne '고등학교 졸업'}" > 
+                            <span style="font-size: 1.2em;"><b>${scdto.sc_name}</b></span>&nbsp;
+                            <c:if test="${scdto.sc_name ne '고등학교 졸업'}" > 
                             	<b>${scdto.sc_uni_category}</b>&nbsp;&nbsp;&nbsp;&nbsp;
                             </c:if>
                             <span>${scdto.sc_iphack} ~ ${scdto.sc_jolup} ( ${scdto.sc_transfer } ${scdto.sc_check})</span><br>
@@ -583,7 +583,7 @@
                     	    	sc += '<table style="border-bottom: 0.5px solid #D9D9D9; width: 100%; margin-top: 1%;">';
                                 sc += '<tr>';
                                 sc += '<td class="form-group">';
-                                sc += '<span style="font-size: 1.3em;"><b>'+sc_name+'</b></span>&nbsp;';
+                                sc += '<span style="font-size: 1.2em;"><b>'+sc_name+'</b></span>';
                                 
                                 //고등학교 졸업 선택 안할 경우
                                 if( sc_category != "고등학교 졸업"){
@@ -928,7 +928,7 @@
                             <a style="cursor: pointer;" id="careerPlus">+ 추가하기</a></span>
                     </div>
                     <hr style="width: 100%;">
-                    <div id="careerList"></div>
+                    <div id="careerList">
                     <!-- 리스트 출력 -->
 
                     <c:if test="${fn:length(calist) != 0}" >
@@ -951,7 +951,7 @@
                   	   </table>
                     </c:forEach>
                     </c:if>
-
+                    </div>
                     <div id="careerform"></div>
             </div>
             
@@ -1057,7 +1057,7 @@
 	                    			ca += '<table style="border-bottom: 0.5px solid #D9D9D9; width: 100%; margin-top: 1%;">';
 	                    			ca += '<tr>';
 	                    			ca += '<td class="form-group">';
-	                    			ca += '<span style="font-size: 1.3em;"><b>'+ca_name+'</b></span>&nbsp;';
+	                    			ca += '<span style="font-size: 1.2em;"><b>'+ca_name+'</b></span>&nbsp;';
 	                    			ca += '<span>'+ca_ipsa+' ~ '+ca_resign+'</span>';
 	                    			ca += '<span style="cursor: pointer;"><i class="bi bi-pencil caupdate" ca_num='+ca_num+'></i></span>';
 	                    			ca += '<span style="cursor: pointer;"><i class="bi bi-trash3 cadelete" ca_num='+ca_num+'></i></span>';
@@ -1216,7 +1216,7 @@
 						            ca += '<table style="border-bottom: 0.5px solid #D9D9D9; width: 100%; margin-top: 1%;">';
 						            ca += '<tr>';
 						            ca += '<td class="form-group">';
-						            ca += '<span style="font-size: 1.3em;"><b>' + ca_name + '</b></span>&nbsp;';
+						            ca += '<span style="font-size: 1.2em;"><b>' + ca_name + '</b></span>&nbsp;';
 						            ca += '<span>' + ca_ipsa + ' ~ ' + ca_resign + '</span>';
 						            ca += '<span style="cursor: pointer;"><i class="bi bi-pencil caupdate" ca_num="' + ca_num + '"></i></span>';
 						            ca += '<span style="cursor: pointer;"><i class="bi bi-trash3 cadelete" ca_num="' + ca_num + '"></i></span>';
@@ -1254,7 +1254,7 @@
                         <div class="form-caption">
                             <h5><b>경험 / 활동 / 교육</b></h5>&nbsp;&nbsp;&nbsp;
                             <span style="font-size: 0.8em;">*필수정보입력</span>
-                            <span style="font-size: 0.8em; color: #4876EF; margin-left: 71.4%;">
+                            <span style="font-size: 0.8em; color: #4876EF; margin-left: 72%;">
                         <a style="cursor: pointer;" id="activityPlus">+ 추가하기</a></span>
                         </div>
                         <hr style="width: 100%;">
@@ -1264,7 +1264,7 @@
                            <table style="border-bottom: 0.5px solid #D9D9D9; width: 100%; margin-top: 1%;">
                     		 <tr>
                     			<td class="form-group">
-                    			  <span style="font-size: 1.3em;"><b>${acdto.ac_category} -> ${acdto.ac_name}</b></span>&nbsp;
+                    			  <span style="font-size: 1.2em;"><b>${acdto.ac_category} -> ${acdto.ac_name}</b></span>&nbsp;
                     			  <span>${acdto.ac_start} ~ ${acdto.ac_end}</span>
                     			  <span style="cursor: pointer;"><i class="bi bi-pencil acupdate" ac_num='${acdto.ac_num}'></i></span>
                     		      <span style="cursor: pointer;"><i class="bi bi-trash3 acdelete" ac_num='${acdto.ac_num}'></i></span>
@@ -1572,7 +1572,7 @@
                     <div class="form-caption">
                         <h5><b>자격 / 어학 / 수상</b></h5>&nbsp;&nbsp;&nbsp;
                         <span style="font-size: 0.8em;">*필수정보입력</span>
-                        <span style="font-size: 0.8em; color: #4876EF; margin-left: 71.4%;">
+                        <span style="font-size: 0.8em; color: #4876EF; margin-left: 72%;">
                             <a style="cursor: pointer;" id="qualificationPlus">+ 추가하기</a></span>
                     </div>
                     <hr style="width: 100%;">
@@ -2114,7 +2114,7 @@
 			                       total += '<td class="form-group">';
 			                       total += '<input type="file" name="pe_file" id="pe_file" style="display: none;" multiple="multiple" >';
 			                       total += '<button type="button" id="portfoliofile"';
-			                       total += 'class="btn btn-primary" name="po_file" style="width: 1000px;">+ 포트폴리오 및 기타문서 추가</button>';
+			                       total += 'class="btn btn-primary" name="po_file" style="width: 1060px;">+ 포트폴리오 및 기타문서 추가</button>';
 			                       total += '</td>';
 			                       total += '</tr>';
 			                       total += '<!-- 저장 취소 버튼 -->';
@@ -2179,7 +2179,7 @@
 						                     if (po_file !== 'no') { // 파일이 있는 경우에만 링크 추가
 						                    	    var filePath = "../iruckseoportfolio/" + po_file; // 포트폴리오 파일이 저장된 경로
 						                    	    po += '<a  id="download" url="'+filePath+'" fileName="'+po_file+'">' +
-						                    	          '<span><b>' + po_file + '</b></span>' +
+						                    	          '<span style="font-size: 1.2em;"><b>' + po_file + '</b></span>' +
 						                    	          '</a>';
 						                    	}
 								            po += '<span style="cursor: pointer;" id="poDelete" ><i class="bi bi-trash3 podelete" po_num=' + po_num + '></i></span>' +
@@ -2276,7 +2276,7 @@
                 <div class="self">
                         <div class="form-caption">
                             <h5><b>자기소개서</b></h5>&nbsp;&nbsp;&nbsp;
-                            <span style="font-size: 0.8em; color: #4876EF; margin-left: 84%;">
+                            <span style="font-size: 0.8em; color: #4876EF; margin-left: 83.5%;">
                          <a style="cursor: pointer;" id="selfPlus">+ 추가하기</a></span>
                         </div>
                         <hr style="width: 100%;">
@@ -2285,7 +2285,7 @@
 							    <table style="border-bottom: 0.5px solid #D9D9D9; width: 100%; margin-top: 1%;">
 							        <tr>
 							            <td class="form-group">
-							                <span style="font-size: 1.3em;"><b>${sedto.se_subject}</b></span>&nbsp;
+							                <span style="font-size: 1.2em;"><b>${sedto.se_subject}</b></span>&nbsp;
 							                <span style="cursor: pointer;">
 							                    <i class="bi bi-pencil seupdate" se_num="${sedto.se_num}"></i>
 							                </span>
@@ -2585,7 +2585,7 @@
                      
                      <!-- 희망근무지------------------------------------------------------------------------------------------------------------------ -->
                       <tr>
-                        <td class="form-group" style="margin-top: 2%;">
+                        <td class="form-group" style="margin-top: 2%; ">
                             &nbsp;<span style="font-size: 0.8em; display: inline-block;">희망 근무지</span>&nbsp;&nbsp;&nbsp;
                             <span style="font-size: 0.8em; display: inline-block;">*최대 3개 시도 안에서 자유롭게 선택 가능합니다</span>&nbsp;&nbsp;&nbsp;
                             <span style="font-size: 0.8em; color: #4876EF; display: inline-block;">
@@ -2683,7 +2683,7 @@
                         <tr>
                            <td colspan="2" align="right">
                               <br>
-                              <button type="button" id="hopeOK"  class="btn btn-outline-primary" style="margin-bottom: 5%;">수정</button>
+                              <button type="button" id="hopeOK"  class="btn btn-outline-primary" style="margin-bottom: 8%;">수정</button>
                            </td>
                         </tr>
                     </table>        
@@ -3003,7 +3003,7 @@
                   
                   <div class="fixed_final">
                       <input type="text" class="form-control"   id="pe_title_temp" style="height: 40px; 
-                      width: 43%;" value="${pedto.pe_title }" required="required">&nbsp;&nbsp;&nbsp;&nbsp;
+                      width: 47%;" value="${pedto.pe_title }" required="required">&nbsp;&nbsp;&nbsp;&nbsp;
                       <button type="button" id="allDataSelect" class="btn btn-outline-primary" 
                       data-bs-target="#ListSelect" data-bs-toggle="modal">미리보기</button>&nbsp;
                       <button type="button" id="allDataUpdate" class="btn btn-primary">수정완료</button>

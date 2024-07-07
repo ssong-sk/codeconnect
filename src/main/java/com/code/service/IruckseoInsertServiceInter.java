@@ -181,13 +181,13 @@ public interface IruckseoInsertServiceInter {
 	public int getScrapCount(int r_num);
 	
 	//스크랩 공고 삭제하기
-	public void scrapDelete(int s_num);
+	public void scrapDelete(int[] s_num);
 	
 	//입사지원현황 리스트
 	public List<SupportDto> getSupportList(int r_num);
 	
-	//입사지원 지원취소 업데이트
-	public void updateSupportDelete(int st_num);
+	//이력서지원현황 지원취소 업데이트
+	public void updateSupportDelete(int[] st_num);
 	
 	//관심기업 리스트
 	public List<CompanyDto> getScrapCompanyList(int r_num, int start, int perPage);
@@ -206,7 +206,7 @@ public interface IruckseoInsertServiceInter {
 	
 	//이력서지원현황 페이징 및 리스트
 	public List<SupportDto> getSupportPaging(int r_num, int start, int perPage);
-	
+
 	//이력서지원현황 삭제
-	public void SupportDelete(int st_num);
+	public void SupportDelete(int[] st_num);
 }

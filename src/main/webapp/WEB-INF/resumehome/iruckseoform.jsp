@@ -22,7 +22,7 @@
       margin: 0 auto;
       width: 100%;
       height: 100%;
-      max-width: 1000px;
+      max-width: 1060px;
   }
   
   #wrap {
@@ -200,7 +200,7 @@
   
   /*동의서*/
   .consent {
-    margin-top: 12%;
+    margin-top: 6%;
   }
   
   /*동의서 모달창*/
@@ -1198,7 +1198,7 @@
                         <div class="form-caption">
                             <h5><b>경험 / 활동 / 교육</b></h5>&nbsp;&nbsp;&nbsp;
                             <span style="font-size: 0.8em;">*필수정보입력</span>
-                            <span style="font-size: 0.8em; color: #4876EF; margin-left: 71.4%;">
+                            <span style="font-size: 0.8em; color: #4876EF; margin-left: 72%;">
                         <a style="cursor: pointer;" id="activityPlus">+ 추가하기</a></span>
                         </div>
                         <hr style="width: 100%;">
@@ -1306,7 +1306,7 @@
 			                     	    	ac += '<table style="border-bottom: 0.5px solid #D9D9D9; width: 100%; margin-top: 1%;">';
 			                    			ac += '<tr>';
 			                    			ac += '<td class="form-group">';
-			                    			ac += '<span style="font-size: 1.3em;"><b>'+ac_category+' -> '+ac_name+'</b></span>&nbsp;';
+			                    			ac += '<span style="font-size: 1.2em;"><b>'+ac_category+' -> '+ac_name+'</b></span>&nbsp;';
 			                    			ac += '<span>'+ac_start+' ~ '+ac_end+'</span>';
 			                    			ac += '<span style="cursor: pointer;"><i class="bi bi-pencil acupdate" ac_num='+ac_num+'></i></span>';
 			                    			ac += '<span style="cursor: pointer;"><i class="bi bi-trash3 acdelete" ac_num='+ac_num+'></i></span>';
@@ -1465,7 +1465,7 @@
 					                     	    	ac += '<table style="border-bottom: 0.5px solid #D9D9D9; width: 100%; margin-top: 1%;">';
 					                    			ac += '<tr>';
 					                    			ac += '<td class="form-group">';
-					                    			ac += '<span style="font-size: 1.3em;"><b>'+ac_category+' -> '+ac_name+'</b></span>&nbsp;';
+					                    			ac += '<span style="font-size: 1.2em;"><b>'+ac_category+' -> '+ac_name+'</b></span>&nbsp;';
 					                    			ac += '<span>'+ac_start+' ~ '+ac_end+'</span>';
 					                    			ac += '<span style="cursor: pointer;"><i class="bi bi-pencil acupdate" ac_num='+ac_num+'></i></span>';
 					                    			ac += '<span style="cursor: pointer;"><i class="bi bi-trash3 acdelete" ac_num='+ac_num+'></i></span>';
@@ -1497,7 +1497,7 @@
                     <div class="form-caption">
                         <h5><b>자격 / 어학 / 수상</b></h5>&nbsp;&nbsp;&nbsp;
                         <span style="font-size: 0.8em;">*필수정보입력</span>
-                        <span style="font-size: 0.8em; color: #4876EF; margin-left: 71.4%;">
+                        <span style="font-size: 0.8em; color: #4876EF; margin-left: 72%;">
                             <a style="cursor: pointer;" id="qualificationPlus">+ 추가하기</a></span>
                     </div>
                     <hr style="width: 100%;">
@@ -1976,7 +1976,7 @@
 			                       total += '<td class="form-group">';
 			                       total += '<input type="file" name="pe_file" id="pe_file" style="display: none;" multiple="multiple" >';
 			                       total += '<button type="button" id="portfoliofile"';
-			                       total += 'class="btn btn-primary" name="po_file" style="width: 1000px;">+ 포트폴리오 및 기타문서 추가</button>';
+			                       total += 'class="btn btn-primary" name="po_file" style="width: 1060px;">+ 포트폴리오 및 기타문서 추가</button>';
 			                       total += '</td>';
 			                       total += '</tr>';
 			                       total += '<!-- 저장 취소 버튼 -->';
@@ -2041,7 +2041,7 @@
 						                     if (po_file !== 'no') { // 파일이 있는 경우에만 링크 추가
 						                    	    var filePath = "../iruckseoportfolio/" + po_file; // 포트폴리오 파일이 저장된 경로
 						                    	    po += '<a  id="download" url="'+filePath+'" fileName="'+po_file+'">' +
-						                    	          '<span><b>' + po_file + '</b></span>' +
+						                    	          '<span style="font-size: 1.2em;"><b>' + po_file + '</b></span>' +
 						                    	          '</a>';
 						                    	}
 								            po += '<span style="cursor: pointer;" id="poDelete" ><i class="bi bi-trash3 podelete" po_num=' + po_num + '></i></span>' +
@@ -2138,7 +2138,7 @@
                 <div class="self">
                         <div class="form-caption">
                             <h5><b>자기소개서</b></h5>&nbsp;&nbsp;&nbsp;
-                            <span style="font-size: 0.8em; color: #4876EF; margin-left: 84%;">
+                            <span style="font-size: 0.8em; color: #4876EF; margin-left: 83.5%;">
                          <a style="cursor: pointer;" id="selfPlus">+ 추가하기</a></span>
                         </div>
                         <hr style="width: 100%;">
@@ -2230,7 +2230,7 @@
 	                     	            se += '<table style="border-bottom: 0.5px solid #D9D9D9; width: 100%; margin-top: 1%;">';
 		                    			se += '<tr>';
 		                    			se += '<td class="form-group">';
-		                    			se += '<span style="font-size: 1.3em;"><b>'+se_subject+'</b></span>&nbsp;';
+		                    			se += '<span style="font-size: 1.2em;"><b>'+se_subject+'</b></span>&nbsp;';
 		                    			se += '<span style="cursor: pointer;"><i class="bi bi-pencil seupdate" se_num='+se_num+'></i></span>';
 		                    			se += '<span style="cursor: pointer;"><i class="bi bi-trash3 sedelete" se_num='+se_num+'></i></span>';
 		                    			se += '</td>';
@@ -2903,7 +2903,7 @@
                   
                   <div class="fixed_final">
                       <input type="text" class="form-control"   id="pe_title_temp" style="height: 40px; 
-                      width: 43%;" placeholder="이력서 제목을 입력해주세요" required="required">&nbsp;&nbsp;&nbsp;&nbsp;
+                      width: 47%;" placeholder="이력서 제목을 입력해주세요" required="required">&nbsp;&nbsp;&nbsp;&nbsp;
                       <button type="button" id="allDataSelect" class="btn btn-outline-primary" 
                       data-bs-target="#ListSelect" data-bs-toggle="modal">미리보기</button>&nbsp;
                       <button type="button" id="allDataUpdate" class="btn btn-primary">작성완료</button>

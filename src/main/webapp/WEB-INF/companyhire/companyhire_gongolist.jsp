@@ -12,6 +12,7 @@
 <title>기업 마이페이지</title>
 
 <style>
+/*전체 너비에 맞게 수정 */
 body {
 	font-family: 'Noto Sans KR', sans-serif;
 	background-color: #f8f9fa;
@@ -21,18 +22,17 @@ body {
 .wrapper {
 	display: flex;
 	justify-content: center;
-	padding: 20px 0;
+	padding: 20px 420px;
 }
 
 .container {
 	display: flex;
-	width: 90%;
-	max-width: 1200px;
+	width: 1060px; /* 전체 너비를 1060px로 설정 */
 }
 
 .sidebar {
-	width: 250px;
-	height: 540px;
+	width: 200px; /* 사이드바 너비 조정 */
+	height: 460px;
 	border: 1px solid #E0E0E0;
 	padding: 20px;
 	background-color: #fff;
@@ -40,13 +40,14 @@ body {
 	margin-right: 20px;
 	flex-shrink: 0;
 	overflow-y: auto;
+	margin-bottom: 50px;
+	margin-top: 15px;
 }
 
 .sidebar h5 {
 	text-align: center;
 	font-weight: bold;
 	margin-bottom: 20px;
-	cursor: pointer;
 }
 
 .sidebar .btn {
@@ -99,8 +100,9 @@ body {
 	flex-grow: 1;
 	background-color: #fff;
 	border-radius: 10px;
-	padding: 20px;
+	padding: 10px;
 	overflow-y: auto;
+	width: calc(100% - 240px); /* 사이드바 너비를 뺀 나머지 공간 */
 }
 
 .header {
@@ -177,7 +179,7 @@ table {
 }
 
 th:nth-child(1), td:nth-child(1) {
-	width: 5%;
+	width: 10%;
 }
 
 th:nth-child(2), td:nth-child(2) {
@@ -193,10 +195,15 @@ th:nth-child(4), td:nth-child(4) {
 }
 
 th:nth-child(5), td:nth-child(5) {
-	width: 20%;
+	width: 15%;
 }
+
 th:nth-child(6), td:nth-child(6) {
 	width: 15%;
+}
+
+.no-hover:hover {
+	background-color: inherit !important;
 }
 </style>
 <script>
@@ -236,37 +243,39 @@ th:nth-child(6), td:nth-child(6) {
 	<div class="wrapper">
 		<div class="container">
 			<div class="sidebar">
-				<h5 onclick="location.href='main'">코드커넥트 채용 솔루션</h5>
+				<h5>기업 채용 솔루션</h5>
 				<button class="btn" onclick="location.href='/hire/hirewrite'">+
 					공고 등록하기</button>
-				<button class="btn">🔍 인재풀 탐색하기</button>
+				<!-- <button class="btn">🔍 인재풀 탐색하기</button>-->
 				<div class="menu-divider"></div>
 				<div class="menu-item" onclick="location.href='jiwon'">전체 지원자
 					관리</div>
-				<div class="menu-item" onclick="location.href='companyhire'">
-					<span style="font-weight: bold;">채용공고 관리</span> <span>+</span>
+				<div class="menu-item" onclick="location.href='companyhire'"
+					style="font-weight: bold;">
+					<span>채용공고 관리</span> <span>+</span>
 				</div>
-				<div class="menu-item" onclick="location.href='injae'">제안 보낸
-					인재풀 관리</div>
+				<!-- <div class="menu-item"  onclick="location.href='injae'">제안 보낸 인재풀 관리</div>-->
 				<div class="menu-divider"></div>
 				<div class="menu-item" onclick="location.href='companyupdate'">기업
 					정보 수정</div>
 				<div class="menu-item" onclick="location.href='intromain'">기업
 					소개 하기</div>
-				<div class="menu-item" onclick="location.href='showimsi'">내 기업
-					소개 페이지로 이동</div>
+				<div class="menu-divider"></div>
 				<div class="menu-item" onclick="location.href='account'">계정 관리</div>
+				<div class="menu-item" onclick="location.href='logoutprocess'">로그아웃</div>
 			</div>
 
 			<div class="main-content-wrapper">
 				<div class="header">
 					<h1>채용공고 관리</h1>
-					<div class="search-bar">
-						<input type="text" class="form-control" placeholder="공고 검색">
-						<button class="btn btn-primary ms-2">
-							<i class="bi bi-search"></i>
-						</button>
-					</div>
+					<!-- 
+                    <div class="search-bar">
+                        <input type="text" class="form-control" placeholder="공고 검색">
+                        <button class="btn btn-primary ms-2">
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </div>
+                    -->
 				</div>
 				<div class="tabs">
 					<button class="active btn btn-light">공고 전체</button>
@@ -274,30 +283,43 @@ th:nth-child(6), td:nth-child(6) {
 					<button class="btn btn-light">채용종료</button>
 				</div>
 				<div class="table-responsive">
-					<table class="table table-hover">
 
-						<thead>
-							<tr>
-								<th>번호</th>
-								<th>공고명</th>
-								<th>직군</th>
-								<th>지원건수</th>
-								<th>게시일</th>
-								<th>마감일</th>
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach var="h" items="${hlist}">
+					<c:if test="${hlist.size() == 0}">
+
+						<div class="no-hover"
+							style="border: 1px solid #ccc; border-radius: 8px; padding: 20px; width: 100%; margin: 0 auto; align-self: center;">
+							해당 기업은 현재 채용중인 포지션이 없습니다.</div>
+
+					</c:if>
+
+
+					<c:if test="${hlist.size() > 0}">
+
+						<table class="table table-hover">
+							<thead>
 								<tr>
-									<td></td>
-									<td><a target="_blank" href="/hire/detail?h_num=${h.h_num }">${h.h_title}</a></td>
-									<td>${h.h_job}</td>
-									<td>${h.support_count}</td>
-									<td>${h.h_writeday}</td>
-									<td>${h.h_deadline}</td>
+									<th>번호</th>
+									<th>공고명</th>
+									<th>직군</th>
+									<th>지원건수</th>
+									<th>게시일</th>
+									<th>마감일</th>
 								</tr>
-							</c:forEach>
-						</tbody>
+							</thead>
+							<tbody>
+								<c:forEach var="h" items="${hlist}" varStatus="status">
+									<tr>
+										<td></td>
+										<td><a target="_blank"
+											href="/hire/detail?h_num=${h.h_num }">${h.h_title}</a></td>
+										<td>${h.h_job}</td>
+										<td>${h.support_count}</td>
+										<td>${h.h_writeday}</td>
+										<td>${h.h_deadline}</td>
+									</tr>
+								</c:forEach>
+					</c:if>
+					</tbody>
 					</table>
 				</div>
 			</div>

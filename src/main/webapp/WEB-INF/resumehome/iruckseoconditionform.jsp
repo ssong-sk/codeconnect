@@ -21,11 +21,11 @@
       margin: 0 auto;
       width: 100%;
       height: 100%;
-      max-width: 1200px;
+      max-width: 1060px;
   }
   
   #wrap {
-      margin-top: 100px; /* 헤더 들어갈 부분 */
+      margin-top: 60px; /* 헤더 들어갈 부분 */
       font-family: 'IBM Plex Sans KR', sans-serif;
   }
   .all-form {
@@ -34,6 +34,7 @@
       padding: 20px; /* 전체 여백 */
       margin: 0 auto; /* 가운데 정렬 */
       border: 0px solid #ddd; /* 외곽선 */
+       margin-top: 60px;
   }
   
   /* 왼쪽 메뉴바 스타일 */
@@ -50,7 +51,7 @@
   }
   
   .menu-item {
-      font-size: 0.9em;
+      
   }
   
   /*오른쪽 스타일*/
@@ -101,6 +102,22 @@
     margin-bottom: 5%;
     padding: 10px 20px;
   }
+  
+     /* 이미지 */
+	.image-container {
+	    position: relative;
+	    display: inline-block;
+	}
+	
+	.centered-text {
+	    position: absolute;
+	    top: 90%;
+	    left: 20%;
+	    transform: translate(-50%, -50%);
+	    color: white;
+	    font-weight: bold;
+	    text-align: center;
+	} 
 
 </style>
 </head>
@@ -108,19 +125,23 @@
     <div class="all">
         <div id="wrap">
             <div class="center">
+             <div class="image-container">
+	            <img alt="" src="../image/resume.PNG" style="width: 1060px; border-radius: 10px;">
+	            <h4 class="centered-text">이력서 작성 하고 합격률 높이자!</h4>
+	         </div>
               <div class="all-form">
 <!-- 왼쪽 메뉴바------------------------------------------------------------------------------------------------------- -->
               <div class="leftmenubar" style="width: 20%; margin-bottom: 10%;">
                   <ul class="leftmenu">
 				    <li>
-				      <div class="menu-home">
+				      <div class="menu-home" style="font-size: 1.2em;">
 				        <a href="/resumehome/home"><b>My Home</b></a>
 				      </div>
 				    </li>
 				    
 				    <li class="title-section">
 				      <div class="menu-section">
-				        <span><b>이력서 관리</b></span>
+				        <span style="font-size: 1.2em;"><b>이력서 관리</b></span>
 				      </div>
 				    </li>
 				    
@@ -132,13 +153,13 @@
 				    
 				    <li>
 				      <div class="menu-item">
-				        <a href="/resumehome/conditionform" style="color: #5494DB; background-color: rgba(84, 148, 219, 0.2);">이력서 현황</a>
+				        <a href="/resumehome/conditionform" style="color: #0D6CF9; background-color: rgba(84, 148, 219, 0.2);">이력서 현황</a>
 				      </div>
 				    </li>
 				    
 				    <li class="title-section">
 				      <div class="menu-section">
-				        <span><b>입사지원 관리</b></span>
+				        <span style="font-size: 1.2em;"><b>입사지원 관리</b></span>
 				      </div>
 				    </li>
 				    
@@ -150,7 +171,7 @@
 				    
 				    <li class="title-section">
 				      <div class="menu-section">
-				        <span><b>스크랩/관심기업</b></span>
+				        <span style="font-size: 1.2em;"><b>스크랩/관심기업</b></span>
 				      </div>
 				    </li>
 				    
@@ -202,8 +223,8 @@
 			                
 			                <tr>
 							    <!-- 첫 번째 열: 총 경력과 희망직무 -->
-							    <td style="font-size: 0.8em; width: 30%;">총 경력: ${pe.ca_resign}개월</td>
-							    <td style="font-size: 0.8em;">희망직무: ${pe.ho_keyword}</td>
+							    <td style="font-size: 0.8em; width: 30%;"><i class="bi bi-calendar-week"></i> &nbsp;&nbsp;총 경력: ${pe.ca_resign}개월</td>
+							    <td style="font-size: 0.8em;"><i class="bi bi-buildings"></i>&nbsp;&nbsp; 희망직무: ${pe.ho_keyword}</td>
 							</tr>
 							
 							<tr><td><br></td></tr>
@@ -211,13 +232,13 @@
 							<tr>
 							    <!-- 두 번째 열: 희망연봉과 희망지역 -->
 							    <c:if test="${pe.ho_check == '면접 후 결정'}">
-							      <td style="font-size: 0.8em;"><i class="bi bi-coin"></i> 희망연봉: ${pe.ho_check}</td>
+							      <td style="font-size: 0.8em;"><i class="bi bi-coin"></i>&nbsp;&nbsp; 희망연봉: ${pe.ho_check}</td>
 							    </c:if>
 							    <c:if test="${pe.ho_check != '면접 후 결정'}">
-							      <td style="font-size: 0.8em;"><i class="bi bi-coin"></i> 희망연봉: ${pe.ho_check} 만원</td>
+							      <td style="font-size: 0.8em;"><i class="bi bi-coin"></i>&nbsp;&nbsp; 희망연봉: ${pe.ho_check} 만원</td>
 							    </c:if>
 							    
-							    <td style="font-size: 0.8em;"><i class="bi bi-geo-alt"></i> 희망지역: ${pe.ho_addr}</td>
+							    <td style="font-size: 0.8em;"><i class="bi bi-geo-alt"></i>&nbsp;&nbsp; 희망지역: ${pe.ho_addr}</td>
 							</tr>
 							
 							<tr><td><br></td></tr>
@@ -276,11 +297,11 @@
 				       </ul>
 				     </div>
 		            <div class="condition-notice">
-		              <div>
-			              <div style="font-size: 1.2em;"><i class="bi bi-exclamation-circle"></i>&nbsp;&nbsp;<b>유의사항</b></div><br>
-			              <div>- 이력서는 최대 10개까지 등록 가능합니다.</div>
-			              <div>- '입사지원 내역'건수는 최근 1년간 내역에 대해 확인 가능합니다.</div>
-			              <div>- 수정, 삭제 기능은 이력서 우측 버튼을 누르면 확인하실 수 있습니다.(이력서는 부분 삭제 불가)</div>
+		              <div style="padding: 10px 10px;">
+			              <div ><i class="bi bi-exclamation-circle"></i>&nbsp;&nbsp;<b>유의사항</b></div><br>
+			              <div style="font-size: 0.8em;">- 이력서는 최대 10개까지 등록 가능합니다.</div>
+			              <div style="font-size: 0.8em;">- '입사지원 내역'건수는 최근 1년간 내역에 대해 확인 가능합니다.</div>
+			              <div style="font-size: 0.8em;">- 수정, 삭제 기능은 이력서 우측 버튼을 누르면 확인하실 수 있습니다.(이력서는 부분 삭제 불가)</div>
 		              </div>
 		            </div>
 		            

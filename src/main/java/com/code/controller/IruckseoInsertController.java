@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.code.dto.IruckseoActibityDto;
 import com.code.dto.IruckseoCareerDto;
@@ -56,17 +57,25 @@ public class IruckseoInsertController {
 		RegisterDto rdto = new RegisterDto();
 		int r_num =  Integer.parseInt((String)session.getAttribute("r_num"));
 		
-		//personal pe_num 등록하기 insert
-		irdto.setR_num(r_num);
-		irservice.insertPersonal(irdto);
 		
-		// 회원정보 조회
-		rdto =reservice.getDataByNum((String)session.getAttribute("r_num"));
+		int totalCount = irservice.getPersonalCount(r_num);
 		
-		mview.addObject("irdto", irdto);
-		mview.addObject("rdto", rdto);
-		//포워드
-		mview.setViewName("/resumehome/iruckseoform");
+		if( totalCount >= 10 ) {
+			mview.addObject("msg", "이력서는 최대 10개까지만 등록 가능합니다.");
+			mview.setViewName("redirect:/resumehome/home");
+		}else {
+			//personal pe_num 등록하기 insert
+			irdto.setR_num(r_num);
+			irservice.insertPersonal(irdto);
+			
+			// 회원정보 조회
+			rdto =reservice.getDataByNum((String)session.getAttribute("r_num"));
+			
+			mview.addObject("irdto", irdto);
+			mview.addObject("rdto", rdto);
+			//포워드
+			mview.setViewName("/sub/resumehome/iruckseoform");
+		}
 		
 		return mview;
 	}
@@ -496,7 +505,7 @@ public class IruckseoInsertController {
   		mview.addObject("hodto", hodto);
   		
   		//포워드
-  		mview.setViewName("/resumehome/iruckseoUpdateform");
+  		mview.setViewName("/sub/resumehome/iruckseoUpdateform");
   		
   		return mview;
   	}

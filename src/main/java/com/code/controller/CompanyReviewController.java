@@ -1,5 +1,7 @@
 package com.code.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,6 +30,7 @@ public class CompanyReviewController {
         return num > 0;
     }
 
+    //기업 리뷰 저장하기
     @PostMapping("/company/companyreviewSave")
     public String companyreviewSave(@ModelAttribute CompanyReviewDto dto, HttpSession session, @RequestParam String c_num, Model model) {
         String myid = (String) session.getAttribute("myid");
@@ -40,6 +43,8 @@ public class CompanyReviewController {
 
         dto.setR_id(myid);
         dto.setC_num(c_num);
+        
+      
 
         // 디버깅 로그 추가
         System.out.println("Review Data: " + dto.toString());

@@ -16,6 +16,20 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <title>Insert title here</title>
+
+<style type="text/css">
+
+.gap{
+width:55px;
+
+}
+
+#schooltext {
+	/* 기본 텍스트 색상 설정 */
+	color: black; /* 원하는 기본 색상으로 설정하세요 */
+}
+
+</style>
 </head>
 <body>
 	<div
@@ -29,32 +43,35 @@
 				<div class="FavoriteSummary_FavoriteSummary__container__cEWK2">
 					<div
 						class="Grid_Grid__container__43uvK FavoriteSummary_FavoriteSummary__container_counterContainer__idP5S">
+						
+						<div class="gap"></div>
+						
 						<div
 							class="Grid_Grid__item__4GoIZ Grid_Grid__align-items_flex-start__nEOiH Grid_Grid__grid__xs__4__d_Dih">
-							<a href="/member/bookmarks" class="CountSummary_CountSummary__mm865" ><h6
-									class="Typography_Typography__root__RdAI1 Typography_Typography__headline1__oRteu Typography_Typography__weightBold__KkJEY ">0</h6>
+							<a href="/member/bookmarks"
+								class="CountSummary_CountSummary__mm865"><h6
+									class="Typography_Typography__root__RdAI1 Typography_Typography__headline1__oRteu Typography_Typography__weightBold__KkJEY "> ${scrapCount }</h6>
 								<span
 								class="Typography_Typography__root__RdAI1 Typography_Typography__caption1__P91eH Typography_Typography__weightRegular__jzmck Typography_Typography__alignCenter__HDWWj CountSummary_CountSummary_summaryTitle__lDXC6">북마크</span></a>
 						</div>
-						<div
-							class="Grid_Grid__item__4GoIZ Grid_Grid__align-items_flex-start__nEOiH Grid_Grid__grid__xs__4__d_Dih">
-							<a class="CountSummary_CountSummary__mm865" href="/member/companies"><h6
-									class="Typography_Typography__root__RdAI1 Typography_Typography__headline1__oRteu Typography_Typography__weightBold__KkJEY ">0</h6>
-								<span
-								class="Typography_Typography__root__RdAI1 Typography_Typography__caption1__P91eH Typography_Typography__weightRegular__jzmck Typography_Typography__alignCenter__HDWWj CountSummary_CountSummary_summaryTitle__lDXC6">관심회사</span></a>
-						</div>
+						
+						<div class="gap"></div>
+						
 						<div
 							class="Grid_Grid__item__4GoIZ Grid_Grid__align-items_flex-start__nEOiH Grid_Grid__grid__xs__4__d_Dih">
 							<a class="CountSummary_CountSummary__mm865"
-								data-attribute-id="myActivity__exploreStatus"
-								data-status-kind="followingTags" href="/my/following-tags"><h6
-									class="Typography_Typography__root__RdAI1 Typography_Typography__headline1__oRteu Typography_Typography__weightBold__KkJEY ">0</h6>
+								href="/member/companies"><h6
+									class="Typography_Typography__root__RdAI1 Typography_Typography__headline1__oRteu Typography_Typography__weightBold__KkJEY ">${companyCount }</h6>
 								<span
-								class="Typography_Typography__root__RdAI1 Typography_Typography__caption1__P91eH Typography_Typography__weightRegular__jzmck Typography_Typography__alignCenter__HDWWj CountSummary_CountSummary_summaryTitle__lDXC6">관심태그</span></a>
+								class="Typography_Typography__root__RdAI1 Typography_Typography__caption1__P91eH Typography_Typography__weightRegular__jzmck Typography_Typography__alignCenter__HDWWj CountSummary_CountSummary_summaryTitle__lDXC6">관심회사</span></a>
 						</div>
+						
 					</div>
 				</div>
 			</section>
+			
+			
+			
 			<section class="BasicResume_BasicResume__ROQNx">
 				<h2
 					class="Typography_Typography__root__RdAI1 Typography_Typography__body1__q3AOP Typography_Typography__weightMedium__GXnOM">기본
@@ -63,55 +80,83 @@
 					<div class="BasicResume_BasicResume__container__progress__04eAk">
 						<div
 							class="BasicResume_BasicResume__container__progress__content__j639k">
-							<div
-								class="BasicResume_BasicResume__container__progress__content__descriptions__xQNnH">
-								<p
-									class="Typography_Typography__root__RdAI1 Typography_Typography__body2__5Mmhi Typography_Typography__weightBold__KkJEY BasicResume_BasicResume__container__progress__content__descriptions__rate__zaN_7">
-									이력서 완성률<span class="">40%</span>
-								</p>
-								<span
-									class="Typography_Typography__root__RdAI1 Typography_Typography__caption1__P91eH Typography_Typography__weightMedium__GXnOM BasicResume_BasicResume__container__wantedResume__notice__kH_RE">간단한
-									소개만 작성해도 면접 제안을 받을 수 있어요!</span>
-							</div>
 						</div>
-						<div class="ProgressBar_ProgressBar__gHqfi">
-							<div class="ProgressBar_ProgressBar__progress__sYNhQ"
-								style="width: 60%;"></div>
+						<div class="Grid_Grid__container__43uvK ApplySummary_ApplySummary__container_counterContainer__SiBuu">
+						
+						
+						<div class="Grid_Grid__item__4GoIZ Grid_Grid__align-items_flex-start__nEOiH Grid_Grid__grid__xs__3__Ao_Ex">
+							<a class="CountSummary_CountSummary__mm865 iruckseocheck" data-attribute-id="myActivity__applicationStatus" data-status-kind="applyDone" href="#">
+							
+							<h6 class="Typography_Typography__root__RdAI1 Typography_Typography__headline1__oRteu Typography_Typography__weightBold__KkJEY " id="schooltext">미작성</h6>
+								
+								<span class="Typography_Typography__root__RdAI1 Typography_Typography__caption1__P91eH Typography_Typography__weightRegular__jzmck Typography_Typography__alignCenter__HDWWj CountSummary_CountSummary_summaryTitle__lDXC6">학력
+									</span></a>
 						</div>
-						<button
-							class="Button_Button__root__m1NGq Button_Button__contained__qyP2s Button_Button__containedPrimary__kCB60 Button_Button__containedSizeMedium__xBgIW Button_Button__fullWidth__zAnDP BasicResume_BasicResume__container__wantedResume__button__FnCW7"
+						
+						
+						<div class="Grid_Grid__item__4GoIZ Grid_Grid__align-items_flex-start__nEOiH Grid_Grid__grid__xs__3__Ao_Ex">
+							<a class="CountSummary_CountSummary__mm865 iruckseocheck" data-attribute-id="myActivity__applicationStatus" data-status-kind="pass" href="#">
+							
+							<h6 class="Typography_Typography__root__RdAI1 Typography_Typography__headline1__oRteu Typography_Typography__weightBold__KkJEY " id="careertext">미작성</h6>
+								
+								<span class="Typography_Typography__root__RdAI1 Typography_Typography__caption1__P91eH Typography_Typography__weightRegular__jzmck Typography_Typography__alignCenter__HDWWj CountSummary_CountSummary_summaryTitle__lDXC6">경력
+									</span></a>
+						</div>
+						
+						
+						<div class="Grid_Grid__item__4GoIZ Grid_Grid__align-items_flex-start__nEOiH Grid_Grid__grid__xs__3__Ao_Ex">
+							<a class="CountSummary_CountSummary__mm865 iruckseocheck" data-attribute-id="myActivity__applicationStatus" data-status-kind="hire" href="#">
+							
+							<h6 class="Typography_Typography__root__RdAI1 Typography_Typography__headline1__oRteu Typography_Typography__weightBold__KkJEY " id="actibitytext">미작성</h6>
+								
+								<span class="Typography_Typography__root__RdAI1 Typography_Typography__caption1__P91eH Typography_Typography__weightRegular__jzmck Typography_Typography__alignCenter__HDWWj CountSummary_CountSummary_summaryTitle__lDXC6">경험/활동/교육
+									</span></a>
+						</div>
+						
+						
+						<div class="Grid_Grid__item__4GoIZ Grid_Grid__align-items_flex-start__nEOiH Grid_Grid__grid__xs__3__Ao_Ex">
+							<a class="CountSummary_CountSummary__mm865 iruckseocheck" data-attribute-id="myActivity__applicationStatus" data-status-kind="rejected" href="#">
+							
+							<h6 class="Typography_Typography__root__RdAI1 Typography_Typography__headline1__oRteu Typography_Typography__weightBold__KkJEY " id="spectext">미작성</h6>
+								
+								<span class="Typography_Typography__root__RdAI1 Typography_Typography__caption1__P91eH Typography_Typography__weightRegular__jzmck Typography_Typography__alignCenter__HDWWj CountSummary_CountSummary_summaryTitle__lDXC6">자격/어학/수상</span></a>
+						</div>
+						
+						
+					</div>
+						
+						
+						
+						<button onclick="location.href='/resumehome/updateForm?pe_num=${pe_num }'"
+							class="Button_Button__root__m1NGq Button_Button__contained__qyP2s Button_Button__containedPrimary__kCB60 Button_Button__containedSizeMedium__xBgIW Button_Button__fullWidth__zAnDP BasicResume_BasicResume__container__wantedResume__button__FnCW7 iruckseocheckbtn"
 							data-attribute-id="myActivity__profile__update"
 							data-profile-level="2">
 							<span class="Button_Button__label__K0sBs">이력서 업데이트 하기</span><span
 								class="Button_Button__interaction__1LUyr"></span>
 						</button>
 					</div>
-					<button type="button"
-						class="BasicResume_BasicResume__container__wantedResume__A8d5Z">
-						<span
-							class="Typography_Typography__root__RdAI1 Typography_Typography__label1__hNiv5 Typography_Typography__weightMedium__GXnOM">김태윤
-							1</span><span
-							class="SvgIcon_SvgIcon__root__OHiSO BasicResume_BasicResume__container__wantedResume__arrow__hrUJC"><svg
-								class="SvgIcon_SvgIcon__root__svg__ohdSc" viewBox="0 0 24 24">
-											<path
-									d="M7.86346 3.36272C7.51199 3.7142 7.51199 4.28405 7.86346 4.63552L15.2271 11.9991L7.86346 19.3627C7.51199 19.7142 7.51199 20.284 7.86346 20.6355C8.21493 20.987 8.78478 20.987 9.13625 20.6355L17.1362 12.6355C17.4877 12.284 17.4877 11.7142 17.1362 11.3627L9.13625 3.36272C8.78478 3.01125 8.21493 3.01125 7.86346 3.36272Z"></path></svg></span>
-					</button>
+					
 				</div>
 			</section>
+<!-- 			--------------------------------------------------------------------지원 현황---------------------------------------------------------------- -->
+			
 			<section class="ApplySummary_ApplySummary__WuQPZ">
 				<h2
 					class="Typography_Typography__root__RdAI1 Typography_Typography__body1__q3AOP Typography_Typography__weightMedium__GXnOM">지원
 					현황</h2>
-				<div class="ApplySummary_ApplySummary__container__NTH3o">
-					<div
-						class="Grid_Grid__container__43uvK ApplySummary_ApplySummary__container_counterContainer__SiBuu">
+				<div class="BasicResume_BasicResume__container__9Fg__">
+					<div class="BasicResume_BasicResume__container__progress__04eAk">
+						<div
+							class="BasicResume_BasicResume__container__progress__content__j639k">
+						</div>
+						<div class="Grid_Grid__container__43uvK ApplySummary_ApplySummary__container_counterContainer__SiBuu">
+						
 						<div
 							class="Grid_Grid__item__4GoIZ Grid_Grid__align-items_flex-start__nEOiH Grid_Grid__grid__xs__3__Ao_Ex">
 							<a class="CountSummary_CountSummary__mm865"
 								data-attribute-id="myActivity__applicationStatus"
-								data-status-kind="applyDone"
-								href="/member/apply"><h6
-									class="Typography_Typography__root__RdAI1 Typography_Typography__headline1__oRteu Typography_Typography__weightBold__KkJEY ">0</h6>
+								data-status-kind="applyDone" href="/member/apply"><h6
+									class="Typography_Typography__root__RdAI1 Typography_Typography__headline1__oRteu Typography_Typography__weightBold__KkJEY ">${apply }</h6>
 								<span
 								class="Typography_Typography__root__RdAI1 Typography_Typography__caption1__P91eH Typography_Typography__weightRegular__jzmck Typography_Typography__alignCenter__HDWWj CountSummary_CountSummary_summaryTitle__lDXC6">지원
 									완료</span></a>
@@ -121,8 +166,8 @@
 							<a class="CountSummary_CountSummary__mm865"
 								data-attribute-id="myActivity__applicationStatus"
 								data-status-kind="pass"
-								href="/status/applications/applied?status=pass"><h6
-									class="Typography_Typography__root__RdAI1 Typography_Typography__headline1__oRteu Typography_Typography__weightBold__KkJEY ">0</h6>
+								href="/member/apply"><h6
+									class="Typography_Typography__root__RdAI1 Typography_Typography__headline1__oRteu Typography_Typography__weightBold__KkJEY ">${applySuc }</h6>
 								<span
 								class="Typography_Typography__root__RdAI1 Typography_Typography__caption1__P91eH Typography_Typography__weightRegular__jzmck Typography_Typography__alignCenter__HDWWj CountSummary_CountSummary_summaryTitle__lDXC6">서류
 									통과</span></a>
@@ -132,8 +177,8 @@
 							<a class="CountSummary_CountSummary__mm865"
 								data-attribute-id="myActivity__applicationStatus"
 								data-status-kind="hire"
-								href="/status/applications/applied?status=hire"><h6
-									class="Typography_Typography__root__RdAI1 Typography_Typography__headline1__oRteu Typography_Typography__weightBold__KkJEY ">0</h6>
+								href="/member/apply"><h6
+									class="Typography_Typography__root__RdAI1 Typography_Typography__headline1__oRteu Typography_Typography__weightBold__KkJEY ">${applyFin }</h6>
 								<span
 								class="Typography_Typography__root__RdAI1 Typography_Typography__caption1__P91eH Typography_Typography__weightRegular__jzmck Typography_Typography__alignCenter__HDWWj CountSummary_CountSummary_summaryTitle__lDXC6">최종
 									합격</span></a>
@@ -143,11 +188,20 @@
 							<a class="CountSummary_CountSummary__mm865"
 								data-attribute-id="myActivity__applicationStatus"
 								data-status-kind="rejected"
-								href="/status/applications/applied?status=reject"><h6
-									class="Typography_Typography__root__RdAI1 Typography_Typography__headline1__oRteu Typography_Typography__weightBold__KkJEY ">0</h6>
+								href="/member/apply"><h6
+									class="Typography_Typography__root__RdAI1 Typography_Typography__headline1__oRteu Typography_Typography__weightBold__KkJEY ">${applyFail }</h6>
 								<span
 								class="Typography_Typography__root__RdAI1 Typography_Typography__caption1__P91eH Typography_Typography__weightRegular__jzmck Typography_Typography__alignCenter__HDWWj CountSummary_CountSummary_summaryTitle__lDXC6">불합격</span></a>
 						</div>
+						</div>
+
+						<button onclick="location.href='/member/apply'"
+							class="Button_Button__root__m1NGq Button_Button__contained__qyP2s Button_Button__containedPrimary__kCB60 Button_Button__containedSizeMedium__xBgIW Button_Button__fullWidth__zAnDP BasicResume_BasicResume__container__wantedResume__button__FnCW7"
+							data-attribute-id="myActivity__profile__update"
+							data-profile-level="2">
+							<span class="Button_Button__label__K0sBs">내 지원현황 보기</span><span
+								class="Button_Button__interaction__1LUyr"></span>
+						</button>
 					</div>
 				</div>
 			</section>
@@ -159,5 +213,75 @@
 	</div>
 	</div>
 
+
+<script type="text/javascript">
+/* 이력서 작성 상태 조회(학력) */
+// 서버에서 midcount 값을 가져와서 설정
+var midcount = ${midcount}; // 서버에서 전달된 midcount 값을 여기에 설정
+var unicount = ${unicount}; // 서버에서 전달된 midcount 값을 여기에 설정
+var carcount = ${carcount};
+var actcount = ${actcount};
+var spcecount = ${spcecount};
+var splacount = ${splacount};
+var spawcount = ${spawcount};
+
+
+//midcount 조건 처리
+if (midcount >= 6 || unicount >= 8) {
+    $("#schooltext").text("작성완료").css("color", "#0D6CF9");
+} else if (midcount === 0 || unicount === 0) {
+    $("#schooltext").text("미작성").css("color", "red");
+} else {
+    $("#schooltext").text("작성중").css("color", "");
+}
+
+/* 이력서 작성 상태 조회(경력) */
+if (carcount >= 6) {
+    $("#careertext").text("작성완료").css("color", "#0D6CF9");
+} else if (carcount === 0) {
+    $("#careertext").text("미작성").css("color", "red");
+} else {
+    $("#careertext").text("작성중").css("color", "");
+}
+
+/* 이력서 작성 상태 조회(활동) */
+if (actcount >= 5) {
+    $("#actibitytext").text("작성완료").css("color", "#0D6CF9");
+} else if (actcount === 0) {
+    $("#actibitytext").text("미작성").css("color", "red");
+} else {
+    $("#actibitytext").text("작성중").css("color", "");
+}
+
+/* 이력서 작성 상태 조회(스펙) */
+if (spcecount >= 5 || splacount >= 4 || spawcount >= 4) {
+    $("#spectext").text("작성완료").css("color", "#0D6CF9");
+} else if (spcecount === 0 || splacount === 0 || spawcount === 0) {
+    $("#spectext").text("미작성").css("color", "red");
+} else {
+    $("#spectext").text("작성중").css("color", "");
+}
+</script>
+<script type="text/javascript">
+var r_num = '${r_num2}'; //문자열이므로 ''로 표시
+var pe_num = '${pe_num}';
+
+/* 이력서 없을 시 이력서 작성 경고창 띄우기*/
+$("a.iruckseocheck").click(function(){
+	if(r_num !== 'null' && pe_num === '0'){
+		alert("이력서 등록을 먼저하셔야 합니다!");
+		location.href="/resumehome/form";
+	} else{
+		location.href="/resumehome/updateForm?pe_num="+${pe_num };
+	}
+})
+
+$("button.iruckseocheckbtn").click(function(){
+	if(r_num !== 'null' && pe_num === '0'){
+		alert("이력서 등록을 먼저하셔야 합니다!");
+		location.href="/resumehome/form";
+	}
+})
+</script>	
 </body>
 </html>

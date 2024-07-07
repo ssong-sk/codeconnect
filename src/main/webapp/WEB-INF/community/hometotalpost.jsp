@@ -12,203 +12,222 @@
 <title>${category} 게시글</title>
 <style>
     body {
-        font-family: 'IBM Plex Sans KR', sans-serif;
+        font-family: 'IBM Plex Sans KR';
     }
     
     /* 최상단 카테고리 nav */
-    .nav {
+    /*.nav {
         margin-top: 40px;
         margin-left: 250px;
-    }
+    }*/
     .nav ul {
-        list-style-type: none;
-        display: flex;
-        gap: 20px;
-        padding: 0;
-        justify-content: flex-start;
-        margin-top: 40px;
-        margin-left: 100px;
-    }
-    .nav ul a {
-       display: block;
-       color: gray;
-       text-decoration: none;
-       font-weight: 700;
-       font-size: 17px;
-       line-height: 32px;
-       padding: 0 15px;
-    }
-    .nav ul .active {
-        color: blue;
-        border-bottom: 2px solid blue;
-    }
-    .post_list_wrap {
-        margin: 50px auto;
-        max-width: 800px;
-        padding: 20px;
-        border: 1px solid #ddd;
-        border-radius: 10px;
-        background-color: #fff;
-    }
-    .post_list_wrap h2 {
-        margin-bottom: 20px;
-    }
-    .post_list_wrap .post_item {
-        margin-bottom: 20px;
-    }
-    .container { 
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 20px;
-        max-width: 1200px;
-        margin: 50px auto;
-    }
-    .container h4 {
-        display: inline-block;
-        color: black;
-    }
-    .linkgo {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        width: 100%;
-    }
-    .inpbox.line.filter {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-    .filter-box {
-        border: 1px solid #d7dce5;
-        padding: 10px;
-        border-radius: 5px;
-    }
-    .list_qna {
-        max-width: 1200px;
-        margin: 30px auto;
-    }
-    .qna-list, .s-qna-list {
-        list-style: none;
-        padding: 0;
-    }
-    .qna-list li, .s-qna-list li {
-        padding: 20px 0;
-        border-bottom: 1px solid #eaeaea;
-    }
-    .qna-item {
-        display: flex;
-        justify-content: space-between;
-    }
-    .qna-title {
-        text-decoration: none;
-        color: #000;
-        font-size: 18px;
-        font-weight: bold;
-    }
-    .qna-description {
-        margin: 10px 0 0 0;
-        color: #555;
-    }
-    .qna-meta {
-        text-align: right;
-        color: #999;
-    }
-    .qna-meta span {
-        display: block;
-    }
-    .hot-label {
-        color: #ff7f50;
-        font-weight: bold;
-    }
-    .writebtn {
-        background-color: #2D65F2;
-    }
-    
-    /* 주제별 커뮤니티 상단 */
-    ul.list_category {
-        display: flex;
-        gap: 15px;
-        padding: 0;
-        justify-content: center;
-        flex-wrap: wrap;
-    }
-    
-    ul.list_category li {
-        text-align: center;
-        border: 1px solid #d7dce5;
-        border-radius: 10px;
-        height: 65px;
-        width: 170px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        list-style: none;
-    }
-    
-    .list_category a {
-        text-decoration: none;
-        color: #373f57;
-        display: block;
-        line-height: 40px;
-        font-size: 17px;
-    }
-    
-    .post_list a {
-        text-decoration: none;
-        color: #373f57;
-        display: block;
-        line-height: 40px;
-    }
-    
-    .content_text {
-        overflow: hidden; /* 내용이 넘칠 경우 숨기기 */
-        text-overflow: ellipsis; /* 넘치는 내용 줄임표 처리 */
-        white-space: nowrap; /* 줄바꿈 없이 한 줄로 처리 */
-    }
-    
-    .pagination a {
-        margin: 0 5px;
-        text-decoration: none;
-        color: black;
-    }
-    .pagination a.active {
-        font-weight: bold;
-        color: blue;
-    }
-    /* 페이징 스타일 */
-    .pagination {
-        display: flex;
-        justify-content: center;
-        margin-top: 40px;
-        margin-bottom: 50px;
-    }
+    list-style-type: none;
+    display: flex;
+    gap: 20px;
+    padding: 0;
+    justify-content: flex-start;
+    margin-top: 40px;
+}
 
-    .pagination a {
-        padding: 10px 15px;
-        margin: 0 5px;
-        color: gray;
-        text-decoration: none;
-        transition: background-color 0.3s;
-        border-radius: 5px;
-        border: none;
-    }
+.nav ul a {
+    display: block;
+    color: gray;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 17px;
+    line-height: 32px;
+}
 
-    .pagination a:hover {
-        background-color: #e9ecef;
-    }
+.nav ul .active {
+    color: #0D6CF9;
+}
 
-    .pagination a.active {
-        border: 1px solid #dee2e6;
-        background-color: white;
-        pointer-events: none;
-        box-shadow: none;
-    }
+/* 포스트 리스트 래퍼 */
+.post_list_wrap {
+    margin: 50px auto;
+    max-width: 800px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #fff;
+}
 
-	/* 선택된 li a 효과 */
-	.list_category a.active {
-        color: blue;
-    }
+.post_list_wrap h2 {
+    margin-bottom: 20px;
+}
+
+.post_list_wrap .post_item {
+    margin-bottom: 20px;
+}
+
+/* 컨테이너 */
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    max-width: 1200px;
+    margin: 50px auto;
+}
+
+.container h4 {
+    display: inline-block;
+    color: black;
+}
+
+.linkgo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.inpbox.line.filter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.filter-box {
+    border: 1px solid #d7dce5;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.list_qna {
+    max-width: 1200px;
+    margin: 30px auto;
+}
+
+.qna-list, .s-qna-list {
+    list-style: none;
+    padding: 0;
+}
+
+.qna-list li, .s-qna-list li {
+    padding: 20px 0;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.qna-item {
+    display: flex;
+    justify-content: space-between;
+}
+
+.qna-title {
+    text-decoration: none;
+    color: #000;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.qna-description {
+    margin: 10px 0 0 0;
+    color: #555;
+}
+
+.qna-meta {
+    text-align: right;
+    color: #999;
+}
+
+.qna-meta span {
+    display: block;
+}
+
+.hot-label {
+    color: #ff7f50;
+    font-weight: bold;
+}
+
+.writebtn {
+    background-color: #2D65F2;
+}
+
+/* 주제별 커뮤니티 상단 */
+ul.list_category {
+    display: flex;
+    gap: 15px;
+    padding: 0;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+ul.list_category li {
+    text-align: center;
+    border: 1px solid #d7dce5;
+    border-radius: 10px;
+    height: 65px;
+    width: 164px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+}
+
+.list_category a {
+    text-decoration: none;
+    color: #373f57;
+    display: block;
+    line-height: 40px;
+    font-size: 17px;
+}
+
+.post_list a {
+    text-decoration: none;
+    color: #373f57;
+    display: block;
+    line-height: 40px;
+}
+
+.content_text {
+    overflow: hidden; /* 내용이 넘칠 경우 숨기기 */
+    text-overflow: ellipsis; /* 넘치는 내용 줄임표 처리 */
+    white-space: nowrap; /* 줄바꿈 없이 한 줄로 처리 */
+}
+
+
+/* 페이징 스타일 */
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    margin-bottom: 50px;
+}
+
+.pagination a {
+    padding: 10px 15px;
+    margin: 0 5px;
+    color: gray;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    border-radius: 5px;
+    border: none;
+}
+
+.pagination a:hover {
+    background-color: #e9ecef;
+}
+
+.pagination a.active {
+    border: 1px solid #0D6CF9;
+    background-color: white;
+    color: #0D6CF9;
+    pointer-events: none;
+    box-shadow: none;
+}
+
+/* 선택된 li a 효과 */
+.list_category a.active {
+    color: #0D6CF9;
+}
+
+/* HOT 레이블 */
+.hot-label {
+    color: #0D6CF9;
+    font-weight: bold;
+    font-size: 17px;
+}
 </style>
 <script type="text/javascript">
     $(document).ready(function(){
@@ -243,13 +262,13 @@
 </head>
 
 <body>
+<div style="max-width: 1060px; margin: 60px auto;">
 <nav class="nav">
     <ul>
-        <a class="nav-link" href="${root}/community/homelist">홈</a>
-        <a class="nav-link" href="${root}/community/interviewlist">현직자 인터뷰</a>
+        <li><a class="nav-link" href="${root}/community/homelist" id="homeLink">소셜</a></li>
+        <li><a class="nav-link" href="${root}/community/interviewlist" id="interviewLink">현직자 인터뷰</a></li>
     </ul>
 </nav>
-<div style="max-width: 1100px; margin: 0px auto;">
     <div class="container2">
         <div class="linkgo" style="width: 100%;">
             <div>
@@ -272,18 +291,18 @@
 </div>
 
 
-<div class="commutitle" style="max-width: 1100px; margin: 50px auto;">
-    <div class="container">
+<div class="commutitle" style="max-width: 1060px; margin: 50px auto;">
+    <div class="container" style="padding: 0px 0px;">
         <div class="linkgo d-flex justify-content-between" style="width: 100%;">
             <a href="${root}/community/hometotalpost">
                 <h4>
                     <span>전체 <b class="allcount">${totalCount}</b>건</span>
                 </h4>
             </a>
-            <div class="d-flex search" style="margin-right: -9px;">
+            <div class="d-flex search" style="margin-right: 1px;">
                 <input class="form-control me-2" type="search" placeholder="다른 사람들은 어떤 이야기를 할까?" aria-label="Search"
                 style="width: 350px;" name="searchword">
-                <button type="button" class="btn btn-outline-primary" id="btnsearch">
+                <button type="button" class="btn btn-outline-primary" id="btnsearch" style="margin-right: 0px;">
                     <span class="blind">검색</span>
                 </button>
             </div>
@@ -311,11 +330,12 @@
 	    <!-- 로그인한 회원만 버튼 나타나도록 -->
 	    <c:if test="${sessionScope.loginok != null}">
 	        <button type="button" class="btn btn-primary writebtn" style="width: 200px;"
-	        onclick="location.href='${pageContext.request.contextPath}/community/homeform'">게시글 작성</button>
+	        onclick="location.href='homeform'">게시글 작성</button>
 	    </c:if>
 	</div>
 </div>
-<div class="list_qna" style="max-width: 1100px; margin: 30px auto;">
+
+<div class="list_qna" style="max-width: 1060px; margin: 30px auto;">
 	<div id="s-qna-list">
     <ul class="qna-list">
         <c:if test="${topPost != null}">
@@ -323,7 +343,7 @@
                 <div class="qna-item">
                     <div class="post_list">
                         <a href="${root}/community/homedetail?com_num=${topPost.com_num}">
-                            <span class="hot" style="color: blue; font-weight: bold; font-size: 17px;">HOT</span>&nbsp;&nbsp;<b style="font-size: 20px;">${topPost.com_title}</b><br>
+                            <span class="hot" style="color: #0D6CF9; font-weight: bold; font-size: 17px;">HOT</span>&nbsp;&nbsp;<b style="font-size: 20px;">${topPost.com_title}</b><br>
                             <span class="content_text">${topPost.com_content}</span>
                             <div>
                                 &nbsp;<span><i class="bi bi-hand-thumbs-up"></i>&nbsp;${topPost.com_likes}</span>&nbsp;&nbsp;&nbsp;
@@ -384,6 +404,7 @@ $('.me-2').keypress(function(e) {
 
 /* 검색 기능 */
 $('#btnsearch').click(function() {
+	$("div.pagination").hide();
     var searchword = $('.me-2').val().trim(); // 입력 필드의 값 가져오기
     $.ajax({
         type: "GET",

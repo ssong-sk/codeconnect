@@ -37,7 +37,7 @@ public class HireController {
 
       hservice.hireInsert(hdto);
 
-      return "redirect:/hire/main";
+      return "redirect:/company/myinfo";
    }
 
    @GetMapping("/hire/main")
@@ -147,8 +147,11 @@ public class HireController {
          hdto.setH_career(formattedCareer);
       }
       
+      int scheck = hservice.getSupportCheck(r_num, h_num);
+      
       String r_hp=(String)session.getAttribute("r_hp");
       String r_email=(String)session.getAttribute("r_email");
+      String r_name = (String)session.getAttribute("r_name");
       
       List<HireDto> userScraps = hservice.getUserScraps(r_num);
       mview.addObject("userScraps", userScraps);      
@@ -158,7 +161,9 @@ public class HireController {
       mview.addObject("ir_count", ir_count);
       mview.addObject("r_hp", r_hp);
       mview.addObject("r_email", r_email);
+      mview.addObject("r_name", r_name);
       mview.addObject("r_num",r_num);
+      mview.addObject("scheck",scheck);
       mview.setViewName("/sub/hire/hiredetail");
       
       return mview;

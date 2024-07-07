@@ -12,13 +12,13 @@
 <title>이번 주 인기글</title>
 <style>
     body {
-        font-family: 'IBM Plex Sans KR', sans-serif;
+        font-family: 'IBM Plex Sans KR';
     }
     
     /* 최상단 카테고리 nav */
     .nav {
-        margin-top: 40px;
-        margin-left: 250px;
+      /*   margin-top: 40px;
+        margin-left: 250px; */
     }
     .nav ul {
         list-style-type: none;
@@ -27,7 +27,7 @@
         padding: 0;
         justify-content: flex-start;
         margin-top: 40px;
-        margin-left: 100px;
+        /*margin-left: 100px;*/
     }
     .nav ul a {
        display: block;
@@ -36,10 +36,10 @@
        font-weight: 700;
        font-size: 17px;
        line-height: 32px;
-       padding: 0 15px;
+
     }
     .nav ul .active {
-        color: blue;
+        color: #0D6CF9;
     }
     .linkgo {
         display: flex;
@@ -51,7 +51,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        margin-bottom: 20px;
+        /* margin-bottom: 20px; */
         max-width: 900px;
         margin: 50px auto;
     }
@@ -78,7 +78,7 @@
     .list_story li {
         list-style-type: none;
         font-size: 18px;
-        padding-bottom: 30px;
+        padding-bottom: 20px;
     }
     .list_story ul a {
         padding-bottom: 30px;
@@ -106,11 +106,11 @@
         max-width: 1200px;
         margin: 60px auto;
         width: 100%;
-        padding: 0 15px;
+        /*padding: 0 15px;*/
     }
     ul.list_category {
         display: flex;
-        gap: 15px;
+        gap: 20px;
         padding: 0;
         justify-content: center;
         flex-wrap: wrap;
@@ -120,7 +120,7 @@
         border: 1px solid #d7dce5;
         border-radius: 10px;
         height: 65px;
-        width: 165px;
+        width: 160px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -137,13 +137,14 @@
         margin-top: 50px;
         display: flex;
         flex-wrap: wrap;
-        gap: 20px;
+        /*gap: 20px;*/
         justify-content: space-between;
     }
     .section_inner {
         border: 1px solid #eaedf4;
         border-radius: 15px;
-        margin: 40px 0;
+        /*margin: 40px 0;*/
+        margin-top: 30px;
         padding: 20px;
     }
     .list_story .title_link {
@@ -151,6 +152,22 @@
         text-overflow: ellipsis;
         white-space: nowrap;
     }
+    
+    /* 이미지 */
+	.image-container {
+	    position: relative;
+	    display: inline-block;
+	}
+	
+	.centered-text {
+	    position: absolute;
+	    top: 50%;
+	    left: 20%;
+	    transform: translate(-50%, -50%);
+	    color: white;
+	    font-weight: bold;
+	    text-align: center;
+	} 
 </style>
 <script type="text/javascript">
     $(document).ready(function(){
@@ -175,18 +192,22 @@
 </script>
 </head>
 <body>
+<div class="commutitle" style="max-width: 1060px; margin: 60px auto;">
+<div class="image-container">
+            <img alt="" src="../image/community.PNG" style="width: 1060px; border-radius: 10px;">
+            <h4 class="centered-text">다양한 정보를 공유하는 커뮤니티 공간</h4>
+</div>
 <nav class="nav">
     <ul>
-        <li><a class="nav-link" href="${root}/community/homelist" id="homeLink">홈</a></li>
+        <li><a class="nav-link" href="${root}/community/homelist" id="homeLink">소셜</a></li>
         <li><a class="nav-link" href="${root}/community/interviewlist" id="interviewLink">현직자 인터뷰</a></li>
     </ul>
 </nav>
-<div class="commutitle" style="max-width: 1100px; margin: 60px auto;">
     <div class="container">
         <div class="linkgo d-flex justify-content-between" style="width: 100%;">
             <a href="${root}/community/hometotalpost">
                 <h2>
-                    <b style="font-size: 25px;">실시간 전체글 ${totalCount}개<i class="bi bi-chevron-right"></i></b>
+                    <b style="font-size: 22px;">실시간 전체글 ${totalCount}개<i class="bi bi-chevron-right"></i></b>
                 </h2>
             </a>
             <!-- <div class="d-flex search">
@@ -233,10 +254,10 @@
 
 </div>
 
-<div style="max-width: 1100px; margin: 60px auto;">
+<div style="max-width: 1060px; margin: 60px auto;">
     <div class="container2">
         <div class="linkgo d-flex justify-content-between" style="width: 100%;">
-            <h2><b style="font-size: 25px;">주제별 커뮤니티</b></h2>
+            <h2><b style="font-size: 22px;">주제별 커뮤니티</b></h2>
         </div>
         <div class="category" style="margin-top: 50px;">
             <ul class="list_category js-category">
@@ -346,9 +367,10 @@
                 </div>
             </div>
             <div>
+            <br>
                 <c:if test="${sessionScope.loginok!=null }">
-                    <button type="button" class="btn btn-outline-primary" style="margin-left: 1000px;"
-                    onclick="location.href='${pageContext.request.contextPath}/community/homeform'">글쓰기</button>
+                    <button type="button" class="btn btn-outline-primary" style="float: right;"
+                    onclick="location.href='homeform'">글쓰기</button>
                 </c:if>
             </div>
         </div>

@@ -27,6 +27,11 @@ public class RegisterDto {
 	private String r_job;
 	private String r_exp;
 	private String r_sogae;
+	
+	//스크랩
+	private int h_num;
+	private int s_num;
+	private boolean scraped;
 
 
 }

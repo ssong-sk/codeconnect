@@ -59,7 +59,7 @@
 
 .detailaside .celebration em {
     font-weight: 800;
-    color: rgb(1, 118, 237);
+    color: #0D6CF9;
     font-style: normal;
 }
 
@@ -153,7 +153,7 @@
     align-items: center;
     gap: 4px;
     font-weight: 500;
-    color: rgb(1, 118, 237);
+    color: #0D6CF9;
     text-decoration-line: underline;
 }
 
@@ -176,7 +176,7 @@
 }
 
 .supportbtn {
-    background: rgb(1, 118, 237);
+    background: #0D6CF9;
     border: 1px solid rgb(1, 118, 237);
     color: rgb(255, 255, 255);
     padding: 0px 16px;
@@ -678,7 +678,7 @@ div.footerdiv{
 				</span>
 			</div>
 			<div class="contents">
-				<a class="company" target="_blank" title="${hdto.c_name } 기업정보" href="#">
+				<a class="company" target="_blank" title="${hdto.c_name } 기업정보" href="/company/showimsiCom?c_num=${hdto.c_num }">
 					<img alt="${hdto.c_name } 로고" height="70" src="../../companyintro_uploads/${hdto.ci_logo }" width="70">
 					<div class="name">
 						<h2>${hdto.c_name }</h2>
@@ -730,7 +730,7 @@ div.footerdiv{
 			            |
 						<li class="bottomtag" id="copyurl">
 							<i class="bi bi-share"></i>
-							<span>공유</span>
+							<span>링크 복사</span>
 						</li>
 					</ul>
 				</div>
@@ -764,16 +764,19 @@ div.footerdiv{
 						<h2>연락정보</h2>
 					</div>
 					<ul class="smbox">
-						<li style="margin-bottom: 12px;">
+						<li style="margin-bottom: 12px; margin-left: 20px;">
 							<span class="title">이메일</span>
 							<a href="#" class="write">
 								<span style="width: 280px;">${r_email }</span>
+								<input type="hidden" id="r_name" value="${r_name }">
+								<input type="hidden" id="r_num" value="${r_num }">
 							</a>
 						</li>
-						<li>
+						<li style=" margin-left: 20px;">
 							<span class="title">연락처</span>
 							<a href="#" class="write">
 								<span style="width: 280px;">${r_hp }</span>
+								<input type="hidden" id="scheck" value="${scheck }">
 							</a>
 						</li>
 					</ul>
@@ -931,8 +934,22 @@ $('#toggleBtn').click(function() {
 
 /* 지원창 열기 */
 $(".supportbtn").click(function(){
-	$('.ipsa').show();
-})
+	
+	if($("#r_num").val()==0){
+		var confirmLogin = confirm("로그인이 필요합니다.\n로그인 페이지로 이동하시겠습니까?");
+        if (confirmLogin) {
+            window.location.href = "/login/main";
+        }
+	}else{		
+		if($("#scheck").val()==1){
+			alert("이미 지원한 공고입니다.");
+		}else{
+			$('.ipsa').show();
+		}
+		
+	}
+	
+});
 
 /* 지원창 닫기 */
 $('.xbtn').click(function() {
@@ -945,19 +962,19 @@ $('.xbtn').click(function() {
 $(".applybox").click(function(){
 	// 선택된 applybox의 테두리 색상 변경
 	$(".applybox").css("border", "1px solid rgb(228, 228, 228)");
-	$(this).css("border", "2px solid #0d6efd");
+	$(this).css("border", "2px solid #0D6CF9");
 	
 	// 선택된 라디오 버튼 체크
 	$(this).find(".form-check-input").prop("checked", true);
 	
 	// 지원 버튼의 배경색 변경
-	$(".footerbtn").css("background", "#0d6efd");
+	$(".footerbtn").css("background", "#0D6CF9");
 });
 
 $(".form-check-input").change(function(){
     $(".applybox").css("border", "1px solid rgb(228, 228, 228)"); // 모든 applybox의 테두리를 초기화
-    $(this).closest(".applybox").css("border", "2px solid #0d6efd"); // 선택된 radio 버튼의 부모 .applybox만 테두리 변경
-    $(".footerbtn").css("background", "#0d6efd"); // 지원 버튼의 배경색 변경
+    $(this).closest(".applybox").css("border", "2px solid #0D6CF9"); // 선택된 radio 버튼의 부모 .applybox만 테두리 변경
+    $(".footerbtn").css("background", "#0D6CF9"); // 지원 버튼의 배경색 변경
 });
 </script>
 
@@ -985,6 +1002,7 @@ $(".footerbtn").click(function(){
 	
 	var pe_num = getSelectedPeNum();
 	var h_num = $("#h_num").val();
+	var r_name = $("#r_name").val();
 	
     if (!pe_num) {
         alert("이력서를 선택해주세요.");
@@ -997,6 +1015,7 @@ $(".footerbtn").click(function(){
 		data: {"pe_num":pe_num, "h_num":h_num},
 		url: "/support/insert",
 		success:function(){
+			alert("지원이 완료되었습니다! "+r_name+"님의 성공을 진심으로 기원합니다.")
 			location.reload();
 		}
 	})
@@ -1045,7 +1064,7 @@ function scrapPress() {
 		            success: function() {
 		            	scrappressed.attr('aria-pressed', 'true');
 				        scrappressed.html(`
-				        		<i class="bi bi-bookmark-fill scrap" style="color: #0176ED"></i>
+				        		<i class="bi bi-bookmark-fill scrap" style="color: #0D6CF9"></i>
 				                <span>스크랩</span>
 				        `);
 		            }

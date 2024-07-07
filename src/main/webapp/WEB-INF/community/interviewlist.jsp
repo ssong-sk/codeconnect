@@ -12,35 +12,32 @@
 <title>현직자 인터뷰</title>
 <style type="text/css">
     body {
-        font-family: 'IBM Plex Sans KR', sans-serif;
+        font-family: 'IBM Plex Sans KR';
     }
-    .nav {
-        margin-top: 40px;
-        margin-left: 250px;
-    }
+
     .nav ul {
-        list-style-type: none;
-        display: flex;
-        gap: 20px;
-        padding: 0;
-        justify-content: center;
-        margin-top: 40px;
-        margin-left: 100px;
-    }
-    .nav ul a {
-        display: block;
-        color: gray;
-        text-decoration: none;
-        font-weight: 700;
-        font-size: 17px;
-        line-height: 32px;
-        padding: 0 15px;
-    }
-    .nav ul .active {
-        color: blue;
-    }
+    list-style-type: none;
+    display: flex;
+    gap: 20px;
+    padding: 0;
+    justify-content: flex-start;
+    margin-top: 40px;
+	}
+
+	.nav ul a {
+	    display: block;
+	    color: gray;
+	    text-decoration: none;
+	    font-weight: 700;
+	    font-size: 17px;
+	    line-height: 32px;
+	}
+	
+	.nav ul .active {
+	    color: #0D6CF9;
+	}
     .container {
-        max-width: 1100px;
+        max-width: 1060px;
         margin: 0 auto;
     }
     .wrap_category_type {
@@ -66,7 +63,7 @@
         color: black;
     }
     .wrap_category_type ul li a.active {
-        color: blue;
+        color: #0D6CF9;
         font-weight: bold;
     }
     .input-group {
@@ -89,6 +86,7 @@
         flex-direction: column;
         justify-content: space-between;
         min-height: 300px; /* 높이 일정하게 유지 */
+        max-width: 340px;
     }
     .interview-item img {
         width: 100%;
@@ -136,30 +134,49 @@
         margin-left: 20px;
     }
     .pagination {
-        display: flex;
-        justify-content: center;
-        margin-top: 40px;
-        margin-bottom: 50px;
-    }
-    .pagination a {
-        padding: 10px 15px;
-        margin: 0 5px;
-        color: gray;
-        text-decoration: none;
-        transition: background-color 0.3s;
-        border-radius: 5px;
-        border: none;
-    }
-    .pagination a:hover {
-        background-color: #e9ecef;
-    }
-    .pagination a.active {
-        border: 1px solid #dee2e6;
-        background-color: white;
-        color: blue;
-        pointer-events: none;
-        box-shadow: none;
-    }
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+    margin-bottom: 50px;
+	}
+	
+	.pagination a {
+	    padding: 10px 15px;
+	    margin: 0 5px;
+	    color: gray;
+	    text-decoration: none;
+	    transition: background-color 0.3s;
+	    border-radius: 5px;
+	    border: none;
+	}
+	
+	.pagination a:hover {
+	    background-color: #e9ecef;
+	}
+	
+	.pagination a.active {
+	    border: 1px solid #0D6CF9;
+	    background-color: white;
+	    color: #0D6CF9;
+	    pointer-events: none;
+	    box-shadow: none;
+	}
+	
+	  /* 이미지 */
+	.image-container {
+	    position: relative;
+	    display: inline-block;
+	}
+	
+	.centered-text {
+	    position: absolute;
+	    top: 50%;
+	    left: 20%;
+	    transform: translate(-50%, -50%);
+	    color: white;
+	    font-weight: bold;
+	    text-align: center;
+	} 
 </style>
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -173,14 +190,18 @@
 </script>
 </head>
 <body>
+
+<div class="container" style="margin-top: 50px; width: 1060px; padding: 0px;">
+<div class="image-container">
+            <img alt="" src="../image/community.PNG" style="width: 1060px; border-radius: 10px;">
+            <h4 class="centered-text">다양한 정보를 공유하는 커뮤니티 공간</h4>
+</div>
 <nav class="nav">
     <ul>
-        <li><a class="nav-link" href="${root}/community/homelist" id="homeLink">홈</a></li>
-        <li><a class="nav-link" href="${root}/community/interviewlist?category=전체" id="interviewLink">현직자 인터뷰</a></li>
+        <li><a class="nav-link" href="${root}/community/homelist" id="homeLink">소셜</a></li>
+        <li><a class="nav-link" href="${root}/community/interviewlist" id="interviewLink">현직자 인터뷰</a></li>
     </ul>
 </nav>
-<div class="container" style="margin-top: 50px; width: 1100px;">
-    <h3>현직자 인터뷰</h3>
     <div class="wrap_category_type" style="margin-top: 30px;">
         <ul class="list_category">
 		    <li><a href="${root}/community/interviewlist?category=전체" class="${category == '전체' ? 'active' : ''}">전체</a></li>
@@ -217,8 +238,8 @@
         <c:forEach var="dto" items="${list}" varStatus="status">
             <c:if test="${dto.com_post_type == 'interview'}">
                 <c:if test="${status.index < 9}">
-                    <a href="${pageContext.request.contextPath}/community/interviewdetail?com_num=${dto.com_num}" class="interview-item" style="text-decoration: none; color: inherit;">
-                        <b style="color: blue; margin-left: 15px;">${dto.com_category}</b>
+                    <a href="interviewdetail?com_num=${dto.com_num}" class="interview-item" style="text-decoration: none; color: inherit;">
+                        <b style="color: #0D6CF9; margin-left: 15px;">${dto.com_category}</b>
                         <br><br>
                         <h5 style="margin-left: 15px; margin-top: -15px; font-size: 19px;">${dto.com_title}</h5>
                         <div class="details" style="margin-bottom: 20px;">
@@ -242,8 +263,8 @@
 
     <div class="writebtn" style="margin-top: 20px;">
         <c:if test="${sessionScope.loginok!=null}">
-            <button type="button" class="btn btn-outline-primary" style="margin-left: 1000px;"
-            onclick="location.href='${pageContext.request.contextPath}/community/interviewform'">글쓰기</button>
+            <button type="button" class="btn btn-outline-primary" style="float: right;"
+            onclick="location.href='interviewform'">글쓰기</button>
         </c:if>
     </div>
 

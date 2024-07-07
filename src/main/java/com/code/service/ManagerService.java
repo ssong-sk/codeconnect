@@ -142,6 +142,45 @@ public class ManagerService implements ManagerServiceInter {
 	}
 
 	
+	//1:1문의 관리
+	@Override
+	public int countInquiry() {
+		return mapper.countInquiry();
+	}
+	
+	@Override
+	public int getCountInquirySuccess() {
+		return mapper.getCountInquirySuccess();
+	}
+
+	@Override
+	public int getCountInquiryStandBy() {
+		return mapper.getCountInquiryStandBy();
+	}
+
+	@Override
+	public List<CustomerDto> getAllCustomerInquiry(int start, int perpage) {
+		
+		HashMap<String, Integer> map=new HashMap<>();
+		map.put("start", start);
+		map.put("perpage", perpage);
+		
+		return mapper.getAllCustomerInquiry(map);
+	}
+
+	@Override
+	public void updateInquiry(CustomerDto dto) {
+		mapper.updateInquiry(dto);
+	}
+
+	@Override
+	public void deleteInquiry(CustomerDto dto) {
+		mapper.deleteInquiry(dto);
+	}
+
+	
+
+	
 
 
 }

@@ -58,9 +58,13 @@ public class IruckseoHomeController {
    @Autowired
    CompanyService cservice;
    
+   //기업
+   @Autowired
+   CompanyIntroService ciservice;
+   
    //이력서 메인홈 띄우기
    @GetMapping("/resumehome/home")
-   public ModelAndView hform(HttpSession session) {
+   public ModelAndView hform(HttpSession session , @RequestParam(value = "msg", defaultValue = "") String msg ) {
       
       ModelAndView mview = new ModelAndView();
       
@@ -88,6 +92,8 @@ public class IruckseoHomeController {
       int openCount = irservice.getOpenCount(r_num);
       mview.addObject("openCount", openCount);
       
+      
+      
       //스크랩공고 갯수
       int scrapCount = irservice.getScrapCount(r_num);
       mview.addObject("scrapCount", scrapCount);
@@ -96,6 +102,8 @@ public class IruckseoHomeController {
       int companyCount = irservice.getCompanyCount(r_num);
       mview.addObject("companyCount", companyCount);
       
+      
+      
       //채용공고 정보 조회 및 추가
       List<HireDto> hlist = hservice.getHireList();
       mview.addObject("hlist", hlist);
@@ -103,6 +111,8 @@ public class IruckseoHomeController {
       //스크랩 공고
       List<HireDto> userScraps = hservice.getUserScraps(r_num);
       mview.addObject("userScraps", userScraps);
+
+      mview.addObject("msg", msg);
       
       mview.setViewName("/resumehome/iruckseohome");
 
@@ -225,7 +235,7 @@ public class IruckseoHomeController {
         mview.addObject("hodto", hodto);
         
         //포워드
-        mview.setViewName("/resumehome/iruckseolist");
+        mview.setViewName("/sub/resumehome/iruckseolist");
         
         return mview;
      }
@@ -291,7 +301,7 @@ public class IruckseoHomeController {
      //입사지원현황 지원취소 시 업데이트
      @PostMapping("/resumehome/supportupdate")
      @ResponseBody
-     public void supportupdate(@RequestParam int st_num) {
+     public void supportupdate(@RequestParam int[] st_num) {
     	 
          //이력서 지원취소 누르면 지원취소하기로 업데이트
          irservice.updateSupportDelete(st_num);
@@ -300,7 +310,7 @@ public class IruckseoHomeController {
      //입사지원현황 삭제하기
      @PostMapping("/resumehome/Supportdelete")
      @ResponseBody
-     public void SupportDelete(@RequestParam int st_num) {
+     public void SupportDelete(@RequestParam int[] st_num) {
     	 
     	 irservice.SupportDelete(st_num);
      }
@@ -311,6 +321,7 @@ public class IruckseoHomeController {
              HttpSession session) {
 
 		ModelAndView mview = new ModelAndView();
+		
 		
 		// r_num 가져오기
 		int r_num = Integer.parseInt((String) session.getAttribute("r_num"));
@@ -345,11 +356,12 @@ public class IruckseoHomeController {
 		
 		// 페이징된 리스트 가져오기
 		List<HireDto> shlist = irservice.getScrapHireList(r_num, start, perPage);
-		//List<CompanyIntroDto> clist = ciservice.getAllCompanyIntros();
+		List<CompanyDto> scrapList = cservice.getCompanyUserScraps(r_num);
 		
 		
 		//데이터 가져오기
 		mview.addObject("shlist", shlist);
+		mview.addObject("scrapList", scrapList);
 		mview.addObject("currentPage", currentPage);
         mview.addObject("totalCount", totalCount);
         mview.addObject("perPage", perPage);
@@ -368,8 +380,9 @@ public class IruckseoHomeController {
      //스크랩공고 삭제하기
      @PostMapping("/resumehome/scrapdelete")
      @ResponseBody
-     public void scrapDelete(@RequestParam int s_num) {
+     public void scrapDelete(@RequestParam int[] s_num) {
     	 
+    	 //System.out.println(s_num);
          irservice.scrapDelete(s_num);
      }
      
@@ -384,7 +397,7 @@ public class IruckseoHomeController {
 		int r_num = Integer.parseInt((String) session.getAttribute("r_num"));
 		
 		// 갯수 가져오기
-		int totalCount = irservice.getScrapCount(r_num);
+		int totalCount = irservice.getCompanyCount(r_num);
 		
 		// 페이징에 필요한 변수 설정
 		int perPage = 10; // 한 페이지당 보여질 글의 갯수

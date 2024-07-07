@@ -22,11 +22,11 @@
       margin: 0 auto;
       width: 100%;
       height: 100%;
-      max-width: 1200px;
+      max-width: 1060px;
   }
   
   #wrap {
-      margin-top: 100px; /* 헤더 들어갈 부분 */
+      margin-top: 60px; /* 헤더 들어갈 부분 */
       font-family: 'IBM Plex Sans KR', sans-serif;
   }
   .all-form {
@@ -35,6 +35,7 @@
       padding: 20px; /* 전체 여백 */
       margin: 0 auto; /* 가운데 정렬 */
       border: 0px solid #ddd; /* 외곽선 */
+      margin-top: 60px;
   }
   
   button {
@@ -51,6 +52,7 @@
   
   .title-section {
      margin-top: 30%;
+     
   }
   
   .leftmenu li {
@@ -58,7 +60,7 @@
   }
   
   .menu-item {
-      font-size: 0.9em;
+     
   }
   
   /*오른쪽 스타일*/
@@ -68,7 +70,7 @@
   }
   
   .mylist-img {
-    border: 0.5px solid gray;
+    border: 0px solid gray;
     width: 100px;
     height: 100px;
     border-radius: 50%;
@@ -271,25 +273,45 @@ svg {
   cursor: pointer;
   
   }
+  
+      /* 이미지 */
+	.image-container {
+	    position: relative;
+	    display: inline-block;
+	}
+	
+	.centered-text {
+	    position: absolute;
+	    top: 90%;
+	    left: 20%;
+	    transform: translate(-50%, -50%);
+	    color: white;
+	    font-weight: bold;
+	    text-align: center;
+	} 
 </style>
 </head>
 <body>
     <div class="all">
         <div id="wrap">
             <div class="center">
-              <div class="all-form">
+	         <div class="image-container">
+	            <img alt="" src="../image/resume.PNG" style="width: 1060px; border-radius: 10px;">
+	            <h4 class="centered-text">이력서 작성 하고 합격률 높이자!</h4>
+	         </div>
+              <div class="all-form" >
 <!-- 왼쪽 메뉴바------------------------------------------------------------------------------------------------------- -->
               <div class="leftmenubar" style="width: 20%;">
                   <ul class="leftmenu">
                 <li>
-                  <div class="menu-home">
-                    <a href="/resumehome/home" style="color: #5494DB; background-color: rgba(84, 148, 219, 0.2);"><b>My Home</b></a>
+                  <div class="menu-home" style="font-size: 1.2em;">
+                    <a href="/resumehome/home" style="color: #0D6CF9; background-color: rgba(84, 148, 219, 0.2);"><b>My Home</b></a>
                   </div>
                 </li>
                 
                 <li class="title-section">
                   <div class="menu-section">
-                    <span><b>이력서 관리</b></span>
+                    <span  style="font-size: 1.2em;"><b>이력서 관리</b></span>
                   </div>
                 </li>
                 
@@ -307,7 +329,7 @@ svg {
                 
                 <li class="title-section">
                   <div class="menu-section">
-                    <span><b>입사지원 관리</b></span>
+                    <span style="font-size: 1.2em;"><b>입사지원 관리</b></span>
                   </div>
                 </li>
                 
@@ -319,7 +341,7 @@ svg {
                 
                 <li class="title-section">
                   <div class="menu-section">
-                    <span><b>스크랩/관심기업</b></span>
+                    <span style="font-size: 1.2em;"><b>스크랩/관심기업</b></span>
                   </div>
                 </li>
                 
@@ -384,7 +406,7 @@ svg {
                  <hr>
                  <!-- 배너----------------------------------------------------------------------- -->
                  <div>
-                   <img alt="" src="../iruckseobanner.JPG" style="width: 100%; margin-top: 2%;">
+                   <img alt="" src="../iruckseobanner.JPG" style="width: 100%; margin-top: 2%; border-radius: 10px;">
                  </div>  
                  
                  
@@ -453,10 +475,6 @@ svg {
 			                         <div class="hireinfo-content">
 			                             <div class="content-company">
 										    <a target="" title="${h.c_name}" href="#"><span>${h.c_name}</span></a>
-										    &nbsp;
-										    <span class="scrapConmPress" data-c_num="${h.c_num}" aria-pressed="${fn:contains(scrapList, h.c_num) ? 'true' : 'false'}">
-										    <i id="heart" class="bi ${fn:contains(scrapList, h.c_num) ? 'bi-heart-fill' : 'bi-heart'}"></i>
-										    </span>
 										</div>
 			                             <a target="_self" title="${h.h_title}" href="/hire/detail?h_num=${h.h_num }">
 			                             <h2 class="position_card_info_title">${h.h_title}</h2>
@@ -544,68 +562,13 @@ svg {
 		
 		}
 		
+		var msg = "${msg}";
 		
+		if( msg != ""){
+			history.replaceState({}, null, location.pathname); 
+			alert(msg);
+		}
 		
-		/* 기업스크랩 기능 */
-	      scrapComPress();
-	      
-	      function scrapComPress() {
-	         $("span.scrap").click(function() {
-	            var scrappressed = $(this);
-	            var isPressed = scrappressed.attr('aria-pressed') === 'true';
-	            var r_num = $("#r_num").val();
-	            var c_num = scrappressed.val();
-	            var isLoggedIn = r_num != 0 ? true : false;
-
-	            console.log("isPressed:", isPressed, "r_num:", r_num, "c_num:", c_num);
-	      
-	            if(isLoggedIn){
-	                if (isPressed) {
-	                   $.ajax({
-	                        type: "post",
-	                        url: "/company/scrapdelete",
-	                        dataType: "html",
-	                        data: {
-	                            "r_num": r_num,
-	                            "c_num": c_num,
-	                        },
-	                        success: function() {
-	                          // aria-pressed가 true인 경우 -> false로 변경
-	                          scrappressed.attr('aria-pressed', 'false');
-	                          scrappressed.find('i').removeClass('bi-heart-fill').addClass('bi-heart');
-	                        },
-	                        error: function(request, status, error) {
-	                            console.log("Error:", error);
-	                        }
-	                   });
-	                } else {        
-	                    $.ajax({
-	                        type: "post",
-	                        url: "/company/scrap",
-	                        dataType: "html",
-	                        data: {
-	                            "r_num": r_num,
-	                            "c_num": c_num,
-	                        },
-	                        success: function() {
-	                           // aria-pressed가 false인 경우 -> true로 변경
-	                          scrappressed.attr('aria-pressed', 'true');
-	                          scrappressed.find('i').removeClass('bi-heart').addClass('bi-heart-fill');
-	                        },
-	                        error: function(request, status, error) {
-	                            console.log("Error:", error);
-	                        }
-	                    });
-	                }
-	            } else {
-	               var confirmLogin = confirm("로그인이 필요합니다.\n로그인 페이지로 이동하시겠습니까?");
-	                 if (confirmLogin) {
-	                     window.location.href = "/login/main";
-	                 }
-	            }
-	      
-	         });
-	      }
 		</script>
 		
 </body>		

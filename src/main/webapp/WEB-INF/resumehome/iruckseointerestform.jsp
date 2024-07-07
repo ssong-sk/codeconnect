@@ -21,11 +21,11 @@
       margin: 0 auto;
       width: 100%;
       height: 100%;
-      max-width: 1200px;
+      max-width: 1060px;
   }
   
-  #wrap {
-      margin-top: 100px; /* 헤더 들어갈 부분 */
+   #wrap {
+      margin-top: 60px; /* 헤더 들어갈 부분 */
       font-family: 'IBM Plex Sans KR', sans-serif;
   }
   .all-form {
@@ -34,6 +34,7 @@
       padding: 20px; /* 전체 여백 */
       margin: 0 auto; /* 가운데 정렬 */
       border: 0px solid #ddd; /* 외곽선 */
+       margin-top: 60px;
   }
   
   /* 왼쪽 메뉴바 스타일 */
@@ -50,7 +51,7 @@
   }
   
   .menu-item {
-      font-size: 0.9em;
+
   }
   
   /*오른쪽 스타일*/
@@ -60,71 +61,91 @@
   justify-content: space-between; /* 좌우 섹션을 공간에 따라 나눕니다. */
   align-items: center; /* 좌우 섹션을 수직으로 가운데 정렬합니다. */
   padding: 10px 0; /* 항목 간의 간격을 추가합니다. */
-}
-
-.left-section {
-  display: flex;
-  align-items: center; /* 수평 정렬에서 중앙에 배치합니다. */
-}
-
-.left-section > div {
-  margin-right: 45px; /* 요소 간의 간격을 추가합니다. */
-}
-
-.left-section .title {
-  font-size: 1.2em;
-}
-
-.right-section {
-  display: flex;
-  flex-direction: column; /* 버튼과 마감일을 수직으로 정렬합니다. */
-  align-items: center; /* 요소들을 수평 중앙에 정렬합니다. */
-  margin-right: 25px;
-}
-
-.button-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* 버튼과 마감일을 수평 중앙에 정렬합니다. */
-}
-
-.button-container .btn {
-  width: 150px;
-}
-
-.button-container .deadline {
-  margin-top: 5px; /* 버튼과 마감일 사이에 간격을 추가합니다. */
-  font-size: 0.8em;
-  color: gray;
-  text-align: center; /* 마감일을 중앙 정렬합니다. */
-}
-
-.condition-notice {
-    background-color: #F4F6FA;
-    font-size: 0.7em;
-    margin-top: 8%;
-    margin-bottom: 5%;
-    padding: 10px 20px;
   }
+
+	.left-section {
+	  display: flex;
+	  align-items: center; /* 수평 정렬에서 중앙에 배치합니다. */
+	}
+	
+	.left-section > div {
+	  margin-right: 45px; /* 요소 간의 간격을 추가합니다. */
+	}
+	
+	.left-section .title {
+	  font-size: 1.2em;
+	}
+	
+	.right-section {
+	  display: flex;
+	  flex-direction: column; /* 버튼과 마감일을 수직으로 정렬합니다. */
+	  align-items: center; /* 요소들을 수평 중앙에 정렬합니다. */
+	  margin-right: 25px;
+	}
+	
+	.button-container {
+	  display: flex;
+	  flex-direction: column;
+	  align-items: center; /* 버튼과 마감일을 수평 중앙에 정렬합니다. */
+	}
+	
+	.button-container .btn {
+	  width: 150px;
+	}
+	
+	.button-container .deadline {
+	  margin-top: 5px; /* 버튼과 마감일 사이에 간격을 추가합니다. */
+	  font-size: 0.8em;
+	  color: gray;
+	  text-align: center; /* 마감일을 중앙 정렬합니다. */
+	}
+	
+	.condition-notice {
+	    background-color: #F4F6FA;
+	    font-size: 0.7em;
+	    margin-top: 8%;
+	    margin-bottom: 5%;
+	    padding: 10px 20px;
+	  }
+	  
+	/* 이미지 */
+	.image-container {
+	    position: relative;
+	    display: inline-block;
+	}
+	
+	.centered-text {
+	    position: absolute;
+	    top: 90%;
+	    left: 20%;
+	    transform: translate(-50%, -50%);
+	    color: white;
+	    font-weight: bold;
+	    text-align: center;
+	}   
 </style>
 </head>
 <body>
     <div class="all">
         <div id="wrap">
             <div class="center">
+             <div class="image-container">
+	            <img alt="" src="../image/resume.PNG" style="width: 1060px; border-radius: 10px;">
+	            <h4 class="centered-text">이력서 작성 하고 합격률 높이자!</h4>
+	         </div>
               <div class="all-form">
 <!-- 왼쪽 메뉴바------------------------------------------------------------------------------------------------------- -->
               <div class="leftmenubar" style="width: 20%; margin-bottom: 10%;">
                   <ul class="leftmenu">
 				    <li>
-				      <div class="menu-home">
+				      <div class="menu-home" style="font-size: 1.2em;">
 				        <a href="/resumehome/home"><b>My Home</b></a>
 				      </div>
 				    </li>
 				    
 				    <li class="title-section">
 				      <div class="menu-section">
-				        <span><b>이력서 관리</b></span>
+				        <span style="font-size: 1.2em;"><b>이력서 관리</b></span>
 				      </div>
 				    </li>
 				    
@@ -142,7 +163,7 @@
 				    
 				    <li class="title-section">
 				      <div class="menu-section">
-				        <span><b>입사지원 관리</b></span>
+				        <span style="font-size: 1.2em;"><b>입사지원 관리</b></span>
 				      </div>
 				    </li>
 				    
@@ -154,7 +175,7 @@
 				    
 				    <li class="title-section">
 				      <div class="menu-section">
-				        <span><b>스크랩/관심기업</b></span>
+				        <span style="font-size: 1.2em;"><b>스크랩/관심기업</b></span>
 				      </div>
 				    </li>
 				    
@@ -166,7 +187,7 @@
 				    
 				    <li>
 				      <div class="menu-item">
-				        <a href="/resumehome/interestform" style="color: #5494DB; background-color: rgba(84, 148, 219, 0.2);">관심기업</a>
+				        <a href="/resumehome/interestform" style="color: #0D6CF9; background-color: rgba(84, 148, 219, 0.2);">관심기업</a>
 				      </div>
 				    </li>
 				  </ul>
@@ -263,11 +284,10 @@
 				     </div>
 				     
                     <div class="condition-notice">
-		              <div>
-			              <div style="font-size: 1.2em;"><i class="bi bi-exclamation-circle"></i>&nbsp;&nbsp;<b>유의사항</b></div><br>
-			              <div>- 이력서는 최대 10개까지 등록 가능합니다.</div>
-			              <div>- '입사지원 내역'건수는 최근 1년간 내역에 대해 확인 가능합니다.</div>
-			              <div>- 수정, 삭제 기능은 이력서 우측 버튼을 누르면 확인하실 수 있습니다.(이력서는 부분 삭제 불가)</div>
+		              <div style="padding: 10px 10px;">
+			              <div><i class="bi bi-exclamation-circle"></i>&nbsp;&nbsp;<b>유의사항</b></div><br>
+			              <div style="font-size: 0.8em;">- 기업을 스크랩할 경우 제한 및 기간 상관없이 리스트에 추가 가능합니다.</div>
+			              <div style="font-size: 0.8em;">- 상세보기를 누르면 해당 기업의 정보를 확인하실 수 있습니다.</div>
 		              </div>
 		            </div>
 	              </div>   

@@ -3,11 +3,14 @@ package com.code.service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.code.dto.HireDto;
 import com.code.dto.RegisterDto;
+import com.code.mapper.HireMapperInter;
 import com.code.mapper.RegisterMapperInter;
 
 @Service
@@ -15,6 +18,10 @@ public class RegisterService implements RegisterServiceInter {
 
 	@Autowired
 	RegisterMapperInter mapperInter;
+	
+	@Autowired
+	HireMapperInter mapper;
+	
 
 	@Override
 	public void insertRegister(RegisterDto dto) {
@@ -109,11 +116,80 @@ public class RegisterService implements RegisterServiceInter {
 		mapperInter.getUpdateJob(dto);
 	}
 
-	public void updateDescription(RegisterDto dto) {
-		mapperInter.getUpdateDescription(dto);
+	
+	@Override
+	public void scrapInsert(HireDto dto) {
+		mapper.scrapInsert(dto);
 		
 	}
 
+	@Override
+	public int getRnumById(String r_id) {
+		return mapper.getRnumById(r_id);
+	}
 
+	@Override
+	public void scrapDelete(int r_num, int h_num) {
+		Map<String, Object> param = new HashMap<>();
+		param.put("r_num",r_num);
+		param.put("h_num",h_num);
+		mapper.scrapDelete(r_num, h_num);
+		
+	}
 
+	@Override
+	public List<HireDto> getUserScraps(int r_num) {
+		return mapper.getUserScraps(r_num);
+	}
+
+	@Override
+	public int getScrapCount(int r_num) {
+		return mapper.getScrapCount(r_num);
+	}
+
+	@Override
+	public int getpenum(String r_num) {
+		return mapperInter.getpenum(r_num);
+	}
+
+	@Override
+	public int getwritemiddle(int pe_num) {
+		return mapperInter.getwritemiddle(pe_num);
+	}
+
+	@Override
+	public int getwriteuni(int pe_num) {
+		return mapperInter.getwriteuni(pe_num);
+	}
+
+	@Override
+	public Optional<Integer> getwritecareer(int pe_num) {
+		return mapperInter.getwritecareer(pe_num);
+	}
+
+	@Override
+	public int getwriteactibity(int pe_num) {
+		return mapperInter.getwriteactibity(pe_num);
+	}
+
+	@Override
+	public int getwritesp_ce(int pe_num) {
+		return mapperInter.getwritesp_ce(pe_num);
+	}
+
+	@Override
+	public int getwritesp_la(int pe_num) {
+		return mapperInter.getwritesp_la(pe_num);
+	}
+
+	@Override
+	public int getwritesp_aw(int pe_num) {
+		return mapperInter.getwritesp_aw(pe_num);
+	}
+
+	@Override
+	public void getUpdateDescription(RegisterDto dto) {
+		mapperInter.getUpdateDescription(dto);
+	}
+	
 }

@@ -138,23 +138,20 @@ a, a:active, a:hover, a:visited {
 			        <a class="" href="#"><h1 style="font-weight: 600;">관리자 페이지</h1></a>
 			        <div class="menu_container">
 			        	<div role="tablist" class="menu_menu" aria-label="검색 분류">
-			        		<a href="main" role="tab" id="home" tabindex="-1" class="menu_item" aria-selected="false" aria-controls="home">
-			        		<span class="menu_text">HOME</span>
-			        		</a>
 			        		<a href="member" role="tab" id="member" tabindex="-1" class="menu_item" aria-selected="true" aria-controls="member">
-			        		<span class="menu_text">MEMBER</span>
+			        		<span class="menu_text">회원</span>
 			        		</a>
 			        		<a href="company" role="tab" id="company" tabindex="-1" class="menu_item" aria-selected="false" aria-controls="company">
-			        		<span class="menu_text">COMPANY</span>
+			        		<span class="menu_text">기업</span>
 			        		</a>
 			        		<a href="info" role="tab" id="info" tabindex="-1" class="menu_item" aria-selected="false" aria-controls="info">
-			        		<span class="menu_text">INFO</span>
+			        		<span class="menu_text">공지사항</span>
 			        		</a>
 			        		<a href="event" role="tab" id="event" tabindex="-1" class="menu_item" aria-selected="false" aria-controls="event">
-			        		<span class="menu_text">EVENT</span>
+			        		<span class="menu_text">이벤트</span>
 			        		</a>
-			        		<a href="edit" role="tab" id="block" tabindex="0" class="menu_item" aria-selected="false" aria-controls="block">
-			        		<span class="menu_text">BLOCK</span>
+			        		<a href="inquiry" role="tab" id="inquiry" tabindex="0" class="menu_item" aria-selected="false" aria-controls="block">
+			        		<span class="menu_text">1:1문의</span>
 			        		</a>
 			        	</div>
 			        </div>
@@ -175,13 +172,12 @@ a, a:active, a:hover, a:visited {
 			                		</td>
 			                	</tr>
 			                	<tr align="center">
-			                		<td>NO</td>
-			                		<td>NAME / NICKNAME</td>
-			                		<td>ID / PASSWORD</td>
-			                		<td>GENDER / BIRTHDAY</td>
-			                		<td>EMAIL</td>
-			                		<td>DAY</td>
-			                		<td>BLOCK</td>
+			                		<td>번호</td>
+			                		<td>이름 / 닉네임</td>
+			                		<td>아이디 / 패스워드</td>
+			                		<td>성별 / 생일</td>
+			                		<td>이메일</td>
+			                		<td>가입날짜</td>
 			                	</tr>
 			                	</thead>
 			                	<tbody>
@@ -215,9 +211,6 @@ a, a:active, a:hover, a:visited {
 								    	</td>
 								        <td valign="middle">${r.r_email }</td>
 								        <td valign="middle"><fmt:formatDate value="${r.r_gaipday}" pattern="yyyy-MM-dd"/></td>
-								        <td valign="middle">
-								           <input type="checkbox" num="${dto.num }" class="del">
-								        </td>
 								    </tr>
 								</c:forEach>
 								</c:if>

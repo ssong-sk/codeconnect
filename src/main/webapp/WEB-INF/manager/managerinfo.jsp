@@ -127,6 +127,22 @@ a, a:active, a:hover, a:visited {
 .cuslist{
 	cursor: pointer;
 }
+
+#eventCategory {
+    appearance: none; /* appearance 속성으로 기본 스타일을 없앰 (크로스 브라우징 고려) */
+    -webkit-appearance: none; /* WebKit 기반 브라우저 (Safari, Chrome 등) */
+    -moz-appearance: none; /* Firefox */
+    -ms-appearance: none; /* IE/Edge */
+    background-color: transparent; /* 배경색을 투명으로 설정 */
+    border: none; /* 테두리 제거 */
+    padding: 0; /* 패딩 제거 */
+    font-size: inherit; /* 폰트 사이즈 상속 */
+    cursor: pointer; /* 커서 모양을 포인터로 설정 */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="8"><path fill="%23000" d="M0 0l6 8 6-8H0z"/></svg>'); /* 화살표 이미지 추가 */
+    background-repeat: no-repeat; /* 배경 이미지 반복 설정 */
+    background-position: right 0px bottom 10px; /* 화살표 이미지 위치 설정 (오른쪽으로 10px 이동, 아래로 10px 이동) */
+    padding: 0px 15px 0px 0px;
+}
 </style>
 </head>
 <body>
@@ -138,23 +154,20 @@ a, a:active, a:hover, a:visited {
 			        <a class="" href="#"><h1 style="font-weight: 600;">관리자 페이지</h1></a>
 			        <div class="menu_container">
 			        	<div role="tablist" class="menu_menu" aria-label="검색 분류">
-			        		<a href="main" role="tab" id="home" tabindex="-1" class="menu_item" aria-selected="false" aria-controls="home">
-			        		<span class="menu_text">HOME</span>
-			        		</a>
 			        		<a href="member" role="tab" id="member" tabindex="-1" class="menu_item" aria-selected="false" aria-controls="member">
-			        		<span class="menu_text">MEMBER</span>
+			        		<span class="menu_text">회원</span>
 			        		</a>
 			        		<a href="company" role="tab" id="company" tabindex="-1" class="menu_item" aria-selected="false" aria-controls="company">
-			        		<span class="menu_text">COMPANY</span>
+			        		<span class="menu_text">기업</span>
 			        		</a>
 			        		<a href="info" role="tab" id="info" tabindex="-1" class="menu_item" aria-selected="true" aria-controls="info">
-			        		<span class="menu_text">INFO</span>
+			        		<span class="menu_text">공지사항</span>
 			        		</a>
 			        		<a href="event" role="tab" id="event" tabindex="-1" class="menu_item" aria-selected="false" aria-controls="event">
-			        		<span class="menu_text">EVENT</span>
+			        		<span class="menu_text">이벤트</span>
 			        		</a>
-			        		<a href="edit" role="tab" id="block" tabindex="0" class="menu_item" aria-selected="false" aria-controls="block">
-			        		<span class="menu_text">BLOCK</span>
+			        		<a href="inquiry" role="tab" id="inquiry" tabindex="0" class="menu_item" aria-selected="false" aria-controls="block">
+			        		<span class="menu_text">1:1문의</span>
 			        		</a>
 			        	</div>
 			        </div>
@@ -176,14 +189,13 @@ a, a:active, a:hover, a:visited {
 			                		</td>
 			                	</tr>
 			                	<tr align="center">
-			                		<td>NO</td>
-			                		<td>CATEGORY</td>
-			                		<td>TITLE</td>
-			                		<td>DAY</td>
-			                		<td>BLOCK</td>
+			                		<td>번호</td>
+			                		<td>카테고리</td>
+			                		<td>제목</td>
+			                		<td>작성날짜</td>
 			                	</tr>
 			                	</thead>
-			                	<tbody>
+			                	<tbody id="eventTableBody">
 								<c:if test="${cus_count==0 }">
 								<tr height="50">
 								  <td colspan="5" align="center">
@@ -193,16 +205,13 @@ a, a:active, a:hover, a:visited {
 								</c:if>
 			                	<c:if test="${cus_count>0 }">
 			                	<c:forEach var="cus" items="${cuslist }">
-								    <tr style="height: 50px;" align="center" class="cuslist" onclick="location.href='infoedit?cus_num=${cus.cus_num}'">
+								    <tr style="height: 50px;" align="center" class="cuslist" data-category="${cus.cus_category}" onclick="location.href='infoedit?cus_num=${cus.cus_num}'">
 								       <td valign="middle">${no }</td><c:set var="no" value="${no-1 }"/>
 								       <td valign="middle" style="font-weight: bold; color: #0176ED; ">
 											${cus.cus_category } 
 									   </td>
 								       <td valign="middle">${cus.cus_title }</td>
 								       <td valign="middle"><fmt:formatDate value="${cus.cus_writetime}" pattern="yyyy-MM-dd HH:mm"/></td>
-								       <td valign="middle">
-								           <input type="checkbox" num="${cus.cus_num }" class="del">
-								       </td>
 								    </tr>
 								</c:forEach>
 								</c:if>
@@ -257,4 +266,5 @@ a, a:active, a:hover, a:visited {
         $(this).attr('aria-selected', 'true');
 	})
 </script>
+
 </html>

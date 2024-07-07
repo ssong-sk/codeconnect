@@ -21,11 +21,11 @@
       margin: 0 auto;
       width: 100%;
       height: 100%;
-      max-width: 1200px;
+      max-width: 1060px;
   }
   
-  #wrap {
-      margin-top: 100px; /* 헤더 들어갈 부분 */
+   #wrap {
+      margin-top: 60px; /* 헤더 들어갈 부분 */
       font-family: 'IBM Plex Sans KR', sans-serif;
   }
   .all-form {
@@ -34,6 +34,7 @@
       padding: 20px; /* 전체 여백 */
       margin: 0 auto; /* 가운데 정렬 */
       border: 0px solid #ddd; /* 외곽선 */
+       margin-top: 60px;
   }
   
   /* 왼쪽 메뉴바 스타일 */
@@ -50,7 +51,7 @@
   }
   
   .menu-item {
-      font-size: 0.9em;
+    
   }
   
   /*오른쪽 스타일*/
@@ -114,26 +115,44 @@
     padding: 10px 20px;
   }
   
-
+    /* 이미지 */
+	.image-container {
+	    position: relative;
+	    display: inline-block;
+	}
+	
+	.centered-text {
+	    position: absolute;
+	    top: 90%;
+	    left: 20%;
+	    transform: translate(-50%, -50%);
+	    color: white;
+	    font-weight: bold;
+	    text-align: center;
+	} 
 </style>
 </head>
 <body>
     <div class="all">
         <div id="wrap">
             <div class="center">
+             <div class="image-container">
+	            <img alt="" src="../image/resume.PNG" style="width: 1060px; border-radius: 10px;">
+	            <h4 class="centered-text">이력서 작성 하고 합격률 높이자!</h4>
+	         </div>
               <div class="all-form">
 <!-- 왼쪽 메뉴바------------------------------------------------------------------------------------------------------- -->
               <div class="leftmenubar" style="width: 20%; margin-bottom: 10%;">
                   <ul class="leftmenu">
 				    <li>
-				      <div class="menu-home">
+				      <div class="menu-home" style="font-size: 1.2em;">
 				        <a href="/resumehome/home"><b>My Home</b></a>
 				      </div>
 				    </li>
 				    
-				    <li class="title-section">
+				    <li class="title-section" >
 				      <div class="menu-section">
-				        <span><b>이력서 관리</b></span>
+				        <span style="font-size: 1.2em;"><b>이력서 관리</b></span>
 				      </div>
 				    </li>
 				    
@@ -151,19 +170,19 @@
 				    
 				    <li class="title-section">
 				      <div class="menu-section">
-				        <span><b>입사지원 관리</b></span>
+				        <span style="font-size: 1.2em;"><b>입사지원 관리</b></span>
 				      </div>
 				    </li>
 				    
 				    <li>
 				      <div class="menu-item">
-				        <a href="/resumehome/supportform" style="color: #5494DB; background-color: rgba(84, 148, 219, 0.2);">입사지원 현황</a>
+				        <a href="/resumehome/supportform" style="color: #0D6CF9; background-color: rgba(84, 148, 219, 0.2);">입사지원 현황</a>
 				      </div>
 				    </li>
 				    
 				    <li class="title-section">
 				      <div class="menu-section">
-				        <span><b>스크랩/관심기업</b></span>
+				        <span style="font-size: 1.2em;"><b>스크랩/관심기업</b></span>
 				      </div>
 				    </li>
 				    
@@ -263,11 +282,13 @@
 				     
 				     <!-- 유의사항 -->
 				     <div class="condition-notice">
-		              <div>
-			              <div style="font-size: 1.2em;"><i class="bi bi-exclamation-circle"></i>&nbsp;&nbsp;<b>유의사항</b></div><br>
-			              <div>- 이력서는 최대 10개까지 등록 가능합니다.</div>
-			              <div>- '입사지원 내역'건수는 최근 1년간 내역에 대해 확인 가능합니다.</div>
-			              <div>- 수정, 삭제 기능은 이력서 우측 버튼을 누르면 확인하실 수 있습니다.(이력서는 부분 삭제 불가)</div>
+		              <div style="padding: 10px 10px;">
+			              <div ><i class="bi bi-exclamation-circle"></i>&nbsp;&nbsp;<b>유의사항</b></div><br>
+			              <div style="font-size: 0.8em;">- 최근 2년간의 지원내역에 대한 확인이 가능합니다.</div>
+			              <div style="font-size: 0.8em;">- 지원취소는 최근 1년간의 지원에 대해서만 가능하며, 공고가 삭제된 경우 지원취소를 제공하지 않습니다.</div>
+			              <div style="font-size: 0.8em;">- 지원하신 기업에서 '사람인 결과발표'를 이용할 경우 지원 현황에서 결과를 확인하실 수 있으나, 코드커넥트를 통해 발표하지 않는 경우 지원 현황에 표기되지 않습니다.
+			              정확한 발표 방식 및 일정에 대해서는 지원하신 기업에 문의해주세요.</div>
+			              <div style="font-size: 0.8em;">- 기업이 이미 이력서를 열람한 경우, 채용 서류는 별도로 반환하지 아니하며 채용 종료 시 개인정보보호법을 준수하여 채용 서류를 즉시 파기합니다.</div>
 		              </div>
 		            </div>
 				     

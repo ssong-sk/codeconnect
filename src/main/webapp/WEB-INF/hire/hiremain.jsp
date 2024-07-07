@@ -23,7 +23,7 @@
 	margin: 0 auto;
 	width: 100%;
 	height: 100%;
-	max-width: 1080px;
+	max-width: 1060px;
 }
 
 #wrap {
@@ -35,7 +35,7 @@
 	margin: 0 auto;
 	width: 100%;
 	height: 100%;
-	max-width: 1080px;
+	max-width: 1060px;
 }
 
 #wrap2 {
@@ -97,7 +97,7 @@ ul {
 }
 
 .bottomlist {
-	background-color: #f6f6f6;
+	background-color: white;
 	width: 100%;
 }
 
@@ -688,10 +688,10 @@ svg {
                         <!-- Modal Footer -->
                         <div class="modal-footer" style="float: left;">
                            <button type="button" class="btn btn-outline-light resetjob"
-                              style="color: black; border-color: lightgray; font-weight: bold; font-size: 10pt; padding: 7px 18px;">초기화</button>
+                              style="color: black; border-color: lightgray; font-weight: bold; font-size: 16px; padding: 7px 18px;">초기화</button>
                            <button type="button" class="btn btn-primary apply-btn"
                               data-bs-dismiss="modal"
-                              style="float: right; font-weight: bold; font-size: 10pt; padding: 6px 18px;">적용</button>
+                              style="float: right; font-weight: bold; font-size: 16px; padding: 6px 18px;">적용</button>
                         </div>
                      </div>
                   </div>
@@ -799,9 +799,9 @@ svg {
                         <!-- Modal Footer -->
                         <div class="modal-footer" style="float: left;">
                            <button type="button" class="btn btn-outline-light resettech"
-                              style="color: black; border-color: lightgray;">초기화</button>
+                              style="color: black; border-color: lightgray; font-weight: bold;">초기화</button>
                            <button type="button" class="btn btn-primary techapply-btn"
-                              data-bs-dismiss="modal" style="float: right;">적용</button>
+                              data-bs-dismiss="modal" style="float: right; font-weight: bold;">적용</button>
                         </div>
                      </div>
                   </div>
@@ -880,7 +880,7 @@ svg {
                <hr style="margin-top: 5px;">
                <div>
                   <button type="button" class="btn btn-outline-light resetcareer"
-                     style="color: black; border: 1px solid lightgray;">초기화</button>
+                     style="color: black; border: 1px solid lightgray;font-weight: bold;">초기화</button>
                   <input type="hidden" id="search_career" name="search_career">
                </div>
             </div>
@@ -1240,9 +1240,9 @@ svg {
 		            <div style="border: 1px solid lightgray; margin: 0px -10px 0 -10px;padding: 12.5px 0 0 10px;
 		            border-width: 1px 0 0;">
 		               <button type="button" class="btn btn-outline-light resetregion"
-		               style="color: black;border: 1px solid lightgray;">초기화</button>
+		               style="color: black;border: 1px solid lightgray;font-weight: bold;">초기화</button>
 		               <button type="button" class="btn btn-outline-light btnapply"
-		               style="color: #0D6EFD;border: 1px solid #0D6EFD;float: right;
+		               style="color: #0D6CF9;border: 1px solid #0D6CF9;float: right;font-weight: bold;
 		               margin-right: 10px;">적용하기</button>
 		            </div>
 				</div>
@@ -1325,20 +1325,6 @@ svg {
 			<!-- 리스트 시작 -->
 			<!-- 리스트 배열 선택하기 -->
             <div class="hirelistsort listsort">
-				<div>
-					<div class="order_wrap">
-						<ul class="ullist">
-							<li>
-								<button aria-pressed="true" type="button" class="listtrue">
-									최신순&nbsp;&nbsp;&nbsp; <span
-									style="font-size: 12pt; color: gray;">ㆍ</span>
-								</button>
-							</li>
-							<li><button aria-pressed="false" type="button"
-							class="listfalse">인기순</button></li>
-						</ul>
-					</div>
-				</div>
 			</div>
 			<!-- 채용공고 리스트 -->
 			<section class="hirelist">
@@ -1484,7 +1470,7 @@ $(document).ready(function() {
 			marginLeft : '10px',
 			border : 'none',
 			background : 'none',
-			color : 'blue',
+			color : '#0D6CF9',
 			cursor : 'pointer'
 		});
 
@@ -1584,7 +1570,7 @@ $(document).ready(function() {
 			marginLeft: '10px',
 			border: 'none',
 			background: 'none',
-			color: 'blue',
+			color: '#0D6CF9',
 			cursor: 'pointer'
 		});
 
@@ -1662,7 +1648,7 @@ $('input[name="career"]').change(function() {
     // 선택된 경력 텍스트 가져오기
     var selectedCareer = $('input[name="career"]:checked').next().text().trim();
     // 경력 버튼 텍스트 업데이트
-    $('.carreerbtn').html('경력 <span style="color: blue;">' + selectedCareer + '</span> <span class="bi bi-chevron-down" style="vertical-align: middle;font-size: 15px;font-weight: bold;"></span>');
+    $('.carreerbtn').html('경력 <span style="color: #0D6CF9;">' + selectedCareer + '</span> <span class="bi bi-chevron-down" style="vertical-align: middle;font-size: 15px;font-weight: bold;"></span>');
     // 버튼 너비 조정
     $('.carreerbtn').css('width', '90px');
     $('div.region').css('margin-left', '94px');
@@ -1759,7 +1745,7 @@ $(".regionbtn").click(function() {
     
     /* 지역버튼 클릭시 전국이 클릭되어있도록 */
     if (isAllSelected) {
-        $(".regionbox-option").find("button[value='all']").addClass("selected").css("color", "blue").css("font-weight", "bold");
+        $(".regionbox-option").find("button[value='all']").addClass("selected").css("color", "#0D6CF9").css("font-weight", "bold");
     }else{
     	$(".regionbox-option button").find("button[value='all']").removeClass("selected").css("color", "black").css("font-weight", "0");
     	$('#selected-region').find('.selected-region:contains("전국")').remove();
@@ -1820,19 +1806,19 @@ $('.region-btn').click(function() {
      	// 선택된 지역을 삭제
         $('#selected-region').find('.selected-region:contains("전국")').remove();
     }else{
-       $(this).addClass("selected").css("color","blue").css("font-weight","bold");
+       $(this).addClass("selected").css("color","#0D6CF9").css("font-weight","bold");
        $(".regionbox-option").find("button").not("[value='all']").removeClass("selected").css("color", "").css("font-weight", "");
        $(".region-detail-empty").show();
     }
-    $(this).css("color","blue").css("font-weight","bold");
+    $(this).css("color","#0D6CF9").css("font-weight","bold");
 });
 
-//'전체' 체크박스 클릭 이벤트
+//'전체' 체크박스를 클릭 이벤트
 $('li:contains("전체") input[type="checkbox"]').click(function() {
     const $ul = $(this).closest('ul');
     const isAllChecked = $(this).prop("checked");
     const regionTextss = regionText + " " + $(this).closest('li').text().trim();
-	
+
     if (isAllChecked) {
         // '전체' 체크박스를 선택한 경우
         // 같은 ul 내의 다른 체크박스를 해제
@@ -1844,27 +1830,53 @@ $('li:contains("전체") input[type="checkbox"]').click(function() {
         });
         // '전체'를 추가
         if (!$('#selected-region').find('.selected-region:contains("' + regionTextss + '")').length) {
-            addSelectedregion(regionTextss);
-            /* 기술 검색 시 사용 */
-    		if (search_region !== "") {
-    			search_region += "|";
-    		}
+            addSelectedregion(regionText, true);
+            // 기술 검색 시 사용
+            if (search_region !== "") {
+                search_region += "|";
+            }
             search_region += regionTextss.trim(); // 추가: search_region '지역' 추가
-    		$("#search_region").val(search_region);  // 추가: '지역' 포함된 값 설정
+            $("#search_region").val(search_region);  // 추가: '지역' 포함된 값 설정
         }
     } else {
         // '전체' 체크박스를 해제한 경우
         $('#selected-region').find('.selected-region:contains("' + regionTextss + '")').remove();
-        
-     	// search_region에서 해당 부분 제거
+
+        // search_region에서 해당 부분 제거
         var regex = new RegExp(regionTextss.trim() + "(\\|)?", "g");
         search_region = search_region.replace(regex, "");
+
         // search_region 변수의 앞뒤 공백 제거 및 앞뒤 '|' 제거
         search_region = search_region.trim().replace(/^(\|)/, '').replace(/(\|)$/, '');
-        
-        $("#search_region").val(search_region);  // 추가: 초기화된 값 설정
+
+        // '전체'라는 단어가 포함되어 있으면 제거
+        if (search_region.includes('전체')) {
+            search_region = search_region.replace(/\w* 전체\b(\|)?/g, '');
+            // 앞뒤 공백 및 '|' 정리
+            search_region = search_region.trim().replace(/^(\|)/, '').replace(/(\|)$/, '');
+        }
+
+        // 초기화된 값 설정
+        $("#search_region").val(search_region);
     }
 });
+
+// addSelectedregion 함수 수정
+function addSelectedregion(regionText, isAll) {
+    let displayText = regionText;
+    if (isAll) {
+        displayText = regionText; // '전체'를 포함하지 않도록 함
+    }
+    const newRegion = `
+        <div class="selected-region" style="display: inline-block; margin-left: 5px; margin-right: 5px; margin-bottom: 5px; border: 1px solid rgb(204, 204, 204); background-color: rgb(250, 250, 250); padding: 6px 6px 6px 8px; border-radius: 15px; font-weight: bold;">
+            <span>${displayText}</span>
+            <button style="margin-left: 0px; border: none; background: none; color: #0D6CF9; cursor: pointer;">
+                <i class="bi bi-x-lg"></i>
+            </button>
+        </div>
+    `;
+    $('#selected-region').append(newRegion);
+}
 
 //다른 체크박스 클릭 이벤트
 $('li').not(':contains("전체")').find('input[type="checkbox"]').click(function() {
@@ -1935,7 +1947,7 @@ $(".resetregion").click(function() {
     // '전국' 버튼 초기화
     isAllSelected = true;
     $(".regionbox-option button[value='all']").addClass("selected").css({
-        color: "blue",
+        color: "#0D6CF9",
         "font-weight": "bold"
     });
 
@@ -1955,7 +1967,7 @@ $(".resetregion").click(function() {
 // '적용하기' 버튼 클릭 이벤트
 $(".btnapply").click(function() {
     var selectedCount = $('#selected-region .selected-region').length;
-    var buttonText = '지역 <span style="color: blue;">' + selectedCount + '</span> <i class="bi bi-chevron-down"></i>';
+    var buttonText = '지역 <span style="color: #0D6CF9;">' + selectedCount + '</span> <i class="bi bi-chevron-down"></i>';
     
     // 버튼에 텍스트 적용
     $(".regionbtn.category3").html(buttonText);
@@ -1987,7 +1999,7 @@ function addSelectedregion(regionTextss) {
         marginLeft: '0px',
         border: 'none',
         background: 'none',
-        color: 'blue',
+        color: '#0D6CF9',
         cursor: 'pointer'
     });
 
@@ -2305,5 +2317,6 @@ function scrapPress() {
 
 }
 </script>
+
 </body>
 </html>

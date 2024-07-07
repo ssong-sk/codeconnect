@@ -428,54 +428,6 @@ button[disabled], html input[disabled] {
 	cursor: default;
 }
 
-.footer_up_ybtn {
-	background-color: #fff;
-	color: #4876EF;
-	cursor: pointer;
-	font-weight: bold;
-	font-size: 15px;
-	width: 100px;
-	border: 1px solid #4876EF;
-	border-radius: 32px;
-	height: 56px;
-	margin-top: 20px;
-	margin-bottom: 15px;
-	letter-spacing: -1.3px !important;
-	margin-left: 70px;
-	margin-right: 3px;
-}
-
-.footer_de_ybtn {
-	background-color: #fff;
-	color: red;
-	cursor: pointer;
-	font-weight: bold;
-	font-size: 15px;
-	width: 100px;
-	border: 1px solid red;
-	border-radius: 32px;
-	height: 56px;
-	margin-top: 20px;
-	margin-bottom: 15px;
-	margin-right: 3px;
-	letter-spacing: -1.3px !important;
-}
-
-.footer_ex_ybtn {
-	background-color: #fff;
-	color: black;
-	cursor: pointer;
-	font-weight: bold;
-	font-size: 15px;
-	width: 100px;
-	border: 1px solid black;
-	border-radius: 32px;
-	height: 56px;
-	margin-top: 20px;
-	margin-bottom: 15px;
-	letter-spacing: -1.3px !important;
-}
-
 .footer_join_nbtn {
 	background-color: #B2B2B2;
 	color: #fff;
@@ -489,6 +441,11 @@ button[disabled], html input[disabled] {
 	margin-top: 20px;
 	margin-bottom: 15px;
 	letter-spacing: -1.3px !important;
+}
+
+dl.allbtn{
+	padding-top: 20px;
+    padding-left: 140px;
 }
 
 .certifi_num_btn {
@@ -540,23 +497,20 @@ button[disabled], html input[disabled] {
 			        <a class="" href="#"><h1 style="font-weight: 600;">관리자 페이지</h1></a>
 			        <div class="menu_container">
 			        	<div role="tablist" class="menu_menu" aria-label="검색 분류">
-			        		<a href="main" role="tab" id="home" tabindex="-1" class="menu_item" aria-selected="false" aria-controls="home">
-			        		<span class="menu_text">HOME</span>
-			        		</a>
 			        		<a href="member" role="tab" id="member" tabindex="-1" class="menu_item" aria-selected="true" aria-controls="member">
-			        		<span class="menu_text">MEMBER</span>
+			        		<span class="menu_text">회원</span>
 			        		</a>
 			        		<a href="company" role="tab" id="company" tabindex="-1" class="menu_item" aria-selected="false" aria-controls="company">
-			        		<span class="menu_text">COMPANY</span>
+			        		<span class="menu_text">기업</span>
 			        		</a>
 			        		<a href="info" role="tab" id="info" tabindex="-1" class="menu_item" aria-selected="false" aria-controls="info">
-			        		<span class="menu_text">INFO</span>
+			        		<span class="menu_text">공지사항</span>
 			        		</a>
 			        		<a href="event" role="tab" id="event" tabindex="-1" class="menu_item" aria-selected="false" aria-controls="event">
-			        		<span class="menu_text">EVENT</span>
+			        		<span class="menu_text">이벤트</span>
 			        		</a>
-			        		<a href="edit" role="tab" id="block" tabindex="0" class="menu_item" aria-selected="false" aria-controls="block">
-			        		<span class="menu_text">BLOCK</span>
+			        		<a href="inquiry" role="tab" id="inquiry" tabindex="0" class="menu_item" aria-selected="false" aria-controls="block">
+			        		<span class="menu_text">1:1문의</span>
 			        		</a>
 			        	</div>
 			        </div>
@@ -717,12 +671,12 @@ button[disabled], html input[disabled] {
 												</dd>
 											</dl>
 
-											<dl>
-												<button class="footer_up_ybtn" type="submit" id="bnt_up"
-													tabindex="10">수정</button>
-												<button class="footer_de_ybtn" type="button" id="bnt_de"
-													tabindex="10" onclick="location.href='memberdelete?r_num=${rdto.r_num}'">삭제</button>
-												<button class="footer_ex_ybtn" type="button" id="bnt_ex"
+											<dl class="allbtn">
+												<button class="btn btn-outline-primary" type="submit" id="bnt_up"
+													tabindex="10" style="margin-right: 5px;">수정</button>
+												<button class="btn btn-outline-danger" type="button" id="bnt_de" style="margin-right: 5px;"
+													tabindex="10" onclick="if(confirmDelete()) { location.href='memberdelete?r_num=${rdto.r_num}'}">삭제</button>
+												<button class="btn btn-outline-dark" type="button" id="bnt_ex"
 													tabindex="10" onclick="history.back()">취소</button>
 											</dl>
 										</form>
@@ -1108,5 +1062,10 @@ button[disabled], html input[disabled] {
 		$("a.menu_item").attr('aria-selected', 'false');
         $(this).attr('aria-selected', 'true');
 	})
+</script>
+<script type="text/javascript">
+    function confirmDelete() {
+            return confirm("정말 삭제하시겠습니까?");
+    }
 </script>
 </html>

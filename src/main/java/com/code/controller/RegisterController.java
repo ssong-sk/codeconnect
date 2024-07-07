@@ -2,6 +2,7 @@ package com.code.controller;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 
@@ -13,9 +14,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.code.dto.CompanyIntroDto;
+import com.code.dto.HireDto;
 import com.code.dto.RegisterDto;
+import com.code.dto.SupportDto;
+import com.code.mapper.RegisterMapperInter;
+import com.code.service.CompanyIntroService;
+import com.code.service.HireService;
+import com.code.service.IruckseoInsertService;
 import com.code.service.RegisterService;
 
 @Controller
@@ -24,15 +34,55 @@ public class RegisterController {
    @Autowired
    RegisterService service;
    
-   @GetMapping("/")
-   public String start()
-   {
-      return "/layout/main";
-   }
+   @Autowired
+   RegisterMapperInter mservice;
    
+   @Autowired
+   HireService hservice;
+   
+   @Autowired
+   CompanyIntroService ciservice;
+   
+   @Autowired
+   IruckseoInsertService irservice;
+
+   @GetMapping("/")
+   public String start(@ModelAttribute("hdto") HireDto dto, @ModelAttribute CompanyIntroDto cidto, Model model,HttpSession session)
+   {
+	   List<HireDto> hlist = hservice.getHireList();
+	   List<HireDto> rlist = hservice.getHireList();
+	   List<CompanyIntroDto> cilist = ciservice.getAllCompanyIntros();
+
+	   
+	   String myid =(String)session.getAttribute("myid");
+	   Integer r_num = null;
+	   
+	   if(myid != null) {
+		   r_num = hservice.getRnumById(myid);
+	   }
+	   if(r_num == null)
+	   {
+		   r_num = 0;
+	   }
+
+	   int rScrap = service.getScrapCount(r_num);
+	   
+	   List<HireDto> userScraps = hservice.getUserScraps(r_num);
+	   
+	   model.addAttribute("hlist", hlist);
+	   model.addAttribute("cilist", cilist);
+	   model.addAttribute("rlist",rlist);
+	   model.addAttribute("r_num",r_num);
+	   model.addAttribute("userScraps",userScraps);
+	   model.addAttribute("rScrap",rScrap);
+	   
+	   return "/layout/main";
+   }
+      
    @GetMapping("/main")
    public String form(HttpSession session,Model model)
-   {
+   {		
+	   
       //폼의 아이디얻어줌
       String myid=(String)session.getAttribute("myid");
       //로그인중인지 아닌지
@@ -68,17 +118,6 @@ public class RegisterController {
           return "/member/gaipsuccess";
    }
    
-   
-   
-   //회원정보로 가기
-      @GetMapping("/member/myinfo")
-      public String myinfo(Model model)
-      {
-         List<RegisterDto> list=service.getAllRegister();
-         model.addAttribute("list", list);
-         return "/member/memberinfo";
-      }
-      
       //회원목록 삭제
       @GetMapping("/deleteRegister")
       @ResponseBody
@@ -95,73 +134,159 @@ public class RegisterController {
          return service.getDataByNum(r_num);
       }
       
+      
+      
       //이름 수정
       @PostMapping("/updateName")
       @ResponseBody
-      public void updateName(RegisterDto dto)
+      public ResponseEntity<String> updateName(@RequestParam("r_num")String r_num, @RequestParam("r_name") String r_name, RegisterDto dto,HttpSession session)
       {
+    	 dto.setR_num(r_num);
+    	 dto.setR_name(r_name);
+    	 
          service.updateName(dto);
+         session.setAttribute("r_name", dto.getR_name());
+         return ResponseEntity.ok("수정 완료");
+         
       }
       
       //전화번호 수정
       @PostMapping("/updateHp")
       @ResponseBody
-      public void updateHp(RegisterDto dto)
+      public void updateHp(@ModelAttribute("r_hp") String r_hp, RegisterDto dto,HttpSession session)
       {
+    	  dto.setR_hp(r_hp);
     	  service.updateHp(dto);
+    	  session.setAttribute("r_hp", dto.getR_hp());
       }
       
       //프로필 경력 수정
       @PostMapping("/updateExp")
       @ResponseBody
-      public void updateExp(RegisterDto dto)
+      public void updateExp(@ModelAttribute("r_exp") String r_exp, RegisterDto dto,HttpSession session)
       {
+    	  dto.setR_exp(r_exp);
     	  service.updateExp(dto);
+    	  session.setAttribute("r_exp", dto.getR_exp());
       }
       
       @PostMapping("/updateJob")
       @ResponseBody
-      public void updateJob(RegisterDto dto) {
+      public void updateJob(@ModelAttribute("r_job") String r_job, RegisterDto dto,HttpSession session) {
+    	  
+    	  dto.setR_job(r_job);
     	  service.updateJob(dto);
+    	  session.setAttribute("r_job", dto.getR_job());
       }
       
       @PostMapping("/updateDescription")
       @ResponseBody
-      public void upateDescription(RegisterDto dto) {
-    	  service.updateDescription(dto);
+      public void updateDescription(String r_sogae, RegisterDto dto, HttpSession session) {
+          dto.setR_sogae(r_sogae);
+          service.getUpdateDescription(dto);
+          session.setAttribute("r_sogae", dto.getR_sogae());
       }
 
+
       
-   @GetMapping("/member/mypage")
-   public String mypage()
-   {
-      return "/member/mypage";
-   }
+	@GetMapping("/member/mypage")
+	public String mypage(@ModelAttribute("hdto") HireDto dto,Model model,HttpSession session)
+	{    
+	   String myid =(String)session.getAttribute("myid");
+	   String r_num2 =(String)session.getAttribute("r_num");
+	   // 사용자의 r_num을 초기화
+	   Integer r_num = null;
+
+	   // 만약 myid가 null이 아니면, 해당 사용자의 r_num을 가져옴
+	   if (myid != null) {
+		   	r_num = hservice.getRnumById(myid);
+	   }
+	    
+	   // r_num이 null인 경우, 기본값 0으로 설정
+	   if (r_num == null) {
+		   r_num = 0;
+	   }
+	   	   
+	   int pe_num = service.getpenum(r_num2);
+	   int midcount = service.getwritemiddle(pe_num);
+	   int unicount = service.getwriteuni(pe_num);
+	   Optional<Integer> carcountOpt = service.getwritecareer(pe_num);
+	   int carcount = carcountOpt.orElse(0);
+	   int actcount = service.getwriteactibity(pe_num);
+	   int spcecount = service.getwritesp_ce(pe_num);
+	   int splacount = service.getwritesp_la(pe_num);
+	   int spawcount = service.getwritesp_aw(pe_num);
+	   
+	   int totalCount = irservice.getSupportCount(r_num);
+	   int CountApply = irservice.getCountApply(r_num);
+	   int CountApplySuc = irservice.getCountApplySuc(r_num);
+	   int CountApplyFin = irservice.getCountApplyFin(r_num);
+	   int CountApplyFail = irservice.getCountApplyFail(r_num);
+	   
+	   int scrapCount = irservice.getScrapCount(r_num);
+	   int companyCount = irservice.getCompanyCount(r_num);
+
+	   model.addAttribute("r_num2", r_num2);
+	   model.addAttribute("pe_num", pe_num);
+	   model.addAttribute("midcount",midcount);
+	   model.addAttribute("unicount", unicount);
+	   model.addAttribute("carcount", carcount);
+	   model.addAttribute("actcount", actcount);
+	   model.addAttribute("spcecount", spcecount);
+	   model.addAttribute("splacount", splacount);
+	   model.addAttribute("spawcount", spawcount);
+	   
+	   
+	   
+	   model.addAttribute("scrapCount",scrapCount);
+	   model.addAttribute("companyCount",companyCount);
+	   
+	   
+	   
+	   model.addAttribute("count",totalCount);
+	   model.addAttribute("apply",CountApply);
+	   model.addAttribute("applySuc",CountApplySuc);
+	   model.addAttribute("applyFin",CountApplyFin);
+	   model.addAttribute("applyFail",CountApplyFail);
+	   return "/sub/member/mypage"; 
+	}
+   
+   
    
  @GetMapping("/member/apply")
-   public String apply() {
-	   return "/member/apply";
+   public String apply(@RequestParam(value="currentPage",defaultValue="1") int currentPage,HttpSession session,Model model) {
+	 
+	 int r_num = Integer.parseInt((String) session.getAttribute("r_num"));
+	 
+	 int perPage = 5;
+	 int start;
+	 
+	 
+	 start = (currentPage -1) * perPage;
+	 
+	 List<SupportDto> sulist = irservice.getSupportPaging(r_num,start,perPage);
+	 int totalCount = irservice.getSupportCount(r_num);
+	 int CountApply = irservice.getCountApply(r_num);
+	 int CountApplySuc = irservice.getCountApplySuc(r_num);
+	 int CountApplyFin = irservice.getCountApplyFin(r_num);
+	 int CountApplyFail = irservice.getCountApplyFail(r_num);
+	 
+	 
+	 model.addAttribute("sulist",sulist);
+	 model.addAttribute("count",totalCount);
+	 model.addAttribute("apply",CountApply);
+	 model.addAttribute("applySuc",CountApplySuc);
+	 model.addAttribute("applyFin",CountApplyFin);
+	 model.addAttribute("applyFail",CountApplyFail);
+	   
+	   return "/sub/member/apply";
    }
-   
-   @GetMapping("/member/bookmarks")
-   	public String bookmarks() {
-	   return "/member/bookmarks";
-   }
-   
-   @GetMapping("/member/companies")
-   public String companies() {
-	   return "/member/companies";
-   }
-   
+
    @GetMapping("/member/memberform")
    public String memberform() {
       return "/member/memberform";
    }
    
-   @GetMapping("/member/register2")
-   public String position() {
-      return "/member/register2";
-   }
    
     @PostMapping("/checkDuplicateId")
        public ResponseEntity<String> checkDuplicateId(@RequestBody Map<String, String> requestData) {
@@ -184,12 +309,59 @@ public class RegisterController {
           return ResponseEntity.ok("duplicate");
        }
     }
-    
-    
-    
-    
-    
-    
-    
+        
+  //스크랩
+    @ResponseBody
+    @PostMapping("/member/addScrapRes")
+    public void scrapInsertRes(@ModelAttribute("hdto") HireDto hdto, HttpSession session) {
+
+        int r_num =  Integer.parseInt((String) session.getAttribute("r_num"));
+
+        hdto.setR_num(r_num);
+        service.scrapInsert(hdto);
+    }
+
+    @ResponseBody
+    @PostMapping("/member/deleteScrapRes")
+    public void scrapDeleteRes(@RequestParam int r_num, @RequestParam int h_num) {
+        service.scrapDelete(r_num, h_num);
+    }
+
+
+   @GetMapping("/member/bookmarks")
+   public String bookmarks(@ModelAttribute("hdto") HireDto dto,Model model,HttpSession session) { 
+	   
+	   List<HireDto> rlist = hservice.getHireList();
+	  
+	   
+	   String myid =(String)session.getAttribute("myid");
+	   Integer r_num = null;
+	   
+	   if(myid != null) {
+		   r_num = hservice.getRnumById(myid);
+	   }
+	   if(r_num == null)
+	   {
+		   r_num = 0;
+	   }
+	   
+	   int rScrap = service.getScrapCount(r_num);
+
+	   List<HireDto> userScraps = hservice.getUserScraps(r_num);
+	   
+	   model.addAttribute("rlist",rlist);
+	   model.addAttribute("r_num",r_num);
+	   model.addAttribute("userScraps",userScraps);
+	   model.addAttribute("rScrap",rScrap);
+	   return "/sub/member/bookmarks";
+
+   }
+   
+   @GetMapping("/member/companies")
+   public String companies() {
+	   return "/sub/member/companies";
+   }
+   
+   
     
 }
