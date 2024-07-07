@@ -14,12 +14,7 @@
     body {
         font-family: 'IBM Plex Sans KR';
     }
-    
-    /* 최상단 카테고리 nav */
-    /*.nav {
-        margin-top: 40px;
-        margin-left: 250px;
-    }*/
+
     .nav ul {
     list-style-type: none;
     display: flex;
@@ -290,7 +285,6 @@ ul.list_category li {
     </div>
 </div>
 
-
 <div class="commutitle" style="max-width: 1060px; margin: 50px auto;">
     <div class="container" style="padding: 0px 0px;">
         <div class="linkgo d-flex justify-content-between" style="width: 100%;">
@@ -299,7 +293,7 @@ ul.list_category li {
                     <span>전체 <b class="allcount">${totalCount}</b>건</span>
                 </h4>
             </a>
-            <div class="d-flex search">
+            <div class="d-flex search" style="margin-right: 1px;">
                 <input class="form-control me-2" type="search" placeholder="다른 사람들은 어떤 이야기를 할까?" aria-label="Search"
                 style="width: 350px;" name="searchword">
                 <button type="button" class="btn btn-outline-primary" id="btnsearch" style="margin-right: 0px;">
@@ -334,29 +328,7 @@ ul.list_category li {
 	    </c:if>
 	</div>
 </div>
-<%-- <div class="list_qna" style="max-width: 1200px; margin: 30px auto;">
-    <ul class="qna-list">
-        <c:forEach var="dto" items="${list}">
-            <li style="border-top: 1px solid #eaeaea;">
-                <div class="qna-item">
-                    <div class="post_list">
-                        <a href="${root}/community/homedetail?com_num=${dto.com_num}">
-                            <h5><b>${dto.com_title}</b></h5>
-                            <span class="content_text">${dto.com_content}</span>
-                            <div>
-                                &nbsp;<span><i class="bi bi-hand-thumbs-up"></i>&nbsp;${dto.com_likes}</span>&nbsp;&nbsp;&nbsp;
-                                <span><i class="bi bi-chat-left"></i>&nbsp;${dto.com_commentcount}</span>&nbsp;&nbsp;
-                                <span><i class="bi bi-eye"></i>&nbsp;${dto.com_readcount}</span>&nbsp;&nbsp;&nbsp;&nbsp;
-                                <br>
-                                <span>'${dto.com_nickname }'님&nbsp;&nbsp;<fmt:formatDate value="${dto.com_writetime}" pattern="yyyy-MM-dd HH:mm" />&nbsp;작성</span>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </li>
-        </c:forEach>
-    </ul>
-</div> --%>
+
 <div class="list_qna" style="max-width: 1060px; margin: 30px auto;">
 	<div id="s-qna-list">
     <ul class="qna-list">
