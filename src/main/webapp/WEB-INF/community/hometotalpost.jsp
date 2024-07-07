@@ -280,7 +280,7 @@
                     <span>전체 <b class="allcount">${totalCount}</b>건</span>
                 </h4>
             </a>
-            <div class="d-flex search">
+            <div class="d-flex search" style="margin-right: -9px;">
                 <input class="form-control me-2" type="search" placeholder="다른 사람들은 어떤 이야기를 할까?" aria-label="Search"
                 style="width: 350px;" name="searchword">
                 <button type="button" class="btn btn-outline-primary" id="btnsearch">
