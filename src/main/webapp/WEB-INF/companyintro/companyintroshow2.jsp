@@ -266,6 +266,19 @@ body {
 .btn-custom i {
 	font-size: 20px; /* 아이콘 크기 */
 }
+
+/* Make all cards have the same height */
+.job-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.job-card .card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
 </style>
 <title>Company Profile</title>
 </head>
@@ -325,9 +338,9 @@ request.setAttribute("currentYear", currentYear);
 								</c:when>
 								<c:otherwise>
 									<c:forEach var="h" items="${hlist}">
-										<div class="col-md-4">
-											<div class="card mb-4 shadow-sm">
-												<div class="card-body">
+										<div class="col-md-4 mb-4 d-flex">
+											<div class="card shadow-sm job-card w-100">
+												<div class="card-body d-flex flex-column">
 													<h6 class="card-title">
 														<a target="_blank" href="/hire/detail?h_num=${h.h_num}">
 															<p style="font-weight: bold;">[${h.h_title}]</p>
