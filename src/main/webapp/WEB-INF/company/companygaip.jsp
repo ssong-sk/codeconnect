@@ -170,7 +170,7 @@ body {
 				</select>
 			</div>
 			<div class="form-group">
-				<label for="c_category">산업군</label> <label for="c_category">산업군</label>
+				<label for="c_category">산업군</label>
 				<select class="form-control" id="c_category" name="c_category"
 					required="required">
 					<option value="">산업군 선택</option>
