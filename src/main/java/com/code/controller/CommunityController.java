@@ -317,7 +317,7 @@ public class CommunityController {
         Date endDate = new Date(cal.getTimeInMillis());
 
         // 이번 주 인기 게시글 조회 (homepopularlist에서는 20개 보이게)
-        List<CommunityDto> popularPosts = service.getWeeklyPopularPosts(startDate, endDate);
+        List<CommunityDto> popularPosts = service.getWeeklyPopularPostsAll(startDate, endDate);
 
         // com_post_type이 home인 글들만 필터링
         List<CommunityDto> filteredPopularPosts = popularPosts.stream()
