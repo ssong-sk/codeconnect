@@ -138,23 +138,29 @@
      select * from school where pe_num = #{pe_num} order by sc_num ASC
    </select>
    
+   <select id="SchoolList" parameterType="int" resultType="IruckseoSchoolDto">
+   	select * from school where pe_num = #{pe_num}
+   </select>
+      
    <!-- 학력 pe_num으로 조회 -->
    <select id="Schoollist" parameterType="int" resultType="IruckseoSchoolDto">
-     select 
-		sc_category 
-		, (case when sc_category = "고등학교 졸업" then sc_hi_name else sc_uni_name end ) AS sc_name
-		, (case when sc_category = "고등학교 졸업" then sc_hi_transfer else sc_uni_transfer end ) AS sc_transfer
-		, (case when sc_category = "고등학교 졸업" then sc_hi_check else sc_uni_check end ) AS sc_check
-		, (case when sc_category = "고등학교 졸업" then sc_hi_iphack else sc_uni_iphack end ) AS sc_iphack
-		, (case when sc_category = "고등학교 졸업" then sc_hi_jolup else sc_uni_jolup end ) AS sc_jolup
-		, (case when sc_category = "고등학교 졸업" then sc_hi_major else sc_uni_major end ) AS sc_major
-		,sc_uni_grade
-		,sc_uni_sum
-		,sc_uni_category
-		,sc_num
-		from school 
-	   where pe_num = #{pe_num}
-   </select>
+    select 
+        sc_num,
+        sc_category,
+        (case when sc_category = "고등학교 졸업" then sc_hi_name else sc_uni_name end) AS sc_name,
+        (case when sc_category = "고등학교 졸업" then sc_hi_transfer else sc_uni_transfer end) AS sc_transfer,
+        (case when sc_category = "고등학교 졸업" then sc_hi_check else sc_uni_check end) AS sc_check,
+        (case when sc_category = "고등학교 졸업" then sc_hi_iphack else sc_uni_iphack end) AS sc_iphack,
+        (case when sc_category = "고등학교 졸업" then sc_hi_jolup else sc_uni_jolup end) AS sc_jolup,
+        (case when sc_category = "고등학교 졸업" then sc_hi_major else sc_uni_major end) AS sc_major,
+        sc_uni_grade,
+        sc_uni_sum,
+        sc_uni_category
+    from school 
+    where pe_num = #{pe_num}
+</select>
+
+
    
    <!-- 학력 sc_num값 넘기기 -->
    <select id="selectNumSchool" parameterType="int" resultType="IruckseoSchoolDto">
@@ -631,27 +637,28 @@
    
    <!--    지원현황 카운드들		support db에서 지원완료인 갯수 가져오기 -->
    <select id="getCountApply" parameterType="int" resultType="int">
-   	select count(*) AS count
-		FROM support
-			WHERE st_support = '지원완료'
+	SELECT COUNT(*) AS count
+	FROM support
+	WHERE st_support = '지원완료' AND r_num = #{r_num};
+			
    </select>
    
    <select id="getCountApplySuc" parameterType="int" resultType="int">
    	select count(*) AS count
 		FROM support
-			WHERE st_result = '서류 통과'
+			WHERE st_result = '서류 통과' AND r_num = #{r_num};
    </select>
    
    <select id="getCountApplyFin" parameterType="int" resultType="int">
    	select count(*) AS count
 		FROM support
-			WHERE st_result = '최종 합격'
+			WHERE st_result = '최종 합격' AND r_num = #{r_num};
    </select>
    
    <select id="getCountApplyFail" parameterType="int" resultType="int">
    	select count(*) AS count
 		FROM support
-			WHERE st_result = '불합격'
+			WHERE st_result = '불합격' AND r_num = #{r_num};
    </select>
    
 

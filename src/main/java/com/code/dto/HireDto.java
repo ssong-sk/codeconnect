@@ -38,6 +38,7 @@ public class HireDto {
 	private String ci_soge;
 	private String ci_logo;
 	private String ci_link;
+	private String c_category;
 	
 	//스크랩
 	private int s_num;

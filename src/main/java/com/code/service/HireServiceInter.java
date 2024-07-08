@@ -32,4 +32,7 @@ public interface HireServiceInter {
 	
 	//지원 체크
 	public int getSupportCheck(int r_num, int h_num);
+	
+	//company 리스트 
+	public List<HireDto> getComHireList();
 }
