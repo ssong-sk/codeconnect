@@ -406,7 +406,7 @@
 								aria-hidden="false" style="outline: none; width: 360px;">
 								<div>
 									<div class="Card_TagCard__f0zU3">
-										<a href="/company/35972" data-attribute-id="company__click"
+										<a href="/company/showimsiCom?c_num=20" data-attribute-id="company__click"
 											data-tag-id="10405" data-tag-name="1,001~10,000명"
 											data-company-id="35972" data-company-name="투썸플레이스"
 											data-company-index="0" data-domain="attractionTag"
@@ -461,7 +461,7 @@
 								style="outline: none; width: 360px;">
 								<div>
 									<div class="Card_TagCard__f0zU3">
-										<a href="/company/23220" data-attribute-id="company__click"
+										<a href="/company/showimsiCom?c_num=21" data-attribute-id="company__click"
 											data-tag-id="10405" data-tag-name="1,001~10,000명"
 											data-company-id="23220" data-company-name="매일유업"
 											data-company-index="1" data-domain="attractionTag"
@@ -515,7 +515,7 @@
 								style="outline: none; width: 360px;">
 								<div>
 									<div class="Card_TagCard__f0zU3">
-										<a href="/company/426" data-attribute-id="company__click"
+										<a href="/company/showimsiCom?c_num=31" data-attribute-id="company__click"
 											data-tag-id="10405" data-tag-name="1,001~10,000명"
 											data-company-id="426" data-company-name="컬리"
 											data-company-index="2" data-domain="attractionTag"
@@ -570,7 +570,7 @@
 								aria-hidden="false" style="outline: none; width: 360px;">
 								<div>
 									<div class="Card_TagCard__f0zU3">
-										<a href="/company/35" data-attribute-id="company__click"
+										<a href="/company/showimsiCom?c_num=32" data-attribute-id="company__click"
 											data-tag-id="10405" data-tag-name="1,001~10,000명"
 											data-company-id="35" data-company-name="위대한상상(요기요)"
 											data-company-index="3" data-domain="attractionTag"
@@ -625,7 +625,7 @@
 								style="outline: none; width: 360px;">
 								<div>
 									<div class="Card_TagCard__f0zU3">
-										<a href="/company/27759" data-attribute-id="company__click"
+										<a href="/company/showimsiCom?c_num=24" data-attribute-id="company__click"
 											data-tag-id="10405" data-tag-name="1,001~10,000명"
 											data-company-id="27759" data-company-name="코웨이"
 											data-company-index="10" data-domain="attractionTag"
@@ -679,7 +679,7 @@
 								style="outline: none; width: 360px;">
 								<div>
 									<div class="Card_TagCard__f0zU3">
-										<a href="/company/8369" data-attribute-id="company__click"
+										<a href="/company/showimsiCom?c_num=35" data-attribute-id="company__click"
 											data-tag-id="10405" data-tag-name="1,001~10,000명"
 											data-company-id="8369" data-company-name="교보문고"
 											data-company-index="13" data-domain="attractionTag"
