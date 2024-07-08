@@ -281,7 +281,7 @@ th {
 			    </c:if>
 			</div>
 			
-			<div id="closed" class="events" style="display: none; width: 900px;">
+			<div id="closed" class="events" style="display: none; width: 90%;">
 			    <c:forEach var="event" items="${closedEvents}">
 			        <div class="event-card">
 			            <a href="eventdetail/${event.cus_num}" style="text-decoration: none; color: inherit;">
@@ -294,7 +294,7 @@ th {
 			    </c:forEach>
 			</div>
 			
-			<div id="announcement" class="events2" style="display: none; width: 80%">
+			<div id="announcement" class="events2" style="display: none; width: 900px;">
 			    <div class="top-section">
 			        <span>총 &nbsp;${totalCountAnnouncement}&nbsp;건</span>
 			        <c:if test="${sessionScope.myid == 'manager'}">
