@@ -21,8 +21,8 @@
   - 담당 역할 : 
   - 상세 기능 :
 
-- ### 🐻변효영 
-  - GitHub 주소 : <>
+- ### 🐼 변효영 
+  - GitHub 주소 : [https://github.com/byeonhyoyoung](#)
   - 담당 역할 : 
   - 상세 기능 :
  
