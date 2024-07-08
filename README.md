@@ -43,10 +43,10 @@
  
 ## 3) ERD
 <div align=center>
-<img src="https://github.com/ssong-sk/codeconnect/assets/155614770/e401a759-065e-4db3-a4d0-a3e361823862" width="70%"><br>
+<img src="https://github.com/ssong-sk/codeconnect/assets/155614770/e401a759-065e-4db3-a4d0-a3e361823862" width="100%"><br>
 </div><br><br>
 
 ## 4) IDE
 <div align=center>
-<img src="https://github.com/ssong-sk/codeconnect/assets/155614770/f1f468a8-9312-4df1-8749-9a253d3c8117" width="70%"><br>
+<img src="https://github.com/ssong-sk/codeconnect/assets/155614770/f1f468a8-9312-4df1-8749-9a253d3c8117" width="100%"><br>
 </div><br><br>
