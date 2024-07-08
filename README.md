@@ -69,6 +69,7 @@ Tech Stacks
 <div><h4>백엔드</h4>
   
   <img src="https://img.shields.io/badge/Java-007396?style=flat&logo=Java&logoColor=white">
+  <img src="https://img.shields.io/badge/java-007396?style=for-the-badge&logo=OpenJDK&logoColor=white">
   <img src="https://img.shields.io/badge/JSP-007396?style=flat&logo=Java&logoColor=white">
   <img src="https://img.shields.io/badge/API-FF9E0F?style=flat&logo=Java&logoColor=white">
   <img src="https://img.shields.io/badge/Apache%20Tomcat-F8DC75?style=flat&logo=Apache%20Tomcat&logoColor=white">
