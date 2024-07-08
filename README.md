@@ -57,6 +57,7 @@ Tech Stacks
 <div><h4>IDE</h4>
     <img src="https://img.shields.io/badge/Spring-6DB33F?style=flat&logo=Spring&logoColor=green">
     <img src="https://img.shields.io/badge/Spring Boot-6DB33F?style=flat&logo=Spring Boot&logoColor=yellow">
+    <img src="https://img.shields.io/badge/MyBatis-FF9E0F?style=flat&logo=Java&logoColor=white">
 
 <div><h4>프론트엔드</h4>
     <img src="https://img.shields.io/badge/Bootstrap-7952B3?style=flat&logo=Bootstrap&logoColor=white">
