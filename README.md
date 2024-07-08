@@ -43,12 +43,12 @@
 
 ## 3) Flow Chart
 <div align=center>
-<img src="" width="100%"><br>
+<img src="https://github.com/ssong-sk/codeconnect/assets/155614770/ec9e64a9-681c-41c8-b61f-e3081b982694" width="100%"><br>
 </div><br><br>
  
 ## 4) ERD
 <div align=center>
-<img src="https://github.com/ssong-sk/codeconnect/assets/155614770/e401a759-065e-4db3-a4d0-a3e361823862" width="100%"><br>
+<img src="https://github.com/ssong-sk/codeconnect/assets/155614770/e401a759-065e-4db3-a4d0-a3e361823862)" width="100%"><br>
 </div><br><br>
 
 ## 5) Tech Stacks
@@ -86,7 +86,7 @@ Tech Stacks
 <br><br>
 
 <div align=center>
-<img src="https://github.com/ssong-sk/codeconnect/assets/155614770/f1f468a8-9312-4df1-8749-9a253d3c8117" width="100%"><br>
+<img src="https://github.com/ssong-sk/codeconnect/assets/155614770/ee2409ff-9c88-4d75-8015-0d7f6f0de9d9" width="100%"><br>
 </div><br><br>
 
 ## 6) Directory Path
