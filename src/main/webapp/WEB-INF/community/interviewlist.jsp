@@ -198,8 +198,8 @@
 </div>
 <nav class="nav">
     <ul>
-        <li><a class="nav-link" href="../community/homelist" id="homeLink">소셜</a></li>
-        <li><a class="nav-link" href="../community/interviewlist" id="interviewLink">현직자 인터뷰</a></li>
+        <li><a class="nav-link" href="${root}/community/homelist" id="homeLink">소셜</a></li>
+        <li><a class="nav-link" href="${root}/community/interviewlist" id="interviewLink">현직자 인터뷰</a></li>
     </ul>
 </nav>
     <div class="wrap_category_type" style="margin-top: 30px;">
@@ -252,7 +252,7 @@
                                 </div>
                             </div>
                             <div class="iphoto" style="margin-right: -20px; margin-bottom: -25px;">
-                                <img alt="" src="../communityimage/${dto.com_photo}">
+                                <img alt="" src="<c:url value='../communityimage/${dto.com_photo}'/>">
                             </div>
                         </div>
                     </a>
