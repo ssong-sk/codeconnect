@@ -52,6 +52,32 @@
 </div><br><br>
 
 ## 5) IDE
+Tech Stacks
+<div><h4>프론트엔드</h4>
+    <img src="https://img.shields.io/badge/Bootstrap-7952B3?style=flat&logo=Bootstrap&logoColor=white">
+    <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=HTML5&logoColor=white">
+    <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=CSS3&logoColor=white">
+    <img src="https://img.shields.io/badge/jQuery-0769AD?style=flat&logo=jQuery&logoColor=white">
+    <img src="https://img.shields.io/badge/Javascript-F7DF1E?style=flat&logo=Javascript&logoColor=white">
+</div>
+
+<div><h4>백엔드</h4>
+  <img src="https://img.shields.io/badge/Java-007396?style=flat&logo=Java&logoColor=white">
+  <img src="https://img.shields.io/badge/JSP-007396?style=flat&logo=Java&logoColor=white">
+  <img src="https://img.shields.io/badge/API-FF9E0F?style=flat&logo=Java&logoColor=white">
+  <img src="https://img.shields.io/badge/Apache%20Tomcat-F8DC75?style=flat&logo=Apache%20Tomcat&logoColor=white">
+</div>
+
+<div><h4>DB</h4>
+  <img src="https://img.shields.io/badge/MySQL-4479A1?style=flat&logo=MySQL&logoColor=white">
+  <img src="https://img.shields.io/badge/AWS-232F3E?style=flat&logo=amazonaws&logoColor=white">
+</div>
+
+<div><h4>형상관리</h4>
+  <img src="https://img.shields.io/badge/Github-181717?style=flat&logo=Github&logoColor=white">
+  <img src="https://img.shields.io/badge/eclipse-2C2255?style=flat&logo=eclipseide&logoColor=white">
+<br><br>
+
 <div align=center>
 <img src="https://github.com/ssong-sk/codeconnect/assets/155614770/f1f468a8-9312-4df1-8749-9a253d3c8117" width="100%"><br>
 </div><br><br>
@@ -116,13 +142,34 @@ CODECONNECT
 <br>
 
 ### 김태윤
+-메인페이지 
+-개인회원 가입
+-개인회원 로그인
+-개인회원 마이페이지
 
 ### 김지은
+-채용공고 리스트 
+-채용공고 등록 
+-관리자페이지
 
 ### 변효영
+-커뮤니티 
+-고객센터 
 
 ### 송승경
+-이력서 메인홈
+-이력서 현황(수정,삭제, List)
+-이력서 입사지원현황
+-이력서 채용공고 스크랩
+-이력서 관심기업 스크랩
 
 ### 이민영
+-기업회원 가입 
+-기업회원 로그인 
+-기업회원 마이페이지 
+-기업 리스트
 
 ### 이병준
+-채용공고 리스트 
+-채용공고 등록 
+-전체 검색 시스템
