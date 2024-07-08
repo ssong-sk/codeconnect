@@ -48,7 +48,7 @@
  
 ## 4) ERD
 <div align=center>
-<img src="https://github.com/ssong-sk/codeconnect/assets/155614770/e401a759-065e-4db3-a4d0-a3e361823862)" width="100%"><br>
+<img src="https://github.com/ssong-sk/codeconnect/assets/155614770/a6be9e9f-2130-49f9-acad-a9572b56bd19" width="100%"><br>
 </div><br><br>
 
 ## 5) Tech Stacks
