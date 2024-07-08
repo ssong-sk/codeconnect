@@ -250,7 +250,7 @@ a, a:active, a:hover, a:visited {
 										        <c:when test="${in.cus_answer_status == '답변 완료'}">
 										            <span style="color: #007bff;">${in.cus_answer_status}</span>
 										        </c:when>
-										        <c:when test="${in.cus_answer_status == '답변 대기'}">
+										        <c:when test="${in.cus_answer_status == NULL}">
 										            <button type="button" class="btn btn-outlint-primary" style="border: 1px solid #FF0000; color: #FF0000;">답변 작성</button>
 										        </c:when>
 									    	</c:choose>
