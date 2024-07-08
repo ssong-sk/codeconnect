@@ -317,11 +317,10 @@ button {
 			$.ajax({
 				url : '/updateJob',
 				type : 'POST',
-				dataType : 'json',
+				dataType : 'html',
 				data : data,
 				success : function(res) {
 					location.reload();
-
 				},
 				error : function(xhr, status, error) {
 					console.error('경력 업데이트 중 오류가 발생했습니다:', error);
@@ -413,7 +412,7 @@ button {
 			$.ajax({
 				url : '/updateExp',
 				type : 'POST',
-				dataType : 'json',
+				dataType : 'html',
 				data : data,
 				success : function(res) {
 					alert("수정완료");
