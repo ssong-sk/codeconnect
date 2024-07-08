@@ -1,5 +1,5 @@
 <div align=center>
-<img src="https://github.com/ssong-sk/codeconnect/assets/155614770/dd80f0c3-95ac-4c06-aeb8-cc7c68794694" width="50%">
+<img src="https://github.com/ssong-sk/codeconnect/assets/155614770/dd80f0c3-95ac-4c06-aeb8-cc7c68794694" width="70%">
 </div>
 <div align=center>
 <br>
