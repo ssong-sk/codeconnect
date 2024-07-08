@@ -51,8 +51,10 @@
 <img src="https://github.com/ssong-sk/codeconnect/assets/155614770/e401a759-065e-4db3-a4d0-a3e361823862" width="100%"><br>
 </div><br><br>
 
-## 5) IDE
+## 5) Tech Stacks
 Tech Stacks
+
+
 <div><h4>프론트엔드</h4>
     <img src="https://img.shields.io/badge/Bootstrap-7952B3?style=flat&logo=Bootstrap&logoColor=white">
     <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=HTML5&logoColor=white">
@@ -76,7 +78,6 @@ Tech Stacks
 
 <div><h4>형상관리</h4>
   <img src="https://img.shields.io/badge/Github-181717?style=flat&logo=Github&logoColor=white">
-  <img src="https://img.shields.io/badge/eclipse-2C2255?style=flat&logo=eclipseide&logoColor=white">
 <br><br>
 
 <div align=center>
