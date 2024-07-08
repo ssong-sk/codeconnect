@@ -13,21 +13,22 @@
 
 <style>
 /*전체 너비에 맞게 수정 */
-body {
-	font-family: 'Noto Sans KR', sans-serif;
-	background-color: #f8f9fa;
-	margin: 0;
+
+.all {
+	max-height: 100%;
 }
 
-.wrapper {
+.center {
+	margin: 0 auto;
+	width: 100%;
+	height: 100%;
+	max-width: 1060px;
 	display: flex;
-	justify-content: center;
-	padding: 20px 420px;
 }
 
-.container {
-	display: flex;
-	width: 1060px; /* 전체 너비를 1060px로 설정 */
+#wrap {
+	margin-top: 60px;
+	font-family: IBM Plex Sans KR;
 }
 
 .sidebar {
@@ -240,8 +241,9 @@ th:nth-child(6), td:nth-child(6) {
 </script>
 </head>
 <body>
-	<div class="wrapper">
-		<div class="container">
+<div class="all">
+	<div id="wrap">
+		<div class="center">
 			<div class="sidebar">
 				<h5>기업 채용 솔루션</h5>
 				<button class="btn" onclick="location.href='/hire/hirewrite'">+
@@ -325,5 +327,6 @@ th:nth-child(6), td:nth-child(6) {
 			</div>
 		</div>
 	</div>
+</div>
 </body>
 </html>

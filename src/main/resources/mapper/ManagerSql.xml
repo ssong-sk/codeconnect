@@ -119,7 +119,7 @@
 	</select>
 
 	<select id="getCountInquiryStandBy" resultType="int">
-		select count(*) from customer where cus_answer_status = '답변 대기'
+		select count(*) from customer where cus_top_type = 'inquiry' and cus_answer_status is null
 	</select>
 
 	<select id="getAllCustomerInquiry" parameterType="HashMap"
@@ -134,7 +134,7 @@
 	</update>
 
 	<update id="deleteInquiry" parameterType="CustomerDto">
-		update customer set cus_answer = null, cus_answer_status='답변 대기' 
+		update customer set cus_answer = null, cus_answer_status=NULL 
 		where cus_num=#{cus_num}
 	</update>
 

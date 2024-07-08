@@ -252,7 +252,7 @@
                                 </div>
                             </div>
                             <div class="iphoto" style="margin-right: -20px; margin-bottom: -25px;">
-                                <img alt="" src="<c:url value='/communityimage/${dto.com_photo}'/>">
+                                <img alt="" src="<c:url value='../communityimage/${dto.com_photo}'/>">
                             </div>
                         </div>
                     </a>
