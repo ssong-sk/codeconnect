@@ -91,7 +91,6 @@ Tech Stacks
 
 ## 6) Directory Path
 ```
-<div>
 CODECONNECT
  ┣ .git
  ┣ .metadata
@@ -141,7 +140,6 @@ CODECONNECT
  ┣ mvnw
  ┣ mvnw.cmd
  ┗ pom.xml
-</div>
 ```
 <br><br>
 
