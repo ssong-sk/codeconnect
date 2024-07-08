@@ -16,14 +16,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
+import com.code.dto.CompanyDto;
 import com.code.dto.CompanyIntroDto;
 import com.code.dto.HireDto;
+import com.code.dto.IruckseoCareerDto;
+import com.code.dto.IruckseoSchoolDto;
 import com.code.dto.RegisterDto;
 import com.code.dto.SupportDto;
 import com.code.mapper.RegisterMapperInter;
 import com.code.service.CompanyIntroService;
+import com.code.service.CompanyReviewService;
+import com.code.service.CompanyService;
 import com.code.service.HireService;
 import com.code.service.IruckseoInsertService;
 import com.code.service.RegisterService;
@@ -45,6 +49,10 @@ public class RegisterController {
    
    @Autowired
    IruckseoInsertService irservice;
+   
+   @Autowired
+	CompanyService cservice;
+   
 
    @GetMapping("/")
    public String start(@ModelAttribute("hdto") HireDto dto, @ModelAttribute CompanyIntroDto cidto, Model model,HttpSession session)
@@ -207,15 +215,24 @@ public class RegisterController {
 		   r_num = 0;
 	   }
 	   	   
+	   
 	   int pe_num = service.getpenum(r_num2);
+	   
 	   int midcount = service.getwritemiddle(pe_num);
 	   int unicount = service.getwriteuni(pe_num);
+	   
 	   Optional<Integer> carcountOpt = service.getwritecareer(pe_num);
+	   
 	   int carcount = carcountOpt.orElse(0);
 	   int actcount = service.getwriteactibity(pe_num);
+	   
 	   int spcecount = service.getwritesp_ce(pe_num);
 	   int splacount = service.getwritesp_la(pe_num);
 	   int spawcount = service.getwritesp_aw(pe_num);
+	   
+	   List<IruckseoCareerDto> calist = irservice.Careerlist(pe_num);
+	   List<IruckseoSchoolDto> scolist = irservice.SchoolList(pe_num);
+	   
 	   
 	   int totalCount = irservice.getSupportCount(r_num);
 	   int CountApply = irservice.getCountApply(r_num);
@@ -228,8 +245,10 @@ public class RegisterController {
 
 	   model.addAttribute("r_num2", r_num2);
 	   model.addAttribute("pe_num", pe_num);
+	   
 	   model.addAttribute("midcount",midcount);
 	   model.addAttribute("unicount", unicount);
+	   
 	   model.addAttribute("carcount", carcount);
 	   model.addAttribute("actcount", actcount);
 	   model.addAttribute("spcecount", spcecount);
@@ -242,12 +261,15 @@ public class RegisterController {
 	   model.addAttribute("companyCount",companyCount);
 	   
 	   
+	   model.addAttribute("calist",calist);
+	   model.addAttribute("scolist",scolist);
 	   
 	   model.addAttribute("count",totalCount);
 	   model.addAttribute("apply",CountApply);
 	   model.addAttribute("applySuc",CountApplySuc);
 	   model.addAttribute("applyFin",CountApplyFin);
 	   model.addAttribute("applyFail",CountApplyFail);
+	   
 	   return "/sub/member/mypage"; 
 	}
    
@@ -358,7 +380,31 @@ public class RegisterController {
    }
    
    @GetMapping("/member/companies")
-   public String companies() {
+   public String companies(@ModelAttribute("hdto") HireDto dto,Model model,HttpSession session) {
+	   
+	   
+	   List<HireDto> chlist = hservice.getComHireList();
+	   Integer r_num = null;
+	   
+	    String myid =(String)session.getAttribute("myid");
+	    
+	   if(myid != null) {
+		   r_num = hservice.getRnumById(myid);
+	   }
+	   if(r_num == null)
+	   {
+		   r_num = 0;
+	   }
+	   
+	   int rScrap = service.getScrapCount(r_num);
+	   
+	   
+	   List<HireDto> userScraps2 = hservice.getUserScraps2(r_num);
+	   
+	   model.addAttribute("userScraps2",userScraps2);
+	   model.addAttribute("rScrap",rScrap);
+	   model.addAttribute("chlist",chlist);
+	   
 	   return "/sub/member/companies";
    }
    

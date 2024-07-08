@@ -221,4 +221,7 @@ public interface IruckseoInsertMapperInter {
 	public int getCountApplyFin(int r_num);
 	public int getCountApplyFail(int r_num);
 
+	public List<IruckseoSchoolDto> SchoolList(int pe_num);
+
+
 }

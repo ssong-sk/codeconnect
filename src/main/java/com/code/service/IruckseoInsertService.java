@@ -466,6 +466,10 @@ public class IruckseoInsertService implements IruckseoInsertServiceInter {
 		return irmapper.getCountApplyFail(r_num);
 	}
 
+	public List<IruckseoSchoolDto> SchoolList(int pe_num) {
+		return irmapper.SchoolList(pe_num);
+	}
+
 
 }
 

@@ -14,6 +14,21 @@
    JOIN company_intro ci ON h.h_ci_num = ci.ci_num order by h.h_num desc 
 </select>
 
+<select id="getComHireList" resultType="hdto">
+SELECT h.*, c.*, ci.*
+FROM (
+    SELECT h.h_num AS sub_h_num, h.h_c_num AS sub_h_c_num, h.h_ci_num AS sub_h_ci_num, ci.ci_num AS sub_ci_num,
+           ROW_NUMBER() OVER (PARTITION BY ci.ci_num ORDER BY h.h_num DESC) AS rn
+    FROM hire h
+    JOIN company c ON h.h_c_num = c.c_num 
+    JOIN company_intro ci ON h.h_ci_num = ci.ci_num 
+) AS ranked
+JOIN hire h ON ranked.sub_h_num = h.h_num
+JOIN company c ON h.h_c_num = c.c_num 
+JOIN company_intro ci ON h.h_ci_num = ci.ci_num 
+WHERE ranked.rn = 1;
+</select>
+
 <select id="searchHire" parameterType="map" resultType="hdto">
     SELECT h.*, c.c_name, ci.ci_image 
     FROM hire h
@@ -68,6 +83,12 @@
     SELECT h_num FROM scrap WHERE r_num = #{r_num}
 </select>
 
+
+<select id="getUserScraps2" parameterType="int" resultType="hdto">
+	select c_num from scrap where r_num = #{r_num} and c_num IS NOT NULL 
+</select>
+
+
 <select id="getRnumById" parameterType="String" resultType="int">
 	select r_num from register where r_id=#{r_id}
 </select>
@@ -75,7 +96,6 @@
 <select id="getScrapCount" parameterType="int" resultType="int">
      select count(*) from scrap where r_num = ${r_num}
 </select>
-
 
 <!-- 채용공고 지원하기 창 -->
 <select id="selectIruckseo" parameterType="int" resultType="IruckseoInsertDto">

@@ -23,6 +23,8 @@ public interface HireMapperInter {
 	public int getRnumById(String r_id);
 	public void scrapDelete(int r_num, int h_num);
 	public List<HireDto> getUserScraps(int r_num);
+	public List<HireDto> getUserScraps2(int r_num);
+	public List<HireDto> getComHireList();
 	//갯수구하기
 	public int getScrapCount(int r_num);
  
@@ -38,5 +40,7 @@ public interface HireMapperInter {
 	
 	//지원 체크
 	public int getSupportCheck(HashMap<String, Object> map);
+	
+	
 }
 
