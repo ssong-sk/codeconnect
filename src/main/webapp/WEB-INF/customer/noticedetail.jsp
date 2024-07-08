@@ -13,79 +13,86 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <style>
-.all {
-	height: 100%;
-}
-
-.center {
-	margin: 0 auto;
-	width: 100%;
-	height: 100%;
-	max-width: 1060px;
-	margin-bottom: 100px;
-}
-
-#wrap {
-	margin-top: 45px; /* 헤더 들어갈 부분 */
-	font-family: IBM Plex Sans KR;
-}
-
-body {
-    font-family: 'IBM Plex Sans KR', sans-serif;
-}
-
-.backimg {
-   width: 30px;
-   height: 30px;
-   padding-top: 2px;
-   cursor: pointer;
-}
-
-.container {
-    max-width: 1000px;
-    margin: 50px auto;
-    padding: 20px;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-
-.detail-title {
-    font-size: 22px;
-    font-weight: bold;
-    margin-bottom: 20px;
-}
-
-.detail-info {
-    margin-bottom: 20px;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 10px;
-}
-
-.detail-info span {
-    display: inline-block;
-    margin-right: 10px;
-}
-
-.detail-content {
-    margin-bottom: 20px;
-    white-space: pre-wrap; /* 유지하기 위해 */
-    line-height: 1.6;
-}
-
-.btn-secondary {
-    background-color: #6c757d;
-    border: none;
-}
-
-.btn-secondary:hover {
-    background-color: #5a6268;
-}
-
-.footer {
-    text-align: right;
-    margin-top: 20px;
-}
+	.all {
+		height: 100%;
+	}
+	
+	.center {
+		margin: 0 auto;
+		width: 100%;
+		height: 100%;
+		max-width: 1060px;
+		margin-bottom: 100px;
+	}
+	
+	#wrap {
+		margin-top: 45px; /* 헤더 들어갈 부분 */
+		font-family: IBM Plex Sans KR;
+	}
+	
+	body {
+	    font-family: 'IBM Plex Sans KR', sans-serif;
+	}
+	
+	.backimg {
+	   width: 30px;
+	   height: 30px;
+	   padding-top: 2px;
+	   cursor: pointer;
+	}
+	
+	.container {
+	    max-width: 1000px;
+	    margin: 50px auto;
+	    padding: 20px;
+	    background: #fff;
+	    border-radius: 10px;
+	    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+	}
+	
+	.detail-title {
+	    font-size: 22px;
+	    font-weight: bold;
+	    margin-bottom: 20px;
+	}
+	
+	.detail-info {
+	    margin-bottom: 20px;
+	    border-bottom: 1px solid #ddd;
+	    padding-bottom: 10px;
+	}
+	
+	.detail-info span {
+	    display: inline-block;
+	    margin-right: 10px;
+	}
+	
+	.detail-content {
+	    margin-bottom: 20px;
+	    white-space: pre-wrap; /* 유지하기 위해 */
+	    line-height: 1.6;
+	    text-align: center; /* 이미지를 중앙에 정렬 */
+	}
+	.detail-content img {
+	    display: block;
+	    margin: 20px auto; /* 이미지 중앙 정렬을 위해 자동으로 좌우 마진 설정 */
+	    max-width: 100%; /* 이미지 크기 조정 */
+	    height: auto;
+	}
+	
+	.btn-secondary {
+	    background-color: #6c757d;
+	    border: none;
+	}
+	
+	.btn-secondary:hover {
+	    background-color: #5a6268;
+	}
+	
+	.footer {
+	    text-align: right;
+	    margin-top: 20px;
+	}
 </style>
 <script type="text/javascript">
 	$(document).ready(function() {
