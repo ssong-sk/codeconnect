@@ -527,6 +527,7 @@ svg {
 		                                  clip-rule="evenodd"></path>
 		                        </svg>
 		                    `);
+		                    location.reload();
 		                  }
 		             });
 		          } else {        
