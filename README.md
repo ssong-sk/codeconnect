@@ -50,3 +50,57 @@
 <div align=center>
 <img src="https://github.com/ssong-sk/codeconnect/assets/155614770/f1f468a8-9312-4df1-8749-9a253d3c8117" width="100%"><br>
 </div><br><br>
+
+## 5) Directory Path
+```
+<div>
+CODECONNECT
+ ┣ .git
+ ┣ .metadata
+ ┣ .mvn
+ ┃  ┗ wrapper
+ ┃     ┗ maven-wrapper.properties
+ ┣ .settings
+ ┣ src
+ ┃  ┣ main
+ ┃  ┃  ┣ java
+ ┃  ┃  ┃  ┗ com
+ ┃  ┃  ┃     ┗ code
+ ┃  ┃  ┃        ┣ connect
+ ┃  ┃  ┃        ┣ controller
+ ┃  ┃  ┃        ┣ dto
+ ┃  ┃  ┃        ┣ mapper
+ ┃  ┃  ┃        ┗ service
+ ┃  ┃  ┗ webapp
+ ┃  ┃     ┗ WEB-INF
+ ┃  ┃        ┣ allsearch
+ ┃  ┃        ┣ community
+ ┃  ┃        ┣ company
+ ┃  ┃        ┣ companyaccount
+ ┃  ┃        ┣ companyhire
+ ┃  ┃        ┣ companyintro
+ ┃  ┃        ┣ companylogin
+ ┃  ┃        ┣ customer
+ ┃  ┃        ┣ hire
+ ┃  ┃        ┣ layout
+ ┃  ┃        ┣ lib
+ ┃  ┃        ┃  ┗ cos.jar
+ ┃  ┃        ┣ login
+ ┃  ┃        ┣ manager
+ ┃  ┃        ┣ member
+ ┃  ┃        ┣ resumehome
+ ┃  ┃        ┗ tiles.xml
+ ┃  ┗ test
+ ┃     ┗ java
+ ┃        ┗ com
+ ┃           ┗ code
+ ┃              ┗ connect
+ ┃                 ┗ CodeConnectApplicationTests.java
+ ┣ .classpath
+ ┣ .factorypath
+ ┣ .gitignore
+ ┣ .project
+ ┣ mvnw
+ ┣ mvnw.cmd
+ ┗ pom.xml
+</div>
