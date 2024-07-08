@@ -26,6 +26,11 @@ public class HireService implements HireServiceInter {
 	public List<HireDto> getHireList() {
         return mapper.getHireList();
 	}
+	
+	@Override
+	public List<HireDto> getComHireList( ) {
+		return mapper.getComHireList();
+	}
 
 	@Override
 	public List<HireDto> searchHire(String search_job, String search_tech, String search_region, String search_career, String search_cate) {
@@ -60,6 +65,10 @@ public class HireService implements HireServiceInter {
 	@Override
 	public List<HireDto> getUserScraps(int r_num) {
 		return mapper.getUserScraps(r_num);
+	}
+	
+	public List<HireDto> getUserScraps2(int r_num) {
+		return mapper.getUserScraps2(r_num);
 	}
 	
 	
@@ -104,6 +113,8 @@ public class HireService implements HireServiceInter {
         
 		return mapper.getSupportCheck(map);
 	}
+
 	
+
 
 }
