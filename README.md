@@ -217,15 +217,16 @@ https://github.com/ssong-sk/codeconnect/assets/155614410/c7fdd418-367d-46da-b08b
 
 ### 변효영
 ##### 커뮤니티 소셜 홈
-
+https://github.com/ssong-sk/codeconnect/assets/142892132/20deb4d7-db41-440e-bb40-590b8cbdaf02
+https://github.com/ssong-sk/codeconnect/assets/142892132/74b155f8-d8eb-48e6-a993-8a6f85b2ef9f
 ##### 커뮤니티 소셜 CRUD
-
+https://github.com/ssong-sk/codeconnect/assets/142892132/cf1af746-d540-4301-a328-9c23a15a1393
 ##### 커뮤니티 현직자 인터뷰
-
+https://github.com/ssong-sk/codeconnect/assets/142892132/2f662dc2-d375-42fa-9e9c-1b949eacac9d
 ##### 고객센터 공지사항, 이벤트
-
+https://github.com/ssong-sk/codeconnect/assets/142892132/5d5bd8d7-42ee-4d91-8460-5332d0314c6d
 ##### 고객센터 1:1 문의
-https://github.com/ssong-sk/codeconnect/assets/155614410/5761709b-fc8c-4b5b-9d91-693a541abdc0
+https://github.com/ssong-sk/codeconnect/assets/142892132/e8291a4b-4219-4357-9988-f16cab9894ce
 
 ### 송승경
 ##### 이력서 메인홈
