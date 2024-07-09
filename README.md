@@ -186,33 +186,49 @@ CODECONNECT
 <br>
 
 ### 김태윤
-##### 메인페이지
-##### 개인회원 가입
-##### 개인회원 로그인
-##### 개인회원 마이페이지
+##### 개인회원 로그인 / 회원가입
+https://github.com/ssong-sk/codeconnect/assets/155614410/3d1a1b7b-cd37-4fe7-a00a-28d543caab8c
+##### 메인페이지, 개인회원 마이페이지
+https://github.com/ssong-sk/codeconnect/assets/155614410/e4feec01-2c44-4543-995d-e31a890e8f3b
+##### 북마크, 관심회사, 회원 탈퇴
+https://github.com/ssong-sk/codeconnect/assets/155614410/d8cccde4-9962-4890-9795-815583e3a7e7
 
 ### 김지은, 이병준
 ##### 채용공고 등록
+https://github.com/ssong-sk/codeconnect/assets/155614410/0dc7415b-c83b-401d-afd9-8ca93f07fb27
 ##### 채용공고 페이지, 검색 기능
+https://github.com/ssong-sk/codeconnect/assets/155614410/b47769f0-2781-4ab2-807a-ad9297d89a1d
 ##### 채용공고 상세페이지
+https://github.com/ssong-sk/codeconnect/assets/155614410/4d3d3491-cd47-4e8a-bedc-2b4e6be1bcae
 ##### 메인페이지 전체 검색(이병준)
+https://github.com/ssong-sk/codeconnect/assets/155614410/d2324930-a891-4186-be57-da95a6b46082
 ##### 관리자페이지(김지은)
+https://github.com/ssong-sk/codeconnect/assets/155614410/c7fdd418-367d-46da-b08b-36f049ccc96a
 
 ### 변효영
 ##### 커뮤니티
+
 ##### 고객센터
+https://github.com/ssong-sk/codeconnect/assets/155614410/5761709b-fc8c-4b5b-9d91-693a541abdc0
 
 ### 송승경
 ##### 이력서 메인홈
+https://github.com/ssong-sk/codeconnect/assets/155614410/db5ca69e-9066-420c-aaea-09aee63b682d
 ##### 이력서 등록
+https://github.com/ssong-sk/codeconnect/assets/155614410/8f2fc321-806d-404a-98ef-ea1731bf6e1d
 ##### 이력서 수정
+https://github.com/ssong-sk/codeconnect/assets/155614410/16974052-5bad-475d-9cb6-5e93d4e781ea
 ##### 이력서 지원
+https://github.com/ssong-sk/codeconnect/assets/155614410/85499211-277a-4de8-a4e2-7a57f4f2574c
 ##### 이력서 채용공고 스크랩
+https://github.com/ssong-sk/codeconnect/assets/155614410/c48a1fda-18b3-40eb-9350-d49b97a0a1c6
 ##### 이력서 관심기업 스크랩
+https://github.com/ssong-sk/codeconnect/assets/155614410/7a0f9edd-ad8a-40d1-a9b5-b5d3cde7a343
 
 ### 이민영
 ##### 기업회원 로그인/회원가입
+https://github.com/ssong-sk/codeconnect/assets/155614410/b6d6da14-3d3a-4d74-8787-c7a18dd6411b
 ##### 기업회원 마이페이지
+https://github.com/ssong-sk/codeconnect/assets/155614410/34b664e2-6c17-4bda-9fb3-0707d3aefabc
 ##### 기업소개 리스트 및 상세페이지
-
-
+https://github.com/ssong-sk/codeconnect/assets/155614410/f7d4fdbf-8eec-4398-aaea-de140e1f855f
