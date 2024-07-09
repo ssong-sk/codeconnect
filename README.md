@@ -34,7 +34,7 @@
 
 ### 팀 멤버
 - ### 🐻김태윤 
-  - GitHub 주소 : [[GitHub](https://github.com/dancua)]
+  - GitHub 주소 : https://github.com/dancua
   - 담당 역할 : 메인페이지,마이페이지,로그인 회원가입 디자인 및 기능
   - 상세 기능 
     - 회원가입 : 양식에 맞는 정보 입력, 사용자 정보 저장
@@ -54,7 +54,7 @@
     - 관리자 페이지 전체 CRUD 기능 (개인 회원, 기업 회원, 고객센터(공지, 이벤트, 1:1문의))
 
 - ### 🐼 변효영 
-  - GitHub 주소 : [https://github.com/byeonhyoyoung](#)
+  - GitHub 주소 : https://github.com/byeonhyoyoung
   - 담당 역할 : 풀스택, 커뮤니티 페이지 구성, 고객센터 페이지 구성
   - 상세 기능
     - 커뮤니티 소셜 페이지
