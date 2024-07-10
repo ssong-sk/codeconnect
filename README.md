@@ -2,7 +2,7 @@
 <img src="https://github.com/ssong-sk/codeconnect/assets/155614770/dd80f0c3-95ac-4c06-aeb8-cc7c68794694" width="70%"><br>
 </div><br><br>
 
-## 1) 프로젝트 소개
+## 1) 프로젝트 소개 (2024. 05. 20 ~ 2024. 07. 10)
 
 <b>
 채용공고 및 이력서 관리 개발자 전용 웹사이트, "코드커넥트"입니다.<br><br>
